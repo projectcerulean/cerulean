@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="BoxShape3D" id=1]
+
+[sub_resource type="BoxMesh" id=2]
+
+[node name="Block" type="StaticBody3D"]
+script = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource( 1 )
+script = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource( 2 )
+surface_material_override/0 = null
+script = null
