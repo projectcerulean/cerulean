@@ -15,4 +15,4 @@ run/main_scene="res://src/levels/test_scene.tscn"
 
 [rendering]
 
-environment/defaults/default_environment="res://default_env.tres"
+environment/defaults/default_environment="res://src/environment/default_env.tres"
