@@ -15,6 +15,7 @@ extends Node
 func _ready() -> void:
 	assert(state != null)
 	state.enter()
+	Signals.emit_state_entered(self, state.name)
 
 
 # Delegate `_unhandled_input` callback to the active state.
