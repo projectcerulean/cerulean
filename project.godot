@@ -31,8 +31,8 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 &"Player": "",
-&"PlayerState": "",
 &"StateMachine": "",
+&"PlayerState": "",
 &"State": ""
 }
 
@@ -40,6 +40,10 @@ _global_script_class_icons={
 
 config/name="Project Cerulean"
 run/main_scene="res://src/levels/test_scene.tscn"
+
+[autoload]
+
+Signals="*res://src/autoload/signals.gd"
 
 [input]
 

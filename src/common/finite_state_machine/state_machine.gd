@@ -43,5 +43,7 @@ func _physics_process(delta: float) -> void:
 func transition_to(target_state_name: String, data: Dictionary = {}) -> void:
 	assert(has_node(target_state_name))
 	state.exit()
+	Signals.emit_state_exited(self, state.name)
 	state = get_node(target_state_name)
 	state.enter(data)
+	Signals.emit_state_entered(self, state.name)
