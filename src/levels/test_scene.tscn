@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="TestScene" type="Node"]
+script = null
