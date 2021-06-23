@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[{
+"base": "CharacterBody3D",
+"class": &"Player",
+"language": &"GDScript",
+"path": "res://src/entities/player/player.gd"
+}, {
+"base": "State",
+"class": &"PlayerState",
+"language": &"GDScript",
+"path": "res://src/entities/player/player_state.gd"
+}, {
 "base": "Node",
 "class": &"State",
 "language": &"GDScript",
@@ -20,6 +30,8 @@ _global_script_classes=[{
 "path": "res://src/common/finite_state_machine/state_machine.gd"
 }]
 _global_script_class_icons={
+&"Player": "",
+&"PlayerState": "",
 &"StateMachine": "",
 &"State": ""
 }
