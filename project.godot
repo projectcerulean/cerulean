@@ -66,4 +66,5 @@ player_move_right={
 
 [rendering]
 
+anti_aliasing/quality/msaa=2
 environment/defaults/default_environment="res://src/environment/default_env.tres"
