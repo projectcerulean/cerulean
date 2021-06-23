@@ -1,7 +1,7 @@
 extends PlayerState
 
 
-func physics_process(delta: float) -> void:
+func physics_process(_delta: float) -> void:
 	var input: Vector3 = Vector3.ZERO
 	input.z = (
 		Input.get_action_strength("player_move_backward")
