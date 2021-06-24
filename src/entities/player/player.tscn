@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id=2]
 [ext_resource path="res://src/entities/player/player_idle.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/player/player_run.gd" type="Script" id=4]
+[ext_resource path="res://src/entities/player/player_fall.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/player/player_jump.gd" type="Script" id=6]
 
 [sub_resource type="CapsuleShape3D" id=1]
 radius = 0.25
@@ -32,8 +34,18 @@ script = null
 script = ExtResource( 2 )
 initial_state = NodePath("Idle")
 
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 3 )
 
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.65, 0)
+script = null
