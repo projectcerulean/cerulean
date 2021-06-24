@@ -1,8 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [sub_resource type="BoxShape3D" id=1]
 
 [sub_resource type="BoxMesh" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=4]
+width = 2048
+height = 2048
+noise = SubResource( 5 )
+
+[sub_resource type="StandardMaterial3D" id=3]
+albedo_texture = SubResource( 4 )
+normal_scale = -1.84
 
 [node name="Block" type="StaticBody3D"]
 script = null
@@ -13,5 +24,5 @@ script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource( 2 )
-surface_material_override/0 = null
+surface_material_override/0 = SubResource( 3 )
 script = null
