@@ -1,9 +1,16 @@
 extends PlayerState
 
 func physics_process(delta: float) -> void:
+	# Get movement vectors
+	var camera_vector: Vector3 = player.camera.global_transform.origin - player.global_transform.origin
+	camera_vector.y = 0.0
+	camera_vector = camera_vector.normalized()
+	var forward_vector: Vector3 = camera_vector
+	var right_vector: Vector3 = -camera_vector.cross(Vector3.UP)
+
 	# Apply movement
-	player.linear_velocity.x = player.linear_velocity.x + player.thumbstick_left.value.x * player.move_acceleration_air * delta
-	player.linear_velocity.z = player.linear_velocity.z + player.thumbstick_left.value.y * player.move_acceleration_air * delta
+	player.linear_velocity += right_vector * player.thumbstick_left.value.x * player.move_acceleration_air * delta
+	player.linear_velocity += forward_vector * player.thumbstick_left.value.y * player.move_acceleration_air * delta
 
 	# Apply friction
 	player.linear_velocity.x = player.linear_velocity.x - player.move_friction_coefficient_air * player.linear_velocity.x * delta
