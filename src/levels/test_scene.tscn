@@ -17,8 +17,7 @@ sky_material = SubResource( 1 )
 [sub_resource type="Environment" id=3]
 background_mode = 2
 sky = SubResource( 2 )
-tonemap_mode = 2
-glow_enabled = true
+tonemap_mode = 1
 
 [node name="TestScene" type="Node"]
 script = null
