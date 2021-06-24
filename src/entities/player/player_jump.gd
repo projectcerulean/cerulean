@@ -7,12 +7,12 @@ func enter(data := {}) -> void:
 
 func physics_process(delta: float) -> void:
 	# Apply movement
-	player.linear_velocity.x = player.linear_velocity.x + player.thumbstick_left.value.x * player.move_acceleration * delta
-	player.linear_velocity.z = player.linear_velocity.z + player.thumbstick_left.value.y * player.move_acceleration * delta
+	player.linear_velocity.x = player.linear_velocity.x + player.thumbstick_left.value.x * player.move_acceleration_air * delta
+	player.linear_velocity.z = player.linear_velocity.z + player.thumbstick_left.value.y * player.move_acceleration_air * delta
 
 	# Apply friction
-	player.linear_velocity.x = player.linear_velocity.x - player.move_friction_coefficient * player.linear_velocity.x * delta
-	player.linear_velocity.z = player.linear_velocity.z - player.move_friction_coefficient * player.linear_velocity.z * delta
+	player.linear_velocity.x = player.linear_velocity.x - player.move_friction_coefficient_air * player.linear_velocity.x * delta
+	player.linear_velocity.z = player.linear_velocity.z - player.move_friction_coefficient_air * player.linear_velocity.z * delta
 
 	# Apply jump acceleration
 	player.linear_velocity.y = player.linear_velocity.y + player.jump_acceleration * delta

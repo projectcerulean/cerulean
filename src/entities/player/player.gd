@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var thumbstick_right_path := NodePath()
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
+@export var move_acceleration_air: float = move_acceleration / 7.0
+@export var move_friction_coefficient_air: float = move_friction_coefficient / 7.0
 @export var jump_speed: float = 10.0
 @export var jump_acceleration: float = 5.0
 @export var gravity: float = 20.0
