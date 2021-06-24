@@ -1,12 +1,12 @@
 class_name Player
 extends CharacterBody3D
 
-@export var thumbstickLeftPath := NodePath()
-@onready var thumbstickLeft: Thumbstick = get_node(thumbstickLeftPath)
-@export var thumbstickRightPath := NodePath()
-@onready var thumbstickRight: Thumbstick = get_node(thumbstickRightPath)
+@export var thumbstick_left_path := NodePath()
+@onready var thumbstick_left: Thumbstick = get_node(thumbstick_left_path)
+@export var thumbstick_right_path := NodePath()
+@onready var thumbstick_right: Thumbstick = get_node(thumbstick_right_path)
 
 
 func _ready() -> void:
-	assert(thumbstickLeft != null)
-	assert(thumbstickRight != null)
+	assert(thumbstick_left != null)
+	assert(thumbstick_right != null)

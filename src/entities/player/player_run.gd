@@ -2,7 +2,7 @@ extends PlayerState
 
 
 func physics_process(_delta: float) -> void:
-	var input: Vector3 = Vector3(player.thumbstickLeft.value.x, 0, player.thumbstickLeft.value.y)
+	var input: Vector3 = Vector3(player.thumbstick_left.value.x, 0, player.thumbstick_left.value.y)
 	player.linear_velocity = input
 	player.move_and_slide()
 

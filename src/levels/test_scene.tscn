@@ -80,8 +80,8 @@ script = null
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-thumbstickLeftPath = NodePath("../ThumbstickLeft")
-thumbstickRightPath = NodePath("../ThumbstickRight")
+thumbstick_left_path = NodePath("../ThumbstickLeft")
+thumbstick_right_path = NodePath("../ThumbstickRight")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
