@@ -28,11 +28,17 @@ _global_script_classes=[{
 "class": &"StateMachine",
 "language": &"GDScript",
 "path": "res://src/common/finite_state_machine/state_machine.gd"
+}, {
+"base": "Node",
+"class": &"Thumbstick",
+"language": &"GDScript",
+"path": "res://src/input/thumbstick.gd"
 }]
 _global_script_class_icons={
 &"Player": "",
-&"StateMachine": "",
+&"Thumbstick": "",
 &"PlayerState": "",
+&"StateMachine": "",
 &"State": ""
 }
 
@@ -47,24 +53,44 @@ Signals="*res://src/autoload/signals.gd"
 
 [input]
 
-player_move_forward={
-"deadzone": 0.5,
+player_move_up={
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
 ]
 }
-player_move_backward={
-"deadzone": 0.5,
+player_move_down={
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
 ]
 }
 player_move_left={
-"deadzone": 0.5,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
 ]
 }
 player_move_right={
-"deadzone": 0.5,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+]
+}
+camera_move_up={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
+]
+}
+camera_move_down={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
+]
+}
+camera_move_left={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
+]
+}
+camera_move_right={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
 ]
 }
 

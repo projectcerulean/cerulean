@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/entities/test_geometry/block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/hud/state_label.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/input/thumbstick.gd" type="Script" id=4]
 
 [sub_resource type="ProceduralSkyMaterial" id=1]
 sky_top_color = Color(0.568627, 0.698039, 0.807843, 1)
@@ -37,6 +38,8 @@ script = null
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+thumbstickLeftPath = NodePath("../ThumbstickLeft")
+thumbstickRightPath = NodePath("../ThumbstickRight")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
@@ -48,3 +51,17 @@ script = null
 [node name="StateLabel" parent="CanvasLayer" instance=ExtResource( 3 )]
 structured_text_bidi_override_options = []
 target_path = NodePath("../../Player")
+
+[node name="ThumbstickLeft" type="Node" parent="."]
+script = ExtResource( 4 )
+action_up = "player_move_up"
+action_down = "player_move_down"
+action_left = "player_move_left"
+action_right = "player_move_right"
+
+[node name="ThumbstickRight" type="Node" parent="."]
+script = ExtResource( 4 )
+action_up = "camera_move_up"
+action_down = "camera_move_down"
+action_left = "camera_move_left"
+action_right = "camera_move_right"
