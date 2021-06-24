@@ -23,10 +23,52 @@ glow_enabled = true
 [node name="TestScene" type="Node"]
 script = null
 
-[node name="Block" parent="." instance=ExtResource( 1 )]
+[node name="Blocks" type="Node" parent="."]
+script = null
+
+[node name="Block" parent="Blocks" instance=ExtResource( 1 )]
+
+[node name="Block2" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Block11" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Block12" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Block13" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -2)
+
+[node name="Block14" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -2)
+
+[node name="Block3" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Block4" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -2)
+
+[node name="Block5" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -2)
+
+[node name="Block6" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -2)
+
+[node name="Block7" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -2)
+
+[node name="Block8" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -2)
+
+[node name="Block9" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="Block10" parent="Blocks" instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.962398, 0.271642, 0, -0.271642, 0.962398, 0, 2.2966, 5.18402)
+transform = Transform3D(1, 0, 0, 0, 0.887349, 0.461098, 0, -0.461098, 0.887349, 2.49996, 9.68761, 15.9328)
 current = true
 script = null
 
