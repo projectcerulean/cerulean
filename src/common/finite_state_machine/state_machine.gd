@@ -1,4 +1,4 @@
-# https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine
+# Reference: https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine
 # Generic state machine. Initializes states and delegates engine callbacks
 # (_process, _physics_process, _unhandled_input) to the active state.
 class_name StateMachine
