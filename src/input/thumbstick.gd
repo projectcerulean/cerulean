@@ -1,3 +1,6 @@
+# Reference: https://www.youtube.com/watch?v=Q4aQiuJYZ2s
+# Apply some basic processing to the raw thumbstick input values before they are used in the game.
+# Values are updated each frame (_process callback) and can be queried using the `value` variable.
 class_name Thumbstick
 extends Node
 
@@ -17,7 +20,7 @@ func _process(_delta) -> void:
 	value_raw.x = Input.get_action_strength(action_right) - Input.get_action_strength(action_left)
 	value_raw.y =  Input.get_action_strength(action_down) - Input.get_action_strength(action_up)
 
-	# TODO: dead zone
+	# Dead zone
 	var value_clamped: Vector2 = Vector2.ZERO
 	value_clamped.x = clamp(abs(value_raw.x), deadzone_inner, deadzone_outer)
 	value_clamped.y = clamp(abs(value_raw.y), deadzone_inner, deadzone_outer)
