@@ -1,9 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/test_geometry/block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/hud/state_label/state_label.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/input/thumbstick.gd" type="Script" id=4]
+[ext_resource path="res://src/camera/camera.gd" type="Script" id=5]
+
+[sub_resource type="StandardMaterial3D" id=5]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id=4]
+material = SubResource( 5 )
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id=6]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 10.0
 
 [sub_resource type="ProceduralSkyMaterial" id=1]
 sky_top_color = Color(0.568627, 0.698039, 0.807843, 1)
@@ -66,6 +79,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
 [node name="Block10" parent="Blocks" instance=ExtResource( 1 )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 5.154)
+current = true
+fov = 90.0
+script = ExtResource( 5 )
+target_path = NodePath("../Player")
+thumbstick_right_path = NodePath("../ThumbstickRight")
+camera_rotation = Vector3(-30, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+visible = false
+mesh = SubResource( 4 )
+surface_material_override/0 = null
+script = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5.06402)
+mesh = SubResource( 6 )
+surface_material_override/0 = null
+script = null
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
@@ -74,18 +108,8 @@ script = null
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-camera_path = NodePath("CameraPivot/Camera3D")
-camera_pivot_path = NodePath("CameraPivot")
+camera_path = NodePath("../Camera3D")
 thumbstick_left_path = NodePath("../ThumbstickLeft")
-thumbstick_right_path = NodePath("../ThumbstickRight")
-
-[node name="CameraPivot" type="Position3D" parent="Player"]
-script = null
-
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.895308, 0.445448, 0, -0.445448, 0.895308, 0, 3.44793, 5.72526)
-current = true
-script = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
