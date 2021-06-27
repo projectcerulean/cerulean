@@ -1,7 +1,7 @@
 extends PlayerState
 
 
-func enter(data := {}) -> void:
+func enter(_data := {}) -> void:
 	player.linear_velocity.y = player.jump_speed
 
 
