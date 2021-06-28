@@ -62,3 +62,8 @@ script = null
 wait_time = 0.05
 one_shot = true
 script = null
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+script = null

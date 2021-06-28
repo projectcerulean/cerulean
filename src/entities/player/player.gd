@@ -15,6 +15,7 @@ extends CharacterBody3D
 @onready var thumbstick_left: Thumbstick = get_node(thumbstick_left_path)
 @onready var raycast: RayCast3D = get_node("RayCast3D")
 @onready var coyote_timer: Timer = get_node("CoyoteTimer")
+@onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer")
 
 
 func _ready() -> void:
@@ -22,3 +23,4 @@ func _ready() -> void:
 	assert(thumbstick_left != null)
 	assert(raycast != null)
 	assert(coyote_timer != null)
+	assert(jump_buffer_timer != null)

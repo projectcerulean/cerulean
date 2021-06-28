@@ -3,6 +3,7 @@ extends PlayerState
 
 func enter(_data := {}) -> void:
 	player.linear_velocity.y = player.jump_speed
+	player.jump_buffer_timer.stop()
 
 
 func physics_process(delta: float) -> void:

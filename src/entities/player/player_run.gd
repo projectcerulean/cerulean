@@ -36,7 +36,7 @@ func physics_process(delta: float) -> void:
 func get_transition() -> String:
 	if not player.raycast.is_colliding() and player.coyote_timer.is_stopped():
 		return "Fall"
-	elif Input.is_action_just_pressed("player_move_jump"):
+	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		return "Jump"
 	elif player.linear_velocity.is_equal_approx(Vector3.ZERO):
 		return "Idle"

@@ -22,6 +22,10 @@ func physics_process(delta: float) -> void:
 	# Go
 	player.move_and_slide()
 
+	# Jump buffering
+	if Input.is_action_just_pressed("player_move_jump"):
+		player.jump_buffer_timer.start()
+
 
 func get_transition() -> String:
 	if player.is_on_floor():
