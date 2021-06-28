@@ -1,6 +1,14 @@
 extends PlayerState
 
 
+func enter(_data := {}) -> void:
+	player.linear_velocity.y = 0.0
+
+
+func exit() -> void:
+	player.coyote_timer.stop()
+
+
 func physics_process(delta: float) -> void:
 	# Get movement vectors
 	var camera_vector: Vector3 = player.camera.global_transform.origin - player.global_transform.origin
@@ -20,9 +28,13 @@ func physics_process(delta: float) -> void:
 	# Go
 	player.move_and_slide()
 
+	# Coyote timer
+	if player.raycast.is_colliding():
+		player.coyote_timer.start()
+
 
 func get_transition() -> String:
-	if not player.raycast.is_colliding():
+	if not player.raycast.is_colliding() and player.coyote_timer.is_stopped():
 		return "Fall"
 	elif Input.is_action_just_pressed("player_move_jump"):
 		return "Jump"

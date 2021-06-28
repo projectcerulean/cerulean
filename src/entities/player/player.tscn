@@ -57,3 +57,8 @@ light_negative = true
 spot_range = 50.0
 spot_angle = 10.0
 script = null
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+script = null

@@ -14,9 +14,11 @@ extends CharacterBody3D
 @onready var camera: Camera3D = get_node(camera_path)
 @onready var thumbstick_left: Thumbstick = get_node(thumbstick_left_path)
 @onready var raycast: RayCast3D = get_node("RayCast3D")
+@onready var coyote_timer: Timer = get_node("CoyoteTimer")
 
 
 func _ready() -> void:
 	assert(camera != null)
 	assert(thumbstick_left != null)
 	assert(raycast != null)
+	assert(coyote_timer != null)
