@@ -25,7 +25,7 @@ func physics_process(delta: float) -> void:
 	player.linear_velocity.y = player.linear_velocity.y + player.jump_acceleration * delta
 
 	# Apply gravity
-	player.linear_velocity.y = player.linear_velocity.y - player.gravity * delta
+	player.linear_velocity.y = player.linear_velocity.y - Physics.gravity * delta
 
 	# Go
 	player.move_and_slide()

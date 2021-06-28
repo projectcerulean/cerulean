@@ -10,7 +10,6 @@ extends CharacterBody3D
 @export var move_friction_coefficient_air: float = move_friction_coefficient / 7.0
 @export var jump_speed: float = 10.0
 @export var jump_acceleration: float = 5.0
-@export var gravity: float = 20.0
 
 @onready var camera: Camera3D = get_node(camera_path)
 @onready var thumbstick_left: Thumbstick = get_node(thumbstick_left_path)
