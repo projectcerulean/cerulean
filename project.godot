@@ -110,6 +110,10 @@ camera_move_zoom_toggle={
 ]
 }
 
+[physics]
+
+common/physics_fps=120
+
 [rendering]
 
 anti_aliasing/quality/msaa=2
