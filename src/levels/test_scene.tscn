@@ -84,7 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 5.154)
 current = true
 fov = 90.0
 script = ExtResource( 5 )
-target_path = NodePath("../Player")
+target_path = NodePath("../Player/CameraAnchor")
 thumbstick_right_path = NodePath("../ThumbstickRight")
 camera_rotation = Vector3(-30, 0, 0)
 

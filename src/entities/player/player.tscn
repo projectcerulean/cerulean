@@ -76,3 +76,7 @@ script = null
 wait_time = 0.1
 one_shot = true
 script = null
+
+[node name="CameraAnchor" type="Position3D" parent="."]
+top_level = true
+script = null
