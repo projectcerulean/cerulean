@@ -18,8 +18,11 @@ func physics_process(delta: float) -> void:
 	var right_vector: Vector3 = -camera_vector.cross(Vector3.UP)
 
 	# Apply movement
-	player.linear_velocity += right_vector * player.thumbstick_left.value.x * player.move_acceleration * delta
-	player.linear_velocity += forward_vector * player.thumbstick_left.value.y * player.move_acceleration * delta
+	var input_direction: Vector3 = (right_vector * player.thumbstick_left.value.x + forward_vector * player.thumbstick_left.value.y).normalized()
+	var input_strength: float = (right_vector * player.thumbstick_left.value.x + forward_vector * player.thumbstick_left.value.y).length()
+	if input_direction.is_normalized() and not is_equal_approx(input_strength, 0.0):
+		player.direction = player.direction.slerp(input_direction, input_strength * player.turn_weight)
+		player.linear_velocity += player.direction * input_strength * player.move_acceleration * delta
 
 	# Apply friction
 	player.linear_velocity.x = player.linear_velocity.x - player.move_friction_coefficient * player.linear_velocity.x * delta

@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var move_friction_coefficient: float = 15.0
 @export var move_acceleration_air: float = move_acceleration / 7.0
 @export var move_friction_coefficient_air: float = move_friction_coefficient / 7.0
+@export var turn_weight: float = 0.5
 @export var jump_speed: float = 10.0
 @export var jump_acceleration: float = 5.0
 
@@ -16,6 +17,9 @@ extends CharacterBody3D
 @onready var raycast: RayCast3D = get_node("RayCast3D")
 @onready var coyote_timer: Timer = get_node("CoyoteTimer")
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer")
+@onready var mesh_instance: MeshInstance3D = get_node("MeshInstance3D")
+
+var direction: Vector3 = Vector3.FORWARD
 
 
 func _ready() -> void:
@@ -24,3 +28,9 @@ func _ready() -> void:
 	assert(raycast != null)
 	assert(coyote_timer != null)
 	assert(jump_buffer_timer != null)
+	assert(mesh_instance != null)
+
+
+func _process(delta) -> void:
+	assert(direction.y == 0)
+	mesh_instance.look_at(mesh_instance.get_global_transform().origin + direction)
