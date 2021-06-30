@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var move_friction_coefficient: float = 15.0
 @export var turn_weight: float = 0.5
 @export var jump_speed: float = 10.0
-@export var jump_acceleration: float = 5.0
+@export var jump_acceleration: float = 10.0
 @export var air_control_modifier: float = 0.08
 
 @onready var camera: Camera3D = get_node(camera_path)
