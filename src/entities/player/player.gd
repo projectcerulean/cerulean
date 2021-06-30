@@ -31,6 +31,6 @@ func _ready() -> void:
 	assert(mesh_instance != null)
 
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	assert(direction.y == 0)
 	mesh_instance.look_at(mesh_instance.get_global_transform().origin + direction)
