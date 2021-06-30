@@ -6,11 +6,10 @@ extends CharacterBody3D
 
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
-@export var move_acceleration_air: float = move_acceleration / 7.0
-@export var move_friction_coefficient_air: float = move_friction_coefficient / 7.0
 @export var turn_weight: float = 0.5
 @export var jump_speed: float = 10.0
 @export var jump_acceleration: float = 5.0
+@export var air_control_modifier: float = 0.08
 
 @onready var camera: Camera3D = get_node(camera_path)
 @onready var thumbstick_left: Thumbstick = get_node(thumbstick_left_path)
@@ -20,7 +19,8 @@ extends CharacterBody3D
 @onready var mesh_instance: MeshInstance3D = get_node("MeshInstance3D")
 
 var direction: Vector3 = Vector3.FORWARD
-
+var move_acceleration_air: float = move_acceleration * air_control_modifier
+var move_friction_coefficient_air: float = move_friction_coefficient * air_control_modifier
 
 func _ready() -> void:
 	assert(camera != null)
