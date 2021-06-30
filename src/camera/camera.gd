@@ -42,12 +42,11 @@ func _process(delta: float) -> void:
 		camera_rotation_rad.x = clamp(camera_rotation_rad.x, pitch_limit_rad.x, pitch_limit_rad.y)
 		camera_rotation_rad.y = camera_rotation_rad.y - thumbstick_right.value.x * rotation_speed_rad.y * delta
 
-	transform.origin = target.transform.origin + anchor_offset
 	var vertical_axis: Vector3 = Vector3.RIGHT.rotated(Vector3.UP, camera_rotation_rad.y)
 	var target_offset_rotated: Vector3 = target_offset.rotated(Vector3.UP, camera_rotation_rad.y)
 	var look_target_rotated: Vector3 = look_target.rotated(Vector3.UP, camera_rotation_rad.y)
 	target_offset_rotated = target_offset_rotated.rotated(vertical_axis, camera_rotation_rad.x)
 	look_target_rotated = look_target_rotated.rotated(vertical_axis, camera_rotation_rad.x)
 
-	transform.origin += target_offset_rotated
+	transform.origin = target.transform.origin + anchor_offset + target_offset_rotated
 	look_at(look_target_rotated + target.transform.origin)
