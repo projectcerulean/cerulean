@@ -14,6 +14,8 @@ extends CharacterBody3D
 @export var camera_anchor_y_smooth_grounded: float = 0.1
 @export var camera_anchor_y_smooth_air: float = 0.08
 
+@export var y_min: float = -100.0
+
 @onready var camera: Camera3D = get_node(camera_path)
 @onready var thumbstick_left: Thumbstick = get_node(thumbstick_left_path)
 @onready var camera_anchor: Position3D = get_node("CameraAnchor")
@@ -50,3 +52,7 @@ func _process(_delta) -> void:
 		camera_anchor.position.y = lerp(camera_anchor.position.y, position.y, camera_anchor_y_smooth_grounded)
 	else:
 		camera_anchor.position.y = lerp(camera_anchor.position.y, position.y, camera_anchor_y_smooth_air)
+
+	# Reload scene when falling off the map
+	if get_global_transform().origin.y < y_min:
+		get_tree().reload_current_scene()
