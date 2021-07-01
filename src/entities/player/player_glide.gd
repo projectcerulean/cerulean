@@ -22,7 +22,11 @@ func physics_process(delta: float) -> void:
 	player.linear_velocity = player.linear_velocity.normalized().slerp(input_direction, player.glide_smooth_weight) * (
 		sqrt(2.0 * Physics.gravity * player.glide_gravity_modifier * (player.glide_start_position.y - player.position.y)) + player.glide_start_velocity.length()
 	)
-	player.direction = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z).normalized()
+
+	# Update mesh facing direction
+	var direction_new: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z).normalized()
+	if direction_new.is_normalized():
+		player.direction = direction_new
 
 	# Apply gravity
 	player.linear_velocity.y = player.linear_velocity.y - Physics.gravity * player.glide_gravity_modifier * delta
