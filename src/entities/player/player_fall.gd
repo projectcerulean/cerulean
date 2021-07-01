@@ -1,5 +1,6 @@
 extends PlayerState
 
+
 func physics_process(delta: float) -> void:
 	# Get movement vectors
 	var camera_vector: Vector3 = player.camera.global_transform.origin - player.global_transform.origin
@@ -33,5 +34,7 @@ func get_transition() -> String:
 			return "Idle"
 		else:
 			return "Run"
+	elif player.linear_velocity.y < 0.0 and Input.is_action_pressed("player_move_glide"):
+		return "Glide"
 	else:
 		return ""

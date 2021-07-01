@@ -14,6 +14,9 @@ extends CharacterBody3D
 @export var camera_anchor_y_smooth_grounded: float = 0.1
 @export var camera_anchor_y_smooth_air: float = 0.08
 
+@export var glide_gravity_modifier: float = 0.1
+@export var glide_smooth_weight: float = 0.01
+
 @export var y_min: float = -100.0
 
 @onready var camera: Camera3D = get_node(camera_path)
@@ -29,6 +32,9 @@ var direction: Vector3 = Vector3.FORWARD
 var move_acceleration_air: float = move_acceleration * air_control_modifier
 var move_friction_coefficient_air: float = move_friction_coefficient * air_control_modifier
 
+var glide_start_position: Vector3 = Vector3.ZERO
+var glide_start_velocity: Vector3 = Vector3.ZERO
+
 
 func _ready() -> void:
 	assert(camera != null)
@@ -41,6 +47,7 @@ func _ready() -> void:
 
 
 func _process(_delta) -> void:
+	assert(direction.is_normalized())
 	assert(direction.y == 0)
 	mesh_instance.look_at(mesh_instance.get_global_transform().origin + direction)
 

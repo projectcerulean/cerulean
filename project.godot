@@ -109,6 +109,11 @@ camera_move_zoom_toggle={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+player_move_glide={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":10,"pressure":0.0,"pressed":false,"script":null)
+]
+}
 
 [physics]
 
