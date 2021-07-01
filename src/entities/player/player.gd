@@ -47,6 +47,7 @@ func _ready() -> void:
 
 
 func _process(_delta) -> void:
+	# Rotate mesh according to `direction`
 	assert(direction.is_normalized())
 	assert(direction.y == 0)
 	mesh_instance.look_at(mesh_instance.get_global_transform().origin + direction)
