@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id=2]
@@ -22,6 +22,17 @@ albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
 [sub_resource type="BoxMesh" id=4]
 size = Vector3(0.25, 0.25, 0.25)
 
+[sub_resource type="StandardMaterial3D" id=5]
+albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
+
+[sub_resource type="CapsuleMesh" id=6]
+material = SubResource( 5 )
+radius = 0.25
+mid_height = 0.75
+
+[sub_resource type="BoxMesh" id=7]
+size = Vector3(0.75, 0.75, 0.1)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource( 1 )
 
@@ -29,14 +40,55 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 script = null
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshRoot" type="Node3D" parent="."]
+script = null
+
+[node name="MeshDefault" type="Node3D" parent="MeshRoot"]
+script = null
+
+[node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault"]
+script = null
+
+[node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault/Joint"]
+script = null
+
+[node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault/Joint/Joint"]
+script = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshDefault/Joint/Joint/Joint"]
 mesh = SubResource( 2 )
 surface_material_override/0 = SubResource( 3 )
 script = null
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshDefault/Joint/Joint/Joint/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
 mesh = SubResource( 4 )
+surface_material_override/0 = null
+script = null
+
+[node name="MeshGlide" type="Node3D" parent="MeshRoot"]
+visible = false
+script = null
+
+[node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide"]
+transform = Transform3D(1, -1.49012e-08, 0, 0, 1, 0, -2.98023e-08, 1.19209e-07, 1, 0, 0, 0)
+script = null
+
+[node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide/Joint"]
+script = null
+
+[node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide/Joint/Joint"]
+script = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource( 6 )
+surface_material_override/0 = null
+script = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource( 7 )
 surface_material_override/0 = null
 script = null
 

@@ -1,28 +1,30 @@
 extends PlayerState
 
 
-func enter(_data := {}) -> void:
+func enter(data := {}) -> void:
+	super.enter(data)
 	player.linear_velocity.y = 0.0
 
 
 func exit() -> void:
+	super.exit()
 	player.coyote_timer.stop()
 
 
+func process(delta: float) -> void:
+	super.process(delta)
+
+	# Update mesh facing direction
+	player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.direction)
+
+
 func physics_process(delta: float) -> void:
-	# Get movement vectors
-	var camera_vector: Vector3 = player.camera.global_transform.origin - player.global_transform.origin
-	camera_vector.y = 0.0
-	camera_vector = camera_vector.normalized()
-	var forward_vector: Vector3 = camera_vector
-	var right_vector: Vector3 = -camera_vector.cross(Vector3.UP)
+	super.physics_process(delta)
 
 	# Apply movement
-	var input_direction: Vector3 = (right_vector * player.thumbstick_left.value.x + forward_vector * player.thumbstick_left.value.y).normalized()
-	var input_strength: float = (right_vector * player.thumbstick_left.value.x + forward_vector * player.thumbstick_left.value.y).length()
-	if input_direction.is_normalized() and not is_equal_approx(input_strength, 0.0):
-		player.direction = player.direction.slerp(input_direction, input_strength * player.turn_weight)
-		player.linear_velocity += player.direction * input_strength * player.move_acceleration * delta
+	if not player.input_vector.is_equal_approx(Vector3.ZERO):
+		player.direction = player.direction.slerp(player.input_vector.normalized(), player.input_vector.length() * player.turn_weight)
+		player.linear_velocity += player.direction * player.input_vector.length() * player.move_acceleration * delta
 
 	# Apply friction
 	player.linear_velocity.x = player.linear_velocity.x - player.move_friction_coefficient * player.linear_velocity.x * delta

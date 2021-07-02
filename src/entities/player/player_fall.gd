@@ -1,17 +1,18 @@
 extends PlayerState
 
 
+func enter(data := {}) -> void:
+	super.enter(data)
+
+	# Update mesh facing direction
+	player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.direction)
+
+
 func physics_process(delta: float) -> void:
-	# Get movement vectors
-	var camera_vector: Vector3 = player.camera.global_transform.origin - player.global_transform.origin
-	camera_vector.y = 0.0
-	camera_vector = camera_vector.normalized()
-	var forward_vector: Vector3 = camera_vector
-	var right_vector: Vector3 = -camera_vector.cross(Vector3.UP)
+	super.physics_process(delta)
 
 	# Apply movement
-	player.linear_velocity += right_vector * player.thumbstick_left.value.x * player.move_acceleration_air * delta
-	player.linear_velocity += forward_vector * player.thumbstick_left.value.y * player.move_acceleration_air * delta
+	player.linear_velocity += player.input_vector * player.move_acceleration_air * delta
 
 	# Apply friction
 	player.linear_velocity.x = player.linear_velocity.x - player.move_friction_coefficient_air * player.linear_velocity.x * delta

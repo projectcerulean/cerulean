@@ -14,8 +14,7 @@ extends Node
 # Enter the initial state when initializing the state machine.
 func _ready() -> void:
 	assert(state != null)
-	state.enter()
-	Signals.emit_state_entered(self, state.name)
+	call_deferred(transition_to.get_method(), state.name)
 
 
 # Delegate `_unhandled_input` callback to the active state.
