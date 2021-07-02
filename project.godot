@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"Line3D",
+"language": &"GDScript",
+"path": "res://src/hud/line3d/line3d.gd"
+}, {
 "base": "Node",
 "class": &"Physics",
 "language": &"GDScript",
@@ -42,9 +47,10 @@ _global_script_classes=[{
 _global_script_class_icons={
 &"Physics": "",
 &"Player": "",
-&"StateMachine": "",
-&"PlayerState": "",
 &"Thumbstick": "",
+&"PlayerState": "",
+&"StateMachine": "",
+&"Line3D": "",
 &"State": ""
 }
 
