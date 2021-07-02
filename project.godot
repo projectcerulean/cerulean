@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[{
+"base": "Node",
+"class": &"CColor",
+"language": &"GDScript",
+"path": "res://src/common/ccolor/ccolor.gd"
+}, {
 "base": "Node2D",
 "class": &"Line3D",
 "language": &"GDScript",
@@ -51,7 +56,8 @@ _global_script_class_icons={
 &"PlayerState": "",
 &"StateMachine": "",
 &"Line3D": "",
-&"State": ""
+&"State": "",
+&"CColor": ""
 }
 
 [application]
