@@ -19,11 +19,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/common/data_structures/data_structures.gd"
 }, {
-"base": "Node2D",
-"class": &"Line3D",
-"language": &"GDScript",
-"path": "res://src/hud/debug/line3d/line3d.gd"
-}, {
 "base": "Node",
 "class": &"Physics",
 "language": &"GDScript",
@@ -61,7 +56,6 @@ _global_script_class_icons={
 &"Thumbstick": "",
 &"PlayerState": "",
 &"StateMachine": "",
-&"Line3D": "",
 &"State": "",
 &"CColor": ""
 }
