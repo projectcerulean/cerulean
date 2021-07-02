@@ -14,7 +14,7 @@ extends CharacterBody3D
 @export var camera_anchor_y_smooth_grounded: float = 0.1
 @export var camera_anchor_y_smooth_air: float = 0.08
 
-@export var glide_gravity_modifier: float = 0.1
+@export var glide_gravity_modifier: float = 0.05
 @export var glide_smooth_weight: float = 0.01
 @export var glide_roll_weight: float = 0.05
 
