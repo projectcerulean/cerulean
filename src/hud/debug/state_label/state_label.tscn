@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/hud/state_label/state_label.gd" type="Script" id=1]
+[ext_resource path="res://src/hud/debug/state_label/state_label.gd" type="Script" id=1]
 
 [node name="StateLabel" type="Label"]
 anchor_top = 1.0
