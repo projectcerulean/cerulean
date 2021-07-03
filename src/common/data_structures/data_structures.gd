@@ -20,7 +20,7 @@ class RotationQueue:
 
 
 	func get_item(index: int) -> Variant:
-		assert(index >= 0 and index < size_current)
+		assert(index >= -size_current and index < size_current)
 		return contents[(index_current + index) % size_current]
 
 
