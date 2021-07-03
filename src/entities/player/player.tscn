@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/entities/player/player_fall.gd" type="Script" id=5]
 [ext_resource path="res://src/entities/player/player_jump.gd" type="Script" id=6]
 [ext_resource path="res://src/entities/player/player_glide.gd" type="Script" id=7]
+[ext_resource path="res://src/entities/player/player_glide_trail_renderer.gd" type="Script" id=8]
 
 [sub_resource type="CapsuleShape3D" id=1]
 radius = 0.25
@@ -32,6 +33,13 @@ mid_height = 0.75
 
 [sub_resource type="BoxMesh" id=7]
 size = Vector3(0.75, 0.75, 0.1)
+
+[sub_resource type="StandardMaterial3D" id=8]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.25098, 0.25098, 0.25098, 1)
+
+[sub_resource type="ImmediateMesh" id=9]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource( 1 )
@@ -92,6 +100,14 @@ mesh = SubResource( 7 )
 surface_material_override/0 = null
 script = null
 
+[node name="TrailPositionLeft" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)
+script = null
+
+[node name="TrailPositionRight" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.353553, -0.353553, 0)
+script = null
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
 initial_state = NodePath("Idle")
@@ -136,3 +152,11 @@ script = null
 [node name="CameraAnchor" type="Position3D" parent="."]
 top_level = true
 script = null
+
+[node name="GlideTrailRenderer" type="MeshInstance3D" parent="."]
+top_level = true
+material_override = SubResource( 8 )
+mesh = SubResource( 9 )
+script = ExtResource( 8 )
+trail_position_left_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeft")
+trail_position_right_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRight")
