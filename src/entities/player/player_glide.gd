@@ -29,7 +29,7 @@ func physics_process(delta: float) -> void:
 	input_vector_spherical = input_vector_spherical.normalized()
 
 	player.linear_velocity = player.linear_velocity.normalized().slerp(input_vector_spherical, player.glide_smooth_weight) * (  # TODO: fails sometimes? Non-normalized Vector3?
-		sqrt(2.0 * Physics.gravity * player.glide_gravity_modifier * (player.glide_start_position.y - player.position.y)) + player.glide_start_velocity.length()
+		Math.signed_sqrt(2.0 * Physics.gravity * player.glide_gravity_modifier * (player.glide_start_position.y - player.position.y)) + player.glide_start_velocity.length()
 	)
 
 	# Update movement direction
