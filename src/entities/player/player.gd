@@ -18,6 +18,8 @@ extends CharacterBody3D
 @export var glide_smooth_weight: float = 0.01
 @export var glide_roll_weight: float = 0.05
 
+@export var water_buoyancy: float = 30.0
+
 @export var y_min: float = -100.0
 
 @onready var camera: Camera3D = get_node(camera_path)
@@ -35,6 +37,7 @@ extends CharacterBody3D
 	&"Idle": mesh_root.get_node("MeshDefault"),
 	&"Jump": mesh_root.get_node("MeshDefault"),
 	&"Run": mesh_root.get_node("MeshDefault"),
+	&"Swim": mesh_root.get_node("MeshDefault"),
 }
 
 @onready var mesh_joint_map: Dictionary = {  # Auto-generate?
@@ -63,6 +66,11 @@ extends CharacterBody3D
 		mesh_map[&"Run"].get_node("Joint/Joint"),
 		mesh_map[&"Run"].get_node("Joint/Joint/Joint"),
 	],
+	&"Swim": [
+		mesh_map[&"Swim"].get_node("Joint"),
+		mesh_map[&"Swim"].get_node("Joint/Joint"),
+		mesh_map[&"Swim"].get_node("Joint/Joint/Joint"),
+	],
 }
 
 var input_vector: Vector3
@@ -74,6 +82,9 @@ var move_friction_coefficient_air: float = move_friction_coefficient * air_contr
 var glide_start_position: Vector3 = Vector3.ZERO
 var glide_start_velocity: Vector3 = Vector3.ZERO
 var glide_roll_angle: float = 0.0
+
+var is_in_water: bool = false
+var water_surface_height: float = NAN
 
 
 func _ready() -> void:
@@ -136,7 +147,10 @@ func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
 			collision_shape = child
 			break
 	assert(collision_shape != null)
-	Signals.emit_debug_write(self, "Entered " + str(sender.owner.name) + ", collision shape: " + str(collision_shape.position) + ", " + str(collision_shape.shape.size))
+
+	if sender.owner.name == "Water":
+		is_in_water = true
+		water_surface_height = collision_shape.global_transform.origin.y + collision_shape.shape.size.y / 2.0
 
 
 func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
@@ -148,4 +162,6 @@ func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 			collision_shape = child
 			break
 	assert(collision_shape != null)
-	Signals.emit_debug_write(self, "Exited " + str(sender.owner.name) + ", collision shape: " + str(collision_shape.position) + ", " + str(collision_shape.shape.size))
+
+	if sender.owner.name == "Water":
+		is_in_water = false

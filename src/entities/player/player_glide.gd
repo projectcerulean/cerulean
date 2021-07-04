@@ -72,7 +72,9 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> String:
-	if player.is_on_floor():
+	if player.is_in_water:
+		return "Swim"
+	elif player.is_on_floor():
 		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
 			return "Idle"
 		else:

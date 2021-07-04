@@ -10,7 +10,9 @@ func enter(data := {}) -> void:
 
 
 func get_transition() -> String:
-	if not player.raycast.is_colliding():
+	if player.is_in_water:
+		return "Swim"
+	elif not player.raycast.is_colliding():
 		return "Fall"
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		return "Jump"
