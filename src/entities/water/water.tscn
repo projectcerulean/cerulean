@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/entities/water/water.gdshader" type="Shader" id=1]
+[ext_resource path="res://src/entities/water/water.gd" type="Script" id=2]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2(64, 64)
@@ -34,7 +35,23 @@ shader_param/wave_time_factor = Vector2(0.5, 1)
 shader_param/noise_sampler1 = SubResource( 10 )
 shader_param/noise_sampler2 = SubResource( 12 )
 
+[sub_resource type="BoxShape3D" id=13]
+size = Vector3(64, 64, 64)
+
 [node name="Water" type="MeshInstance3D"]
 mesh = SubResource( 1 )
 surface_material_override/0 = SubResource( 2 )
+script = ExtResource( 2 )
+
+[node name="Area3D" type="Area3D" parent="."]
 script = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32, 0)
+shape = SubResource( 13 )
+script = null
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

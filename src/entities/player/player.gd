@@ -77,6 +77,9 @@ var glide_roll_angle: float = 0.0
 
 
 func _ready() -> void:
+	Signals.connect(Signals.area_body_entered.get_name(), self._on_area_body_entered)
+	Signals.connect(Signals.area_body_exited.get_name(), self._on_area_body_exited)
+
 	assert(camera != null)
 	assert(camera_anchor != null)
 	assert(thumbstick_left != null)
@@ -122,3 +125,27 @@ func _process(_delta: float) -> void:
 	# Reload scene when falling off the map
 	if get_global_transform().origin.y < y_min:
 		get_tree().reload_current_scene()
+
+
+func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
+	if body != self:
+		return
+	var collision_shape: CollisionShape3D = null
+	for child in sender.get_children():
+		if child as CollisionShape3D != null:
+			collision_shape = child
+			break
+	assert(collision_shape != null)
+	Signals.emit_debug_write(self, "Entered " + str(sender.owner.name) + ", collision shape: " + str(collision_shape.position) + ", " + str(collision_shape.shape.size))
+
+
+func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
+	if body != self:
+		return
+	var collision_shape: CollisionShape3D = null
+	for child in sender.get_children():
+		if child as CollisionShape3D != null:
+			collision_shape = child
+			break
+	assert(collision_shape != null)
+	Signals.emit_debug_write(self, "Exited " + str(sender.owner.name) + ", collision shape: " + str(collision_shape.position) + ", " + str(collision_shape.shape.size))
