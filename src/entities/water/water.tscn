@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/entities/water/water.gdshader" type="Shader" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2(64, 64)
+subdivide_width = 64
+subdivide_depth = 64
+
+[sub_resource type="OpenSimplexNoise" id=9]
+period = 256.0
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=10]
+seamless = true
+noise = SubResource( 9 )
+
+[sub_resource type="OpenSimplexNoise" id=11]
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=12]
+seamless = true
+noise = SubResource( 11 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/water_color = Color(0.0784314, 0.27451, 0.745098, 0.878431)
+shader_param/water_color_boost_threshold = 0.45
+shader_param/water_color_boost_amount = 0.1
+shader_param/noise_time_factor = Vector2(0.01, 0.002)
+shader_param/wave_strengh = Vector2(0.25, 0.125)
+shader_param/wave_frequency = Vector2(6, 6)
+shader_param/wave_time_factor = Vector2(0.5, 1)
+shader_param/noise_sampler1 = SubResource( 10 )
+shader_param/noise_sampler2 = SubResource( 12 )
+
+[node name="Water" type="MeshInstance3D"]
+mesh = SubResource( 1 )
+surface_material_override/0 = SubResource( 2 )
+script = null
