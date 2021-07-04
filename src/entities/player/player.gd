@@ -67,7 +67,7 @@ extends CharacterBody3D
 
 var input_vector: Vector3
 
-var direction: Vector3 = Vector3.FORWARD
+var facing_direction: Vector3 = Vector3.FORWARD
 var move_acceleration_air: float = move_acceleration * air_control_modifier
 var move_friction_coefficient_air: float = move_friction_coefficient * air_control_modifier
 
@@ -93,9 +93,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	# Check that the movement direction vector is well-formed
-	assert(direction.is_normalized())
-	assert(direction.y == 0)
+	# Check that the facing direction vector is well-formed
+	assert(facing_direction.is_normalized())
+	assert(facing_direction.y == 0)
 
 	# Update input vector according to thumbstick and camera position
 	var camera_vector: Vector3 = camera.global_transform.origin - global_transform.origin

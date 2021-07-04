@@ -15,7 +15,7 @@ func process(delta: float) -> void:
 	super.process(delta)
 
 	# Update mesh facing direction
-	player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.direction)
+	player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.facing_direction)
 
 
 func physics_process(delta: float) -> void:
@@ -23,8 +23,8 @@ func physics_process(delta: float) -> void:
 
 	# Apply movement
 	if not player.input_vector.is_equal_approx(Vector3.ZERO):
-		player.direction = player.direction.slerp(player.input_vector.normalized(), player.input_vector.length() * player.turn_weight)
-		player.linear_velocity += player.direction * player.input_vector.length() * player.move_acceleration * delta
+		player.facing_direction = player.facing_direction.slerp(player.input_vector.normalized(), player.input_vector.length() * player.turn_weight)
+		player.linear_velocity += player.facing_direction * player.input_vector.length() * player.move_acceleration * delta
 
 	# Apply friction
 	player.linear_velocity.x = player.linear_velocity.x - player.move_friction_coefficient * player.linear_velocity.x * delta

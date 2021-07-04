@@ -20,7 +20,7 @@ func process(delta: float) -> void:
 
 	var velocity_direction: Vector3 = player.linear_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
-		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.direction)
+		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.facing_direction)
 	else:
 		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + velocity_direction)
 	player.mesh_joint_map[self.name][1].rotation = Vector3(0.0, 0.0, player.glide_roll_angle)
@@ -58,7 +58,7 @@ func physics_process(delta: float) -> void:
 	# Update movement direction
 	var direction_new: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z).normalized()
 	if not direction_new.is_equal_approx(Vector3.ZERO):
-		player.direction = direction_new.normalized()
+		player.facing_direction = direction_new.normalized()
 
 	# Apply gravity
 	player.linear_velocity.y = player.linear_velocity.y - Physics.gravity * player.glide_gravity_modifier * delta
