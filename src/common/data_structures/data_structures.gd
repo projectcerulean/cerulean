@@ -8,9 +8,9 @@ class RotationQueue:
 	var size_current: int = 0
 
 
-	func _init(size: int):
-		assert(size > 0)
-		contents.resize(size)
+	func _init(ssize_max: int):
+		assert(ssize_max > 0)
+		contents.resize(ssize_max)
 
 
 	func add(element: Variant) -> void:

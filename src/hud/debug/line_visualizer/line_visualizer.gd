@@ -34,7 +34,7 @@ func _draw() -> void:
 				draw_line(camera.unproject_position(p1), camera.unproject_position(p2), color, line_width)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update()
 
 

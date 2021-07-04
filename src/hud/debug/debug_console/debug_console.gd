@@ -15,7 +15,7 @@ func _ready() -> void:
 func _on_debug_write(sender: Node, string: String) -> void:
 	var hexColor: String = CColor.str_to_color(sender.name).to_html(false)
 	rotationQueue.add("[color=#%s][code][%s]:[/code][/color] %s" % [hexColor, sender.name, string])
-	var lines: Array[String]
+	var lines: Array[String] = []
 	lines.resize(rotationQueue.size())
 	for iLine in range(rotationQueue.size()):
 		lines[iLine] = rotationQueue.get_item(iLine)

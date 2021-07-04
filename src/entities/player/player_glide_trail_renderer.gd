@@ -20,7 +20,7 @@ func _ready() -> void:
 	assert(trail_position_right != null)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if gliding:
 		pointQueueLeft.add(trail_position_left.global_transform.origin - global_transform.origin)
 		pointQueueRight.add(trail_position_right.global_transform.origin - global_transform.origin)
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		pointQueueLeft.add(Vector3.ZERO)
 		pointQueueRight.add(Vector3.ZERO)
 
-	var pointsToDraw: Array[Vector3]
+	var pointsToDraw: Array[Vector3] = []
 	for iPoint in range(0, pointQueueLeft.size() - 1):
 		var p1: Vector3 = pointQueueLeft.get_item(iPoint)
 		var p2: Vector3 = pointQueueLeft.get_item(iPoint + 1)
