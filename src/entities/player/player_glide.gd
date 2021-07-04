@@ -14,9 +14,15 @@ func process(delta: float) -> void:
 	# Update mesh facing direction
 	var input_direction_2d: Vector3 = Vector3(player.input_vector.x, 0.0, player.input_vector.z)
 	var linear_velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
-	player.glide_roll_angle = lerp(player.glide_roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight)
+	player.glide_roll_angle = lerp(
+		player.glide_roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight
+	)
 
-	player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.linear_velocity)
+	var velocity_direction: Vector3 = player.linear_velocity.normalized()
+	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
+		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.direction)
+	else:
+		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + velocity_direction)
 	player.mesh_joint_map[self.name][1].rotation = Vector3(0.0, 0.0, player.glide_roll_angle)
 
 
@@ -27,9 +33,26 @@ func physics_process(delta: float) -> void:
 	var input_vector_spherical: Vector3 = player.input_vector
 	input_vector_spherical.y = -sqrt(1.0 * 1.0 - min(input_vector_spherical.length_squared(), 1.0))
 	input_vector_spherical = input_vector_spherical.normalized()
+	assert(not input_vector_spherical.is_equal_approx(Vector3.ZERO))
 
-	player.linear_velocity = player.linear_velocity.normalized().slerp(input_vector_spherical, player.glide_smooth_weight) * (  # TODO: fails sometimes? Non-normalized Vector3?
-		Math.signed_sqrt(2.0 * Physics.gravity * player.glide_gravity_modifier * (player.glide_start_position.y - player.position.y)) + player.glide_start_velocity.length()
+	var velocity_direction_current: Vector3 = player.linear_velocity.normalized()
+	var velocity_direction_new: Vector3 = Vector3.ZERO
+
+	if velocity_direction_current == Vector3.ZERO:
+		velocity_direction_new = Vector3.DOWN
+	elif velocity_direction_current == input_vector_spherical:
+		velocity_direction_new = input_vector_spherical
+	elif velocity_direction_current == -input_vector_spherical:
+		velocity_direction_new = -input_vector_spherical
+		velocity_direction_new.y = -velocity_direction_new.y
+	else:
+		velocity_direction_new = velocity_direction_current.slerp(input_vector_spherical, player.glide_smooth_weight)
+	assert(velocity_direction_new.is_normalized())
+
+	player.linear_velocity = velocity_direction_new * (
+		Math.signed_sqrt(
+			2.0 * Physics.gravity * player.glide_gravity_modifier * (player.glide_start_position.y - player.position.y)
+		) + player.glide_start_velocity.length()
 	)
 
 	# Update movement direction
