@@ -5,7 +5,7 @@ class_name PlayerState extends State
 var player: Player = null
 
 
-func _ready():
+func _ready() -> void:
 	player = owner as Player
 	assert(player != null)
 

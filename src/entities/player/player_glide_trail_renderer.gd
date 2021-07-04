@@ -13,7 +13,7 @@ var pointQueueLeft: DataStructures.RotationQueue = DataStructures.RotationQueue.
 var pointQueueRight: DataStructures.RotationQueue = DataStructures.RotationQueue.new(max_points)
 
 
-func _ready():
+func _ready() -> void:
 	Signals.connect(Signals.state_entered.get_name(), self._on_state_entered)
 	Signals.connect(Signals.state_exited.get_name(), self._on_state_exited)
 	assert(trail_position_left != null)

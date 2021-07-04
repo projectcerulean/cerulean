@@ -23,7 +23,7 @@ func _ready() -> void:
 		colors[null] = color_default
 
 
-func _draw():
+func _draw() -> void:
 	for sender in lines:
 		var points = lines[sender]
 		var color: Color = colors[sender]
@@ -34,11 +34,11 @@ func _draw():
 				draw_line(camera.unproject_position(p1), camera.unproject_position(p2), color, line_width)
 
 
-func _process(delta):
+func _process(delta: float) -> void:
 	update()
 
 
-func _on_visualize_line(sender: Node, point: Vector3):
+func _on_visualize_line(sender: Node, point: Vector3) -> void:
 	visible = true
 	if not lines.has(sender):
 		lines[sender] = DataStructures.RotationQueue.new(max_points_per_line)

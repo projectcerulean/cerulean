@@ -6,13 +6,13 @@ extends ColorRect
 @onready var rotationQueue: DataStructures.RotationQueue = DataStructures.RotationQueue.new(buffer_size_lines)
 
 
-func _ready():
+func _ready() -> void:
 	Signals.connect(Signals.debug_write.get_name(), self._on_debug_write)
 	assert(richTextLabel != null)
 	assert(rotationQueue != null)
 
 
-func _on_debug_write(sender: Node, string: String):
+func _on_debug_write(sender: Node, string: String) -> void:
 	var hexColor: String = CColor.str_to_color(sender.name).to_html(false)
 	rotationQueue.add("[color=#%s][code][%s]:[/code][/color] %s" % [hexColor, sender.name, string])
 	var lines: Array[String]

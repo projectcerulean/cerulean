@@ -22,7 +22,7 @@ func _draw() -> void:
 		draw_line(center_point, center_point + vector * radius, colors[sender], 8.0)
 
 
-func _on_visualize_vector(sender: Node, vector: Vector2):
+func _on_visualize_vector(sender: Node, vector: Vector2) -> void:
 	visible = true
 	vectors[sender] = vector
 	if not colors.has(sender):

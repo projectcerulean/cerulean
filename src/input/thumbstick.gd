@@ -16,7 +16,7 @@ var value: Vector2 = Vector2.ZERO
 var value_raw: Vector2 = Vector2.ZERO
 
 
-func _process(_delta) -> void:
+func _process(_delta: float) -> void:
 	value_raw.x = Input.get_action_strength(action_right) - Input.get_action_strength(action_left)
 	value_raw.y =  Input.get_action_strength(action_down) - Input.get_action_strength(action_up)
 

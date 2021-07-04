@@ -7,7 +7,7 @@ extends Label
 @onready var target: Node = get_node(target_path)
 
 
-func _ready():
+func _ready() -> void:
 	Signals.connect(Signals.state_entered.get_name(), self._on_state_entered)
 	Signals.connect(Signals.state_exited.get_name(), self._on_state_exited)
 

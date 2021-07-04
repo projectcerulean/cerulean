@@ -92,7 +92,7 @@ func _ready() -> void:
 			assert(nodeTyped != null)
 
 
-func _process(_delta) -> void:
+func _process(_delta: float) -> void:
 	# Check that the movement direction vector is well-formed
 	assert(direction.is_normalized())
 	assert(direction.y == 0)
