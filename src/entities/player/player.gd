@@ -18,7 +18,10 @@ extends CharacterBody3D
 @export var glide_smooth_weight: float = 0.01
 @export var glide_roll_weight: float = 0.05
 
-@export var water_buoyancy: float = 30.0
+@export var water_move_acceleration: float = 15.0
+@export var water_turn_weight: float = 0.05
+@export var water_buoyancy: float = 12.0
+@export var water_resistance: float = 2.0
 
 @export var y_min: float = -100.0
 
