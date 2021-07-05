@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/camera/camera.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape3D" id=7]
+radius = 0.1
+
+[node name="Camera3D" type="Camera3D"]
+current = true
+fov = 90.0
+script = ExtResource( 1 )
+camera_rotation = Vector3(-30, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+script = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource( 7 )
+script = null
