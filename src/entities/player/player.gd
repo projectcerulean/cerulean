@@ -23,6 +23,10 @@ extends CharacterBody3D
 @export var water_buoyancy: float = 12.0
 @export var water_resistance: float = 2.0
 
+@export var underwater_move_acceleration: float = 12.0
+@export var underwater_turn_weight: float = 0.05
+@export var underwater_resistance: float = 2.0
+
 @export var y_min: float = -100.0
 
 @onready var camera: Camera3D = get_node(camera_path)
@@ -35,6 +39,7 @@ extends CharacterBody3D
 @onready var mesh_root: Node3D = get_node("MeshRoot")
 
 @onready var mesh_map: Dictionary = {
+	&"Dive": mesh_root.get_node("MeshGlide"),
 	&"Fall": mesh_root.get_node("MeshDefault"),
 	&"Glide": mesh_root.get_node("MeshGlide"),
 	&"Idle": mesh_root.get_node("MeshDefault"),
@@ -44,6 +49,11 @@ extends CharacterBody3D
 }
 
 @onready var mesh_joint_map: Dictionary = {  # Auto-generate?
+	&"Dive": [
+		mesh_map[&"Dive"].get_node("Joint"),
+		mesh_map[&"Dive"].get_node("Joint/Joint"),
+		mesh_map[&"Dive"].get_node("Joint/Joint/Joint"),
+	],
 	&"Fall": [
 		mesh_map[&"Fall"].get_node("Joint"),
 		mesh_map[&"Fall"].get_node("Joint/Joint"),
@@ -81,10 +91,6 @@ var input_vector: Vector3
 var facing_direction: Vector3 = Vector3.FORWARD
 var move_acceleration_air: float = move_acceleration * air_control_modifier
 var move_friction_coefficient_air: float = move_friction_coefficient * air_control_modifier
-
-var glide_start_position: Vector3 = Vector3.ZERO
-var glide_start_velocity: Vector3 = Vector3.ZERO
-var glide_roll_angle: float = 0.0
 
 var is_in_water: bool = false
 var water_surface_height: float = NAN

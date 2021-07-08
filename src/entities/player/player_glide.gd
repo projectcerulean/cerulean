@@ -1,11 +1,15 @@
 extends PlayerState
 
+var glide_start_position: Vector3 = Vector3.ZERO
+var glide_start_velocity: Vector3 = Vector3.ZERO
+var roll_angle: float = 0.0
+
 
 func enter(data := {}) -> void:
 	super.enter(data)
-	player.glide_start_position = player.position
-	player.glide_start_velocity = player.linear_velocity
-	player.glide_roll_angle = 0.0
+	glide_start_position = player.position
+	glide_start_velocity = player.linear_velocity
+	roll_angle = 0.0
 
 
 func process(delta: float) -> void:
@@ -14,8 +18,8 @@ func process(delta: float) -> void:
 	# Update mesh facing direction
 	var input_direction_2d: Vector3 = Vector3(player.input_vector.x, 0.0, player.input_vector.z)
 	var linear_velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
-	player.glide_roll_angle = lerp(
-		player.glide_roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight
+	roll_angle = lerp(
+		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight
 	)
 
 	var velocity_direction: Vector3 = player.linear_velocity.normalized()
@@ -23,7 +27,7 @@ func process(delta: float) -> void:
 		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.facing_direction)
 	else:
 		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + velocity_direction)
-	player.mesh_joint_map[self.name][1].rotation = Vector3(0.0, 0.0, player.glide_roll_angle)
+	player.mesh_joint_map[self.name][1].rotation = Vector3(0.0, 0.0, roll_angle)
 
 
 func physics_process(delta: float) -> void:
@@ -51,8 +55,8 @@ func physics_process(delta: float) -> void:
 
 	player.linear_velocity = velocity_direction_new * (
 		Math.signed_sqrt(
-			2.0 * Physics.gravity * player.glide_gravity_modifier * (player.glide_start_position.y - player.position.y)
-		) + player.glide_start_velocity.length()
+			2.0 * Physics.gravity * player.glide_gravity_modifier * (glide_start_position.y - player.position.y)
+		) + glide_start_velocity.length()
 	)
 
 	# Update movement direction

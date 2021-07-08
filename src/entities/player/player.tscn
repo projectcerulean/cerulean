@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/entities/player/player_glide.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/player/player_glide_trail_renderer.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/player/player_swim.gd" type="Script" id=9]
+[ext_resource path="res://src/entities/player/player_dive.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape3D" id=1]
 radius = 0.25
@@ -112,6 +113,9 @@ script = null
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
 initial_state = NodePath("Idle")
+
+[node name="Dive" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )

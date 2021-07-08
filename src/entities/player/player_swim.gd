@@ -7,8 +7,9 @@ func enter(data := {}) -> void:
 
 func exit() -> void:
 	super.exit()
-	player.is_in_water = false
-	player.water_surface_height = NAN
+	# TODO: Needs the new state as input to determine what to do
+	#player.is_in_water = false
+	#player.water_surface_height = NAN
 
 
 func process(delta: float) -> void:
@@ -48,5 +49,7 @@ func get_transition() -> String:
 		return "Fall"
 	elif is_equal_approx(player.water_surface_height, player.global_transform.origin.y) and (Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped()):
 		return "Jump"
+	elif Input.is_action_just_pressed("player_move_glide"):
+		return "Dive"
 	else:
 		return ""
