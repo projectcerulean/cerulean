@@ -22,7 +22,7 @@ func process(delta: float) -> void:
 	var input_direction_2d: Vector3 = Vector3(player.input_vector.x, 0.0, player.input_vector.z)
 	var linear_velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
 	roll_angle = lerp(
-		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight
+		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.underwater_roll_weight
 	)
 
 	if not player.input_vector.is_equal_approx(Vector3.ZERO):

@@ -35,6 +35,7 @@ const SWIM: StringName = &"Swim"
 @export var underwater_move_acceleration: float = 12.0
 @export var underwater_turn_weight: float = 0.05
 @export var underwater_resistance: float = 2.0
+@export var underwater_roll_weight: float = 0.02
 
 @export var y_min: float = -100.0
 
