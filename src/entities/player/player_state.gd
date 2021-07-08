@@ -10,8 +10,8 @@ func _ready() -> void:
 	assert(player != null)
 
 
-func enter(data := {}) -> void:
-	super.enter(data)
+func enter(old_state_name: StringName, data := {}) -> void:
+	super.enter(old_state_name, data)
 
 	# Update player mesh
 	assert(player.mesh_map.has(self.name))

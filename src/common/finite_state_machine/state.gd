@@ -27,11 +27,11 @@ func get_transition() -> StringName:
 
 # Virtual function. Called by the state machine upon changing the active state. The `data` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_data := {}) -> void:
+func enter(_old_state_name: StringName, _data := {}) -> void:
 	pass
 
 
 # Virtual function. Called by the state machine before changing the active state. Use this function
 # to clean up the state.
-func exit() -> void:
+func exit(_new_state_name: StringName) -> void:
 	pass

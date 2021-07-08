@@ -1,15 +1,15 @@
 extends PlayerState
 
 
-func enter(data := {}) -> void:
-	super.enter(data)
+func enter(old_state_name: StringName, data := {}) -> void:
+	super.enter(old_state_name, data)
 
 
-func exit() -> void:
-	super.exit()
-	# TODO: Needs the new state as input to determine what to do
-	#player.is_in_water = false
-	#player.water_surface_height = NAN
+func exit(new_state_name: StringName) -> void:
+	super.exit(new_state_name)
+	if new_state_name != player.DIVE:
+		player.is_in_water = false
+		player.water_surface_height = NAN
 
 
 func process(delta: float) -> void:

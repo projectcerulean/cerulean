@@ -1,8 +1,8 @@
 extends PlayerState
 
 
-func enter(data := {}) -> void:
-	super.enter(data)
+func enter(old_state_name: StringName, data := {}) -> void:
+	super.enter(old_state_name, data)
 
 	# Update mesh facing direction
 	player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.facing_direction)

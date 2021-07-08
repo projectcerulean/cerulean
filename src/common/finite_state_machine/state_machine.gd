@@ -42,8 +42,9 @@ func _physics_process(delta: float) -> void:
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
 func transition_to(target_state_name: StringName, data: Dictionary = {}) -> void:
 	assert(has_node(str(target_state_name)))
-	state.exit()
+	state.exit(target_state_name)
 	Signals.emit_state_exited(self, state.name)
+	var old_state_name: StringName = state.name
 	state = get_node(str(target_state_name))
-	state.enter(data)
+	state.enter(old_state_name, data)
 	Signals.emit_state_entered(self, state.name)

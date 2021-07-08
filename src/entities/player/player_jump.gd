@@ -1,8 +1,8 @@
 extends PlayerState
 
 
-func enter(data := {}) -> void:
-	super.enter(data)
+func enter(old_state_name: StringName, data := {}) -> void:
+	super.enter(old_state_name, data)
 	player.linear_velocity.y = player.jump_speed
 	player.jump_buffer_timer.stop()
 

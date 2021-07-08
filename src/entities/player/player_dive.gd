@@ -3,9 +3,16 @@ extends PlayerState
 var roll_angle: float = 0.0
 
 
-func enter(data := {}) -> void:
-	super.enter(data)
+func enter(old_state_name: StringName, data := {}) -> void:
+	super.enter(old_state_name, data)
 	roll_angle = 0.0
+
+
+func exit(new_state_name: StringName) -> void:
+	super.exit(new_state_name)
+	if new_state_name != player.SWIM:
+		player.is_in_water = false
+		player.water_surface_height = NAN
 
 
 func process(delta: float) -> void:

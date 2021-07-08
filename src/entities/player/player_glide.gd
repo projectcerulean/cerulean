@@ -5,8 +5,8 @@ var glide_start_velocity: Vector3 = Vector3.ZERO
 var roll_angle: float = 0.0
 
 
-func enter(data := {}) -> void:
-	super.enter(data)
+func enter(old_state_name: StringName, data := {}) -> void:
+	super.enter(old_state_name, data)
 	glide_start_position = player.position
 	glide_start_velocity = player.linear_velocity
 	roll_angle = 0.0

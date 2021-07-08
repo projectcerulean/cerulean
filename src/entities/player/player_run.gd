@@ -1,13 +1,13 @@
 extends PlayerState
 
 
-func enter(data := {}) -> void:
-	super.enter(data)
+func enter(old_state_name: StringName, data := {}) -> void:
+	super.enter(old_state_name, data)
 	player.linear_velocity.y = 0.0
 
 
-func exit() -> void:
-	super.exit()
+func exit(new_state_name: StringName) -> void:
+	super.exit(new_state_name)
 	player.coyote_timer.stop()
 
 
