@@ -40,11 +40,13 @@ func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
 	# Apply movement
-	var velocity_direction_new: Vector3 = (
+	var input_vector: Vector3 = (
 		player.facing_direction * player.input_vector.length()
 		+ Vector3.UP * (float(Input.is_action_pressed("player_move_jump")) - float(Input.is_action_pressed("player_move_glide")))
-	).normalized()
-	player.linear_velocity += velocity_direction_new * player.underwater_move_acceleration * delta
+	)
+	if input_vector.length_squared() > 1.0:
+		input_vector = input_vector.normalized()
+	player.linear_velocity += input_vector * player.underwater_move_acceleration * delta
 
 	# Apply friction
 	player.linear_velocity -= player.linear_velocity * player.underwater_resistance * delta
