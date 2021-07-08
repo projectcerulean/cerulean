@@ -32,18 +32,18 @@ func _physics_process(delta: float) -> void:
 	state.physics_process(delta)
 
 	# Change the current state
-	var target_state_name: String = state.get_transition()
-	if not target_state_name.is_empty():
+	var target_state_name: StringName = state.get_transition()
+	if target_state_name != &"":
 		call_deferred(transition_to.get_method(), target_state_name)
 
 
 # This function calls the current state's exit() function, then changes the active state,
 # and calls its enter function.
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
-func transition_to(target_state_name: String, data: Dictionary = {}) -> void:
-	assert(has_node(target_state_name))
+func transition_to(target_state_name: StringName, data: Dictionary = {}) -> void:
+	assert(has_node(str(target_state_name)))
 	state.exit()
 	Signals.emit_state_exited(self, state.name)
-	state = get_node(target_state_name)
+	state = get_node(str(target_state_name))
 	state.enter(data)
 	Signals.emit_state_entered(self, state.name)

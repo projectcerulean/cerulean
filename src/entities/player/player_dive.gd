@@ -46,10 +46,10 @@ func physics_process(delta: float) -> void:
 	player.move_and_slide()
 
 
-func get_transition() -> String:
+func get_transition() -> StringName:
 	if not player.is_in_water:
-		return "Fall"
+		return player.FALL
 	elif player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.water_surface_height:
-		return "Swim"
+		return player.SWIM
 	else:
-		return ""
+		return &""

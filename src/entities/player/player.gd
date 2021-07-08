@@ -1,6 +1,15 @@
 class_name Player
 extends CharacterBody3D
 
+# States
+const DIVE: StringName = &"Dive"
+const FALL: StringName = &"Fall"
+const GLIDE: StringName = &"Glide"
+const IDLE: StringName = &"Idle"
+const JUMP: StringName = &"Jump"
+const RUN: StringName = &"Run"
+const SWIM: StringName = &"Swim"
+
 @export var camera_path := NodePath()
 @export var thumbstick_left_path := NodePath()
 
@@ -39,50 +48,50 @@ extends CharacterBody3D
 @onready var mesh_root: Node3D = get_node("MeshRoot")
 
 @onready var mesh_map: Dictionary = {
-	&"Dive": mesh_root.get_node("MeshGlide"),
-	&"Fall": mesh_root.get_node("MeshDefault"),
-	&"Glide": mesh_root.get_node("MeshGlide"),
-	&"Idle": mesh_root.get_node("MeshDefault"),
-	&"Jump": mesh_root.get_node("MeshDefault"),
-	&"Run": mesh_root.get_node("MeshDefault"),
-	&"Swim": mesh_root.get_node("MeshDefault"),
+	DIVE: mesh_root.get_node("MeshGlide"),
+	FALL: mesh_root.get_node("MeshDefault"),
+	GLIDE: mesh_root.get_node("MeshGlide"),
+	IDLE: mesh_root.get_node("MeshDefault"),
+	JUMP: mesh_root.get_node("MeshDefault"),
+	RUN: mesh_root.get_node("MeshDefault"),
+	SWIM: mesh_root.get_node("MeshDefault"),
 }
 
 @onready var mesh_joint_map: Dictionary = {  # Auto-generate?
-	&"Dive": [
-		mesh_map[&"Dive"].get_node("Joint"),
-		mesh_map[&"Dive"].get_node("Joint/Joint"),
-		mesh_map[&"Dive"].get_node("Joint/Joint/Joint"),
+	DIVE: [
+		mesh_map[DIVE].get_node("Joint"),
+		mesh_map[DIVE].get_node("Joint/Joint"),
+		mesh_map[DIVE].get_node("Joint/Joint/Joint"),
 	],
-	&"Fall": [
-		mesh_map[&"Fall"].get_node("Joint"),
-		mesh_map[&"Fall"].get_node("Joint/Joint"),
-		mesh_map[&"Fall"].get_node("Joint/Joint/Joint"),
+	FALL: [
+		mesh_map[FALL].get_node("Joint"),
+		mesh_map[FALL].get_node("Joint/Joint"),
+		mesh_map[FALL].get_node("Joint/Joint/Joint"),
 	],
-	&"Glide": [
-		mesh_map[&"Glide"].get_node("Joint"),
-		mesh_map[&"Glide"].get_node("Joint/Joint"),
-		mesh_map[&"Glide"].get_node("Joint/Joint/Joint"),
+	GLIDE: [
+		mesh_map[GLIDE].get_node("Joint"),
+		mesh_map[GLIDE].get_node("Joint/Joint"),
+		mesh_map[GLIDE].get_node("Joint/Joint/Joint"),
 	],
-	&"Idle": [
-		mesh_map[&"Idle"].get_node("Joint"),
-		mesh_map[&"Idle"].get_node("Joint/Joint"),
-		mesh_map[&"Idle"].get_node("Joint/Joint/Joint"),
+	IDLE: [
+		mesh_map[IDLE].get_node("Joint"),
+		mesh_map[IDLE].get_node("Joint/Joint"),
+		mesh_map[IDLE].get_node("Joint/Joint/Joint"),
 	],
-	&"Jump": [
-		mesh_map[&"Jump"].get_node("Joint"),
-		mesh_map[&"Jump"].get_node("Joint/Joint"),
-		mesh_map[&"Jump"].get_node("Joint/Joint/Joint"),
+	JUMP: [
+		mesh_map[JUMP].get_node("Joint"),
+		mesh_map[JUMP].get_node("Joint/Joint"),
+		mesh_map[JUMP].get_node("Joint/Joint/Joint"),
 	],
-	&"Run": [
-		mesh_map[&"Run"].get_node("Joint"),
-		mesh_map[&"Run"].get_node("Joint/Joint"),
-		mesh_map[&"Run"].get_node("Joint/Joint/Joint"),
+	RUN: [
+		mesh_map[RUN].get_node("Joint"),
+		mesh_map[RUN].get_node("Joint/Joint"),
+		mesh_map[RUN].get_node("Joint/Joint/Joint"),
 	],
-	&"Swim": [
-		mesh_map[&"Swim"].get_node("Joint"),
-		mesh_map[&"Swim"].get_node("Joint/Joint"),
-		mesh_map[&"Swim"].get_node("Joint/Joint/Joint"),
+	SWIM: [
+		mesh_map[SWIM].get_node("Joint"),
+		mesh_map[SWIM].get_node("Joint/Joint"),
+		mesh_map[SWIM].get_node("Joint/Joint/Joint"),
 	],
 }
 
@@ -137,7 +146,7 @@ func _process(_delta: float) -> void:
 	# It has a top level transform, i.e. its position is not directly inherited from the player.
 	camera_anchor.position.x = position.x
 	camera_anchor.position.z = position.z
-	if state_machine.state.name == "Run" or state_machine.state.name == "Idle":
+	if state_machine.state.name == RUN or state_machine.state.name == IDLE:
 		camera_anchor.position.y = lerp(camera_anchor.position.y, position.y, camera_anchor_y_smooth_grounded)
 	else:
 		camera_anchor.position.y = lerp(camera_anchor.position.y, position.y, camera_anchor_y_smooth_air)

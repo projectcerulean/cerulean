@@ -21,8 +21,8 @@ func physics_process(_delta: float) -> void:
 
 # Virtual function. Called by the state machine to determine if the state should be changed. Returns
 # an empty string if the state should not be changed.
-func get_transition() -> String:
-	return ""
+func get_transition() -> StringName:
+	return &""
 
 
 # Virtual function. Called by the state machine upon changing the active state. The `data` parameter

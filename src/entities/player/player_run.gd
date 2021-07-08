@@ -38,14 +38,14 @@ func physics_process(delta: float) -> void:
 		player.coyote_timer.start()
 
 
-func get_transition() -> String:
+func get_transition() -> StringName:
 	if player.is_in_water:
-		return "Swim"
+		return player.SWIM
 	elif not player.raycast.is_colliding() and player.coyote_timer.is_stopped():
-		return "Fall"
+		return player.FALL
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
-		return "Jump"
+		return player.JUMP
 	elif player.linear_velocity.is_equal_approx(Vector3.ZERO):
-		return "Idle"
+		return player.IDLE
 	else:
-		return ""
+		return &""

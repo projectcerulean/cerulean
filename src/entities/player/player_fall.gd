@@ -29,15 +29,15 @@ func physics_process(delta: float) -> void:
 		player.jump_buffer_timer.start()
 
 
-func get_transition() -> String:
+func get_transition() -> StringName:
 	if player.is_in_water:
-		return "Swim"
+		return player.SWIM
 	elif player.is_on_floor():
 		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
-			return "Idle"
+			return player.IDLE
 		else:
-			return "Run"
+			return player.RUN
 	elif player.linear_velocity.y < 0.0 and Input.is_action_pressed("player_move_glide"):
-		return "Glide"
+		return player.GLIDE
 	else:
-		return ""
+		return &""
