@@ -3,14 +3,15 @@ extends MeshInstance3D
 @export var trail_position_left_path: NodePath
 @export var trail_position_right_path: NodePath
 @export var max_points: int = 50
+@export var target_state_name: StringName
 
 @onready var trail_position_left = get_node(trail_position_left_path)
 @onready var trail_position_right = get_node(trail_position_right_path)
 
-var gliding: bool = false
+var active: bool = false
 
-var pointQueueLeft: DataStructures.RotationQueue = DataStructures.RotationQueue.new(max_points)
-var pointQueueRight: DataStructures.RotationQueue = DataStructures.RotationQueue.new(max_points)
+@onready var pointQueueLeft: DataStructures.RotationQueue = DataStructures.RotationQueue.new(max_points)
+@onready var pointQueueRight: DataStructures.RotationQueue = DataStructures.RotationQueue.new(max_points)
 
 
 func _ready() -> void:
@@ -18,10 +19,11 @@ func _ready() -> void:
 	Signals.connect(Signals.state_exited.get_name(), self._on_state_exited)
 	assert(trail_position_left != null)
 	assert(trail_position_right != null)
+	assert(target_state_name != &"")
 
 
 func _process(_delta: float) -> void:
-	if gliding:
+	if active:
 		pointQueueLeft.add(trail_position_left.global_transform.origin - global_transform.origin)
 		pointQueueRight.add(trail_position_right.global_transform.origin - global_transform.origin)
 	else:
@@ -51,10 +53,10 @@ func _process(_delta: float) -> void:
 
 
 func _on_state_entered(sender: Node, state_name: String) -> void:
-	if sender.owner == owner and state_name == "Glide":
-		gliding = true
+	if sender.owner == owner and state_name == target_state_name:
+		active = true
 
 
 func _on_state_exited(sender: Node, state_name: String) -> void:
-	if sender.owner == owner and state_name == "Glide":
-		gliding = false
+	if sender.owner == owner and state_name == target_state_name:
+		active = false
