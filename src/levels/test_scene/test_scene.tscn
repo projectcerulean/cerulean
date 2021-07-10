@@ -1,0 +1,290 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/hud/debug/state_label/state_label.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/hud/debug/debug_console/debug_console.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/entities/water/water.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/levels/test_scene/stone_material.tres" type="Material" id=5]
+[ext_resource path="res://src/entities/water/water_camera_effect.gdshader" type="Shader" id=6]
+[ext_resource path="res://src/entities/water/water_camera_effect.gd" type="Script" id=7]
+[ext_resource path="res://src/hud/debug/version_label/version_label.gd" type="Script" id=8]
+[ext_resource path="res://src/hud/debug/vector_visualizer/vector_visualizer.gd" type="Script" id=9]
+[ext_resource path="res://src/hud/debug/line_visualizer/line_visualizer.gd" type="Script" id=10]
+[ext_resource path="res://src/input/thumbstick.gd" type="Script" id=11]
+[ext_resource path="res://src/camera/camera.tscn" type="PackedScene" id=13]
+
+[sub_resource type="ProceduralSkyMaterial" id=1]
+sky_top_color = Color(0.568627, 0.698039, 0.807843, 1)
+sky_horizon_color = Color(0.672549, 0.704902, 0.734314, 1)
+ground_bottom_color = Color(0.121569, 0.121569, 0.129412, 1)
+ground_horizon_color = Color(0.672549, 0.704902, 0.734314, 1)
+
+[sub_resource type="Sky" id=2]
+sky_material = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
+background_mode = 2
+sky = SubResource( 2 )
+tonemap_mode = 1
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[sub_resource type="NoiseTexture" id=7]
+seamless = true
+noise = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 6 )
+shader_param/color = Color(0.0784314, 0.27451, 0.745098, 0.501961)
+shader_param/distortion_scale = 0.5
+shader_param/distortion_intensity = 0.01
+shader_param/distortion_speed = 0.05
+shader_param/noise = SubResource( 7 )
+
+[node name="TestScene" type="Node"]
+script = null
+
+[node name="Camera3D" parent="." instance=ExtResource( 13 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 27.154)
+target_path = NodePath("../Player/CameraAnchor")
+thumbstick_right_path = NodePath("../ThumbstickRight")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+script = null
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 22)
+camera_path = NodePath("../Camera3D")
+thumbstick_left_path = NodePath("../ThumbstickLeft")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+script = null
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
+script = null
+
+[node name="WaterEffect" type="ColorRect" parent="DebugLayer"]
+visible = false
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StateLabel" parent="DebugLayer" instance=ExtResource( 2 )]
+visible = false
+structured_text_bidi_override_options = []
+target_path = NodePath("../../Player")
+
+[node name="VectorVisualizer" type="ColorRect" parent="DebugLayer"]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 256.0
+color = Color(0.180392, 0.180392, 0.180392, 1)
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DebugConsole" parent="DebugLayer" instance=ExtResource( 3 )]
+visible = false
+
+[node name="LineVisualizer" type="Control" parent="DebugLayer"]
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+camera_path = NodePath("../../Camera3D")
+
+[node name="VersionLabel" type="Label" parent="DebugLayer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+text = "Version text"
+valign = 1
+structured_text_bidi_override_options = []
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ThumbstickLeft" type="Node" parent="."]
+script = ExtResource( 11 )
+action_up = "player_move_up"
+action_down = "player_move_down"
+action_left = "player_move_left"
+action_right = "player_move_right"
+
+[node name="ThumbstickRight" type="Node" parent="."]
+script = ExtResource( 11 )
+action_up = "camera_move_up"
+action_down = "camera_move_down"
+action_left = "camera_move_left"
+action_right = "camera_move_right"
+
+[node name="Water" parent="." instance=ExtResource( 4 )]
+
+[node name="Env" type="Node3D" parent="."]
+script = null
+
+[node name="StartPlatform" type="CSGCombiner3D" parent="Env"]
+material_override = ExtResource( 5 )
+use_collision = true
+script = null
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env/StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 22)
+size = Vector3(6, 2, 6)
+script = null
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env/StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -3, 20)
+size = Vector3(2, 10, 2)
+script = null
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env/StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -3, 24)
+size = Vector3(2, 10, 2)
+script = null
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Env/StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 26)
+size = Vector3(2, 6, 2)
+script = null
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Env/StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 28)
+script = null
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Env/StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 24)
+size = Vector3(2, 10, 2)
+script = null
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Env/StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 20)
+size = Vector3(2, 10, 2)
+script = null
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Env/StartPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 16)
+size = Vector3(2, 2, 6)
+script = null
+
+[node name="Staircase" type="CSGCombiner3D" parent="Env"]
+material_override = ExtResource( 5 )
+use_collision = true
+script = null
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -1)
+size = Vector3(8, 2, 4)
+script = null
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
+size = Vector3(2, 2, 6)
+script = null
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -2, -1)
+size = Vector3(2, 8, 4)
+script = null
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -1)
+size = Vector3(2, 8, 4)
+script = null
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, -2)
+size = Vector3(8, 1, 2)
+script = null
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -2)
+size = Vector3(6, 1, 2)
+script = null
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, -2)
+size = Vector3(4, 1, 2)
+script = null
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 7.5, -2)
+size = Vector3(2, 1, 2)
+script = null
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+size = Vector3(2, 18, 2)
+script = null
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Env/Staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
+size = Vector3(2, 18, 2)
+script = null
+
+[node name="Tower" type="CSGCombiner3D" parent="Env"]
+material_override = ExtResource( 5 )
+use_collision = true
+script = null
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env/Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4, -3)
+size = Vector3(4, 24, 4)
+script = null
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env/Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3, -3)
+size = Vector3(8, 2, 8)
+script = null
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env/Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 13, 0)
+script = null
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Env/Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 11, -2)
+script = null
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Env/Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 17, -3)
+script = null
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Env/Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 19, -4)
+script = null
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Env/Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 21, -5)
+script = null
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Env/Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 23, -6)
+script = null
+
+[node name="Flagpole" type="CSGCombiner3D" parent="Env"]
+material_override = ExtResource( 5 )
+use_collision = true
+script = null
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env/Flagpole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 3, -26)
+size = Vector3(4, 24, 4)
+script = null
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env/Flagpole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 17, -26)
+size = Vector3(2, 4, 2)
+script = null

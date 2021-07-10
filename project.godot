@@ -75,7 +75,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Cerulean"
-run/main_scene="res://src/levels/test_scene.tscn"
+run/main_scene="res://src/levels/test_scene/test_scene.tscn"
 
 [autoload]
 
