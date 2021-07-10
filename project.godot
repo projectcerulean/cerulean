@@ -53,6 +53,11 @@ _global_script_classes=[{
 "class": &"Thumbstick",
 "language": &"GDScript",
 "path": "res://src/input/thumbstick.gd"
+}, {
+"base": "Node",
+"class": &"Version",
+"language": &"GDScript",
+"path": "res://src/constants/version.gd"
 }]
 _global_script_class_icons={
 "CColor": "",
@@ -63,7 +68,8 @@ _global_script_class_icons={
 "PlayerState": "",
 "State": "",
 "StateMachine": "",
-"Thumbstick": ""
+"Thumbstick": "",
+"Version": ""
 }
 
 [application]
