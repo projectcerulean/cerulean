@@ -44,6 +44,8 @@ surface_material_override/0 = SubResource( 2 )
 script = ExtResource( 2 )
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 9
 script = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

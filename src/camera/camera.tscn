@@ -12,6 +12,8 @@ script = ExtResource( 1 )
 camera_rotation = Vector3(-30, 0, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 16
 script = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

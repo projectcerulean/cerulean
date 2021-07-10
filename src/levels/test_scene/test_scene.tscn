@@ -139,6 +139,8 @@ script = null
 [node name="StartPlatform" type="CSGCombiner3D" parent="Env"]
 material_override = ExtResource( 5 )
 use_collision = true
+collision_layer = 4
+collision_mask = 11
 script = null
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Env/StartPlatform"]
@@ -183,6 +185,8 @@ script = null
 [node name="Staircase" type="CSGCombiner3D" parent="Env"]
 material_override = ExtResource( 5 )
 use_collision = true
+collision_layer = 4
+collision_mask = 11
 script = null
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Env/Staircase"]
@@ -238,6 +242,8 @@ script = null
 [node name="Tower" type="CSGCombiner3D" parent="Env"]
 material_override = ExtResource( 5 )
 use_collision = true
+collision_layer = 4
+collision_mask = 11
 script = null
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Env/Tower"]
@@ -277,6 +283,8 @@ script = null
 [node name="Flagpole" type="CSGCombiner3D" parent="Env"]
 material_override = ExtResource( 5 )
 use_collision = true
+collision_layer = 4
+collision_mask = 11
 script = null
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Env/Flagpole"]

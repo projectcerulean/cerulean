@@ -139,6 +139,14 @@ player_move_glide={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_0="Player"
+3d_physics/layer_1="Camera"
+3d_physics/layer_2="Solids"
+3d_physics/layer_3="Entities"
+3d_physics/layer_4="Water"
+
 [physics]
 
 common/physics_fps=120

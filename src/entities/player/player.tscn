@@ -145,6 +145,7 @@ script = ExtResource( 9 )
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.65, 0)
+collision_mask = 4
 script = null
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
