@@ -27,8 +27,8 @@ func emit_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 	call_deferred("emit_signal", area_body_exited.get_name(), sender, body)
 
 
-func emit_debug_write(sender: Node, string: String) -> void:
-	call_deferred("emit_signal", debug_write.get_name(), sender, string)
+func emit_debug_write(sender: Node, variant: Variant) -> void:
+	call_deferred("emit_signal", debug_write.get_name(), sender, variant)
 
 
 func emit_state_entered(sender: Node, state_name: String) -> void:
