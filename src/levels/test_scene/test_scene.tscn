@@ -296,3 +296,26 @@ script = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 17, -26)
 size = Vector3(2, 4, 2)
 script = null
+
+[node name="Island" type="CSGCombiner3D" parent="Env"]
+material_override = ExtResource( 5 )
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+script = null
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Env/Island"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -19, -1.64814, 9)
+polygon = PackedVector2Array(0, 0, 0, 3, 7, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 8
+script = null
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Env/Island"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -19, -0.64814, -2)
+polygon = PackedVector2Array(0, 0, 0, 3, 7, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 8
+script = null

@@ -7,7 +7,7 @@ func enter(old_state_name: StringName, data := {}) -> void:
 
 func exit(new_state_name: StringName) -> void:
 	super.exit(new_state_name)
-	if new_state_name != player.DIVE:
+	if new_state_name == player.JUMP:
 		player.is_in_water = false
 		player.water_surface_height = NAN
 
@@ -27,7 +27,7 @@ func physics_process(delta: float) -> void:
 		player.facing_direction = player.facing_direction.slerp(player.input_vector.normalized(), player.input_vector.length() * player.water_turn_weight)
 		player.linear_velocity += player.facing_direction * player.input_vector.length() * player.water_move_acceleration * delta
 
-	if player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.water_surface_height:
+	if not is_nan(player.water_surface_height) and player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.water_surface_height:
 		player.global_transform.origin.y = player.water_surface_height
 		player.linear_velocity.y = 0.0
 	else:
@@ -47,6 +47,8 @@ func physics_process(delta: float) -> void:
 func get_transition() -> String:
 	if not player.is_in_water:
 		return "Fall"
+	elif player.raycast.is_colliding() and player.global_transform.origin.y > player.water_surface_height + player.water_state_enter_offset:
+		return "Run"
 	elif is_equal_approx(player.water_surface_height, player.global_transform.origin.y) and (Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped()):
 		return "Jump"
 	elif Input.is_action_just_pressed("player_move_glide"):

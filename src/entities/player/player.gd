@@ -16,6 +16,7 @@ const SWIM: StringName = &"Swim"
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
 @export var turn_weight: float = 0.5
+@export var move_snap_distance: float = 0.25
 @export var jump_speed: float = 10.0
 @export var jump_acceleration: float = 10.0
 @export var air_control_modifier: float = 0.08
@@ -31,6 +32,7 @@ const SWIM: StringName = &"Swim"
 @export var water_turn_weight: float = 0.05
 @export var water_buoyancy: float = 12.0
 @export var water_resistance: float = 2.0
+@export var water_state_enter_offset: float = 0.01
 
 @export var underwater_move_acceleration: float = 12.0
 @export var underwater_turn_weight: float = 0.05
@@ -201,3 +203,4 @@ func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 
 	if sender.owner.name == "Water":
 		is_in_water = false
+		water_surface_height = NAN

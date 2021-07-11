@@ -4,11 +4,13 @@ extends PlayerState
 func enter(old_state_name: StringName, data := {}) -> void:
 	super.enter(old_state_name, data)
 	player.linear_velocity.y = 0.0
+	player.snap = Vector3(0.0, -player.move_snap_distance, 0.0)
 
 
 func exit(new_state_name: StringName) -> void:
 	super.exit(new_state_name)
 	player.coyote_timer.stop()
+	player.snap = Vector3.ZERO
 
 
 func process(delta: float) -> void:
@@ -39,7 +41,7 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if player.is_in_water:
+	if player.is_in_water and player.global_transform.origin.y < player.water_surface_height - player.water_state_enter_offset:
 		return player.SWIM
 	elif not player.raycast.is_colliding() and player.coyote_timer.is_stopped():
 		return player.FALL
