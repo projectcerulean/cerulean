@@ -41,7 +41,7 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if player.is_in_water and player.global_transform.origin.y < player.water_surface_height - player.water_state_enter_offset:
+	if player.is_in_water and player.global_transform.origin.y < player.get_water_surface_height() - player.water_state_enter_offset:
 		return player.SWIM
 	elif not player.raycast.is_colliding() and player.coyote_timer.is_stopped():
 		return player.FALL

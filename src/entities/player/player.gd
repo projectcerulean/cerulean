@@ -106,7 +106,7 @@ var move_acceleration_air: float = move_acceleration * air_control_modifier
 var move_friction_coefficient_air: float = move_friction_coefficient * air_control_modifier
 
 var is_in_water: bool = false
-var water_surface_height: float = NAN
+var water_collision_shape: CollisionShape3D = null
 
 
 func _ready() -> void:
@@ -179,28 +179,28 @@ func _physics_process(delta: float) -> void:
 func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
 	if body != self:
 		return
-	var collision_shape: CollisionShape3D = null
-	for child in sender.get_children():
-		if child as CollisionShape3D != null:
-			collision_shape = child
-			break
+
+	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
 	assert(collision_shape != null)
 
 	if sender.owner.name == "Water":
 		is_in_water = true
-		water_surface_height = collision_shape.global_transform.origin.y + collision_shape.shape.size.y / 2.0
+		water_collision_shape = collision_shape
 
 
 func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 	if body != self:
 		return
-	var collision_shape: CollisionShape3D = null
-	for child in sender.get_children():
-		if child as CollisionShape3D != null:
-			collision_shape = child
-			break
-	assert(collision_shape != null)
 
-	if sender.owner.name == "Water":
+	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
+
+	if collision_shape == water_collision_shape:
 		is_in_water = false
-		water_surface_height = NAN
+		water_collision_shape = null
+
+
+func get_water_surface_height():
+	if water_collision_shape == null:
+		return NAN
+	else:
+		return water_collision_shape.global_transform.origin.y + water_collision_shape.shape.size.y / 2.0

@@ -8,13 +8,6 @@ func enter(old_state_name: StringName, data := {}) -> void:
 	roll_angle = 0.0
 
 
-func exit(new_state_name: StringName) -> void:
-	super.exit(new_state_name)
-	if new_state_name != player.SWIM:
-		player.is_in_water = false
-		player.water_surface_height = NAN
-
-
 func process(delta: float) -> void:
 	super.process(delta)
 
@@ -58,7 +51,7 @@ func physics_process(delta: float) -> void:
 func get_transition() -> StringName:
 	if not player.is_in_water:
 		return player.FALL
-	elif player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.water_surface_height:
+	elif player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
 		return player.SWIM
 	else:
 		return &""

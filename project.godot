@@ -55,6 +55,11 @@ _global_script_classes=[{
 "path": "res://src/input/thumbstick.gd"
 }, {
 "base": "Node",
+"class": &"TreeHelper",
+"language": &"GDScript",
+"path": "res://src/common/tree_helper/tree_helper.gd"
+}, {
+"base": "Node",
 "class": &"Version",
 "language": &"GDScript",
 "path": "res://src/constants/version.gd"
@@ -69,6 +74,7 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "Thumbstick": "",
+"TreeHelper": "",
 "Version": ""
 }
 
