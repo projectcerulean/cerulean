@@ -37,6 +37,7 @@ const SWIM: StringName = &"Swim"
 @export var underwater_resistance: float = 2.0
 @export var underwater_roll_weight: float = 0.02
 
+@export var wall_pushback_distance: float = 0.1
 @export var y_min: float = -100.0
 
 @onready var camera: Camera3D = get_node(camera_path)
@@ -155,6 +156,22 @@ func _process(_delta: float) -> void:
 	# Reload scene when falling off the map
 	if get_global_transform().origin.y < y_min:
 		get_tree().reload_current_scene()
+
+
+func _physics_process(delta: float) -> void:
+	# Hack to prevent getting stuck on (CSG) edges
+	if is_on_wall() and get_slide_count() > 0:
+		var normal: Vector3 = Vector3.ZERO
+		for i in range(get_slide_count()):
+			normal += get_slide_collision(i).normal
+		normal.y = 0.0
+		normal = normal.normalized()
+
+		if normal.is_normalized():
+			var linear_velocity_tmp: Vector3 = linear_velocity
+			linear_velocity = wall_pushback_distance * normal
+			move_and_slide()
+			linear_velocity = linear_velocity_tmp
 
 
 func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
