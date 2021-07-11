@@ -105,8 +105,7 @@ var facing_direction: Vector3 = Vector3.FORWARD
 var move_acceleration_air: float = move_acceleration * air_control_modifier
 var move_friction_coefficient_air: float = move_friction_coefficient * air_control_modifier
 
-var is_in_water: bool = false
-var water_collision_shape: CollisionShape3D = null
+var water_collision_shapes: Array[CollisionShape3D]
 
 
 func _ready() -> void:
@@ -183,9 +182,8 @@ func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
 	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
 	assert(collision_shape != null)
 
-	if sender.owner.name == "Water":
-		is_in_water = true
-		water_collision_shape = collision_shape
+	if str(sender.owner.name).begins_with("Water"):
+		water_collision_shapes.append(collision_shape)
 
 
 func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
@@ -194,13 +192,19 @@ func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 
 	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
 
-	if collision_shape == water_collision_shape:
-		is_in_water = false
-		water_collision_shape = null
+	if collision_shape in water_collision_shapes:
+		water_collision_shapes.erase(collision_shape)
+
+
+func is_in_water():
+	return water_collision_shapes.size() > 0
 
 
 func get_water_surface_height():
-	if water_collision_shape == null:
+	if not is_in_water():
 		return NAN
-	else:
-		return water_collision_shape.global_transform.origin.y + water_collision_shape.shape.size.y / 2.0
+
+	var height: float = -INF
+	for shape in water_collision_shapes:
+		height = max(height, shape.global_transform.origin.y + shape.shape.size.y / 2.0)
+	return height

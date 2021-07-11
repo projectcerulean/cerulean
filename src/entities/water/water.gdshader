@@ -2,6 +2,8 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled;
 
+uniform int mesh_size_x = 64;
+uniform int mesh_size_y = 64;
 uniform vec4 water_color: hint_color;
 uniform float water_color_boost_threshold = 0.45;
 uniform float water_color_boost_amount = 0.1;
@@ -10,8 +12,9 @@ uniform sampler2D noise_sampler1;
 uniform sampler2D noise_sampler2;
 uniform vec2 noise_time_factor = vec2(0.01, 0.002);
 
+uniform int wave_periods_x = 4;
+uniform int wave_periods_y = 4;
 uniform vec2 wave_strengh = vec2(0.25, 0.125);
-uniform vec2 wave_frequency = vec2(6.0, 6.0);
 uniform vec2 wave_time_factor = vec2(0.5, 1.0);
 
 
@@ -30,6 +33,8 @@ void fragment() {
 
 
 void vertex() {
-	VERTEX.y += wave_strengh.y * sin(VERTEX.y * wave_frequency.y + TIME * wave_time_factor.y) +
-		wave_strengh.x * sin(VERTEX.x * wave_frequency.x + TIME * wave_time_factor.x);
+	float angular_velocity_x = float(wave_periods_x) * 2.0 * PI / float(mesh_size_x);
+	float angular_velocity_y = float(wave_periods_y) * 2.0 * PI / float(mesh_size_y);
+	VERTEX.y += wave_strengh.y * sin(VERTEX.y * angular_velocity_y + TIME * wave_time_factor.y) +
+		wave_strengh.x * sin(VERTEX.x * angular_velocity_x + TIME * wave_time_factor.x);
 }

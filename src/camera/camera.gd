@@ -15,14 +15,23 @@ extends Camera3D
 
 @onready var target: Node3D = get_node(target_path) as Node3D
 @onready var thumbstick_right: Thumbstick = get_node(thumbstick_right_path)
+@onready var area3d: Area3D = get_node("Area3D")
 
 @onready var rotation_speed_rad: Vector2 = Vector2(deg2rad(rotation_speed.x), deg2rad(rotation_speed.y))
 @onready var camera_rotation_rad: Vector2 = Vector2(deg2rad(camera_rotation.x), deg2rad(camera_rotation.y))
 @onready var pitch_limit_rad: Vector2 = Vector2(deg2rad(pitch_limit.x), deg2rad(pitch_limit.y))
 
+var water_collision_shapes: Array[CollisionShape3D]
+
 
 func _ready() -> void:
+	Signals.connect(Signals.area_area_entered.get_name(), self._on_area_area_entered)
+	Signals.connect(Signals.area_area_exited.get_name(), self._on_area_area_exited)
+
 	assert(target != null)
+	assert(thumbstick_right != null)
+	assert(area3d != null)
+
 	if target_offset == Vector3.ZERO:
 		target_offset = transform.origin - target.transform.origin - anchor_offset
 	assert(clamp(target_offset.length(), zoom_limit.x, zoom_limit.y) == target_offset.length())
@@ -50,3 +59,28 @@ func _process(delta: float) -> void:
 
 	transform.origin = target.transform.origin + anchor_offset + target_offset_rotated
 	look_at(look_target_rotated + target.transform.origin)
+
+
+func _on_area_area_entered(sender: Area3D, area: Area3D) -> void:
+	if area != self.area3d:
+		return
+
+	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
+	assert(collision_shape != null)
+
+	if str(sender.owner.name).begins_with("Water"):
+		water_collision_shapes.append(collision_shape)
+
+
+func _on_area_area_exited(sender: Area3D, area: Area3D) -> void:
+	if area != self.area3d:
+		return
+
+	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
+
+	if collision_shape in water_collision_shapes:
+		water_collision_shapes.erase(collision_shape)
+
+
+func is_in_water():
+	return water_collision_shapes.size() > 0

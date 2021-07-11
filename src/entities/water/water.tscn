@@ -25,12 +25,15 @@ noise = SubResource( 11 )
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 1 )
+shader_param/mesh_size_x = 64
+shader_param/mesh_size_y = 64
 shader_param/water_color = Color(0.0784314, 0.27451, 0.745098, 0.878431)
 shader_param/water_color_boost_threshold = 0.45
 shader_param/water_color_boost_amount = 0.1
 shader_param/noise_time_factor = Vector2(0.01, 0.002)
+shader_param/wave_periods_x = 4
+shader_param/wave_periods_y = 4
 shader_param/wave_strengh = Vector2(0.25, 0.125)
-shader_param/wave_frequency = Vector2(6, 6)
 shader_param/wave_time_factor = Vector2(0.5, 1)
 shader_param/noise_sampler1 = SubResource( 10 )
 shader_param/noise_sampler2 = SubResource( 12 )

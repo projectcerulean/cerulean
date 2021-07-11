@@ -76,6 +76,7 @@ script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+camera_path = NodePath("../../Camera3D")
 
 [node name="StateLabel" parent="DebugLayer" instance=ExtResource( 2 )]
 visible = false
@@ -130,8 +131,6 @@ action_up = "camera_move_up"
 action_down = "camera_move_down"
 action_left = "camera_move_left"
 action_right = "camera_move_right"
-
-[node name="Water" parent="." instance=ExtResource( 4 )]
 
 [node name="Env" type="Node3D" parent="."]
 script = null
@@ -319,3 +318,32 @@ mode = 1
 spin_degrees = 360.0
 spin_sides = 8
 script = null
+
+[node name="Water" type="Node3D" parent="."]
+script = null
+
+[node name="Water" parent="Water" instance=ExtResource( 4 )]
+
+[node name="Water2" parent="Water" instance=ExtResource( 4 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, 0)
+
+[node name="Water3" parent="Water" instance=ExtResource( 4 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
+
+[node name="Water4" parent="Water" instance=ExtResource( 4 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, -64)
+
+[node name="Water5" parent="Water" instance=ExtResource( 4 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)
+
+[node name="Water6" parent="Water" instance=ExtResource( 4 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, -64)
+
+[node name="Water7" parent="Water" instance=ExtResource( 4 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, 64)
+
+[node name="Water8" parent="Water" instance=ExtResource( 4 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
+
+[node name="Water9" parent="Water" instance=ExtResource( 4 )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
