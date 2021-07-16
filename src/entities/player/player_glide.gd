@@ -83,7 +83,7 @@ func get_transition() -> StringName:
 			return player.IDLE
 		else:
 			return player.RUN
-	elif not Input.is_action_pressed("player_move_glide"):
+	elif not Input.is_action_pressed("player_move_jump"):
 		return player.FALL
 	else:
 		return &""

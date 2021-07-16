@@ -40,7 +40,7 @@ func get_transition() -> String:
 		return "Run"
 	elif is_equal_approx(player.get_water_surface_height(), player.global_transform.origin.y) and (Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped()):
 		return "Jump"
-	elif Input.is_action_just_pressed("player_move_glide"):
+	elif Input.is_action_just_pressed("player_move_dive"):
 		return "Dive"
 	else:
 		return ""
