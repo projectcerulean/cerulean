@@ -10,7 +10,7 @@ Assets are synced using IPFS (https://ipfs.io) to prevent having to check in lar
 1. Install IPFS by installing the package `go-ipfs`
 2. Initialize: `ipfs init`
 3. Run the IPFS daemon: `ipfs daemon`
-4. Enable the `git-ipfs` filter by adding the section following to `cerulean/.git/config`:
+4. Enable the `git-ipfs` filter by adding the following section to `cerulean/.git/config`:
 ```
 [filter "git-ipfs"]
         smudge = src/tools/git-ipfs/git-ipfs.sh smudge
@@ -25,3 +25,12 @@ Assets are synced using IPFS (https://ipfs.io) to prevent having to check in lar
 ```
 4.0.dev.custom_build.a2d5f191d
 ```
+
+
+## Links
+
+* Main repo: https://github.com/projectcerulean/cerulean
+* Repo mirrors:
+    * https://bitbucket.org/gullik/cerulean
+    * https://git.sr.ht/~gullik/cerulean
+* Build service: https://builds.sr.ht/~gullik/cerulean
