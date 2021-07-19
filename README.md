@@ -23,7 +23,7 @@ Assets are synced using IPFS (https://ipfs.io) to prevent having to check in lar
 ## Godot version
 
 ```
-4.0.dev.custom_build.a2d5f191d
+4.0.dev.custom_build.b76dfde32
 ```
 
 
