@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/hud/debug/state_label/state_label.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://src/hud/debug/version_label/version_label.gd" type="Script" id=8]
 [ext_resource path="res://src/hud/debug/vector_visualizer/vector_visualizer.gd" type="Script" id=9]
 [ext_resource path="res://src/hud/debug/line_visualizer/line_visualizer.gd" type="Script" id=10]
-[ext_resource path="res://src/input/thumbstick.gd" type="Script" id=11]
 [ext_resource path="res://src/camera/camera.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ProceduralSkyMaterial" id=1]
@@ -47,7 +46,6 @@ script = null
 [node name="Camera3D" parent="." instance=ExtResource( 13 )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 27.154)
 target_path = NodePath("../Player/CameraAnchor")
-thumbstick_right_path = NodePath("../ThumbstickRight")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -58,7 +56,6 @@ script = null
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 22)
 camera_path = NodePath("../Camera3D")
-thumbstick_left_path = NodePath("../ThumbstickLeft")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
@@ -117,20 +114,6 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ThumbstickLeft" type="Node" parent="."]
-script = ExtResource( 11 )
-action_up = "player_move_up"
-action_down = "player_move_down"
-action_left = "player_move_left"
-action_right = "player_move_right"
-
-[node name="ThumbstickRight" type="Node" parent="."]
-script = ExtResource( 11 )
-action_up = "camera_move_up"
-action_down = "camera_move_down"
-action_left = "camera_move_left"
-action_right = "camera_move_right"
 
 [node name="Env" type="Node3D" parent="."]
 script = null

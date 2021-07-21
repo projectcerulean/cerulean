@@ -11,7 +11,6 @@ const RUN: StringName = &"Run"
 const SWIM: StringName = &"Swim"
 
 @export var camera_path := NodePath()
-@export var thumbstick_left_path := NodePath()
 
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
@@ -43,7 +42,6 @@ const SWIM: StringName = &"Swim"
 @export var y_min: float = -100.0
 
 @onready var camera: Camera3D = get_node(camera_path)
-@onready var thumbstick_left: Thumbstick = get_node(thumbstick_left_path)
 @onready var camera_anchor: Position3D = get_node("CameraAnchor")
 @onready var state_machine: StateMachine = get_node("StateMachine")
 @onready var raycast: RayCast3D = get_node("RayCast3D")
@@ -114,7 +112,6 @@ func _ready() -> void:
 
 	assert(camera != null)
 	assert(camera_anchor != null)
-	assert(thumbstick_left != null)
 	assert(raycast != null)
 	assert(coyote_timer != null)
 	assert(jump_buffer_timer != null)
@@ -138,7 +135,7 @@ func _process(_delta: float) -> void:
 	camera_vector = camera_vector.normalized()
 	var forward_vector: Vector3 = camera_vector
 	var right_vector: Vector3 = -camera_vector.cross(Vector3.UP)
-	input_vector = right_vector * thumbstick_left.value.x + forward_vector * thumbstick_left.value.y
+	input_vector = right_vector * CInput.thumbsticks.left.value.x + forward_vector * CInput.thumbsticks.left.value.y
 
 	if input_vector.length_squared() > 1.0:
 		input_vector = input_vector.normalized()

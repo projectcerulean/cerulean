@@ -50,11 +50,6 @@ _global_script_classes=[{
 "path": "res://src/common/finite_state_machine/state_machine.gd"
 }, {
 "base": "Node",
-"class": &"Thumbstick",
-"language": &"GDScript",
-"path": "res://src/input/thumbstick.gd"
-}, {
-"base": "Node",
 "class": &"TreeHelper",
 "language": &"GDScript",
 "path": "res://src/common/tree_helper/tree_helper.gd"
@@ -73,7 +68,6 @@ _global_script_class_icons={
 "PlayerState": "",
 "State": "",
 "StateMachine": "",
-"Thumbstick": "",
 "TreeHelper": "",
 "Version": ""
 }
@@ -87,28 +81,49 @@ run/main_scene="res://src/levels/test_scene/test_scene.tscn"
 
 Randomize="*res://src/autoload/randomize/randomize.gd"
 Signals="*res://src/autoload/signals/signals.gd"
+CInput="*res://src/autoload/input/cinput.gd"
 AudioPlayer="*res://src/autoload/audio_player/audio_player.tscn"
 
 [input]
 
-player_move_up={
+left_stick_up={
 "deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
 ]
 }
-player_move_down={
+left_stick_down={
 "deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
 ]
 }
-player_move_left={
+left_stick_left={
 "deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
 ]
 }
-player_move_right={
+left_stick_right={
 "deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+]
+}
+right_stick_up={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
+]
+}
+right_stick_down={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
+]
+}
+right_stick_left={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
+]
+}
+right_stick_right={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
 ]
 }
 player_move_jump={
@@ -119,26 +134,6 @@ player_move_jump={
 player_move_dive={
 "deadzone": 0.0,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":10,"pressure":0.0,"pressed":false,"script":null)
-]
-}
-camera_move_up={
-"deadzone": 0.0,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
-]
-}
-camera_move_down={
-"deadzone": 0.0,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
-]
-}
-camera_move_left={
-"deadzone": 0.0,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
-]
-}
-camera_move_right={
-"deadzone": 0.0,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
 ]
 }
 camera_move_zoom_toggle={
