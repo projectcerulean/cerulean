@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/autoload/audio_player/audio_player_bgm.gd" type="Script" id=2]
+
+[node name="AudioPlayer" type="Node"]
+script = null
+
+[node name="BgmPlayer" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="BasePlayer" type="AudioStreamPlayer" parent="BgmPlayer"]
+script = null
+
+[node name="GlidePlayer" type="AudioStreamPlayer" parent="BgmPlayer"]
+script = null
+
+[node name="RhythmPlayer" type="AudioStreamPlayer" parent="BgmPlayer"]
+script = null
+
+[node name="SfxPlayer" type="Node" parent="."]
+script = null

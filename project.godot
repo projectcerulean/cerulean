@@ -85,7 +85,9 @@ run/main_scene="res://src/levels/test_scene/test_scene.tscn"
 
 [autoload]
 
-Signals="*res://src/autoload/signals.gd"
+Randomize="*res://src/autoload/randomize/randomize.gd"
+Signals="*res://src/autoload/signals/signals.gd"
+AudioPlayer="*res://src/autoload/audio_player/audio_player.tscn"
 
 [input]
 
