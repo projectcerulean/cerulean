@@ -105,7 +105,7 @@ var facing_direction: Vector3 = Vector3.FORWARD
 var move_acceleration_air: float = move_acceleration * air_control_modifier
 var move_friction_coefficient_air: float = move_friction_coefficient * air_control_modifier
 
-var water_collision_shapes: Array[CollisionShape3D]
+var water_collision_shapes: Array
 
 
 func _ready() -> void:
@@ -159,7 +159,7 @@ func _process(_delta: float) -> void:
 		get_tree().reload_current_scene()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Hack to prevent getting stuck on (CSG) edges
 	if is_on_wall() and get_slide_count() > 0:
 		var normal: Vector3 = Vector3.ZERO

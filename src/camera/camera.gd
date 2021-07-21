@@ -21,7 +21,7 @@ extends Camera3D
 @onready var camera_rotation_rad: Vector2 = Vector2(deg2rad(camera_rotation.x), deg2rad(camera_rotation.y))
 @onready var pitch_limit_rad: Vector2 = Vector2(deg2rad(pitch_limit.x), deg2rad(pitch_limit.y))
 
-var water_collision_shapes: Array[CollisionShape3D]
+var water_collision_shapes: Array
 
 
 func _ready() -> void:

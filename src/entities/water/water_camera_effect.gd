@@ -12,5 +12,5 @@ func _ready():
 	assert(camera != null)
 
 
-func _on_area_area_entered_exited(sender: Area3D, area: Area3D):
+func _on_area_area_entered_exited(_sender: Area3D, _area: Area3D):
 	visible = camera.is_in_water()
