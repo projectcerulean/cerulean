@@ -1,12 +1,9 @@
 extends Control
 
-@export var camera_path: NodePath
 @export var color_default: Color = Color.LIGHT_CORAL
 @export var line_width: float = 5.0
 @export var points_default: Array[Vector3]
 @export var max_points_per_line: int = 1000
-
-@onready var camera: Camera3D = get_node(camera_path)
 
 var lines: Dictionary
 var colors: Dictionary
@@ -14,7 +11,6 @@ var colors: Dictionary
 
 func _ready() -> void:
 	Signals.connect(Signals.visualize_line.get_name(), self._on_visualize_line)
-	assert(camera != null)
 	if points_default.size() > 0:
 		assert(points_default.size() < max_points_per_line)
 		lines[null] = DataStructures.RotationQueue.new(max_points_per_line)
@@ -24,6 +20,10 @@ func _ready() -> void:
 
 
 func _draw() -> void:
+	var camera: Camera3D = get_viewport().get_camera()
+	if camera == null:
+		return
+
 	for sender in lines:
 		var points = lines[sender]
 		var color: Color = colors[sender]

@@ -68,6 +68,9 @@ func _on_area_area_entered(sender: Area3D, area: Area3D) -> void:
 	if str(sender.owner.name).begins_with("Water"):
 		water_collision_shapes.append(collision_shape)
 
+	if water_collision_shapes.size() == 1:
+		Signals.emit_camera_water_entered(self)
+
 
 func _on_area_area_exited(sender: Area3D, area: Area3D) -> void:
 	if area != self.area3d:
@@ -78,6 +81,5 @@ func _on_area_area_exited(sender: Area3D, area: Area3D) -> void:
 	if collision_shape in water_collision_shapes:
 		water_collision_shapes.erase(collision_shape)
 
-
-func is_in_water():
-	return water_collision_shapes.size() > 0
+	if water_collision_shapes.size() == 0:
+		Signals.emit_camera_water_exited(self)

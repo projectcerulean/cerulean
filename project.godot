@@ -83,6 +83,7 @@ Randomize="*res://src/autoload/randomize/randomize.gd"
 Signals="*res://src/autoload/signals/signals.gd"
 CInput="*res://src/autoload/input/cinput.gd"
 AudioPlayer="*res://src/autoload/audio_player/audio_player.tscn"
+UI="*res://src/autoload/ui/ui.tscn"
 
 [input]
 

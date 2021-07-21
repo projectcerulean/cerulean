@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/hud/debug/debug_console/debug_console.gd" type="Script" id=1]
+[ext_resource path="res://src/autoload/ui/debug/debug_console/debug_console.gd" type="Script" id=1]
 
 [node name="DebugConsole" type="ColorRect"]
 anchor_left = 1.0

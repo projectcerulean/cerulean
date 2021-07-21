@@ -4,6 +4,8 @@ signal area_area_entered
 signal area_area_exited
 signal area_body_entered
 signal area_body_exited
+signal camera_water_entered
+signal camera_water_exited
 signal debug_write
 signal state_entered
 signal state_exited
@@ -25,6 +27,14 @@ func emit_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
 
 func emit_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 	call_deferred("emit_signal", area_body_exited.get_name(), sender, body)
+
+
+func emit_camera_water_entered(sender: Camera3D) -> void:
+	call_deferred("emit_signal", camera_water_entered.get_name(), sender)
+
+
+func emit_camera_water_exited(sender: Camera3D) -> void:
+	call_deferred("emit_signal", camera_water_exited.get_name(), sender)
 
 
 func emit_debug_write(sender: Node, variant: Variant) -> void:
