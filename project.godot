@@ -12,7 +12,7 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"CColor",
 "language": &"GDScript",
-"path": "res://src/common/ccolor/ccolor.gd"
+"path": "res://src/common/color/ccolor.gd"
 }, {
 "base": "Node",
 "class": &"DataStructures",
