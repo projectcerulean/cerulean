@@ -53,7 +53,8 @@ func _ready() -> void:
 	if base_tween != null:
 		base_tween.kill()
 	base_tween = create_tween()
-	base_tween.tween_property(base_player, "volume_db", volume_db_low, tween_duration_cutoff)
+	if base_player.volume_db == volume_db_zero:
+		base_tween.tween_property(base_player, "volume_db", volume_db_low, tween_duration_cutoff)
 	base_tween.tween_property(base_player, "volume_db", volume_db_high, tween_duration_glide)
 
 
@@ -64,7 +65,8 @@ func _on_state_entered(sender: Node, state_name: String) -> void:
 			glide_tween.kill()
 		glide_tween = create_tween()
 		if state_name == player.GLIDE:
-			glide_tween.tween_property(glide_player, "volume_db", volume_db_low, tween_duration_cutoff)
+			if glide_player.volume_db == volume_db_zero:
+				glide_tween.tween_property(glide_player, "volume_db", volume_db_low, tween_duration_cutoff)
 			glide_tween.tween_property(glide_player, "volume_db", volume_db_high, tween_duration_glide)
 		else:
 			glide_tween.tween_property(glide_player, "volume_db", volume_db_low, tween_duration_glide)
@@ -75,7 +77,8 @@ func _on_state_entered(sender: Node, state_name: String) -> void:
 			rhythm_tween.kill()
 		rhythm_tween = create_tween()
 		if state_name == player.GLIDE:
-			rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_low, tween_duration_cutoff)
+			if rhythm_player.volume_db == volume_db_zero:
+				rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_low, tween_duration_cutoff)
 			rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_high, tween_duration_glide)
 		else:
 			rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_low, tween_duration_glide)
