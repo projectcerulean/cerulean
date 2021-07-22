@@ -1,23 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/water/water.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/levels/test_scene/stone_material.tres" type="Material" id=5]
 [ext_resource path="res://src/camera/camera.tscn" type="PackedScene" id=13]
-
-[sub_resource type="ProceduralSkyMaterial" id=1]
-sky_top_color = Color(0.568627, 0.698039, 0.807843, 1)
-sky_horizon_color = Color(0.672549, 0.704902, 0.734314, 1)
-ground_bottom_color = Color(0.121569, 0.121569, 0.129412, 1)
-ground_horizon_color = Color(0.672549, 0.704902, 0.734314, 1)
-
-[sub_resource type="Sky" id=2]
-sky_material = SubResource( 1 )
-
-[sub_resource type="Environment" id=3]
-background_mode = 2
-sky = SubResource( 2 )
-tonemap_mode = 1
 
 [node name="TestScene" type="Node"]
 script = null
@@ -35,10 +21,6 @@ script = null
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 22)
 camera_path = NodePath("../Camera3D")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 3 )
-script = null
 
 [node name="Env" type="Node3D" parent="."]
 script = null
