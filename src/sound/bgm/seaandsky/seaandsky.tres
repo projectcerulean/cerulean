@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://src/sound/bgm/bgm_resource.gd" type="Script" id=1]
+[ext_resource path="res://assets/sound/bgm/seaandsky/seaandsky_rhythm.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/sound/bgm/seaandsky/seaandsky_glide.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sound/bgm/seaandsky/seaandsky.wav" type="AudioStream" id=4]
+
+[resource]
+script = ExtResource( 1 )
+stream_base = ExtResource( 4 )
+stream_glide = ExtResource( 3 )
+stream_rhythm = ExtResource( 2 )
+bpm = 92.0

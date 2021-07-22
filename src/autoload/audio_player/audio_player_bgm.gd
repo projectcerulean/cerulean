@@ -30,9 +30,11 @@ func _ready() -> void:
 	glide_player.volume_db = volume_db_zero
 	rhythm_player.volume_db = volume_db_zero
 
-	base_player.stream = load("res://assets/sound/bgm/seaandsky/seaandsky.wav")
-	glide_player.stream = load("res://assets/sound/bgm/seaandsky/seaandsky_glide.wav")
-	rhythm_player.stream = load("res://assets/sound/bgm/seaandsky/seaandsky_rhythm.wav")
+	var bgm_resource: BgmResource = load("res://src/sound/bgm/seaandsky/seaandsky.tres")
+
+	base_player.stream = bgm_resource.stream_base
+	glide_player.stream = bgm_resource.stream_glide
+	rhythm_player.stream = bgm_resource.stream_rhythm
 
 	assert(base_player.stream != null)
 
