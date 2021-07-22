@@ -1,1 +1,1 @@
-assets/** filter=git-ipfs
+assets/** filter=git-ipfs diff=git-ipfs
