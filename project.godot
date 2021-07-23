@@ -50,6 +50,11 @@ _global_script_classes=[{
 "path": "res://src/entities/player/player_state.gd"
 }, {
 "base": "Node",
+"class": &"SignalsGetter",
+"language": &"GDScript",
+"path": "res://src/common/hacks/signals_getter.gd"
+}, {
+"base": "Node",
 "class": &"State",
 "language": &"GDScript",
 "path": "res://src/common/finite_state_machine/state.gd"
@@ -88,6 +93,7 @@ _global_script_class_icons={
 "Physics": "",
 "Player": "",
 "PlayerState": "",
+"SignalsGetter": "",
 "State": "",
 "StateMachine": "",
 "StateResource": "",

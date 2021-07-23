@@ -22,7 +22,7 @@ var rhythm_tween: Tween = null
 
 
 func _ready() -> void:
-	Signals.connect(Signals.state_entered.get_name(), self._on_state_entered)
+	SignalsGetter.get_signals().connect(SignalsGetter.get_signals().state_entered.get_name(), self._on_state_entered)
 
 	assert(player_state as StateResource != null)
 
