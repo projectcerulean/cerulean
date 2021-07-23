@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/entities/player/player_trail_renderer.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/player/player_swim.gd" type="Script" id=9]
 [ext_resource path="res://src/entities/player/player_dive.gd" type="Script" id=10]
+[ext_resource path="res://src/autoload/input/thumbstick_resource_left.tres" type="Resource" id=11]
 
 [sub_resource type="CapsuleShape3D" id=1]
 radius = 0.25
@@ -53,6 +54,7 @@ emission = Color(0.0784314, 0.27451, 0.745098, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource( 1 )
+thumbstick_left = ExtResource( 11 )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )

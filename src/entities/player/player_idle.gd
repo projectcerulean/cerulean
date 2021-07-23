@@ -16,7 +16,7 @@ func get_transition() -> StringName:
 		return player.FALL
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		return player.JUMP
-	elif not CInput.thumbsticks.left.value.is_equal_approx(Vector2.ZERO):
+	elif not player.thumbstick_left.value.is_equal_approx(Vector2.ZERO):
 		return player.RUN
 	else:
 		return &""

@@ -10,7 +10,8 @@ const JUMP: StringName = &"Jump"
 const RUN: StringName = &"Run"
 const SWIM: StringName = &"Swim"
 
-@export var camera_path := NodePath()
+@export var camera_path: NodePath
+@export var thumbstick_left: Resource
 
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
@@ -110,6 +111,7 @@ func _ready() -> void:
 	Signals.connect(Signals.area_body_entered.get_name(), self._on_area_body_entered)
 	Signals.connect(Signals.area_body_exited.get_name(), self._on_area_body_exited)
 
+	assert(thumbstick_left as ThumbstickResource != null)
 	assert(camera != null)
 	assert(camera_anchor != null)
 	assert(raycast != null)
@@ -135,7 +137,7 @@ func _process(_delta: float) -> void:
 	camera_vector = camera_vector.normalized()
 	var forward_vector: Vector3 = camera_vector
 	var right_vector: Vector3 = -camera_vector.cross(Vector3.UP)
-	input_vector = right_vector * CInput.thumbsticks.left.value.x + forward_vector * CInput.thumbsticks.left.value.y
+	input_vector = right_vector * thumbstick_left.value.x + forward_vector * thumbstick_left.value.y
 
 	if input_vector.length_squared() > 1.0:
 		input_vector = input_vector.normalized()

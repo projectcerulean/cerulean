@@ -2,6 +2,7 @@
 extends Camera3D
 
 @export var target_path: NodePath
+@export var thumbstick_right: Resource
 
 @export var rotation_speed: Vector2 = Vector2(90, 180)
 @export var target_offset: Vector3
@@ -26,6 +27,7 @@ func _ready() -> void:
 	Signals.connect(Signals.area_area_entered.get_name(), self._on_area_area_entered)
 	Signals.connect(Signals.area_area_exited.get_name(), self._on_area_area_exited)
 
+	assert(thumbstick_right as ThumbstickResource != null)
 	assert(target != null)
 	assert(area3d != null)
 
@@ -38,15 +40,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("camera_move_zoom_toggle"):
-		target_offset *= 1.0 + (CInput.thumbsticks.right.value.y) * zoom_speed * delta
+		target_offset *= 1.0 + (thumbstick_right.value.y) * zoom_speed * delta
 		if target_offset.length() < zoom_limit.x:
 			target_offset = target_offset.normalized() * zoom_limit.x
 		elif target_offset.length() > zoom_limit.y:
 			target_offset = target_offset.normalized() * zoom_limit.y
 	else:
-		camera_rotation_rad.x = camera_rotation_rad.x - CInput.thumbsticks.right.value.y * rotation_speed_rad.x * delta
+		camera_rotation_rad.x = camera_rotation_rad.x - thumbstick_right.value.y * rotation_speed_rad.x * delta
 		camera_rotation_rad.x = clamp(camera_rotation_rad.x, pitch_limit_rad.x, pitch_limit_rad.y)
-		camera_rotation_rad.y = camera_rotation_rad.y - CInput.thumbsticks.right.value.x * rotation_speed_rad.y * delta
+		camera_rotation_rad.y = camera_rotation_rad.y - thumbstick_right.value.x * rotation_speed_rad.y * delta
 
 	var vertical_axis: Vector3 = Vector3.RIGHT.rotated(Vector3.UP, camera_rotation_rad.y)
 	var target_offset_rotated: Vector3 = target_offset.rotated(Vector3.UP, camera_rotation_rad.y)

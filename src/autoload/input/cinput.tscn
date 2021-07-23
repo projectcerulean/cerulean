@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/autoload/input/cinput.gd" type="Script" id=1]
+[ext_resource path="res://src/autoload/input/thumbstick_resource_right.tres" type="Resource" id=2]
+[ext_resource path="res://src/autoload/input/thumbstick_resource_left.tres" type="Resource" id=3]
+
+[node name="CInput" type="Node"]
+script = ExtResource( 1 )
+thumbstick_left = ExtResource( 3 )
+thumbstick_right = ExtResource( 2 )
