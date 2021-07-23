@@ -5,46 +5,54 @@ class_name StateMachine
 extends Node
 
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
-@export var initial_state := NodePath()
+@export var initial_state: NodePath
 
-# The current active state. At the start of the game, we get the `initial_state`.
-@onready var state: State = get_node(initial_state)
+# Resource to hold the state. Other nodes can include this resource to query the state.
+@export var state: Resource
 
 
 # Enter the initial state when initializing the state machine.
 func _ready() -> void:
-	assert(state != null)
-	call_deferred(transition_to.get_method(), state.name)
+	if not state:
+		state = StateResource.new()
+	assert(state as StateResource != null)
+
+	state.state_machine = self
+	state.state = get_node(initial_state)
+	for child in get_children():
+		state.states[StringName(str(child.name).to_upper())] = child
+
+	call_deferred(transition_to.get_method(), state.state.name)
 
 
 # Delegate `_unhandled_input` callback to the active state.
 func _unhandled_input(event: InputEvent) -> void:
-	state.unhandled_input(event)
+	state.state.unhandled_input(event)
 
 
 # Delegate `_process` callback to the active state.
 func _process(delta: float) -> void:
-	state.process(delta)
+	state.state.process(delta)
 
 
 # Delegate `_physics_process` callback to the active state.
 func _physics_process(delta: float) -> void:
-	state.physics_process(delta)
+	state.state.physics_process(delta)
 
 	# Change the current state
-	var target_state_name: StringName = state.get_transition()
-	if target_state_name != &"":
-		call_deferred(transition_to.get_method(), target_state_name)
+	var target_state: State = state.state.get_transition()
+	if target_state:
+		call_deferred(transition_to.get_method(), target_state)
 
 
 # This function calls the current state's exit() function, then changes the active state,
 # and calls its enter function.
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
-func transition_to(target_state_name: StringName, data: Dictionary = {}) -> void:
-	assert(has_node(str(target_state_name)))
-	state.exit(target_state_name)
-	Signals.emit_state_exited(self, state.name)
-	var old_state_name: StringName = state.name
-	state = get_node(str(target_state_name))
-	state.enter(old_state_name, data)
-	Signals.emit_state_entered(self, state.name)
+func transition_to(target_state: State, data: Dictionary = {}) -> void:
+	state.state.exit(target_state)
+	Signals.emit_state_exited(self, state.state)
+
+	var old_state: State = state.state
+	state.state = target_state
+	state.state.enter(old_state, data)
+	Signals.emit_state_entered(self, state.state)

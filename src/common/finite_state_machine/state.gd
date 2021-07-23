@@ -21,17 +21,17 @@ func physics_process(_delta: float) -> void:
 
 # Virtual function. Called by the state machine to determine if the state should be changed. Returns
 # an empty string if the state should not be changed.
-func get_transition() -> StringName:
-	return &""
+func get_transition() -> State:
+	return null
 
 
 # Virtual function. Called by the state machine upon changing the active state. The `data` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_old_state_name: StringName, _data := {}) -> void:
+func enter(_old_state: State, _data := {}) -> void:
 	pass
 
 
 # Virtual function. Called by the state machine before changing the active state. Use this function
 # to clean up the state.
-func exit(_new_state_name: StringName) -> void:
+func exit(_new_state: State) -> void:
 	pass

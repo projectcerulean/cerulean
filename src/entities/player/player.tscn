@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/entities/player/player_swim.gd" type="Script" id=9]
 [ext_resource path="res://src/entities/player/player_dive.gd" type="Script" id=10]
 [ext_resource path="res://src/autoload/input/thumbstick_resource_left.tres" type="Resource" id=11]
+[ext_resource path="res://src/entities/player/player_state_resource.tres" type="Resource" id=12]
 
 [sub_resource type="CapsuleShape3D" id=1]
 radius = 0.25
@@ -55,6 +56,7 @@ emission = Color(0.0784314, 0.27451, 0.745098, 1)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource( 1 )
 thumbstick_left = ExtResource( 11 )
+state = ExtResource( 12 )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( 1 )
@@ -123,6 +125,7 @@ script = null
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
 initial_state = NodePath("Idle")
+state = ExtResource( 12 )
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
@@ -179,7 +182,8 @@ mesh = SubResource( 9 )
 script = ExtResource( 8 )
 trail_position_left_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeft")
 trail_position_right_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRight")
-target_state_name = &"Glide"
+target_state_name = "Glide"
+player_state = ExtResource( 12 )
 
 [node name="DiveTrailRenderer" type="MeshInstance3D" parent="."]
 top_level = true
@@ -189,4 +193,5 @@ script = ExtResource( 8 )
 trail_position_left_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeft")
 trail_position_right_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRight")
 max_points = 100
-target_state_name = &"Dive"
+target_state_name = "Dive"
+player_state = ExtResource( 12 )

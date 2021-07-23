@@ -3,8 +3,8 @@ extends PlayerState
 var roll_angle: float = 0.0
 
 
-func enter(old_state_name: StringName, data := {}) -> void:
-	super.enter(old_state_name, data)
+func enter(old_state: PlayerState, data := {}) -> void:
+	super.enter(old_state, data)
 	roll_angle = 0.0
 
 
@@ -23,10 +23,10 @@ func process(delta: float) -> void:
 
 	var velocity_direction: Vector3 = player.linear_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
-		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + player.facing_direction)
+		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
 	else:
-		player.mesh_joint_map[self.name][0].look_at(player.mesh_joint_map[self.name][0].get_global_transform().origin + velocity_direction)
-	player.mesh_joint_map[self.name][1].rotation = Vector3(0.0, 0.0, roll_angle)
+		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + velocity_direction)
+	player.mesh_joint_map[self][1].rotation = Vector3(0.0, 0.0, roll_angle)
 
 
 func physics_process(delta: float) -> void:
@@ -48,10 +48,10 @@ func physics_process(delta: float) -> void:
 	player.move_and_slide()
 
 
-func get_transition() -> StringName:
+func get_transition() -> PlayerState:
 	if not player.is_in_water():
-		return player.FALL
+		return player.state.states.FALL
 	elif player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
-		return player.SWIM
+		return player.state.states.SWIM
 	else:
-		return &""
+		return null

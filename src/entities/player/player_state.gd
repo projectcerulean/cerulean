@@ -10,19 +10,19 @@ func _ready() -> void:
 	assert(player != null)
 
 
-func enter(old_state_name: StringName, data := {}) -> void:
-	super.enter(old_state_name, data)
+func enter(old_state: State, data := {}) -> void:
+	super.enter(old_state, data)
 
 	# Update player mesh
-	assert(player.mesh_map.has(self.name))
-	for state_name in player.mesh_map:
-		if state_name == self.name:
-			player.mesh_map[state_name].show()
-		elif player.mesh_map[state_name] != player.mesh_map[self.name]:
-			player.mesh_map[state_name].hide()
+	assert(player.mesh_map.has(self))
+	for state in player.mesh_map:
+		if state == self:
+			player.mesh_map[state].show()
+		elif player.mesh_map[state] != player.mesh_map[self]:
+			player.mesh_map[state].hide()
 
 	# Reset mesh joints
-	for joint in player.mesh_joint_map[self.name]:
+	for joint in player.mesh_joint_map[self]:
 		var jointTyped: Node3D = joint as Node3D
 		jointTyped.rotation = Vector3()
 		jointTyped.position = Vector3()
