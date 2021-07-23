@@ -12,5 +12,8 @@ tasks:
       cd cerulean
       for file in $(find assets -type f | sort); do
         hash=$(cat $file)
-        curl --head --silent --fail --max-time 60 --output /dev/null https://ipfs.io/ipfs/$hash || exit 1
+        curl --head --silent --fail --max-time 30 --output /dev/null https://ipfs.io/ipfs/$hash \
+          || curl --head --silent --fail --max-time 30 --output /dev/null https://gateway.pinata.cloud/ipfs/$hash \
+          || curl --head --silent --fail --max-time 30 --output /dev/null https://cloudflare-ipfs.com/ipfs/$hash \
+          || exit 1
       done
