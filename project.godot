@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[{
+"base": "Node",
+"class": &"BgmEffect",
+"language": &"GDScript",
+"path": "res://src/autoload/audio_player/bgm/bgm_effects/bgm_effect.gd"
+}, {
 "base": "Resource",
 "class": &"BgmResource",
 "language": &"GDScript",
@@ -95,6 +100,7 @@ _global_script_classes=[{
 "path": "res://src/constants/version.gd"
 }]
 _global_script_class_icons={
+"BgmEffect": "",
 "BgmResource": "",
 "CColor": "",
 "Cardinal": "",
