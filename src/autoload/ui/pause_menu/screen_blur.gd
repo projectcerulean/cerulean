@@ -1,20 +1,20 @@
 extends ColorRect
 
+@export var lerp_weight: float = 0.5
 @export var game_state: Resource
+
+@onready var blur_strength_max: float = material.get_shader_param("blur_strength")
+
+var blur_strength: float = 0.0
 
 
 func _ready():
-	SignalsGetter.get_signals().connect(SignalsGetter.get_signals().state_entered.get_name(), self._on_state_entered)
-	SignalsGetter.get_signals().connect(SignalsGetter.get_signals().state_exited.get_name(), self._on_state_exited)
-
 	assert(game_state as StateResource != null)
 
 
-func _on_state_entered(sender: Node, state: Node) -> void:
-	if sender == game_state.state_machine and state == game_state.states.PAUSE:
-		visible = true
-
-
-func _on_state_exited(sender: Node, state: Node) -> void:
-	if sender == game_state.state_machine and state == game_state.states.PAUSE:
-		visible = false
+func _process(delta: float):
+	var blur_strength_target: float = 0.0
+	if game_state.state == game_state.states.PAUSE:
+		blur_strength_target = blur_strength_max
+	blur_strength = lerp(blur_strength, blur_strength_target, lerp_weight)
+	material.set_shader_param("blur_strength", blur_strength)
