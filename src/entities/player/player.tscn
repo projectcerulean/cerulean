@@ -1,65 +1,65 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=24 format=3]
 
-[ext_resource path="res://src/entities/player/player.gd" type="Script" id=1]
-[ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id=2]
-[ext_resource path="res://src/entities/player/player_idle.gd" type="Script" id=3]
-[ext_resource path="res://src/entities/player/player_run.gd" type="Script" id=4]
-[ext_resource path="res://src/entities/player/player_fall.gd" type="Script" id=5]
-[ext_resource path="res://src/entities/player/player_jump.gd" type="Script" id=6]
-[ext_resource path="res://src/entities/player/player_glide.gd" type="Script" id=7]
-[ext_resource path="res://src/entities/player/player_trail_renderer.gd" type="Script" id=8]
-[ext_resource path="res://src/entities/player/player_swim.gd" type="Script" id=9]
-[ext_resource path="res://src/entities/player/player_dive.gd" type="Script" id=10]
-[ext_resource path="res://src/autoload/input/thumbstick_resource_left.tres" type="Resource" id=11]
-[ext_resource path="res://src/entities/player/player_state_resource.tres" type="Resource" id=12]
+[ext_resource path="res://src/entities/player/player.gd" type="Script" id="1"]
+[ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id="2"]
+[ext_resource path="res://src/entities/player/player_idle.gd" type="Script" id="3"]
+[ext_resource path="res://src/entities/player/player_run.gd" type="Script" id="4"]
+[ext_resource path="res://src/entities/player/player_fall.gd" type="Script" id="5"]
+[ext_resource path="res://src/entities/player/player_jump.gd" type="Script" id="6"]
+[ext_resource path="res://src/entities/player/player_glide.gd" type="Script" id="7"]
+[ext_resource path="res://src/entities/player/player_trail_renderer.gd" type="Script" id="8"]
+[ext_resource path="res://src/entities/player/player_swim.gd" type="Script" id="9"]
+[ext_resource path="res://src/entities/player/player_dive.gd" type="Script" id="10"]
+[ext_resource path="res://src/autoload/input/thumbstick_resource_left.tres" type="Resource" id="11"]
+[ext_resource path="res://src/entities/player/player_state_resource.tres" type="Resource" id="12"]
 
-[sub_resource type="CapsuleShape3D" id=1]
+[sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.25
 height = 0.75
 
-[sub_resource type="CapsuleMesh" id=2]
+[sub_resource type="CapsuleMesh" id="2"]
 radius = 0.25
 mid_height = 0.75
 
-[sub_resource type="StandardMaterial3D" id=3]
+[sub_resource type="StandardMaterial3D" id="3"]
 albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
 
-[sub_resource type="BoxMesh" id=4]
+[sub_resource type="BoxMesh" id="4"]
 size = Vector3(0.25, 0.25, 0.25)
 
-[sub_resource type="StandardMaterial3D" id=5]
+[sub_resource type="StandardMaterial3D" id="5"]
 albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
 
-[sub_resource type="CapsuleMesh" id=6]
-material = SubResource( 5 )
+[sub_resource type="CapsuleMesh" id="6"]
+material = SubResource( "5" )
 radius = 0.25
 mid_height = 0.75
 
-[sub_resource type="BoxMesh" id=7]
+[sub_resource type="BoxMesh" id="7"]
 size = Vector3(0.75, 0.75, 0.1)
 
-[sub_resource type="StandardMaterial3D" id=11]
+[sub_resource type="StandardMaterial3D" id="11"]
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color(0.25098, 0.25098, 0.25098, 1)
 
-[sub_resource type="ImmediateMesh" id=9]
+[sub_resource type="ImmediateMesh" id="9"]
 
-[sub_resource type="StandardMaterial3D" id=12]
+[sub_resource type="StandardMaterial3D" id="12"]
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.0784314, 0.27451, 0.745098, 1)
 emission_enabled = true
 emission = Color(0.0784314, 0.27451, 0.745098, 1)
 
-[sub_resource type="ImmediateMesh" id=10]
+[sub_resource type="ImmediateMesh" id="10"]
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource( 1 )
-thumbstick_left = ExtResource( 11 )
-state = ExtResource( 12 )
+script = ExtResource( "1" )
+thumbstick_left = ExtResource( "11" )
+state = ExtResource( "12" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( "1" )
 script = null
 
 [node name="MeshRoot" type="Node3D" parent="."]
@@ -78,13 +78,13 @@ script = null
 script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshDefault/Joint/Joint/Joint"]
-mesh = SubResource( 2 )
-surface_material_override/0 = SubResource( 3 )
+mesh = SubResource( "2" )
+surface_material_override/0 = SubResource( "3" )
 script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshDefault/Joint/Joint/Joint/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
-mesh = SubResource( 4 )
+mesh = SubResource( "4" )
 surface_material_override/0 = null
 script = null
 
@@ -104,13 +104,13 @@ script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource( 6 )
+mesh = SubResource( "6" )
 surface_material_override/0 = null
 script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource( 7 )
+mesh = SubResource( "7" )
 surface_material_override/0 = null
 script = null
 
@@ -123,30 +123,30 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.35355
 script = null
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( "2" )
 initial_state = NodePath("Idle")
-state = ExtResource( 12 )
+state = ExtResource( "12" )
 
 [node name="Dive" type="Node" parent="StateMachine"]
-script = ExtResource( 10 )
+script = ExtResource( "10" )
 
 [node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource( 5 )
+script = ExtResource( "5" )
 
 [node name="Glide" type="Node" parent="StateMachine"]
-script = ExtResource( 7 )
+script = ExtResource( "7" )
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource( 3 )
+script = ExtResource( "3" )
 
 [node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource( 6 )
+script = ExtResource( "6" )
 
 [node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource( 4 )
+script = ExtResource( "4" )
 
 [node name="Swim" type="Node" parent="StateMachine"]
-script = ExtResource( 9 )
+script = ExtResource( "9" )
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.65, 0)
@@ -177,21 +177,21 @@ script = null
 
 [node name="GlideTrailRenderer" type="MeshInstance3D" parent="."]
 top_level = true
-material_override = SubResource( 11 )
-mesh = SubResource( 9 )
-script = ExtResource( 8 )
+material_override = SubResource( "11" )
+mesh = SubResource( "9" )
+script = ExtResource( "8" )
 trail_position_left_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeft")
 trail_position_right_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRight")
 target_state_name = "Glide"
-player_state = ExtResource( 12 )
+player_state = ExtResource( "12" )
 
 [node name="DiveTrailRenderer" type="MeshInstance3D" parent="."]
 top_level = true
-material_override = SubResource( 12 )
-mesh = SubResource( 10 )
-script = ExtResource( 8 )
+material_override = SubResource( "12" )
+mesh = SubResource( "10" )
+script = ExtResource( "8" )
 trail_position_left_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeft")
 trail_position_right_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRight")
 max_points = 100
 target_state_name = "Dive"
-player_state = ExtResource( 12 )
+player_state = ExtResource( "12" )

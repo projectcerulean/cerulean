@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	var camera: Camera3D = get_viewport().get_camera()
+	var camera: Camera3D = get_viewport().get_camera_3d()
 	if camera == null:
 		return
 

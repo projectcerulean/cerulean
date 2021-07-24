@@ -1,51 +1,51 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=17 format=3]
 
-[ext_resource path="res://src/autoload/ui/effects/underwater_effect.gdshader" type="Shader" id=1]
-[ext_resource path="res://src/autoload/ui/debug/debug_console/debug_console.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/autoload/ui/debug/version_label/version_label.gd" type="Script" id=3]
-[ext_resource path="res://src/autoload/ui/effects/underwater_effect.gd" type="Script" id=4]
-[ext_resource path="res://src/autoload/ui/debug/vector_visualizer/vector_visualizer.gd" type="Script" id=5]
-[ext_resource path="res://src/autoload/ui/debug/line_visualizer/line_visualizer.gd" type="Script" id=6]
-[ext_resource path="res://src/autoload/ui/hud/compass.gd" type="Script" id=7]
-[ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gdshader" type="Shader" id=8]
-[ext_resource path="res://src/autoload/ui/ui.gd" type="Script" id=9]
-[ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gd" type="Script" id=10]
-[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id=11]
-[ext_resource path="res://src/autoload/ui/pause_menu/screen_darken.gd" type="Script" id=12]
+[ext_resource path="res://src/autoload/ui/effects/underwater_effect.gdshader" type="Shader" id="1"]
+[ext_resource path="res://src/autoload/ui/debug/debug_console/debug_console.tscn" type="PackedScene" id="2"]
+[ext_resource path="res://src/autoload/ui/debug/version_label/version_label.gd" type="Script" id="3"]
+[ext_resource path="res://src/autoload/ui/effects/underwater_effect.gd" type="Script" id="4"]
+[ext_resource path="res://src/autoload/ui/debug/vector_visualizer/vector_visualizer.gd" type="Script" id="5"]
+[ext_resource path="res://src/autoload/ui/debug/line_visualizer/line_visualizer.gd" type="Script" id="6"]
+[ext_resource path="res://src/autoload/ui/hud/compass.gd" type="Script" id="7"]
+[ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gdshader" type="Shader" id="8"]
+[ext_resource path="res://src/autoload/ui/ui.gd" type="Script" id="9"]
+[ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gd" type="Script" id="10"]
+[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="11"]
+[ext_resource path="res://src/autoload/ui/pause_menu/screen_darken.gd" type="Script" id="12"]
 
-[sub_resource type="OpenSimplexNoise" id=8]
+[sub_resource type="OpenSimplexNoise" id="8"]
 
-[sub_resource type="NoiseTexture" id=7]
+[sub_resource type="NoiseTexture" id="7"]
 seamless = true
-noise = SubResource( 8 )
+noise = SubResource( "8" )
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = ExtResource( 1 )
+[sub_resource type="ShaderMaterial" id="9"]
+shader = ExtResource( "1" )
 shader_param/color = Color(0.0784314, 0.27451, 0.745098, 0.501961)
 shader_param/distortion_scale = 0.5
 shader_param/distortion_intensity = 0.01
 shader_param/distortion_speed = 0.05
-shader_param/noise = SubResource( 7 )
+shader_param/noise = SubResource( "7" )
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = ExtResource( 8 )
+[sub_resource type="ShaderMaterial" id="10"]
+shader = ExtResource( "8" )
 shader_param/kernel_size = 11
 shader_param/blur_strength = 2.5
 
 [node name="UI" type="Node"]
 process_mode = 3
-script = ExtResource( 9 )
-game_state = ExtResource( 11 )
+script = ExtResource( "9" )
+game_state = ExtResource( "11" )
 
 [node name="Effects" type="CanvasLayer" parent="."]
 script = null
 
 [node name="UnderwaterEffect" type="ColorRect" parent="Effects"]
 visible = false
-material = SubResource( 9 )
+material = SubResource( "9" )
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 4 )
+script = ExtResource( "4" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -61,7 +61,7 @@ text = "Compass text"
 align = 1
 valign = 1
 structured_text_bidi_override_options = []
-script = ExtResource( 7 )
+script = ExtResource( "7" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -70,30 +70,30 @@ __meta__ = {
 script = null
 
 [node name="ScreenBlur" type="ColorRect" parent="PauseMenu"]
-material = SubResource( 10 )
+material = SubResource( "10" )
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 10 )
+script = ExtResource( "10" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state = ExtResource( 11 )
+game_state = ExtResource( "11" )
 
 [node name="ScreenDarken" type="ColorRect" parent="PauseMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0.0627451, 0.627451)
-script = ExtResource( 12 )
+script = ExtResource( "12" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state = ExtResource( 11 )
+game_state = ExtResource( "11" )
 
 [node name="Debug" type="CanvasLayer" parent="."]
 script = null
 
 [node name="LineVisualizer" type="Control" parent="Debug"]
-script = ExtResource( 6 )
+script = ExtResource( "6" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -105,12 +105,12 @@ anchor_right = 1.0
 offset_left = -256.0
 offset_bottom = 256.0
 color = Color(0.180392, 0.180392, 0.180392, 1)
-script = ExtResource( 5 )
+script = ExtResource( "5" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DebugConsole" parent="Debug" instance=ExtResource( 2 )]
+[node name="DebugConsole" parent="Debug" instance=ExtResource( "2" )]
 visible = false
 
 [node name="VersionLabel" type="Label" parent="Debug"]
@@ -121,7 +121,7 @@ offset_top = -26.0
 text = "Version text"
 valign = 1
 structured_text_bidi_override_options = []
-script = ExtResource( 3 )
+script = ExtResource( "3" )
 __meta__ = {
 "_edit_use_anchors_": false
 }

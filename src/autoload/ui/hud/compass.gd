@@ -5,7 +5,7 @@ extends Label
 
 
 func _process(_delta: float) -> void:
-	var camera: Camera3D = get_viewport().get_camera()
+	var camera: Camera3D = get_viewport().get_camera_3d()
 	if camera == null:
 		return
 
