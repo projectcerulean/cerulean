@@ -1,24 +1,39 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource path="res://src/entities/player/player_state_resource.tres" type="Resource" id="1"]
-[ext_resource path="res://src/autoload/audio_player/audio_player_bgm.gd" type="Script" id="2"]
+[ext_resource path="res://src/autoload/audio_player/bgm/bgm_player/bgm_player.gd" type="Script" id="2"]
+[ext_resource path="res://src/autoload/audio_player/bgm/bgm_effects/pause_lowpass.gd" type="Script" id="3_1ehpi"]
+[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="4_byodf"]
 
 [node name="AudioPlayer" type="Node"]
 process_mode = 3
 script = null
 
-[node name="BgmPlayer" type="Node" parent="."]
+[node name="Bgm" type="Node" parent="."]
+script = null
+
+[node name="BgmPlayer" type="Node" parent="Bgm"]
 script = ExtResource( "2" )
 player_state = ExtResource( "1" )
 
-[node name="BasePlayer" type="AudioStreamPlayer" parent="BgmPlayer"]
+[node name="BasePlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
+bus = &"BgmBase"
 script = null
 
-[node name="GlidePlayer" type="AudioStreamPlayer" parent="BgmPlayer"]
+[node name="GlidePlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
+bus = &"BgmGlide"
 script = null
 
-[node name="RhythmPlayer" type="AudioStreamPlayer" parent="BgmPlayer"]
+[node name="RhythmPlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
+bus = &"BgmRhythm"
 script = null
+
+[node name="BgmEffects" type="Node" parent="Bgm"]
+script = null
+
+[node name="PauseLowpass" type="Node" parent="Bgm/BgmEffects"]
+script = ExtResource( "3_1ehpi" )
+game_state = ExtResource( "4_byodf" )
 
 [node name="SfxPlayer" type="Node" parent="."]
 script = null

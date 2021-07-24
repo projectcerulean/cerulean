@@ -1,0 +1,45 @@
+[gd_resource type="AudioBusLayout" load_steps=2 format=3]
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_msjoo"]
+resource_name = "LowPassFilter"
+cutoff_hz = 20500.0
+
+[resource]
+bus/1/name = &"Bgm"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/2/name = &"PauseLowpass"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Bgm"
+bus/2/effect/0/effect = SubResource( "AudioEffectLowPassFilter_msjoo" )
+bus/2/effect/0/enabled = true
+bus/3/name = &"BgmEffects"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"PauseLowpass"
+bus/4/name = &"BgmBase"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"BgmEffects"
+bus/5/name = &"BgmGlide"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"BgmEffects"
+bus/6/name = &"BgmRhythm"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = 0.0
+bus/6/send = &"BgmEffects"

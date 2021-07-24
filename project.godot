@@ -119,6 +119,10 @@ _global_script_class_icons={
 config/name="Project Cerulean"
 run/main_scene="res://src/levels/test_scene/test_scene.tscn"
 
+[audio]
+
+buses/default_bus_layout="res://src/sound/bus_layouts/default_bus_layout.tres"
+
 [autoload]
 
 Randomize="res://src/autoload/randomize/randomize.gd"
