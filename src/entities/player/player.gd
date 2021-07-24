@@ -66,16 +66,16 @@ func _ready() -> void:
 	Signals.area_body_entered.connect(self._on_area_body_entered)
 	Signals.area_body_exited.connect(self._on_area_body_exited)
 
-	assert(thumbstick_left as ThumbstickResource != null)
-	assert(state as StateResource != null)
-	assert(camera != null)
-	assert(camera_anchor != null)
-	assert(raycast != null)
-	assert(coyote_timer != null)
-	assert(jump_buffer_timer != null)
+	assert(thumbstick_left as ThumbstickResource != null, Errors.NULL_RESOURCE)
+	assert(state as StateResource != null, Errors.NULL_RESOURCE)
+	assert(camera != null, Errors.NULL_NODE)
+	assert(camera_anchor != null, Errors.NULL_NODE)
+	assert(raycast != null, Errors.NULL_NODE)
+	assert(coyote_timer != null, Errors.NULL_NODE)
+	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	for node in mesh_map.values():
 		var nodeTyped: Node3D = node as Node3D
-		assert(nodeTyped != null)
+		assert(nodeTyped != null, Errors.NULL_NODE)
 
 	for s in state.states.values():
 		mesh_joint_map[s] = [
@@ -87,13 +87,13 @@ func _ready() -> void:
 	for nodes in mesh_joint_map.values():
 		for node in nodes:
 			var nodeTyped: Node3D = node as Node3D
-			assert(nodeTyped != null)
+			assert(nodeTyped != null, Errors.NULL_NODE)
 
 
 func _process(_delta: float) -> void:
 	# Check that the facing direction vector is well-formed
-	assert(facing_direction.is_normalized())
-	assert(facing_direction.y == 0)
+	assert(facing_direction.is_normalized(), Errors.CONSISTENCY_ERROR)
+	assert(facing_direction.y == 0, Errors.CONSISTENCY_ERROR)
 
 	# Update input vector according to thumbstick and camera position
 	var camera_vector: Vector3 = camera.global_transform.origin - global_transform.origin
@@ -143,7 +143,7 @@ func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
 		return
 
 	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
-	assert(collision_shape != null)
+	assert(collision_shape != null, Errors.NULL_NODE)
 
 	if str(sender.owner.name).begins_with("Water"):
 		water_collision_shapes.append(collision_shape)

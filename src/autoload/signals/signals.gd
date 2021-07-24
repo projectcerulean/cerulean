@@ -35,18 +35,18 @@ func _ready():
 
 	for signal_name in signals:
 		if signal_name not in default_signals:
-			assert(("emit_" + signal_name) in methods, "Signal without emission function")
+			assert(("emit_" + signal_name) in methods, Errors.CONSISTENCY_ERROR)
 
 	for method_name in methods:
 		if method_name not in default_methods and method_name.begins_with("emit_"):
-			assert((method_name.trim_prefix("emit_")) in signals, "Emission function without signal")
+			assert((method_name.trim_prefix("emit_")) in signals, Errors.CONSISTENCY_ERROR)
 
 
 # Helper function for emitting signals
 func emit(args: Array) -> void:
-	assert(args[0] as Node != null, "Signal sender not a node")
+	assert(args[0] as Node != null, Errors.INVALID_ARGUMENT)
 	var calling_function_name: String = get_stack()[1][&"function"]
-	assert(calling_function_name.begins_with("emit_"), "Emission helper called from unexpected function")
+	assert(calling_function_name.begins_with("emit_"), Errors.INVALID_CONTEXT)
 	var signal_name: StringName = calling_function_name.trim_prefix("emit_")
 	callv(&"call_deferred", [&"emit_signal", signal_name] + args)
 

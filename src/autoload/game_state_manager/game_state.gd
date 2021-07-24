@@ -5,7 +5,7 @@ class_name GameState extends State
 
 
 func _ready() -> void:
-	assert(game_state_manager != null)
+	assert(game_state_manager != null, Errors.NULL_NODE)
 
 
 func exit(new_state: GameState) -> void:

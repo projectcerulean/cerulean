@@ -8,8 +8,8 @@ extends ColorRect
 
 func _ready() -> void:
 	SignalsGetter.get_signals().debug_write.connect(self._on_debug_write)
-	assert(richTextLabel != null)
-	assert(rotationQueue != null)
+	assert(richTextLabel != null, Errors.NULL_NODE)
+	assert(rotationQueue != null, Errors.NULL_NODE)
 
 
 func _on_debug_write(sender: Node, variant: Variant) -> void:

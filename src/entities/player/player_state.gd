@@ -7,14 +7,14 @@ var player: Player = null
 
 func _ready() -> void:
 	player = owner as Player
-	assert(player != null)
+	assert(player != null, Errors.NULL_NODE)
 
 
 func enter(old_state: State, data := {}) -> void:
 	super.enter(old_state, data)
 
 	# Update player mesh
-	assert(player.mesh_map.has(self))
+	assert(player.mesh_map.has(self), Errors.CONSISTENCY_ERROR)
 	for state in player.mesh_map:
 		if state == self:
 			player.mesh_map[state].show()

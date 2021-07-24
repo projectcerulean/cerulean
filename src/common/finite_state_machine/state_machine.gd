@@ -15,7 +15,7 @@ extends Node
 func _ready() -> void:
 	if not state:
 		state = StateResource.new()
-	assert(state as StateResource != null)
+	assert(state as StateResource != null, Errors.NULL_RESOURCE)
 
 	state.state_machine = self
 	state.state = get_node(initial_state)

@@ -9,7 +9,7 @@ class RotationQueue:
 
 
 	func _init(ssize_max: int):
-		assert(ssize_max > 0)
+		assert(ssize_max > 0, Errors.INVALID_ARGUMENT)
 		contents.resize(ssize_max)
 
 
@@ -20,7 +20,7 @@ class RotationQueue:
 
 
 	func get_item(index: int) -> Variant:
-		assert(index >= -size_current and index < size_current)
+		assert(index >= -size_current and index < size_current, Errors.INDEX_ERROR)
 		return contents[(index_current + index) % size_current]
 
 

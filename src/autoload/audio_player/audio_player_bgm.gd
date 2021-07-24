@@ -24,11 +24,11 @@ var rhythm_tween: Tween = null
 func _ready() -> void:
 	SignalsGetter.get_signals().state_entered.connect(self._on_state_entered)
 
-	assert(player_state as StateResource != null)
+	assert(player_state as StateResource != null, Errors.NULL_RESOURCE)
 
-	assert(base_player != null)
-	assert(glide_player != null)
-	assert(rhythm_player != null)
+	assert(base_player != null, Errors.NULL_NODE)
+	assert(glide_player != null, Errors.NULL_NODE)
+	assert(rhythm_player != null, Errors.NULL_NODE)
 
 	base_player.volume_db = volume_db_zero
 	glide_player.volume_db = volume_db_zero
@@ -40,12 +40,12 @@ func _ready() -> void:
 	glide_player.stream = bgm_resource.stream_glide
 	rhythm_player.stream = bgm_resource.stream_rhythm
 
-	assert(base_player.stream != null)
+	assert(base_player.stream != null, Errors.NULL_RESOURCE)
 
 	if glide_player.stream != null:
-		assert(glide_player.stream.get_length() == base_player.stream.get_length())
+		assert(glide_player.stream.get_length() == base_player.stream.get_length(), Errors.INVALID_ARGUMENT)
 	if rhythm_player.stream != null:
-		assert(rhythm_player.stream.get_length() == base_player.stream.get_length())
+		assert(rhythm_player.stream.get_length() == base_player.stream.get_length(), Errors.INVALID_ARGUMENT)
 
 	base_player.play()
 	glide_player.play()

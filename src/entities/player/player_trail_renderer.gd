@@ -16,12 +16,12 @@ var target_state: Node = null
 
 
 func _ready() -> void:
-	assert(trail_position_left != null)
-	assert(trail_position_right != null)
-	assert(player_state as StateResource != null)
-	assert(target_state_name)
+	assert(trail_position_left != null, Errors.NULL_NODE)
+	assert(trail_position_right != null, Errors.NULL_NODE)
+	assert(player_state as StateResource != null, Errors.NULL_RESOURCE)
+	assert(target_state_name, Errors.INVALID_ARGUMENT)
 	target_state = player_state.states[StringName(target_state_name.to_upper())]
-	assert(target_state)
+	assert(target_state, Errors.INVALID_ARGUMENT)
 
 
 func _process(_delta: float) -> void:

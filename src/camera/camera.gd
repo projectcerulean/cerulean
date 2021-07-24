@@ -27,13 +27,13 @@ func _ready() -> void:
 	Signals.area_area_entered.connect(self._on_area_area_entered)
 	Signals.area_area_exited.connect(self._on_area_area_exited)
 
-	assert(thumbstick_right as ThumbstickResource != null)
-	assert(target != null)
-	assert(area3d != null)
+	assert(thumbstick_right as ThumbstickResource != null, Errors.NULL_RESOURCE)
+	assert(target != null, Errors.NULL_NODE)
+	assert(area3d != null, Errors.NULL_NODE)
 
 	if target_offset == Vector3.ZERO:
 		target_offset = transform.origin - target.transform.origin - anchor_offset
-	assert(clamp(target_offset.length(), zoom_limit.x, zoom_limit.y) == target_offset.length())
+	assert(clamp(target_offset.length(), zoom_limit.x, zoom_limit.y) == target_offset.length(), Errors.INVALID_ARGUMENT)
 	if look_target == Vector3.ZERO:
 		look_target = Vector3(0, 0, -100)
 
@@ -65,7 +65,7 @@ func _on_area_area_entered(sender: Area3D, area: Area3D) -> void:
 		return
 
 	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
-	assert(collision_shape != null)
+	assert(collision_shape != null, Errors.NULL_NODE)
 
 	if str(sender.owner.name).begins_with("Water"):
 		water_collision_shapes.append(collision_shape)

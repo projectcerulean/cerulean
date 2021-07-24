@@ -9,8 +9,8 @@ extends Node
 
 
 func _ready() -> void:
-	assert(thumbstick_left as ThumbstickResource != null)
-	assert(thumbstick_right as ThumbstickResource != null)
+	assert(thumbstick_left as ThumbstickResource != null, Errors.NULL_RESOURCE)
+	assert(thumbstick_right as ThumbstickResource != null, Errors.NULL_RESOURCE)
 
 
 func _process(_delta: float) -> void:
@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 # Apply some basic processing to the raw thumbstick input values before they are used in the game.
 # Values are updated each frame (_process callback) and can be queried using the `value` variable.
 func process_stick_input(which_stick: String) -> Vector2:
-	assert(which_stick in ["left", "right"])
+	assert(which_stick in ["left", "right"], Errors.INVALID_ARGUMENT)
 	var action_up: String = which_stick + "_stick_up"
 	var action_down: String = which_stick + "_stick_down"
 	var action_left: String = which_stick + "_stick_left"

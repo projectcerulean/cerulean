@@ -9,7 +9,7 @@ func _ready() -> void:
 	SignalsGetter.get_signals().request_game_pause.connect(self._on_request_game_pause)
 	SignalsGetter.get_signals().request_game_unpause.connect(self._on_request_game_unpause)
 
-	assert(state as StateResource != null)
+	assert(state as StateResource != null, Errors.NULL_RESOURCE)
 
 
 func _on_request_game_pause(_sender: Node) -> void:

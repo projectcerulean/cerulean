@@ -37,7 +37,7 @@ func physics_process(delta: float) -> void:
 	var input_vector_spherical: Vector3 = player.input_vector
 	input_vector_spherical.y = -sqrt(1.0 * 1.0 - min(input_vector_spherical.length_squared(), 1.0))
 	input_vector_spherical = input_vector_spherical.normalized()
-	assert(not input_vector_spherical.is_equal_approx(Vector3.ZERO))
+	assert(not input_vector_spherical.is_equal_approx(Vector3.ZERO), Errors.CONSISTENCY_ERROR)
 
 	var velocity_direction_current: Vector3 = player.linear_velocity.normalized()
 	var velocity_direction_new: Vector3 = Vector3.ZERO
@@ -51,7 +51,7 @@ func physics_process(delta: float) -> void:
 		velocity_direction_new.y = -velocity_direction_new.y
 	else:
 		velocity_direction_new = velocity_direction_current.slerp(input_vector_spherical, player.glide_smooth_weight)
-	assert(velocity_direction_new.is_normalized())
+	assert(velocity_direction_new.is_normalized(), Errors.CONSISTENCY_ERROR)
 
 	player.linear_velocity = velocity_direction_new * (
 		Math.signed_sqrt(

@@ -4,7 +4,7 @@ extends MeshInstance3D
 
 
 func _ready() -> void:
-	assert(area3d != null)
+	assert(area3d != null, Errors.NULL_NODE)
 
 
 func _on_area_entered(area: Area3D) -> void:

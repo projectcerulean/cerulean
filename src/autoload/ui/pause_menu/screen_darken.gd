@@ -7,7 +7,7 @@ extends ColorRect
 
 
 func _ready():
-	assert(game_state as StateResource != null)
+	assert(game_state as StateResource != null, Errors.NULL_RESOURCE)
 	color.a = 0.0
 
 

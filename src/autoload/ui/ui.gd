@@ -5,7 +5,7 @@ extends Node
 
 
 func _ready():
-	assert(game_state as StateResource != null)
+	assert(game_state as StateResource != null, Errors.NULL_RESOURCE)
 
 
 func _process(_delta: float) -> void:
