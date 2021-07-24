@@ -29,6 +29,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/common/data_structures/data_structures.gd"
 }, {
+"base": "State",
+"class": &"GameState",
+"language": &"GDScript",
+"path": "res://src/autoload/game_state_manager/game_state.gd"
+}, {
 "base": "Node",
 "class": &"Math",
 "language": &"GDScript",
@@ -89,6 +94,7 @@ _global_script_class_icons={
 "CColor": "",
 "Cardinal": "",
 "DataStructures": "",
+"GameState": "",
 "Math": "",
 "Physics": "",
 "Player": "",
@@ -114,6 +120,7 @@ Signals="*res://src/autoload/signals/signals.gd"
 CInput="res://src/autoload/input/cinput.tscn"
 AudioPlayer="res://src/autoload/audio_player/audio_player.tscn"
 UI="res://src/autoload/ui/ui.tscn"
+GameStateManager="res://src/autoload/game_state_manager/game_state_manager.tscn"
 
 [input]
 
@@ -172,7 +179,7 @@ camera_move_zoom_toggle={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
-pause_menu={
+pause={
 "deadzone": 0.0,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
 ]

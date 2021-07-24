@@ -1,9 +1,16 @@
 extends Node
 
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed(&"pause_menu"):
-		get_tree().paused = not get_tree().paused
+@export var game_state: Resource
 
-		$PauseMenu/ScreenBlur.visible = get_tree().paused
-		$PauseMenu/ScreenDarken.visible = get_tree().paused
+
+func _ready():
+	assert(game_state as StateResource != null)
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(&"pause"):
+		if game_state.state == game_state.states.GAMEPLAY:
+			SignalsGetter.get_signals().emit_game_pause(self)
+		elif game_state.state == game_state.states.PAUSE:
+			SignalsGetter.get_signals().emit_game_unpause(self)

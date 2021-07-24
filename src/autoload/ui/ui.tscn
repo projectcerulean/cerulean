@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/autoload/ui/effects/underwater_effect.gdshader" type="Shader" id=1]
 [ext_resource path="res://src/autoload/ui/debug/debug_console/debug_console.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://src/autoload/ui/hud/compass.gd" type="Script" id=7]
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gdshader" type="Shader" id=8]
 [ext_resource path="res://src/autoload/ui/ui.gd" type="Script" id=9]
+[ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gd" type="Script" id=10]
+[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id=11]
 
 [sub_resource type="OpenSimplexNoise" id=8]
 
@@ -32,6 +34,7 @@ shader_param/weight = 2.5
 [node name="UI" type="Node"]
 process_mode = 3
 script = ExtResource( 9 )
+game_state = ExtResource( 11 )
 
 [node name="Effects" type="CanvasLayer" parent="."]
 script = null
@@ -70,20 +73,22 @@ visible = false
 material = SubResource( 10 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = null
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+game_state = ExtResource( 11 )
 
 [node name="ScreenDarken" type="ColorRect" parent="PauseMenu"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0.0627451, 0.627451)
-script = null
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+game_state = ExtResource( 11 )
 
 [node name="Debug" type="CanvasLayer" parent="."]
 script = null

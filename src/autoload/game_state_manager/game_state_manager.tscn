@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://src/autoload/game_state_manager/game_state_gameplay.gd" type="Script" id=2]
+[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id=3]
+[ext_resource path="res://src/autoload/game_state_manager/game_state_manager.gd" type="Script" id=4]
+[ext_resource path="res://src/autoload/game_state_manager/game_state_pause.gd" type="Script" id=5]
+
+[node name="GameStateManager" type="Node"]
+process_mode = 3
+script = ExtResource( 4 )
+state = ExtResource( 3 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+initial_state = NodePath("Gameplay")
+state = ExtResource( 3 )
+
+[node name="Gameplay" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="Pause" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )

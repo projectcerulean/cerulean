@@ -22,7 +22,7 @@ func _ready() -> void:
 	for child in get_children():
 		state.states[StringName(str(child.name).to_upper())] = child
 
-	call_deferred(transition_to.get_method(), state.state.name)
+	call_deferred(transition_to.get_method(), state.state)
 
 
 # Delegate `_unhandled_input` callback to the active state.
@@ -50,9 +50,9 @@ func _physics_process(delta: float) -> void:
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
 func transition_to(target_state: State, data: Dictionary = {}) -> void:
 	state.state.exit(target_state)
-	Signals.emit_state_exited(self, state.state)
+	SignalsGetter.get_signals().emit_state_exited(self, state.state)
 
 	var old_state: State = state.state
 	state.state = target_state
 	state.state.enter(old_state, data)
-	Signals.emit_state_entered(self, state.state)
+	SignalsGetter.get_signals().emit_state_entered(self, state.state)
