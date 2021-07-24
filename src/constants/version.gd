@@ -1,11 +1,11 @@
 class_name Version
 extends Node
 
-const short_name: String = "cerulean"
-const pretty_name: String = "Project Cerulean"
-const major: int = 0
-const minor: int = 1
-const patch: int = 0
-const status: String = "dev"
-const year: int = 2021
-const website: String = "https://github.com/projectcerulean/cerulean"
+const SHORT_NAME: String = "cerulean"
+const NAME: String = "Project Cerulean"
+const MAJOR: int = 0
+const MINOR: int = 1
+const PATCH: int = 0
+const STATUS: String = "dev"
+const YEAR: int = 2021
+const WEBSITE: String = "https://github.com/projectcerulean/cerulean"

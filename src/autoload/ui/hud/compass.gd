@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 	camera_vector.y = 0.0
 	camera_vector = camera_vector.normalized()
 
-	var camera_angle: float = camera_vector.signed_angle_to(Cardinal.north, Vector3.UP)
+	var camera_angle: float = camera_vector.signed_angle_to(Cardinal.NORTH, Vector3.UP)
 	if camera_angle < 0.0:
 		camera_angle += 2.0 * PI
 

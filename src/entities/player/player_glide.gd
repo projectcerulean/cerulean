@@ -55,7 +55,7 @@ func physics_process(delta: float) -> void:
 
 	player.linear_velocity = velocity_direction_new * (
 		Math.signed_sqrt(
-			2.0 * Physics.gravity * player.glide_gravity_modifier * (glide_start_position.y - player.position.y)
+			2.0 * Physics.GRAVITY * player.glide_gravity_modifier * (glide_start_position.y - player.position.y)
 		) + glide_start_velocity.length()
 	)
 
@@ -65,7 +65,7 @@ func physics_process(delta: float) -> void:
 		player.facing_direction = direction_new.normalized()
 
 	# Apply gravity
-	player.linear_velocity.y = player.linear_velocity.y - Physics.gravity * player.glide_gravity_modifier * delta
+	player.linear_velocity.y = player.linear_velocity.y - Physics.GRAVITY * player.glide_gravity_modifier * delta
 
 	# Go
 	player.move_and_slide()

@@ -26,11 +26,11 @@ func _ready() -> void:
 
 	# Show version
 	var version_string: String = (
-		Version.pretty_name + " "
-		+ str(Version.major) + "."
-		+ str(Version.minor) + "."
-		+ str(Version.patch) + "-"
-		+ Version.status
+		Version.NAME + " "
+		+ str(Version.MAJOR) + "."
+		+ str(Version.MINOR) + "."
+		+ str(Version.PATCH) + "-"
+		+ Version.STATUS
 	)
 	if not hash.is_empty():
 		version_string += "." + hash.substr(0, n_hash_characters_to_show)
