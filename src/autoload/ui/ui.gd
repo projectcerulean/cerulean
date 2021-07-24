@@ -11,6 +11,6 @@ func _ready():
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(&"pause"):
 		if game_state.state == game_state.states.GAMEPLAY:
-			SignalsGetter.get_signals().emit_game_pause(self)
+			SignalsGetter.get_signals().emit_request_game_pause(self)
 		elif game_state.state == game_state.states.PAUSE:
-			SignalsGetter.get_signals().emit_game_unpause(self)
+			SignalsGetter.get_signals().emit_request_game_unpause(self)

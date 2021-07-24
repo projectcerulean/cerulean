@@ -7,8 +7,8 @@ signal area_body_exited
 signal camera_water_entered
 signal camera_water_exited
 signal debug_write
-signal game_pause
-signal game_unpause
+signal request_game_pause
+signal request_game_unpause
 signal state_entered
 signal state_exited
 signal visualize_line
@@ -43,12 +43,12 @@ func emit_debug_write(sender: Node, variant: Variant) -> void:
 	call_deferred("emit_signal", debug_write.get_name(), sender, variant)
 
 
-func emit_game_pause(sender: Node) -> void:
-	call_deferred("emit_signal", game_pause.get_name(), sender)
+func emit_request_game_pause(sender: Node) -> void:
+	call_deferred("emit_signal", request_game_pause.get_name(), sender)
 
 
-func emit_game_unpause(sender: Node) -> void:
-	call_deferred("emit_signal", game_unpause.get_name(), sender)
+func emit_request_game_unpause(sender: Node) -> void:
+	call_deferred("emit_signal", request_game_unpause.get_name(), sender)
 
 
 func emit_state_entered(sender: Node, state: Node) -> void:
