@@ -63,8 +63,8 @@ var water_collision_shapes: Array
 
 
 func _ready() -> void:
-	Signals.connect(Signals.area_body_entered.get_name(), self._on_area_body_entered)
-	Signals.connect(Signals.area_body_exited.get_name(), self._on_area_body_exited)
+	Signals.area_body_entered.connect(self._on_area_body_entered)
+	Signals.area_body_exited.connect(self._on_area_body_exited)
 
 	assert(thumbstick_left as ThumbstickResource != null)
 	assert(state as StateResource != null)

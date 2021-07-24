@@ -7,7 +7,7 @@ extends ColorRect
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().connect(SignalsGetter.get_signals().debug_write.get_name(), self._on_debug_write)
+	SignalsGetter.get_signals().debug_write.connect(self._on_debug_write)
 	assert(richTextLabel != null)
 	assert(rotationQueue != null)
 

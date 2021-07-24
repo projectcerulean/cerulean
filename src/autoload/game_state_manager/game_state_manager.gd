@@ -6,8 +6,8 @@ var transition: Node
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().connect(SignalsGetter.get_signals().request_game_pause.get_name(), self._on_request_game_pause)
-	SignalsGetter.get_signals().connect(SignalsGetter.get_signals().request_game_unpause.get_name(), self._on_request_game_unpause)
+	SignalsGetter.get_signals().request_game_pause.connect(self._on_request_game_pause)
+	SignalsGetter.get_signals().request_game_unpause.connect(self._on_request_game_unpause)
 
 	assert(state as StateResource != null)
 

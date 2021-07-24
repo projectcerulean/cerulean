@@ -5,7 +5,7 @@ var colors: Dictionary
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().connect(SignalsGetter.get_signals().visualize_vector.get_name(), self._on_visualize_vector)
+	SignalsGetter.get_signals().visualize_vector.connect(self._on_visualize_vector)
 	assert(rect_size.x == rect_size.y)
 	assert(rect_size.x > 0)
 
