@@ -26,6 +26,7 @@ extends CharacterBody3D
 @export var water_buoyancy: float = 12.0
 @export var water_resistance: float = 2.0
 @export var water_state_enter_offset: float = 0.01
+@export var water_jump_max_surface_distance: float = 0.01
 
 @export var underwater_move_acceleration: float = 12.0
 @export var underwater_turn_weight: float = 0.05

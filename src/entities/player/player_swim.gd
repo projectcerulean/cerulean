@@ -1,6 +1,12 @@
 extends PlayerState
 
 
+func exit(new_state: PlayerState) -> void:
+	super.exit(new_state)
+	if new_state == state.states.JUMP:
+		player.global_transform.origin.y = player.get_water_surface_height()
+
+
 func process(delta: float) -> void:
 	super.process(delta)
 
@@ -38,8 +44,9 @@ func get_transition() -> PlayerState:
 		return state.states.FALL
 	elif player.raycast.is_colliding() and player.global_transform.origin.y > player.get_water_surface_height() + player.water_state_enter_offset:
 		return state.states.RUN
-	elif is_equal_approx(player.get_water_surface_height(), player.global_transform.origin.y) and (Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped()):
-		return state.states.JUMP
+	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
+		if player.get_water_surface_height() - player.global_transform.origin.y < player.water_jump_max_surface_distance:
+			return state.states.JUMP
 	elif Input.is_action_just_pressed("player_move_dive"):
 		return state.states.DIVE
 	else:
