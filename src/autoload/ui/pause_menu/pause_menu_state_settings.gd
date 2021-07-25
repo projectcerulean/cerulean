@@ -1,6 +1,11 @@
 extends PauseMenuState
 
 
+func exit(new_state: PauseMenuState) -> void:
+	super.exit(new_state)
+	SignalsGetter.get_signals().emit_request_settings_save(self)
+
+
 func process(delta: float) -> void:
 	super.process(delta)
 	if pause_menu.game_state.state == pause_menu.game_state.states.PAUSE:
