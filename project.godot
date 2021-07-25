@@ -70,6 +70,16 @@ _global_script_classes=[{
 "path": "res://src/entities/player/player_state.gd"
 }, {
 "base": "Node",
+"class": &"Settings",
+"language": &"GDScript",
+"path": "res://src/constants/settings.gd"
+}, {
+"base": "Resource",
+"class": &"SettingsResource",
+"language": &"GDScript",
+"path": "res://src/autoload/settings_manager/settings_resource.gd"
+}, {
+"base": "Node",
 "class": &"SignalsGetter",
 "language": &"GDScript",
 "path": "res://src/common/hacks/signals_getter.gd"
@@ -117,6 +127,8 @@ _global_script_class_icons={
 "Physics": "",
 "Player": "",
 "PlayerState": "",
+"Settings": "",
+"SettingsResource": "",
 "SignalsGetter": "",
 "State": "",
 "StateMachine": "",
@@ -143,6 +155,7 @@ CInput="res://src/autoload/input/cinput.tscn"
 AudioPlayer="res://src/autoload/audio_player/audio_player.tscn"
 UI="res://src/autoload/ui/ui.tscn"
 GameStateManager="res://src/autoload/game_state_manager/game_state_manager.tscn"
+SettingsManager="res://src/autoload/settings_manager/settings_manager.tscn"
 
 [input]
 

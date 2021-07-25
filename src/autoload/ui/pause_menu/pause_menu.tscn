@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id="1_4bqbk"]
 [ext_resource path="res://src/autoload/ui/pause_menu/pause_menu.gd" type="Script" id="1_ra0py"]
 [ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="2_rjkev"]
 [ext_resource path="res://src/autoload/ui/pause_menu/pause_menu_option.tscn" type="PackedScene" id="3_ht525"]
 [ext_resource path="res://src/autoload/ui/pause_menu/pause_menu_state_main.gd" type="Script" id="4_eom5a"]
+[ext_resource path="res://src/autoload/settings_manager/settings.tres" type="Resource" id="4_tbd8h"]
 [ext_resource path="res://src/autoload/ui/pause_menu/pause_menu_state_settings.gd" type="Script" id="5_kygh5"]
 
 [node name="PauseMenu" type="Control"]
@@ -82,8 +83,9 @@ anchor_bottom = 0.0
 offset_top = 278.0
 offset_right = 384.0
 offset_bottom = 326.0
-key_string = &"Camera X"
-value_string = &"Normal"
+is_settings_option = true
+settings = ExtResource( "4_tbd8h" )
+key_string = &"CAMERA_X_INVERTED"
 
 [node name="CameraY" parent="Settings" instance=ExtResource( "3_ht525" )]
 anchor_right = 0.0
@@ -91,8 +93,9 @@ anchor_bottom = 0.0
 offset_top = 336.0
 offset_right = 384.0
 offset_bottom = 384.0
-key_string = &"Camera Y"
-value_string = &"Normal"
+is_settings_option = true
+settings = ExtResource( "4_tbd8h" )
+key_string = &"CAMERA_Y_INVERTED"
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "1_4bqbk" )

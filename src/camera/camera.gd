@@ -3,6 +3,7 @@ extends Camera3D
 
 @export var target_path: NodePath
 @export var thumbstick_right: Resource
+@export var settings: Resource
 
 @export var rotation_speed: Vector2 = Vector2(90, 180)
 @export var target_offset: Vector3
@@ -28,6 +29,7 @@ func _ready() -> void:
 	Signals.area_area_exited.connect(self._on_area_area_exited)
 
 	assert(thumbstick_right as ThumbstickResource != null, Errors.NULL_RESOURCE)
+	assert(settings as SettingsResource != null, Errors.NULL_RESOURCE)
 	assert(target != null, Errors.NULL_NODE)
 	assert(area3d != null, Errors.NULL_NODE)
 
@@ -46,9 +48,15 @@ func _process(delta: float) -> void:
 		elif target_offset.length() > zoom_limit.y:
 			target_offset = target_offset.normalized() * zoom_limit.y
 	else:
-		camera_rotation_rad.x = camera_rotation_rad.x - thumbstick_right.value.y * rotation_speed_rad.x * delta
+		var thumbstick_value: Vector2 = thumbstick_right.value
+		if settings.settings[Settings.CAMERA_X_INVERTED] == Settings.CameraInvertedValues.INVERTED:
+			thumbstick_value.x = -thumbstick_value.x
+		if settings.settings[Settings.CAMERA_Y_INVERTED] == Settings.CameraInvertedValues.INVERTED:
+			thumbstick_value.y = -thumbstick_value.y
+
+		camera_rotation_rad.x = camera_rotation_rad.x - thumbstick_value.y * rotation_speed_rad.x * delta
 		camera_rotation_rad.x = clamp(camera_rotation_rad.x, pitch_limit_rad.x, pitch_limit_rad.y)
-		camera_rotation_rad.y = camera_rotation_rad.y - thumbstick_right.value.x * rotation_speed_rad.y * delta
+		camera_rotation_rad.y = camera_rotation_rad.y - thumbstick_value.x * rotation_speed_rad.y * delta
 
 	var vertical_axis: Vector3 = Vector3.RIGHT.rotated(Vector3.UP, camera_rotation_rad.y)
 	var target_offset_rotated: Vector3 = target_offset.rotated(Vector3.UP, camera_rotation_rad.y)

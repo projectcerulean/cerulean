@@ -11,7 +11,9 @@ signal request_game_pause
 signal request_game_quit
 signal request_game_unpause
 signal request_scene_reload
+signal request_setting_update
 signal scene_changed
+signal setting_updated
 signal state_entered
 signal state_exited
 signal visualize_line
@@ -66,7 +68,9 @@ func emit_request_game_pause(sender: Node) -> void: emit([sender])
 func emit_request_game_quit(sender: Node) -> void: emit([sender])
 func emit_request_game_unpause(sender: Node) -> void: emit([sender])
 func emit_request_scene_reload(sender: Node) -> void: emit([sender])
+func emit_request_setting_update(sender: Node, key: StringName, value: int) -> void: emit([sender, key, value])
 func emit_scene_changed(sender: Node) -> void: emit([sender])
+func emit_setting_updated(sender: Node, key: StringName, value: int) -> void: emit([sender, key, value])
 func emit_state_entered(sender: Node, state: Node) -> void: emit([sender, state])
 func emit_state_exited(sender: Node, state: Node) -> void: emit([sender, state])
 func emit_visualize_line(sender: Node, point: Vector3) -> void: emit([sender, point])

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource path="res://src/autoload/settings_manager/settings_resource.gd" type="Script" id="1_fhg83"]
+
+[resource]
+script = ExtResource( "1_fhg83" )
