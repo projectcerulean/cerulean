@@ -11,10 +11,9 @@ func get_transition() -> PauseMenuState:
 			if menu_options[i_hovered_option].name == &"Resume":
 				SignalsGetter.get_signals().emit_request_game_unpause(self)
 			elif menu_options[i_hovered_option].name == &"ReloadLevel":
-				SignalsGetter.get_signals().emit_request_game_unpause(self)
-				get_tree().call_deferred(get_tree().reload_current_scene.get_method())
+				SignalsGetter.get_signals().emit_request_scene_reload(self)
 			elif menu_options[i_hovered_option].name == &"Settings":
 				return state.states.SETTINGS
 			elif menu_options[i_hovered_option].name == &"Quit":
-				get_tree().call_deferred(get_tree().quit.get_method())
+				SignalsGetter.get_signals().emit_request_game_quit(self)
 	return null
