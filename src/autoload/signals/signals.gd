@@ -18,16 +18,16 @@ signal visualize_vector
 # Assert that all the signals above have a corresponding emission function below
 func _ready():
 	var node: Node = Node.new()
-	var default_signals: Array[String]
-	var default_methods: Array[String]
+	var default_signals: Array[String] = []
+	var default_methods: Array[String] = []
 	for s in node.get_signal_list():
 		default_signals.append(s["name"])
 	for m in node.get_method_list():
 		default_methods.append(m["name"])
 	node.queue_free()
 
-	var signals: Array[String]
-	var methods: Array[String]
+	var signals: Array[String] = []
+	var methods: Array[String] = []
 	for s in get_signal_list():
 		signals.append(s["name"])
 	for m in get_method_list():
