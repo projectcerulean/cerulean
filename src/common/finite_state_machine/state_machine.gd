@@ -18,8 +18,12 @@ func _ready() -> void:
 	assert(state as StateResource != null, Errors.NULL_RESOURCE)
 
 	state.state_machine = self
+	assert(initial_state, Errors.INVALID_ARGUMENT)
 	state.state = get_node(initial_state)
+	assert(state.state as State != null, Errors.INVALID_ARGUMENT)
+
 	for child in get_children():
+		child.state = state
 		state.states[StringName(str(child.name).to_upper())] = child
 
 	call_deferred(transition_to.get_method(), state.state)
@@ -34,15 +38,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	state.state.process(delta)
 
-
-# Delegate `_physics_process` callback to the active state.
-func _physics_process(delta: float) -> void:
-	state.state.physics_process(delta)
-
 	# Change the current state
 	var target_state: State = state.state.get_transition()
 	if target_state:
 		call_deferred(transition_to.get_method(), target_state)
+
+
+# Delegate `_physics_process` callback to the active state.
+func _physics_process(delta: float) -> void:
+	state.state.physics_process(delta)
 
 
 # This function calls the current state's exit() function, then changes the active state,

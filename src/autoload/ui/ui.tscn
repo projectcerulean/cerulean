@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource path="res://src/autoload/ui/effects/underwater_effect.gdshader" type="Shader" id="1"]
 [ext_resource path="res://src/autoload/ui/debug/debug_console/debug_console.tscn" type="PackedScene" id="2"]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/autoload/ui/hud/compass.gd" type="Script" id="7"]
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gdshader" type="Shader" id="8"]
 [ext_resource path="res://src/autoload/ui/ui.gd" type="Script" id="9"]
+[ext_resource path="res://src/autoload/ui/pause_menu/pause_menu.tscn" type="PackedScene" id="9_mxrv6"]
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gd" type="Script" id="10"]
 [ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="11"]
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_darken.gd" type="Script" id="12"]
@@ -37,10 +38,10 @@ process_mode = 3
 script = ExtResource( "9" )
 game_state = ExtResource( "11" )
 
-[node name="Effects" type="CanvasLayer" parent="."]
+[node name="EffectsLayer" type="CanvasLayer" parent="."]
 script = null
 
-[node name="UnderwaterEffect" type="ColorRect" parent="Effects"]
+[node name="UnderwaterEffect" type="ColorRect" parent="EffectsLayer"]
 visible = false
 material = SubResource( "9" )
 anchor_right = 1.0
@@ -50,10 +51,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hud" type="CanvasLayer" parent="."]
+[node name="HudLayer" type="CanvasLayer" parent="."]
 script = null
 
-[node name="Compass" type="Label" parent="Hud"]
+[node name="Compass" type="Label" parent="HudLayer"]
 anchor_right = 1.0
 offset_bottom = 23.0
 custom_font_sizes/font_size = 20
@@ -66,10 +67,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseMenu" type="CanvasLayer" parent="."]
+[node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 script = null
 
-[node name="ScreenBlur" type="ColorRect" parent="PauseMenu"]
+[node name="ScreenBlur" type="ColorRect" parent="PauseMenuLayer"]
 material = SubResource( "10" )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -79,7 +80,7 @@ __meta__ = {
 }
 game_state = ExtResource( "11" )
 
-[node name="ScreenDarken" type="ColorRect" parent="PauseMenu"]
+[node name="ScreenDarken" type="ColorRect" parent="PauseMenuLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0.0627451, 0.627451)
@@ -89,16 +90,18 @@ __meta__ = {
 }
 game_state = ExtResource( "11" )
 
-[node name="Debug" type="CanvasLayer" parent="."]
+[node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource( "9_mxrv6" )]
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
 script = null
 
-[node name="LineVisualizer" type="Control" parent="Debug"]
+[node name="LineVisualizer" type="Control" parent="DebugLayer"]
 script = ExtResource( "6" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VectorVisualizer" type="ColorRect" parent="Debug"]
+[node name="VectorVisualizer" type="ColorRect" parent="DebugLayer"]
 visible = false
 anchor_left = 1.0
 anchor_right = 1.0
@@ -110,10 +113,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DebugConsole" parent="Debug" instance=ExtResource( "2" )]
+[node name="DebugConsole" parent="DebugLayer" instance=ExtResource( "2" )]
 visible = false
 
-[node name="VersionLabel" type="Label" parent="Debug"]
+[node name="VersionLabel" type="Label" parent="DebugLayer"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

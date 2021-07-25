@@ -3,6 +3,8 @@
 class_name State
 extends Node
 
+var state: Resource
+
 
 # Virtual function. Receives events from the `_unhandled_input()` callback.
 func unhandled_input(_event: InputEvent) -> void:

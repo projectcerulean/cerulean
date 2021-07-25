@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id="1_4bqbk"]
+[ext_resource path="res://src/autoload/ui/pause_menu/pause_menu.gd" type="Script" id="1_ra0py"]
+[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="2_rjkev"]
+[ext_resource path="res://src/autoload/ui/pause_menu/pause_menu_option.tscn" type="PackedScene" id="3_ht525"]
+[ext_resource path="res://src/autoload/ui/pause_menu/pause_menu_state_main.gd" type="Script" id="4_eom5a"]
+[ext_resource path="res://src/autoload/ui/pause_menu/pause_menu_state_settings.gd" type="Script" id="5_kygh5"]
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( "1_ra0py" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+game_state = ExtResource( "2_rjkev" )
+
+[node name="Main" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = -128.0
+custom_constants/separation = 10
+alignment = 2
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" parent="Main" instance=ExtResource( "3_ht525" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 162.0
+offset_right = 384.0
+offset_bottom = 210.0
+key_string = &"Resume"
+
+[node name="ReloadLevel" parent="Main" instance=ExtResource( "3_ht525" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 220.0
+offset_right = 384.0
+offset_bottom = 268.0
+key_string = &"Reload level"
+
+[node name="Settings" parent="Main" instance=ExtResource( "3_ht525" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 278.0
+offset_right = 384.0
+offset_bottom = 326.0
+key_string = &"Settings"
+
+[node name="Quit" parent="Main" instance=ExtResource( "3_ht525" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 336.0
+offset_right = 384.0
+offset_bottom = 384.0
+key_string = &"Quit"
+
+[node name="Settings" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = -128.0
+custom_constants/separation = 10
+alignment = 2
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CameraX" parent="Settings" instance=ExtResource( "3_ht525" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 278.0
+offset_right = 384.0
+offset_bottom = 326.0
+key_string = &"Camera X"
+value_string = &"Normal"
+
+[node name="CameraY" parent="Settings" instance=ExtResource( "3_ht525" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 336.0
+offset_right = 384.0
+offset_bottom = 384.0
+key_string = &"Camera Y"
+value_string = &"Normal"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( "1_4bqbk" )
+initial_state = NodePath("Main")
+
+[node name="Main" type="Node" parent="StateMachine"]
+script = ExtResource( "4_eom5a" )
+
+[node name="Settings" type="Node" parent="StateMachine"]
+script = ExtResource( "5_kygh5" )
