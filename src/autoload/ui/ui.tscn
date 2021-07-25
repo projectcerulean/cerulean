@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource path="res://src/autoload/ui/effects/underwater_effect.gdshader" type="Shader" id="1"]
-[ext_resource path="res://src/autoload/ui/debug/debug_console/debug_console.tscn" type="PackedScene" id="2"]
 [ext_resource path="res://src/autoload/ui/debug/version_label/version_label.gd" type="Script" id="3"]
 [ext_resource path="res://src/autoload/ui/effects/underwater_effect.gd" type="Script" id="4"]
 [ext_resource path="res://src/autoload/ui/debug/vector_visualizer/vector_visualizer.gd" type="Script" id="5"]
@@ -12,6 +11,7 @@
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gd" type="Script" id="10"]
 [ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="11"]
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_darken.gd" type="Script" id="12"]
+[ext_resource path="res://src/autoload/ui/debug/debug_console/debug_console.gd" type="Script" id="12_qt77i"]
 
 [sub_resource type="OpenSimplexNoise" id="8"]
 
@@ -31,6 +31,9 @@ shader_param/noise = SubResource( "7" )
 shader = ExtResource( "8" )
 shader_param/kernel_size = 11
 shader_param/blur_strength = 2.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17ke0"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
 
 [node name="UI" type="Node"]
 process_mode = 3
@@ -111,8 +114,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DebugConsole" parent="DebugLayer" instance=ExtResource( "2" )]
+[node name="DebugConsole" type="RichTextLabel" parent="DebugLayer"]
 visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -256.0
+custom_styles/normal = SubResource( "StyleBoxFlat_17ke0" )
+bbcode_enabled = true
+bbcode_text = "# To write to the console:
+Signals.emit_debug_write(self, \"hello\")"
+text = "# To write to the console:
+Signals.emit_debug_write(self, \"hello\")"
+scroll_following = true
+custom_effects = []
+structured_text_bidi_override_options = []
+script = ExtResource( "12_qt77i" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VersionLabel" type="Label" parent="DebugLayer"]
 anchor_top = 1.0
