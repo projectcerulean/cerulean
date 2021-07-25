@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var camera_path: NodePath
 @export var thumbstick_left: Resource
 @export var state: Resource
+@export var game_state: Resource
 
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
@@ -32,7 +33,6 @@ extends CharacterBody3D
 @export var underwater_roll_weight: float = 0.02
 
 @export var wall_pushback_distance: float = 0.1
-@export var y_min: float = -100.0
 
 @onready var camera: Camera3D = get_node(camera_path)
 @onready var camera_anchor: Position3D = get_node("CameraAnchor")
@@ -68,6 +68,7 @@ func _ready() -> void:
 
 	assert(thumbstick_left as ThumbstickResource != null, Errors.NULL_RESOURCE)
 	assert(state as StateResource != null, Errors.NULL_RESOURCE)
+	assert(game_state as StateResource != null, Errors.NULL_RESOURCE)
 	assert(camera != null, Errors.NULL_NODE)
 	assert(camera_anchor != null, Errors.NULL_NODE)
 	assert(raycast != null, Errors.NULL_NODE)
@@ -117,9 +118,10 @@ func _process(_delta: float) -> void:
 	else:
 		camera_anchor.position.y = lerp(camera_anchor.position.y, position.y, camera_anchor_y_smooth_air)
 
-	# Reload scene when falling off the map
-	if get_global_transform().origin.y < y_min:
-		get_tree().reload_current_scene()
+	# Pause the game
+	if Input.is_action_just_pressed(&"pause"):
+		if game_state.state == game_state.states.GAMEPLAY:
+			SignalsGetter.get_signals().emit_request_game_pause(self)
 
 
 func _physics_process(_delta: float) -> void:

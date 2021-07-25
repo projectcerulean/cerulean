@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource path="res://src/autoload/ui/effects/underwater_effect.gdshader" type="Shader" id="1"]
 [ext_resource path="res://src/autoload/ui/debug/debug_console/debug_console.tscn" type="PackedScene" id="2"]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/autoload/ui/debug/line_visualizer/line_visualizer.gd" type="Script" id="6"]
 [ext_resource path="res://src/autoload/ui/hud/compass.gd" type="Script" id="7"]
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gdshader" type="Shader" id="8"]
-[ext_resource path="res://src/autoload/ui/ui.gd" type="Script" id="9"]
 [ext_resource path="res://src/autoload/ui/pause_menu/pause_menu.tscn" type="PackedScene" id="9_mxrv6"]
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gd" type="Script" id="10"]
 [ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="11"]
@@ -35,8 +34,7 @@ shader_param/blur_strength = 2.5
 
 [node name="UI" type="Node"]
 process_mode = 3
-script = ExtResource( "9" )
-game_state = ExtResource( "11" )
+script = null
 
 [node name="EffectsLayer" type="CanvasLayer" parent="."]
 script = null

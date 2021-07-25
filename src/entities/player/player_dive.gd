@@ -50,8 +50,8 @@ func physics_process(delta: float) -> void:
 
 func get_transition() -> PlayerState:
 	if not player.is_in_water():
-		return player.state.states.FALL
+		return state.states.FALL
 	elif player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
-		return player.state.states.SWIM
+		return state.states.SWIM
 	else:
 		return null
