@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id="1"]
 [ext_resource path="res://src/entities/scene/scene.gd" type="Script" id="1_arp3q"]
 [ext_resource path="res://src/sound/bgm/seaandsky/seaandsky.tres" type="Resource" id="2_70wvx"]
 [ext_resource path="res://src/entities/water/water.tscn" type="PackedScene" id="4"]
 [ext_resource path="res://src/levels/test_scene/stone_material.tres" type="Material" id="5"]
+[ext_resource path="res://src/levels/test_scene/flag/flag.tscn" type="PackedScene" id="6_psp6u"]
 [ext_resource path="res://src/camera/camera.tscn" type="PackedScene" id="13"]
 
 [node name="TestScene" type="Node"]
@@ -188,6 +189,21 @@ script = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 17, -26)
 size = Vector3(2, 4, 2)
 script = null
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env/Flagpole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 20, -26)
+size = Vector3(1, 2, 1)
+script = null
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Env/Flagpole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 26, -26)
+radius = 0.1
+height = 10.0
+sides = 32
+script = null
+
+[node name="Flag" parent="Env/Flagpole" instance=ExtResource( "6_psp6u" )]
+transform = Transform3D(0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, 0.866025, -3.78552e-08, -23.9, 29.9, -27.2)
 
 [node name="Island" type="CSGCombiner3D" parent="Env"]
 material_override = ExtResource( "5" )

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource path="res://src/levels/test_scene/flag/flag.gdshader" type="Shader" id="1_w2utg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lnelb"]
+size = Vector2(5, 2)
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_snj0b"]
+
+[sub_resource type="NoiseTexture" id="NoiseTexture_pc7e0"]
+seamless = true
+noise = SubResource( "OpenSimplexNoise_snj0b" )
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrpj1"]
+shader = ExtResource( "1_w2utg" )
+shader_param/uv_offset_scale = Vector2(-0.2, -0.1)
+shader_param/vertex_offset_scale = 2.0
+shader_param/time_scale = Vector2(0.25, 0)
+shader_param/face_distortion = 1.0
+shader_param/curvature = 5.0
+shader_param/albedo = Color(0.164706, 0.321569, 0.745098, 1)
+shader_param/uv_offset_texture = SubResource( "NoiseTexture_pc7e0" )
+
+[node name="Flag" type="MeshInstance3D"]
+mesh = SubResource( "PlaneMesh_lnelb" )
+surface_material_override/0 = SubResource( "ShaderMaterial_rrpj1" )
+script = null
