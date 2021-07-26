@@ -122,7 +122,7 @@ func _process(_delta: float) -> void:
 	# Pause the game
 	if Input.is_action_just_pressed(&"pause"):
 		if game_state.state == game_state.states.GAMEPLAY:
-			SignalsGetter.get_signals().emit_request_game_pause(self)
+			Signals.emit_request_game_pause(self)
 
 
 func _physics_process(_delta: float) -> void:
