@@ -16,12 +16,15 @@ const volume_db_zero: float = -80.0
 @onready var glide_player: AudioStreamPlayer = get_node("GlidePlayer")
 @onready var rhythm_player: AudioStreamPlayer = get_node("RhythmPlayer")
 
+var bgm_resource: BgmResource = null
+
 var base_tween: Tween = null
 var glide_tween: Tween = null
 var rhythm_tween: Tween = null
 
 
 func _ready() -> void:
+	SignalsGetter.get_signals().scene_changed.connect(self._on_scene_changed)
 	SignalsGetter.get_signals().state_entered.connect(self._on_state_entered)
 
 	assert(player_state as StateResource != null, Errors.NULL_RESOURCE)
@@ -30,11 +33,22 @@ func _ready() -> void:
 	assert(glide_player != null, Errors.NULL_NODE)
 	assert(rhythm_player != null, Errors.NULL_NODE)
 
+
+func _on_scene_changed(sender: Node):
+	if sender.bgm_resource == bgm_resource:
+		return
+
 	base_player.volume_db = volume_db_zero
 	glide_player.volume_db = volume_db_zero
 	rhythm_player.volume_db = volume_db_zero
 
-	var bgm_resource: BgmResource = load("res://src/sound/bgm/seaandsky/seaandsky.tres")
+	base_player.stop()
+	glide_player.stop()
+	rhythm_player.stop()
+
+	bgm_resource = sender.bgm_resource
+	if bgm_resource == null:
+		return
 
 	base_player.stream = bgm_resource.stream_base
 	glide_player.stream = bgm_resource.stream_glide
