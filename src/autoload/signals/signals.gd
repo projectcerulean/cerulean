@@ -54,6 +54,7 @@ func emit(args: Array) -> void:
 	var calling_function_name: String = get_stack()[1][&"function"]
 	assert(calling_function_name.begins_with("emit_"), Errors.INVALID_CONTEXT)
 	var signal_name: StringName = calling_function_name.trim_prefix("emit_")
+	#debug_write.emit(args[0], str(signal_name, ", ", args.slice(1, args.size())))
 	callv(&"call_deferred", [&"emit_signal", signal_name] + args)
 
 
