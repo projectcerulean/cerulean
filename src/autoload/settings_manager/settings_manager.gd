@@ -6,7 +6,7 @@ extends Node
 
 func _enter_tree() -> void:
 	assert(settings as SettingsResource != null, Errors.NULL_RESOURCE)
-	assert(settings.settings.size() == Settings.SETTINGS.size())
+	assert(settings.settings.size() == Settings.SETTINGS.size(), Errors.CONSISTENCY_ERROR)
 	for i in range(settings.settings.size()):
 		assert(settings.settings.keys()[i] == Settings.SETTINGS.keys()[i], Errors.CONSISTENCY_ERROR)
 

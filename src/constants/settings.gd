@@ -3,33 +3,40 @@
 class_name Settings
 extends Node
 
-enum CameraInvertedValues {
-	NORMAL,
-	INVERTED,
+enum Boolean {
+	NO,
+	YES,
 }
 
 const OPTION_NAME: StringName = &"OPTION_NAME"
 const VALUE_NAMES: StringName = &"VALUE_NAMES"
 const DEFAULT_VALUE: StringName = &"DEFAULT_VALUE"
 
-const CAMERA_X_INVERTED: StringName = &"CAMERA_X_INVERTED"
-const CAMERA_Y_INVERTED: StringName = &"CAMERA_Y_INVERTED"
+const BOOLEAN_VALUE_NAMES: Array[String] = ["No", "Yes"]
 
-const CAMERA_INVERTED_VALUE_NAMES: Array[String] = ["Normal", "Inverted"]
-
-const CAMERA_X_INVERTED_OPTION: Dictionary = {
-	OPTION_NAME: "Camera X",
-	VALUE_NAMES: CAMERA_INVERTED_VALUE_NAMES,
-	DEFAULT_VALUE: CameraInvertedValues.NORMAL,
+const BACKGROUND_MUSIC: StringName = &"BACKGROUND_MUSIC"
+const BACKGROUND_MUSIC_OPTION: Dictionary = {
+	OPTION_NAME: "Background music",
+	VALUE_NAMES: BOOLEAN_VALUE_NAMES,
+	DEFAULT_VALUE: Boolean.YES,
 }
 
+const CAMERA_X_INVERTED: StringName = &"CAMERA_X_INVERTED"
+const CAMERA_X_INVERTED_OPTION: Dictionary = {
+	OPTION_NAME: "Invert camera X",
+	VALUE_NAMES: BOOLEAN_VALUE_NAMES,
+	DEFAULT_VALUE: Boolean.NO,
+}
+
+const CAMERA_Y_INVERTED: StringName = &"CAMERA_Y_INVERTED"
 const CAMERA_Y_INVERTED_OPTION: Dictionary = {
-	OPTION_NAME: "Camera Y",
-	VALUE_NAMES: CAMERA_INVERTED_VALUE_NAMES,
-	DEFAULT_VALUE: CameraInvertedValues.NORMAL,
+	OPTION_NAME: "Invert camera Y",
+	VALUE_NAMES: BOOLEAN_VALUE_NAMES,
+	DEFAULT_VALUE: Boolean.NO,
 }
 
 const SETTINGS: Dictionary = {
+	BACKGROUND_MUSIC: BACKGROUND_MUSIC_OPTION,
 	CAMERA_X_INVERTED: CAMERA_X_INVERTED_OPTION,
 	CAMERA_Y_INVERTED: CAMERA_Y_INVERTED_OPTION,
 }

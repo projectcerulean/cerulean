@@ -49,9 +49,9 @@ func _process(delta: float) -> void:
 			target_offset = target_offset.normalized() * zoom_limit.y
 	else:
 		var thumbstick_value: Vector2 = thumbstick_right.value
-		if settings.settings[Settings.CAMERA_X_INVERTED] == Settings.CameraInvertedValues.INVERTED:
+		if settings.settings[Settings.CAMERA_X_INVERTED] == Settings.Boolean.YES:
 			thumbstick_value.x = -thumbstick_value.x
-		if settings.settings[Settings.CAMERA_Y_INVERTED] == Settings.CameraInvertedValues.INVERTED:
+		if settings.settings[Settings.CAMERA_Y_INVERTED] == Settings.Boolean.YES:
 			thumbstick_value.y = -thumbstick_value.y
 
 		camera_rotation_rad.x = camera_rotation_rad.x - thumbstick_value.y * rotation_speed_rad.x * delta

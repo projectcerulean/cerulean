@@ -77,6 +77,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BackgroundMusic" parent="Settings" instance=ExtResource( "3_ht525" )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 220.0
+offset_right = 384.0
+offset_bottom = 268.0
+is_settings_option = true
+settings = ExtResource( "4_tbd8h" )
+key_string = &"BACKGROUND_MUSIC"
+
 [node name="CameraX" parent="Settings" instance=ExtResource( "3_ht525" )]
 anchor_right = 0.0
 anchor_bottom = 0.0
