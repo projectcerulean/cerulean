@@ -1,0 +1,214 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id="1"]
+[ext_resource path="res://src/entities/scene/scene.gd" type="Script" id="1_arp3q"]
+[ext_resource path="res://src/entities/water/water.tscn" type="PackedScene" id="4"]
+[ext_resource path="res://src/levels/test_dungeon/material.tres" type="Material" id="5_skqnu"]
+[ext_resource path="res://src/camera/camera.tscn" type="PackedScene" id="13"]
+
+[node name="TestDungeon" type="Node"]
+script = ExtResource( "1_arp3q" )
+
+[node name="Camera3D" parent="." instance=ExtResource( "13" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7, 139.154)
+target_path = NodePath("../Player/CameraAnchor")
+
+[node name="Player" parent="." instance=ExtResource( "1" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7, 134)
+camera_path = NodePath("../Camera3D")
+
+[node name="Env" type="Node3D" parent="."]
+script = null
+
+[node name="Entrance" type="Node3D" parent="Env"]
+script = null
+
+[node name="Walls" type="CSGCombiner3D" parent="Env/Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.4058)
+material_override = ExtResource( "5_skqnu" )
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+script = null
+
+[node name="Outer" type="CSGBox3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63)
+size = Vector3(36, 36, 68)
+script = null
+
+[node name="DoorwayOuter" type="CSGBox3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 101)
+size = Vector3(8, 8, 8)
+script = null
+
+[node name="DebugRoofSubtractor" type="CSGBox3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.4223, 55.753)
+visible = false
+operation = 2
+size = Vector3(128, 10, 128)
+script = null
+
+[node name="DoorwayInner" type="CSGBox3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 99)
+operation = 2
+size = Vector3(4, 4, 16)
+script = null
+
+[node name="DoorwayExitInner" type="CSGBox3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 31)
+operation = 2
+size = Vector3(4, 4, 16)
+script = null
+
+[node name="Inner" type="CSGBox3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63)
+operation = 2
+size = Vector3(32, 32, 64)
+script = null
+
+[node name="Stairs" type="CSGCombiner3D" parent="Env/Entrance"]
+material_override = ExtResource( "5_skqnu" )
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+script = null
+
+[node name="DoorwayPlatform" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 128.406)
+size = Vector3(4, 24, 8)
+script = null
+
+[node name="Ramp3" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -6, 130.406)
+size = Vector3(14, 20, 4)
+script = null
+
+[node name="Stairs" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -7, 126.406)
+size = Vector3(4, 18, 4)
+script = null
+
+[node name="Stairs2" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -8, 122.406)
+size = Vector3(4, 16, 4)
+script = null
+
+[node name="Stairs3" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -9, 118.406)
+size = Vector3(4, 14, 4)
+script = null
+
+[node name="Stairs4" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -10, 114.406)
+size = Vector3(4, 12, 4)
+script = null
+
+[node name="Stairs5" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -11, 110.406)
+size = Vector3(4, 10, 4)
+script = null
+
+[node name="Stairs6" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -12, 106.406)
+size = Vector3(4, 8, 4)
+script = null
+
+[node name="Stairs7" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -13, 102.406)
+size = Vector3(4, 6, 4)
+script = null
+
+[node name="Stairs8" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -14, 98.4058)
+size = Vector3(4, 4, 4)
+script = null
+
+[node name="Stairs9" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -15, 94.4058)
+size = Vector3(4, 2, 4)
+script = null
+
+[node name="Stairs10" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -7, 126.406)
+size = Vector3(4, 18, 4)
+script = null
+
+[node name="Stairs11" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -8, 122.406)
+size = Vector3(4, 16, 4)
+script = null
+
+[node name="Stairs12" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -9, 118.406)
+size = Vector3(4, 14, 4)
+script = null
+
+[node name="Stairs13" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -10, 114.406)
+size = Vector3(4, 12, 4)
+script = null
+
+[node name="Stairs14" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -11, 110.406)
+size = Vector3(4, 10, 4)
+script = null
+
+[node name="Stairs15" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -12, 106.406)
+size = Vector3(4, 8, 4)
+script = null
+
+[node name="Stairs16" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -13, 102.406)
+size = Vector3(4, 6, 4)
+script = null
+
+[node name="Stairs17" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -14, 98.4058)
+size = Vector3(4, 4, 4)
+script = null
+
+[node name="Stairs18" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -15, 94.4058)
+size = Vector3(4, 2, 4)
+script = null
+
+[node name="Ramp" type="CSGPolygon3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 2, 4, 132.406)
+polygon = PackedVector2Array(0, 0, 0, 1, 0, 4, 10, 0)
+depth = 4.0
+script = null
+
+[node name="Ramp4" type="CSGBox3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -6, 130.406)
+size = Vector3(14, 20, 4)
+script = null
+
+[node name="Ramp2" type="CSGPolygon3D" parent="Env/Entrance/Stairs"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -2, 4, 128.406)
+polygon = PackedVector2Array(0, 0, 0, 1, 0, 4, 10, 0)
+depth = 4.0
+script = null
+
+[node name="Exit" type="CSGCombiner3D" parent="Env/Entrance"]
+material_override = ExtResource( "5_skqnu" )
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+script = null
+
+[node name="ExitPlatform" type="CSGBox3D" parent="Env/Entrance/Exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 72.4058)
+size = Vector3(4, 22, 8)
+script = null
+
+[node name="Water" type="Node3D" parent="."]
+script = null
+
+[node name="Water" parent="Water" instance=ExtResource( "4" )]
+
+[node name="Water2" parent="Water" instance=ExtResource( "4" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
+
+[node name="Water3" parent="Water" instance=ExtResource( "4" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
