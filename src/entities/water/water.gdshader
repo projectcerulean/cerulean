@@ -5,8 +5,8 @@ render_mode unshaded, cull_disabled;
 uniform int mesh_size_x = 64;
 uniform int mesh_size_y = 64;
 uniform vec4 water_color: hint_color;
-uniform float water_color_boost_threshold = 0.45;
-uniform float water_color_boost_amount = 0.1;
+uniform vec4 water_color_highlight: hint_color;
+uniform float water_color_highlight_threshold = 0.55;
 
 uniform sampler2D noise_sampler1;
 uniform sampler2D noise_sampler2;
@@ -22,10 +22,15 @@ void fragment() {
 	vec3 noise_texture1 = texture(noise_sampler1, UV + TIME * noise_time_factor.x).rgb;
 	vec3 noise_texture2 = texture(noise_sampler2, UV - TIME * noise_time_factor.y).rgb;
 	float noise_sum = (noise_texture1.r + noise_texture2.r) / 2.0;
-	float color_boost = (noise_sum < water_color_boost_threshold) ? water_color_boost_amount : 0.0;
-
-	ALBEDO = water_color.rgb + color_boost;
-	ALPHA = water_color.a;
+	if (noise_sum > water_color_highlight_threshold) {
+		ALBEDO = water_color_highlight.rgb;
+		ALPHA = water_color_highlight.a;
+	}
+	else {
+		ALBEDO = water_color.rgb;
+		ALPHA = water_color.a;
+	}
+	
 	SPECULAR = 1.0;
 	METALLIC = 0.25;
 	ROUGHNESS = 0.0;
