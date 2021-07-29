@@ -45,6 +45,11 @@ _global_script_classes=[{
 "path": "res://src/autoload/game_state_manager/game_state.gd"
 }, {
 "base": "Node",
+"class": &"Levels",
+"language": &"GDScript",
+"path": "res://src/constants/levels.gd"
+}, {
+"base": "Node",
 "class": &"Math",
 "language": &"GDScript",
 "path": "res://src/common/math/math.gd"
@@ -122,6 +127,7 @@ _global_script_class_icons={
 "DataStructures": "",
 "Errors": "",
 "GameState": "",
+"Levels": "",
 "Math": "",
 "PauseMenuState": "",
 "Physics": "",

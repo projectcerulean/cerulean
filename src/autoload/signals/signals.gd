@@ -10,6 +10,7 @@ signal debug_write
 signal request_game_pause
 signal request_game_quit
 signal request_game_unpause
+signal request_scene_change
 signal request_scene_reload
 signal request_setting_update
 signal request_settings_save
@@ -69,6 +70,7 @@ func emit_debug_write(sender: Node, variant: Variant) -> void: emit([sender, var
 func emit_request_game_pause(sender: Node) -> void: emit([sender])
 func emit_request_game_quit(sender: Node) -> void: emit([sender])
 func emit_request_game_unpause(sender: Node) -> void: emit([sender])
+func emit_request_scene_change(sender: Node, key: String) -> void: emit([sender, key])
 func emit_request_scene_reload(sender: Node) -> void: emit([sender])
 func emit_request_setting_update(sender: Node, key: StringName, value: int) -> void: emit([sender, key, value])
 func emit_request_settings_save(sender: Node) -> void: emit([sender])

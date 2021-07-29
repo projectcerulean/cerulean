@@ -1,6 +1,7 @@
 extends HBoxContainer
 
 @export var is_settings_option: bool
+@export var is_level_option: bool
 @export var settings: Resource
 @export var key_string: StringName
 @export var text_color_normal: Color
@@ -12,6 +13,7 @@ extends HBoxContainer
 
 func _ready() -> void:
 	SignalsGetter.get_signals().setting_updated.connect(self._on_setting_updated)
+	SignalsGetter.get_signals().scene_changed.connect(self._on_scene_changed)
 
 	assert(str(key_string), Errors.INVALID_ARGUMENT)
 	assert(key_node != null, Errors.NULL_NODE)
@@ -21,6 +23,9 @@ func _ready() -> void:
 		assert(settings as SettingsResource != null, Errors.NULL_RESOURCE)
 		key_node.text = Settings.SETTINGS[key_string][Settings.OPTION_NAME]
 		value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings.settings[key_string]]
+	elif is_level_option:
+		key_node.text = Levels.LEVELS[key_string][Levels.LEVEL_NAME]
+		value_node.text = ""
 	else:
 		key_node.text = key_string
 		value_node.text = ""
@@ -44,3 +49,11 @@ func adjust_option(delta: int) -> void:
 func _on_setting_updated(_sender: Node, _key: StringName, _value: int):
 	if is_settings_option:
 		value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings.settings[key_string]]
+
+
+func _on_scene_changed(_sender: Node):
+	if is_level_option:
+		if Levels.LEVELS[key_string][Levels.LEVEL_PATH] == get_tree().current_scene.filename:
+			value_node.text = "(Current)"
+		else:
+			value_node.text = ""
