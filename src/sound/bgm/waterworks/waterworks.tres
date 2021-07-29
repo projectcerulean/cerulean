@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=3]
+
+[ext_resource path="res://src/sound/bgm/bgm_resource.gd" type="Script" id="1_pxgjl"]
+[ext_resource path="res://assets/sound/bgm/waterworks/waterworks.wav" type="AudioStream" id="2_otu2c"]
+[ext_resource path="res://assets/sound/bgm/waterworks/waterworks_rhythm.wav" type="AudioStream" id="3_if6ay"]
+
+[resource]
+script = ExtResource( "1_pxgjl" )
+stream_base = ExtResource( "2_otu2c" )
+stream_rhythm = ExtResource( "3_if6ay" )
+bpm = 90.0
