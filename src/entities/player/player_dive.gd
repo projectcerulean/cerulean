@@ -7,6 +7,12 @@ func enter(old_state: PlayerState, data := {}) -> void:
 	super.enter(old_state, data)
 	roll_angle = 0.0
 
+	var velocity_direction: Vector3 = player.linear_velocity.normalized()
+	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
+		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
+	else:
+		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + velocity_direction)
+
 
 func process(delta: float) -> void:
 	super.process(delta)

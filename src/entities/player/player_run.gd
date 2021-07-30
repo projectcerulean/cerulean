@@ -6,6 +6,9 @@ func enter(old_state: PlayerState, data := {}) -> void:
 	player.linear_velocity.y = 0.0
 	player.snap = Vector3(0.0, -player.move_snap_distance, 0.0)
 
+	# Update mesh facing direction
+	player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
+
 
 func exit(new_state: PlayerState) -> void:
 	super.exit(new_state)
