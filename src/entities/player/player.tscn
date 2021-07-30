@@ -40,17 +40,16 @@ mid_height = 0.75
 size = Vector3(0.75, 0.75, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="11"]
-vertex_color_use_as_albedo = true
-emission_enabled = true
-emission = Color(0.25098, 0.25098, 0.25098, 1)
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.666667, 0.666667, 0.666667, 1)
 
 [sub_resource type="ImmediateMesh" id="9"]
 
 [sub_resource type="StandardMaterial3D" id="12"]
-vertex_color_use_as_albedo = true
+cull_mode = 2
+shading_mode = 0
 albedo_color = Color(0.0784314, 0.27451, 0.745098, 1)
-emission_enabled = true
-emission = Color(0.0784314, 0.27451, 0.745098, 1)
 
 [sub_resource type="ImmediateMesh" id="10"]
 
@@ -116,12 +115,20 @@ mesh = SubResource( "7" )
 surface_material_override/0 = null
 script = null
 
-[node name="TrailPositionLeft" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftInner" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)
 script = null
 
-[node name="TrailPositionRight" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftOuter" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.37, 0.37, 0)
+script = null
+
+[node name="TrailPositionRightInner" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.353553, -0.353553, 0)
+script = null
+
+[node name="TrailPositionRightOuter" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -0.37, 0)
 script = null
 
 [node name="StateMachine" type="Node" parent="."]
@@ -182,8 +189,11 @@ top_level = true
 material_override = SubResource( "11" )
 mesh = SubResource( "9" )
 script = ExtResource( "8" )
-trail_position_left_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeft")
-trail_position_right_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRight")
+trail_position_left_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+trail_position_left_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+trail_position_right_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+trail_position_right_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+lifetime = 0.5
 target_state_name = "Glide"
 player_state = ExtResource( "12" )
 
@@ -192,8 +202,9 @@ top_level = true
 material_override = SubResource( "12" )
 mesh = SubResource( "10" )
 script = ExtResource( "8" )
-trail_position_left_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeft")
-trail_position_right_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRight")
-max_points = 100
+trail_position_left_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+trail_position_left_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+trail_position_right_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+trail_position_right_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 target_state_name = "Dive"
 player_state = ExtResource( "12" )
