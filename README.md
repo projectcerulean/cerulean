@@ -27,6 +27,12 @@ Assets are synced using IPFS (https://ipfs.io) to prevent having to check in lar
 ```
 
 
+## License
+
+* Source code (`src/` folder): GPLv3-or-later
+* Assets (`assets/` folder): CC BY-SA 4.0
+
+
 ## Links
 
 * Main repo: https://github.com/projectcerulean/cerulean
