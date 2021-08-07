@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource path="res://src/common/area/area.tscn" type="PackedScene" id="1_d1h0n"]
+[ext_resource path="res://src/entities/sign_post/sign_post.gd" type="Script" id="1_lg8ob"]
+[ext_resource path="res://src/autoload/lfo/lfo_resource.tres" type="Resource" id="2_etsqr"]
+[ext_resource path="res://src/entities/sign_post/wood_material.tres" type="Material" id="2_vxxwp"]
+[ext_resource path="res://src/entities/sign_post/highlight.gdshader" type="Shader" id="3_icaye"]
+[ext_resource path="res://src/entities/sign_post/sign_post_highlight.gd" type="Script" id="4_pwhqe"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hm6r0"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_otxnp"]
+size = Vector3(1, 0.5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bn8e"]
+size = Vector3(1, 1.5, 0.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xrbev"]
+radius = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjcg5"]
+shader = ExtResource( "3_icaye" )
+shader_param/albedo = Color(0.66, 0.66, 0.66, 1)
+shader_param/grow = 0.025
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ets0"]
+shader = ExtResource( "3_icaye" )
+shader_param/albedo = Color(0.66, 0.66, 0.66, 1)
+shader_param/grow = 0.025
+
+[node name="SignPost" type="StaticBody3D"]
+collision_layer = 8
+script = ExtResource( "1_lg8ob" )
+lfo_resource = ExtResource( "2_etsqr" )
+
+[node name="Post" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+mesh = SubResource( "CylinderMesh_hm6r0" )
+surface_material_override/0 = ExtResource( "2_vxxwp" )
+script = null
+
+[node name="Sign" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07288e-06, 0)
+mesh = SubResource( "BoxMesh_otxnp" )
+surface_material_override/0 = ExtResource( "2_vxxwp" )
+script = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource( "BoxShape3D_6bn8e" )
+script = null
+
+[node name="Area3D" parent="." instance=ExtResource( "1_d1h0n" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+collision_layer = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource( "SphereShape3D_xrbev" )
+script = null
+
+[node name="Highlight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+visible = false
+script = ExtResource( "4_pwhqe" )
+
+[node name="PostHighlight" type="MeshInstance3D" parent="Highlight"]
+mesh = SubResource( "CylinderMesh_hm6r0" )
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource( "ShaderMaterial_yjcg5" )
+script = null
+
+[node name="SignHighlight" type="MeshInstance3D" parent="Highlight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.750001, 0)
+mesh = SubResource( "BoxMesh_otxnp" )
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource( "ShaderMaterial_2ets0" )
+script = null

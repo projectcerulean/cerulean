@@ -4,12 +4,16 @@ signal area_area_entered
 signal area_area_exited
 signal area_body_entered
 signal area_body_exited
+signal bgm_changed
 signal camera_water_entered
 signal camera_water_exited
 signal debug_write
+signal interaction_highlight_set
 signal request_game_pause
 signal request_game_quit
 signal request_game_unpause
+signal request_interaction_highlight
+signal request_interaction_unhighlight
 signal request_scene_change
 signal request_scene_reload
 signal request_setting_update
@@ -61,12 +65,16 @@ func emit_area_area_entered(sender: Area3D, area: Area3D) -> void: emit(area_are
 func emit_area_area_exited(sender: Area3D, area: Area3D) -> void: emit(area_area_exited, [sender, area])
 func emit_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void: emit(area_body_entered, [sender, body])
 func emit_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void: emit(area_body_exited, [sender, body])
+func emit_bgm_changed(sender: Node, bgm_resource: BgmResource) -> void: emit(bgm_changed, [sender, bgm_resource])
 func emit_camera_water_entered(sender: Camera3D) -> void: emit(camera_water_entered, [sender])
 func emit_camera_water_exited(sender: Camera3D) -> void: emit(camera_water_exited, [sender])
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, [sender, variant])
+func emit_interaction_highlight_set(sender: Node, target: Node3D) -> void: emit(interaction_highlight_set, [sender, target])
 func emit_request_game_pause(sender: Node) -> void: emit(request_game_pause, [sender])
 func emit_request_game_quit(sender: Node) -> void: emit(request_game_quit, [sender])
 func emit_request_game_unpause(sender: Node) -> void: emit(request_game_unpause, [sender])
+func emit_request_interaction_highlight(sender: Node3D) -> void: emit(request_interaction_highlight, [sender])
+func emit_request_interaction_unhighlight(sender: Node3D) -> void: emit(request_interaction_unhighlight, [sender])
 func emit_request_scene_change(sender: Node, key: String) -> void: emit(request_scene_change, [sender, key])
 func emit_request_scene_reload(sender: Node) -> void: emit(request_scene_reload, [sender])
 func emit_request_setting_update(sender: Node, key: StringName, value: int) -> void: emit(request_setting_update, [sender, key, value])

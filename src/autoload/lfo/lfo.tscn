@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource path="res://src/autoload/lfo/lfo.gd" type="Script" id="1_aof2r"]
+[ext_resource path="res://src/autoload/lfo/lfo_resource.tres" type="Resource" id="2_2sdf1"]
+
+[node name="LFO" type="Node"]
+process_mode = 3
+script = ExtResource( "1_aof2r" )
+lfo_resource = ExtResource( "2_2sdf1" )

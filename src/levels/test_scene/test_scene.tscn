@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id="1"]
 [ext_resource path="res://src/entities/scene/scene.gd" type="Script" id="1_arp3q"]
@@ -6,6 +6,8 @@
 [ext_resource path="res://src/entities/water/water.tscn" type="PackedScene" id="4"]
 [ext_resource path="res://src/levels/test_scene/stone_material.tres" type="Material" id="5"]
 [ext_resource path="res://src/levels/test_scene/flag/flag.tscn" type="PackedScene" id="6_psp6u"]
+[ext_resource path="res://src/levels/test_scene/grass_material.tres" type="Material" id="7_gxhck"]
+[ext_resource path="res://src/entities/sign_post/sign_post.tscn" type="PackedScene" id="8_l3hhy"]
 [ext_resource path="res://src/camera/camera.tscn" type="PackedScene" id="13"]
 
 [node name="TestScene" type="Node"]
@@ -206,7 +208,7 @@ script = null
 transform = Transform3D(0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, 0.866025, -3.78552e-08, -23.9, 29.9, -27.2)
 
 [node name="Island" type="CSGCombiner3D" parent="Env"]
-material_override = ExtResource( "5" )
+material_override = ExtResource( "7_gxhck" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -256,3 +258,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
 
 [node name="Water9" parent="Water" instance=ExtResource( "4" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
+
+[node name="SignPost" parent="." instance=ExtResource( "8_l3hhy" )]
+transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, -17.7, 3, -2)
+
+[node name="SignPost2" parent="." instance=ExtResource( "8_l3hhy" )]
+transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, -19.6, 3.2, -2)

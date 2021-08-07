@@ -49,6 +49,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/constants/levels.gd"
 }, {
+"base": "Resource",
+"class": &"LfoResource",
+"language": &"GDScript",
+"path": "res://src/autoload/lfo/lfo_resource.gd"
+}, {
 "base": "Node",
 "class": &"Math",
 "language": &"GDScript",
@@ -128,6 +133,7 @@ _global_script_class_icons={
 "Errors": "",
 "GameState": "",
 "Levels": "",
+"LfoResource": "",
 "Math": "",
 "PauseMenuState": "",
 "Physics": "",
@@ -161,6 +167,8 @@ Randomize="res://src/autoload/randomize/randomize.gd"
 Signals="*res://src/autoload/signals/signals.gd"
 CInput="res://src/autoload/input/cinput.tscn"
 AudioPlayer="res://src/autoload/audio_player/audio_player.tscn"
+LowFrequencyOscillator="res://src/autoload/lfo/lfo.tscn"
+InteractionManager="res://src/autoload/interaction_manager/interaction_manager.tscn"
 UI="res://src/autoload/ui/ui.tscn"
 GameStateManager="res://src/autoload/game_state_manager/game_state_manager.tscn"
 SettingsManager="res://src/autoload/settings_manager/settings_manager.tscn"
@@ -269,6 +277,11 @@ pause={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+interact={
+"deadzone": 0.0,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -277,6 +290,7 @@ pause={
 3d_physics/layer_2="Solids"
 3d_physics/layer_3="Entities"
 3d_physics/layer_4="Water"
+3d_physics/layer_5="Proximity"
 
 [physics]
 

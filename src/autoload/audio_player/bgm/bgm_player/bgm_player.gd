@@ -53,35 +53,35 @@ func _on_scene_changed(sender: Node):
 	rhythm_player.stop()
 
 	bgm_resource = sender.bgm_resource
-	if bgm_resource == null:
-		return
+	if bgm_resource != null:
+		base_player.stream = bgm_resource.stream_base
+		glide_player.stream = bgm_resource.stream_glide
+		rhythm_player.stream = bgm_resource.stream_rhythm
 
-	base_player.stream = bgm_resource.stream_base
-	glide_player.stream = bgm_resource.stream_glide
-	rhythm_player.stream = bgm_resource.stream_rhythm
+		assert(base_player.stream != null, Errors.NULL_RESOURCE)
 
-	assert(base_player.stream != null, Errors.NULL_RESOURCE)
+		if glide_player.stream != null:
+			assert(glide_player.stream.get_length() == base_player.stream.get_length(), Errors.INVALID_ARGUMENT)
+		if rhythm_player.stream != null:
+			assert(rhythm_player.stream.get_length() == base_player.stream.get_length(), Errors.INVALID_ARGUMENT)
 
-	if glide_player.stream != null:
-		assert(glide_player.stream.get_length() == base_player.stream.get_length(), Errors.INVALID_ARGUMENT)
-	if rhythm_player.stream != null:
-		assert(rhythm_player.stream.get_length() == base_player.stream.get_length(), Errors.INVALID_ARGUMENT)
+		base_player.play()
+		glide_player.play()
+		rhythm_player.play()
 
-	base_player.play()
-	glide_player.play()
-	rhythm_player.play()
+		var start_position: float = randf_range(0.0, base_player.stream.get_length())
+		base_player.seek(start_position)
+		glide_player.seek(start_position)
+		rhythm_player.seek(start_position)
 
-	var start_position: float = randf_range(0.0, base_player.stream.get_length())
-	base_player.seek(start_position)
-	glide_player.seek(start_position)
-	rhythm_player.seek(start_position)
+		if base_tween != null:
+			base_tween.kill()
+		base_tween = create_tween()
+		if base_player.volume_db == volume_db_zero:
+			base_tween.tween_property(base_player, "volume_db", volume_db_low, tween_duration_cutoff)
+		base_tween.tween_property(base_player, "volume_db", volume_db_high, tween_duration_glide)
 
-	if base_tween != null:
-		base_tween.kill()
-	base_tween = create_tween()
-	if base_player.volume_db == volume_db_zero:
-		base_tween.tween_property(base_player, "volume_db", volume_db_low, tween_duration_cutoff)
-	base_tween.tween_property(base_player, "volume_db", volume_db_high, tween_duration_glide)
+	SignalsGetter.get_signals().emit_bgm_changed(self, bgm_resource)
 
 
 func _on_state_entered(sender: Node, state: Node) -> void:

@@ -1,0 +1,13 @@
+[gd_resource type="ORMMaterial3D" load_steps=3 format=3]
+
+[sub_resource type="OpenSimplexNoise" id="8"]
+
+[sub_resource type="NoiseTexture" id="9"]
+seamless = true
+noise = SubResource( "8" )
+
+[resource]
+specular_mode = 4
+albedo_color = Color(0.247059, 0.45098, 0.345098, 1)
+orm_texture = SubResource( "9" )
+uv1_triplanar = true

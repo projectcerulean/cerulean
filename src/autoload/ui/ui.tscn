@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource path="res://src/autoload/ui/effects/underwater_effect.gdshader" type="Shader" id="1"]
 [ext_resource path="res://src/autoload/ui/debug/version_label/version_label.gd" type="Script" id="3"]
 [ext_resource path="res://src/autoload/ui/effects/underwater_effect.gd" type="Script" id="4"]
+[ext_resource path="res://src/autoload/ui/interaction_marker.gd" type="Script" id="4_o1y8t"]
 [ext_resource path="res://src/autoload/ui/debug/vector_visualizer/vector_visualizer.gd" type="Script" id="5"]
+[ext_resource path="res://src/autoload/lfo/lfo_resource.tres" type="Resource" id="5_f13oq"]
 [ext_resource path="res://src/autoload/ui/debug/line_visualizer/line_visualizer.gd" type="Script" id="6"]
 [ext_resource path="res://src/autoload/ui/hud/compass.gd" type="Script" id="7"]
 [ext_resource path="res://src/autoload/ui/pause_menu/screen_blur.gdshader" type="Shader" id="8"]
@@ -53,6 +55,7 @@ __meta__ = {
 }
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
+process_mode = 1
 script = null
 
 [node name="Compass" type="Label" parent="HudLayer"]
@@ -67,6 +70,14 @@ script = ExtResource( "7" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="InteractionMarker" type="Control" parent="HudLayer"]
+script = ExtResource( "4_o1y8t" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color(1, 1, 1, 0.627451)
+lfo_resource = ExtResource( "5_f13oq" )
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 script = null

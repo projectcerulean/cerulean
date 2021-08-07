@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource path="res://src/common/area/area.gd" type="Script" id="1_dx6u0"]
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource( "1_dx6u0" )
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
