@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource path="res://src/entities/player/player.gd" type="Script" id="1"]
 [ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/entities/player/player_run.gd" type="Script" id="4"]
 [ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="4_gviv5"]
 [ext_resource path="res://src/entities/player/player_fall.gd" type="Script" id="5"]
+[ext_resource path="res://src/entities/player/player_transform.tres" type="Resource" id="5_f776o"]
 [ext_resource path="res://src/entities/player/player_jump.gd" type="Script" id="6"]
 [ext_resource path="res://src/entities/player/player_glide.gd" type="Script" id="7"]
 [ext_resource path="res://src/entities/player/player_trail_renderer.gd" type="Script" id="8"]
@@ -58,6 +59,7 @@ script = ExtResource( "1" )
 thumbstick_left = ExtResource( "11" )
 state = ExtResource( "12" )
 game_state = ExtResource( "4_gviv5" )
+transform_resource = ExtResource( "5_f776o" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( "1" )

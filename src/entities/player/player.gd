@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var thumbstick_left: Resource
 @export var state: Resource
 @export var game_state: Resource
+@export var transform_resource: Resource
 
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
@@ -70,6 +71,7 @@ func _ready() -> void:
 	assert(thumbstick_left as ThumbstickResource != null, Errors.NULL_RESOURCE)
 	assert(state as StateResource != null, Errors.NULL_RESOURCE)
 	assert(game_state as StateResource != null, Errors.NULL_RESOURCE)
+	assert(transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
 	assert(camera != null, Errors.NULL_NODE)
 	assert(camera_anchor != null, Errors.NULL_NODE)
 	assert(raycast != null, Errors.NULL_NODE)
@@ -109,6 +111,10 @@ func _process(_delta: float) -> void:
 		input_vector = input_vector.normalized()
 	elif input_vector.is_equal_approx(Vector3.ZERO):
 		input_vector = Vector3.ZERO
+
+	# Update tranform resource
+	transform_resource.global_transform = global_transform
+	transform_resource.transform = transform
 
 	# The camera anchor is a Position3D which follows a bit after the player for a smoother feel.
 	# It has a top level transform, i.e. its position is not directly inherited from the player.
