@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource path="res://src/autoload/camera/camera.gd" type="Script" id="1_dbun4"]
+[ext_resource path="res://src/autoload/input/thumbstick_resource_right.tres" type="Resource" id="2_sj0tv"]
+[ext_resource path="res://src/autoload/settings_manager/settings.tres" type="Resource" id="3_dhgty"]
+[ext_resource path="res://src/autoload/camera/camera_transform.tres" type="Resource" id="4_n4bb1"]
+[ext_resource path="res://src/autoload/camera/camera_target_transform.tres" type="Resource" id="5_sufsx"]
+
+[sub_resource type="SphereShape3D" id="7"]
+radius = 0.1
+
+[node name="Camera" type="Position3D"]
+process_mode = 3
+script = ExtResource( "1_dbun4" )
+thumbstick_right = ExtResource( "2_sj0tv" )
+settings = ExtResource( "3_dhgty" )
+transform_resource = ExtResource( "4_n4bb1" )
+target_transform_resource = ExtResource( "5_sufsx" )
+
+[node name="YawPivot" type="Position3D" parent="."]
+script = null
+
+[node name="PitchPivot" type="Position3D" parent="YawPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+script = null
+
+[node name="Camera3D" type="Camera3D" parent="YawPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+current = true
+fov = 90.0
+script = null
+
+[node name="Area3D" type="Area3D" parent="YawPivot/PitchPivot/Camera3D"]
+collision_layer = 2
+collision_mask = 16
+script = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/Camera3D/Area3D"]
+shape = SubResource( "7" )
+script = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource path="res://src/entities/player/player.tscn" type="PackedScene" id="1"]
 [ext_resource path="res://src/entities/scene/scene.gd" type="Script" id="1_arp3q"]
@@ -8,15 +8,10 @@
 [ext_resource path="res://src/levels/test_scene/flag/flag.tscn" type="PackedScene" id="6_psp6u"]
 [ext_resource path="res://src/levels/test_scene/grass_material.tres" type="Material" id="7_gxhck"]
 [ext_resource path="res://src/entities/sign_post/sign_post.tscn" type="PackedScene" id="8_l3hhy"]
-[ext_resource path="res://src/camera/camera.tscn" type="PackedScene" id="13"]
 
 [node name="TestScene" type="Node"]
 script = ExtResource( "1_arp3q" )
 bgm_resource = ExtResource( "2_70wvx" )
-
-[node name="Camera3D" parent="." instance=ExtResource( "13" )]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 27.154)
-target_path = NodePath("../Player/CameraAnchor")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -26,7 +21,6 @@ script = null
 
 [node name="Player" parent="." instance=ExtResource( "1" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 22)
-camera_path = NodePath("../Camera3D")
 
 [node name="Env" type="Node3D" parent="."]
 script = null

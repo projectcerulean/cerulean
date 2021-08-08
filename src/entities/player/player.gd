@@ -1,11 +1,11 @@
 class_name Player
 extends CharacterBody3D
 
-@export var camera_path: NodePath
 @export var thumbstick_left: Resource
 @export var state: Resource
 @export var game_state: Resource
 @export var transform_resource: Resource
+@export var camera_transform_resource: Resource
 
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
@@ -36,8 +36,6 @@ extends CharacterBody3D
 
 @export var wall_pushback_distance: float = 0.1
 
-@onready var camera: Camera3D = get_node(camera_path)
-@onready var camera_anchor: Position3D = get_node("CameraAnchor")
 @onready var raycast: RayCast3D = get_node("RayCast3D")
 @onready var coyote_timer: Timer = get_node("CoyoteTimer")
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer")
@@ -72,8 +70,7 @@ func _ready() -> void:
 	assert(state as StateResource != null, Errors.NULL_RESOURCE)
 	assert(game_state as StateResource != null, Errors.NULL_RESOURCE)
 	assert(transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
-	assert(camera != null, Errors.NULL_NODE)
-	assert(camera_anchor != null, Errors.NULL_NODE)
+	assert(camera_transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
 	assert(raycast != null, Errors.NULL_NODE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
@@ -93,6 +90,10 @@ func _ready() -> void:
 			var nodeTyped: Node3D = node as Node3D
 			assert(nodeTyped != null, Errors.NULL_NODE)
 
+	# Update tranform resource
+	transform_resource.global_transform = global_transform
+	transform_resource.transform = transform
+
 
 func _process(_delta: float) -> void:
 	# Check that the facing direction vector is well-formed
@@ -100,7 +101,7 @@ func _process(_delta: float) -> void:
 	assert(facing_direction.y == 0, Errors.CONSISTENCY_ERROR)
 
 	# Update input vector according to thumbstick and camera position
-	var camera_vector: Vector3 = camera.global_transform.origin - global_transform.origin
+	var camera_vector: Vector3 = camera_transform_resource.global_transform.origin - global_transform.origin
 	camera_vector.y = 0.0
 	camera_vector = camera_vector.normalized()
 	var forward_vector: Vector3 = camera_vector
@@ -115,15 +116,6 @@ func _process(_delta: float) -> void:
 	# Update tranform resource
 	transform_resource.global_transform = global_transform
 	transform_resource.transform = transform
-
-	# The camera anchor is a Position3D which follows a bit after the player for a smoother feel.
-	# It has a top level transform, i.e. its position is not directly inherited from the player.
-	camera_anchor.position.x = position.x
-	camera_anchor.position.z = position.z
-	if state.state == state.states.RUN or state.state == state.states.IDLE:
-		camera_anchor.position.y = lerp(camera_anchor.position.y, position.y, camera_anchor_y_smooth_grounded)
-	else:
-		camera_anchor.position.y = lerp(camera_anchor.position.y, position.y, camera_anchor_y_smooth_air)
 
 	# Pause the game
 	if Input.is_action_just_pressed(&"pause"):
