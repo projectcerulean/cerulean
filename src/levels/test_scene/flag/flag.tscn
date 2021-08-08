@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://3mhvdybo4ccu"]
 
-[ext_resource path="res://src/levels/test_scene/flag/flag.gdshader" type="Shader" id="1_w2utg"]
+[ext_resource type="Shader" path="res://src/levels/test_scene/flag/flag.gdshader" id="1_w2utg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lnelb"]
 size = Vector2(5, 2)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cvkldn8xjhau1"]
 
-[ext_resource path="res://src/autoload/settings_manager/settings_manager.gd" type="Script" id="1_8b7oe"]
-[ext_resource path="res://src/autoload/settings_manager/settings.tres" type="Resource" id="2_qs4ts"]
+[ext_resource type="Script" path="res://src/autoload/settings_manager/settings_manager.gd" id="1_8b7oe"]
+[ext_resource type="Resource" path="res://src/autoload/settings_manager/settings.tres" id="2_qs4ts"]
 
 [node name="SettingsManager" type="Node"]
 script = ExtResource( "1_8b7oe" )

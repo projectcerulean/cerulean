@@ -1,6 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://75opyrt72upy"]
 
-[ext_resource path="res://src/common/transform/transform_resource.gd" type="Script" id="1_pa5am"]
+[ext_resource type="Script" path="res://src/common/transform/transform_resource.gd" id="1_pa5am"]
 
 [resource]
 script = ExtResource( "1_pa5am" )

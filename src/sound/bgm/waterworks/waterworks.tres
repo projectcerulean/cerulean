@@ -1,8 +1,8 @@
-[gd_resource type="Resource" load_steps=4 format=3]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cvtbqj4bp41m0"]
 
-[ext_resource path="res://src/sound/bgm/bgm_resource.gd" type="Script" id="1_pxgjl"]
-[ext_resource path="res://assets/sound/bgm/waterworks/waterworks.wav" type="AudioStream" id="2_otu2c"]
-[ext_resource path="res://assets/sound/bgm/waterworks/waterworks_rhythm.wav" type="AudioStream" id="3_if6ay"]
+[ext_resource type="Script" path="res://src/sound/bgm/bgm_resource.gd" id="1_pxgjl"]
+[ext_resource type="AudioStream" uid="uid://drhmxu2dsrrsi" path="res://assets/sound/bgm/waterworks/waterworks.wav" id="2_otu2c"]
+[ext_resource type="AudioStream" uid="uid://bd3l8sob1fgen" path="res://assets/sound/bgm/waterworks/waterworks_rhythm.wav" id="3_if6ay"]
 
 [resource]
 script = ExtResource( "1_pxgjl" )

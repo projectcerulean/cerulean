@@ -1,4 +1,4 @@
-[gd_resource type="ORMMaterial3D" load_steps=3 format=3]
+[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://u2dixa7fu604"]
 
 [sub_resource type="OpenSimplexNoise" id="8"]
 period = 8.0

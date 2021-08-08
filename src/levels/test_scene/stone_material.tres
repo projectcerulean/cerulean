@@ -1,4 +1,4 @@
-[gd_resource type="ORMMaterial3D" load_steps=3 format=3]
+[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://df0jxyi8dlx2u"]
 
 [sub_resource type="OpenSimplexNoise" id="8"]
 

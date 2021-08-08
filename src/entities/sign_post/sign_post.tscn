@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://enwddra1aeb"]
 
-[ext_resource path="res://src/common/area/area.tscn" type="PackedScene" id="1_d1h0n"]
-[ext_resource path="res://src/entities/sign_post/sign_post.gd" type="Script" id="1_lg8ob"]
-[ext_resource path="res://src/autoload/lfo/lfo_resource.tres" type="Resource" id="2_etsqr"]
-[ext_resource path="res://src/entities/sign_post/wood_material.tres" type="Material" id="2_vxxwp"]
-[ext_resource path="res://src/entities/sign_post/highlight.gdshader" type="Shader" id="3_icaye"]
-[ext_resource path="res://src/entities/sign_post/sign_post_highlight.gd" type="Script" id="4_pwhqe"]
+[ext_resource type="PackedScene" uid="uid://tubld1hhwoc" path="res://src/common/area/area.tscn" id="1_d1h0n"]
+[ext_resource type="Script" path="res://src/entities/sign_post/sign_post.gd" id="1_lg8ob"]
+[ext_resource type="Resource" path="res://src/autoload/lfo/lfo_resource.tres" id="2_etsqr"]
+[ext_resource type="Material" path="res://src/entities/sign_post/wood_material.tres" id="2_vxxwp"]
+[ext_resource type="Shader" path="res://src/entities/sign_post/highlight.gdshader" id="3_icaye"]
+[ext_resource type="Script" path="res://src/entities/sign_post/sign_post_highlight.gd" id="4_pwhqe"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_hm6r0"]
 top_radius = 0.05

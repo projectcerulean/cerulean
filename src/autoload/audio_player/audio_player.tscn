@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://btqsvvpfpp3rw"]
 
-[ext_resource path="res://src/entities/player/player_state_resource.tres" type="Resource" id="1"]
-[ext_resource path="res://src/autoload/audio_player/bgm/bgm_player/bgm_player.gd" type="Script" id="2"]
-[ext_resource path="res://src/autoload/settings_manager/settings.tres" type="Resource" id="2_crnq2"]
-[ext_resource path="res://src/autoload/audio_player/bgm/bgm_effects/bgm_pause_lowpass.gd" type="Script" id="3_1ehpi"]
-[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="4_byodf"]
-[ext_resource path="res://src/autoload/audio_player/bgm/bgm_effects/bgm_underwater_lowpass.gd" type="Script" id="4_t4lhm"]
+[ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="1"]
+[ext_resource type="Script" path="res://src/autoload/audio_player/bgm/bgm_player/bgm_player.gd" id="2"]
+[ext_resource type="Resource" path="res://src/autoload/settings_manager/settings.tres" id="2_crnq2"]
+[ext_resource type="Script" path="res://src/autoload/audio_player/bgm/bgm_effects/bgm_pause_lowpass.gd" id="3_1ehpi"]
+[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="4_byodf"]
+[ext_resource type="Script" path="res://src/autoload/audio_player/bgm/bgm_effects/bgm_underwater_lowpass.gd" id="4_t4lhm"]
 
 [node name="AudioPlayer" type="Node"]
 process_mode = 3

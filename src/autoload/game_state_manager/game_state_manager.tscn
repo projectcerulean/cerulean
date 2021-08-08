@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://ghtf6xilqshm"]
 
-[ext_resource path="res://src/common/finite_state_machine/state_machine.gd" type="Script" id="1"]
-[ext_resource path="res://src/autoload/game_state_manager/game_state_gameplay.gd" type="Script" id="2"]
-[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="3"]
-[ext_resource path="res://src/autoload/game_state_manager/game_state_manager.gd" type="Script" id="4"]
-[ext_resource path="res://src/autoload/game_state_manager/game_state_pause.gd" type="Script" id="5"]
+[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="1"]
+[ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_gameplay.gd" id="2"]
+[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="3"]
+[ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_manager.gd" id="4"]
+[ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_pause.gd" id="5"]
 
 [node name="GameStateManager" type="Node"]
 process_mode = 3

@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://cyvmbau3f180w"]
 
-[ext_resource path="res://src/autoload/camera/camera_target.gd" type="Script" id="1_vv2vj"]
-[ext_resource path="res://src/autoload/camera/camera_target_transform.tres" type="Resource" id="2_kekmw"]
-[ext_resource path="res://src/entities/player/player_transform.tres" type="Resource" id="3_scv08"]
-[ext_resource path="res://src/entities/player/player_state_resource.tres" type="Resource" id="4_02ywf"]
-[ext_resource path="res://src/autoload/game_state_manager/game_state_resource.tres" type="Resource" id="5_os347"]
+[ext_resource type="Script" path="res://src/autoload/camera/camera_target.gd" id="1_vv2vj"]
+[ext_resource type="Resource" path="res://src/autoload/camera/camera_target_transform.tres" id="2_kekmw"]
+[ext_resource type="Resource" path="res://src/entities/player/player_transform.tres" id="3_scv08"]
+[ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="4_02ywf"]
+[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="5_os347"]
 
 [node name="CameraTarget" type="Position3D"]
 process_mode = 3
