@@ -1,6 +1,13 @@
 extends PlayerState
 
 
+func enter(old_state: PlayerState, data := {}) -> void:
+	super.enter(old_state, data)
+
+	# Update mesh facing direction
+	player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
+
+
 func exit(new_state: PlayerState) -> void:
 	super.exit(new_state)
 	if new_state == state.states.JUMP:
