@@ -23,7 +23,7 @@ noise = SubResource( "8" )
 
 [sub_resource type="ShaderMaterial" id="9"]
 shader = ExtResource( "1" )
-shader_param/color = Color(0.0784314, 0.27451, 0.745098, 0.501961)
+shader_param/color = Color(0.164706, 0.321569, 0.745098, 0.878431)
 shader_param/distortion_scale = 0.5
 shader_param/distortion_intensity = 0.01
 shader_param/distortion_speed = 0.05
