@@ -50,7 +50,7 @@ func get_transition() -> PlayerState:
 		return state.states.FALL
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		return state.states.JUMP
-	elif player.linear_velocity.is_equal_approx(Vector3.ZERO):
+	elif Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z).is_equal_approx(Vector3.ZERO):
 		return state.states.IDLE
 	else:
 		return null
