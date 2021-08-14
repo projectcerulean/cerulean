@@ -34,6 +34,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/common/data_structures/data_structures.gd"
 }, {
+"base": "Resource",
+"class": &"DialogueResource",
+"language": &"GDScript",
+"path": "res://src/autoload/ui/dialogue_manager/dialogue_resource.gd"
+}, {
+"base": "State",
+"class": &"DialogueState",
+"language": &"GDScript",
+"path": "res://src/autoload/ui/dialogue_manager/dialogue_state.gd"
+}, {
 "base": "Node",
 "class": &"Errors",
 "language": &"GDScript",
@@ -135,6 +145,8 @@ _global_script_class_icons={
 "CColor": "",
 "Cardinal": "",
 "DataStructures": "",
+"DialogueResource": "",
+"DialogueState": "",
 "Errors": "",
 "GameState": "",
 "Levels": "",

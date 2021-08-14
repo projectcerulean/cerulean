@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="1_4bqbk"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu.gd" id="1_ra0py"]
-[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="2_rjkev"]
-[ext_resource type="PackedScene" path="res://src/autoload/ui/pause_menu/pause_menu_option.tscn" id="3_ht525"]
+[ext_resource type="Resource" uid="uid://bviclx4gy4i7j" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="2_rjkev"]
+[ext_resource type="PackedScene" uid="uid://di72lcsa2dva7" path="res://src/autoload/ui/pause_menu/pause_menu_option.tscn" id="3_ht525"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_main.gd" id="4_eom5a"]
-[ext_resource type="Resource" path="res://src/autoload/settings_manager/settings.tres" id="4_tbd8h"]
+[ext_resource type="Resource" uid="uid://bbaupgv7alorj" path="res://src/autoload/settings_manager/settings.tres" id="4_tbd8h"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_settings.gd" id="5_kygh5"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_levels.gd" id="7_or3k2"]
 

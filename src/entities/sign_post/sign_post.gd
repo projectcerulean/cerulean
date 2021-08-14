@@ -15,7 +15,9 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if highlight.visible and Input.is_action_just_pressed(&"interact"):
-		pass  # TODO: start interaction
+		var dialogue_resource: DialogueResource = preload("res://assets/dialogue/test_dialogue.tres")
+		assert(dialogue_resource != null)
+		Signals.emit_request_dialogue_start(self, dialogue_resource)
 
 
 func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D):

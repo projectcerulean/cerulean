@@ -16,7 +16,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if game_state_resource.state == game_state_resource.states.GAMEPLAY:
+	if game_state_resource.state == game_state_resource.states.DIALOGUE:
+		pass
+	elif game_state_resource.state == game_state_resource.states.GAMEPLAY:
 		global_transform.origin.x = player_transform_resource.global_transform.origin.x
 		global_transform.origin.z = player_transform_resource.global_transform.origin.z
 		var y_smooth = y_smooth_player_grounded if player_state_resource.state in [player_state_resource.states.RUN, player_state_resource.states.IDLE] else y_smooth_player_air

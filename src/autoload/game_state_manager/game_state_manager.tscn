@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ghtf6xilqshm"]
+[gd_scene load_steps=7 format=3 uid="uid://ghtf6xilqshm"]
 
 [ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="1"]
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_gameplay.gd" id="2"]
-[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="3"]
+[ext_resource type="Resource" uid="uid://bviclx4gy4i7j" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="3"]
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_manager.gd" id="4"]
+[ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_dialogue.gd" id="4_26nrj"]
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_pause.gd" id="5"]
 
 [node name="GameStateManager" type="Node"]
@@ -15,6 +16,9 @@ state = ExtResource( "3" )
 script = ExtResource( "1" )
 initial_state = NodePath("Gameplay")
 state = ExtResource( "3" )
+
+[node name="Dialogue" type="Node" parent="StateMachine"]
+script = ExtResource( "4_26nrj" )
 
 [node name="Gameplay" type="Node" parent="StateMachine"]
 script = ExtResource( "2" )

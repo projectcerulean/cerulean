@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://vimxcfk41gqg"]
+[gd_scene load_steps=21 format=3 uid="uid://vimxcfk41gqg"]
 
 [ext_resource type="Shader" path="res://src/autoload/ui/effects/underwater_effect.gdshader" id="1"]
 [ext_resource type="Script" path="res://src/autoload/ui/debug/version_label/version_label.gd" id="3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/autoload/ui/debug/vector_visualizer/vector_visualizer.gd" id="5"]
 [ext_resource type="Resource" uid="uid://bqsrxvfl6htqr" path="res://src/autoload/lfo/lfo_resource.tres" id="5_f13oq"]
 [ext_resource type="Script" path="res://src/autoload/ui/debug/line_visualizer/line_visualizer.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://ch7cdnmkjr5g" path="res://src/autoload/ui/dialogue_manager/dialogue_manager.tscn" id="6_vu52l"]
 [ext_resource type="Script" path="res://src/autoload/ui/hud/compass.gd" id="7"]
 [ext_resource type="Shader" path="res://src/autoload/ui/pause_menu/screen_blur.gdshader" id="8"]
 [ext_resource type="PackedScene" uid="uid://br7e70nu65y4m" path="res://src/autoload/ui/pause_menu/pause_menu.tscn" id="9_mxrv6"]
@@ -78,6 +79,11 @@ __meta__ = {
 }
 color = Color(1, 1, 1, 0.627451)
 lfo_resource = ExtResource( "5_f13oq" )
+
+[node name="DialogueLayer" type="CanvasLayer" parent="."]
+script = null
+
+[node name="DialogueManager" parent="DialogueLayer" instance=ExtResource( "6_vu52l" )]
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 script = null

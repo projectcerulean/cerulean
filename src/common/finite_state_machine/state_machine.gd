@@ -23,10 +23,11 @@ func _ready() -> void:
 	assert(state.state as State != null, Errors.INVALID_ARGUMENT)
 
 	for child in get_children():
+		assert(child as State != null, Errors.INVALID_ARGUMENT)
 		child.state = state
 		state.states[StringName(str(child.name).to_upper())] = child
 
-	call_deferred(transition_to.get_method(), state.state)
+	transition_to(state.state)
 
 
 # Delegate `_unhandled_input` callback to the active state.
@@ -41,7 +42,7 @@ func _process(delta: float) -> void:
 	# Change the current state
 	var target_state: State = state.state.get_transition()
 	if target_state:
-		call_deferred(transition_to.get_method(), target_state)
+		transition_to(target_state)
 
 
 # Delegate `_physics_process` callback to the active state.
@@ -53,6 +54,10 @@ func _physics_process(delta: float) -> void:
 # and calls its enter function.
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
 func transition_to(target_state: State, data: Dictionary = {}) -> void:
+	call_deferred(transition_to_deferred.get_method(), target_state)
+
+
+func transition_to_deferred(target_state: State, data: Dictionary = {}) -> void:
 	state.state.exit(target_state)
 	SignalsGetter.get_signals().emit_state_exited(self, state.state)
 
