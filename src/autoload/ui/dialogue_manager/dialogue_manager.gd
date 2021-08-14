@@ -22,7 +22,7 @@ func _ready() -> void:
 	self.visible = false
 
 
-func _on_request_dialogue_start(sender: Node, dialogue_resource_new: DialogueResource) -> void:
+func _on_request_dialogue_start(sender: Node3D, dialogue_resource_new: DialogueResource) -> void:
 	assert(dialogue_resource_new != null, Errors.NULL_RESOURCE)
 	dialogue_resource = dialogue_resource_new
 	line_index = -1

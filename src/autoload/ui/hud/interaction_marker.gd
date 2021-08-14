@@ -2,6 +2,7 @@ extends Control
 
 @export var color: Color = Color.WHITE
 @export var lfo_resource: Resource
+@export var game_state_resource: Resource
 @export var oscillation_amplitude: float = 128.0
 @export var polygon_shape: PackedVector2Array = PackedVector2Array([
 	Vector2(-128.0, -128.0),
@@ -17,9 +18,13 @@ var target: Node3D = null
 func _ready() -> void:
 	SignalsGetter.get_signals().interaction_highlight_set.connect(self._on_interaction_highlight_set)
 	assert(lfo_resource as LfoResource != null, Errors.NULL_RESOURCE)
+	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
 
 
 func _draw() -> void:
+	if game_state_resource.state != game_state_resource.states.GAMEPLAY:
+		return
+
 	if target == null:
 		return
 

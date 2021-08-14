@@ -56,7 +56,6 @@ __meta__ = {
 }
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
-process_mode = 1
 script = null
 
 [node name="Compass" type="Label" parent="HudLayer"]
@@ -79,6 +78,7 @@ __meta__ = {
 }
 color = Color(1, 1, 1, 0.627451)
 lfo_resource = ExtResource( "5_f13oq" )
+game_state_resource = ExtResource( "11" )
 
 [node name="DialogueLayer" type="CanvasLayer" parent="."]
 script = null

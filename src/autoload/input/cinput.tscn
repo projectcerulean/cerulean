@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/autoload/input/thumbstick_resource_left.tres" id="3"]
 
 [node name="CInput" type="Node"]
+process_mode = 3
 script = ExtResource( "1" )
 thumbstick_left = ExtResource( "3" )
 thumbstick_right = ExtResource( "2" )

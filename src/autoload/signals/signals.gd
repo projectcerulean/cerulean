@@ -72,7 +72,7 @@ func emit_camera_water_entered(sender: Camera3D) -> void: emit(camera_water_ente
 func emit_camera_water_exited(sender: Camera3D) -> void: emit(camera_water_exited, [sender])
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, [sender, variant])
 func emit_interaction_highlight_set(sender: Node, target: Node3D) -> void: emit(interaction_highlight_set, [sender, target])
-func emit_request_dialogue_start(sender: Node, dialogue_resource: DialogueResource) -> void: emit(request_dialogue_start, [sender, dialogue_resource])
+func emit_request_dialogue_start(sender: Node3D, dialogue_resource: DialogueResource) -> void: emit(request_dialogue_start, [sender, dialogue_resource])
 func emit_request_dialogue_finish(sender: Node) -> void: emit(request_dialogue_finish, [sender])
 func emit_request_game_pause(sender: Node) -> void: emit(request_game_pause, [sender])
 func emit_request_game_quit(sender: Node) -> void: emit(request_game_quit, [sender])

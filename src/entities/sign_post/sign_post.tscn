@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://tubld1hhwoc" path="res://src/common/area/area.tscn" id="1_d1h0n"]
 [ext_resource type="Script" path="res://src/entities/sign_post/sign_post.gd" id="1_lg8ob"]
-[ext_resource type="Resource" path="res://src/autoload/lfo/lfo_resource.tres" id="2_etsqr"]
-[ext_resource type="Material" path="res://src/entities/sign_post/wood_material.tres" id="2_vxxwp"]
+[ext_resource type="Resource" uid="uid://bqsrxvfl6htqr" path="res://src/autoload/lfo/lfo_resource.tres" id="2_etsqr"]
+[ext_resource type="Material" uid="uid://ciq7rqyrt6uv2" path="res://src/entities/sign_post/wood_material.tres" id="2_vxxwp"]
 [ext_resource type="Shader" path="res://src/entities/sign_post/highlight.gdshader" id="3_icaye"]
 [ext_resource type="Script" path="res://src/entities/sign_post/sign_post_highlight.gd" id="4_pwhqe"]
 

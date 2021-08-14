@@ -25,7 +25,7 @@ func _on_request_game_unpause(_sender: Node) -> void:
 	transition = state.states.GAMEPLAY
 
 
-func _on_request_dialogue_start(_sender: Node, _dialogue_resource: DialogueResource) -> void:
+func _on_request_dialogue_start(_sender: Node3D, _dialogue_resource: DialogueResource) -> void:
 	transition = state.states.DIALOGUE
 
 
