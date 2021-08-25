@@ -9,30 +9,27 @@ extends CharacterBody3D
 
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
-@export var turn_weight: float = 0.5
+@export var turn_weight: float = 36.12
 @export var move_snap_distance: float = 0.25
 @export var jump_speed: float = 10.0
 @export var jump_acceleration: float = 10.0
 @export var air_control_modifier: float = 0.08
 
-@export var camera_anchor_y_smooth_grounded: float = 0.1
-@export var camera_anchor_y_smooth_air: float = 0.08
-
 @export var glide_gravity_modifier: float = 0.05
-@export var glide_smooth_weight: float = 0.01
-@export var glide_roll_weight: float = 0.05
+@export var glide_smooth_weight: float = 0.5238
+@export var glide_roll_weight: float = 2.673
 
 @export var water_move_acceleration: float = 15.0
-@export var water_turn_weight: float = 0.05
+@export var water_turn_weight: float = 2.673
 @export var water_buoyancy: float = 12.0
 @export var water_resistance: float = 2.0
 @export var water_state_enter_offset: float = 0.01
 @export var water_jump_max_surface_distance: float = 0.01
 
 @export var underwater_move_acceleration: float = 12.0
-@export var underwater_turn_weight: float = 0.05
+@export var underwater_turn_weight: float = 2.673
 @export var underwater_resistance: float = 2.0
-@export var underwater_roll_weight: float = 0.02
+@export var underwater_roll_weight: float = 1.053
 
 @export var wall_pushback_distance: float = 0.1
 

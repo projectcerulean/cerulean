@@ -26,7 +26,7 @@ func physics_process(delta: float) -> void:
 
 	# Apply movement
 	if not player.input_vector.is_equal_approx(Vector3.ZERO):
-		player.facing_direction = player.facing_direction.slerp(player.input_vector.normalized(), player.input_vector.length() * player.water_turn_weight)
+		player.facing_direction = Lerp.delta_slerp3(player.facing_direction, player.input_vector.normalized(), player.input_vector.length() * player.water_turn_weight, delta)
 		player.linear_velocity += player.facing_direction * player.input_vector.length() * player.water_move_acceleration * delta
 
 	if not is_nan(player.get_water_surface_height()) and player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():

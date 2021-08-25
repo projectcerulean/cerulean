@@ -55,6 +55,11 @@ _global_script_classes=[{
 "path": "res://src/autoload/game_state_manager/game_state.gd"
 }, {
 "base": "Node",
+"class": &"Lerp",
+"language": &"GDScript",
+"path": "res://src/common/lerp/lerp.gd"
+}, {
+"base": "Node",
 "class": &"Levels",
 "language": &"GDScript",
 "path": "res://src/constants/levels.gd"
@@ -149,6 +154,7 @@ _global_script_class_icons={
 "DialogueState": "",
 "Errors": "",
 "GameState": "",
+"Lerp": "",
 "Levels": "",
 "LfoResource": "",
 "Math": "",

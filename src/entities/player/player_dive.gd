@@ -20,12 +20,12 @@ func process(delta: float) -> void:
 	# Update mesh facing direction
 	var input_direction_2d: Vector3 = Vector3(player.input_vector.x, 0.0, player.input_vector.z)
 	var linear_velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
-	roll_angle = lerp(
-		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.underwater_roll_weight
+	roll_angle = Lerp.delta_lerp(
+		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.underwater_roll_weight, delta
 	)
 
 	if not player.input_vector.is_equal_approx(Vector3.ZERO):
-		player.facing_direction = player.facing_direction.slerp(player.input_vector.normalized(), player.input_vector.length() * player.underwater_turn_weight)
+		player.facing_direction = Lerp.delta_slerp3(player.facing_direction, player.input_vector.normalized(), player.input_vector.length() * player.underwater_turn_weight, delta)
 
 	var velocity_direction: Vector3 = player.linear_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition

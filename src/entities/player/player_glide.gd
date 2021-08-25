@@ -24,8 +24,8 @@ func process(delta: float) -> void:
 	# Update mesh facing direction
 	var input_direction_2d: Vector3 = Vector3(player.input_vector.x, 0.0, player.input_vector.z)
 	var linear_velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
-	roll_angle = lerp(
-		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight
+	roll_angle = Lerp.delta_lerp(
+		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight, delta
 	)
 
 	var velocity_direction: Vector3 = player.linear_velocity.normalized()
@@ -56,7 +56,7 @@ func physics_process(delta: float) -> void:
 		velocity_direction_new = -input_vector_spherical
 		velocity_direction_new.y = -velocity_direction_new.y
 	else:
-		velocity_direction_new = velocity_direction_current.slerp(input_vector_spherical, player.glide_smooth_weight)
+		velocity_direction_new = Lerp.delta_slerp3(velocity_direction_current, input_vector_spherical, player.glide_smooth_weight, delta)
 	assert(velocity_direction_new.is_normalized(), Errors.CONSISTENCY_ERROR)
 
 	player.linear_velocity = velocity_direction_new * (
