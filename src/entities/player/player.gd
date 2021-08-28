@@ -31,8 +31,6 @@ extends CharacterBody3D
 @export var underwater_resistance: float = 2.0
 @export var underwater_roll_weight: float = 1.053
 
-@export var wall_pushback_distance: float = 0.1
-
 @onready var raycast: RayCast3D = get_node("RayCast3D")
 @onready var coyote_timer: Timer = get_node("CoyoteTimer")
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer")
@@ -121,19 +119,10 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	# Hack to prevent getting stuck on (CSG) edges
-	if is_on_wall() and get_slide_count() > 0:
-		var normal: Vector3 = Vector3.ZERO
-		for i in range(get_slide_count()):
-			normal += get_slide_collision(i).normal
-		normal.y = 0.0
-		normal = normal.normalized()
-
-		if normal.is_normalized():
-			var linear_velocity_tmp: Vector3 = linear_velocity
-			linear_velocity = wall_pushback_distance * normal
-			move_and_slide()
-			linear_velocity = linear_velocity_tmp
+	for i in range(get_slide_collision_count()):
+		var collision: KinematicCollision3D = get_slide_collision(i)
+		if collision.get_angle() > floor_max_angle:
+			linear_velocity = Plane(collision.normal, 0.0).project(linear_velocity)
 
 
 func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:

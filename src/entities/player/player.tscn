@@ -18,11 +18,11 @@
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.25
-height = 0.75
+height = 1.25
 
 [sub_resource type="CapsuleMesh" id="2"]
 radius = 0.25
-mid_height = 0.75
+height = 1.25
 
 [sub_resource type="StandardMaterial3D" id="3"]
 albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
@@ -36,7 +36,7 @@ albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
 [sub_resource type="CapsuleMesh" id="6"]
 material = SubResource( "5" )
 radius = 0.25
-mid_height = 0.75
+height = 1.25
 
 [sub_resource type="BoxMesh" id="7"]
 size = Vector3(0.75, 0.75, 0.1)

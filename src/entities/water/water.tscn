@@ -48,7 +48,7 @@ script = null
 
 [node name="Area3D" parent="." instance=ExtResource( "2_5wdg5" )]
 collision_layer = 16
-collision_mask = 9
+collision_mask = 11
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32, 0)
