@@ -199,6 +199,11 @@ UI="res://src/autoload/ui/ui.tscn"
 GameStateManager="res://src/autoload/game_state_manager/game_state_manager.tscn"
 SettingsManager="res://src/autoload/settings_manager/settings_manager.tscn"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [input]
 
 ui_accept={
