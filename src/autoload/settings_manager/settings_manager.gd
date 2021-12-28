@@ -27,15 +27,15 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().request_setting_update.connect(self._on_request_setting_update)
-	SignalsGetter.get_signals().request_settings_save.connect(self._on_request_settings_save)
+	Signals.request_setting_update.connect(self._on_request_setting_update)
+	Signals.request_settings_save.connect(self._on_request_settings_save)
 
 
 func _on_request_setting_update(_sender: Node, key: StringName, value: int) -> void:
 	var n_options: int = Settings.SETTINGS[key][Settings.VALUE_NAMES].size()
 	assert(value >= 0 and value < n_options, Errors.INVALID_ARGUMENT)
 	settings.settings[key] = value
-	SignalsGetter.get_signals().emit_setting_updated(self, key, value)
+	Signals.emit_setting_updated(self, key, value)
 
 
 func _on_request_settings_save(_sender: Node) -> void:

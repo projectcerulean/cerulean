@@ -10,7 +10,7 @@ var colors: Dictionary
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().visualize_line.connect(self._on_visualize_line)
+	Signals.visualize_line.connect(self._on_visualize_line)
 	if points_default.size() > 0:
 		assert(points_default.size() < max_points_per_line, Errors.INVALID_ARGUMENT)
 		lines[null] = DataStructures.RotationQueue.new(max_points_per_line)

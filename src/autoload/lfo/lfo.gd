@@ -9,7 +9,7 @@ const seconds_per_minute: float = 60.0
 
 
 func _ready():
-	SignalsGetter.get_signals().bgm_changed.connect(self._on_bgm_changed)
+	Signals.bgm_changed.connect(self._on_bgm_changed)
 	assert(lfo_resource as LfoResource != null, Errors.NULL_RESOURCE)
 
 

@@ -11,9 +11,9 @@ var line_index: int = 0
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().request_dialogue_start.connect(self._on_request_dialogue_start)
-	SignalsGetter.get_signals().state_entered.connect(self._on_state_entered)
-	SignalsGetter.get_signals().state_exited.connect(self._on_state_exited)
+	Signals.request_dialogue_start.connect(self._on_request_dialogue_start)
+	Signals.state_entered.connect(self._on_state_entered)
+	Signals.state_exited.connect(self._on_state_exited)
 
 	assert(label != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)

@@ -16,8 +16,8 @@ var dialogue_target_position_start: Vector3
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().scene_changed.connect(self._on_scene_changed)
-	SignalsGetter.get_signals().request_dialogue_start.connect(self._on_request_dialogue_start)
+	Signals.scene_changed.connect(self._on_scene_changed)
+	Signals.request_dialogue_start.connect(self._on_request_dialogue_start)
 	assert(transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
 	assert(player_transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
 

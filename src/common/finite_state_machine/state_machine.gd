@@ -59,9 +59,9 @@ func transition_to(target_state: State, data: Dictionary = {}) -> void:
 
 func transition_to_deferred(target_state: State, data: Dictionary = {}) -> void:
 	state.state.exit(target_state)
-	SignalsGetter.get_signals().emit_state_exited(self, state.state)
+	Signals.emit_state_exited(self, state.state)
 
 	var old_state: State = state.state
 	state.state = target_state
 	state.state.enter(old_state, data)
-	SignalsGetter.get_signals().emit_state_entered(self, state.state)
+	Signals.emit_state_entered(self, state.state)

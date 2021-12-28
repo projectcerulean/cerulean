@@ -6,13 +6,13 @@ var transition: Node
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().request_game_pause.connect(self._on_request_game_pause)
-	SignalsGetter.get_signals().request_game_unpause.connect(self._on_request_game_unpause)
-	SignalsGetter.get_signals().request_dialogue_start.connect(self._on_request_dialogue_start)
-	SignalsGetter.get_signals().request_dialogue_finish.connect(self._on_request_dialogue_finish)
-	SignalsGetter.get_signals().request_scene_change.connect(self._on_request_scene_change)
-	SignalsGetter.get_signals().request_scene_reload.connect(self._on_request_scene_reload)
-	SignalsGetter.get_signals().request_game_quit.connect(self._on_request_game_quit)
+	Signals.request_game_pause.connect(self._on_request_game_pause)
+	Signals.request_game_unpause.connect(self._on_request_game_unpause)
+	Signals.request_dialogue_start.connect(self._on_request_dialogue_start)
+	Signals.request_dialogue_finish.connect(self._on_request_dialogue_finish)
+	Signals.request_scene_change.connect(self._on_request_scene_change)
+	Signals.request_scene_reload.connect(self._on_request_scene_reload)
+	Signals.request_game_quit.connect(self._on_request_game_quit)
 
 	assert(state as StateResource != null, Errors.NULL_RESOURCE)
 

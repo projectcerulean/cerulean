@@ -2,9 +2,9 @@ extends ColorRect
 
 
 func _ready():
-	SignalsGetter.get_signals().camera_water_entered.connect(self._on_camera_water_entered)
-	SignalsGetter.get_signals().camera_water_exited.connect(self._on_camera_water_exited)
-	SignalsGetter.get_signals().scene_changed.connect(self._on_scene_changed)
+	Signals.camera_water_entered.connect(self._on_camera_water_entered)
+	Signals.camera_water_exited.connect(self._on_camera_water_exited)
+	Signals.scene_changed.connect(self._on_scene_changed)
 
 
 func _on_camera_water_entered(sender: Camera3D):

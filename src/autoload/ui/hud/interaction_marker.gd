@@ -16,7 +16,7 @@ var target: Node3D = null
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().interaction_highlight_set.connect(self._on_interaction_highlight_set)
+	Signals.interaction_highlight_set.connect(self._on_interaction_highlight_set)
 	assert(lfo_resource as LfoResource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
 

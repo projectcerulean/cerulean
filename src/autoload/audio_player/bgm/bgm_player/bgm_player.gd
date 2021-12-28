@@ -26,9 +26,9 @@ var rhythm_tween: Tween = null
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().scene_changed.connect(self._on_scene_changed)
-	SignalsGetter.get_signals().state_entered.connect(self._on_state_entered)
-	SignalsGetter.get_signals().setting_updated.connect(self._on_setting_updated)
+	Signals.scene_changed.connect(self._on_scene_changed)
+	Signals.state_entered.connect(self._on_state_entered)
+	Signals.setting_updated.connect(self._on_setting_updated)
 
 	assert(settings as SettingsResource != null, Errors.NULL_RESOURCE)
 	assert(player_state as StateResource != null, Errors.NULL_RESOURCE)
@@ -81,7 +81,7 @@ func _on_scene_changed(sender: Node):
 			base_tween.tween_property(base_player, "volume_db", volume_db_low, tween_duration_cutoff)
 		base_tween.tween_property(base_player, "volume_db", volume_db_high, tween_duration_glide)
 
-	SignalsGetter.get_signals().emit_bgm_changed(self, bgm_resource)
+	Signals.emit_bgm_changed(self, bgm_resource)
 
 
 func _on_state_entered(sender: Node, state: Node) -> void:

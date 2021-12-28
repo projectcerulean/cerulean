@@ -6,7 +6,7 @@ extends RichTextLabel
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().debug_write.connect(self._on_debug_write)
+	Signals.debug_write.connect(self._on_debug_write)
 	assert(rotationQueue != null, Errors.NULL_NODE)
 
 

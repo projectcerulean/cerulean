@@ -3,7 +3,7 @@ extends PauseMenuState
 
 func exit(new_state: PauseMenuState) -> void:
 	super.exit(new_state)
-	SignalsGetter.get_signals().emit_request_settings_save(self)
+	Signals.emit_request_settings_save(self)
 
 
 func process(delta: float) -> void:
@@ -18,7 +18,7 @@ func process(delta: float) -> void:
 func get_transition() -> PauseMenuState:
 	if pause_menu.game_state.state == pause_menu.game_state.states.PAUSE:
 		if Input.is_action_just_pressed(&"pause"):
-			SignalsGetter.get_signals().emit_request_game_unpause(self)
+			Signals.emit_request_game_unpause(self)
 			return state.states.MAIN
 		elif Input.is_action_just_pressed("ui_cancel"):
 			return state.states.MAIN

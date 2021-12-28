@@ -12,7 +12,7 @@ var i_hovered_option: int:
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().state_exited.connect(self._on_state_exited)
+	Signals.state_exited.connect(self._on_state_exited)
 
 	assert(menu != null, Errors.NULL_NODE)
 	assert(menu_options.size() > 0, Errors.NULL_NODE)
@@ -43,7 +43,7 @@ func exit(new_state: PauseMenuState) -> void:
 func get_transition() -> PauseMenuState:
 	if pause_menu.game_state.state == pause_menu.game_state.states.PAUSE:
 		if Input.is_action_just_pressed(&"pause"):
-			SignalsGetter.get_signals().emit_request_game_unpause(self)
+			Signals.emit_request_game_unpause(self)
 			return state.states.MAIN
 	return null
 

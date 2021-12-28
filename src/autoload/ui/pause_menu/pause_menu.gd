@@ -4,8 +4,8 @@ extends Control
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().state_entered.connect(self._on_state_entered)
-	SignalsGetter.get_signals().state_exited.connect(self._on_state_exited)
+	Signals.state_entered.connect(self._on_state_entered)
+	Signals.state_exited.connect(self._on_state_exited)
 
 	assert(game_state as StateResource != null, Errors.NULL_RESOURCE)
 	self.visible = false

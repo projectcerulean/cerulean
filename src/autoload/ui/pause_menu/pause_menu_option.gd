@@ -12,8 +12,8 @@ extends HBoxContainer
 
 
 func _ready() -> void:
-	SignalsGetter.get_signals().setting_updated.connect(self._on_setting_updated)
-	SignalsGetter.get_signals().scene_changed.connect(self._on_scene_changed)
+	Signals.setting_updated.connect(self._on_setting_updated)
+	Signals.scene_changed.connect(self._on_scene_changed)
 
 	assert(str(key_string), Errors.INVALID_ARGUMENT)
 	assert(key_node != null, Errors.NULL_NODE)
@@ -43,7 +43,7 @@ func adjust_option(delta: int) -> void:
 	if is_settings_option:
 		var n_options: int = Settings.SETTINGS[key_string][Settings.VALUE_NAMES].size()
 		var value_new: int = posmod(settings.settings[key_string] + delta, n_options)
-		SignalsGetter.get_signals().emit_request_setting_update(self, key_string, value_new)
+		Signals.emit_request_setting_update(self, key_string, value_new)
 
 
 func _on_setting_updated(_sender: Node, _key: StringName, _value: int):

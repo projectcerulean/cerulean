@@ -6,5 +6,5 @@ func get_transition() -> DialogueState:
 			if dialogue_manager.line_index < dialogue_manager.dialogue_resource.dialogue_lines.size() - 1:
 				return state.states.OUTPUT
 			else:
-				SignalsGetter.get_signals().emit_request_dialogue_finish(self)
+				Signals.emit_request_dialogue_finish(self)
 	return null
