@@ -8,10 +8,10 @@ var roll_angle: float = 0.0
 func enter(old_state: PlayerState, data := {}) -> void:
 	super.enter(old_state, data)
 	glide_start_position = player.position
-	glide_start_velocity = player.linear_velocity
+	glide_start_velocity = player.motion_velocity
 	roll_angle = 0.0
 
-	var velocity_direction: Vector3 = player.linear_velocity.normalized()
+	var velocity_direction: Vector3 = player.motion_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
 		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
 	else:
@@ -23,12 +23,12 @@ func process(delta: float) -> void:
 
 	# Update mesh facing direction
 	var input_direction_2d: Vector3 = Vector3(player.input_vector.x, 0.0, player.input_vector.z)
-	var linear_velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
+	var motion_velocity_2d: Vector3 = Vector3(player.motion_velocity.x, 0.0, player.motion_velocity.z)
 	roll_angle = Lerp.delta_lerp_angle(
-		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight, delta
+		roll_angle, motion_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.glide_roll_weight, delta
 	)
 
-	var velocity_direction: Vector3 = player.linear_velocity.normalized()
+	var velocity_direction: Vector3 = player.motion_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
 		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
 	else:
@@ -45,7 +45,7 @@ func physics_process(delta: float) -> void:
 	input_vector_spherical = input_vector_spherical.normalized()
 	assert(not input_vector_spherical.is_equal_approx(Vector3.ZERO), Errors.CONSISTENCY_ERROR)
 
-	var velocity_direction_current: Vector3 = player.linear_velocity.normalized()
+	var velocity_direction_current: Vector3 = player.motion_velocity.normalized()
 	var velocity_direction_new: Vector3 = Vector3.ZERO
 
 	if velocity_direction_current == Vector3.ZERO:
@@ -59,19 +59,19 @@ func physics_process(delta: float) -> void:
 		velocity_direction_new = Lerp.delta_slerp3(velocity_direction_current, input_vector_spherical, player.glide_smooth_weight, delta)
 	assert(velocity_direction_new.is_normalized(), Errors.CONSISTENCY_ERROR)
 
-	player.linear_velocity = velocity_direction_new * (
+	player.motion_velocity = velocity_direction_new * (
 		Math.signed_sqrt(
 			2.0 * Physics.GRAVITY * player.glide_gravity_modifier * (glide_start_position.y - player.position.y)
 		) + glide_start_velocity.length()
 	)
 
 	# Update movement direction
-	var direction_new: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z).normalized()
+	var direction_new: Vector3 = Vector3(player.motion_velocity.x, 0.0, player.motion_velocity.z).normalized()
 	if not direction_new.is_equal_approx(Vector3.ZERO):
 		player.facing_direction = direction_new.normalized()
 
 	# Apply gravity
-	player.linear_velocity.y = player.linear_velocity.y - Physics.GRAVITY * player.glide_gravity_modifier * delta
+	player.motion_velocity.y = player.motion_velocity.y - Physics.GRAVITY * player.glide_gravity_modifier * delta
 
 	# Go
 	player.move_and_slide()
@@ -85,7 +85,7 @@ func get_transition() -> PlayerState:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - player.water_state_enter_offset:
 		return state.states.SWIM
 	elif player.is_on_floor():
-		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
+		if is_equal_approx(player.motion_velocity.x, 0.0) and is_equal_approx(player.motion_velocity.z, 0.0):
 			return state.states.IDLE
 		else:
 			return state.states.RUN

@@ -22,13 +22,15 @@ size = Vector3(1, 1.5, 0.1)
 radius = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjcg5"]
+render_priority = 0
 shader = ExtResource( "3_icaye" )
-shader_param/albedo = Color(0.66, 0.66, 0.66, 1)
+shader_param/albedo = Color(0.832284, 0.832284, 0.832284, 1)
 shader_param/grow = 0.025
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ets0"]
+render_priority = 0
 shader = ExtResource( "3_icaye" )
-shader_param/albedo = Color(0.66, 0.66, 0.66, 1)
+shader_param/albedo = Color(0.832284, 0.832284, 0.832284, 1)
 shader_param/grow = 0.025
 
 [node name="SignPost" type="StaticBody3D"]
@@ -40,18 +42,15 @@ lfo_resource = ExtResource( "2_etsqr" )
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 mesh = SubResource( "CylinderMesh_hm6r0" )
 surface_material_override/0 = ExtResource( "2_vxxwp" )
-script = null
 
 [node name="Sign" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07288e-06, 0)
 mesh = SubResource( "BoxMesh_otxnp" )
 surface_material_override/0 = ExtResource( "2_vxxwp" )
-script = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource( "BoxShape3D_6bn8e" )
-script = null
 
 [node name="Area3D" parent="." instance=ExtResource( "1_d1h0n" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
@@ -59,7 +58,6 @@ collision_layer = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource( "SphereShape3D_xrbev" )
-script = null
 
 [node name="Highlight" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
@@ -70,11 +68,9 @@ script = ExtResource( "4_pwhqe" )
 mesh = SubResource( "CylinderMesh_hm6r0" )
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource( "ShaderMaterial_yjcg5" )
-script = null
 
 [node name="SignHighlight" type="MeshInstance3D" parent="Highlight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.750001, 0)
 mesh = SubResource( "BoxMesh_otxnp" )
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource( "ShaderMaterial_2ets0" )
-script = null

@@ -20,23 +20,18 @@ target_transform_resource = ExtResource( "5_sufsx" )
 game_state_resource = ExtResource( "6_3eh25" )
 
 [node name="YawPivot" type="Position3D" parent="."]
-script = null
 
 [node name="PitchPivot" type="Position3D" parent="YawPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
-script = null
 
 [node name="Camera3D" type="Camera3D" parent="YawPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 current = true
 fov = 90.0
-script = null
 
 [node name="Area3D" type="Area3D" parent="YawPivot/PitchPivot/Camera3D"]
 collision_layer = 2
 collision_mask = 16
-script = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/Camera3D/Area3D"]
 shape = SubResource( "7" )
-script = null

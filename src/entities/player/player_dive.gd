@@ -7,7 +7,7 @@ func enter(old_state: PlayerState, data := {}) -> void:
 	super.enter(old_state, data)
 	roll_angle = 0.0
 
-	var velocity_direction: Vector3 = player.linear_velocity.normalized()
+	var velocity_direction: Vector3 = player.motion_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
 		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
 	else:
@@ -19,15 +19,15 @@ func process(delta: float) -> void:
 
 	# Update mesh facing direction
 	var input_direction_2d: Vector3 = Vector3(player.input_vector.x, 0.0, player.input_vector.z)
-	var linear_velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
+	var motion_velocity_2d: Vector3 = Vector3(player.motion_velocity.x, 0.0, player.motion_velocity.z)
 	roll_angle = Lerp.delta_lerp_angle(
-		roll_angle, linear_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.underwater_roll_weight, delta
+		roll_angle, motion_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.underwater_roll_weight, delta
 	)
 
 	if not player.input_vector.is_equal_approx(Vector3.ZERO):
 		player.facing_direction = Lerp.delta_slerp3(player.facing_direction, player.input_vector.normalized(), player.input_vector.length() * player.underwater_turn_weight, delta)
 
-	var velocity_direction: Vector3 = player.linear_velocity.normalized()
+	var velocity_direction: Vector3 = player.motion_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
 		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
 	else:
@@ -45,10 +45,10 @@ func physics_process(delta: float) -> void:
 	)
 	if input_vector.length_squared() > 1.0:
 		input_vector = input_vector.normalized()
-	player.linear_velocity += input_vector * player.underwater_move_acceleration * delta
+	player.motion_velocity += input_vector * player.underwater_move_acceleration * delta
 
 	# Apply friction
-	player.linear_velocity -= player.linear_velocity * player.underwater_resistance * delta
+	player.motion_velocity -= player.motion_velocity * player.underwater_resistance * delta
 
 	# Go
 	player.move_and_slide()
@@ -57,7 +57,7 @@ func physics_process(delta: float) -> void:
 func get_transition() -> PlayerState:
 	if not player.is_in_water():
 		return state.states.FALL
-	elif player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
+	elif player.motion_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
 		return state.states.SWIM
 	else:
 		return null

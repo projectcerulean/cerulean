@@ -53,7 +53,7 @@ func _on_setting_updated(_sender: Node, _key: StringName, _value: int):
 
 func _on_scene_changed(_sender: Node):
 	if is_level_option:
-		if Levels.LEVELS[key_string][Levels.LEVEL_PATH] == get_tree().current_scene.filename:
+		if Levels.LEVELS[key_string][Levels.LEVEL_PATH] == get_tree().current_scene.scene_file_path:
 			value_node.text = "(Current)"
 		else:
 			value_node.text = ""

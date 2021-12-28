@@ -3,7 +3,7 @@ extends PlayerState
 
 func enter(old_state: PlayerState, data := {}) -> void:
 	super.enter(old_state, data)
-	player.linear_velocity = Vector3.ZERO
+	player.motion_velocity = Vector3.ZERO
 
 	# Update mesh facing direction
 	player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)

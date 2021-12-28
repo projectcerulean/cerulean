@@ -8,6 +8,6 @@ noise = SubResource( "8" )
 
 [resource]
 specular_mode = 4
-albedo_color = Color(0.247059, 0.45098, 0.345098, 1)
+albedo_color = Color(0.534186, 0.702097, 0.622218, 1)
 orm_texture = SubResource( "9" )
 uv1_triplanar = true

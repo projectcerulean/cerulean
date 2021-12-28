@@ -25,13 +25,13 @@ radius = 0.25
 height = 1.25
 
 [sub_resource type="StandardMaterial3D" id="3"]
-albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
+albedo_color = Color(0.442601, 0.602582, 0.878272, 1)
 
 [sub_resource type="BoxMesh" id="4"]
 size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="5"]
-albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
+albedo_color = Color(0.442601, 0.602582, 0.878272, 1)
 
 [sub_resource type="CapsuleMesh" id="6"]
 material = SubResource( "5" )
@@ -44,14 +44,14 @@ size = Vector3(0.75, 0.75, 0.1)
 [sub_resource type="StandardMaterial3D" id="11"]
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.666667, 0.666667, 0.666667, 1)
+albedo_color = Color(0.836007, 0.836007, 0.836007, 1)
 
 [sub_resource type="ImmediateMesh" id="9"]
 
 [sub_resource type="StandardMaterial3D" id="12"]
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.0784314, 0.27451, 0.745098, 1)
+albedo_color = Color(0.310278, 0.560628, 0.878272, 1)
 
 [sub_resource type="ImmediateMesh" id="10"]
 
@@ -66,75 +66,57 @@ camera_transform_resource = ExtResource( "6_sk484" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( "1" )
-script = null
 
 [node name="MeshRoot" type="Node3D" parent="."]
-script = null
 
 [node name="MeshDefault" type="Node3D" parent="MeshRoot"]
-script = null
 
 [node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault"]
-script = null
 
 [node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault/Joint"]
-script = null
 
 [node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault/Joint/Joint"]
-script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshDefault/Joint/Joint/Joint"]
 mesh = SubResource( "2" )
 surface_material_override/0 = SubResource( "3" )
-script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshDefault/Joint/Joint/Joint/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
 mesh = SubResource( "4" )
 surface_material_override/0 = null
-script = null
 
 [node name="MeshGlide" type="Node3D" parent="MeshRoot"]
 visible = false
-script = null
 
 [node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide"]
 transform = Transform3D(1, -1.49012e-08, 0, 0, 1, 0, -2.98023e-08, 1.19209e-07, 1, 0, 0, 0)
-script = null
 
 [node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide/Joint"]
-script = null
 
 [node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide/Joint/Joint"]
-script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource( "6" )
 surface_material_override/0 = null
-script = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource( "7" )
 surface_material_override/0 = null
-script = null
 
 [node name="TrailPositionLeftInner" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)
-script = null
 
 [node name="TrailPositionLeftOuter" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.37, 0.37, 0)
-script = null
 
 [node name="TrailPositionRightInner" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.353553, -0.353553, 0)
-script = null
 
 [node name="TrailPositionRightOuter" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -0.37, 0)
-script = null
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "2" )
@@ -165,7 +147,6 @@ script = ExtResource( "9" )
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.65, 0)
 collision_mask = 4
-script = null
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -173,17 +154,14 @@ light_energy = 5.0
 light_negative = true
 spot_range = 50.0
 spot_angle = 10.0
-script = null
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
-script = null
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
-script = null
 
 [node name="GlideTrailRenderer" type="MeshInstance3D" parent="."]
 top_level = true

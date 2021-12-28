@@ -27,16 +27,16 @@ func physics_process(delta: float) -> void:
 	# Apply movement
 	if not player.input_vector.is_equal_approx(Vector3.ZERO):
 		player.facing_direction = Lerp.delta_slerp3(player.facing_direction, player.input_vector.normalized(), player.input_vector.length() * player.water_turn_weight, delta)
-		player.linear_velocity += player.facing_direction * player.input_vector.length() * player.water_move_acceleration * delta
+		player.motion_velocity += player.facing_direction * player.input_vector.length() * player.water_move_acceleration * delta
 
-	if not is_nan(player.get_water_surface_height()) and player.linear_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
+	if not is_nan(player.get_water_surface_height()) and player.motion_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
 		player.global_transform.origin.y = player.get_water_surface_height()
-		player.linear_velocity.y = 0.0
+		player.motion_velocity.y = 0.0
 	else:
-		player.linear_velocity.y = player.linear_velocity.y + player.water_buoyancy * delta
+		player.motion_velocity.y = player.motion_velocity.y + player.water_buoyancy * delta
 
 	# Apply friction
-	player.linear_velocity -= player.linear_velocity * player.water_resistance * delta
+	player.motion_velocity -= player.motion_velocity * player.water_resistance * delta
 
 	# Go
 	player.move_and_slide()

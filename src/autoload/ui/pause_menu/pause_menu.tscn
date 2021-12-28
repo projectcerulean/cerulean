@@ -27,7 +27,6 @@ offset_right = 512.0
 offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
-script = null
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -81,7 +80,6 @@ offset_right = 512.0
 offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
-script = null
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -117,7 +115,6 @@ offset_right = 512.0
 offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
-script = null
 __meta__ = {
 "_edit_use_anchors_": false
 }

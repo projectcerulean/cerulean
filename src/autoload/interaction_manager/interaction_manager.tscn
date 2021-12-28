@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://6auiocuu7qm7"]
 
 [ext_resource type="Script" path="res://src/autoload/interaction_manager/interaction_manager.gd" id="1_a6yb8"]
-[ext_resource type="Resource" path="res://src/entities/player/player_transform.tres" id="2_dcd88"]
+[ext_resource type="Resource" uid="uid://cf5mdlivktsoa" path="res://src/entities/player/player_transform.tres" id="2_dcd88"]
 
 [node name="InteractionManager" type="Node"]
 process_mode = 3

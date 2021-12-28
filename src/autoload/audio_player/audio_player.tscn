@@ -9,10 +9,8 @@
 
 [node name="AudioPlayer" type="Node"]
 process_mode = 3
-script = null
 
 [node name="Bgm" type="Node" parent="."]
-script = null
 
 [node name="BgmPlayer" type="Node" parent="Bgm"]
 script = ExtResource( "2" )
@@ -21,18 +19,14 @@ player_state = ExtResource( "1" )
 
 [node name="BasePlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
 bus = &"BgmBase"
-script = null
 
 [node name="GlidePlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
 bus = &"BgmGlide"
-script = null
 
 [node name="RhythmPlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
 bus = &"BgmRhythm"
-script = null
 
 [node name="BgmEffects" type="Node" parent="Bgm"]
-script = null
 
 [node name="PauseLowpass" type="Node" parent="Bgm/BgmEffects"]
 script = ExtResource( "3_1ehpi" )
@@ -43,4 +37,3 @@ script = ExtResource( "4_t4lhm" )
 player_state = ExtResource( "1" )
 
 [node name="SfxPlayer" type="Node" parent="."]
-script = null

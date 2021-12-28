@@ -18,5 +18,5 @@ func _on_debug_write(sender: Node, variant: Variant) -> void:
 	lines.resize(rotationQueue.size())
 	for iLine in range(rotationQueue.size()):
 		lines[iLine] = rotationQueue.get_item(iLine)
-	bbcode_text = "\n".join(lines)
+	text = "\n".join(lines)
 	visible = true

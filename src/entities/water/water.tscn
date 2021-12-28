@@ -24,11 +24,12 @@ seamless = true
 noise = SubResource( "11" )
 
 [sub_resource type="ShaderMaterial" id="2"]
+render_priority = 0
 shader = ExtResource( "1" )
 shader_param/mesh_size_x = 64
 shader_param/mesh_size_y = 64
-shader_param/water_color = Color(0.0784314, 0.27451, 0.745098, 0.878431)
-shader_param/water_color_highlight = Color(0.176471, 0.372549, 0.843137, 0.878431)
+shader_param/water_color = Color(0.310278, 0.560628, 0.878272, 0.878431)
+shader_param/water_color_highlight = Color(0.457114, 0.644164, 0.9276, 0.878431)
 shader_param/water_color_highlight_threshold = 0.55
 shader_param/noise_time_factor = Vector2(0.01, 0.002)
 shader_param/wave_periods_x = 4
@@ -44,7 +45,6 @@ size = Vector3(64, 64, 64)
 [node name="Water" type="MeshInstance3D"]
 mesh = SubResource( "1" )
 surface_material_override/0 = SubResource( "2" )
-script = null
 
 [node name="Area3D" parent="." instance=ExtResource( "2_5wdg5" )]
 collision_layer = 16
@@ -53,4 +53,3 @@ collision_mask = 11
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32, 0)
 shape = SubResource( "13" )
-script = null

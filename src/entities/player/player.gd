@@ -122,7 +122,7 @@ func _physics_process(_delta: float) -> void:
 	for i in range(get_slide_collision_count()):
 		var collision: KinematicCollision3D = get_slide_collision(i)
 		if collision.get_angle() > floor_max_angle:
-			linear_velocity = Plane(collision.normal, 0.0).project(linear_velocity)
+			motion_velocity = Plane(collision.get_normal(), 0.0).project(motion_velocity)
 
 
 func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:

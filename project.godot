@@ -6,7 +6,7 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
 _global_script_classes=[{
 "base": "Node",
@@ -180,6 +180,7 @@ config/name="Project Cerulean"
 run/main_scene="res://src/levels/test_scene/test_scene.tscn"
 config/icon="res://assets/graphics/icon/icon.png"
 config/windows_native_icon="res://assets/graphics/icon/icon.ico"
+config/features=PackedStringArray("4.0")
 
 [audio]
 
