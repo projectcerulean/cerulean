@@ -118,13 +118,6 @@ func _process(_delta: float) -> void:
 			Signals.emit_request_game_pause(self)
 
 
-func _physics_process(_delta: float) -> void:
-	for i in range(get_slide_collision_count()):
-		var collision: KinematicCollision3D = get_slide_collision(i)
-		if collision.get_angle() > floor_max_angle:
-			motion_velocity = Plane(collision.get_normal(), 0.0).project(motion_velocity)
-
-
 func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
 	if body != self:
 		return
