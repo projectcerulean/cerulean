@@ -21,7 +21,7 @@ shader_param/vertex_offset_scale = 2.0
 shader_param/time_scale = Vector2(0.25, 0)
 shader_param/face_distortion = 1.0
 shader_param/curvature = 5.0
-shader_param/albedo = Color(0.442601, 0.602582, 0.878272, 1)
+shader_param/albedo = Color(0.164706, 0.321569, 0.745098, 1)
 shader_param/uv_offset_texture = SubResource( "NoiseTexture_pc7e0" )
 
 [node name="Flag" type="MeshInstance3D"]
