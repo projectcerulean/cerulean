@@ -167,6 +167,8 @@ size = Vector3(4, 22, 8)
 
 [node name="Barrier" parent="Env/Entrance" instance=ExtResource( "5_7fqri" )]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 6, 67.5)
+input_nodes = [NodePath("../Switch"), NodePath("../Switch2")]
+target_states = [true, true]
 
 [node name="Switch" parent="Env/Entrance" instance=ExtResource( "6_4a13o" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 74)

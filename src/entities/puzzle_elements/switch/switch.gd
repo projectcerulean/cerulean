@@ -8,6 +8,7 @@ extends StaticBody3D
 func _ready() -> void:
 	assert(crystal != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
+	assert(state_machine.get_child_count() == 2, Errors.CONSISTENCY_ERROR)
 
 func flip():
 	state_machine.transition_to_next()

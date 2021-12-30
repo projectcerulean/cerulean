@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnivere8lylvr"]
+[gd_scene load_steps=10 format=3 uid="uid://bnivere8lylvr"]
 
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/barrier/barrier.gd" id="1_8dbv4"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/barrier/barrier.gdshader" id="1_alkq1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rojgn"]
@@ -34,6 +35,7 @@ shader_param/noise_sampler2 = SubResource( "NoiseTexture_psu5q" )
 [node name="Barrier" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 11
+script = ExtResource( "1_8dbv4" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( "BoxShape3D_rojgn" )
