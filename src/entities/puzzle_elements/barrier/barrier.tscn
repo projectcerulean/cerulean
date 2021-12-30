@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnivere8lylvr"]
+
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/barrier/barrier.gdshader" id="1_alkq1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rojgn"]
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4kh3e"]
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_7od6c"]
+
+[sub_resource type="NoiseTexture" id="NoiseTexture_jviy4"]
+seamless = true
+noise = SubResource( "OpenSimplexNoise_7od6c" )
+
+[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_dyq7f"]
+
+[sub_resource type="NoiseTexture" id="NoiseTexture_psu5q"]
+seamless = true
+noise = SubResource( "OpenSimplexNoise_dyq7f" )
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esmal"]
+render_priority = 1
+shader = ExtResource( "1_alkq1" )
+shader_param/color = Color(0.376471, 0.196078, 0.192157, 1)
+shader_param/noise_threshold = 0.55
+shader_param/alpha_min = 0.3
+shader_param/alpha_max = 0.6
+shader_param/noise_time_factor = Vector2(0.1, 0.02)
+shader_param/noise_sampler1 = SubResource( "NoiseTexture_jviy4" )
+shader_param/noise_sampler2 = SubResource( "NoiseTexture_psu5q" )
+
+[node name="Barrier" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 11
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource( "BoxShape3D_rojgn" )
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource( "BoxMesh_4kh3e" )
+surface_material_override/0 = SubResource( "ShaderMaterial_esmal" )
