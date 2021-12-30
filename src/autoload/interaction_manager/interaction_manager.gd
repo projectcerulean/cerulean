@@ -6,6 +6,7 @@ var interactables: Array = []
 
 
 func _ready() -> void:
+	Signals.request_interaction.connect(self._on_request_interaction)
 	Signals.request_interaction_highlight.connect(self._on_request_interaction_highlight)
 	Signals.request_interaction_unhighlight.connect(self._on_request_interaction_unhighlight)
 	Signals.scene_changed.connect(self._on_scene_changed)
@@ -20,8 +21,14 @@ func _process(delta: float) -> void:
 			Signals.emit_interaction_highlight_set(self, interactables.front())
 
 
+func _on_request_interaction(sender: Node):
+	if interactables.size() > 0:
+		interactables.front().interact()
+
+
 func _on_request_interaction_highlight(sender: Node3D):
 	# TODO: prevent interactions through walls
+	assert(sender as Interaction != null, Errors.TYPE_ERROR)
 	if sender not in interactables:
 		interactables.append(sender)
 		interactables.sort_custom(interactables_sort)

@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://df0jxyi8dlx2u" path="res://src/levels/test_scene/stone_material.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://3mhvdybo4ccu" path="res://src/levels/test_scene/flag/flag.tscn" id="6_psp6u"]
 [ext_resource type="Material" uid="uid://c08dhvu7qf20u" path="res://src/levels/test_scene/grass_material.tres" id="7_gxhck"]
-[ext_resource type="PackedScene" uid="uid://enwddra1aeb" path="res://src/entities/sign_post/sign_post.tscn" id="8_l3hhy"]
+[ext_resource type="PackedScene" path="res://src/entities/sign_post/sign_post.tscn" id="8_l3hhy"]
 
 [node name="TestScene" type="Node"]
 script = ExtResource( "1_arp3q" )

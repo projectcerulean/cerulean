@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://diuy5376ye76p"]
+[gd_scene load_steps=9 format=3 uid="uid://diuy5376ye76p"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
+[ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interaction.tscn" id="2_hkiaq"]
+[ext_resource type="Script" path="res://src/common/interaction/interaction_action.gd" id="3_7kgae"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmta0"]
 height = 2.5
@@ -70,3 +72,8 @@ light_color = Color(0, 0.709804, 1, 1)
 [node name="OmniLight3D" type="OmniLight3D" parent="Crystal"]
 light_color = Color(0, 0.709804, 1, 1)
 light_energy = 2.0
+
+[node name="Interaction" parent="Crystal" instance=ExtResource( "2_hkiaq" )]
+
+[node name="Action" type="Node3D" parent="Crystal/Interaction"]
+script = ExtResource( "3_7kgae" )

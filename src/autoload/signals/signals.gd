@@ -14,6 +14,7 @@ signal request_dialogue_finish
 signal request_game_pause
 signal request_game_quit
 signal request_game_unpause
+signal request_interaction
 signal request_interaction_highlight
 signal request_interaction_unhighlight
 signal request_scene_change
@@ -77,6 +78,7 @@ func emit_request_dialogue_finish(sender: Node) -> void: emit(request_dialogue_f
 func emit_request_game_pause(sender: Node) -> void: emit(request_game_pause, [sender])
 func emit_request_game_quit(sender: Node) -> void: emit(request_game_quit, [sender])
 func emit_request_game_unpause(sender: Node) -> void: emit(request_game_unpause, [sender])
+func emit_request_interaction(sender: Node) -> void: emit(request_interaction, [sender])
 func emit_request_interaction_highlight(sender: Node3D) -> void: emit(request_interaction_highlight, [sender])
 func emit_request_interaction_unhighlight(sender: Node3D) -> void: emit(request_interaction_unhighlight, [sender])
 func emit_request_scene_change(sender: Node, key: String) -> void: emit(request_scene_change, [sender, key])

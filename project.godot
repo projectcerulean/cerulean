@@ -34,6 +34,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/common/data_structures/data_structures.gd"
 }, {
+"base": "InteractionAction",
+"class": &"DialogueInteractionAction",
+"language": &"GDScript",
+"path": "res://src/common/interaction/dialogue_interaction_action.gd"
+}, {
 "base": "Resource",
 "class": &"DialogueResource",
 "language": &"GDScript",
@@ -53,6 +58,16 @@ _global_script_classes=[{
 "class": &"GameState",
 "language": &"GDScript",
 "path": "res://src/autoload/game_state_manager/game_state.gd"
+}, {
+"base": "Area3D",
+"class": &"Interaction",
+"language": &"GDScript",
+"path": "res://src/common/interaction/interaction.gd"
+}, {
+"base": "Node3D",
+"class": &"InteractionAction",
+"language": &"GDScript",
+"path": "res://src/common/interaction/interaction_action.gd"
 }, {
 "base": "Node",
 "class": &"Lerp",
@@ -145,10 +160,13 @@ _global_script_class_icons={
 "CColor": "",
 "Cardinal": "",
 "DataStructures": "",
+"DialogueInteractionAction": "",
 "DialogueResource": "",
 "DialogueState": "",
 "Errors": "",
 "GameState": "",
+"Interaction": "",
+"InteractionAction": "",
 "Lerp": "",
 "Levels": "",
 "LfoResource": "",
@@ -316,7 +334,7 @@ interact={
 3d_physics/layer_3="Solids"
 3d_physics/layer_4="Entities"
 3d_physics/layer_5="Water"
-3d_physics/layer_6="Proximity"
+3d_physics/layer_6="Interactions"
 
 [physics]
 
