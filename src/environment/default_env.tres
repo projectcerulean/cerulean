@@ -13,3 +13,6 @@ sky_material = SubResource( "1" )
 background_mode = 2
 sky = SubResource( "2" )
 tonemap_mode = 1
+glow_enabled = true
+glow_intensity = 4.0
+glow_hdr_scale = 1.0
