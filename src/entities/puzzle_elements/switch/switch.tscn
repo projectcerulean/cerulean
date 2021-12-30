@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://diuy5376ye76p"]
+[gd_scene load_steps=12 format=3 uid="uid://diuy5376ye76p"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
 [ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interaction.tscn" id="2_hkiaq"]
-[ext_resource type="Script" path="res://src/common/interaction/interaction_action.gd" id="3_7kgae"]
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_interaction_action.gd" id="3_bgjta"]
+[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="4_rrpi8"]
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_state.gd" id="5_5aoy1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmta0"]
 height = 2.5
@@ -17,12 +19,19 @@ metallic = 1.0
 [sub_resource type="BoxMesh" id="BoxMesh_yrp7q"]
 size = Vector3(0.75, 0.75, 0.75)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohqic"]
-albedo_color = Color(0.278431, 0.788235, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_snqmb"]
+albedo_color = Color(1, 0.270588, 0, 1)
 metallic = 1.0
 roughness = 0.5
 emission_enabled = true
-emission = Color(0.278431, 0.788235, 1, 1)
+emission = Color(1, 0.270588, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4e5ip"]
+albedo_color = Color(0, 0.709804, 1, 1)
+metallic = 1.0
+roughness = 0.5
+emission_enabled = true
+emission = Color(0, 0.709804, 1, 1)
 
 [node name="Switch" type="StaticBody3D"]
 collision_layer = 8
@@ -41,39 +50,89 @@ surface_material_override/0 = SubResource( "StandardMaterial3D_t3gut" )
 [node name="Crystal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Crystal"]
-mesh = SubResource( "BoxMesh_yrp7q" )
-surface_material_override/0 = SubResource( "StandardMaterial3D_ohqic" )
+[node name="Disabled" type="Node3D" parent="Crystal"]
+visible = false
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Crystal"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Crystal/Disabled"]
+mesh = SubResource( "BoxMesh_yrp7q" )
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource( "StandardMaterial3D_snqmb" )
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Crystal/Disabled"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
+light_color = Color(1, 0.270588, 0, 1)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Crystal/Disabled"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 0, 0, 0)
+light_color = Color(1, 0.270588, 0, 1)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Crystal/Disabled"]
+transform = Transform3D(-1, -2.26267e-08, -8.44439e-08, 8.88178e-16, 0.965926, -0.258819, 8.74228e-08, -0.258819, -0.965926, 0, 0, 0)
+light_color = Color(1, 0.270588, 0, 1)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Crystal/Disabled"]
+transform = Transform3D(1.31134e-07, -0.258819, -0.965926, 2.66454e-15, 0.965926, -0.258819, 1, 3.394e-08, 1.26666e-07, 0, 0, 0)
+light_color = Color(1, 0.270588, 0, 1)
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Crystal/Disabled"]
+transform = Transform3D(-2.26074e-14, -0.965926, 0.258819, 1.31134e-07, -0.258819, -0.965926, 1, 3.39399e-08, 1.26666e-07, 0, 0, 0)
+light_color = Color(1, 0.270588, 0, 1)
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="Crystal/Disabled"]
+transform = Transform3D(3.40716e-14, 0.965926, -0.258819, -1.31134e-07, 0.258819, 0.965926, 1, 3.39399e-08, 1.26666e-07, 0, 0, 0)
+light_color = Color(1, 0.270588, 0, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Crystal/Disabled"]
+light_color = Color(1, 0.270588, 0, 1)
+light_energy = 2.0
+
+[node name="Enabled" type="Node3D" parent="Crystal"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Crystal/Enabled"]
+mesh = SubResource( "BoxMesh_yrp7q" )
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource( "StandardMaterial3D_4e5ip" )
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Crystal/Enabled"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
 light_color = Color(0, 0.709804, 1, 1)
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Crystal"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Crystal/Enabled"]
 transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 0, 0, 0)
 light_color = Color(0, 0.709804, 1, 1)
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Crystal"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Crystal/Enabled"]
 transform = Transform3D(-1, -2.26267e-08, -8.44439e-08, 8.88178e-16, 0.965926, -0.258819, 8.74228e-08, -0.258819, -0.965926, 0, 0, 0)
 light_color = Color(0, 0.709804, 1, 1)
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Crystal"]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Crystal/Enabled"]
 transform = Transform3D(1.31134e-07, -0.258819, -0.965926, 2.66454e-15, 0.965926, -0.258819, 1, 3.394e-08, 1.26666e-07, 0, 0, 0)
 light_color = Color(0, 0.709804, 1, 1)
 
-[node name="SpotLight3D5" type="SpotLight3D" parent="Crystal"]
-transform = Transform3D(-2.26074e-14, -0.965926, 0.258819, 1.31134e-07, -0.258819, -0.965926, 1, 3.394e-08, 1.26666e-07, 0, 0, 0)
+[node name="SpotLight3D5" type="SpotLight3D" parent="Crystal/Enabled"]
+transform = Transform3D(-2.26074e-14, -0.965926, 0.258819, 1.31134e-07, -0.258819, -0.965926, 1, 3.39399e-08, 1.26666e-07, 0, 0, 0)
 light_color = Color(0, 0.709804, 1, 1)
 
-[node name="SpotLight3D6" type="SpotLight3D" parent="Crystal"]
-transform = Transform3D(3.40716e-14, 0.965926, -0.258819, -1.31134e-07, 0.258819, 0.965926, 1, 3.394e-08, 1.26666e-07, 0, 0, 0)
+[node name="SpotLight3D6" type="SpotLight3D" parent="Crystal/Enabled"]
+transform = Transform3D(3.40716e-14, 0.965926, -0.258819, -1.31134e-07, 0.258819, 0.965926, 1, 3.39399e-08, 1.26666e-07, 0, 0, 0)
 light_color = Color(0, 0.709804, 1, 1)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Crystal"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Crystal/Enabled"]
 light_color = Color(0, 0.709804, 1, 1)
 light_energy = 2.0
 
 [node name="Interaction" parent="Crystal" instance=ExtResource( "2_hkiaq" )]
 
 [node name="Action" type="Node3D" parent="Crystal/Interaction"]
-script = ExtResource( "3_7kgae" )
+script = ExtResource( "3_bgjta" )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( "4_rrpi8" )
+initial_state = NodePath("Disabled")
+
+[node name="Disabled" type="Node" parent="StateMachine"]
+script = ExtResource( "5_5aoy1" )
+
+[node name="Enabled" type="Node" parent="StateMachine"]
+script = ExtResource( "5_5aoy1" )

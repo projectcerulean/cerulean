@@ -20,7 +20,7 @@ func _ready() -> void:
 	state.state_machine = self
 	assert(initial_state, Errors.INVALID_ARGUMENT)
 	state.state = get_node(initial_state)
-	assert(state.state as State != null, Errors.INVALID_ARGUMENT)
+	assert(state.state as State != null, Errors.TYPE_ERROR)
 
 	for child in get_children():
 		assert(child as State != null, Errors.INVALID_ARGUMENT)
@@ -55,6 +55,21 @@ func _physics_process(delta: float) -> void:
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
 func transition_to(target_state: State, data: Dictionary = {}) -> void:
 	call_deferred(transition_to_deferred.get_method(), target_state)
+
+
+func transition_to_next(data: Dictionary = {}):
+	if get_child_count() < 2:
+		return
+
+	var current_state_index: int = -1
+	for i in range(get_child_count()):
+		if get_children()[i] == state.state:
+			current_state_index = i
+			break
+	assert(current_state_index >= 0, Errors.CONSISTENCY_ERROR)
+
+	var next_state_index: int = (current_state_index + 1) % get_child_count()
+	transition_to(get_children()[next_state_index], data)
 
 
 func transition_to_deferred(target_state: State, data: Dictionary = {}) -> void:
