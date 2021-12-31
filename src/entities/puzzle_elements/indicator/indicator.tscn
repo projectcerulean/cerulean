@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bu4u2uf4kip15"]
+
+[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="1_54p1h"]
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator.gd" id="1_bsmqb"]
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_state.gd" id="3_ghuvw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5rgmq"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31xxw"]
+albedo_color = Color(1, 0.270588, 0, 1)
+metallic = 1.0
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 0.270588, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0smva"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57yfs"]
+albedo_color = Color(0, 0.709804, 1, 1)
+metallic = 1.0
+roughness = 0.5
+emission_enabled = true
+emission = Color(0, 0.709804, 1, 1)
+
+[node name="Indicator" type="Node3D"]
+script = ExtResource( "1_bsmqb" )
+
+[node name="Disabled" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Disabled"]
+mesh = SubResource( "BoxMesh_5rgmq" )
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource( "StandardMaterial3D_31xxw" )
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Disabled"]
+light_color = Color(1, 0.270588, 0, 1)
+light_energy = 2.0
+
+[node name="Enabled" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enabled"]
+mesh = SubResource( "BoxMesh_0smva" )
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource( "StandardMaterial3D_57yfs" )
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Enabled"]
+light_color = Color(0, 0.709804, 1, 1)
+light_energy = 2.0
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( "1_54p1h" )
+initial_state = NodePath("Disabled")
+
+[node name="Disabled" type="Node" parent="StateMachine"]
+script = ExtResource( "3_ghuvw" )
+
+[node name="Enabled" type="Node" parent="StateMachine"]
+script = ExtResource( "3_ghuvw" )

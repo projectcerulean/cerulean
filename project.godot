@@ -74,6 +74,16 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/autoload/game_state_manager/game_state.gd"
 }, {
+"base": "Node3D",
+"class": &"Indicator",
+"language": &"GDScript",
+"path": "res://src/entities/puzzle_elements/indicator/indicator.gd"
+}, {
+"base": "State",
+"class": &"IndicatorState",
+"language": &"GDScript",
+"path": "res://src/entities/puzzle_elements/indicator/indicator_state.gd"
+}, {
 "base": "Area3D",
 "class": &"Interaction",
 "language": &"GDScript",
@@ -198,6 +208,8 @@ _global_script_class_icons={
 "DialogueState": "",
 "Errors": "",
 "GameState": "",
+"Indicator": "",
+"IndicatorState": "",
 "Interaction": "",
 "InteractionAction": "",
 "Lerp": "",

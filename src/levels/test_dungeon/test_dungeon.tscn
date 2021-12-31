@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d0q0ecg35bhvm"]
+[gd_scene load_steps=29 format=3 uid="uid://d0q0ecg35bhvm"]
 
 [ext_resource type="PackedScene" uid="uid://b0bq4qshg2ib4" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://diuy5376ye76p" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="6_4a13o"]
 [ext_resource type="PackedScene" uid="uid://cm24dnwe8p6ge" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="7_b2l1v"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="8_4hvtj"]
+[ext_resource type="PackedScene" uid="uid://bu4u2uf4kip15" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ybceq"]
 resource_local_to_scene = true
@@ -80,20 +81,6 @@ shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_qkmyc"]
-resource_local_to_scene = true
-size = Vector3(1, 0.25, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iuii5"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource( "8_4hvtj" )
-shader_param/flow_position = 0.0
-shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
-
 [sub_resource type="BoxMesh" id="BoxMesh_fy0ne"]
 resource_local_to_scene = true
 size = Vector3(0.1, 10, 0.1)
@@ -141,20 +128,6 @@ resource_local_to_scene = true
 size = Vector3(0.1, 22.2, 0.1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6fb6s"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource( "8_4hvtj" )
-shader_param/flow_position = 0.0
-shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
-
-[sub_resource type="BoxMesh" id="BoxMesh_lox4q"]
-resource_local_to_scene = true
-size = Vector3(1, 0.25, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tlsvl"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
@@ -323,7 +296,7 @@ size = Vector3(4, 22, 8)
 
 [node name="Barrier" parent="Env/Entrance" instance=ExtResource( "5_7fqri" )]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 6, 67.5)
-input_nodes = [NodePath("../Switch/Cable6"), NodePath("../Switch2/Cable5")]
+input_nodes = [NodePath("../Switch/Indicator"), NodePath("../Switch2/Indicator")]
 input_targets = [true, true]
 
 [node name="Switch" parent="Env/Entrance" instance=ExtResource( "6_4a13o" )]
@@ -364,11 +337,8 @@ skeleton = NodePath("../Cable4")
 surface_material_override/0 = SubResource( "ShaderMaterial_0ke8v" )
 input_node_path = NodePath("../Cable4")
 
-[node name="Cable6" parent="Env/Entrance/Switch" instance=ExtResource( "7_b2l1v" )]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3.95, 2.55, -5.55)
-mesh = SubResource( "BoxMesh_qkmyc" )
-skeleton = NodePath("../Cable5")
-surface_material_override/0 = SubResource( "ShaderMaterial_iuii5" )
+[node name="Indicator" parent="Env/Entrance/Switch" instance=ExtResource( "9_7mq4f" )]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3.95, 2.15, -5.55)
 input_node_path = NodePath("../Cable5")
 
 [node name="Switch2" parent="Env/Entrance" instance=ExtResource( "6_4a13o" )]
@@ -398,11 +368,8 @@ mesh = SubResource( "BoxMesh_vq164" )
 surface_material_override/0 = SubResource( "ShaderMaterial_6fb6s" )
 input_node_path = NodePath("../Cable3")
 
-[node name="Cable5" parent="Env/Entrance/Switch2" instance=ExtResource( "7_b2l1v" )]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -5.9, 22.55, -29.55)
-mesh = SubResource( "BoxMesh_lox4q" )
-skeleton = NodePath("../Cable4")
-surface_material_override/0 = SubResource( "ShaderMaterial_tlsvl" )
+[node name="Indicator" parent="Env/Entrance/Switch2" instance=ExtResource( "9_7mq4f" )]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -5.9, 22.15, -29.55)
 input_node_path = NodePath("../Cable4")
 
 [node name="Water" type="Node3D" parent="."]
