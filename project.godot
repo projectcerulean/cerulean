@@ -9,6 +9,16 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "StaticBody3D",
+"class": &"Barrier",
+"language": &"GDScript",
+"path": "res://src/entities/puzzle_elements/barrier/barrier.gd"
+}, {
+"base": "State",
+"class": &"BarrierState",
+"language": &"GDScript",
+"path": "res://src/entities/puzzle_elements/barrier/barrier_state.gd"
+}, {
 "base": "Node",
 "class": &"BgmEffect",
 "language": &"GDScript",
@@ -175,6 +185,8 @@ _global_script_classes=[{
 "path": "res://src/constants/version.gd"
 }]
 _global_script_class_icons={
+"Barrier": "",
+"BarrierState": "",
 "BgmEffect": "",
 "BgmResource": "",
 "CColor": "",

@@ -54,13 +54,15 @@ func _physics_process(delta: float) -> void:
 # and calls its enter function.
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
 func transition_to(target_state: State, data: Dictionary = {}) -> void:
-	call_deferred(transition_to_deferred.get_method(), target_state)
+	call_deferred(transition_to_deferred.get_method(), target_state, data)
+
+
+func lazy_transition_to(target_state: State, data: Dictionary = {}):
+	if target_state != state.state:
+		transition_to(target_state, data)
 
 
 func transition_to_next(data: Dictionary = {}):
-	if get_child_count() < 2:
-		return
-
 	var current_state_index: int = -1
 	for i in range(get_child_count()):
 		if get_children()[i] == state.state:
@@ -69,7 +71,7 @@ func transition_to_next(data: Dictionary = {}):
 	assert(current_state_index >= 0, Errors.CONSISTENCY_ERROR)
 
 	var next_state_index: int = (current_state_index + 1) % get_child_count()
-	transition_to(get_children()[next_state_index], data)
+	lazy_transition_to(get_children()[next_state_index], data)
 
 
 func transition_to_deferred(target_state: State, data: Dictionary = {}) -> void:

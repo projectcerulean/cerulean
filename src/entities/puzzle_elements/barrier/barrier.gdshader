@@ -4,8 +4,9 @@ render_mode unshaded, cull_disabled;
 uniform vec4 color: hint_color;
 uniform float noise_threshold = 0.55;
 
-uniform float alpha_min = 0.3;
-uniform float alpha_max = 0.6;
+uniform float alpha_factor: hint_range(0.0, 1.0) = 1.0;
+uniform float alpha_min: hint_range(0.0, 1.0) = 0.3;
+uniform float alpha_max: hint_range(0.0, 1.0) = 0.6;
 
 uniform sampler2D noise_sampler1;
 uniform sampler2D noise_sampler2;
@@ -23,6 +24,8 @@ void fragment() {
 	else {
 		ALPHA = alpha_max;
 	}
+	ALPHA *= alpha_factor;
+	
 	ALBEDO = color.rgb + 0.025*vec3((pow(sin(2.5*UV.y + 0.5*TIME), 4.0)));
 	
 	SPECULAR = 1.0;

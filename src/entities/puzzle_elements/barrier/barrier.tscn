@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnivere8lylvr"]
+[gd_scene load_steps=12 format=3 uid="uid://bnivere8lylvr"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/barrier/barrier.gd" id="1_8dbv4"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/barrier/barrier.gdshader" id="1_alkq1"]
+[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="3_e2rqu"]
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/barrier/barrier_state.gd" id="4_nmhmp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rojgn"]
 size = Vector3(5, 0.5, 5)
@@ -26,6 +28,7 @@ render_priority = 1
 shader = ExtResource( "1_alkq1" )
 shader_param/color = Color(0.376471, 0.196078, 0.192157, 1)
 shader_param/noise_threshold = 0.55
+shader_param/alpha_factor = 1.0
 shader_param/alpha_min = 0.3
 shader_param/alpha_max = 0.6
 shader_param/noise_time_factor = Vector2(0.1, 0.02)
@@ -43,3 +46,13 @@ shape = SubResource( "BoxShape3D_rojgn" )
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource( "BoxMesh_4kh3e" )
 surface_material_override/0 = SubResource( "ShaderMaterial_esmal" )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( "3_e2rqu" )
+initial_state = NodePath("Disabled")
+
+[node name="Disabled" type="Node" parent="StateMachine"]
+script = ExtResource( "4_nmhmp" )
+
+[node name="Enabled" type="Node" parent="StateMachine"]
+script = ExtResource( "4_nmhmp" )
