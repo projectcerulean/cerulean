@@ -4,7 +4,7 @@ extends DialogueState
 func enter(old_state: DialogueState, data := {}) -> void:
 	super.enter(old_state, data)
 	dialogue_manager.line_index += 1
-	dialogue_manager.label.text = dialogue_manager.dialogue_resource.dialogue_lines[dialogue_manager.line_index]
+	dialogue_manager.label.text = "  " + dialogue_manager.dialogue_resource.dialogue_lines[dialogue_manager.line_index] + "  "
 	dialogue_manager.label.percent_visible = 0.0
 
 
