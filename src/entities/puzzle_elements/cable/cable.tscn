@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm24dnwe8p6ge"]
+
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="1_c8xt7"]
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/cable/cable.gd" id="2_gr7c4"]
+[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="3_0rjeb"]
+[ext_resource type="Script" path="res://src/common/finite_state_machine/state.gd" id="4_3jue8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nssbg"]
+resource_local_to_scene = true
+size = Vector3(0.1, 5, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eeml1"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource( "1_c8xt7" )
+shader_param/flow_position = 0.0
+shader_param/smooth_range = 0.5
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/flip_colors = false
+
+[node name="Cable" type="MeshInstance3D"]
+mesh = SubResource( "BoxMesh_nssbg" )
+surface_material_override/0 = SubResource( "ShaderMaterial_eeml1" )
+script = ExtResource( "2_gr7c4" )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( "3_0rjeb" )
+initial_state = NodePath("Disabled")
+
+[node name="Disabled" type="Node" parent="StateMachine"]
+script = ExtResource( "4_3jue8" )
+
+[node name="Enabled" type="Node" parent="StateMachine"]
+script = ExtResource( "4_3jue8" )
