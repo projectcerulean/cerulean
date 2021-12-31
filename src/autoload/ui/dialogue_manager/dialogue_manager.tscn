@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch7cdnmkjr5g"]
+[gd_scene load_steps=7 format=3 uid="uid://ch7cdnmkjr5g"]
 
 [ext_resource type="Script" path="res://src/autoload/ui/dialogue_manager/dialogue_manager.gd" id="1_r7ctw"]
 [ext_resource type="Resource" uid="uid://bviclx4gy4i7j" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="2_1v6ng"]
-[ext_resource type="Resource" uid="uid://cigsdaal01l2v" path="res://assets/dialogue/test_dialogue.tres" id="2_s827t"]
 [ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="3_y7dcq"]
 [ext_resource type="Script" path="res://src/autoload/ui/dialogue_manager/dialogue_state_wait.gd" id="6_ic3li"]
 [ext_resource type="Script" path="res://src/autoload/ui/dialogue_manager/dialogue_state_output.gd" id="6_n3v8x"]
@@ -15,7 +14,6 @@ script = ExtResource( "1_r7ctw" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-dialogue_resource = ExtResource( "2_s827t" )
 game_state = ExtResource( "2_1v6ng" )
 
 [node name="Label" type="Label" parent="."]

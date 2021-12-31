@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://3rc1hxqvyhd5"]
+[gd_scene load_steps=12 format=3 uid="uid://3rc1hxqvyhd5"]
 
 [ext_resource type="PackedScene" uid="uid://b0bq4qshg2ib4" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -7,7 +7,10 @@
 [ext_resource type="Material" uid="uid://df0jxyi8dlx2u" path="res://src/levels/test_scene/stone_material.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://3mhvdybo4ccu" path="res://src/levels/test_scene/flag/flag.tscn" id="6_psp6u"]
 [ext_resource type="Material" uid="uid://c08dhvu7qf20u" path="res://src/levels/test_scene/grass_material.tres" id="7_gxhck"]
-[ext_resource type="PackedScene" path="res://src/entities/sign_post/sign_post.tscn" id="8_l3hhy"]
+[ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="8_l3hhy"]
+[ext_resource type="Resource" uid="uid://b458fluv0h1ap" path="res://assets/dialogue/tutorial/jumping.tres" id="9_ilvj1"]
+[ext_resource type="Resource" uid="uid://df62i7tswvfok" path="res://assets/dialogue/tutorial/diving.tres" id="10_vafey"]
+[ext_resource type="Resource" uid="uid://c16fyeapkmu14" path="res://assets/dialogue/tutorial/camera.tres" id="11_qt3s6"]
 
 [node name="TestScene" type="Node"]
 script = ExtResource( "1_arp3q" )
@@ -216,5 +219,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
 [node name="SignPost" parent="." instance=ExtResource( "8_l3hhy" )]
 transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, -17.7, 3, -2)
 
+[node name="Action" parent="SignPost/Interaction" index="1"]
+dialogue_resource = ExtResource( "9_ilvj1" )
+
 [node name="SignPost2" parent="." instance=ExtResource( "8_l3hhy" )]
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, -19.6, 3.2, -2)
+
+[node name="Action" parent="SignPost2/Interaction" index="1"]
+dialogue_resource = ExtResource( "11_qt3s6" )
+
+[node name="SignPost3" parent="." instance=ExtResource( "8_l3hhy" )]
+transform = Transform3D(0.964711, -0.163252, -0.206596, 0.220667, 0.0731603, 0.972602, -0.143664, -0.983869, 0.106603, -28.0864, 0.258082, 0.501245)
+
+[node name="Action" parent="SignPost3/Interaction" index="1"]
+dialogue_resource = ExtResource( "10_vafey" )
+
+[editable path="SignPost"]
+[editable path="SignPost2"]
+[editable path="SignPost3"]
