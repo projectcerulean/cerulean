@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dxgetvxs1tqfh"]
+
+[ext_resource type="AudioStream" uid="uid://ckotiylbyavyd" path="res://assets/sound/sfx/kenney_interface_sounds/error_004.wav" id="1_3xoye"]
+[ext_resource type="Script" path="res://src/sound/sfx/sfx_resource.gd" id="1_fxwr5"]
+
+[resource]
+script = ExtResource( "1_fxwr5" )
+samples = [ExtResource( "1_3xoye" )]
+volume_db = 0.0
+pitch_scale = 1.0

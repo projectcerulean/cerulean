@@ -21,6 +21,8 @@ signal request_scene_change
 signal request_scene_reload
 signal request_setting_update
 signal request_settings_save
+signal request_sfx_play
+signal request_sfx_play_non_diegetic
 signal scene_changed
 signal setting_updated
 signal state_entered
@@ -85,6 +87,8 @@ func emit_request_scene_change(sender: Node, key: String) -> void: emit(request_
 func emit_request_scene_reload(sender: Node) -> void: emit(request_scene_reload, [sender])
 func emit_request_setting_update(sender: Node, key: StringName, value: int) -> void: emit(request_setting_update, [sender, key, value])
 func emit_request_settings_save(sender: Node) -> void: emit(request_settings_save, [sender])
+func emit_request_sfx_play(sender: Node, sfx_resource: SfxResource, position: Vector3) -> void: emit(request_sfx_play, [sender, sfx_resource, position])
+func emit_request_sfx_play_non_diegetic(sender: Node, sfx_resource: SfxResource) -> void: emit(request_sfx_play_non_diegetic, [sender, sfx_resource])
 func emit_scene_changed(sender: Node) -> void: emit(scene_changed, [sender])
 func emit_setting_updated(sender: Node, key: StringName, value: int) -> void: emit(setting_updated, [sender, key, value])
 func emit_state_entered(sender: Node, state: Node) -> void: emit(state_entered, [sender, state])

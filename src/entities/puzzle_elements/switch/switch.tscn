@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://blysdbts7tc6d"]
+[gd_scene load_steps=15 format=3 uid="uid://blysdbts7tc6d"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
 [ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interaction.tscn" id="2_hkiaq"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_interaction_action.gd" id="3_bgjta"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="4_rrpi8"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_state.gd" id="5_5aoy1"]
+[ext_resource type="Script" path="res://src/sound/sfx/sfx_state_transition_listener.gd" id="6_ssf8g"]
+[ext_resource type="Resource" uid="uid://dxgetvxs1tqfh" path="res://src/sound/sfx/sfx_resources/switch_enabled.tres" id="7_gi7uk"]
+[ext_resource type="Resource" uid="uid://cvlcy7dsg6p28" path="res://src/sound/sfx/sfx_resources/switch_disabled.tres" id="8_aedo8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmta0"]
 height = 2.5
@@ -136,3 +139,9 @@ script = ExtResource( "5_5aoy1" )
 
 [node name="Enabled" type="Node" parent="StateMachine"]
 script = ExtResource( "5_5aoy1" )
+
+[node name="SfxStateEnabled" type="Node" parent="."]
+script = ExtResource( "6_ssf8g" )
+_target_state = NodePath("../StateMachine/Enabled")
+_sfx_resource_enter = ExtResource( "7_gi7uk" )
+_sfx_resource_exit = ExtResource( "8_aedo8" )

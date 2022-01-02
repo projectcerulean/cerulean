@@ -25,8 +25,10 @@ func process(delta: float) -> void:
 	super.process(delta)
 	if pause_menu.game_state_resource.current_state == pause_menu.game_state_resource.states.PAUSE:
 		if Input.is_action_just_pressed(&"ui_up"):
+			Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 			i_hovered_option = posmod(i_hovered_option - 1, menu_options.size())
 		elif Input.is_action_just_pressed(&"ui_down"):
+			Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 			i_hovered_option = posmod(i_hovered_option + 1, menu_options.size())
 
 

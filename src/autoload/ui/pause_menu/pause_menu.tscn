@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3kve5ytakd60"]
+[gd_scene load_steps=10 format=3 uid="uid://d3kve5ytakd60"]
 
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="1_4bqbk"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu.gd" id="1_ra0py"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_main.gd" id="4_eom5a"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_settings.gd" id="5_kygh5"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_levels.gd" id="7_or3k2"]
+[ext_resource type="Script" path="res://src/sound/sfx/sfx_state_transition_listener.gd" id="8_25px7"]
+[ext_resource type="Resource" uid="uid://cgbec5sqyvjw6" path="res://src/sound/sfx/sfx_resources/menu_select.tres" id="9_rbp0b"]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
@@ -16,6 +18,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 game_state_resource = ExtResource( "2_rjkev" )
+sfx_resource_select = ExtResource( "9_rbp0b" )
 
 [node name="Main" type="VBoxContainer" parent="."]
 anchor_top = 1.0
@@ -155,3 +158,9 @@ script = ExtResource( "7_or3k2" )
 
 [node name="Settings" type="Node" parent="StateMachine"]
 script = ExtResource( "5_kygh5" )
+
+[node name="SfxMenuSwitch" type="Node" parent="."]
+script = ExtResource( "8_25px7" )
+_target_state = NodePath("../StateMachine/Main")
+_sfx_resource_enter = ExtResource( "9_rbp0b" )
+_sfx_resource_exit = ExtResource( "9_rbp0b" )
