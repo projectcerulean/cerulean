@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func process(delta: float) -> void:
 	super.process(delta)
-	if pause_menu.game_state.state == pause_menu.game_state.states.PAUSE:
+	if pause_menu.game_state_resource.current_state == pause_menu.game_state_resource.states.PAUSE:
 		if Input.is_action_just_pressed(&"ui_up"):
 			i_hovered_option = posmod(i_hovered_option - 1, menu_options.size())
 		elif Input.is_action_just_pressed(&"ui_down"):
@@ -41,13 +41,13 @@ func exit(new_state: PauseMenuState) -> void:
 
 
 func get_transition() -> PauseMenuState:
-	if pause_menu.game_state.state == pause_menu.game_state.states.PAUSE:
+	if pause_menu.game_state_resource.current_state == pause_menu.game_state_resource.states.PAUSE:
 		if Input.is_action_just_pressed(&"pause"):
 			Signals.emit_request_game_unpause(self)
-			return state.states.MAIN
+			return state_resource.states.MAIN
 	return null
 
 
 func _on_state_exited(sender: Node, state: Node):
-	if sender == pause_menu.game_state.state_machine and state == pause_menu.game_state.states.PAUSE:
+	if sender == pause_menu.game_state_resource.state_machine and state == pause_menu.game_state_resource.states.PAUSE:
 		i_hovered_option = 0

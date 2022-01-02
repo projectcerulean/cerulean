@@ -8,9 +8,9 @@ const volume_db_zero: float = -80.0
 @export var tween_duration_glide: float = 3.0
 @export var tween_duration_cutoff: float = 0.01
 
-@export var settings: Resource
+@export var settings_resource: Resource
 
-@export var player_state: Resource
+@export var player_state_resource: Resource
 
 @onready var bus_index: int = AudioServer.get_bus_index(&"Bgm")
 
@@ -30,14 +30,14 @@ func _ready() -> void:
 	Signals.state_entered.connect(self._on_state_entered)
 	Signals.setting_updated.connect(self._on_setting_updated)
 
-	assert(settings as SettingsResource != null, Errors.NULL_RESOURCE)
-	assert(player_state as StateResource != null, Errors.NULL_RESOURCE)
+	assert(settings_resource as SettingsResource != null, Errors.NULL_RESOURCE)
+	assert(player_state_resource as StateResource != null, Errors.NULL_RESOURCE)
 	assert(bus_index >= 0, Errors.INVALID_AUDIO_BUS)
 	assert(base_player != null, Errors.NULL_NODE)
 	assert(glide_player != null, Errors.NULL_NODE)
 	assert(rhythm_player != null, Errors.NULL_NODE)
 
-	AudioServer.set_bus_mute(bus_index, settings.settings[Settings.BACKGROUND_MUSIC] == Settings.Boolean.NO)
+	AudioServer.set_bus_mute(bus_index, settings_resource.settings[Settings.BACKGROUND_MUSIC] == Settings.Boolean.NO)
 
 
 func _on_scene_changed(sender: Node):
@@ -85,11 +85,11 @@ func _on_scene_changed(sender: Node):
 
 
 func _on_state_entered(sender: Node, state: Node) -> void:
-	if sender == player_state.state_machine:
+	if sender == player_state_resource.state_machine:
 		if glide_tween != null:
 			glide_tween.kill()
 		glide_tween = create_tween()
-		if state == player_state.states.GLIDE:
+		if state == player_state_resource.states.GLIDE:
 			if glide_player.volume_db == volume_db_zero:
 				glide_tween.tween_property(glide_player, "volume_db", volume_db_low, tween_duration_cutoff)
 			glide_tween.tween_property(glide_player, "volume_db", volume_db_high, tween_duration_glide)
@@ -101,7 +101,7 @@ func _on_state_entered(sender: Node, state: Node) -> void:
 		if rhythm_tween != null:
 			rhythm_tween.kill()
 		rhythm_tween = create_tween()
-		if state == player_state.states.GLIDE:
+		if state == player_state_resource.states.GLIDE:
 			if rhythm_player.volume_db == volume_db_zero:
 				rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_low, tween_duration_cutoff)
 			rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_high, tween_duration_glide)
@@ -111,4 +111,4 @@ func _on_state_entered(sender: Node, state: Node) -> void:
 
 
 func _on_setting_updated(_sender: Node, _key: StringName, _value: int):
-	AudioServer.set_bus_mute(bus_index, settings.settings[Settings.BACKGROUND_MUSIC] == Settings.Boolean.NO)
+	AudioServer.set_bus_mute(bus_index, settings_resource.settings[Settings.BACKGROUND_MUSIC] == Settings.Boolean.NO)

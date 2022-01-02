@@ -14,7 +14,7 @@ script = ExtResource( "1_r7ctw" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state = ExtResource( "2_1v6ng" )
+game_state_resource = ExtResource( "2_1v6ng" )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 1.0

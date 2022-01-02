@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://br7e70nu65y4m"]
+[gd_scene load_steps=8 format=3 uid="uid://br7e70nu65y4m"]
 
 [ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="1_4bqbk"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu.gd" id="1_ra0py"]
 [ext_resource type="Resource" uid="uid://bviclx4gy4i7j" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="2_rjkev"]
 [ext_resource type="PackedScene" uid="uid://di72lcsa2dva7" path="res://src/autoload/ui/pause_menu/pause_menu_option.tscn" id="3_ht525"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_main.gd" id="4_eom5a"]
-[ext_resource type="Resource" uid="uid://bbaupgv7alorj" path="res://src/autoload/settings_manager/settings.tres" id="4_tbd8h"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_settings.gd" id="5_kygh5"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_levels.gd" id="7_or3k2"]
 
@@ -16,7 +15,7 @@ script = ExtResource( "1_ra0py" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state = ExtResource( "2_rjkev" )
+game_state_resource = ExtResource( "2_rjkev" )
 
 [node name="Main" type="VBoxContainer" parent="."]
 anchor_top = 1.0
@@ -92,7 +91,6 @@ offset_right = 384.0
 offset_bottom = 326.0
 is_settings_option = false
 is_level_option = true
-settings = ExtResource( "4_tbd8h" )
 key_string = &"TEST_DUNGEON"
 
 [node name="TestScene" parent="Levels" instance=ExtResource( "3_ht525" )]
@@ -103,7 +101,6 @@ offset_right = 384.0
 offset_bottom = 384.0
 is_settings_option = false
 is_level_option = true
-settings = ExtResource( "4_tbd8h" )
 key_string = &"TEST_SCENE"
 
 [node name="Settings" type="VBoxContainer" parent="."]
@@ -126,7 +123,6 @@ offset_top = 220.0
 offset_right = 384.0
 offset_bottom = 268.0
 is_settings_option = true
-settings = ExtResource( "4_tbd8h" )
 key_string = &"BACKGROUND_MUSIC"
 
 [node name="CameraX" parent="Settings" instance=ExtResource( "3_ht525" )]
@@ -136,7 +132,6 @@ offset_top = 278.0
 offset_right = 384.0
 offset_bottom = 326.0
 is_settings_option = true
-settings = ExtResource( "4_tbd8h" )
 key_string = &"CAMERA_X_INVERTED"
 
 [node name="CameraY" parent="Settings" instance=ExtResource( "3_ht525" )]
@@ -146,7 +141,6 @@ offset_top = 336.0
 offset_right = 384.0
 offset_bottom = 384.0
 is_settings_option = true
-settings = ExtResource( "4_tbd8h" )
 key_string = &"CAMERA_Y_INVERTED"
 
 [node name="StateMachine" type="Node" parent="."]

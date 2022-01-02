@@ -10,7 +10,7 @@ func enter(old_state: PlayerState, data := {}) -> void:
 
 func exit(new_state: PlayerState) -> void:
 	super.exit(new_state)
-	if new_state == state.states.JUMP:
+	if new_state == state_resource.states.JUMP:
 		player.global_transform.origin.y = player.get_water_surface_height()
 
 
@@ -48,13 +48,13 @@ func physics_process(delta: float) -> void:
 
 func get_transition() -> PlayerState:
 	if not player.is_in_water():
-		return state.states.FALL
+		return state_resource.states.FALL
 	elif player.raycast.is_colliding() and player.global_transform.origin.y > player.get_water_surface_height() + player.water_state_enter_offset:
-		return state.states.RUN
+		return state_resource.states.RUN
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		if player.get_water_surface_height() - player.global_transform.origin.y < player.water_jump_max_surface_distance:
-			return state.states.JUMP
+			return state_resource.states.JUMP
 	elif Input.is_action_just_pressed("player_move_dive"):
-		return state.states.DIVE
+		return state_resource.states.DIVE
 	else:
 		return null

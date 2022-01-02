@@ -89,7 +89,7 @@ script = ExtResource( "10" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state = ExtResource( "11" )
+game_state_resource = ExtResource( "11" )
 
 [node name="ScreenDarken" type="ColorRect" parent="PauseMenuLayer"]
 anchor_right = 1.0
@@ -99,7 +99,7 @@ script = ExtResource( "12" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state = ExtResource( "11" )
+game_state_resource = ExtResource( "11" )
 
 [node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource( "9_mxrv6" )]
 

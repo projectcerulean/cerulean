@@ -7,5 +7,5 @@
 [node name="CInput" type="Node"]
 process_mode = 3
 script = ExtResource( "1" )
-thumbstick_left = ExtResource( "3" )
-thumbstick_right = ExtResource( "2" )
+thumbstick_resource_left = ExtResource( "3" )
+thumbstick_resource_right = ExtResource( "2" )

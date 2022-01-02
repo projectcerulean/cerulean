@@ -1,9 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
-@export var thumbstick_left: Resource
-@export var state: Resource
-@export var game_state: Resource
+@export var thumbstick_resource_left: Resource
+@export var state_resource: Resource
+@export var game_state_resource: Resource
 @export var transform_resource: Resource
 @export var camera_transform_resource: Resource
 
@@ -37,13 +37,13 @@ extends CharacterBody3D
 @onready var mesh_root: Node3D = get_node("MeshRoot")
 
 @onready var mesh_map: Dictionary = {
-	state.states.DIVE: mesh_root.get_node("MeshGlide"),
-	state.states.FALL: mesh_root.get_node("MeshDefault"),
-	state.states.GLIDE: mesh_root.get_node("MeshGlide"),
-	state.states.IDLE: mesh_root.get_node("MeshDefault"),
-	state.states.JUMP: mesh_root.get_node("MeshDefault"),
-	state.states.RUN: mesh_root.get_node("MeshDefault"),
-	state.states.SWIM: mesh_root.get_node("MeshDefault"),
+	state_resource.states.DIVE: mesh_root.get_node("MeshGlide"),
+	state_resource.states.FALL: mesh_root.get_node("MeshDefault"),
+	state_resource.states.GLIDE: mesh_root.get_node("MeshGlide"),
+	state_resource.states.IDLE: mesh_root.get_node("MeshDefault"),
+	state_resource.states.JUMP: mesh_root.get_node("MeshDefault"),
+	state_resource.states.RUN: mesh_root.get_node("MeshDefault"),
+	state_resource.states.SWIM: mesh_root.get_node("MeshDefault"),
 }
 
 var mesh_joint_map: Dictionary
@@ -61,9 +61,9 @@ func _ready() -> void:
 	Signals.area_body_entered.connect(self._on_area_body_entered)
 	Signals.area_body_exited.connect(self._on_area_body_exited)
 
-	assert(thumbstick_left as ThumbstickResource != null, Errors.NULL_RESOURCE)
-	assert(state as StateResource != null, Errors.NULL_RESOURCE)
-	assert(game_state as StateResource != null, Errors.NULL_RESOURCE)
+	assert(thumbstick_resource_left as ThumbstickResource != null, Errors.NULL_RESOURCE)
+	assert(state_resource as StateResource != null, Errors.NULL_RESOURCE)
+	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
 	assert(transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
 	assert(raycast != null, Errors.NULL_NODE)
@@ -73,7 +73,7 @@ func _ready() -> void:
 		var nodeTyped: Node3D = node as Node3D
 		assert(nodeTyped != null, Errors.NULL_NODE)
 
-	for s in state.states.values():
+	for s in state_resource.states.values():
 		mesh_joint_map[s] = [
 			mesh_map[s].get_node("Joint"),
 			mesh_map[s].get_node("Joint/Joint"),
@@ -101,7 +101,7 @@ func _process(_delta: float) -> void:
 	camera_vector = camera_vector.normalized()
 	var forward_vector: Vector3 = camera_vector
 	var right_vector: Vector3 = -camera_vector.cross(Vector3.UP)
-	input_vector = right_vector * thumbstick_left.value.x + forward_vector * thumbstick_left.value.y
+	input_vector = right_vector * thumbstick_resource_left.value.x + forward_vector * thumbstick_resource_left.value.y
 
 	if input_vector.length_squared() > 1.0:
 		input_vector = input_vector.normalized()
@@ -114,12 +114,12 @@ func _process(_delta: float) -> void:
 	
 	# Perform interaction
 	if Input.is_action_just_pressed(&"interact"):
-		if game_state.state == game_state.states.GAMEPLAY:
+		if game_state_resource.current_state == game_state_resource.states.GAMEPLAY:
 			Signals.emit_request_interaction(self)
 
 	# Pause the game
 	if Input.is_action_just_pressed(&"pause"):
-		if game_state.state == game_state.states.GAMEPLAY:
+		if game_state_resource.current_state == game_state_resource.states.GAMEPLAY:
 			Signals.emit_request_game_pause(self)
 
 

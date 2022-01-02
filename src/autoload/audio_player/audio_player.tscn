@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://btqsvvpfpp3rw"]
+[gd_scene load_steps=7 format=3 uid="uid://brn701h51b4mw"]
 
 [ext_resource type="Resource" uid="uid://bgpbp460ouwja" path="res://src/entities/player/player_state_resource.tres" id="1"]
 [ext_resource type="Script" path="res://src/autoload/audio_player/bgm/bgm_player/bgm_player.gd" id="2"]
@@ -14,8 +14,8 @@ process_mode = 3
 
 [node name="BgmPlayer" type="Node" parent="Bgm"]
 script = ExtResource( "2" )
-settings = ExtResource( "2_crnq2" )
-player_state = ExtResource( "1" )
+settings_resource = ExtResource( "2_crnq2" )
+player_state_resource = ExtResource( "1" )
 
 [node name="BasePlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
 bus = &"BgmBase"
@@ -30,10 +30,10 @@ bus = &"BgmRhythm"
 
 [node name="PauseLowpass" type="Node" parent="Bgm/BgmEffects"]
 script = ExtResource( "3_1ehpi" )
-game_state = ExtResource( "4_byodf" )
+game_state_resource = ExtResource( "4_byodf" )
 
 [node name="UnderwaterLowpass" type="Node" parent="Bgm/BgmEffects"]
 script = ExtResource( "4_t4lhm" )
-player_state = ExtResource( "1" )
+player_state_resource = ExtResource( "1" )
 
-[node name="SfxPlayer" type="Node" parent="."]
+[node name="Sfx" type="Node" parent="."]

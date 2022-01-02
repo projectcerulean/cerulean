@@ -3,7 +3,7 @@
 class_name State
 extends Node
 
-var state: Resource
+var state_resource: Resource
 
 
 # Virtual function. Receives events from the `_unhandled_input()` callback.

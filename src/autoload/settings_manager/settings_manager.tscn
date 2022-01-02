@@ -5,4 +5,4 @@
 
 [node name="SettingsManager" type="Node"]
 script = ExtResource( "1_8b7oe" )
-settings = ExtResource( "2_qs4ts" )
+settings_resource = ExtResource( "2_qs4ts" )

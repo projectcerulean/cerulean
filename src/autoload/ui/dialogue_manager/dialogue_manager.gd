@@ -1,7 +1,7 @@
 extends Control
 
 @export var text_reveal_speed: float = 180.0
-@export var game_state: Resource
+@export var game_state_resource: Resource
 
 var dialogue_resource: Resource = null
 var line_index: int = 0
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 	assert(label != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
-	assert(game_state as StateResource != null, Errors.NULL_RESOURCE)
+	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
 	self.visible = false
 
 
@@ -32,11 +32,11 @@ func _on_request_dialogue_finish(sender: Node) -> void:
 
 
 func _on_state_entered(sender: Node, state: Node) -> void:
-	if sender == game_state.state_machine and state == game_state.states.DIALOGUE:
-		state_machine.transition_to(state_machine.state.states.OUTPUT)
+	if sender == game_state_resource.state_machine and state == game_state_resource.states.DIALOGUE:
+		state_machine.transition_to(state_machine.state_resource.states.OUTPUT)
 		self.visible = true
 
 
 func _on_state_exited(sender: Node, state: Node) -> void:
-	if sender == game_state.state_machine and state == game_state.states.DIALOGUE:
+	if sender == game_state_resource.state_machine and state == game_state_resource.states.DIALOGUE:
 		self.visible = false

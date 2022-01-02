@@ -7,7 +7,7 @@ extends MeshInstance3D
 @export var max_points: int = 100
 @export var lifetime: float = 1.0
 @export var target_state_name: String
-@export var player_state: Resource
+@export var player_state_resource: Resource
 
 var target_state: Node = null
 var time: float = 0.0
@@ -29,9 +29,9 @@ func _ready() -> void:
 	assert(trail_position_left_outer != null, Errors.NULL_NODE)
 	assert(trail_position_right_inner != null, Errors.NULL_NODE)
 	assert(trail_position_right_outer != null, Errors.NULL_NODE)
-	assert(player_state as StateResource != null, Errors.NULL_RESOURCE)
+	assert(player_state_resource as StateResource != null, Errors.NULL_RESOURCE)
 	assert(target_state_name, Errors.INVALID_ARGUMENT)
-	target_state = player_state.states[StringName(target_state_name.to_upper())]
+	target_state = player_state_resource.states[StringName(target_state_name.to_upper())]
 	assert(target_state, Errors.INVALID_ARGUMENT)
 
 
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	mesh.clear_surfaces()
 	time += delta
 
-	if player_state.state == target_state:
+	if player_state_resource.current_state == target_state:
 		point_queue_left_inner.add(trail_position_left_inner.global_transform.origin - global_transform.origin)
 		point_queue_left_outer.add(trail_position_left_outer.global_transform.origin - global_transform.origin)
 		point_queue_right_inner.add(trail_position_right_inner.global_transform.origin - global_transform.origin)
