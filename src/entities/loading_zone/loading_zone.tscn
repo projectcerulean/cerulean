@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwmmlhxm3qpux"]
+
+[ext_resource type="Script" path="res://src/entities/loading_zone/loading_zone.gd" id="1_yrgix"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c8ahr"]
+size = Vector3(4, 4, 4)
+
+[node name="LoadingZone" type="Area3D"]
+collision_layer = 64
+script = ExtResource( "1_yrgix" )
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource( "BoxShape3D_c8ahr" )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

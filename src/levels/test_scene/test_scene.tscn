@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://3rc1hxqvyhd5"]
+[gd_scene load_steps=82 format=3 uid="uid://3rc1hxqvyhd5"]
 
 [ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="14_1w6v1"]
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="14_e3mr8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="15_7eokh"]
+[ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="17_55rd1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4stb"]
 resource_local_to_scene = true
@@ -1034,6 +1035,10 @@ input_node_path = NodePath("../Cable3")
 [node name="Indicator2" parent="Switch4" instance=ExtResource( "14_1w6v1" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.5, -14.5, -85.9)
 input_node_path = NodePath("../Cable4")
+
+[node name="LoadingZone" parent="." instance=ExtResource( "17_55rd1" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6911, -47)
+scene_key = &"TEST_DUNGEON"
 
 [editable path="SignPost"]
 [editable path="SignPost2"]

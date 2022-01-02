@@ -401,6 +401,7 @@ interact={
 3d_physics/layer_4="Entities"
 3d_physics/layer_5="Water"
 3d_physics/layer_6="Interactions"
+3d_physics/layer_7="LoadingZones"
 
 [physics]
 
