@@ -21,12 +21,12 @@ func _process(delta: float) -> void:
 			Signals.emit_interaction_highlight_set(self, interactables.front())
 
 
-func _on_request_interaction(sender: Node):
+func _on_request_interaction(sender: Node) -> void:
 	if interactables.size() > 0:
 		interactables.front().interact()
 
 
-func _on_request_interaction_highlight(sender: Node3D):
+func _on_request_interaction_highlight(sender: Node3D) -> void:
 	# TODO: prevent interactions through walls
 	assert(sender as Interaction != null, Errors.TYPE_ERROR)
 	if sender not in interactables:
@@ -35,7 +35,7 @@ func _on_request_interaction_highlight(sender: Node3D):
 		Signals.emit_interaction_highlight_set(self, interactables.front())
 
 
-func _on_request_interaction_unhighlight(sender: Node3D):
+func _on_request_interaction_unhighlight(sender: Node3D) -> void:
 	if sender in interactables:
 		interactables.erase(sender)
 		interactables.sort_custom(interactables_sort)
@@ -43,7 +43,7 @@ func _on_request_interaction_unhighlight(sender: Node3D):
 		Signals.emit_interaction_highlight_set(self, target)
 
 
-func _on_scene_changed(sender: Node):
+func _on_scene_changed(sender: Node) -> void:
 	interactables.clear()
 	Signals.emit_interaction_highlight_set(self, null)
 

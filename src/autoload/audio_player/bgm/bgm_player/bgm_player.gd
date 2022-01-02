@@ -40,7 +40,7 @@ func _ready() -> void:
 	AudioServer.set_bus_mute(bus_index, settings_resource.settings[Settings.BACKGROUND_MUSIC] == Settings.Boolean.NO)
 
 
-func _on_scene_changed(sender: Node):
+func _on_scene_changed(sender: Node) -> void:
 	if sender.bgm_resource == bgm_resource:
 		return
 
@@ -110,5 +110,5 @@ func _on_state_entered(sender: Node, state: Node) -> void:
 			rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_zero, tween_duration_cutoff)
 
 
-func _on_setting_updated(_sender: Node, _key: StringName, _value: int):
+func _on_setting_updated(_sender: Node, _key: StringName, _value: int) -> void:
 	AudioServer.set_bus_mute(bus_index, settings_resource.settings[Settings.BACKGROUND_MUSIC] == Settings.Boolean.NO)

@@ -16,8 +16,8 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var camera_distance_min: float = 2.5
 @export var camera_distance_max: float = 25.0
 @export var camera_distance_speed: float = 2.0
-@export var yaw_speed = PI
-@export var pitch_speed = PI / 2.0
+@export var yaw_speed: float = PI
+@export var pitch_speed: float = PI / 2.0
 
 var water_collision_shapes: Array
 

@@ -6,12 +6,12 @@ extends ColorRect
 @onready var alpha_max: float = color.a
 
 
-func _ready():
+func _ready() -> void:
 	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
 	color.a = 0.0
 
 
-func _process(delta: float):
+func _process(delta: float) -> void:
 	var alpha_target: float = 0.0
 	if game_state_resource.current_state == game_state_resource.states.PAUSE:
 		alpha_target = alpha_max

@@ -3,7 +3,7 @@ extends Node3D
 
 @export var input_node_path: NodePath
 
-@onready var input_node = get_node(input_node_path)
+@onready var input_node: Node = get_node(input_node_path)
 @onready var state_machine: StateMachine = get_node("StateMachine")
 
 

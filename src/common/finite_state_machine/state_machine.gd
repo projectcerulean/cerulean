@@ -62,12 +62,12 @@ func transition_to(target_state: State, data: Dictionary = {}) -> void:
 	call_deferred(transition_to_deferred.get_method(), target_state, data)
 
 
-func lazy_transition_to(target_state: State, data: Dictionary = {}):
+func lazy_transition_to(target_state: State, data: Dictionary = {}) -> void:
 	if target_state != state_resource.current_state:
 		transition_to(target_state, data)
 
 
-func transition_to_next(data: Dictionary = {}):
+func transition_to_next(data: Dictionary = {}) -> void:
 	var current_state_index: int = -1
 	for i in range(get_child_count()):
 		if get_children()[i] == state_resource.current_state:

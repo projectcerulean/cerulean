@@ -30,7 +30,7 @@ signal visualize_vector
 
 
 # Assert that all the signals above have a corresponding emission function below
-func _ready():
+func _ready() -> void:
 	var node: Node = Node.new()
 	var default_signals: Array[String] = []
 	var default_methods: Array[String] = []

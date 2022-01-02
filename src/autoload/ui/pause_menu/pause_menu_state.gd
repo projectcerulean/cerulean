@@ -48,6 +48,6 @@ func get_transition() -> PauseMenuState:
 	return null
 
 
-func _on_state_exited(sender: Node, state: Node):
+func _on_state_exited(sender: Node, state: Node) -> void:
 	if sender == pause_menu.game_state_resource.state_machine and state == pause_menu.game_state_resource.states.PAUSE:
 		i_hovered_option = 0

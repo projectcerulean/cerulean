@@ -12,10 +12,10 @@ extends MeshInstance3D
 var target_state: Node = null
 var time: float = 0.0
 
-@onready var trail_position_left_inner = get_node(trail_position_left_inner_path)
-@onready var trail_position_left_outer = get_node(trail_position_left_outer_path)
-@onready var trail_position_right_inner = get_node(trail_position_right_inner_path)
-@onready var trail_position_right_outer = get_node(trail_position_right_outer_path)
+@onready var trail_position_left_inner: Node3D = get_node(trail_position_left_inner_path)
+@onready var trail_position_left_outer: Node3D = get_node(trail_position_left_outer_path)
+@onready var trail_position_right_inner: Node3D = get_node(trail_position_right_inner_path)
+@onready var trail_position_right_outer: Node3D = get_node(trail_position_right_outer_path)
 
 @onready var point_queue_left_inner: DataStructures.RotationQueue = DataStructures.RotationQueue.new(max_points)
 @onready var point_queue_left_outer: DataStructures.RotationQueue = DataStructures.RotationQueue.new(max_points)
@@ -71,7 +71,8 @@ func _process(delta: float) -> void:
 		mesh.surface_end()
 
 
-func get_vertices(point_queue_inner, point_queue_outer, time_queue) -> Array[PackedVector3Array]:
+# TODO: why does not DataStructures.RotationQueue type hint work?
+func get_vertices(point_queue_inner: RefCounted, point_queue_outer: RefCounted, time_queue: RefCounted) -> Array[PackedVector3Array]:
 	var vertices: Array[PackedVector3Array] = []
 	var chunk: PackedVector3Array = []
 	for i_point in range(point_queue_inner.size()):

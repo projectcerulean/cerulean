@@ -144,11 +144,11 @@ func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 		water_collision_shapes.erase(collision_shape)
 
 
-func is_in_water():
+func is_in_water() -> bool:
 	return water_collision_shapes.size() > 0
 
 
-func get_water_surface_height():
+func get_water_surface_height() -> float:
 	if not is_in_water():
 		return NAN
 

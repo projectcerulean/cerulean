@@ -39,8 +39,8 @@ func _draw() -> void:
 
 	var position3d: Vector3 = target.global_transform.origin
 	if not camera.is_position_behind(position3d):
-		var position2d = camera.unproject_position(position3d)
-		var camera_distance = (camera.global_transform.origin - position3d).length()
+		var position2d: Vector2 = camera.unproject_position(position3d)
+		var camera_distance: float = (camera.global_transform.origin - position3d).length()
 		var vertex_positions: PackedVector2Array = PackedVector2Array(polygon_shape)
 		for i in range(vertex_positions.size()):
 			vertex_positions[i] *= scale_factor
@@ -53,11 +53,11 @@ func _process(_delta: float) -> void:
 	update()
 
 
-func _on_interaction_highlight_set(sender: Node, target: Node3D):
+func _on_interaction_highlight_set(sender: Node, target: Node3D) -> void:
 	self.target = target
 
 
-func _on_request_interaction(sender: Node):
+func _on_request_interaction(sender: Node) -> void:
 	if target == null:
 		return
 

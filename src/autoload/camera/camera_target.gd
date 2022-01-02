@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, Vector3.ZERO, dialogue_lerp_weight, delta)
 		global_transform.origin.x = player_transform_resource.global_transform.origin.x + dialogue_target_offset.x
 		global_transform.origin.z = player_transform_resource.global_transform.origin.z + dialogue_target_offset.z
-		var y_lerp_weight = y_lerp_weight_player_grounded if player_state_resource.current_state in [player_state_resource.states.RUN, player_state_resource.states.IDLE] else y_lerp_weight_player_air
+		var y_lerp_weight: float = y_lerp_weight_player_grounded if player_state_resource.current_state in [player_state_resource.states.RUN, player_state_resource.states.IDLE] else y_lerp_weight_player_air
 		global_transform.origin.y = Lerp.delta_lerp(global_transform.origin.y, player_transform_resource.global_transform.origin.y, y_lerp_weight, delta)
 	elif game_state_resource.current_state == game_state_resource.states.PAUSE:
 		pass
@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 	transform_resource.transform = transform
 
 
-func _on_scene_changed(sender: Node):
+func _on_scene_changed(sender: Node) -> void:
 	global_transform.origin = player_transform_resource.global_transform.origin
 
 

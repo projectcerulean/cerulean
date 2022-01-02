@@ -10,7 +10,7 @@ extends MeshInstance3D
 @onready var state_next: bool = false
 
 @onready var state_machine: StateMachine = get_node("StateMachine")
-@onready var input_node = get_node(input_node_path)
+@onready var input_node: Node = get_node(input_node_path)
 @onready var tween: Tween = create_tween()
 
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 	set_flow_position(flow_position_start)
 
 
-func set_flow_position(flow_position) -> void:
+func set_flow_position(flow_position: float) -> void:
 	get_surface_override_material(0).set_shader_param("flow_position", flow_position)
 
 

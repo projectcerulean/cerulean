@@ -8,11 +8,11 @@ extends ColorRect
 var blur_strength: float = 0.0
 
 
-func _ready():
+func _ready() -> void:
 	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
 
 
-func _process(delta: float):
+func _process(delta: float) -> void:
 	var blur_strength_target: float = 0.0
 	if game_state_resource.current_state == game_state_resource.states.PAUSE:
 		blur_strength_target = blur_strength_max

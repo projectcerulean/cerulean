@@ -11,11 +11,11 @@ func _ready() -> void:
 	self.visible = false
 
 
-func _on_state_entered(sender: Node, state: Node):
+func _on_state_entered(sender: Node, state: Node) -> void:
 	if sender == game_state_resource.state_machine and state == game_state_resource.states.PAUSE:
 		self.visible = true
 
 
-func _on_state_exited(sender: Node, state: Node):
+func _on_state_exited(sender: Node, state: Node) -> void:
 	if sender == game_state_resource.state_machine and state == game_state_resource.states.PAUSE:
 		self.visible = false

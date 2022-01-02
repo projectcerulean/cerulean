@@ -13,7 +13,7 @@ func _enter_tree() -> void:
 	for key in settings_resource.settings:
 		settings_resource.settings[key] = Settings.SETTINGS[key][Settings.DEFAULT_VALUE]
 
-	var config_file = ConfigFile.new()
+	var config_file: ConfigFile = ConfigFile.new()
 	if config_file.load(settings_file_path) == OK:
 		for section in config_file.get_sections():
 			for key in config_file.get_section_keys(section):
@@ -39,7 +39,7 @@ func _on_request_setting_update(_sender: Node, key: StringName, value: int) -> v
 
 
 func _on_request_settings_save(_sender: Node) -> void:
-	var config_file = ConfigFile.new()
+	var config_file: ConfigFile = ConfigFile.new()
 	for key in settings_resource.settings:
 		config_file.set_value("Settings", key, settings_resource.settings[key])
 	config_file.save(settings_file_path)
