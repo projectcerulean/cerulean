@@ -9,6 +9,7 @@ func get_transition() -> PauseMenuState:
 		elif Input.is_action_just_pressed("ui_cancel"):
 			return state_resource.states.MAIN
 		elif Input.is_action_just_pressed("ui_accept"):
-			Signals.emit_request_scene_change(self, menu_options[i_hovered_option].key_string)
+			var scene_path: String = Levels.LEVELS[menu_options[i_hovered_option].key_string][Levels.LEVEL_PATH]
+			Signals.emit_request_scene_transition_start(self, scene_path, pause_menu.scene_transition_color, pause_menu.scene_transition_fade_duration)
 			return state_resource.states.MAIN
 	return null

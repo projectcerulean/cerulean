@@ -18,7 +18,8 @@ signal request_interaction
 signal request_interaction_highlight
 signal request_interaction_unhighlight
 signal request_scene_change
-signal request_scene_reload
+signal request_scene_transition_start
+signal request_scene_transition_finish
 signal request_setting_update
 signal request_settings_save
 signal request_sfx_play
@@ -83,8 +84,9 @@ func emit_request_game_unpause(sender: Node) -> void: emit(request_game_unpause,
 func emit_request_interaction(sender: Node) -> void: emit(request_interaction, [sender])
 func emit_request_interaction_highlight(sender: Node3D) -> void: emit(request_interaction_highlight, [sender])
 func emit_request_interaction_unhighlight(sender: Node3D) -> void: emit(request_interaction_unhighlight, [sender])
-func emit_request_scene_change(sender: Node, key: String) -> void: emit(request_scene_change, [sender, key])
-func emit_request_scene_reload(sender: Node) -> void: emit(request_scene_reload, [sender])
+func emit_request_scene_change(sender: Node, scene_path: String) -> void: emit(request_scene_change, [sender, scene_path])
+func emit_request_scene_transition_start(sender: Node, scene_path: String, color: Color, duration: float) -> void: emit(request_scene_transition_start, [sender, scene_path, color, duration])
+func emit_request_scene_transition_finish(sender: Node) -> void: emit(request_scene_transition_finish, [sender])
 func emit_request_setting_update(sender: Node, key: StringName, value: int) -> void: emit(request_setting_update, [sender, key, value])
 func emit_request_settings_save(sender: Node) -> void: emit(request_settings_save, [sender])
 func emit_request_sfx_play(sender: Node, sfx_resource: SfxResource, position: Vector3) -> void: emit(request_sfx_play, [sender, sfx_resource, position])

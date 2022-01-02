@@ -1,6 +1,8 @@
 extends Area3D
 
 @export var scene_key: StringName
+@export var scene_transition_color: Color = Color(0.02, 0.02, 0.02)
+@export var fade_duration: float = 2.0
 
 
 func _ready() -> void:
@@ -10,4 +12,5 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	assert(body.name == &"Player", Errors.CONSISTENCY_ERROR)
-	Signals.emit_request_scene_change(self, scene_key)
+	var scene_path: String = Levels.LEVELS[scene_key][Levels.LEVEL_PATH]
+	Signals.emit_request_scene_transition_start(self, scene_path, scene_transition_color, fade_duration)

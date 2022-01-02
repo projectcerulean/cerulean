@@ -35,6 +35,8 @@ func _process(delta: float) -> void:
 		global_transform.origin.y = Lerp.delta_lerp(global_transform.origin.y, player_transform_resource.global_transform.origin.y, y_lerp_weight, delta)
 	elif game_state_resource.current_state == game_state_resource.states.PAUSE:
 		pass
+	elif game_state_resource.current_state == game_state_resource.states.SCENETRANSITION:
+		pass
 	else:
 		assert(false, Errors.CONSISTENCY_ERROR)
 

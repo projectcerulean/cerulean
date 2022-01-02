@@ -3,6 +3,9 @@ extends Control
 @export var game_state_resource: Resource
 @export var sfx_resource_select: Resource
 
+@export var scene_transition_color: Color = Color.WHITE_SMOKE
+@export var scene_transition_fade_duration: float = 0.5
+
 
 func _ready() -> void:
 	Signals.state_entered.connect(self._on_state_entered)

@@ -11,7 +11,8 @@ func get_transition() -> PauseMenuState:
 			if menu_options[i_hovered_option].name == &"Resume":
 				Signals.emit_request_game_unpause(self)
 			elif menu_options[i_hovered_option].name == &"ReloadLevel":
-				Signals.emit_request_scene_reload(self)
+				var scene_path: String = get_tree().current_scene.scene_file_path
+				Signals.emit_request_scene_transition_start(self, scene_path, pause_menu.scene_transition_color, pause_menu.scene_transition_fade_duration)
 			elif menu_options[i_hovered_option].name == &"ChangeLevel":
 				return state_resource.states.LEVELS
 			elif menu_options[i_hovered_option].name == &"Settings":
