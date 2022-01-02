@@ -30,7 +30,7 @@ void fragment() {
 		ALBEDO = water_color.rgb;
 		ALPHA = water_color.a;
 	}
-	
+
 	SPECULAR = 1.0;
 	METALLIC = 0.25;
 	ROUGHNESS = 0.0;

@@ -25,9 +25,9 @@ void fragment() {
 		ALPHA = alpha_max;
 	}
 	ALPHA *= alpha_factor;
-	
+
 	ALBEDO = color.rgb + 0.025*vec3((pow(sin(2.5*UV.y + 0.5*TIME), 4.0)));
-	
+
 	SPECULAR = 1.0;
 	METALLIC = 0.25;
 	ROUGHNESS = 0.0;

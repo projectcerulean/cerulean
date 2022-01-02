@@ -5,8 +5,8 @@ extends Node
 static func delta_lerp(from: float, to: float, weight: float, process_delta: float) -> float:
 	assert(weight > 0.0, Errors.INVALID_ARGUMENT)
 	return lerp(from, to, 1.0 - pow(10.0, -weight * process_delta))
-	
-	
+
+
 static func delta_lerp_angle(from: float, to: float, weight: float, process_delta: float) -> float:
 	assert(weight > 0.0, Errors.INVALID_ARGUMENT)
 	return lerp_angle(from, to, 1.0 - pow(10.0, -weight * process_delta))

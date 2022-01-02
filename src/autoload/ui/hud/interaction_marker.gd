@@ -60,7 +60,7 @@ func _on_interaction_highlight_set(sender: Node, target: Node3D):
 func _on_request_interaction(sender: Node):
 	if target == null:
 		return
-	
+
 	scale_factor = scale_factor_min
 	color = Color.WHITE
 	tween.kill()

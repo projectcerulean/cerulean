@@ -111,7 +111,7 @@ func _process(_delta: float) -> void:
 	# Update tranform resource
 	transform_resource.global_transform = global_transform
 	transform_resource.transform = transform
-	
+
 	# Perform interaction
 	if Input.is_action_just_pressed(&"interact"):
 		if game_state_resource.current_state == game_state_resource.states.GAMEPLAY:

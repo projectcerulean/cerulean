@@ -16,7 +16,7 @@ void vertex() {
 	float noise = texture(uv_offset_texture, base_uv_offset).r;
 	float texture_based_offset = noise * 2.0 - 1.0;
 	texture_based_offset *= UV.x;
-	
+
 	VERTEX.y += texture_based_offset * vertex_offset_scale;
 	VERTEX.x += texture_based_offset * face_distortion;
 	VERTEX.z -= texture_based_offset * face_distortion - pow(UV.x, noise * curvature);
