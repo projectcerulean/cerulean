@@ -70,8 +70,8 @@ func _ready() -> void:
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	for node in mesh_map.values():
-		var nodeTyped: Node3D = node as Node3D
-		assert(nodeTyped != null, Errors.NULL_NODE)
+		var node_typed: Node3D = node as Node3D
+		assert(node_typed != null, Errors.NULL_NODE)
 
 	for s in state_resource.states.values():
 		mesh_joint_map[s] = [
@@ -82,8 +82,8 @@ func _ready() -> void:
 
 	for nodes in mesh_joint_map.values():
 		for node in nodes:
-			var nodeTyped: Node3D = node as Node3D
-			assert(nodeTyped != null, Errors.NULL_NODE)
+			var node_typed: Node3D = node as Node3D
+			assert(node_typed != null, Errors.NULL_NODE)
 
 	# Update tranform resource
 	transform_resource.global_transform = global_transform

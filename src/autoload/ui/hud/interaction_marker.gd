@@ -45,7 +45,7 @@ func _draw() -> void:
 		for i in range(vertex_positions.size()):
 			vertex_positions[i] *= scale_factor
 			vertex_positions[i] /= camera_distance
-			vertex_positions[i] += position2d - Vector2(0.0, oscillation_amplitude * abs(lfo_resource.valueFourthShifted) / camera_distance)
+			vertex_positions[i] += position2d - Vector2(0.0, oscillation_amplitude * abs(lfo_resource.value_fourth_shifted) / camera_distance)
 		draw_polygon(vertex_positions, PackedColorArray([color, color, color]))
 
 

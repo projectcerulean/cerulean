@@ -28,9 +28,9 @@ func _draw() -> void:
 		# TODO: why does not DataStructures.RotationQueue type hint work?
 		var points: RefCounted = lines[sender]
 		var color: Color = colors[sender]
-		for iPoint in range(points.size() - 1):
-			var p1: Vector3 = points.get_item(iPoint)
-			var p2: Vector3 = points.get_item(iPoint + 1)
+		for i_point in range(points.size() - 1):
+			var p1: Vector3 = points.get_item(i_point)
+			var p2: Vector3 = points.get_item(i_point + 1)
 			if not camera.is_position_behind(p1) and not camera.is_position_behind(p2):
 				draw_line(camera.unproject_position(p1), camera.unproject_position(p2), color, line_width)
 

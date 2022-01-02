@@ -17,15 +17,15 @@ func _process(delta: float) -> void:
 	# TODO: sync with bgm better
 	var angle: float = Time.get_unix_time_from_system() * (TAU * bpm / seconds_per_minute)
 
-	lfo_resource.valueDouble = sin(2.0 * angle)
-	lfo_resource.valueWhole = sin(angle)
-	lfo_resource.valueHalf = sin(0.5 * angle)
-	lfo_resource.valueFourth = sin(0.25 * angle)
+	lfo_resource.value_double = sin(2.0 * angle)
+	lfo_resource.value_whole = sin(angle)
+	lfo_resource.value_half = sin(0.5 * angle)
+	lfo_resource.value_fourth = sin(0.25 * angle)
 
-	lfo_resource.valueDoubleShifted = cos(2.0 * angle)
-	lfo_resource.valueWholeShifted = cos(angle)
-	lfo_resource.valueHalfShifted = cos(0.5 * angle)
-	lfo_resource.valueFourthShifted = cos(0.25 * angle)
+	lfo_resource.value_double_shifted = cos(2.0 * angle)
+	lfo_resource.value_whole_shifted = cos(angle)
+	lfo_resource.value_half_shifted = cos(0.5 * angle)
+	lfo_resource.value_fourth_shifted = cos(0.25 * angle)
 
 
 func _on_bgm_changed(sender: Node, bgm_resource: BgmResource) -> void:

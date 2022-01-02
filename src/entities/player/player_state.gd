@@ -23,6 +23,6 @@ func enter(old_state: State, data := {}) -> void:
 
 	# Reset mesh joints
 	for joint in player.mesh_joint_map[self]:
-		var jointTyped: Node3D = joint as Node3D
-		jointTyped.rotation = Vector3()
-		jointTyped.position = Vector3()
+		var joint_typed: Node3D = joint as Node3D
+		joint_typed.rotation = Vector3()
+		joint_typed.position = Vector3()

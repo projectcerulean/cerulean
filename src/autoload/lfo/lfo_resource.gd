@@ -1,12 +1,12 @@
 class_name LfoResource
 extends Resource
 
-var valueDouble: float = 0.0
-var valueWhole: float = 0.0
-var valueHalf: float = 0.0
-var valueFourth: float = 0.0
+var value_double: float = 0.0
+var value_whole: float = 0.0
+var value_half: float = 0.0
+var value_fourth: float = 0.0
 
-var valueDoubleShifted: float = 0.0
-var valueWholeShifted: float = 0.0
-var valueHalfShifted: float = 0.0
-var valueFourthShifted: float = 0.0
+var value_double_shifted: float = 0.0
+var value_whole_shifted: float = 0.0
+var value_half_shifted: float = 0.0
+var value_fourth_shifted: float = 0.0
