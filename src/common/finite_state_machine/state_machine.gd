@@ -13,41 +13,46 @@ extends Node
 
 # Enter the initial state when initializing the state machine.
 func _ready() -> void:
-	if not state_resource:
+	if state_resource == null:
 		state_resource = StateResource.new()
 	assert(state_resource as StateResource != null, Errors.NULL_RESOURCE)
 
 	state_resource.state_machine = self
-	assert(initial_state, Errors.INVALID_ARGUMENT)
-	state_resource.current_state = get_node(initial_state)
-	assert(state_resource.current_state as State != null, Errors.TYPE_ERROR)
+	state_resource.current_state = null
+	state_resource.states = {}
 
 	for child in get_children():
 		assert(child as State != null, Errors.INVALID_ARGUMENT)
 		child.state_resource = state_resource
 		state_resource.states[StringName(str(child.name).to_upper())] = child
 
-	transition_to(state_resource.current_state)
+	assert(initial_state, Errors.INVALID_ARGUMENT)
+	var initial_state_node: State = get_node(initial_state) as State
+	assert(initial_state_node != null, Errors.TYPE_ERROR)
+	transition_to(initial_state_node)
 
 
 # Delegate `_unhandled_input` callback to the active state.
 func _unhandled_input(event: InputEvent) -> void:
-	state_resource.current_state.unhandled_input(event)
+	if state_resource.current_state != null:
+		state_resource.current_state.unhandled_input(event)
 
 
 # Delegate `_process` callback to the active state.
 func _process(delta: float) -> void:
-	state_resource.current_state.process(delta)
+	if state_resource.current_state != null:
+		state_resource.current_state.process(delta)
 
-	# Change the current state
-	var target_state: State = state_resource.current_state.get_transition()
-	if target_state:
-		transition_to(target_state)
+		# Change the current state
+		var target_state: State = state_resource.current_state.get_transition()
+		if target_state != null:
+			transition_to(target_state)
 
 
 # Delegate `_physics_process` callback to the active state.
 func _physics_process(delta: float) -> void:
-	state_resource.current_state.physics_process(delta)
+	if state_resource.current_state != null:
+		state_resource.current_state.physics_process(delta)
 
 
 # This function calls the current state's exit() function, then changes the active state,
@@ -75,10 +80,13 @@ func transition_to_next(data: Dictionary = {}):
 
 
 func transition_to_deferred(target_state: State, data: Dictionary = {}) -> void:
-	state_resource.current_state.exit(target_state)
-	Signals.emit_state_exited(self, state_resource.current_state)
+	assert(target_state != null, Errors.NULL_NODE)
 
 	var old_state: State = state_resource.current_state
+	if old_state != null:
+		old_state.exit(target_state)
+		Signals.emit_state_exited(self, state_resource.current_state)
+
 	state_resource.current_state = target_state
 	state_resource.current_state.enter(old_state, data)
 	Signals.emit_state_entered(self, state_resource.current_state)
