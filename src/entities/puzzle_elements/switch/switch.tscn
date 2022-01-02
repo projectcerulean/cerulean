@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://diuy5376ye76p"]
+[gd_scene load_steps=12 format=3 uid="uid://blysdbts7tc6d"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
 [ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interaction.tscn" id="2_hkiaq"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_interaction_action.gd" id="3_bgjta"]
-[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="4_rrpi8"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="4_rrpi8"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_state.gd" id="5_5aoy1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmta0"]

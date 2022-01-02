@@ -1,6 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cvihfvovw4xn1"]
+[gd_resource type="Resource" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://src/common/finite_state_machine/state_resource.gd" id="1_sb5s0"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_resource.gd" id="1_sb5s0"]
 
 [resource]
 script = ExtResource( "1_sb5s0" )

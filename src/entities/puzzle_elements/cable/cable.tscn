@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cm24dnwe8p6ge"]
+[gd_scene load_steps=7 format=3 uid="uid://cvipjobikurqv"]
 
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="1_c8xt7"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/cable/cable.gd" id="2_gr7c4"]
-[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="3_0rjeb"]
-[ext_resource type="Script" path="res://src/common/finite_state_machine/state.gd" id="4_3jue8"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="3_0rjeb"]
+[ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="4_3jue8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nssbg"]
 resource_local_to_scene = true

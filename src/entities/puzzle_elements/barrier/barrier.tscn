@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bnivere8lylvr"]
+[gd_scene load_steps=12 format=3 uid="uid://dw1acna2ojcj7"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/barrier/barrier.gd" id="1_8dbv4"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/barrier/barrier.gdshader" id="1_alkq1"]
-[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="3_e2rqu"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="3_qqest"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/barrier/barrier_state.gd" id="4_nmhmp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rojgn"]
@@ -48,7 +48,7 @@ mesh = SubResource( "BoxMesh_4kh3e" )
 surface_material_override/0 = SubResource( "ShaderMaterial_esmal" )
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( "3_e2rqu" )
+script = ExtResource( "3_qqest" )
 initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="StateMachine"]

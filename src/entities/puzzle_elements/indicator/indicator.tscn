@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bu4u2uf4kip15"]
+[gd_scene load_steps=8 format=3 uid="uid://cdlxuj1emu411"]
 
-[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="1_54p1h"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="1_54p1h"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator.gd" id="1_bsmqb"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_state.gd" id="3_ghuvw"]
 

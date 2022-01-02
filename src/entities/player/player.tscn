@@ -1,11 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://b0bq4qshg2ib4"]
+[gd_scene load_steps=27 format=3 uid="uid://b4nxtyal7tjpu"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
-[ext_resource type="Script" path="res://src/common/finite_state_machine/state_machine.gd" id="2"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/autoload/input/thumbstick_resource_left.tres" id="2_t6dk8"]
 [ext_resource type="Script" path="res://src/entities/player/player_idle.gd" id="3"]
 [ext_resource type="Script" path="res://src/entities/player/player_run.gd" id="4"]
-[ext_resource type="Resource" uid="uid://bviclx4gy4i7j" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="4_gviv5"]
+[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="4_gviv5"]
 [ext_resource type="Script" path="res://src/entities/player/player_fall.gd" id="5"]
 [ext_resource type="Resource" uid="uid://cf5mdlivktsoa" path="res://src/entities/player/player_transform.tres" id="5_f776o"]
 [ext_resource type="Script" path="res://src/entities/player/player_jump.gd" id="6"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://src/entities/player/player_trail_renderer.gd" id="8"]
 [ext_resource type="Script" path="res://src/entities/player/player_swim.gd" id="9"]
 [ext_resource type="Script" path="res://src/entities/player/player_dive.gd" id="10"]
-[ext_resource type="Resource" uid="uid://bgpbp460ouwja" path="res://src/entities/player/player_state_resource.tres" id="12"]
+[ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.25

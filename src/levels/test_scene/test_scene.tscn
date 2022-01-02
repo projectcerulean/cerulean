@@ -1,6 +1,6 @@
 [gd_scene load_steps=81 format=3 uid="uid://3rc1hxqvyhd5"]
 
-[ext_resource type="PackedScene" uid="uid://b0bq4qshg2ib4" path="res://src/entities/player/player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="Resource" uid="uid://ddnjany5v3k6t" path="res://src/sound/bgm/seaandsky/seaandsky.tres" id="2_70wvx"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
@@ -11,10 +11,10 @@
 [ext_resource type="Resource" uid="uid://b458fluv0h1ap" path="res://assets/dialogue/tutorial/jumping.tres" id="9_ilvj1"]
 [ext_resource type="Resource" uid="uid://df62i7tswvfok" path="res://assets/dialogue/tutorial/diving.tres" id="10_vafey"]
 [ext_resource type="Resource" uid="uid://c16fyeapkmu14" path="res://assets/dialogue/tutorial/camera.tres" id="11_qt3s6"]
-[ext_resource type="PackedScene" uid="uid://bnivere8lylvr" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="12_vimad"]
-[ext_resource type="PackedScene" uid="uid://diuy5376ye76p" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="13_m46gq"]
-[ext_resource type="PackedScene" uid="uid://bu4u2uf4kip15" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="14_1w6v1"]
-[ext_resource type="PackedScene" uid="uid://cm24dnwe8p6ge" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="14_e3mr8"]
+[ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="12_vimad"]
+[ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="13_m46gq"]
+[ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="14_1w6v1"]
+[ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="14_e3mr8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="15_7eokh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4stb"]

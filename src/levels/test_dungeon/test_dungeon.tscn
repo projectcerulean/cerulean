@@ -1,15 +1,15 @@
 [gd_scene load_steps=29 format=3 uid="uid://d0q0ecg35bhvm"]
 
-[ext_resource type="PackedScene" uid="uid://b0bq4qshg2ib4" path="res://src/entities/player/player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="Resource" uid="uid://cvtbqj4bp41m0" path="res://src/sound/bgm/waterworks/waterworks.tres" id="2_wdqa0"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://bnivere8lylvr" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="5_7fqri"]
+[ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="5_7fqri"]
 [ext_resource type="Material" uid="uid://u2dixa7fu604" path="res://src/levels/test_dungeon/material.tres" id="5_skqnu"]
-[ext_resource type="PackedScene" uid="uid://diuy5376ye76p" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="6_4a13o"]
-[ext_resource type="PackedScene" uid="uid://cm24dnwe8p6ge" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="7_b2l1v"]
+[ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="6_4a13o"]
+[ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="7_b2l1v"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="8_4hvtj"]
-[ext_resource type="PackedScene" uid="uid://bu4u2uf4kip15" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
+[ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ybceq"]
 resource_local_to_scene = true
