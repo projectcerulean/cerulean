@@ -1,4 +1,4 @@
-extends BgmEffect
+extends Lowpass
 
 @export var hz_high: float = 20500
 @export var hz_low: float = 1000

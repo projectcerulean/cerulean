@@ -23,7 +23,7 @@ func _ready() -> void:
 func _on_request_sfx_play_non_diegetic(sender: Node, sfx_resource: SfxResource) -> void:
 	var audio_stream_player: AudioStreamPlayer = get_child(i_current_player)
 	audio_stream_player.stop()
-	audio_stream_player.stream = sfx_resource.samples[randi() % sfx_resource.samples.size()]
+	audio_stream_player.stream = sfx_resource.stream_samples[randi() % sfx_resource.stream_samples.size()]
 	audio_stream_player.volume_db = sfx_resource.volume_db
 	audio_stream_player.pitch_scale = sfx_resource.pitch_scale
 	audio_stream_player.play()

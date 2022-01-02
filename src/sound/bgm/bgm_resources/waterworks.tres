@@ -6,6 +6,6 @@
 
 [resource]
 script = ExtResource( "1_pxgjl" )
-stream_base = ExtResource( "2_otu2c" )
-stream_rhythm = ExtResource( "3_if6ay" )
+stream_sample_base = ExtResource( "2_otu2c" )
+stream_sample_rhythm = ExtResource( "3_if6ay" )
 bpm = 90.0

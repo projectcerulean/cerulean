@@ -19,11 +19,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/entities/puzzle_elements/barrier/barrier_state.gd"
 }, {
-"base": "Node",
-"class": &"BgmEffect",
-"language": &"GDScript",
-"path": "res://src/autoload/audio_player/bgm/bgm_effects/bgm_effect.gd"
-}, {
 "base": "Resource",
 "class": &"BgmResource",
 "language": &"GDScript",
@@ -108,6 +103,11 @@ _global_script_classes=[{
 "class": &"LfoResource",
 "language": &"GDScript",
 "path": "res://src/autoload/lfo/lfo_resource.gd"
+}, {
+"base": "Node",
+"class": &"Lowpass",
+"language": &"GDScript",
+"path": "res://src/autoload/audio_player/effects/lowpass.gd"
 }, {
 "base": "Node",
 "class": &"Math",
@@ -212,7 +212,6 @@ _global_script_classes=[{
 _global_script_class_icons={
 "Barrier": "",
 "BarrierState": "",
-"BgmEffect": "",
 "BgmResource": "",
 "CColor": "",
 "Cable": "",
@@ -230,6 +229,7 @@ _global_script_class_icons={
 "Lerp": "",
 "Levels": "",
 "LfoResource": "",
+"Lowpass": "",
 "Math": "",
 "PauseMenuState": "",
 "Physics": "",

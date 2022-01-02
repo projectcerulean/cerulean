@@ -54,9 +54,9 @@ func _on_scene_changed(sender: Node) -> void:
 
 	bgm_resource = sender.bgm_resource
 	if bgm_resource != null:
-		base_player.stream = bgm_resource.stream_base
-		glide_player.stream = bgm_resource.stream_glide
-		rhythm_player.stream = bgm_resource.stream_rhythm
+		base_player.stream = bgm_resource.stream_sample_base
+		glide_player.stream = bgm_resource.stream_sample_glide
+		rhythm_player.stream = bgm_resource.stream_sample_rhythm
 
 		assert(base_player.stream != null, Errors.NULL_RESOURCE)
 

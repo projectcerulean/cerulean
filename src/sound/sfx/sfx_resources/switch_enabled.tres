@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource( "1_fxwr5" )
-samples = [ExtResource( "1_3xoye" )]
+stream_samples = [ExtResource( "1_3xoye" )]
 volume_db = 0.0
 pitch_scale = 1.0

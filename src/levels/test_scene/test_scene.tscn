@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
-[ext_resource type="Resource" uid="uid://ddnjany5v3k6t" path="res://src/sound/bgm/seaandsky/seaandsky.tres" id="2_70wvx"]
+[ext_resource type="Resource" uid="uid://ddnjany5v3k6t" path="res://src/sound/bgm/bgm_resources/seaandsky.tres" id="2_70wvx"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
 [ext_resource type="Material" uid="uid://df0jxyi8dlx2u" path="res://src/levels/test_scene/stone_material.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://3mhvdybo4ccu" path="res://src/levels/test_scene/flag/flag.tscn" id="6_psp6u"]

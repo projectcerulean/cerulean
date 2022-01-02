@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource( "1_pv1sb" )
-samples = [ExtResource( "1_rv10k" )]
+stream_samples = [ExtResource( "1_rv10k" )]
 volume_db = -3.0
 pitch_scale = 0.9

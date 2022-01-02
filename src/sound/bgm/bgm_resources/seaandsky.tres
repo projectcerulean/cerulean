@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource( "1" )
-stream_base = ExtResource( "4" )
-stream_glide = ExtResource( "3" )
-stream_rhythm = ExtResource( "2" )
+stream_sample_base = ExtResource( "4" )
+stream_sample_glide = ExtResource( "3" )
+stream_sample_rhythm = ExtResource( "2" )
 bpm = 92.0

@@ -1,4 +1,4 @@
-class_name BgmEffect
+class_name Lowpass
 extends Node
 
 @onready var bus_index: int = AudioServer.get_bus_index(self.name)
