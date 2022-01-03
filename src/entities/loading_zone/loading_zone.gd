@@ -2,7 +2,7 @@ extends Area3D
 
 @export var scene_key: StringName
 @export var scene_transition_color: Color = Color(0.02, 0.02, 0.02)
-@export var fade_duration: float = 2.0
+@export var fade_duration: float = 1.5
 
 
 func _ready() -> void:
