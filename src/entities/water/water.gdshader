@@ -10,6 +10,7 @@ uniform float water_color_highlight_threshold = 0.55;
 
 uniform vec4 foam_color: hint_color;
 uniform float foam_width = 0.2;
+uniform float foam_smooth = 0.01;
 
 uniform sampler2D noise_sampler1;
 uniform sampler2D noise_sampler2;
@@ -42,11 +43,9 @@ void fragment() {
 	vec3 depth_world_position = world.xyz / world.w;
 	vec3 vertex_world_position = (CAMERA_MATRIX * vec4(VERTEX, 1.0)).xyz;
 
-	if (distance(depth_world_position, vertex_world_position) < foam_width) {
-		// TODO: anti-aliasing
-		ALBEDO = foam_color.rgb;
-		ALPHA = foam_color.a;
-	}
+	float foam_factor = 1.0 - smoothstep(foam_width - foam_smooth, foam_width + foam_smooth, distance(depth_world_position, vertex_world_position));
+	ALBEDO = foam_factor * foam_color.rgb + (1.0 - foam_factor) * ALBEDO;
+	ALPHA = foam_factor * foam_color.a + (1.0 - foam_factor) * ALPHA;
 
 	SPECULAR = 1.0;
 	METALLIC = 0.25;
