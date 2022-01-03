@@ -12,6 +12,8 @@ uniform vec4 foam_color: hint_color;
 uniform float foam_width = 0.2;
 uniform float foam_smooth = 0.01;
 
+uniform float beer_factor = 0.2;
+
 uniform sampler2D noise_sampler1;
 uniform sampler2D noise_sampler2;
 uniform vec2 noise_time_factor = vec2(0.01, 0.002);
@@ -37,15 +39,21 @@ void fragment() {
 		ALPHA = water_color.a;
 	}
 
+	// Get water depth
 	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
 	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
 	vec4 world = camera * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	vec3 depth_world_position = world.xyz / world.w;
 	vec3 vertex_world_position = (CAMERA_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	float depth_world = distance(depth_world_position, vertex_world_position);
 
-	float foam_factor = 1.0 - smoothstep(foam_width - foam_smooth, foam_width + foam_smooth, distance(depth_world_position, vertex_world_position));
+	// Foam
+	float foam_factor = 1.0 - smoothstep(foam_width - foam_smooth, foam_width + foam_smooth, depth_world);
 	ALBEDO = foam_factor * foam_color.rgb + (1.0 - foam_factor) * ALBEDO;
 	ALPHA = foam_factor * foam_color.a + (1.0 - foam_factor) * ALPHA;
+
+	// Depth fade
+	ALPHA = clamp(1.0 - exp(-depth_world * beer_factor), ALPHA, 1.0);
 
 	SPECULAR = 1.0;
 	METALLIC = 0.25;
