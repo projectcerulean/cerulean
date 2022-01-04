@@ -1,15 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwmmlhxm3qpux"]
+[gd_scene load_steps=6 format=3 uid="uid://bwmmlhxm3qpux"]
 
 [ext_resource type="Script" path="res://src/entities/loading_zone/loading_zone.gd" id="1_yrgix"]
+[ext_resource type="Shader" path="res://src/entities/loading_zone/loading_zone.gdshader" id="2_sf7fn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c8ahr"]
 size = Vector3(4, 4, 4)
 
+[sub_resource type="BoxMesh" id="BoxMesh_1csxl"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu3cq"]
+render_priority = 0
+shader = ExtResource( "2_sf7fn" )
+shader_param/color = Color(0, 0, 0, 1)
+shader_param/beer_factor = 2.0
+
 [node name="LoadingZone" type="Area3D"]
 collision_layer = 64
 script = ExtResource( "1_yrgix" )
+scene_transition_color = Color(0.0196078, 0.0196078, 0.0196078, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( "BoxShape3D_c8ahr" )
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource( "BoxMesh_1csxl" )
+surface_material_override/0 = SubResource( "ShaderMaterial_uu3cq" )
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1039,7 +1039,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.5, -14.5, -85.9)
 input_node_path = NodePath("../Cable4")
 
 [node name="LoadingZone" parent="." instance=ExtResource( "17_55rd1" )]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6911, -47)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9911, -47)
 scene_key = &"TEST_DUNGEON"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
