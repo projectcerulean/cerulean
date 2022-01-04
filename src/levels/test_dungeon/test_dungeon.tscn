@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bsdmk1pxtnmlo"]
+[gd_scene load_steps=32 format=3 uid="uid://bsdmk1pxtnmlo"]
 
 [ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="7_b2l1v"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="8_4hvtj"]
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
+[ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="10_g8ijk"]
+[ext_resource type="Resource" uid="uid://tqf2hjuhigop" path="res://assets/dialogue/end/end.tres" id="11_20llv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ybceq"]
 resource_local_to_scene = true
@@ -373,6 +375,23 @@ input_node_path = NodePath("../Cable3")
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -5.9, 22.15, -29.55)
 input_node_path = NodePath("../Cable4")
 
+[node name="Ascension" type="Node3D" parent="Env"]
+
+[node name="Block" type="CSGCombiner3D" parent="Env/Ascension"]
+material_override = ExtResource( "5_skqnu" )
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+
+[node name="Block" type="CSGBox3D" parent="Env/Ascension/Block"]
+size = Vector3(4, 2, 4)
+
+[node name="SignPost" parent="Env/Ascension/Block/Block" instance=ExtResource( "10_g8ijk" )]
+transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Action" parent="Env/Ascension/Block/Block/SignPost/Interaction" index="1"]
+dialogue_resource = ExtResource( "11_20llv" )
+
 [node name="Water" type="Node3D" parent="."]
 
 [node name="Water" parent="Water" instance=ExtResource( "4" )]
@@ -386,3 +405,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 [node name="LoadingZone" parent="." instance=ExtResource( "4_oftnn" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 140.4)
 scene_key = &"TEST_SCENE"
+
+[editable path="Env/Ascension/Block/Block/SignPost"]
