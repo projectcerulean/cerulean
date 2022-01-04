@@ -16,3 +16,6 @@ tonemap_mode = 1
 glow_enabled = true
 glow_intensity = 4.0
 glow_hdr_scale = 1.0
+fog_enabled = true
+fog_light_color = Color(0.164706, 0.431373, 0.745098, 1)
+fog_density = 0.05

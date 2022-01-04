@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bsdmk1pxtnmlo"]
+[gd_scene load_steps=34 format=3 uid="uid://bsdmk1pxtnmlo"]
 
 [ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="10_g8ijk"]
 [ext_resource type="Resource" uid="uid://tqf2hjuhigop" path="res://assets/dialogue/end/end.tres" id="11_20llv"]
+[ext_resource type="Environment" uid="uid://wsmdsq7i47id" path="res://src/environment/default_env.tres" id="14_rfdqf"]
+[ext_resource type="Script" path="res://src/environment/world_environment.gd" id="15_5xosi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ybceq"]
 resource_local_to_scene = true
@@ -405,5 +407,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 [node name="LoadingZone" parent="." instance=ExtResource( "4_oftnn" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 140.4)
 scene_key = &"TEST_SCENE"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( "14_rfdqf" )
+script = ExtResource( "15_5xosi" )
 
 [editable path="Env/Ascension/Block/Block/SignPost"]
