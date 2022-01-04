@@ -54,13 +54,17 @@ func _process(_delta: float) -> void:
 
 
 func _on_interaction_highlight_set(sender: Node, target: Node3D) -> void:
+	if target != null and target != self.target:
+		animate()
 	self.target = target
 
 
 func _on_request_interaction(sender: Node) -> void:
-	if target == null:
-		return
+	if target != null:
+		animate()
 
+
+func animate() -> void:
 	scale_factor = scale_factor_min
 	color = Color.WHITE
 	tween.kill()
