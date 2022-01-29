@@ -155,6 +155,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7, 134)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.4058)
+layers = 4
 material_override = ExtResource( "5_skqnu" )
 use_collision = true
 collision_layer = 4
@@ -190,6 +191,7 @@ operation = 2
 size = Vector3(32, 32, 64)
 
 [node name="Stairs" type="CSGCombiner3D" parent="Env/Entrance"]
+layers = 4
 material_override = ExtResource( "5_skqnu" )
 use_collision = true
 collision_layer = 4
@@ -290,6 +292,7 @@ polygon = PackedVector2Array(0, 0, 0, 1, 0, 4, 10, 0)
 depth = 4.0
 
 [node name="Exit" type="CSGCombiner3D" parent="Env/Entrance"]
+layers = 4
 material_override = ExtResource( "5_skqnu" )
 use_collision = true
 collision_layer = 4
@@ -380,6 +383,7 @@ input_node_path = NodePath("../Cable4")
 [node name="Ascension" type="Node3D" parent="Env"]
 
 [node name="Block" type="CSGCombiner3D" parent="Env/Ascension"]
+layers = 4
 material_override = ExtResource( "5_skqnu" )
 use_collision = true
 collision_layer = 4

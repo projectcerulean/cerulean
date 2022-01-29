@@ -20,6 +20,7 @@ shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/flip_colors = false
 
 [node name="Cable" type="MeshInstance3D"]
+layers = 8
 mesh = SubResource( "BoxMesh_nssbg" )
 surface_material_override/0 = SubResource( "ShaderMaterial_eeml1" )
 script = ExtResource( "2_gr7c4" )

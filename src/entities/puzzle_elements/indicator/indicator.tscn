@@ -31,11 +31,13 @@ script = ExtResource( "1_bsmqb" )
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Disabled"]
+layers = 8
 mesh = SubResource( "BoxMesh_5rgmq" )
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource( "StandardMaterial3D_31xxw" )
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Disabled"]
+layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 light_energy = 2.0
 
@@ -43,11 +45,13 @@ light_energy = 2.0
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enabled"]
+layers = 8
 mesh = SubResource( "BoxMesh_0smva" )
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource( "StandardMaterial3D_57yfs" )
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Enabled"]
+layers = 8
 light_color = Color(0, 0.709804, 1, 1)
 light_energy = 2.0
 

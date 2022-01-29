@@ -20,11 +20,13 @@ collision_layer = 8
 
 [node name="Post" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+layers = 8
 mesh = SubResource( "CylinderMesh_hm6r0" )
 surface_material_override/0 = ExtResource( "2_vxxwp" )
 
 [node name="Sign" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07288e-06, 0)
+layers = 8
 mesh = SubResource( "BoxMesh_otxnp" )
 surface_material_override/0 = ExtResource( "2_vxxwp" )
 

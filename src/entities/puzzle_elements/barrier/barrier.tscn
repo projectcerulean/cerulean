@@ -44,6 +44,7 @@ script = ExtResource( "1_8dbv4" )
 shape = SubResource( "BoxShape3D_rojgn" )
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 8
 mesh = SubResource( "BoxMesh_4kh3e" )
 surface_material_override/0 = SubResource( "ShaderMaterial_esmal" )
 

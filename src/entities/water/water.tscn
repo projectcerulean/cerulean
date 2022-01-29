@@ -47,6 +47,7 @@ shader_param/noise_sampler2 = SubResource( "12" )
 size = Vector3(64, 64, 64)
 
 [node name="Water" type="MeshInstance3D"]
+layers = 16
 mesh = SubResource( "1" )
 surface_material_override/0 = SubResource( "2" )
 

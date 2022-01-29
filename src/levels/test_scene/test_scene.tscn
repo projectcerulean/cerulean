@@ -483,6 +483,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 22)
 [node name="Env" type="Node3D" parent="."]
 
 [node name="StartPlatform" type="CSGCombiner3D" parent="Env"]
+layers = 4
 material_override = ExtResource( "5" )
 use_collision = true
 collision_layer = 4
@@ -520,6 +521,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 16)
 size = Vector3(2, 2, 6)
 
 [node name="Staircase" type="CSGCombiner3D" parent="Env"]
+layers = 4
 material_override = ExtResource( "5" )
 use_collision = true
 collision_layer = 4
@@ -566,6 +568,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
 size = Vector3(2, 18, 2)
 
 [node name="Tower" type="CSGCombiner3D" parent="Env"]
+layers = 4
 material_override = ExtResource( "5" )
 use_collision = true
 collision_layer = 4
@@ -618,6 +621,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 21, -5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 23, -6)
 
 [node name="Flagpole" type="CSGCombiner3D" parent="Env"]
+layers = 4
 material_override = ExtResource( "5" )
 use_collision = true
 collision_layer = 4
@@ -645,6 +649,7 @@ sides = 32
 transform = Transform3D(0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, 0.866025, -3.78552e-08, -23.9, 29.9, -27.2)
 
 [node name="Flagpole2" type="CSGCombiner3D" parent="Env"]
+layers = 4
 material_override = ExtResource( "5" )
 use_collision = true
 collision_layer = 4
@@ -663,6 +668,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5, 16, 43)
 size = Vector3(1, 2, 2)
 
 [node name="Island" type="CSGCombiner3D" parent="Env"]
+layers = 4
 material_override = ExtResource( "7_gxhck" )
 use_collision = true
 collision_layer = 4
@@ -683,6 +689,7 @@ spin_degrees = 360.0
 spin_sides = 8
 
 [node name="Entrance" type="CSGCombiner3D" parent="Env"]
+layers = 4
 material_override = ExtResource( "5" )
 use_collision = true
 collision_layer = 4
