@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b4nxtyal7tjpu"]
+[gd_scene load_steps=31 format=3 uid="uid://b4nxtyal7tjpu"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/entities/player/player_swim.gd" id="9"]
 [ext_resource type="Script" path="res://src/entities/player/player_dive.gd" id="10"]
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
+[ext_resource type="Script" path="res://src/entities/player/player_blob_shadow.gd" id="16_3ec8c"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.25
@@ -41,17 +42,6 @@ height = 1.25
 [sub_resource type="BoxMesh" id="7"]
 size = Vector3(0.75, 0.75, 0.1)
 
-[sub_resource type="Gradient" id="Gradient_ibqmv"]
-offsets = PackedFloat32Array(0.391218, 0.742515)
-colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_o4yl3"]
-gradient = SubResource( "Gradient_ibqmv" )
-width = 1024
-height = 1024
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="StandardMaterial3D" id="11"]
 cull_mode = 2
 shading_mode = 0
@@ -65,6 +55,20 @@ shading_mode = 0
 albedo_color = Color(0.310278, 0.560628, 0.878272, 1)
 
 [sub_resource type="ImmediateMesh" id="10"]
+
+[sub_resource type="Gradient" id="Gradient_g33fs"]
+offsets = PackedFloat32Array(0.391218, 0.742515)
+colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o4yl3"]
+gradient = SubResource( "Gradient_g33fs" )
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dd8js"]
+top_radius = 0.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 60
@@ -156,14 +160,6 @@ script = ExtResource( "9" )
 target_position = Vector3(0, -0.65, 0)
 collision_mask = 4
 
-[node name="BlobShadow" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
-extents = Vector3(0.2, 100, 0.2)
-texture_albedo = SubResource( "GradientTexture2D_o4yl3" )
-upper_fade = 1e-05
-lower_fade = 1.10957e-05
-cull_mask = 4
-
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
@@ -196,3 +192,25 @@ trail_position_right_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Jo
 trail_position_right_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 target_state_name = "Dive"
 player_state_resource = ExtResource( "12" )
+
+[node name="BlobShadow" type="Node3D" parent="."]
+script = ExtResource( "16_3ec8c" )
+
+[node name="DecalPivot" type="Node3D" parent="BlobShadow"]
+
+[node name="Decal" type="Decal" parent="BlobShadow/DecalPivot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+extents = Vector3(0.2, 0.001, 0.2)
+texture_albedo = SubResource( "GradientTexture2D_o4yl3" )
+upper_fade = 1e-05
+lower_fade = 1.10957e-05
+cull_mask = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlobShadow/DecalPivot/Decal"]
+visible = false
+mesh = SubResource( "CylinderMesh_dd8js" )
+skeleton = NodePath("../../../..")
+
+[node name="RayCast3D" type="RayCast3D" parent="BlobShadow"]
+target_position = Vector3(0, -100, 0)
+collision_mask = 4
