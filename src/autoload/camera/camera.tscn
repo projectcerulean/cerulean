@@ -24,14 +24,21 @@ game_state_resource = ExtResource( "6_3eh25" )
 [node name="PitchPivot" type="Position3D" parent="YawPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="YawPivot/PitchPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+[node name="RayCast3D" type="RayCast3D" parent="YawPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_mask = 4
+
+[node name="CameraAnchor" type="Position3D" parent="YawPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 5)
+
+[node name="Camera3D" type="Camera3D" parent="YawPivot/PitchPivot/CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 8.9407e-08, 0, -8.9407e-08, 1, 0, 0, 0)
 current = true
 fov = 90.0
 
-[node name="Area3D" type="Area3D" parent="YawPivot/PitchPivot/Camera3D"]
+[node name="Area3D" type="Area3D" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D"]
 collision_layer = 2
 collision_mask = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/Camera3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D/Area3D"]
 shape = SubResource( "7" )

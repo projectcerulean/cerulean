@@ -8,20 +8,24 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var target_transform_resource: Resource
 @export var game_state_resource: Resource
 
-@onready var yaw_pivot: Node3D = get_node("YawPivot")
-@onready var pitch_pivot: Node3D = get_node("YawPivot/PitchPivot")
-@onready var camera: Camera3D = get_node("YawPivot/PitchPivot/Camera3D")
-@onready var area3d: Area3D = get_node("YawPivot/PitchPivot/Camera3D/Area3D")
+@onready var yaw_pivot: Position3D = get_node("YawPivot") as Position3D
+@onready var pitch_pivot: Position3D = get_node("YawPivot/PitchPivot") as Position3D
+@onready var raycast: RayCast3D = get_node("YawPivot/PitchPivot/RayCast3D") as RayCast3D
+@onready var camera_anchor: Position3D = get_node("YawPivot/PitchPivot/CameraAnchor") as Position3D
+@onready var camera: Camera3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D") as Camera3D
+@onready var area3d: Area3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/Area3D") as Area3D
 
 @export var camera_distance_min: float = 2.5
 @export var camera_distance_max: float = 25.0
 @export var camera_distance_speed: float = 2.0
 @export var yaw_speed: float = PI
 @export var pitch_speed: float = PI / 2.0
+@export var camera_push_weight_forwards: float = 10.0
+@export var camera_push_weight_backwards: float = 5.0
 
 var water_collision_shapes: Array
 
-@onready var camera_distance_default: float = camera.position.z
+@onready var camera_distance_default: float = camera_anchor.position.z
 @onready var yaw_default: float = yaw_pivot.rotation.y
 @onready var pitch_default: float = pitch_pivot.rotation.x
 
@@ -35,8 +39,11 @@ func _ready() -> void:
 	assert(settings_resource as SettingsResource != null, Errors.NULL_RESOURCE)
 	assert(transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
+
 	assert(yaw_pivot != null, Errors.NULL_NODE)
 	assert(pitch_pivot != null, Errors.NULL_NODE)
+	assert(raycast != null, Errors.NULL_NODE)
+	assert(camera_anchor != null, Errors.NULL_NODE)
 	assert(camera != null, Errors.NULL_NODE)
 	assert(area3d != null, Errors.NULL_NODE)
 
@@ -46,8 +53,8 @@ func _process(delta: float) -> void:
 
 	if game_state_resource.current_state in [game_state_resource.states.GAMEPLAY, game_state_resource.states.DIALOGUE]:
 		if Input.is_action_pressed("camera_move_zoom_toggle"):
-			camera.position.z = camera.position.z * (1.0 + thumbstick_resource_right.value.y * camera_distance_speed * delta)
-			camera.position.z = clamp(camera.position.z, camera_distance_min, camera_distance_max)
+			camera_anchor.position.z = camera_anchor.position.z * (1.0 + thumbstick_resource_right.value.y * camera_distance_speed * delta)
+			camera_anchor.position.z = clamp(camera_anchor.position.z, camera_distance_min, camera_distance_max)
 		else:
 			var thumbstick_value: Vector2 = thumbstick_resource_right.value
 			if settings_resource.settings[Settings.CAMERA_X_INVERTED] == Settings.Boolean.YES:
@@ -59,6 +66,16 @@ func _process(delta: float) -> void:
 			pitch_pivot.rotation.x = pitch_pivot.rotation.x - thumbstick_value.y * pitch_speed * delta
 			pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -pitch_limit, pitch_limit)
 
+	# Push camera towards the target if there is solid geometry in the way, helps to prevent clipping
+	raycast.target_position = camera_anchor.position
+	raycast.force_raycast_update()
+	if raycast.is_colliding():
+		var camera_distance_target: float = -(raycast.get_collision_point() - camera_anchor.global_transform.origin).length()
+		camera.position.z = Lerp.delta_lerp(camera.position.z, camera_distance_target, camera_push_weight_forwards, delta)
+	else:
+		camera.position.z = Lerp.delta_lerp(camera.position.z, 0.0, camera_push_weight_backwards, delta)
+
+	# Look at target
 	camera.look_at(target_transform_resource.global_transform.origin)
 
 	# Update tranform resource
@@ -68,7 +85,7 @@ func _process(delta: float) -> void:
 
 func _on_scene_changed(sender: Node) -> void:
 	water_collision_shapes.clear()
-	camera.position.z = camera_distance_default
+	camera_anchor.position.z = camera_distance_default
 	yaw_pivot.rotation.y = yaw_default
 	pitch_pivot.rotation.x = pitch_default
 
