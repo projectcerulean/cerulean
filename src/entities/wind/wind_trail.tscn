@@ -1,7 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3la8dk8cql35"]
+[gd_scene load_steps=10 format=3 uid="uid://c3la8dk8cql35"]
 
 [ext_resource type="PackedScene" uid="uid://yqqga1qlo5lc" path="res://src/entities/effects/trail/trail.tscn" id="1_dpfbh"]
 [ext_resource type="Script" path="res://src/entities/wind/wind_trail.gd" id="1_w4d55"]
+
+[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_aiimj"]
+lacunarity = 0.1
+
+[sub_resource type="NoiseTexture" id="NoiseTexture_imn7p"]
+seamless = true
+noise = SubResource( "OpenSimplexNoise_aiimj" )
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whbtm"]
 resource_local_to_scene = true
@@ -27,6 +34,7 @@ resource_local_to_scene = true
 
 [node name="WindTrail" type="Node3D"]
 script = ExtResource( "1_w4d55" )
+noise_texture = SubResource( "NoiseTexture_imn7p" )
 
 [node name="PositionHorizontalA" type="Position3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
