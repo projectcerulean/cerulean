@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://yqqga1qlo5lc"]
+
+[ext_resource type="Script" path="res://src/entities/effects/trail/trail.gd" id="1_rsfg8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bri76"]
+resource_local_to_scene = true
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.835294, 0.835294, 0.835294, 1)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_w32ps"]
+resource_local_to_scene = true
+
+[sub_resource type="Curve" id="Curve_qeqgy"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+
+[node name="Trail" type="MeshInstance3D"]
+material_override = SubResource( "StandardMaterial3D_bri76" )
+mesh = SubResource( "ImmediateMesh_w32ps" )
+script = ExtResource( "1_rsfg8" )
+trail_width = SubResource( "Curve_qeqgy" )

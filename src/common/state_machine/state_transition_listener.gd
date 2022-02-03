@@ -3,6 +3,8 @@ extends Node
 
 @export var _target_state: NodePath
 
+var is_in_target_state: bool = false
+
 @onready var target_state: State = get_node(_target_state) as State
 @onready var target_state_machine: StateMachine = target_state.state_resource.state_machine
 
@@ -17,11 +19,13 @@ func _ready() -> void:
 
 func _on_state_entered(sender: Node, state: Node) -> void:
 	if sender == target_state_machine and state == target_state:
+		is_in_target_state = true
 		_on_target_state_entered()
 
 
 func _on_state_exited(sender: Node, state: Node) -> void:
 	if sender == target_state_machine and state == target_state:
+		is_in_target_state = false
 		_on_target_state_exited()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b4nxtyal7tjpu"]
+[gd_scene load_steps=27 format=3 uid="uid://b4nxtyal7tjpu"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
@@ -41,20 +41,6 @@ height = 1.25
 
 [sub_resource type="BoxMesh" id="7"]
 size = Vector3(0.75, 0.75, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="11"]
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.836007, 0.836007, 0.836007, 1)
-
-[sub_resource type="ImmediateMesh" id="9"]
-
-[sub_resource type="StandardMaterial3D" id="12"]
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.310278, 0.560628, 0.878272, 1)
-
-[sub_resource type="ImmediateMesh" id="10"]
 
 [sub_resource type="Gradient" id="Gradient_g33fs"]
 offsets = PackedFloat32Array(0.391218, 0.742515)
@@ -168,30 +154,35 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="GlideTrailRenderer" type="MeshInstance3D" parent="."]
-top_level = true
-material_override = SubResource( "11" )
-mesh = SubResource( "9" )
+[node name="GlideTrailRendererLeft" type="Node" parent="."]
 script = ExtResource( "8" )
-trail_position_left_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-trail_position_left_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
-trail_position_right_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-trail_position_right_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
-lifetime = 0.5
-target_state_name = "Glide"
-player_state_resource = ExtResource( "12" )
+_target_state = NodePath("../StateMachine/Glide")
+_trail_position_a = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+_trail_position_b = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+trail_color = Color(0.835294, 0.835294, 0.835294, 1)
 
-[node name="DiveTrailRenderer" type="MeshInstance3D" parent="."]
-top_level = true
-material_override = SubResource( "12" )
-mesh = SubResource( "10" )
+[node name="GlideTrailRendererRight" type="Node" parent="."]
 script = ExtResource( "8" )
-trail_position_left_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-trail_position_left_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
-trail_position_right_inner_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-trail_position_right_outer_path = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
-target_state_name = "Dive"
-player_state_resource = ExtResource( "12" )
+_target_state = NodePath("../StateMachine/Glide")
+_trail_position_a = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+_trail_position_b = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+trail_color = Color(0.835294, 0.835294, 0.835294, 1)
+
+[node name="DiveTrailRendererLeft" type="Node" parent="."]
+script = ExtResource( "8" )
+_target_state = NodePath("../StateMachine/Dive")
+_trail_position_a = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+_trail_position_b = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+trail_color = Color(0.310278, 0.560628, 0.878272, 1)
+point_lifetime = 1.0
+
+[node name="DiveTrailRendererRight" type="Node" parent="."]
+script = ExtResource( "8" )
+_target_state = NodePath("../StateMachine/Dive")
+_trail_position_a = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+_trail_position_b = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+trail_color = Color(0.310278, 0.560628, 0.878272, 1)
+point_lifetime = 1.0
 
 [node name="BlobShadow" type="Node3D" parent="."]
 script = ExtResource( "16_3ec8c" )
