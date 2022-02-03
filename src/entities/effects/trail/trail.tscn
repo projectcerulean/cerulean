@@ -12,9 +12,11 @@ albedo_color = Color(0.835294, 0.835294, 0.835294, 1)
 resource_local_to_scene = true
 
 [sub_resource type="Curve" id="Curve_qeqgy"]
+resource_local_to_scene = true
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
 
 [node name="Trail" type="MeshInstance3D"]
+top_level = true
 material_override = SubResource( "StandardMaterial3D_bri76" )
 mesh = SubResource( "ImmediateMesh_w32ps" )
 script = ExtResource( "1_rsfg8" )

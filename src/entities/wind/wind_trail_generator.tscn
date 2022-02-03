@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbyi08edsf61l"]
+
+[ext_resource type="Script" path="res://src/entities/wind/wind_trail_generator.gd" id="1_a5r1a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d1y50"]
+size = Vector3(192, 32, 192)
+
+[node name="WindTrailGenerator" type="Node3D"]
+script = ExtResource( "1_a5r1a" )
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource( "BoxShape3D_d1y50" )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

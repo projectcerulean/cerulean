@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://3rc1hxqvyhd5"]
+[gd_scene load_steps=85 format=3 uid="uid://3rc1hxqvyhd5"]
 
 [ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="17_55rd1"]
 [ext_resource type="Environment" uid="uid://wsmdsq7i47id" path="res://src/environment/default_env.tres" id="18_11ux8"]
 [ext_resource type="Script" path="res://src/environment/world_environment.gd" id="19_v0qrx"]
+[ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4stb"]
 resource_local_to_scene = true
@@ -1048,6 +1049,10 @@ input_node_path = NodePath("../Cable4")
 [node name="LoadingZone" parent="." instance=ExtResource( "17_55rd1" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9911, -47)
 scene_key = &"TEST_DUNGEON"
+
+[node name="WindTrailGenerator" parent="." instance=ExtResource( "20_0xlde" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 16, 64)
+angle = -1.047
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( "18_11ux8" )
