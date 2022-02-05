@@ -14,7 +14,7 @@ noise = SubResource( "OpenSimplexNoise_aiimj" )
 resource_local_to_scene = true
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.835294, 0.835294, 0.835294, 1)
+albedo_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ee5ll"]
 resource_local_to_scene = true
@@ -27,7 +27,7 @@ _data = [Vector2(0.00576369, 0), 0.0, 2.64193, 0, 0, Vector2(0.501441, 1), 0.0, 
 resource_local_to_scene = true
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.835294, 0.835294, 0.835294, 1)
+albedo_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_f5yi6"]
 resource_local_to_scene = true
