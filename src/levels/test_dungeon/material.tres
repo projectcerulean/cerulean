@@ -1,7 +1,9 @@
-[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://u2dixa7fu604"]
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://u2dixa7fu604"]
+
+[ext_resource type="Texture2D" uid="uid://cm7a1sbmfb7kp" path="res://assets/graphics/textures/kenney_prototype_textures/dark/texture_01.png" id="1_832xi"]
 
 [sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_myx41"]
-period = 8.0
+octaves = 9
 persistence = 1.0
 
 [sub_resource type="NoiseTexture" id="NoiseTexture_fojkg"]
@@ -9,7 +11,8 @@ seamless = true
 noise = SubResource( "OpenSimplexNoise_myx41" )
 
 [resource]
-specular_mode = 4
-albedo_color = Color(0.493246, 0.589021, 0.688204, 1)
+diffuse_mode = 3
+specular_mode = 3
+albedo_texture = ExtResource( "1_832xi" )
 orm_texture = SubResource( "NoiseTexture_fojkg" )
 uv1_triplanar = true
