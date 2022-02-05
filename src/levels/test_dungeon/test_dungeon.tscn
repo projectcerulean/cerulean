@@ -190,6 +190,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63)
 operation = 2
 size = Vector3(32, 32, 64)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, 94)
+light_color = Color(0.776471, 0.92549, 1, 1)
+shadow_enabled = true
+omni_range = 50.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 15, 94)
+light_color = Color(0.776471, 0.92549, 1, 1)
+shadow_enabled = true
+omni_range = 50.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, 32)
+light_color = Color(0.776471, 0.92549, 1, 1)
+shadow_enabled = true
+omni_range = 50.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Env/Entrance/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 15, 32)
+light_color = Color(0.776471, 0.92549, 1, 1)
+shadow_enabled = true
+omni_range = 50.0
+
 [node name="Stairs" type="CSGCombiner3D" parent="Env/Entrance"]
 layers = 4
 material_override = ExtResource( "5_skqnu" )
