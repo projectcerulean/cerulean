@@ -1,6 +1,9 @@
 [gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://df0jxyi8dlx2u"]
 
 [sub_resource type="OpenSimplexNoise" id="8"]
+octaves = 9
+period = 32.0
+persistence = 1.0
 
 [sub_resource type="NoiseTexture" id="9"]
 seamless = true
