@@ -1,19 +1,37 @@
 # Build manifest for sourcehut (https://builds.sr.ht/~gullik/cerulean)
-image: alpine/latest
+image: archlinux
 
 packages:
-  - curl
+  - curl go-ipfs godot unzip
 
 sources:
   - https://git.sr.ht/~gullik/cerulean
 
 tasks:
-  - check_asset_availability: |
+  - sync_assets: |
       cd cerulean
+      ipfs init
       for file in $(find assets -type f | sort); do
-        hash=$(cat $file)
-        curl --head --silent --fail --max-time 30 --output /dev/null https://ipfs.io/ipfs/$hash \
-          || curl --head --silent --fail --max-time 30 --output /dev/null https://gateway.pinata.cloud/ipfs/$hash \
-          || curl --head --silent --fail --max-time 30 --output /dev/null https://cloudflare-ipfs.com/ipfs/$hash \
+        hash="$(cat $file)"
+        curl --silent --max-time 600 "https://cloudflare-ipfs.com/ipfs/$hash" | tee "$file" | ipfs add --offline --only-hash --hash=sha2-512 --quiet | grep "^$hash$" \
+          || curl --silent --max-time 600 "https://gateway.pinata.cloud/ipfs/$hash" | tee "$file" | ipfs add --offline --only-hash --hash=sha2-512 --quiet | grep "^$hash$" \
+          || curl --silent --max-time 600 "https://ipfs.io/ipfs/$hash" | tee "$file" | ipfs add --offline --only-hash --hash=sha2-512 --quiet | grep "^$hash$" \
           || exit 1
       done
+
+  - download_godot: |
+      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha1/Godot_v4.0-alpha1_linux.64.zip
+      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha1/SHA512-SUMS.txt
+      sha512sum --check --ignore-missing SHA512-SUMS.txt
+      unzip Godot_v4.0-alpha1_linux.64.zip
+
+  - export_game_pack: |
+      cd cerulean
+      ../Godot_v4.0-alpha1_linux.64 --headless --editor --quit || true
+      ../Godot_v4.0-alpha1_linux.64 --headless --export-pack Linux/X11 ../cerulean.pck || true
+      cd ..
+      sha512sum cerulean.pck | tee cerulean.pck.sha512
+
+artifacts:
+  - cerulean.pck
+  - cerulean.pck.sha512
