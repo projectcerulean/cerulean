@@ -6,6 +6,7 @@
 size = Vector3(192, 32, 192)
 
 [node name="WindTrailGenerator" type="Node3D"]
+process_mode = 3
 script = ExtResource( "1_a5r1a" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
