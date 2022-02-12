@@ -12,7 +12,7 @@ func enter(old_state: StringName, data := {}) -> void:
 func get_transition() -> StringName:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - player.water_state_enter_offset:
 		return PlayerStates.SWIM
-	elif not player.raycast.is_colliding():
+	elif not player.are_raycasts_colliding():
 		return PlayerStates.FALL
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		return PlayerStates.JUMP

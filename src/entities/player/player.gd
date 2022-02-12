@@ -31,7 +31,7 @@ extends CharacterBody3D
 @export var underwater_resistance: float = 2.0
 @export var underwater_roll_weight: float = 1.053
 
-@onready var raycast: RayCast3D = get_node("RayCast3D") as RayCast3D
+@onready var raycast_container: Node3D = get_node("RaycastContainer") as Node3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
 @onready var mesh_root: Node3D = get_node("MeshRoot") as Node3D
@@ -73,7 +73,7 @@ func _ready() -> void:
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
-	assert(raycast != null, Errors.NULL_NODE)
+	assert(raycast_container != null, Errors.NULL_NODE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
@@ -146,6 +146,14 @@ func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 
 	if collision_shape in water_collision_shapes:
 		water_collision_shapes.erase(collision_shape)
+
+
+func are_raycasts_colliding() -> bool:
+	for _raycast in raycast_container.get_children():
+		var raycast: RayCast3D = _raycast as RayCast3D
+		if raycast.is_colliding():
+			return true
+	return false
 
 
 func is_in_water() -> bool:

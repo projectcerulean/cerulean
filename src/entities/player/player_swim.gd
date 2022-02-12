@@ -49,7 +49,7 @@ func physics_process(delta: float) -> void:
 func get_transition() -> StringName:
 	if not player.is_in_water():
 		return PlayerStates.FALL
-	elif player.raycast.is_colliding() and player.global_transform.origin.y > player.get_water_surface_height() + player.water_state_enter_offset:
+	elif player.are_raycasts_colliding() and player.global_transform.origin.y > player.get_water_surface_height() + player.water_state_enter_offset:
 		return PlayerStates.RUN
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		if player.get_water_surface_height() - player.global_transform.origin.y < player.water_jump_max_surface_distance:
