@@ -2,11 +2,11 @@ extends Position3D
 
 const pitch_limit: float = PI / 2.0 - 0.1
 
-@export var thumbstick_resource_right: Resource
-@export var settings_resource: Resource
-@export var transform_resource: Resource
-@export var target_transform_resource: Resource
-@export var game_state_resource: Resource
+@export var _thumbstick_resource_right: Resource
+@export var _settings_resource: Resource
+@export var _transform_resource: Resource
+@export var _target_transform_resource: Resource
+@export var _game_state_resource: Resource
 
 @onready var yaw_pivot: Position3D = get_node("YawPivot") as Position3D
 @onready var pitch_pivot: Position3D = get_node("YawPivot/PitchPivot") as Position3D
@@ -25,6 +25,12 @@ const pitch_limit: float = PI / 2.0 - 0.1
 
 var water_collision_shapes: Array
 
+@onready var thumbstick_resource_right: ThumbstickResource = _thumbstick_resource_right as ThumbstickResource
+@onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
+@onready var transform_resource: TransformResource = _transform_resource as TransformResource
+@onready var target_transform_resource: TransformResource = _target_transform_resource as TransformResource
+@onready var game_state_resource: StateResource = _game_state_resource as StateResource
+
 @onready var camera_distance_default: float = camera_anchor.position.z
 @onready var yaw_default: float = yaw_pivot.rotation.y
 @onready var pitch_default: float = pitch_pivot.rotation.x
@@ -35,10 +41,11 @@ func _ready() -> void:
 	Signals.area_area_entered.connect(self._on_area_area_entered)
 	Signals.area_area_exited.connect(self._on_area_area_exited)
 
-	assert(thumbstick_resource_right as ThumbstickResource != null, Errors.NULL_RESOURCE)
-	assert(settings_resource as SettingsResource != null, Errors.NULL_RESOURCE)
-	assert(transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
-	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
+	assert(thumbstick_resource_right != null, Errors.NULL_RESOURCE)
+	assert(settings_resource != null, Errors.NULL_RESOURCE)
+	assert(transform_resource != null, Errors.NULL_RESOURCE)
+	assert(target_transform_resource != null, Errors.NULL_RESOURCE)
+	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
 	assert(yaw_pivot != null, Errors.NULL_NODE)
 	assert(pitch_pivot != null, Errors.NULL_NODE)

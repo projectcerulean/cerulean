@@ -6,7 +6,9 @@ extends Node3D
 var i_trail: int = 0
 var wind_trails: Array[Node3D] = []
 
-@onready var shape_size: Vector3 = get_node("CollisionShape3D").shape.size
+@onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
+@onready var shape: BoxShape3D = collision_shape.shape as BoxShape3D
+@onready var shape_size: Vector3 = shape.size
 
 
 func _ready() -> void:

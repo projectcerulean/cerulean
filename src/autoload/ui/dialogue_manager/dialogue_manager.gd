@@ -1,9 +1,10 @@
+class_name DialogueManager
 extends Control
 
 @export var text_reveal_speed: float = 180.0
 @export var _game_state_resource: Resource
 
-var dialogue_resource: Resource = null
+var dialogue_resource: DialogueResource = null
 var line_index: int = 0
 
 @onready var label: Label = get_node("Label")

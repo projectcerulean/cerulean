@@ -60,11 +60,11 @@ top_radius = 0.0
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 60
 script = ExtResource( "1" )
-thumbstick_resource_left = ExtResource( "2_t6dk8" )
-state_resource = ExtResource( "12" )
-game_state_resource = ExtResource( "4_gviv5" )
-transform_resource = ExtResource( "5_f776o" )
-camera_transform_resource = ExtResource( "6_sk484" )
+_thumbstick_resource_left = ExtResource( "2_t6dk8" )
+_state_resource = ExtResource( "12" )
+_game_state_resource = ExtResource( "4_gviv5" )
+_transform_resource = ExtResource( "5_f776o" )
+_camera_transform_resource = ExtResource( "6_sk484" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( "1" )

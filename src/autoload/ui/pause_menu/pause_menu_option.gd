@@ -1,14 +1,16 @@
+class_name PauseMenuOption
 extends HBoxContainer
 
 @export var is_settings_option: bool
 @export var is_level_option: bool
-@export var settings_resource: Resource
+@export var _settings_resource: Resource
 @export var key_string: StringName
 @export var text_color_normal: Color
 @export var text_color_highlight: Color
 
-@onready var key_node: Label = get_node("Key")
-@onready var value_node: Label = get_node("Value")
+@onready var key_node: Label = get_node("Key") as Label
+@onready var value_node: Label = get_node("Value") as Label
+@onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
 
 
 func _ready() -> void:
@@ -20,7 +22,7 @@ func _ready() -> void:
 	assert(value_node != null, Errors.NULL_NODE)
 
 	if is_settings_option:
-		assert(settings_resource as SettingsResource != null, Errors.NULL_RESOURCE)
+		assert(settings_resource != null, Errors.NULL_RESOURCE)
 		key_node.text = Settings.SETTINGS[key_string][Settings.OPTION_NAME]
 		value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings_resource.settings[key_string]]
 	elif is_level_option:
@@ -35,8 +37,8 @@ func set_highlight(highlight: bool) -> void:
 	var text_color: Color = text_color_normal
 	if highlight:
 		text_color = text_color_highlight
-	for label in [key_node, value_node]:
-		label.set("custom_colors/font_color", text_color)
+	key_node.set("custom_colors/font_color", text_color)
+	value_node.set("custom_colors/font_color", text_color)
 
 
 func adjust_option(delta: int) -> void:

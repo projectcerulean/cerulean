@@ -4,13 +4,16 @@ extends Node
 @export var deadzone_outer: float = 0.9
 @export var response_exponent: float = 4.0
 
-@export var thumbstick_resource_left: Resource
-@export var thumbstick_resource_right: Resource
+@export var _thumbstick_resource_left: Resource
+@export var _thumbstick_resource_right: Resource
+
+@onready var thumbstick_resource_left: ThumbstickResource = _thumbstick_resource_left as ThumbstickResource
+@onready var thumbstick_resource_right: ThumbstickResource = _thumbstick_resource_right as ThumbstickResource
 
 
 func _ready() -> void:
-	assert(thumbstick_resource_left as ThumbstickResource != null, Errors.NULL_RESOURCE)
-	assert(thumbstick_resource_right as ThumbstickResource != null, Errors.NULL_RESOURCE)
+	assert(thumbstick_resource_left != null, Errors.NULL_RESOURCE)
+	assert(thumbstick_resource_right != null, Errors.NULL_RESOURCE)
 
 
 func _process(_delta: float) -> void:

@@ -17,8 +17,8 @@ script = ExtResource( "1_ra0py" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state_resource = ExtResource( "2_rjkev" )
-sfx_resource_select = ExtResource( "9_rbp0b" )
+_game_state_resource = ExtResource( "2_rjkev" )
+_sfx_resource_select = ExtResource( "9_rbp0b" )
 
 [node name="Main" type="VBoxContainer" parent="."]
 anchor_top = 1.0

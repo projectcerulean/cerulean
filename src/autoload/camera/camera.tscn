@@ -13,11 +13,11 @@ radius = 0.1
 [node name="Camera" type="Position3D"]
 process_mode = 3
 script = ExtResource( "1_dbun4" )
-thumbstick_resource_right = ExtResource( "2_sj0tv" )
-settings_resource = ExtResource( "3_dhgty" )
-transform_resource = ExtResource( "4_n4bb1" )
-target_transform_resource = ExtResource( "5_sufsx" )
-game_state_resource = ExtResource( "6_3eh25" )
+_thumbstick_resource_right = ExtResource( "2_sj0tv" )
+_settings_resource = ExtResource( "3_dhgty" )
+_transform_resource = ExtResource( "4_n4bb1" )
+_target_transform_resource = ExtResource( "5_sufsx" )
+_game_state_resource = ExtResource( "6_3eh25" )
 
 [node name="YawPivot" type="Position3D" parent="."]
 

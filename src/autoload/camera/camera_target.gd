@@ -1,9 +1,9 @@
 extends Position3D
 
-@export var transform_resource: Resource
-@export var player_transform_resource: Resource
-@export var player_state_resource: Resource
-@export var game_state_resource: Resource
+@export var _transform_resource: Resource
+@export var _player_transform_resource: Resource
+@export var _player_state_resource: Resource
+@export var _game_state_resource: Resource
 
 @export var y_lerp_weight_player_grounded: float = 5.491
 @export var y_lerp_weight_player_air: float = 4.345
@@ -14,12 +14,19 @@ var dialogue_target: Node3D
 var dialogue_target_offset: Vector3
 var dialogue_target_position_start: Vector3
 
+@onready var transform_resource: TransformResource = _transform_resource as TransformResource
+@onready var player_transform_resource: TransformResource = _player_transform_resource as TransformResource
+@onready var player_state_resource: StateResource = _player_state_resource as StateResource
+@onready var game_state_resource: StateResource = _game_state_resource as StateResource
+
 
 func _ready() -> void:
 	Signals.scene_changed.connect(self._on_scene_changed)
 	Signals.request_dialogue_start.connect(self._on_request_dialogue_start)
-	assert(transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
-	assert(player_transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
+	assert(transform_resource != null, Errors.NULL_RESOURCE)
+	assert(player_transform_resource != null, Errors.NULL_RESOURCE)
+	assert(player_state_resource != null, Errors.NULL_RESOURCE)
+	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
 
 func _process(delta: float) -> void:

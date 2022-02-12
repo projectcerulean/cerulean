@@ -1,11 +1,11 @@
 class_name Player
 extends CharacterBody3D
 
-@export var thumbstick_resource_left: Resource
-@export var state_resource: Resource
-@export var game_state_resource: Resource
-@export var transform_resource: Resource
-@export var camera_transform_resource: Resource
+@export var _thumbstick_resource_left: Resource
+@export var _state_resource: Resource
+@export var _game_state_resource: Resource
+@export var _transform_resource: Resource
+@export var _camera_transform_resource: Resource
 
 @export var move_acceleration: float = 150.0
 @export var move_friction_coefficient: float = 15.0
@@ -31,11 +31,17 @@ extends CharacterBody3D
 @export var underwater_resistance: float = 2.0
 @export var underwater_roll_weight: float = 1.053
 
-@onready var raycast: RayCast3D = get_node("RayCast3D")
-@onready var coyote_timer: Timer = get_node("CoyoteTimer")
-@onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer")
-@onready var mesh_root: Node3D = get_node("MeshRoot")
-@onready var state_machine: Node = get_node("StateMachine")
+@onready var raycast: RayCast3D = get_node("RayCast3D") as RayCast3D
+@onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
+@onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
+@onready var mesh_root: Node3D = get_node("MeshRoot") as Node3D
+@onready var state_machine: Node = get_node("StateMachine") as Node
+
+@onready var thumbstick_resource_left: ThumbstickResource = _thumbstick_resource_left as ThumbstickResource
+@onready var state_resource: StateResource = _state_resource as StateResource
+@onready var game_state_resource: StateResource = _game_state_resource as StateResource
+@onready var transform_resource: TransformResource = _transform_resource as TransformResource
+@onready var camera_transform_resource: TransformResource = _camera_transform_resource as TransformResource
 
 @onready var mesh_map: Dictionary = {
 	PlayerStates.DIVE: mesh_root.get_node("MeshGlide"),
@@ -62,18 +68,17 @@ func _ready() -> void:
 	Signals.area_body_entered.connect(self._on_area_body_entered)
 	Signals.area_body_exited.connect(self._on_area_body_exited)
 
-	assert(thumbstick_resource_left as ThumbstickResource != null, Errors.NULL_RESOURCE)
-	assert(state_resource as StateResource != null, Errors.NULL_RESOURCE)
-	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
-	assert(transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
-	assert(camera_transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
+	assert(thumbstick_resource_left != null, Errors.NULL_RESOURCE)
+	assert(state_resource != null, Errors.NULL_RESOURCE)
+	assert(game_state_resource != null, Errors.NULL_RESOURCE)
+	assert(transform_resource != null, Errors.NULL_RESOURCE)
+	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(raycast != null, Errors.NULL_NODE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
 	for node in mesh_map.values():
-		var node_typed: Node3D = node as Node3D
-		assert(node_typed != null, Errors.NULL_NODE)
+		assert(node is Node3D, Errors.NULL_NODE)
 
 	for state in state_machine.get_children():
 		mesh_joint_map[state.name] = [
@@ -84,8 +89,7 @@ func _ready() -> void:
 
 	for nodes in mesh_joint_map.values():
 		for node in nodes:
-			var node_typed: Node3D = node as Node3D
-			assert(node_typed != null, Errors.NULL_NODE)
+			assert(node is Node3D, Errors.NULL_NODE)
 
 	# Update tranform resource
 	transform_resource.global_transform = global_transform

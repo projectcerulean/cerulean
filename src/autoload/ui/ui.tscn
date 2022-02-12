@@ -73,8 +73,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 color = Color(1, 1, 1, 0.627451)
-lfo_resource = ExtResource( "5_f13oq" )
-game_state_resource = ExtResource( "11" )
+_lfo_resource = ExtResource( "5_f13oq" )
+_game_state_resource = ExtResource( "11" )
 
 [node name="DialogueLayer" type="CanvasLayer" parent="."]
 
@@ -90,7 +90,7 @@ script = ExtResource( "8_ktx3r" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state_resource = ExtResource( "11" )
+_game_state_resource = ExtResource( "11" )
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 
@@ -102,7 +102,7 @@ script = ExtResource( "10" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state_resource = ExtResource( "11" )
+_game_state_resource = ExtResource( "11" )
 
 [node name="ScreenDarken" type="ColorRect" parent="PauseMenuLayer"]
 anchor_right = 1.0
@@ -112,7 +112,7 @@ script = ExtResource( "12" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-game_state_resource = ExtResource( "11" )
+_game_state_resource = ExtResource( "11" )
 
 [node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource( "9_mxrv6" )]
 

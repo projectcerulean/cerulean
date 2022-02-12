@@ -1,9 +1,10 @@
 extends ColorRect
 
 @export var lerp_weight: float = 36.12
-@export var game_state_resource: Resource
+@export var _game_state_resource: Resource
 
 @onready var alpha_max: float = color.a
+@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 
 func _ready() -> void:

@@ -5,14 +5,16 @@ extends Area3D
 @export var fade_duration: float = 1.5
 
 @onready var mesh_instance: MeshInstance3D = get_node("MeshInstance3D") as MeshInstance3D
+@onready var shader_material: ShaderMaterial = mesh_instance.get_surface_override_material(0) as ShaderMaterial
 
 
 func _ready() -> void:
 	assert(scene_key != null, Errors.NULL_NODE)
 	assert(scene_key in Levels.LEVELS, Errors.INVALID_ARGUMENT)
 	assert(mesh_instance != null, Errors.NULL_NODE)
+	assert(shader_material != null, Errors.NULL_RESOURCE)
 
-	mesh_instance.get_surface_override_material(0).set_shader_param("color", scene_transition_color)
+	shader_material.set_shader_param("color", scene_transition_color)
 
 
 func _on_body_entered(body: Node3D) -> void:

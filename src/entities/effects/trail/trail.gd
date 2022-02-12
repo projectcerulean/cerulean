@@ -11,10 +11,14 @@ var time: float = 0.0
 var i_first_nondead_point: int = 0
 var shall_queue_free: bool = false
 
+@onready var immediate_mesh: ImmediateMesh = mesh as ImmediateMesh
+@onready var material: StandardMaterial3D = material_override as StandardMaterial3D
+
 
 func _ready() -> void:
-	assert(mesh as ImmediateMesh != null, Errors.NULL_RESOURCE)
+	assert(immediate_mesh != null, Errors.NULL_RESOURCE)
 	assert(trail_width != null, Errors.NULL_RESOURCE)
+	assert(material != null, Errors.NULL_RESOURCE)
 	assert(point_lifetime > 0.0, Errors.INVALID_ARGUMENT)
 
 
@@ -23,13 +27,13 @@ func _process(delta: float) -> void:
 	assert(curve_point_creation_times.size() == curve_points_a.size(), Errors.CONSISTENCY_ERROR)
 
 	time += delta
-	mesh.clear_surfaces()
+	immediate_mesh.clear_surfaces()
 
 	while i_first_nondead_point < curve_points_a.size() and time - curve_point_creation_times[i_first_nondead_point] > point_lifetime:
 		i_first_nondead_point += 1
 
 	if curve_points_a.size() - i_first_nondead_point > 1:
-		mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
+		immediate_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 		for i_point in range(i_first_nondead_point, curve_points_a.size()):
 			var point_a: Vector3 = curve_points_a[i_point]
 			var point_b: Vector3 = curve_points_b[i_point]
@@ -37,9 +41,9 @@ func _process(delta: float) -> void:
 
 			var point_age: float = time - curve_point_creation_times[i_point]
 			var width_factor: float = trail_width.interpolate(point_age / point_lifetime)
-			mesh.surface_add_vertex(point_a * width_factor + point_middle * (1.0 - width_factor))
-			mesh.surface_add_vertex(point_b * width_factor + point_middle * (1.0 - width_factor))
-		mesh.surface_end()
+			immediate_mesh.surface_add_vertex(point_a * width_factor + point_middle * (1.0 - width_factor))
+			immediate_mesh.surface_add_vertex(point_b * width_factor + point_middle * (1.0 - width_factor))
+		immediate_mesh.surface_end()
 	elif shall_queue_free:
 		queue_free()
 
@@ -56,7 +60,7 @@ func set_lifetime(lifetime: float):
 
 
 func set_color(color: Color):
-	material_override.albedo_color = color
+	material.albedo_color = color
 
 
 func finalize() -> void:

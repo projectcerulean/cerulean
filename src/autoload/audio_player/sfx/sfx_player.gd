@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _on_request_sfx_play(_sender: Node, sfx_resource: SfxResource, position: Vector3) -> void:
-	var audio_stream_player: AudioStreamPlayer3D = get_child(i_current_player)
+	var audio_stream_player: AudioStreamPlayer3D = get_child(i_current_player) as AudioStreamPlayer3D
 	audio_stream_player.stop()
 	audio_stream_player.stream = sfx_resource.stream_samples[randi() % sfx_resource.stream_samples.size()]
 	audio_stream_player.unit_db = sfx_resource.volume_db
@@ -32,6 +32,7 @@ func _on_request_sfx_play(_sender: Node, sfx_resource: SfxResource, position: Ve
 
 
 func _on_scene_changed(_sender: Node) -> void:
-	for audio_stream_player in get_children():
+	for _audio_stream_player in get_children():
+		var audio_stream_player: AudioStreamPlayer3D = _audio_stream_player as AudioStreamPlayer3D
 		audio_stream_player.stop()
 		audio_stream_player.stream = null

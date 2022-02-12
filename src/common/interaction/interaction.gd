@@ -1,7 +1,7 @@
 class_name Interaction
 extends Area3D
 
-@onready var action: Node3D = get_node("Action")
+@onready var action: InteractionAction = get_node("Action") as InteractionAction
 
 
 func _ready() -> void:

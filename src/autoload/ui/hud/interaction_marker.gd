@@ -1,8 +1,8 @@
 extends Control
 
 @export var color: Color = Color.WHITE
-@export var lfo_resource: Resource
-@export var game_state_resource: Resource
+@export var _lfo_resource: Resource
+@export var _game_state_resource: Resource
 @export var oscillation_amplitude: float = 128.0
 @export var scale_factor_min: float = 0.25
 @export var tween_time: float = 1.0
@@ -17,13 +17,15 @@ var target: Node3D = null
 
 @onready var color_default: Color = color
 @onready var tween: Tween = create_tween()
+@onready var lfo_resource: LfoResource = _lfo_resource as LfoResource
+@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 
 func _ready() -> void:
 	Signals.interaction_highlight_set.connect(self._on_interaction_highlight_set)
 	Signals.request_interaction.connect(self._on_request_interaction)
-	assert(lfo_resource as LfoResource != null, Errors.NULL_RESOURCE)
-	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
+	assert(lfo_resource != null, Errors.NULL_RESOURCE)
+	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
 
 func _draw() -> void:

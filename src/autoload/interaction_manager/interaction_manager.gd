@@ -1,8 +1,10 @@
 extends Node
 
-@export var player_transform_resource: Resource
+@export var _player_transform_resource: Resource
 
-var interactables: Array = []
+var interactables: Array[Interaction] = []
+
+@onready var player_transform_resource: TransformResource = _player_transform_resource as TransformResource
 
 
 func _ready() -> void:
@@ -10,7 +12,7 @@ func _ready() -> void:
 	Signals.request_interaction_highlight.connect(self._on_request_interaction_highlight)
 	Signals.request_interaction_unhighlight.connect(self._on_request_interaction_unhighlight)
 	Signals.scene_changed.connect(self._on_scene_changed)
-	assert(player_transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
+	assert(player_transform_resource != null, Errors.NULL_RESOURCE)
 
 
 func _process(_delta: float) -> void:
@@ -39,7 +41,7 @@ func _on_request_interaction_unhighlight(sender: Node3D) -> void:
 	if sender in interactables:
 		interactables.erase(sender)
 		interactables.sort_custom(interactables_sort)
-		var target: Node3D = interactables.front()
+		var target: Node3D = interactables.front() if interactables.size() > 0 else null
 		Signals.emit_interaction_highlight_set(self, target)
 
 

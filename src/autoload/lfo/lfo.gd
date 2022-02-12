@@ -3,14 +3,15 @@ extends Node
 const seconds_per_minute: float = 60.0
 
 @export var bpm_default: float = 90.0
-@export var lfo_resource: Resource
+@export var _lfo_resource: Resource
 
 @onready var bpm: float = bpm_default
+@onready var lfo_resource: LfoResource = _lfo_resource as LfoResource
 
 
 func _ready() -> void:
 	Signals.bgm_changed.connect(self._on_bgm_changed)
-	assert(lfo_resource as LfoResource != null, Errors.NULL_RESOURCE)
+	assert(lfo_resource != null, Errors.NULL_RESOURCE)
 
 
 func _process(_delta: float) -> void:

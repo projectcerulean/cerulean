@@ -4,25 +4,22 @@ const volume_db_zero: float = -80.0
 
 @export var volume_db_low: float = -30.0
 @export var volume_db_high: float = 0.0
-
 @export var tween_duration_glide: float = 3.0
 @export var tween_duration_cutoff: float = 0.01
-
-@export var settings_resource: Resource
-
-@export var player_state_resource: Resource
-
-@onready var bus_index: int = AudioServer.get_bus_index(&"Bgm")
-
-@onready var base_player: AudioStreamPlayer = get_node("BasePlayer")
-@onready var glide_player: AudioStreamPlayer = get_node("GlidePlayer")
-@onready var rhythm_player: AudioStreamPlayer = get_node("RhythmPlayer")
+@export var _settings_resource: Resource
+@export var _player_state_resource: Resource
 
 var bgm_resource: BgmResource = null
-
 var base_tween: Tween = null
 var glide_tween: Tween = null
 var rhythm_tween: Tween = null
+
+@onready var bus_index: int = AudioServer.get_bus_index(&"Bgm")
+@onready var base_player: AudioStreamPlayer = get_node("BasePlayer")
+@onready var glide_player: AudioStreamPlayer = get_node("GlidePlayer")
+@onready var rhythm_player: AudioStreamPlayer = get_node("RhythmPlayer")
+@onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
+@onready var player_state_resource: StateResource = _player_state_resource as StateResource
 
 
 func _ready() -> void:
@@ -30,8 +27,8 @@ func _ready() -> void:
 	Signals.state_entered.connect(self._on_state_entered)
 	Signals.setting_updated.connect(self._on_setting_updated)
 
-	assert(settings_resource as SettingsResource != null, Errors.NULL_RESOURCE)
-	assert(player_state_resource as StateResource != null, Errors.NULL_RESOURCE)
+	assert(settings_resource != null, Errors.NULL_RESOURCE)
+	assert(player_state_resource != null, Errors.NULL_RESOURCE)
 	assert(bus_index >= 0, Errors.INVALID_AUDIO_BUS)
 	assert(base_player != null, Errors.NULL_NODE)
 	assert(glide_player != null, Errors.NULL_NODE)

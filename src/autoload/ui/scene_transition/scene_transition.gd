@@ -1,18 +1,19 @@
 extends ColorRect
 
 @export var fade_duration: float = 1.0
-@export var game_state_resource: Resource
+@export var _game_state_resource: Resource
 
 var scene_path_next: String
 
 @onready var tween: Tween = create_tween()
+@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 
 func _ready() -> void:
 	Signals.request_scene_transition_start.connect(self._on_request_scene_transition_start)
 	Signals.state_entered.connect(self._on_state_entered)
 	Signals.scene_changed.connect(self._on_scene_changed)
-	assert(game_state_resource as StateResource != null, Errors.NULL_RESOURCE)
+	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
 
 func _on_request_scene_transition_start(_sender: Node, scene_path: String, transition_color: Color, duration: float):

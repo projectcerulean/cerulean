@@ -11,6 +11,7 @@ var inputs: Array[bool]
 @onready var mesh_instance: MeshInstance3D = get_node("MeshInstance3D")
 @onready var state_machine: Node = get_node("StateMachine")
 @onready var tween: Tween = create_tween()
+@onready var shader_material: ShaderMaterial = mesh_instance.get_surface_override_material(0) as ShaderMaterial
 
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _ready() -> void:
 	assert(collision_shape != null, Errors.NULL_NODE)
 	assert(mesh_instance != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
+	assert(shader_material != null, Errors.NULL_RESOURCE)
 
 	inputs.resize(len(input_targets))
 
@@ -36,4 +38,4 @@ func _on_state_entered(sender: Node, state: StringName) -> void:
 
 
 func set_alpha(alpha: float) -> void:
-	mesh_instance.get_surface_override_material(0).set_shader_param("alpha_factor", alpha)
+	shader_material.set_shader_param("alpha_factor", alpha)

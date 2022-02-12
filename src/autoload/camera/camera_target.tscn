@@ -9,7 +9,7 @@
 [node name="CameraTarget" type="Position3D"]
 process_mode = 3
 script = ExtResource( "1_vv2vj" )
-transform_resource = ExtResource( "2_kekmw" )
-player_transform_resource = ExtResource( "3_scv08" )
-player_state_resource = ExtResource( "4_02ywf" )
-game_state_resource = ExtResource( "5_os347" )
+_transform_resource = ExtResource( "2_kekmw" )
+_player_transform_resource = ExtResource( "3_scv08" )
+_player_state_resource = ExtResource( "4_02ywf" )
+_game_state_resource = ExtResource( "5_os347" )

@@ -1,3 +1,4 @@
+class_name GameStateManager
 extends Node
 
 @export var state_resource: Resource
