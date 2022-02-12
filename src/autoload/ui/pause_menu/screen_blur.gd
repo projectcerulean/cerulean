@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var blur_strength_target: float = 0.0
-	if game_state_resource.current_state == game_state_resource.states.PAUSE:
+	if game_state_resource.current_state == GameStates.PAUSE:
 		blur_strength_target = blur_strength_max
 	blur_strength = Lerp.delta_lerp(blur_strength, blur_strength_target, lerp_weight, delta)
 	material.set_shader_param("blur_strength", blur_strength)

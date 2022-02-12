@@ -8,10 +8,10 @@ func _ready() -> void:
 	assert(game_state_manager != null, Errors.NULL_NODE)
 
 
-func exit(new_state: GameState) -> void:
+func exit(new_state: StringName) -> void:
 	super.exit(new_state)
-	game_state_manager.transition = null
+	game_state_manager.transition = StringName()
 
 
-func get_transition() -> GameState:
+func get_transition() -> StringName:
 	return game_state_manager.transition

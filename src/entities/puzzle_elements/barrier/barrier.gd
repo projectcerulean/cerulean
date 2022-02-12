@@ -9,7 +9,7 @@ var inputs: Array[bool]
 
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D")
 @onready var mesh_instance: MeshInstance3D = get_node("MeshInstance3D")
-@onready var state_machine: StateMachine = get_node("StateMachine")
+@onready var state_machine: Node = get_node("StateMachine")
 @onready var tween: Tween = create_tween()
 
 
@@ -23,14 +23,16 @@ func _ready() -> void:
 	inputs.resize(len(input_targets))
 
 
-func _on_state_entered(sender: Node, state: Node) -> void:
+func _on_state_entered(sender: Node, state: StringName) -> void:
 	for i in range(len(inputs)):
-		if sender == get_node(input_nodes[i]).state_machine:
-			inputs[i] = bool(state.get_index())
+		if sender.owner == get_node(input_nodes[i]):
+			assert(state in [PuzzleElementStates.DISABLED, PuzzleElementStates.ENABLED], Errors.CONSISTENCY_ERROR)
+			inputs[i] = state == PuzzleElementStates.ENABLED
 
-	var requirements_satisfied: bool = inputs == input_targets
-	var target_state: BarrierState = state_machine.get_children()[int(!requirements_satisfied)]
-	state_machine.lazy_transition_to(target_state)
+	if inputs == input_targets:
+		Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.DISABLED)
+	else:
+		Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.ENABLED)
 
 
 func set_alpha(alpha: float) -> void:

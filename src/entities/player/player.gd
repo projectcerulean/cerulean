@@ -35,15 +35,16 @@ extends CharacterBody3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer")
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer")
 @onready var mesh_root: Node3D = get_node("MeshRoot")
+@onready var state_machine: Node = get_node("StateMachine")
 
 @onready var mesh_map: Dictionary = {
-	state_resource.states.DIVE: mesh_root.get_node("MeshGlide"),
-	state_resource.states.FALL: mesh_root.get_node("MeshDefault"),
-	state_resource.states.GLIDE: mesh_root.get_node("MeshGlide"),
-	state_resource.states.IDLE: mesh_root.get_node("MeshDefault"),
-	state_resource.states.JUMP: mesh_root.get_node("MeshDefault"),
-	state_resource.states.RUN: mesh_root.get_node("MeshDefault"),
-	state_resource.states.SWIM: mesh_root.get_node("MeshDefault"),
+	PlayerStates.DIVE: mesh_root.get_node("MeshGlide"),
+	PlayerStates.FALL: mesh_root.get_node("MeshDefault"),
+	PlayerStates.GLIDE: mesh_root.get_node("MeshGlide"),
+	PlayerStates.IDLE: mesh_root.get_node("MeshDefault"),
+	PlayerStates.JUMP: mesh_root.get_node("MeshDefault"),
+	PlayerStates.RUN: mesh_root.get_node("MeshDefault"),
+	PlayerStates.SWIM: mesh_root.get_node("MeshDefault"),
 }
 
 var mesh_joint_map: Dictionary
@@ -69,15 +70,16 @@ func _ready() -> void:
 	assert(raycast != null, Errors.NULL_NODE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
+	assert(state_machine != null, Errors.NULL_NODE)
 	for node in mesh_map.values():
 		var node_typed: Node3D = node as Node3D
 		assert(node_typed != null, Errors.NULL_NODE)
 
-	for s in state_resource.states.values():
-		mesh_joint_map[s] = [
-			mesh_map[s].get_node("Joint"),
-			mesh_map[s].get_node("Joint/Joint"),
-			mesh_map[s].get_node("Joint/Joint/Joint"),
+	for state in state_machine.get_children():
+		mesh_joint_map[state.name] = [
+			mesh_map[state.name].get_node("Joint"),
+			mesh_map[state.name].get_node("Joint/Joint"),
+			mesh_map[state.name].get_node("Joint/Joint/Joint"),
 		]
 
 	for nodes in mesh_joint_map.values():
@@ -113,14 +115,12 @@ func _process(_delta: float) -> void:
 	transform_resource.transform = transform
 
 	# Perform interaction
-	if Input.is_action_just_pressed(&"interact"):
-		if game_state_resource.current_state == game_state_resource.states.GAMEPLAY:
-			Signals.emit_request_interaction(self)
+	if Input.is_action_just_pressed(&"interact") and game_state_resource.current_state == GameStates.GAMEPLAY:
+		Signals.emit_request_interaction(self)
 
 	# Pause the game
-	if Input.is_action_just_pressed(&"pause"):
-		if game_state_resource.current_state == game_state_resource.states.GAMEPLAY:
-			Signals.emit_request_game_pause(self)
+	if Input.is_action_just_pressed(&"pause") and game_state_resource.current_state == GameStates.GAMEPLAY:
+		Signals.emit_request_game_pause(self)
 
 
 func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:

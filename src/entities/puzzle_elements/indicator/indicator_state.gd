@@ -7,11 +7,11 @@ func _ready() -> void:
 	assert(indicator != null, Errors.NULL_NODE)
 
 
-func enter(old_state: IndicatorState, data := {}) -> void:
+func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 	indicator.get_node(str(name)).visible = true
 
 
-func exit(new_state: IndicatorState) -> void:
+func exit(new_state: StringName) -> void:
 	super.exit(new_state)
 	indicator.get_node(str(name)).visible = false

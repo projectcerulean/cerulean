@@ -84,12 +84,12 @@ func _on_scene_changed(sender: Node) -> void:
 	Signals.emit_bgm_changed(self, bgm_resource)
 
 
-func _on_state_entered(sender: Node, state: Node) -> void:
+func _on_state_entered(sender: Node, state: StringName) -> void:
 	if sender == player_state_resource.state_machine:
 		if glide_tween != null:
 			glide_tween.kill()
 		glide_tween = create_tween()
-		if state == player_state_resource.states.GLIDE:
+		if state == PlayerStates.GLIDE:
 			if glide_player.volume_db == volume_db_zero:
 				glide_tween.tween_property(glide_player, "volume_db", volume_db_low, tween_duration_cutoff)
 			glide_tween.tween_property(glide_player, "volume_db", volume_db_high, tween_duration_glide)
@@ -101,7 +101,7 @@ func _on_state_entered(sender: Node, state: Node) -> void:
 		if rhythm_tween != null:
 			rhythm_tween.kill()
 		rhythm_tween = create_tween()
-		if state == player_state_resource.states.GLIDE:
+		if state == PlayerStates.GLIDE:
 			if rhythm_player.volume_db == volume_db_zero:
 				rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_low, tween_duration_cutoff)
 			rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_high, tween_duration_glide)

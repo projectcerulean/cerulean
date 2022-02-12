@@ -24,6 +24,8 @@ signal request_setting_update
 signal request_settings_save
 signal request_sfx_play
 signal request_sfx_play_non_diegetic
+signal request_state_change
+signal request_state_change_next
 signal scene_changed
 signal setting_updated
 signal state_entered
@@ -91,9 +93,11 @@ func emit_request_setting_update(sender: Node, key: StringName, value: int) -> v
 func emit_request_settings_save(sender: Node) -> void: emit(request_settings_save, [sender])
 func emit_request_sfx_play(sender: Node, sfx_resource: SfxResource, position: Vector3) -> void: emit(request_sfx_play, [sender, sfx_resource, position])
 func emit_request_sfx_play_non_diegetic(sender: Node, sfx_resource: SfxResource) -> void: emit(request_sfx_play_non_diegetic, [sender, sfx_resource])
+func emit_request_state_change(sender: Node, state_machine: Node, state: StringName) -> void: emit(request_state_change, [sender, state_machine, state])
+func emit_request_state_change_next(sender: Node, state_machine: Node) -> void: emit(request_state_change_next, [sender, state_machine])
 func emit_scene_changed(sender: Node) -> void: emit(scene_changed, [sender])
 func emit_setting_updated(sender: Node, key: StringName, value: int) -> void: emit(setting_updated, [sender, key, value])
-func emit_state_entered(sender: Node, state: Node) -> void: emit(state_entered, [sender, state])
-func emit_state_exited(sender: Node, state: Node) -> void: emit(state_exited, [sender, state])
+func emit_state_entered(sender: Node, state: StringName) -> void: emit(state_entered, [sender, state])
+func emit_state_exited(sender: Node, state: StringName) -> void: emit(state_exited, [sender, state])
 func emit_visualize_line(sender: Node, point: Vector3) -> void: emit(visualize_line, [sender, point])
 func emit_visualize_vector(sender: Node, vector: Vector2) -> void: emit(visualize_vector, [sender, vector])

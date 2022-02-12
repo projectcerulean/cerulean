@@ -5,7 +5,7 @@ var glide_start_velocity: Vector3 = Vector3.ZERO
 var roll_angle: float = 0.0
 
 
-func enter(old_state: PlayerState, data := {}) -> void:
+func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 	glide_start_position = player.position
 	glide_start_velocity = player.motion_velocity
@@ -13,9 +13,9 @@ func enter(old_state: PlayerState, data := {}) -> void:
 
 	var velocity_direction: Vector3 = player.motion_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
-		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
+		player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + player.facing_direction)
 	else:
-		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + velocity_direction)
+		player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + velocity_direction)
 
 
 func process(delta: float) -> void:
@@ -30,10 +30,10 @@ func process(delta: float) -> void:
 
 	var velocity_direction: Vector3 = player.motion_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
-		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
+		player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + player.facing_direction)
 	else:
-		player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + velocity_direction)
-	player.mesh_joint_map[self][1].rotation = Vector3(0.0, 0.0, roll_angle)
+		player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + velocity_direction)
+	player.mesh_joint_map[name][1].rotation = Vector3(0.0, 0.0, roll_angle)
 
 
 func physics_process(delta: float) -> void:
@@ -81,15 +81,15 @@ func physics_process(delta: float) -> void:
 		player.jump_buffer_timer.start()
 
 
-func get_transition() -> PlayerState:
+func get_transition() -> StringName:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - player.water_state_enter_offset:
-		return states.SWIM
+		return PlayerStates.SWIM
 	elif player.is_on_floor():
 		if is_equal_approx(player.motion_velocity.x, 0.0) and is_equal_approx(player.motion_velocity.z, 0.0):
-			return states.IDLE
+			return PlayerStates.IDLE
 		else:
-			return states.RUN
+			return PlayerStates.RUN
 	elif not Input.is_action_pressed("player_move_jump"):
-		return states.FALL
+		return PlayerStates.FALL
 	else:
-		return null
+		return StringName()

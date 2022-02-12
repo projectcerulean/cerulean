@@ -15,28 +15,22 @@ func _ready() -> void:
 	assert(state_resource != null, Errors.NULL_RESOURCE)
 
 	assert(state_resource.state_machine == null, Errors.RESOURCE_BUSY)
-	assert(state_resource.current_state == null, Errors.RESOURCE_BUSY)
-	assert(state_resource.states.is_empty(), Errors.RESOURCE_BUSY)
+	assert(state_resource.current_state == StringName(), Errors.RESOURCE_BUSY)
 
 	state_resource.state_machine = state_machine
-
-	for child in state_machine.get_children():
-		assert(child as State != null, Errors.TYPE_ERROR)
-		state_resource.states[StringName(str(child.name).to_upper())] = child
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		state_resource.state_machine = null
-		state_resource.current_state = null
-		state_resource.states = {}
+		state_resource.current_state = StringName()
 
 
-func _on_state_entered(sender: Node, state: Node):
+func _on_state_entered(sender: Node, state: StringName):
 	if sender == state_machine:
 		state_resource.current_state = state
 
 
-func _on_state_exited(sender: Node, state: Node):
+func _on_state_exited(sender: Node, state: StringName):
 	if sender == state_machine:
-		state_resource.current_state = null
+		state_resource.current_state = StringName()

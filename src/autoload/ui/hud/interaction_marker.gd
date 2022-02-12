@@ -27,7 +27,7 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	if game_state_resource.current_state != game_state_resource.states.GAMEPLAY:
+	if game_state_resource.current_state != GameStates.GAMEPLAY:
 		return
 
 	if target == null:

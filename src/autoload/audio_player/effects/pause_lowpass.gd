@@ -13,6 +13,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var hz_target: float = hz_high
-	if game_state_resource.current_state == game_state_resource.states.PAUSE:
+	if game_state_resource.current_state == GameStates.PAUSE:
 		hz_target = hz_low
 	audio_effect.cutoff_hz = Lerp.delta_lerp(audio_effect.cutoff_hz, hz_target, lerp_weight, delta)

@@ -51,7 +51,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	global_transform.origin = target_transform_resource.global_transform.origin
 
-	if game_state_resource.current_state in [game_state_resource.states.GAMEPLAY, game_state_resource.states.DIALOGUE]:
+	if game_state_resource.current_state in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
 		if Input.is_action_pressed("camera_move_zoom_toggle"):
 			camera_anchor.position.z = camera_anchor.position.z * (1.0 + thumbstick_resource_right.value.y * camera_distance_speed * delta)
 			camera_anchor.position.z = clamp(camera_anchor.position.z, camera_distance_min, camera_distance_max)

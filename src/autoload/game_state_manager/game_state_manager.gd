@@ -2,7 +2,7 @@ extends Node
 
 @export var state_resource: Resource
 
-var transition: Node
+var transition: StringName
 
 
 func _ready() -> void:
@@ -19,27 +19,27 @@ func _ready() -> void:
 
 
 func _on_request_game_pause(_sender: Node) -> void:
-	transition = state_resource.states.PAUSE
+	transition = GameStates.PAUSE
 
 
 func _on_request_game_unpause(_sender: Node) -> void:
-	transition = state_resource.states.GAMEPLAY
+	transition = GameStates.GAMEPLAY
 
 
 func _on_request_dialogue_start(_sender: Node3D, _dialogue_resource: DialogueResource) -> void:
-	transition = state_resource.states.DIALOGUE
+	transition = GameStates.DIALOGUE
 
 
 func _on_request_dialogue_finish(_sender: Node) -> void:
-	transition = state_resource.states.GAMEPLAY
+	transition = GameStates.GAMEPLAY
 
 
 func _on_request_scene_transition_start(_sender: Node, _scene: String, _color: Color, _fade_duration: float):
-	transition = state_resource.states.SCENETRANSITION
+	transition = GameStates.SCENE_TRANSITION
 
 
 func _on_request_scene_transition_finish(_sender: Node) -> void:
-	transition = state_resource.states.GAMEPLAY
+	transition = GameStates.GAMEPLAY
 
 
 func _on_request_scene_change(_sender: Node, scene_path: String) -> void:

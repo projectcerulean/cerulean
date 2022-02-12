@@ -1,16 +1,16 @@
 extends PlayerState
 
 
-func enter(old_state: PlayerState, data := {}) -> void:
+func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 	player.motion_velocity.y = 0.0
 	player.floor_snap_length = player.move_snap_distance
 
 	# Update mesh facing direction
-	player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
+	player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + player.facing_direction)
 
 
-func exit(new_state: PlayerState) -> void:
+func exit(new_state: StringName) -> void:
 	super.exit(new_state)
 	player.coyote_timer.stop()
 	player.floor_snap_length = 0.0
@@ -20,7 +20,7 @@ func process(delta: float) -> void:
 	super.process(delta)
 
 	# Update mesh facing direction
-	player.mesh_joint_map[self][0].look_at(player.mesh_joint_map[self][0].get_global_transform().origin + player.facing_direction)
+	player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + player.facing_direction)
 
 
 func physics_process(delta: float) -> void:
@@ -43,14 +43,14 @@ func physics_process(delta: float) -> void:
 		player.coyote_timer.start()
 
 
-func get_transition() -> PlayerState:
+func get_transition() -> StringName:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - player.water_state_enter_offset:
-		return states.SWIM
+		return PlayerStates.SWIM
 	elif not player.raycast.is_colliding() and player.coyote_timer.is_stopped():
-		return states.FALL
+		return PlayerStates.FALL
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
-		return states.JUMP
+		return PlayerStates.JUMP
 	elif Vector3(player.motion_velocity.x, 0.0, player.motion_velocity.z).is_equal_approx(Vector3.ZERO):
-		return states.IDLE
+		return PlayerStates.IDLE
 	else:
-		return null
+		return StringName()

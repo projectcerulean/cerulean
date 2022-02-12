@@ -1,11 +1,11 @@
 extends GameState
 
 
-func enter(old_state: GameState, data := {}) -> void:
+func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 	get_tree().paused = true
 
 
-func exit(new_state: GameState) -> void:
+func exit(new_state: StringName) -> void:
 	super.exit(new_state)
 	get_tree().paused = false

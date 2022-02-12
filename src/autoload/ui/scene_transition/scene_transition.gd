@@ -22,8 +22,8 @@ func _on_request_scene_transition_start(_sender: Node, scene_path: String, trans
 	fade_duration = duration
 
 
-func _on_state_entered(sender: Node, state: Node) -> void:
-	if sender == game_state_resource.state_machine and state == game_state_resource.states.SCENETRANSITION:
+func _on_state_entered(sender: Node, state: StringName) -> void:
+	if sender == game_state_resource.state_machine and state == GameStates.SCENE_TRANSITION:
 		self.visible = true
 		tween.kill()
 		tween = create_tween()
@@ -39,7 +39,7 @@ func _on_fade_out_finished() -> void:
 
 
 func _on_scene_changed(sender: Node):
-	if game_state_resource.current_state == game_state_resource.states.SCENETRANSITION:
+	if game_state_resource.current_state == GameStates.SCENE_TRANSITION:
 		tween.kill()
 		tween = create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)

@@ -4,7 +4,7 @@ extends Node3D
 @export var input_node_path: NodePath
 
 @onready var input_node: Node = get_node(input_node_path)
-@onready var state_machine: StateMachine = get_node("StateMachine")
+@onready var state_machine: Node = get_node("StateMachine")
 
 
 func _ready() -> void:
@@ -14,6 +14,6 @@ func _ready() -> void:
 	assert(state_machine.get_child_count() == 2, Errors.CONSISTENCY_ERROR)
 
 
-func _on_state_entered(sender: Node, state: Node) -> void:
-	if sender == input_node.state_machine:
-		state_machine.transition_to(state_machine.get_children()[state.get_index()])
+func _on_state_entered(sender: Node, state: StringName) -> void:
+	if sender.owner == input_node:
+		Signals.emit_request_state_change(self, state_machine, state)

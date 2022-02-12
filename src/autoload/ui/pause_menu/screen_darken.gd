@@ -13,6 +13,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var alpha_target: float = 0.0
-	if game_state_resource.current_state == game_state_resource.states.PAUSE:
+	if game_state_resource.current_state == GameStates.PAUSE:
 		alpha_target = alpha_max
 	color.a = Lerp.delta_lerp(color.a, alpha_target, lerp_weight, delta)

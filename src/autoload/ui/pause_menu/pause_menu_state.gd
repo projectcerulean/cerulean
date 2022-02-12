@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func process(delta: float) -> void:
 	super.process(delta)
-	if pause_menu.game_state_resource.current_state == pause_menu.game_state_resource.states.PAUSE:
+	if pause_menu.game_state_resource.current_state == GameStates.PAUSE:
 		if Input.is_action_just_pressed(&"ui_up"):
 			Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 			i_hovered_option = posmod(i_hovered_option - 1, menu_options.size())
@@ -32,24 +32,24 @@ func process(delta: float) -> void:
 			i_hovered_option = posmod(i_hovered_option + 1, menu_options.size())
 
 
-func enter(old_state: PauseMenuState, data := {}) -> void:
+func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 	menu.visible = true
 
 
-func exit(new_state: PauseMenuState) -> void:
+func exit(new_state: StringName) -> void:
 	super.exit(new_state)
 	menu.visible = false
 
 
-func get_transition() -> PauseMenuState:
-	if pause_menu.game_state_resource.current_state == pause_menu.game_state_resource.states.PAUSE:
+func get_transition() -> StringName:
+	if pause_menu.game_state_resource.current_state == GameStates.PAUSE:
 		if Input.is_action_just_pressed(&"pause"):
 			Signals.emit_request_game_unpause(self)
-			return states.MAIN
-	return null
+			return PauseMenuStates.MAIN
+	return StringName()
 
 
-func _on_state_exited(sender: Node, state: Node) -> void:
-	if sender == pause_menu.game_state_resource.state_machine and state == pause_menu.game_state_resource.states.PAUSE:
+func _on_state_exited(sender: Node, state: StringName) -> void:
+	if sender == pause_menu.game_state_resource.state_machine and state == GameStates.PAUSE:
 		i_hovered_option = 0

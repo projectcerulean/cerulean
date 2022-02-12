@@ -7,12 +7,12 @@ func _ready() -> void:
 	assert(switch != null, Errors.NULL_NODE)
 
 
-func enter(old_state: SwitchState, data := {}) -> void:
+func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 	switch.crystal.get_node(str(name)).visible = true
 
 
-func exit(new_state: SwitchState) -> void:
+func exit(new_state: StringName) -> void:
 	super.exit(new_state)
 	switch.crystal.get_node(str(name)).visible = false
 
