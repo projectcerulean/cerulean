@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwmmlhxm3qpux"]
+[gd_scene load_steps=7 format=3 uid="uid://bwmmlhxm3qpux"]
 
 [ext_resource type="Script" path="res://src/entities/loading_zone/loading_zone.gd" id="1_yrgix"]
 [ext_resource type="Shader" path="res://src/entities/loading_zone/loading_zone.gdshader" id="2_sf7fn"]
@@ -15,6 +15,9 @@ shader = ExtResource( "2_sf7fn" )
 shader_param/color = Color(0, 0, 0, 1)
 shader_param/beer_factor = 2.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4ru0"]
+size = Vector3(4, 4, 4)
+
 [node name="LoadingZone" type="Area3D"]
 collision_layer = 64
 script = ExtResource( "1_yrgix" )
@@ -27,5 +30,12 @@ shape = SubResource( "BoxShape3D_c8ahr" )
 layers = 64
 mesh = SubResource( "BoxMesh_1csxl" )
 surface_material_override/0 = SubResource( "ShaderMaterial_uu3cq" )
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource( "BoxShape3D_r4ru0" )
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

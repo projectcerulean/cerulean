@@ -92,6 +92,7 @@ func _process(delta: float) -> void:
 
 func _on_scene_changed(_sender: Node) -> void:
 	water_collision_shapes.clear()
+	camera.position.z = 0.0
 	camera_anchor.position.z = camera_distance_default
 	yaw_pivot.rotation.y = yaw_default
 	pitch_pivot.rotation.x = pitch_default

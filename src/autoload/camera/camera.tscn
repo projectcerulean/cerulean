@@ -25,7 +25,7 @@ _game_state_resource = ExtResource( "6_3eh25" )
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="YawPivot/PitchPivot"]
-collision_mask = 4
+collision_mask = 68
 
 [node name="CameraAnchor" type="Position3D" parent="YawPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 5)
