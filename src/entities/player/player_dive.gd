@@ -9,9 +9,9 @@ func enter(old_state: StringName, data := {}) -> void:
 
 	var velocity_direction: Vector3 = player.motion_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
-		player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + player.facing_direction)
+		joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
 	else:
-		player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + velocity_direction)
+		joint1.look_at(joint1.get_global_transform().origin + velocity_direction)
 
 
 func process(delta: float) -> void:
@@ -29,10 +29,10 @@ func process(delta: float) -> void:
 
 	var velocity_direction: Vector3 = player.motion_velocity.normalized()
 	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
-		player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + player.facing_direction)
+		joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
 	else:
-		player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + velocity_direction)
-	player.mesh_joint_map[name][1].rotation = Vector3(0.0, 0.0, roll_angle)
+		joint1.look_at(joint1.get_global_transform().origin + velocity_direction)
+	joint2.rotation = Vector3(0.0, 0.0, roll_angle)
 
 
 func physics_process(delta: float) -> void:

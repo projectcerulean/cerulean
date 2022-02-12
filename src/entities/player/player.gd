@@ -43,18 +43,6 @@ extends CharacterBody3D
 @onready var transform_resource: TransformResource = _transform_resource as TransformResource
 @onready var camera_transform_resource: TransformResource = _camera_transform_resource as TransformResource
 
-@onready var mesh_map: Dictionary = {
-	PlayerStates.DIVE: mesh_root.get_node("MeshGlide"),
-	PlayerStates.FALL: mesh_root.get_node("MeshDefault"),
-	PlayerStates.GLIDE: mesh_root.get_node("MeshGlide"),
-	PlayerStates.IDLE: mesh_root.get_node("MeshDefault"),
-	PlayerStates.JUMP: mesh_root.get_node("MeshDefault"),
-	PlayerStates.RUN: mesh_root.get_node("MeshDefault"),
-	PlayerStates.SWIM: mesh_root.get_node("MeshDefault"),
-}
-
-var mesh_joint_map: Dictionary
-
 var input_vector: Vector3
 
 var facing_direction: Vector3 = Vector3.FORWARD
@@ -77,19 +65,6 @@ func _ready() -> void:
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
-	for node in mesh_map.values():
-		assert(node is Node3D, Errors.NULL_NODE)
-
-	for state in state_machine.get_children():
-		mesh_joint_map[state.name] = [
-			mesh_map[state.name].get_node("Joint"),
-			mesh_map[state.name].get_node("Joint/Joint"),
-			mesh_map[state.name].get_node("Joint/Joint/Joint"),
-		]
-
-	for nodes in mesh_joint_map.values():
-		for node in nodes:
-			assert(node is Node3D, Errors.NULL_NODE)
 
 	# Update tranform resource
 	transform_resource.global_transform = global_transform

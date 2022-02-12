@@ -123,24 +123,31 @@ _initial_state = NodePath("Idle")
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource( "10" )
+_mesh = NodePath("../../MeshRoot/MeshGlide")
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource( "5" )
+_mesh = NodePath("../../MeshRoot/MeshDefault")
 
 [node name="Glide" type="Node" parent="StateMachine"]
 script = ExtResource( "7" )
+_mesh = NodePath("../../MeshRoot/MeshGlide")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( "3" )
+_mesh = NodePath("../../MeshRoot/MeshDefault")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( "6" )
+_mesh = NodePath("../../MeshRoot/MeshDefault")
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( "4" )
+_mesh = NodePath("../../MeshRoot/MeshDefault")
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource( "9" )
+_mesh = NodePath("../../MeshRoot/MeshDefault")
 
 [node name="StateResourceManager" type="Node" parent="."]
 script = ExtResource( "15_p5vjh" )

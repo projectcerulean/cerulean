@@ -8,7 +8,7 @@ func enter(old_state: StringName, data := {}) -> void:
 	player.jump_buffer_timer.stop()
 
 	# Update mesh facing direction
-	player.mesh_joint_map[name][0].look_at(player.mesh_joint_map[name][0].get_global_transform().origin + player.facing_direction)
+	joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
 
 
 func physics_process(delta: float) -> void:

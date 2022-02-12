@@ -1,28 +1,36 @@
 class_name PlayerState extends State
 
+@export var _mesh: NodePath
 
 # Reference to the player object so that it can be manipulated inside the states
 var player: Player = null
+
+@onready var mesh: Node3D = get_node(_mesh) as Node3D
+@onready var joint1: Node3D = mesh.get_node("Joint") as Node3D
+@onready var joint2: Node3D = mesh.get_node("Joint/Joint") as Node3D
+@onready var joint3: Node3D = mesh.get_node("Joint/Joint/Joint") as Node3D
 
 
 func _ready() -> void:
 	player = owner as Player
 	assert(player != null, Errors.NULL_NODE)
+	assert(mesh != null, Errors.NULL_NODE)
+	assert(joint1 != null, Errors.NULL_NODE)
+	assert(joint2 != null, Errors.NULL_NODE)
+	assert(joint3 != null, Errors.NULL_NODE)
 
 
 func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
+	mesh.show()
+	joint1.transform = Transform3D()
+	joint2.transform = Transform3D()
+	joint3.transform = Transform3D()
 
-	# Update player mesh
-	assert(player.mesh_map.has(name), Errors.CONSISTENCY_ERROR)
-	for state in player.mesh_map:
-		if state == name:
-			player.mesh_map[state].show()
-		elif player.mesh_map[state] != player.mesh_map[name]:
-			player.mesh_map[state].hide()
 
-	# Reset mesh joints
-	for joint in player.mesh_joint_map[name]:
-		var joint_typed: Node3D = joint as Node3D
-		joint_typed.rotation = Vector3()
-		joint_typed.position = Vector3()
+func exit(new_state: StringName) -> void:
+	super.exit(new_state)
+	mesh.hide()
+	joint1.transform = Transform3D()
+	joint2.transform = Transform3D()
+	joint3.transform = Transform3D()
