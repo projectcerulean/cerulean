@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bt5yhnick1ydu"]
+[gd_scene load_steps=21 format=3 uid="uid://bt5yhnick1ydu"]
 
 [ext_resource type="Shader" path="res://src/autoload/ui/effects/underwater_effect.gdshader" id="1"]
 [ext_resource type="Script" path="res://src/autoload/ui/debug/version_label/version_label.gd" id="3"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://src/autoload/ui/hud/interaction_marker.gd" id="4_o1y8t"]
 [ext_resource type="Script" path="res://src/autoload/ui/debug/vector_visualizer/vector_visualizer.gd" id="5"]
 [ext_resource type="Resource" uid="uid://bqsrxvfl6htqr" path="res://src/autoload/lfo/lfo_resource.tres" id="5_f13oq"]
-[ext_resource type="Script" path="res://src/autoload/ui/debug/line_visualizer/line_visualizer.gd" id="6"]
 [ext_resource type="PackedScene" uid="uid://com3qcbnk0t72" path="res://src/autoload/ui/dialogue_manager/dialogue_manager.tscn" id="6_vu52l"]
 [ext_resource type="Script" path="res://src/autoload/ui/hud/compass.gd" id="7"]
 [ext_resource type="Shader" path="res://src/autoload/ui/pause_menu/screen_blur.gdshader" id="8"]
@@ -117,12 +116,6 @@ _game_state_resource = ExtResource( "11" )
 [node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource( "9_mxrv6" )]
 
 [node name="DebugLayer" type="CanvasLayer" parent="."]
-
-[node name="LineVisualizer" type="Control" parent="DebugLayer"]
-script = ExtResource( "6" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VectorVisualizer" type="ColorRect" parent="DebugLayer"]
 visible = false

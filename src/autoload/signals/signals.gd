@@ -30,7 +30,6 @@ signal scene_changed
 signal setting_updated
 signal state_entered
 signal state_exited
-signal visualize_line
 signal visualize_vector
 
 
@@ -99,5 +98,4 @@ func emit_scene_changed(sender: Node) -> void: emit(scene_changed, [sender])
 func emit_setting_updated(sender: Node, key: StringName, value: int) -> void: emit(setting_updated, [sender, key, value])
 func emit_state_entered(sender: Node, state: StringName) -> void: emit(state_entered, [sender, state])
 func emit_state_exited(sender: Node, state: StringName) -> void: emit(state_exited, [sender, state])
-func emit_visualize_line(sender: Node, point: Vector3) -> void: emit(visualize_line, [sender, point])
 func emit_visualize_vector(sender: Node, vector: Vector2) -> void: emit(visualize_vector, [sender, vector])
