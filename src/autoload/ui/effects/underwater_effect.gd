@@ -17,5 +17,5 @@ func _on_camera_water_exited(sender: Camera3D) -> void:
 		visible = false
 
 
-func _on_scene_changed(sender: Node) -> void:
+func _on_scene_changed(_sender: Node) -> void:
 	visible = false

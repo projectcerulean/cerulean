@@ -13,15 +13,15 @@ func _ready() -> void:
 	assert(player_transform_resource as TransformResource != null, Errors.NULL_RESOURCE)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if interactables.size() > 1:
-		var hash: int = interactables.hash()
+		var hash_value: int = interactables.hash()
 		interactables.sort_custom(interactables_sort)
-		if not interactables.hash() == hash:
+		if not interactables.hash() == hash_value:
 			Signals.emit_interaction_highlight_set(self, interactables.front())
 
 
-func _on_request_interaction(sender: Node) -> void:
+func _on_request_interaction(_sender: Node) -> void:
 	if interactables.size() > 0:
 		interactables.front().interact()
 
@@ -43,7 +43,7 @@ func _on_request_interaction_unhighlight(sender: Node3D) -> void:
 		Signals.emit_interaction_highlight_set(self, target)
 
 
-func _on_scene_changed(sender: Node) -> void:
+func _on_scene_changed(_sender: Node) -> void:
 	interactables.clear()
 	Signals.emit_interaction_highlight_set(self, null)
 

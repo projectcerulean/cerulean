@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	transform_resource.transform = transform
 
 
-func _on_scene_changed(sender: Node) -> void:
+func _on_scene_changed(_sender: Node) -> void:
 	global_transform.origin = player_transform_resource.global_transform.origin
 
 

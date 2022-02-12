@@ -13,7 +13,7 @@ func _ready() -> void:
 	assert(lfo_resource as LfoResource != null, Errors.NULL_RESOURCE)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# TODO: sync with bgm better
 	var angle: float = Time.get_unix_time_from_system() * (TAU * bpm / seconds_per_minute)
 
@@ -28,5 +28,5 @@ func _process(delta: float) -> void:
 	lfo_resource.value_fourth_shifted = cos(0.25 * angle)
 
 
-func _on_bgm_changed(sender: Node, bgm_resource: BgmResource) -> void:
+func _on_bgm_changed(_sender: Node, bgm_resource: BgmResource) -> void:
 	bpm = bgm_resource.bpm if bgm_resource != null else bpm_default

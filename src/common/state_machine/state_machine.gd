@@ -45,12 +45,12 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_process(delta)
 
 
-func _on_request_state_change(sender: Node, state_machine: Node, state: StringName):
+func _on_request_state_change(_sender: Node, state_machine: Node, state: StringName):
 	if state_machine == self:
 		transition_to(state)
 
 
-func _on_request_state_change_next(sender: Node, state_machine: Node):
+func _on_request_state_change_next(_sender: Node, state_machine: Node):
 	if state_machine == self:
 		transition_to_next()
 

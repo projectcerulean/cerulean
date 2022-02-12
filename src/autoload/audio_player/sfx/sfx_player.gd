@@ -20,7 +20,7 @@ func _ready() -> void:
 		assert(child as AudioStreamPlayer3D != null, Errors.CONSISTENCY_ERROR)
 
 
-func _on_request_sfx_play(sender: Node, sfx_resource: SfxResource, position: Vector3) -> void:
+func _on_request_sfx_play(_sender: Node, sfx_resource: SfxResource, position: Vector3) -> void:
 	var audio_stream_player: AudioStreamPlayer3D = get_child(i_current_player)
 	audio_stream_player.stop()
 	audio_stream_player.stream = sfx_resource.stream_samples[randi() % sfx_resource.stream_samples.size()]
@@ -31,7 +31,7 @@ func _on_request_sfx_play(sender: Node, sfx_resource: SfxResource, position: Vec
 	i_current_player = (i_current_player + 1) % n_sfx_channels
 
 
-func _on_scene_changed(sender: Node) -> void:
+func _on_scene_changed(_sender: Node) -> void:
 	for audio_stream_player in get_children():
 		audio_stream_player.stop()
 		audio_stream_player.stream = null

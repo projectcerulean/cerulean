@@ -38,7 +38,7 @@ func _on_fade_out_finished() -> void:
 	Signals.emit_request_scene_change(self, scene_path_next)
 
 
-func _on_scene_changed(sender: Node):
+func _on_scene_changed(_sender: Node):
 	if game_state_resource.current_state == GameStates.SCENE_TRANSITION:
 		tween.kill()
 		tween = create_tween()

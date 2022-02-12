@@ -83,7 +83,7 @@ func _process(delta: float) -> void:
 	transform_resource.transform = camera.transform
 
 
-func _on_scene_changed(sender: Node) -> void:
+func _on_scene_changed(_sender: Node) -> void:
 	water_collision_shapes.clear()
 	camera_anchor.position.z = camera_distance_default
 	yaw_pivot.rotation.y = yaw_default

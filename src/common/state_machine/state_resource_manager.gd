@@ -31,6 +31,6 @@ func _on_state_entered(sender: Node, state: StringName):
 		state_resource.current_state = state
 
 
-func _on_state_exited(sender: Node, state: StringName):
+func _on_state_exited(sender: Node, _state: StringName):
 	if sender == state_machine:
 		state_resource.current_state = StringName()

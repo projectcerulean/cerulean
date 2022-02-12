@@ -53,13 +53,13 @@ func _process(_delta: float) -> void:
 	update()
 
 
-func _on_interaction_highlight_set(sender: Node, target: Node3D) -> void:
-	if target != null and target != self.target:
+func _on_interaction_highlight_set(_sender: Node, highlight_target: Node3D) -> void:
+	if highlight_target != null and highlight_target != target:
 		animate()
-	self.target = target
+	target = highlight_target
 
 
-func _on_request_interaction(sender: Node) -> void:
+func _on_request_interaction(_sender: Node) -> void:
 	if target != null:
 		animate()
 
