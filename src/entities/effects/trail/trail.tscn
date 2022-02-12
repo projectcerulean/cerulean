@@ -18,6 +18,7 @@ _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
 [node name="Trail" type="MeshInstance3D"]
 top_level = true
 material_override = SubResource( "StandardMaterial3D_bri76" )
+cast_shadow = 2
 mesh = SubResource( "ImmediateMesh_w32ps" )
 script = ExtResource( "1_rsfg8" )
 trail_width = SubResource( "Curve_qeqgy" )
