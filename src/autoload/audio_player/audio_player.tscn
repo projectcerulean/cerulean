@@ -44,4 +44,4 @@ _game_state_resource = ExtResource( "4_byodf" )
 
 [node name="UnderwaterLowpass" type="Node" parent="Effects"]
 script = ExtResource( "4_t4lhm" )
-_player_state_resource = ExtResource( "4_byodf" )
+_player_state_resource = ExtResource( "1" )
