@@ -6,7 +6,7 @@ func enter(old_state: StringName, data := {}) -> void:
 	player.motion_velocity = Vector3.ZERO
 
 	# Update mesh facing direction
-	joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
+	mesh_root.look_at(mesh_root.get_global_transform().origin + player.facing_direction)
 
 
 func get_transition() -> StringName:

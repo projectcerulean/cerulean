@@ -7,7 +7,7 @@ func enter(old_state: StringName, data := {}) -> void:
 	player.floor_snap_length = player.move_snap_distance
 
 	# Update mesh facing direction
-	joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
+	mesh_root.look_at(mesh_root.get_global_transform().origin + player.facing_direction)
 
 
 func exit(new_state: StringName) -> void:
@@ -19,7 +19,7 @@ func process(delta: float) -> void:
 	super.process(delta)
 
 	# Update mesh facing direction
-	joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
+	mesh_root.look_at(mesh_root.get_global_transform().origin + player.facing_direction)
 
 
 func physics_process(delta: float) -> void:

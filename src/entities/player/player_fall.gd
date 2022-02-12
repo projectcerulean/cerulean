@@ -5,7 +5,7 @@ func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 
 	# Update mesh facing direction
-	joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
+	mesh_root.look_at(mesh_root.get_global_transform().origin + player.facing_direction)
 
 
 func physics_process(delta: float) -> void:

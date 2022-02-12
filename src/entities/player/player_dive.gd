@@ -8,10 +8,10 @@ func enter(old_state: StringName, data := {}) -> void:
 	roll_angle = 0.0
 
 	var velocity_direction: Vector3 = player.motion_velocity.normalized()
-	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
-		joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
+	if velocity_direction.is_equal_approx(Vector3.UP) or velocity_direction.is_equal_approx(Vector3.DOWN):
+		mesh_root.look_at(mesh_root.get_global_transform().origin + velocity_direction, player.facing_direction)
 	else:
-		joint1.look_at(joint1.get_global_transform().origin + velocity_direction)
+		mesh_root.look_at(mesh_root.get_global_transform().origin + velocity_direction, Vector3.UP.rotated(velocity_direction, -roll_angle))
 
 
 func process(delta: float) -> void:
@@ -28,11 +28,10 @@ func process(delta: float) -> void:
 		player.facing_direction = Lerp.delta_slerp3(player.facing_direction, player.input_vector.normalized(), player.input_vector.length() * player.underwater_turn_weight, delta)
 
 	var velocity_direction: Vector3 = player.motion_velocity.normalized()
-	if velocity_direction == Vector3.UP or velocity_direction == Vector3.DOWN:  # TODO: smoother transition
-		joint1.look_at(joint1.get_global_transform().origin + player.facing_direction)
+	if velocity_direction.is_equal_approx(Vector3.UP) or velocity_direction.is_equal_approx(Vector3.DOWN):
+		mesh_root.look_at(mesh_root.get_global_transform().origin + velocity_direction, player.facing_direction)
 	else:
-		joint1.look_at(joint1.get_global_transform().origin + velocity_direction)
-	joint2.rotation = Vector3(0.0, 0.0, roll_angle)
+		mesh_root.look_at(mesh_root.get_global_transform().origin + velocity_direction, Vector3.UP.rotated(velocity_direction, -roll_angle))
 
 
 func physics_process(delta: float) -> void:

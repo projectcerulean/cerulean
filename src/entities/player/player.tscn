@@ -71,50 +71,39 @@ shape = SubResource( "1" )
 
 [node name="MeshRoot" type="Node3D" parent="."]
 
-[node name="MeshDefault" type="Node3D" parent="MeshRoot"]
+[node name="MeshRootDefault" type="Node3D" parent="MeshRoot"]
 
-[node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault"]
-
-[node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault/Joint"]
-
-[node name="Joint" type="Node3D" parent="MeshRoot/MeshDefault/Joint/Joint"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshDefault/Joint/Joint/Joint"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshRootDefault"]
 mesh = SubResource( "2" )
+skeleton = NodePath("")
 surface_material_override/0 = SubResource( "3" )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshDefault/Joint/Joint/Joint/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshRootDefault/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
 mesh = SubResource( "4" )
 
-[node name="MeshGlide" type="Node3D" parent="MeshRoot"]
+[node name="MeshRootGlide" type="Node3D" parent="MeshRoot"]
 visible = false
 
-[node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide"]
-transform = Transform3D(1, -1.49012e-08, 0, 0, 1, 0, -2.98023e-08, 1.19209e-07, 1, 0, 0, 0)
-
-[node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide/Joint"]
-
-[node name="Joint" type="Node3D" parent="MeshRoot/MeshGlide/Joint/Joint"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshRootGlide"]
+transform = Transform3D(1, 6.51352e-16, 1.49012e-08, 0, -4.37114e-08, -1, -2.98023e-08, 1, -1.6292e-07, 0, 0, 0)
 mesh = SubResource( "6" )
+skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource( "7" )
 
-[node name="TrailPositionLeftInner" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftInner" type="Position3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)
 
-[node name="TrailPositionLeftOuter" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftOuter" type="Position3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.37, 0.37, 0)
 
-[node name="TrailPositionRightInner" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionRightInner" type="Position3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.353553, -0.353553, 0)
 
-[node name="TrailPositionRightOuter" type="Position3D" parent="MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionRightOuter" type="Position3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -0.37, 0)
 
 [node name="StateMachine" type="Node" parent="."]
@@ -123,31 +112,31 @@ _initial_state = NodePath("Idle")
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource( "10" )
-_mesh = NodePath("../../MeshRoot/MeshGlide")
+_mesh_root = NodePath("../../MeshRoot/MeshRootGlide")
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource( "5" )
-_mesh = NodePath("../../MeshRoot/MeshDefault")
+_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="Glide" type="Node" parent="StateMachine"]
 script = ExtResource( "7" )
-_mesh = NodePath("../../MeshRoot/MeshGlide")
+_mesh_root = NodePath("../../MeshRoot/MeshRootGlide")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( "3" )
-_mesh = NodePath("../../MeshRoot/MeshDefault")
+_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( "6" )
-_mesh = NodePath("../../MeshRoot/MeshDefault")
+_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( "4" )
-_mesh = NodePath("../../MeshRoot/MeshDefault")
+_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource( "9" )
-_mesh = NodePath("../../MeshRoot/MeshDefault")
+_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="StateResourceManager" type="Node" parent="."]
 script = ExtResource( "15_p5vjh" )
@@ -211,30 +200,30 @@ one_shot = true
 [node name="GlideTrailRendererLeft" type="Node" parent="."]
 script = ExtResource( "8" )
 _target_state = NodePath("../StateMachine/Glide")
-_trail_position_a = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-_trail_position_b = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_trail_position_a = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+_trail_position_b = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 trail_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [node name="GlideTrailRendererRight" type="Node" parent="."]
 script = ExtResource( "8" )
 _target_state = NodePath("../StateMachine/Glide")
-_trail_position_a = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-_trail_position_b = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_trail_position_a = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+_trail_position_b = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 trail_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [node name="DiveTrailRendererLeft" type="Node" parent="."]
 script = ExtResource( "8" )
 _target_state = NodePath("../StateMachine/Dive")
-_trail_position_a = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-_trail_position_b = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_trail_position_a = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+_trail_position_b = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 trail_color = Color(0.310278, 0.560628, 0.878272, 1)
 point_lifetime = 1.0
 
 [node name="DiveTrailRendererRight" type="Node" parent="."]
 script = ExtResource( "8" )
 _target_state = NodePath("../StateMachine/Dive")
-_trail_position_a = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-_trail_position_b = NodePath("../MeshRoot/MeshGlide/Joint/Joint/Joint/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_trail_position_a = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+_trail_position_b = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 trail_color = Color(0.310278, 0.560628, 0.878272, 1)
 point_lifetime = 1.0
 
