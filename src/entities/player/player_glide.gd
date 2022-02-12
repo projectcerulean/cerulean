@@ -83,13 +83,13 @@ func physics_process(delta: float) -> void:
 
 func get_transition() -> PlayerState:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - player.water_state_enter_offset:
-		return state_resource.states.SWIM
+		return states.SWIM
 	elif player.is_on_floor():
 		if is_equal_approx(player.motion_velocity.x, 0.0) and is_equal_approx(player.motion_velocity.z, 0.0):
-			return state_resource.states.IDLE
+			return states.IDLE
 		else:
-			return state_resource.states.RUN
+			return states.RUN
 	elif not Input.is_action_pressed("player_move_jump"):
-		return state_resource.states.FALL
+		return states.FALL
 	else:
 		return null

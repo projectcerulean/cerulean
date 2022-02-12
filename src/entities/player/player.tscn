@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b4nxtyal7tjpu"]
+[gd_scene load_steps=28 format=3 uid="uid://b4nxtyal7tjpu"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/entities/player/player_swim.gd" id="9"]
 [ext_resource type="Script" path="res://src/entities/player/player_dive.gd" id="10"]
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_resource_manager.gd" id="15_p5vjh"]
 [ext_resource type="Script" path="res://src/entities/player/player_blob_shadow.gd" id="16_3ec8c"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
@@ -118,8 +119,7 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "2" )
-initial_state = NodePath("Idle")
-state_resource = ExtResource( "12" )
+_initial_state = NodePath("Idle")
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource( "10" )
@@ -141,6 +141,11 @@ script = ExtResource( "4" )
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource( "9" )
+
+[node name="StateResourceManager" type="Node" parent="."]
+script = ExtResource( "15_p5vjh" )
+_state_machine = NodePath("../StateMachine")
+_state_resource = ExtResource( "12" )
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.65, 0)

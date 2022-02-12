@@ -21,7 +21,7 @@ func get_transition() -> PauseMenuState:
 	if pause_menu.game_state_resource.current_state == pause_menu.game_state_resource.states.PAUSE:
 		if Input.is_action_just_pressed(&"pause"):
 			Signals.emit_request_game_unpause(self)
-			return state_resource.states.MAIN
+			return states.MAIN
 		elif Input.is_action_just_pressed("ui_cancel"):
-			return state_resource.states.MAIN
+			return states.MAIN
 	return null

@@ -50,7 +50,7 @@ surface_material_override/0 = SubResource( "ShaderMaterial_esmal" )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "3_qqest" )
-initial_state = NodePath("Disabled")
+_initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
 script = ExtResource( "4_nmhmp" )

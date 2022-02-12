@@ -28,7 +28,7 @@ __meta__ = {
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "3_y7dcq" )
-initial_state = NodePath("Wait")
+_initial_state = NodePath("Wait")
 
 [node name="Output" type="Node" parent="StateMachine"]
 script = ExtResource( "6_n3v8x" )

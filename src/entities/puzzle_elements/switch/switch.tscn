@@ -149,7 +149,7 @@ script = ExtResource( "3_bgjta" )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "4_rrpi8" )
-initial_state = NodePath("Disabled")
+_initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
 script = ExtResource( "5_5aoy1" )

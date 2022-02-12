@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdvac71oqqtlu"]
+[gd_scene load_steps=9 format=3 uid="uid://bdvac71oqqtlu"]
 
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="1"]
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_gameplay.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_dialogue.gd" id="4_26nrj"]
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_pause.gd" id="5"]
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_scene_transition.gd" id="7_ry6mk"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_resource_manager.gd" id="8_mh8vj"]
 
 [node name="GameStateManager" type="Node"]
 process_mode = 3
@@ -15,8 +16,7 @@ state_resource = ExtResource( "3" )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "1" )
-initial_state = NodePath("Gameplay")
-state_resource = ExtResource( "3" )
+_initial_state = NodePath("Gameplay")
 
 [node name="Dialogue" type="Node" parent="StateMachine"]
 script = ExtResource( "4_26nrj" )
@@ -29,3 +29,8 @@ script = ExtResource( "5" )
 
 [node name="SceneTransition" type="Node" parent="StateMachine"]
 script = ExtResource( "7_ry6mk" )
+
+[node name="StateResourceManager" type="Node" parent="."]
+script = ExtResource( "8_mh8vj" )
+_state_machine = NodePath("../StateMachine")
+_state_resource = ExtResource( "3" )

@@ -148,7 +148,7 @@ key_string = &"CAMERA_Y_INVERTED"
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "1_4bqbk" )
-initial_state = NodePath("Main")
+_initial_state = NodePath("Main")
 
 [node name="Main" type="Node" parent="StateMachine"]
 script = ExtResource( "4_eom5a" )

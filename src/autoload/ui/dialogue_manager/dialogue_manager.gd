@@ -33,7 +33,7 @@ func _on_request_dialogue_finish(sender: Node) -> void:
 
 func _on_state_entered(sender: Node, state: Node) -> void:
 	if sender == game_state_resource.state_machine and state == game_state_resource.states.DIALOGUE:
-		state_machine.transition_to(state_machine.state_resource.states.OUTPUT)
+		state_machine.transition_to(state_machine.get_node("Output"))
 		self.visible = true
 
 

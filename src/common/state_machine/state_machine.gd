@@ -5,54 +5,47 @@ class_name StateMachine
 extends Node
 
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
-@export var initial_state: NodePath
+@export var _initial_state: NodePath
 
-# Resource to hold the state. Other nodes can include this resource to query the state.
-@export var state_resource: Resource
+var current_state: State
+
+@onready var initial_state: State = get_node(_initial_state) as State
 
 
 # Enter the initial state when initializing the state machine.
 func _ready() -> void:
-	if state_resource == null:
-		state_resource = StateResource.new()
-	assert(state_resource as StateResource != null, Errors.NULL_RESOURCE)
-
-	state_resource.state_machine = self
-	state_resource.current_state = null
-	state_resource.states = {}
+	assert(initial_state != null, Errors.NULL_NODE)
 
 	for child in get_children():
-		assert(child as State != null, Errors.INVALID_ARGUMENT)
-		child.state_resource = state_resource
-		state_resource.states[StringName(str(child.name).to_upper())] = child
+		for child_other in get_children():
+			assert(child as State != null, Errors.TYPE_ERROR)
+			assert(child_other as State != null, Errors.TYPE_ERROR)
+			child.states[StringName(str(child_other.name).to_upper())] = child_other
 
-	assert(initial_state, Errors.INVALID_ARGUMENT)
-	var initial_state_node: State = get_node(initial_state) as State
-	assert(initial_state_node != null, Errors.TYPE_ERROR)
-	transition_to(initial_state_node)
+	transition_to(initial_state)
 
 
 # Delegate `_unhandled_input` callback to the active state.
 func _unhandled_input(event: InputEvent) -> void:
-	if state_resource.current_state != null:
-		state_resource.current_state.unhandled_input(event)
+	if current_state != null:
+		current_state.unhandled_input(event)
 
 
 # Delegate `_process` callback to the active state.
 func _process(delta: float) -> void:
-	if state_resource.current_state != null:
-		state_resource.current_state.process(delta)
+	if current_state != null:
+		current_state.process(delta)
 
 		# Change the current state
-		var target_state: State = state_resource.current_state.get_transition()
+		var target_state: State = current_state.get_transition()
 		if target_state != null:
 			transition_to(target_state)
 
 
 # Delegate `_physics_process` callback to the active state.
 func _physics_process(delta: float) -> void:
-	if state_resource.current_state != null:
-		state_resource.current_state.physics_process(delta)
+	if current_state != null:
+		current_state.physics_process(delta)
 
 
 # This function calls the current state's exit() function, then changes the active state,
@@ -63,14 +56,14 @@ func transition_to(target_state: State, data: Dictionary = {}) -> void:
 
 
 func lazy_transition_to(target_state: State, data: Dictionary = {}) -> void:
-	if target_state != state_resource.current_state:
+	if target_state != current_state:
 		transition_to(target_state, data)
 
 
 func transition_to_next(data: Dictionary = {}) -> void:
 	var current_state_index: int = -1
 	for i in range(get_child_count()):
-		if get_children()[i] == state_resource.current_state:
+		if get_children()[i] == current_state:
 			current_state_index = i
 			break
 	assert(current_state_index >= 0, Errors.CONSISTENCY_ERROR)
@@ -82,11 +75,11 @@ func transition_to_next(data: Dictionary = {}) -> void:
 func transition_to_deferred(target_state: State, data: Dictionary = {}) -> void:
 	assert(target_state != null, Errors.NULL_NODE)
 
-	var old_state: State = state_resource.current_state
+	var old_state: State = current_state
 	if old_state != null:
 		old_state.exit(target_state)
-		Signals.emit_state_exited(self, state_resource.current_state)
+		Signals.emit_state_exited(self, current_state)
 
-	state_resource.current_state = target_state
-	state_resource.current_state.enter(old_state, data)
-	Signals.emit_state_entered(self, state_resource.current_state)
+	current_state = target_state
+	current_state.enter(old_state, data)
+	Signals.emit_state_entered(self, current_state)

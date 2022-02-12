@@ -3,7 +3,7 @@
 class_name State
 extends Node
 
-var state_resource: Resource
+var states: Dictionary = {}
 
 
 # Virtual function. Receives events from the `_unhandled_input()` callback.

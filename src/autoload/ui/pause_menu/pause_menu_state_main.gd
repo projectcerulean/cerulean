@@ -14,9 +14,9 @@ func get_transition() -> PauseMenuState:
 				var scene_path: String = get_tree().current_scene.scene_file_path
 				Signals.emit_request_scene_transition_start(self, scene_path, pause_menu.scene_transition_color, pause_menu.scene_transition_fade_duration)
 			elif menu_options[i_hovered_option].name == &"ChangeLevel":
-				return state_resource.states.LEVELS
+				return states.LEVELS
 			elif menu_options[i_hovered_option].name == &"Settings":
-				return state_resource.states.SETTINGS
+				return states.SETTINGS
 			elif menu_options[i_hovered_option].name == &"Quit":
 				Signals.emit_request_game_quit(self)
 	return null

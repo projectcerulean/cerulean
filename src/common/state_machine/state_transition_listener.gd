@@ -6,7 +6,7 @@ extends Node
 var is_in_target_state: bool = false
 
 @onready var target_state: State = get_node(_target_state) as State
-@onready var target_state_machine: StateMachine = target_state.state_resource.state_machine
+@onready var target_state_machine: StateMachine = target_state.get_parent() as StateMachine
 
 
 func _ready() -> void:
