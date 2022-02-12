@@ -30,22 +30,17 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if game_state_resource.current_state == GameStates.DIALOGUE:
-		if dialogue_target != null:
-			dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target.global_transform.origin - player_transform_resource.global_transform.origin) / 2.0, dialogue_lerp_weight, delta)
-			global_transform.origin = dialogue_target_position_start + dialogue_target_offset
-	elif game_state_resource.current_state == GameStates.GAMEPLAY:
-		dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, Vector3.ZERO, dialogue_lerp_weight, delta)
-		global_transform.origin.x = player_transform_resource.global_transform.origin.x + dialogue_target_offset.x
-		global_transform.origin.z = player_transform_resource.global_transform.origin.z + dialogue_target_offset.z
-		var y_lerp_weight: float = y_lerp_weight_player_grounded if player_state_resource.current_state in [PlayerStates.RUN, PlayerStates.IDLE] else y_lerp_weight_player_air
-		global_transform.origin.y = Lerp.delta_lerp(global_transform.origin.y, player_transform_resource.global_transform.origin.y, y_lerp_weight, delta)
-	elif game_state_resource.current_state == GameStates.PAUSE:
-		pass
-	elif game_state_resource.current_state == GameStates.SCENE_TRANSITION:
-		pass
-	else:
-		assert(false, Errors.CONSISTENCY_ERROR)
+	match game_state_resource.current_state:
+		GameStates.DIALOGUE:
+			if dialogue_target != null:
+				dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target.global_transform.origin - player_transform_resource.global_transform.origin) / 2.0, dialogue_lerp_weight, delta)
+				global_transform.origin = dialogue_target_position_start + dialogue_target_offset
+		GameStates.GAMEPLAY:
+			dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, Vector3.ZERO, dialogue_lerp_weight, delta)
+			global_transform.origin.x = player_transform_resource.global_transform.origin.x + dialogue_target_offset.x
+			global_transform.origin.z = player_transform_resource.global_transform.origin.z + dialogue_target_offset.z
+			var y_lerp_weight: float = y_lerp_weight_player_grounded if player_state_resource.current_state in [PlayerStates.RUN, PlayerStates.IDLE] else y_lerp_weight_player_air
+			global_transform.origin.y = Lerp.delta_lerp(global_transform.origin.y, player_transform_resource.global_transform.origin.y, y_lerp_weight, delta)
 
 	# Update tranform resource
 	transform_resource.global_transform = global_transform
