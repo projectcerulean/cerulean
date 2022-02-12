@@ -176,7 +176,7 @@ operation = 2
 size = Vector3(128, 10, 128)
 
 [node name="DoorwayInner" type="CSGBox3D" parent="Env/Entrance/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 99)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 96)
 operation = 2
 size = Vector3(4, 4, 16)
 
