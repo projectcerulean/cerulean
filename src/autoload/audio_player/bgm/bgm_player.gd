@@ -34,8 +34,6 @@ func _ready() -> void:
 	assert(glide_player != null, Errors.NULL_NODE)
 	assert(rhythm_player != null, Errors.NULL_NODE)
 
-	AudioServer.set_bus_mute(bus_index, settings_resource.settings[Settings.BACKGROUND_MUSIC] == Settings.Boolean.NO)
-
 
 func _on_scene_changed(sender: Node) -> void:
 	if sender.bgm_resource == bgm_resource:

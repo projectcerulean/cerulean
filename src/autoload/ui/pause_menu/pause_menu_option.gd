@@ -20,17 +20,16 @@ func _ready() -> void:
 	assert(str(key_string), Errors.INVALID_ARGUMENT)
 	assert(key_node != null, Errors.NULL_NODE)
 	assert(value_node != null, Errors.NULL_NODE)
+	assert(settings_resource != null, Errors.NULL_RESOURCE)
+
+	value_node.text = ""
 
 	if is_settings_option:
-		assert(settings_resource != null, Errors.NULL_RESOURCE)
 		key_node.text = Settings.SETTINGS[key_string][Settings.OPTION_NAME]
-		value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings_resource.settings[key_string]]
 	elif is_level_option:
 		key_node.text = Levels.LEVELS[key_string][Levels.LEVEL_NAME]
-		value_node.text = ""
 	else:
 		key_node.text = key_string
-		value_node.text = ""
 
 
 func set_highlight(highlight: bool) -> void:
@@ -43,7 +42,7 @@ func set_highlight(highlight: bool) -> void:
 
 func adjust_option(delta: int) -> void:
 	if is_settings_option:
-		var n_options: int = Settings.SETTINGS[key_string][Settings.VALUE_NAMES].size()
+		var n_options: int = len(Settings.SETTINGS[key_string][Settings.VALUE_NAMES])
 		var value_new: int = posmod(settings_resource.settings[key_string] + delta, n_options)
 		Signals.emit_request_setting_update(self, key_string, value_new)
 
