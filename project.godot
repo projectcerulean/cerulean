@@ -477,5 +477,6 @@ common/physics_ticks_per_second=120
 
 [rendering]
 
+shadows/directional_shadow/size=8192
 anti_aliasing/quality/msaa=2
 environment/defaults/default_environment="res://src/environment/default_env.tres"
