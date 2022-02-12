@@ -4,6 +4,7 @@ extends PlayerState
 func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 	player.motion_velocity.y = player.jump_speed
+	player.coyote_timer.stop()
 	player.jump_buffer_timer.stop()
 
 	# Update mesh facing direction

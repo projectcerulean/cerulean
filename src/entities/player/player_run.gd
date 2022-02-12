@@ -12,7 +12,6 @@ func enter(old_state: StringName, data := {}) -> void:
 
 func exit(new_state: StringName) -> void:
 	super.exit(new_state)
-	player.coyote_timer.stop()
 	player.floor_snap_length = 0.0
 
 
@@ -39,14 +38,13 @@ func physics_process(delta: float) -> void:
 	player.move_and_slide()
 
 	# Coyote timer
-	if player.are_raycasts_colliding():
-		player.coyote_timer.start()
+	player.coyote_timer.start()
 
 
 func get_transition() -> StringName:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - player.water_state_enter_offset:
 		return PlayerStates.SWIM
-	elif not player.are_raycasts_colliding() and player.coyote_timer.is_stopped():
+	elif not player.are_raycasts_colliding():
 		return PlayerStates.FALL
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		return PlayerStates.JUMP
