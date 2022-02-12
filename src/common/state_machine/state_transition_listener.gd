@@ -5,8 +5,8 @@ extends Node
 
 var is_in_target_state: bool = false
 
-@onready var target_state: Node = get_node(_target_state)
-@onready var target_state_machine: Node = target_state.get_parent()
+@onready var target_state: Node = get_node(_target_state) as Node
+@onready var target_state_machine: Node = target_state.get_parent() as Node
 
 
 func _ready() -> void:

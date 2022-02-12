@@ -7,8 +7,8 @@ extends Control
 var dialogue_resource: DialogueResource = null
 var line_index: int = 0
 
-@onready var label: Label = get_node("Label")
-@onready var state_machine: Node = get_node("StateMachine")
+@onready var label: Label = get_node("Label") as Label
+@onready var state_machine: Node = get_node("StateMachine") as Node
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 

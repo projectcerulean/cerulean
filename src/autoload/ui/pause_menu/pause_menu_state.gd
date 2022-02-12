@@ -1,7 +1,7 @@
 class_name PauseMenuState extends State
 
 @onready var pause_menu: PauseMenu = owner as PauseMenu
-@onready var menu: Control = pause_menu.get_node(str(name))
+@onready var menu: Control = pause_menu.get_node(str(name)) as Control
 
 var i_hovered_option: int:
 	set(i_new):

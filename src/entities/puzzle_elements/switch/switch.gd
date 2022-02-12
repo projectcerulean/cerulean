@@ -1,8 +1,8 @@
 class_name Switch
 extends StaticBody3D
 
-@onready var crystal: Node3D = get_node("Crystal")
-@onready var state_machine: Node = get_node("StateMachine")
+@onready var crystal: Node3D = get_node("Crystal") as Node3D
+@onready var state_machine: Node = get_node("StateMachine") as Node
 
 
 func _ready() -> void:

@@ -11,8 +11,8 @@ extends MeshInstance3D
 @onready var flow_duration: float = abs(flow_position_end - flow_position_start) / flow_speed
 @onready var state_next: StringName
 
-@onready var state_machine: Node = get_node("StateMachine")
-@onready var input_node: Node = get_node(input_node_path)
+@onready var state_machine: Node = get_node("StateMachine") as Node
+@onready var input_node: Node = get_node(input_node_path) as Node
 @onready var tween: Tween = create_tween()
 
 

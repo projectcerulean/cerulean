@@ -3,8 +3,8 @@ extends Node3D
 
 @export var input_node_path: NodePath
 
-@onready var input_node: Node = get_node(input_node_path)
-@onready var state_machine: Node = get_node("StateMachine")
+@onready var input_node: Node = get_node(input_node_path) as Node
+@onready var state_machine: Node = get_node("StateMachine") as Node
 
 
 func _ready() -> void:

@@ -15,9 +15,9 @@ var glide_tween: Tween = null
 var rhythm_tween: Tween = null
 
 @onready var bus_index: int = AudioServer.get_bus_index(&"Bgm")
-@onready var base_player: AudioStreamPlayer = get_node("BasePlayer")
-@onready var glide_player: AudioStreamPlayer = get_node("GlidePlayer")
-@onready var rhythm_player: AudioStreamPlayer = get_node("RhythmPlayer")
+@onready var base_player: AudioStreamPlayer = get_node("BasePlayer") as AudioStreamPlayer
+@onready var glide_player: AudioStreamPlayer = get_node("GlidePlayer") as AudioStreamPlayer
+@onready var rhythm_player: AudioStreamPlayer = get_node("RhythmPlayer") as AudioStreamPlayer
 @onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
 @onready var player_state_resource: StateResource = _player_state_resource as StateResource
 
