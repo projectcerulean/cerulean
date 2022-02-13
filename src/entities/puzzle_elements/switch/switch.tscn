@@ -13,6 +13,8 @@
 height = 2.5
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1h8m4"]
+top_radius = 1.0
+bottom_radius = 1.0
 height = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3gut"]

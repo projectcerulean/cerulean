@@ -508,6 +508,7 @@ size = Vector3(2, 6, 2)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Env/StartPlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 28)
+size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Env/StartPlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 24)
@@ -605,21 +606,27 @@ size = Vector3(4, 2, 2)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Env/Tower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 13, 0)
+size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Env/Tower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 11, -2)
+size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Env/Tower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 17, -3)
+size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Env/Tower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 19, -4)
+size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Env/Tower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 21, -5)
+size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Env/Tower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 23, -6)
+size = Vector3(2, 2, 2)
 
 [node name="Flagpole" type="CSGCombiner3D" parent="Env"]
 layers = 4
@@ -706,6 +713,7 @@ size = Vector3(4, 2, 2)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -34)
+size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
