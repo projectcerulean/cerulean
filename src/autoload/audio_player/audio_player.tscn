@@ -1,12 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://6mrawjjm5bds"]
+[gd_scene load_steps=6 format=3 uid="uid://6mrawjjm5bds"]
 
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="1"]
 [ext_resource type="Script" path="res://src/autoload/audio_player/bgm/bgm_player.gd" id="2"]
 [ext_resource type="Resource" uid="uid://bbaupgv7alorj" path="res://src/autoload/settings_manager/settings.tres" id="2_crnq2"]
-[ext_resource type="Script" path="res://src/autoload/audio_player/effects/pause_lowpass.gd" id="3_1ehpi"]
-[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="4_byodf"]
 [ext_resource type="Script" path="res://src/autoload/audio_player/sfx/sfx_player.gd" id="4_p84st"]
-[ext_resource type="Script" path="res://src/autoload/audio_player/effects/underwater_lowpass.gd" id="4_t4lhm"]
 [ext_resource type="Script" path="res://src/autoload/audio_player/sfx/sfx_player_non_diegetic.gd" id="5_7273u"]
 
 [node name="AudioPlayer" type="Node"]
@@ -35,13 +32,3 @@ script = ExtResource( "4_p84st" )
 
 [node name="SfxPlayerNonDiegetic" type="Node" parent="Sfx"]
 script = ExtResource( "5_7273u" )
-
-[node name="Effects" type="Node" parent="."]
-
-[node name="PauseLowpass" type="Node" parent="Effects"]
-script = ExtResource( "3_1ehpi" )
-_game_state_resource = ExtResource( "4_byodf" )
-
-[node name="UnderwaterLowpass" type="Node" parent="Effects"]
-script = ExtResource( "4_t4lhm" )
-_player_state_resource = ExtResource( "1" )

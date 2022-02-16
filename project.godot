@@ -9,6 +9,16 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node",
+"class": &"AudioBuses",
+"language": &"GDScript",
+"path": "res://src/constants/audio_buses.gd"
+}, {
+"base": "StateTransitionListener",
+"class": &"AudioEffectTransitionListener",
+"language": &"GDScript",
+"path": "res://src/sound/effects/audio_effect_transition_listener.gd"
+}, {
 "base": "StaticBody3D",
 "class": &"Barrier",
 "language": &"GDScript",
@@ -118,11 +128,6 @@ _global_script_classes=[{
 "class": &"LfoResource",
 "language": &"GDScript",
 "path": "res://src/autoload/lfo/lfo_resource.gd"
-}, {
-"base": "Node",
-"class": &"Lowpass",
-"language": &"GDScript",
-"path": "res://src/autoload/audio_player/effects/lowpass.gd"
 }, {
 "base": "Node",
 "class": &"Math",
@@ -255,6 +260,8 @@ _global_script_classes=[{
 "path": "res://src/constants/version.gd"
 }]
 _global_script_class_icons={
+"AudioBuses": "",
+"AudioEffectTransitionListener": "",
 "Barrier": "",
 "BarrierState": "",
 "BgmResource": "",
@@ -277,7 +284,6 @@ _global_script_class_icons={
 "Lerp": "",
 "Levels": "",
 "LfoResource": "",
-"Lowpass": "",
 "Math": "",
 "PauseMenu": "",
 "PauseMenuOption": "",

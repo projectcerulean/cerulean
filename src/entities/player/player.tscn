@@ -1,11 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://b4nxtyal7tjpu"]
+[gd_scene load_steps=31 format=3 uid="uid://b4nxtyal7tjpu"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/autoload/input/thumbstick_resource_left.tres" id="2_t6dk8"]
 [ext_resource type="Script" path="res://src/entities/player/player_idle.gd" id="3"]
 [ext_resource type="Script" path="res://src/entities/player/player_run.gd" id="4"]
-[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="4_gviv5"]
+[ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="4_gviv5"]
 [ext_resource type="Script" path="res://src/entities/player/player_fall.gd" id="5"]
 [ext_resource type="Resource" uid="uid://cf5mdlivktsoa" path="res://src/entities/player/player_transform.tres" id="5_f776o"]
 [ext_resource type="Script" path="res://src/entities/player/player_jump.gd" id="6"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_resource_manager.gd" id="15_p5vjh"]
 [ext_resource type="Script" path="res://src/entities/player/player_blob_shadow.gd" id="16_3ec8c"]
+[ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="18_nptr4"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.25
@@ -56,6 +57,12 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_dd8js"]
 top_radius = 0.0
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_xejwy"]
+cutoff_hz = 20500.0
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_v0sjn"]
+cutoff_hz = 1000.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 60
@@ -197,33 +204,35 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="GlideTrailRendererLeft" type="Node" parent="."]
+[node name="TrailRenderers" type="Node" parent="."]
+
+[node name="GlideTrailRendererLeft" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
-_target_state = NodePath("../StateMachine/Glide")
-_trail_position_a = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-_trail_position_b = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_target_state = NodePath("../../StateMachine/Glide")
+_trail_position_a = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+_trail_position_b = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 trail_color = Color(0.835294, 0.835294, 0.941176, 1)
 
-[node name="GlideTrailRendererRight" type="Node" parent="."]
+[node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
-_target_state = NodePath("../StateMachine/Glide")
-_trail_position_a = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-_trail_position_b = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_target_state = NodePath("../../StateMachine/Glide")
+_trail_position_a = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+_trail_position_b = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 trail_color = Color(0.835294, 0.835294, 0.941176, 1)
 
-[node name="DiveTrailRendererLeft" type="Node" parent="."]
+[node name="DiveTrailRendererLeft" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
-_target_state = NodePath("../StateMachine/Dive")
-_trail_position_a = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-_trail_position_b = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_target_state = NodePath("../../StateMachine/Dive")
+_trail_position_a = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+_trail_position_b = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 trail_color = Color(0.310278, 0.560628, 0.878272, 1)
 point_lifetime = 1.0
 
-[node name="DiveTrailRendererRight" type="Node" parent="."]
+[node name="DiveTrailRendererRight" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
-_target_state = NodePath("../StateMachine/Dive")
-_trail_position_a = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-_trail_position_b = NodePath("../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_target_state = NodePath("../../StateMachine/Dive")
+_trail_position_a = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+_trail_position_b = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 trail_color = Color(0.310278, 0.560628, 0.878272, 1)
 point_lifetime = 1.0
 
@@ -248,3 +257,11 @@ skeleton = NodePath("../../../..")
 [node name="RayCast3D" type="RayCast3D" parent="BlobShadow"]
 target_position = Vector3(0, -100, 0)
 collision_mask = 4
+
+[node name="AudioEffects" type="Node" parent="."]
+
+[node name="DiveLowpass" type="Node" parent="AudioEffects"]
+script = ExtResource( "18_nptr4" )
+_target_state = NodePath("../../StateMachine/Dive")
+audio_effect_dry = SubResource( "AudioEffectLowPassFilter_xejwy" )
+audio_effect_wet = SubResource( "AudioEffectLowPassFilter_v0sjn" )

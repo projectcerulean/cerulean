@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dyt784lki51ha"]
 
 [ext_resource type="Script" path="res://src/common/state_machine/state_resource.gd" id="1"]
 

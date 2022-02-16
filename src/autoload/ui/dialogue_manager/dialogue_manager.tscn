@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://com3qcbnk0t72"]
 
 [ext_resource type="Script" path="res://src/autoload/ui/dialogue_manager/dialogue_manager.gd" id="1_r7ctw"]
-[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="2_f52uj"]
+[ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="2_f52uj"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="3_y7dcq"]
 [ext_resource type="Script" path="res://src/autoload/ui/dialogue_manager/dialogue_state_wait.gd" id="6_ic3li"]
 [ext_resource type="Script" path="res://src/autoload/ui/dialogue_manager/dialogue_state_output.gd" id="6_n3v8x"]
