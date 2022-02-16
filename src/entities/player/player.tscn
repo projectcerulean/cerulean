@@ -265,3 +265,4 @@ script = ExtResource( "18_nptr4" )
 _target_state = NodePath("../../StateMachine/Dive")
 audio_effect_dry = SubResource( "AudioEffectLowPassFilter_xejwy" )
 audio_effect_wet = SubResource( "AudioEffectLowPassFilter_v0sjn" )
+tween_duration = 0.25
