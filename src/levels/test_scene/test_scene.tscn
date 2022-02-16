@@ -733,6 +733,7 @@ size = Vector3(2, 4, 16)
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 7, -47)
+size = Vector3(2, 2, 2)
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.5, -55)
