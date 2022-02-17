@@ -6,7 +6,6 @@ const volume_db_zero: float = -80.0
 @export var volume_db_high: float = 0.0
 @export var tween_duration_glide: float = 3.0
 @export var tween_duration_cutoff: float = 0.01
-@export var _settings_resource: Resource
 @export var _player_state_resource: Resource
 
 var bgm_resource: BgmResource = null
@@ -14,22 +13,17 @@ var base_tween: Tween = null
 var glide_tween: Tween = null
 var rhythm_tween: Tween = null
 
-@onready var bus_index: int = AudioServer.get_bus_index(&"Bgm")
 @onready var base_player: AudioStreamPlayer = get_node("BasePlayer") as AudioStreamPlayer
 @onready var glide_player: AudioStreamPlayer = get_node("GlidePlayer") as AudioStreamPlayer
 @onready var rhythm_player: AudioStreamPlayer = get_node("RhythmPlayer") as AudioStreamPlayer
-@onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
 @onready var player_state_resource: StateResource = _player_state_resource as StateResource
 
 
 func _ready() -> void:
 	Signals.scene_changed.connect(self._on_scene_changed)
 	Signals.state_entered.connect(self._on_state_entered)
-	Signals.setting_updated.connect(self._on_setting_updated)
 
-	assert(settings_resource != null, Errors.NULL_RESOURCE)
 	assert(player_state_resource != null, Errors.NULL_RESOURCE)
-	assert(bus_index >= 0, Errors.INVALID_AUDIO_BUS)
 	assert(base_player != null, Errors.NULL_NODE)
 	assert(glide_player != null, Errors.NULL_NODE)
 	assert(rhythm_player != null, Errors.NULL_NODE)
@@ -103,7 +97,3 @@ func _on_state_entered(sender: Node, state: StringName) -> void:
 		else:
 			rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_low, tween_duration_glide)
 			rhythm_tween.tween_property(rhythm_player, "volume_db", volume_db_zero, tween_duration_cutoff)
-
-
-func _on_setting_updated(_sender: Node, _key: StringName, _value: int) -> void:
-	AudioServer.set_bus_mute(bus_index, settings_resource.settings[Settings.BACKGROUND_MUSIC] == Settings.Boolean.NO)
