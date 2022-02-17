@@ -4,18 +4,43 @@ extends StateTransitionListener
 const wet_level_min: float = 0.0
 const wet_level_max: float = 1.0
 
-const TWEEN_TYPE_EXPONENTIAL: int = 0
-const TWEEN_TYPE_LINEAR: int = 1
+const TWEEN_TYPE_LINEAR: int = 0
+const TWEEN_TYPE_DECIBEL: int = 1
+const TWEEN_TYPE_EXPONENTIAL: int = 2
 
 @export var audio_effect_dry: AudioEffect
 @export var audio_effect_wet: AudioEffect
 @export var audio_bus_name: StringName = AudioBuses.EFFECTS
 @export var tween_duration: float = 1.0
-@export_enum(Exponential, Linear) var tween_type: int = TWEEN_TYPE_EXPONENTIAL
+@export_enum(Linear, Decibel, Exponential) var tween_type: int = TWEEN_TYPE_LINEAR
 
 var audio_effect: AudioEffect
 var tween: Tween
-var wet_level: float
+
+var wet_level: float:
+	get:
+		var value: float = clampf(wet_level, 0.0, 1.0)
+		if is_nan(value):
+			return 0.0
+		else:
+			return value
+	set (value):
+		assert(not is_nan(value) and not is_inf(value), Errors.INVALID_ARGUMENT)
+		wet_level = value
+		for property in audio_effect.get_property_list():
+			if property.type == TYPE_FLOAT:
+				var dry_value: float = audio_effect_dry.get(property.name)
+				var wet_value: float = audio_effect_wet.get(property.name)
+				var property_value: float
+				match tween_type:
+					TWEEN_TYPE_LINEAR:
+						property_value = lerp(dry_value, wet_value, wet_level)
+					TWEEN_TYPE_DECIBEL:
+						property_value = linear2db(lerp(db2linear(dry_value), db2linear(wet_value), wet_level))
+					TWEEN_TYPE_EXPONENTIAL:
+						assert(dry_value > 0.0 and wet_value > 0.0, Errors.INVALID_ARGUMENT)
+						property_value = exp(lerp(log(dry_value), log(wet_value), wet_level))
+				audio_effect.set(property.name, property_value)
 
 @onready var bus_index: int = AudioServer.get_bus_index(audio_bus_name)
 
@@ -51,7 +76,7 @@ func _on_target_state_entered() -> void:
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_method(set_wet_level, wet_level, wet_level_max, tween_duration)
+	tween.tween_property(self, "wet_level", wet_level_max, tween_duration)
 
 
 func _on_target_state_exited() -> void:
@@ -59,17 +84,4 @@ func _on_target_state_exited() -> void:
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_method(set_wet_level, wet_level, wet_level_min, tween_duration)
-
-
-func set_wet_level(wet_level_new: float):
-	assert(wet_level_new >= wet_level_min and wet_level_new <= wet_level_max, Errors.INVALID_ARGUMENT)
-	wet_level = wet_level_new
-	for property in audio_effect.get_property_list():
-		if property.type == TYPE_FLOAT:
-			var value: float = 0.0
-			if tween_type == TWEEN_TYPE_EXPONENTIAL:
-				value = exp(lerp(log(audio_effect_dry.get(property.name)), log(audio_effect_wet.get(property.name)), wet_level))
-			elif tween_type == TWEEN_TYPE_LINEAR:
-				value = lerp(audio_effect_dry.get(property.name), audio_effect_wet.get(property.name), wet_level)
-			audio_effect.set(property.name, value)
+	tween.tween_property(self, "wet_level", wet_level_min, tween_duration)

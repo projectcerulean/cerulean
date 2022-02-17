@@ -50,3 +50,4 @@ _target_state = NodePath("../../StateMachine/Pause")
 audio_effect_dry = SubResource( "AudioEffectLowPassFilter_e7168" )
 audio_effect_wet = SubResource( "AudioEffectLowPassFilter_8lf5o" )
 tween_duration = 0.1
+tween_type = 2
