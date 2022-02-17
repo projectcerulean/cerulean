@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cr1dttrnhx1c8"]
+[gd_scene load_steps=20 format=3 uid="uid://cr1dttrnhx1c8"]
 
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="1"]
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_gameplay.gd" id="2"]
@@ -25,6 +25,16 @@ cutoff_hz = 1000.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_uptt5"]
 volume_db = -3.0
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_hgsf5"]
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_t6kat"]
+volume_db = -60.0
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_hfltb"]
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_433m3"]
+volume_db = -60.0
 
 [node name="GameStateManager" type="Node"]
 process_mode = 3
@@ -75,4 +85,22 @@ script = ExtResource( "9_fgrmj" )
 _target_state = NodePath("../../StateMachine/Dialogue")
 audio_effect_dry = SubResource( "AudioEffectAmplify_65cid" )
 audio_effect_wet = SubResource( "AudioEffectAmplify_uptt5" )
+tween_type = 1
+
+[node name="DialogueAmplifyBgmGlide" type="Node" parent="AudioEffects"]
+script = ExtResource( "9_fgrmj" )
+_target_state = NodePath("../../StateMachine/Dialogue")
+audio_effect_dry = SubResource( "AudioEffectAmplify_hgsf5" )
+audio_effect_wet = SubResource( "AudioEffectAmplify_t6kat" )
+audio_bus_name = &"BgmGlide"
+tween_duration = 2.5
+tween_type = 1
+
+[node name="DialogueAmplifyBgmRhythm" type="Node" parent="AudioEffects"]
+script = ExtResource( "9_fgrmj" )
+_target_state = NodePath("../../StateMachine/Dialogue")
+audio_effect_dry = SubResource( "AudioEffectAmplify_hfltb" )
+audio_effect_wet = SubResource( "AudioEffectAmplify_433m3" )
+audio_bus_name = &"BgmRhythm"
+tween_duration = 2.5
 tween_type = 1
