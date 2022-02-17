@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cr1dttrnhx1c8"]
+[gd_scene load_steps=16 format=3 uid="uid://cr1dttrnhx1c8"]
 
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="1"]
 [ext_resource type="Script" path="res://src/autoload/game_state_manager/game_state_gameplay.gd" id="2"]
@@ -10,11 +10,21 @@
 [ext_resource type="Script" path="res://src/common/state_machine/state_resource_manager.gd" id="8_mh8vj"]
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="9_fgrmj"]
 
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_ita52"]
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_wfpy3"]
+volume_db = -3.0
+
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_e7168"]
 cutoff_hz = 20500.0
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_8lf5o"]
 cutoff_hz = 1000.0
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_65cid"]
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_uptt5"]
+volume_db = -3.0
 
 [node name="GameStateManager" type="Node"]
 process_mode = 3
@@ -44,6 +54,14 @@ _state_resource = ExtResource( "3" )
 
 [node name="AudioEffects" type="Node" parent="."]
 
+[node name="PauseAmplify" type="Node" parent="AudioEffects"]
+script = ExtResource( "9_fgrmj" )
+_target_state = NodePath("../../StateMachine/Pause")
+audio_effect_dry = SubResource( "AudioEffectAmplify_ita52" )
+audio_effect_wet = SubResource( "AudioEffectAmplify_wfpy3" )
+tween_duration = 0.1
+tween_type = 1
+
 [node name="PauseLowpass" type="Node" parent="AudioEffects"]
 script = ExtResource( "9_fgrmj" )
 _target_state = NodePath("../../StateMachine/Pause")
@@ -51,3 +69,10 @@ audio_effect_dry = SubResource( "AudioEffectLowPassFilter_e7168" )
 audio_effect_wet = SubResource( "AudioEffectLowPassFilter_8lf5o" )
 tween_duration = 0.1
 tween_type = 2
+
+[node name="DialogueAmplify" type="Node" parent="AudioEffects"]
+script = ExtResource( "9_fgrmj" )
+_target_state = NodePath("../../StateMachine/Dialogue")
+audio_effect_dry = SubResource( "AudioEffectAmplify_65cid" )
+audio_effect_wet = SubResource( "AudioEffectAmplify_uptt5" )
+tween_type = 1
