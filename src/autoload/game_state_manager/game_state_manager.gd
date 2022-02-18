@@ -1,9 +1,9 @@
 class_name GameStateManager
 extends Node
 
-@export var state_resource: Resource
+@export var _state_resource: Resource
 
-var transition: StringName
+@onready var state_resource: StateResource = _state_resource as StateResource
 
 
 func _ready() -> void:
@@ -20,27 +20,27 @@ func _ready() -> void:
 
 
 func _on_request_game_pause(_sender: Node) -> void:
-	transition = GameStates.PAUSE
+	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.PAUSE)
 
 
 func _on_request_game_unpause(_sender: Node) -> void:
-	transition = GameStates.GAMEPLAY
+	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
 
 
 func _on_request_dialogue_start(_sender: Node3D, _dialogue_resource: DialogueResource) -> void:
-	transition = GameStates.DIALOGUE
+	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.DIALOGUE)
 
 
 func _on_request_dialogue_finish(_sender: Node) -> void:
-	transition = GameStates.GAMEPLAY
+	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
 
 
 func _on_request_scene_transition_start(_sender: Node, _scene: String, _color: Color, _fade_duration: float):
-	transition = GameStates.SCENE_TRANSITION
+	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.SCENE_TRANSITION)
 
 
 func _on_request_scene_transition_finish(_sender: Node) -> void:
-	transition = GameStates.GAMEPLAY
+	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
 
 
 func _on_request_scene_change(_sender: Node, scene_path: String) -> void:
