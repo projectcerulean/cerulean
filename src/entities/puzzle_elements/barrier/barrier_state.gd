@@ -11,7 +11,8 @@ func _ready() -> void:
 func enter(old_state: StringName, data := {}) -> void:
 	super.enter(old_state, data)
 	barrier.collision_shape.disabled = !bool(get_index())
-	barrier.tween.kill()
+	if barrier.tween != null:
+		barrier.tween.kill()
 	barrier.tween = create_tween()
 	barrier.tween.set_trans(Tween.TRANS_QUINT)
 	barrier.tween.set_ease(Tween.EASE_OUT)

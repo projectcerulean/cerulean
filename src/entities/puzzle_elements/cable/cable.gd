@@ -13,7 +13,7 @@ extends MeshInstance3D
 
 @onready var state_machine: Node = get_node("StateMachine") as Node
 @onready var input_node: Node = get_node(input_node_path) as Node
-@onready var tween: Tween = create_tween()
+@onready var tween: Tween
 
 
 func _ready() -> void:
@@ -42,7 +42,8 @@ func _on_state_entered(sender: Node, state: StringName) -> void:
 		shader_material.set_shader_param("flip_colors", flip_colors)
 		set_flow_position(flow_position_start)
 
-		tween.kill()
+		if tween != null:
+			tween.kill()
 		tween = create_tween()
 		tween.tween_method(set_flow_position, flow_position_start, flow_position_end, flow_duration)
 		tween.tween_callback(tween_callback)

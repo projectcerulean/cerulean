@@ -16,7 +16,7 @@ var scale_factor: float = 1.0
 var target: Node3D = null
 
 @onready var color_default: Color = color
-@onready var tween: Tween = create_tween()
+@onready var tween: Tween
 @onready var lfo_resource: LfoResource = _lfo_resource as LfoResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
@@ -69,7 +69,8 @@ func _on_request_interaction(_sender: Node) -> void:
 func animate() -> void:
 	scale_factor = scale_factor_min
 	color = Color.WHITE
-	tween.kill()
+	if tween != null:
+		tween.kill()
 	tween = create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	tween.set_ease(Tween.EASE_OUT)

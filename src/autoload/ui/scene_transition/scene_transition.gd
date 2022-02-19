@@ -5,7 +5,7 @@ extends ColorRect
 
 var scene_path_next: String
 
-@onready var tween: Tween = create_tween()
+@onready var tween: Tween
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 
@@ -26,7 +26,8 @@ func _on_request_scene_transition_start(_sender: Node, scene_path: String, trans
 func _on_state_entered(sender: Node, state: StringName) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.SCENE_TRANSITION:
 		self.visible = true
-		tween.kill()
+		if tween != null:
+			tween.kill()
 		tween = create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.set_trans(Tween.TRANS_QUINT)
@@ -41,7 +42,8 @@ func _on_fade_out_finished() -> void:
 
 func _on_scene_changed(_sender: Node):
 	if game_state_resource.current_state == GameStates.SCENE_TRANSITION:
-		tween.kill()
+		if tween != null:
+			tween.kill()
 		tween = create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.set_trans(Tween.TRANS_QUINT)

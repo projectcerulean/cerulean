@@ -10,7 +10,7 @@ var inputs: Array[bool]
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
 @onready var mesh_instance: MeshInstance3D = get_node("MeshInstance3D") as MeshInstance3D
 @onready var state_machine: Node = get_node("StateMachine") as Node
-@onready var tween: Tween = create_tween()
+@onready var tween: Tween
 @onready var shader_material: ShaderMaterial = mesh_instance.get_surface_override_material(0) as ShaderMaterial
 
 
