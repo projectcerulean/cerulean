@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="10_ey7nc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmta0"]
+radius = 1.0
 height = 2.5
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1h8m4"]
