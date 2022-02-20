@@ -1,5 +1,14 @@
-class_name TreeHelper
+class_name Utils
 extends Node
+
+
+static func calculate_shape_volume(shape: Shape3D) -> float:
+	if shape is BoxShape3D:
+		var box_shape: BoxShape3D = shape as BoxShape3D
+		return box_shape.size.x * box_shape.size.y * box_shape.size.z
+	else:
+		# Not implemented
+		return NAN
 
 
 static func get_collision_shape_for_area(area: Area3D) -> CollisionShape3D:

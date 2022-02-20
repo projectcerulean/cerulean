@@ -29,10 +29,20 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/entities/puzzle_elements/barrier/barrier_state.gd"
 }, {
+"base": "Node",
+"class": &"BgmIndex",
+"language": &"GDScript",
+"path": "res://src/constants/bgm_index.gd"
+}, {
 "base": "Resource",
 "class": &"BgmResource",
 "language": &"GDScript",
 "path": "res://src/sound/bgm/bgm_resource.gd"
+}, {
+"base": "Node",
+"class": &"BgmResourcePlayer",
+"language": &"GDScript",
+"path": "res://src/autoload/audio_player/bgm/bgm_resource_player.gd"
 }, {
 "base": "Node",
 "class": &"CColor",
@@ -250,9 +260,9 @@ _global_script_classes=[{
 "path": "res://src/common/transform/transform_resource.gd"
 }, {
 "base": "Node",
-"class": &"TreeHelper",
+"class": &"Utils",
 "language": &"GDScript",
-"path": "res://src/common/tree_helper/tree_helper.gd"
+"path": "res://src/common/utils/utils.gd"
 }, {
 "base": "Node",
 "class": &"Version",
@@ -264,7 +274,9 @@ _global_script_class_icons={
 "AudioEffectTransitionListener": "",
 "Barrier": "",
 "BarrierState": "",
+"BgmIndex": "",
 "BgmResource": "",
+"BgmResourcePlayer": "",
 "CColor": "",
 "Cable": "",
 "Cardinal": "",
@@ -308,7 +320,7 @@ _global_script_class_icons={
 "ThumbstickResource": "",
 "Trail": "",
 "TransformResource": "",
-"TreeHelper": "",
+"Utils": "",
 "Version": ""
 }
 

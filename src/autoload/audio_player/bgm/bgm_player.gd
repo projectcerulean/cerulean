@@ -1,48 +1,59 @@
 extends Node
 
-var bgm_resource: BgmResource = null
+@export var n_bgm_resource_players: int = 3
 
-@onready var base_player: AudioStreamPlayer = get_node("BasePlayer") as AudioStreamPlayer
-@onready var glide_player: AudioStreamPlayer = get_node("GlidePlayer") as AudioStreamPlayer
-@onready var rhythm_player: AudioStreamPlayer = get_node("RhythmPlayer") as AudioStreamPlayer
+var BgmResourcePlayerPreload: PackedScene = preload("res://src/autoload/audio_player/bgm/bgm_resource_player.tscn")
+var bgm_area_map: Dictionary  # Area3D -> StringName
+var bgm_current: StringName = StringName()
 
 
 func _ready() -> void:
-	Signals.scene_changed.connect(self._on_scene_changed)
-
-	assert(base_player != null, Errors.NULL_NODE)
-	assert(glide_player != null, Errors.NULL_NODE)
-	assert(rhythm_player != null, Errors.NULL_NODE)
+	Signals.bgm_area_entered.connect(_on_bgm_area_entered)
+	Signals.bgm_area_exited.connect(_on_bgm_area_exited)
+	Signals.scene_changed.connect(_on_scene_changed)
 
 
-func _on_scene_changed(sender: Node) -> void:
-	if sender.bgm_resource == bgm_resource:
-		return
+func _on_bgm_area_entered(sender: Area3D, bgm: StringName) -> void:
+	bgm_area_map[sender] = bgm
+	update_bgm()
 
-	base_player.stop()
-	glide_player.stop()
-	rhythm_player.stop()
 
-	bgm_resource = sender.bgm_resource
-	if bgm_resource != null:
-		base_player.stream = bgm_resource.stream_sample_base
-		glide_player.stream = bgm_resource.stream_sample_glide
-		rhythm_player.stream = bgm_resource.stream_sample_rhythm
+func _on_bgm_area_exited(sender: Area3D) -> void:
+	bgm_area_map.erase(sender)
+	update_bgm()
 
-		assert(base_player.stream != null, Errors.NULL_RESOURCE)
 
-		if glide_player.stream != null:
-			assert(glide_player.stream.get_length() == base_player.stream.get_length(), Errors.INVALID_ARGUMENT)
-		if rhythm_player.stream != null:
-			assert(rhythm_player.stream.get_length() == base_player.stream.get_length(), Errors.INVALID_ARGUMENT)
+func _on_scene_changed(_sender: Node):
+	bgm_area_map.clear()
+	update_bgm()
 
-		base_player.play()
-		glide_player.play()
-		rhythm_player.play()
 
-		var start_position: float = randf_range(0.0, base_player.stream.get_length())
-		base_player.seek(start_position)
-		glide_player.seek(start_position)
-		rhythm_player.seek(start_position)
+func update_bgm() -> void:
+	bgm_current = StringName()
+	var area_volume_min: float = INF
 
-	Signals.emit_bgm_changed(self, bgm_resource)
+	for area in bgm_area_map.keys():
+		var collision_shape: CollisionShape3D = Utils.get_collision_shape_for_area(area)
+		var area_volume: float = Utils.calculate_shape_volume(collision_shape.shape)
+		if area_volume < area_volume_min:
+			area_volume_min = area_volume
+			bgm_current = bgm_area_map[area]
+
+	if bgm_current != StringName():
+		var bgm_resource_player: BgmResourcePlayer = get_node_or_null(str(bgm_current))
+		if bgm_resource_player != null:
+			move_child(bgm_resource_player, get_child_count())
+		else:
+			bgm_resource_player = BgmResourcePlayerPreload.instantiate() as BgmResourcePlayer
+			assert(bgm_resource_player != null, Errors.NULL_NODE)
+			bgm_resource_player.name = bgm_current
+			add_child(bgm_resource_player)
+
+			if get_child_count() > n_bgm_resource_players:
+				get_child(0).queue_free()
+
+	for _bgm_resource_player in get_children():
+		var bgm_resource_player: BgmResourcePlayer = _bgm_resource_player as BgmResourcePlayer
+		bgm_resource_player.set_enabled(bgm_resource_player.name == bgm_current)
+
+	Signals.emit_bgm_changed(self, bgm_current)

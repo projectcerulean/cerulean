@@ -106,7 +106,7 @@ func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
 	if body != self:
 		return
 
-	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
+	var collision_shape: CollisionShape3D = Utils.get_collision_shape_for_area(sender)
 	assert(collision_shape != null, Errors.NULL_NODE)
 
 	if str(sender.owner.name).begins_with("Water"):
@@ -117,7 +117,7 @@ func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 	if body != self:
 		return
 
-	var collision_shape: CollisionShape3D = TreeHelper.get_collision_shape_for_area(sender)
+	var collision_shape: CollisionShape3D = Utils.get_collision_shape_for_area(sender)
 
 	if collision_shape in water_collision_shapes:
 		water_collision_shapes.erase(collision_shape)

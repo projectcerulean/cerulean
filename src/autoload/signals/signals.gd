@@ -4,6 +4,8 @@ signal area_area_entered
 signal area_area_exited
 signal area_body_entered
 signal area_body_exited
+signal bgm_area_entered
+signal bgm_area_exited
 signal bgm_changed
 signal camera_water_entered
 signal camera_water_exited
@@ -72,7 +74,9 @@ func emit_area_area_entered(sender: Area3D, area: Area3D) -> void: emit(area_are
 func emit_area_area_exited(sender: Area3D, area: Area3D) -> void: emit(area_area_exited, [sender, area])
 func emit_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void: emit(area_body_entered, [sender, body])
 func emit_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void: emit(area_body_exited, [sender, body])
-func emit_bgm_changed(sender: Node, bgm_resource: BgmResource) -> void: emit(bgm_changed, [sender, bgm_resource])
+func emit_bgm_area_entered(sender: Area3D, bgm: StringName) -> void: emit(bgm_area_entered, [sender, bgm])
+func emit_bgm_area_exited(sender: Area3D) -> void: emit(bgm_area_exited, [sender])
+func emit_bgm_changed(sender: Node, bgm: StringName) -> void: emit(bgm_changed, [sender, bgm])
 func emit_camera_water_entered(sender: Camera3D) -> void: emit(camera_water_entered, [sender])
 func emit_camera_water_exited(sender: Camera3D) -> void: emit(camera_water_exited, [sender])
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, [sender, variant])

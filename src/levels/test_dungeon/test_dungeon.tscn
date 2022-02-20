@@ -1,8 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://bsdmk1pxtnmlo"]
+[gd_scene load_steps=35 format=3 uid="uid://bsdmk1pxtnmlo"]
 
 [ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
-[ext_resource type="Resource" uid="uid://cvtbqj4bp41m0" path="res://src/sound/bgm/bgm_resources/waterworks.tres" id="2_wdqa0"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="4_oftnn"]
 [ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="5_7fqri"]
@@ -15,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://tqf2hjuhigop" path="res://assets/dialogue/end/end.tres" id="11_20llv"]
 [ext_resource type="Environment" uid="uid://wsmdsq7i47id" path="res://src/environment/default_env.tres" id="14_rfdqf"]
 [ext_resource type="Script" path="res://src/environment/world_environment.gd" id="15_5xosi"]
+[ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="15_e7a0f"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ybceq"]
 resource_local_to_scene = true
@@ -142,9 +142,11 @@ shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/flip_colors = false
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vrsx2"]
+size = Vector3(512, 512, 512)
+
 [node name="TestDungeon" type="Node"]
 script = ExtResource( "1_arp3q" )
-bgm_resource = ExtResource( "2_wdqa0" )
 
 [node name="Player" parent="." instance=ExtResource( "1" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7, 134)
@@ -447,5 +449,11 @@ scene_key = &"TEST_SCENE"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( "14_rfdqf" )
 script = ExtResource( "15_5xosi" )
+
+[node name="BgmArea" parent="." instance=ExtResource( "15_e7a0f" )]
+bgm = &"WATERWORKS"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BgmArea"]
+shape = SubResource( "BoxShape3D_vrsx2" )
 
 [editable path="Env/Ascension/Block/Block/SignPost"]

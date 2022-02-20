@@ -1,8 +1,7 @@
-[gd_scene load_steps=85 format=3 uid="uid://3rc1hxqvyhd5"]
+[gd_scene load_steps=86 format=3 uid="uid://3rc1hxqvyhd5"]
 
 [ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
-[ext_resource type="Resource" uid="uid://ddnjany5v3k6t" path="res://src/sound/bgm/bgm_resources/seaandsky.tres" id="2_70wvx"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
 [ext_resource type="Material" uid="uid://df0jxyi8dlx2u" path="res://src/levels/test_scene/stone_material.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://3mhvdybo4ccu" path="res://src/levels/test_scene/flag/flag.tscn" id="6_psp6u"]
@@ -20,6 +19,7 @@
 [ext_resource type="Environment" uid="uid://wsmdsq7i47id" path="res://src/environment/default_env.tres" id="18_11ux8"]
 [ext_resource type="Script" path="res://src/environment/world_environment.gd" id="19_v0qrx"]
 [ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
+[ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="21_i6ktg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4stb"]
 resource_local_to_scene = true
@@ -469,9 +469,11 @@ shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/flip_colors = false
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pv52q"]
+size = Vector3(192, 192, 192)
+
 [node name="TestScene" type="Node"]
 script = ExtResource( "1_arp3q" )
-bgm_resource = ExtResource( "2_70wvx" )
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -1066,6 +1068,12 @@ angle = -1.047
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( "18_11ux8" )
 script = ExtResource( "19_v0qrx" )
+
+[node name="BgmArea" parent="." instance=ExtResource( "21_i6ktg" )]
+bgm = &"SEA_AND_SKY"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BgmArea"]
+shape = SubResource( "BoxShape3D_pv52q" )
 
 [editable path="SignPost"]
 [editable path="SignPost2"]

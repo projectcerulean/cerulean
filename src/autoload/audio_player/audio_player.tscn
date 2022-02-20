@@ -13,15 +13,6 @@ process_mode = 3
 [node name="BgmPlayer" type="Node" parent="Bgm"]
 script = ExtResource( "2" )
 
-[node name="BasePlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
-bus = &"BgmBase"
-
-[node name="GlidePlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
-bus = &"BgmGlide"
-
-[node name="RhythmPlayer" type="AudioStreamPlayer" parent="Bgm/BgmPlayer"]
-bus = &"BgmRhythm"
-
 [node name="Sfx" type="Node" parent="."]
 
 [node name="SfxPlayer" type="Node" parent="Sfx"]
