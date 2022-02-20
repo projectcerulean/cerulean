@@ -65,12 +65,12 @@ cutoff_hz = 20500.0
 cutoff_hz = 1000.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_crae5"]
-volume_db = -60.0
+volume_db = -80.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_a1p08"]
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_4ml5m"]
-volume_db = -60.0
+volume_db = -80.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_wy87q"]
 

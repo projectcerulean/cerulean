@@ -29,12 +29,12 @@ volume_db = -3.0
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_hgsf5"]
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_t6kat"]
-volume_db = -60.0
+volume_db = -80.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_hfltb"]
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_433m3"]
-volume_db = -60.0
+volume_db = -80.0
 
 [node name="GameStateManager" type="Node"]
 process_mode = 3
