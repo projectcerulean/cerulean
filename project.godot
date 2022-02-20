@@ -114,11 +114,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/entities/puzzle_elements/indicator/indicator.gd"
 }, {
-"base": "State",
-"class": &"IndicatorState",
-"language": &"GDScript",
-"path": "res://src/entities/puzzle_elements/indicator/indicator_state.gd"
-}, {
 "base": "Area3D",
 "class": &"Interaction",
 "language": &"GDScript",
@@ -189,6 +184,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/entities/player/player_states.gd"
 }, {
+"base": "StateTransitionListener",
+"class": &"PropertyTweenerTransitionListener",
+"language": &"GDScript",
+"path": "res://src/common/state_machine/property_tweener_transition_listener.gd"
+}, {
 "base": "Node",
 "class": &"PuzzleElementStates",
 "language": &"GDScript",
@@ -244,11 +244,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/entities/puzzle_elements/switch/switch_interaction_action.gd"
 }, {
-"base": "State",
-"class": &"SwitchState",
-"language": &"GDScript",
-"path": "res://src/entities/puzzle_elements/switch/switch_state.gd"
-}, {
 "base": "Resource",
 "class": &"ThumbstickResource",
 "language": &"GDScript",
@@ -296,7 +291,6 @@ _global_script_class_icons={
 "GameStateManager": "",
 "GameStates": "",
 "Indicator": "",
-"IndicatorState": "",
 "Interaction": "",
 "InteractionAction": "",
 "Lerp": "",
@@ -311,6 +305,7 @@ _global_script_class_icons={
 "Player": "",
 "PlayerState": "",
 "PlayerStates": "",
+"PropertyTweenerTransitionListener": "",
 "PuzzleElementStates": "",
 "Settings": "",
 "SettingsResource": "",
@@ -322,7 +317,6 @@ _global_script_class_icons={
 "StateTransitionListener": "",
 "Switch": "",
 "SwitchInteractionAction": "",
-"SwitchState": "",
 "ThumbstickResource": "",
 "Trail": "",
 "TransformResource": "",

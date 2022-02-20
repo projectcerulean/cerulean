@@ -1,6 +1,6 @@
 [gd_scene load_steps=86 format=3 uid="uid://3rc1hxqvyhd5"]
 
-[ext_resource type="PackedScene" uid="uid://b4nxtyal7tjpu" path="res://src/entities/player/player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
 [ext_resource type="Material" uid="uid://df0jxyi8dlx2u" path="res://src/levels/test_scene/stone_material.tres" id="5"]
@@ -838,7 +838,6 @@ input_node_path = NodePath("../Cable")
 [node name="Cable3" parent="Switch" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, -5.96046e-08, -3)
 mesh = SubResource( "BoxMesh_4yu8e" )
-skeleton = NodePath("../Cable")
 surface_material_override/0 = SubResource( "ShaderMaterial_unhpp" )
 input_node_path = NodePath("../Cable2")
 
@@ -889,56 +888,48 @@ transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 11, -6
 [node name="Cable" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 14.8, -9.5, -40)
 mesh = SubResource( "BoxMesh_ce82m" )
-skeleton = NodePath("../Indicator4")
 surface_material_override/0 = SubResource( "ShaderMaterial_xu14g" )
 input_node_path = NodePath("../Cable2")
 
 [node name="Cable2" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-1, 3.82137e-15, 8.74228e-08, 8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, 15, -9.5, -40.5)
 mesh = SubResource( "BoxMesh_scjar" )
-skeleton = NodePath("../Indicator4")
 surface_material_override/0 = SubResource( "ShaderMaterial_lg0bc" )
 input_node_path = NodePath("../Cable3")
 
 [node name="Cable3" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 15, -8.2, -40.95)
 mesh = SubResource( "BoxMesh_bwxww" )
-skeleton = NodePath("../Indicator4")
 surface_material_override/0 = SubResource( "ShaderMaterial_pj4e6" )
 input_node_path = NodePath("../Cable4")
 
 [node name="Cable4" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 15.5, -7, -40.95)
 mesh = SubResource( "BoxMesh_70lvf" )
-skeleton = NodePath("../Indicator4")
 surface_material_override/0 = SubResource( "ShaderMaterial_pclyg" )
 input_node_path = NodePath("../Cable5")
 
 [node name="Cable5" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 16, -6, -40.95)
 mesh = SubResource( "BoxMesh_aifhg" )
-skeleton = NodePath("../Indicator4")
 surface_material_override/0 = SubResource( "ShaderMaterial_jg23m" )
 input_node_path = NodePath("../Cable6")
 
 [node name="Cable6" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 15.9, -5, -40.95)
 mesh = SubResource( "BoxMesh_b5lnc" )
-skeleton = NodePath("../Indicator4")
 surface_material_override/0 = SubResource( "ShaderMaterial_w3wav" )
 input_node_path = NodePath("../Cable7")
 
 [node name="Cable7" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-1, 3.82137e-15, -8.74228e-08, 8.74228e-08, 4.37114e-08, -1, 0, -1, -4.37114e-08, 15.8, -5, -38.5)
 mesh = SubResource( "BoxMesh_pgsjy" )
-skeleton = NodePath("../Indicator4")
 surface_material_override/0 = SubResource( "ShaderMaterial_4775l" )
 input_node_path = NodePath("../Cable8")
 
 [node name="Cable8" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 15.8, -1, -36)
 mesh = SubResource( "BoxMesh_gwg4l" )
-skeleton = NodePath("../Indicator4")
 surface_material_override/0 = SubResource( "ShaderMaterial_1b8kw" )
 input_node_path = NodePath("../Cable13")
 
@@ -1000,56 +991,48 @@ input_node_path = NodePath("../Cable2")
 [node name="Cable4" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -50.8, -14.5, -86)
 mesh = SubResource( "BoxMesh_sg8tk" )
-skeleton = NodePath("../Indicator2")
 surface_material_override/0 = SubResource( "ShaderMaterial_b83ql" )
 input_node_path = NodePath("../Cable5")
 
 [node name="Cable5" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -51, -14.5, -86.7)
 mesh = SubResource( "BoxMesh_nmuj6" )
-skeleton = NodePath("../Indicator2")
 surface_material_override/0 = SubResource( "ShaderMaterial_0fkl4" )
 input_node_path = NodePath("../Cable6")
 
 [node name="Cable6" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, -16.3, -87.4)
 mesh = SubResource( "BoxMesh_05g57" )
-skeleton = NodePath("../Indicator2")
 surface_material_override/0 = SubResource( "ShaderMaterial_m5g54" )
 input_node_path = NodePath("../Cable7")
 
 [node name="Cable7" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -51.5, -18, -87.4)
 mesh = SubResource( "BoxMesh_djmdr" )
-skeleton = NodePath("../Indicator2")
 surface_material_override/0 = SubResource( "ShaderMaterial_f4wlr" )
 input_node_path = NodePath("../Cable8")
 
 [node name="Cable8" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, -19, -87.4)
 mesh = SubResource( "BoxMesh_mgh8o" )
-skeleton = NodePath("../Indicator2")
 surface_material_override/0 = SubResource( "ShaderMaterial_o1qef" )
 input_node_path = NodePath("../Cable9")
 
 [node name="Cable9" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -51.7, -20, -87.4)
 mesh = SubResource( "BoxMesh_bxbx7" )
-skeleton = NodePath("../Indicator2")
 surface_material_override/0 = SubResource( "ShaderMaterial_w4o0e" )
 input_node_path = NodePath("../Cable10")
 
 [node name="Cable10" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -51.4, -20, -84.7)
 mesh = SubResource( "BoxMesh_f572y" )
-skeleton = NodePath("../Indicator2")
 surface_material_override/0 = SubResource( "ShaderMaterial_no8sb" )
 input_node_path = NodePath("../Cable11")
 
 [node name="Cable11" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.4, -24, -82)
 mesh = SubResource( "BoxMesh_8mew1" )
-skeleton = NodePath("../Indicator2")
 surface_material_override/0 = SubResource( "ShaderMaterial_e0eay" )
 input_node_path = NodePath("../Cable3")
 

@@ -1,58 +1,48 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdlxuj1emu411"]
+[gd_scene load_steps=9 format=3 uid="uid://cdlxuj1emu411"]
 
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="1_54p1h"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator.gd" id="1_bsmqb"]
-[ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_state.gd" id="3_ghuvw"]
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="2_a0m1r"]
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_u67b3"]
+[ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="3_oyjwr"]
+[ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="5_dsacl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5rgmq"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31xxw"]
-albedo_color = Color(1, 0.270588, 0, 1)
-metallic = 1.0
-roughness = 0.5
-emission_enabled = true
-emission = Color(1, 0.270588, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_0smva"]
-size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57yfs"]
-albedo_color = Color(0, 0.709804, 1, 1)
-metallic = 1.0
-roughness = 0.5
-emission_enabled = true
-emission = Color(0, 0.709804, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5b7u"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource( "2_a0m1r" )
+shader_param/activation = 0.0
+shader_param/albedo = Color(1, 0.27, 0, 1)
+shader_param/roughness = 0.5
+shader_param/specular = 0.5
+shader_param/metallic = 1.0
+shader_param/emission_energy = 1.0
 
 [node name="Indicator" type="Node3D"]
 script = ExtResource( "1_bsmqb" )
 
-[node name="Disabled" type="Node3D" parent="."]
-visible = false
+[node name="Mesh" type="Node3D" parent="."]
+script = ExtResource( "2_u67b3" )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Disabled"]
+[node name="ColorStateEnabled" type="Node" parent="Mesh"]
+script = ExtResource( "5_dsacl" )
+_target_state = NodePath("../../StateMachine/Enabled")
+_target_node = NodePath("..")
+property = "activation"
+tween_duration = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
 layers = 8
 mesh = SubResource( "BoxMesh_5rgmq" )
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource( "StandardMaterial3D_31xxw" )
+surface_material_override/0 = SubResource( "ShaderMaterial_t5b7u" )
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Disabled"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Mesh"]
 layers = 8
 light_color = Color(1, 0.270588, 0, 1)
-light_energy = 2.0
-
-[node name="Enabled" type="Node3D" parent="."]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enabled"]
-layers = 8
-mesh = SubResource( "BoxMesh_0smva" )
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource( "StandardMaterial3D_57yfs" )
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Enabled"]
-layers = 8
-light_color = Color(0, 0.709804, 1, 1)
 light_energy = 2.0
 
 [node name="StateMachine" type="Node" parent="."]
@@ -60,7 +50,7 @@ script = ExtResource( "1_54p1h" )
 _initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
-script = ExtResource( "3_ghuvw" )
+script = ExtResource( "3_oyjwr" )
 
 [node name="Enabled" type="Node" parent="StateMachine"]
-script = ExtResource( "3_ghuvw" )
+script = ExtResource( "3_oyjwr" )
