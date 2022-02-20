@@ -6,6 +6,7 @@ const volume_db_max: float = 0.0
 
 @export var tween_duration: float = 5.0
 
+var bgm_resource: BgmResource
 var tween: Tween
 
 var volume: float:
@@ -28,6 +29,8 @@ var volume: float:
 
 
 func _ready() -> void:
+	Signals.resource_load_completed.connect(_on_resource_load_completed)
+
 	assert(base_player != null, Errors.NULL_NODE)
 	assert(glide_player != null, Errors.NULL_NODE)
 	assert(rhythm_player != null, Errors.NULL_NODE)
@@ -42,7 +45,14 @@ func _ready() -> void:
 
 	volume = 0.0
 
-	var bgm_resource: BgmResource = load(BgmIndex.BGM_INDEX[name][BgmIndex.BGM_PATH]) as BgmResource
+	Signals.emit_request_resource_load(self, BgmIndex.BGM_INDEX[name][BgmIndex.BGM_PATH])
+
+
+func _on_resource_load_completed(_sender: Node, resource_path: StringName, resource: Resource) -> void:
+	if resource_path != BgmIndex.BGM_INDEX[name][BgmIndex.BGM_PATH]:
+		return
+
+	bgm_resource = resource as BgmResource
 	assert(bgm_resource != null, Errors.NULL_RESOURCE)
 
 	base_player.stream = bgm_resource.stream_sample_base
@@ -63,9 +73,14 @@ func _ready() -> void:
 		rhythm_player.play()
 		rhythm_player.seek(start_position)
 
+	if tween != null and tween.is_valid() and not tween.is_running():
+		tween.play()
+
 
 func set_enabled(enabled: bool):
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
 	tween.tween_property(self, "volume", float(enabled), tween_duration)
+	if bgm_resource == null:
+		tween.pause()
