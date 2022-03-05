@@ -3,6 +3,9 @@
 class_name State
 extends Node
 
+const NEW_STATE: StringName = &"NEW_STATE"
+const OLD_STATE: StringName = &"OLD_STATE"
+
 
 # Virtual function. Receives events from the `_unhandled_input()` callback.
 func unhandled_input(_event: InputEvent) -> void:
@@ -27,11 +30,11 @@ func get_transition() -> StringName:
 
 # Virtual function. Called by the state machine upon changing the active state. The `data` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_old_state: StringName, _data := {}) -> void:
+func enter(_data: Dictionary) -> void:
 	pass
 
 
 # Virtual function. Called by the state machine before changing the active state. Use this function
 # to clean up the state.
-func exit(_new_state: StringName) -> void:
+func exit(_data: Dictionary) -> void:
 	pass

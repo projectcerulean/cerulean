@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3]
+[gd_scene load_steps=39 format=3 uid="uid://d2sldws2aw68c"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/autoload/input/thumbstick_resource_left.tres" id="2_t6dk8"]
 [ext_resource type="Script" path="res://src/entities/player/player_idle.gd" id="3"]
+[ext_resource type="Resource" uid="uid://c4t8y3cjatn2" path="res://src/entities/player/player_input_vector_resource.tres" id="3_2i2xh"]
 [ext_resource type="Script" path="res://src/entities/player/player_run.gd" id="4"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="4_gviv5"]
 [ext_resource type="Script" path="res://src/entities/player/player_fall.gd" id="5"]
@@ -13,7 +14,10 @@
 [ext_resource type="Script" path="res://src/entities/player/player_glide.gd" id="7"]
 [ext_resource type="Script" path="res://src/entities/player/player_trail_renderer.gd" id="8"]
 [ext_resource type="Script" path="res://src/entities/player/player_swim.gd" id="9"]
+[ext_resource type="Script" path="res://src/entities/player/player_mesh_state_glide.gd" id="9_uwrsl"]
 [ext_resource type="Script" path="res://src/entities/player/player_dive.gd" id="10"]
+[ext_resource type="Script" path="res://src/entities/player/player_mesh_state_default.gd" id="10_vowrm"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_machine_synchronizer.gd" id="11_mhki8"]
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_resource_manager.gd" id="15_p5vjh"]
 [ext_resource type="Script" path="res://src/entities/player/player_blob_shadow.gd" id="16_3ec8c"]
@@ -78,7 +82,7 @@ volume_db = -80.0
 collision_mask = 60
 script = ExtResource( "1" )
 _thumbstick_resource_left = ExtResource( "2_t6dk8" )
-_state_resource = ExtResource( "12" )
+_input_vector_resource = ExtResource( "3_2i2xh" )
 _game_state_resource = ExtResource( "4_gviv5" )
 _transform_resource = ExtResource( "5_f776o" )
 _camera_transform_resource = ExtResource( "6_sk484" )
@@ -86,42 +90,94 @@ _camera_transform_resource = ExtResource( "6_sk484" )
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( "1" )
 
-[node name="MeshRoot" type="Node3D" parent="."]
+[node name="Mesh" type="Node3D" parent="."]
 
-[node name="MeshRootDefault" type="Node3D" parent="MeshRoot"]
+[node name="Default" type="Node3D" parent="Mesh"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshRootDefault"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Default"]
 mesh = SubResource( "2" )
 skeleton = NodePath("")
 surface_material_override/0 = SubResource( "3" )
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshRootDefault/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Default/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
 mesh = SubResource( "4" )
 
-[node name="MeshRootGlide" type="Node3D" parent="MeshRoot"]
+[node name="Glide" type="Node3D" parent="Mesh"]
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshRootGlide"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Glide"]
 transform = Transform3D(1, 6.51352e-16, 1.49012e-08, 0, -4.37114e-08, -1, -2.98023e-08, 1, -1.6292e-07, 0, 0, 0)
 mesh = SubResource( "6" )
 skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Glide/MeshInstance3D"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource( "7" )
 
-[node name="TrailPositionLeftInner" type="Position3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftInner" type="Position3D" parent="Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)
 
-[node name="TrailPositionLeftOuter" type="Position3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftOuter" type="Position3D" parent="Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.37, 0.37, 0)
 
-[node name="TrailPositionRightInner" type="Position3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionRightInner" type="Position3D" parent="Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.353553, -0.353553, 0)
 
-[node name="TrailPositionRightOuter" type="Position3D" parent="MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionRightOuter" type="Position3D" parent="Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -0.37, 0)
+
+[node name="StateMachine" type="Node" parent="Mesh"]
+script = ExtResource( "2" )
+_initial_state = NodePath("Idle")
+
+[node name="Dive" type="Node" parent="Mesh/StateMachine"]
+script = ExtResource( "9_uwrsl" )
+_mesh_root = NodePath("../../Glide")
+_player_input_vector_resource = ExtResource( "3_2i2xh" )
+turn_lerp_weight = 0.01
+roll_lerp_weight = 1.0
+
+[node name="Fall" type="Node" parent="Mesh/StateMachine"]
+script = ExtResource( "10_vowrm" )
+_mesh_root = NodePath("../../Default")
+_player_input_vector_resource = ExtResource( "3_2i2xh" )
+turn_lerp_weight_min = 0.0
+turn_lerp_weight_max = 0.0
+
+[node name="Glide" type="Node" parent="Mesh/StateMachine"]
+script = ExtResource( "9_uwrsl" )
+_mesh_root = NodePath("../../Glide")
+_player_input_vector_resource = ExtResource( "3_2i2xh" )
+
+[node name="Idle" type="Node" parent="Mesh/StateMachine"]
+script = ExtResource( "10_vowrm" )
+_mesh_root = NodePath("../../Default")
+_player_input_vector_resource = ExtResource( "3_2i2xh" )
+
+[node name="Jump" type="Node" parent="Mesh/StateMachine"]
+script = ExtResource( "10_vowrm" )
+_mesh_root = NodePath("../../Default")
+_player_input_vector_resource = ExtResource( "3_2i2xh" )
+turn_lerp_weight_min = 0.0
+turn_lerp_weight_max = 0.0
+
+[node name="Run" type="Node" parent="Mesh/StateMachine"]
+script = ExtResource( "10_vowrm" )
+_mesh_root = NodePath("../../Default")
+_player_input_vector_resource = ExtResource( "3_2i2xh" )
+
+[node name="Swim" type="Node" parent="Mesh/StateMachine"]
+script = ExtResource( "10_vowrm" )
+_mesh_root = NodePath("../../Default")
+_player_input_vector_resource = ExtResource( "3_2i2xh" )
+turn_lerp_weight_min = 1.0
+turn_lerp_weight_max = 3.0
+
+[node name="StateMachineSynchronizer" type="Node" parent="Mesh"]
+script = ExtResource( "11_mhki8" )
+_state_machine_parent = NodePath("../../StateMachine")
+_state_machine_child = NodePath("../StateMachine")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( "2" )
@@ -129,31 +185,24 @@ _initial_state = NodePath("Idle")
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource( "10" )
-_mesh_root = NodePath("../../MeshRoot/MeshRootGlide")
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource( "5" )
-_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="Glide" type="Node" parent="StateMachine"]
 script = ExtResource( "7" )
-_mesh_root = NodePath("../../MeshRoot/MeshRootGlide")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( "3" )
-_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( "6" )
-_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( "4" )
-_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource( "9" )
-_mesh_root = NodePath("../../MeshRoot/MeshRootDefault")
 
 [node name="StateResourceManager" type="Node" parent="."]
 script = ExtResource( "15_p5vjh" )
@@ -219,30 +268,30 @@ one_shot = true
 [node name="GlideTrailRendererLeft" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
 _target_state = NodePath("../../StateMachine/Glide")
-_trail_position_a = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-_trail_position_b = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+_trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 trail_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
 _target_state = NodePath("../../StateMachine/Glide")
-_trail_position_a = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-_trail_position_b = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+_trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 trail_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [node name="DiveTrailRendererLeft" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
 _target_state = NodePath("../../StateMachine/Dive")
-_trail_position_a = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-_trail_position_b = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+_trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 trail_color = Color(0.310278, 0.560628, 0.878272, 1)
 point_lifetime = 1.0
 
 [node name="DiveTrailRendererRight" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
 _target_state = NodePath("../../StateMachine/Dive")
-_trail_position_a = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-_trail_position_b = NodePath("../../MeshRoot/MeshRootGlide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+_trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 trail_color = Color(0.310278, 0.560628, 0.878272, 1)
 point_lifetime = 1.0
 

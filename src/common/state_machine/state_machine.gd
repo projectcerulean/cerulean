@@ -19,7 +19,7 @@ func _ready() -> void:
 	assert(initial_state != null, Errors.NULL_NODE)
 	assert(initial_state in get_children(), Errors.INVALID_ARGUMENT)
 
-	transition_to(initial_state.name)
+	transition_to(initial_state.name, {})
 
 
 # Delegate `_unhandled_input` callback to the active state.
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 		# Change the current state
 		var target_state: StringName = current_state.get_transition()
 		if target_state != StringName():
-			transition_to(target_state)
+			transition_to(target_state, {})
 
 
 # Delegate `_physics_process` callback to the active state.
@@ -45,24 +45,24 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_process(delta)
 
 
-func _on_request_state_change(_sender: Node, state_machine: Node, state: StringName):
+func _on_request_state_change(_sender: Node, state_machine: Node, state: StringName, data: Dictionary = {}):
 	if state_machine == self:
-		transition_to(state)
+		transition_to(state, data)
 
 
-func _on_request_state_change_next(_sender: Node, state_machine: Node):
+func _on_request_state_change_next(_sender: Node, state_machine: Node, data: Dictionary = {}):
 	if state_machine == self:
-		transition_to_next()
+		transition_to_next(data)
 
 
 # This function calls the current state's exit() function, then changes the active state,
 # and calls its enter function.
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
-func transition_to(target_state: StringName, data: Dictionary = {}) -> void:
+func transition_to(target_state: StringName, data: Dictionary) -> void:
 	call_deferred(transition_to_deferred.get_method(), target_state, data)
 
 
-func transition_to_next(data: Dictionary = {}) -> void:
+func transition_to_next(data: Dictionary) -> void:
 	var current_state_index: int = -1
 	for i in range(get_child_count()):
 		if get_children()[i] == current_state:
@@ -74,17 +74,19 @@ func transition_to_next(data: Dictionary = {}) -> void:
 	transition_to(get_children()[next_state_index].name, data)
 
 
-func transition_to_deferred(target_state: StringName, data: Dictionary = {}) -> void:
+func transition_to_deferred(target_state: StringName, data: Dictionary) -> void:
 	assert(target_state != null, Errors.NULL_NODE)
+
+	data[State.OLD_STATE] = StringName()
+	data[State.NEW_STATE] = target_state
 
 	if current_state == null or target_state != current_state.name:
 		var old_state: State = current_state
-		var old_state_name: StringName
 		if old_state != null:
-			old_state_name = old_state.name
-			old_state.exit(target_state)
+			data[State.OLD_STATE] = old_state.name
+			old_state.exit(data)
 			Signals.emit_state_exited(self, current_state.name)
 
 		current_state = get_node(str(target_state)) as State
-		current_state.enter(old_state_name, data)
+		current_state.enter(data)
 		Signals.emit_state_entered(self, current_state.name)

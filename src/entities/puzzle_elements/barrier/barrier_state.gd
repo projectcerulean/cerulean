@@ -8,8 +8,8 @@ func _ready() -> void:
 	assert(barrier != null, Errors.NULL_NODE)
 
 
-func enter(old_state: StringName, data := {}) -> void:
-	super.enter(old_state, data)
+func enter(data: Dictionary) -> void:
+	super.enter(data)
 	barrier.collision_shape.disabled = !bool(get_index())
 	if barrier.tween != null:
 		barrier.tween.kill()

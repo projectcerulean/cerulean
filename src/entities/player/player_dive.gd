@@ -1,37 +1,7 @@
 extends PlayerState
 
-var roll_angle: float = 0.0
-
-
-func enter(old_state: StringName, data := {}) -> void:
-	super.enter(old_state, data)
-	roll_angle = 0.0
-
-	var velocity_direction: Vector3 = player.motion_velocity.normalized()
-	if velocity_direction.is_equal_approx(Vector3.UP) or velocity_direction.is_equal_approx(Vector3.DOWN):
-		mesh_root.look_at(mesh_root.get_global_transform().origin + velocity_direction, player.facing_direction)
-	else:
-		mesh_root.look_at(mesh_root.get_global_transform().origin + velocity_direction, Vector3.UP.rotated(velocity_direction, -roll_angle))
-
-
-func process(delta: float) -> void:
-	super.process(delta)
-
-	# Update mesh facing direction
-	var input_direction_2d: Vector3 = Vector3(player.input_vector.x, 0.0, player.input_vector.z)
-	var motion_velocity_2d: Vector3 = Vector3(player.motion_velocity.x, 0.0, player.motion_velocity.z)
-	roll_angle = Lerp.delta_lerp_angle(
-		roll_angle, motion_velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), player.underwater_roll_weight, delta
-	)
-
-	if not player.input_vector.is_equal_approx(Vector3.ZERO):
-		player.facing_direction = Lerp.delta_slerp3(player.facing_direction, player.input_vector.normalized(), player.input_vector.length() * player.underwater_turn_weight, delta)
-
-	var velocity_direction: Vector3 = player.motion_velocity.normalized()
-	if velocity_direction.is_equal_approx(Vector3.UP) or velocity_direction.is_equal_approx(Vector3.DOWN):
-		mesh_root.look_at(mesh_root.get_global_transform().origin + velocity_direction, player.facing_direction)
-	else:
-		mesh_root.look_at(mesh_root.get_global_transform().origin + velocity_direction, Vector3.UP.rotated(velocity_direction, -roll_angle))
+@export var move_speed: float = 5.0
+@export var move_speed_lerp_weight: float = 1.0
 
 
 func physics_process(delta: float) -> void:
@@ -39,17 +9,11 @@ func physics_process(delta: float) -> void:
 
 	# Apply movement
 	var input_vector: Vector3 = (
-		player.facing_direction * player.input_vector.length()
-		+ Vector3.UP * (float(Input.is_action_pressed("player_move_jump")) - float(Input.is_action_pressed("player_move_dive")))
+		player.input_vector + Vector3.UP * (float(Input.is_action_pressed("player_move_jump")) - float(Input.is_action_pressed("player_move_dive")))
 	)
 	if input_vector.length_squared() > 1.0:
 		input_vector = input_vector.normalized()
-	player.motion_velocity += input_vector * player.underwater_move_acceleration * delta
-
-	# Apply friction
-	player.motion_velocity -= player.motion_velocity * player.underwater_resistance * delta
-
-	# Go
+	player.motion_velocity = Lerp.delta_lerp3(player.motion_velocity, move_speed * input_vector, move_speed_lerp_weight, delta)
 	player.move_and_slide()
 
 

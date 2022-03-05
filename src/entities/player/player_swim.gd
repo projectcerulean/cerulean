@@ -1,45 +1,39 @@
 extends PlayerState
 
+@export var move_speed: float = 7.0
+@export var move_speed_lerp_weight: float = 1.0
+@export var water_buoyancy_speed: float = 4.0
+@export var water_bouyancy_speed_lerp_weight: float = 1.0
 
-func enter(old_state: StringName, data := {}) -> void:
-	super.enter(old_state, data)
-
-	# Update mesh facing direction
-	mesh_root.look_at(mesh_root.get_global_transform().origin + player.facing_direction)
-
-
-func exit(new_state: StringName) -> void:
-	super.exit(new_state)
-	if new_state == PlayerStates.JUMP:
-		player.global_transform.origin.y = player.get_water_surface_height()
+var surfaced: bool
 
 
-func process(delta: float) -> void:
-	super.process(delta)
-
-	# Update mesh facing direction
-	mesh_root.look_at(mesh_root.get_global_transform().origin + player.facing_direction)
+func enter(data: Dictionary) -> void:
+	super.enter(data)
+	surfaced = false
 
 
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
 	# Apply movement
-	if not player.input_vector.is_equal_approx(Vector3.ZERO):
-		player.facing_direction = Lerp.delta_slerp3(player.facing_direction, player.input_vector.normalized(), player.input_vector.length() * player.water_turn_weight, delta)
-		player.motion_velocity += player.facing_direction * player.input_vector.length() * player.water_move_acceleration * delta
-
-	if not is_nan(player.get_water_surface_height()) and player.motion_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
-		player.global_transform.origin.y = player.get_water_surface_height()
-		player.motion_velocity.y = 0.0
+	var motion_velocity_xz: Vector3 = Vector3(player.motion_velocity.x, 0.0, player.motion_velocity.z)
+	motion_velocity_xz = Lerp.delta_lerp3(motion_velocity_xz, player.input_vector * move_speed, move_speed_lerp_weight, delta)
+	var motion_velocity_y: float = player.motion_velocity.y
+	if surfaced:
+		motion_velocity_y = 0.0
+		if not is_nan(player.get_water_surface_height()):
+			player.global_transform.origin.y = player.get_water_surface_height()
 	else:
-		player.motion_velocity.y = player.motion_velocity.y + player.water_buoyancy * delta
-
-	# Apply friction
-	player.motion_velocity -= player.motion_velocity * player.water_resistance * delta
-
-	# Go
+		motion_velocity_y = Lerp.delta_lerp(motion_velocity_y, water_buoyancy_speed, water_bouyancy_speed_lerp_weight, delta)
+		player.motion_velocity = Lerp.delta_lerp3(player.motion_velocity, player.input_vector * move_speed, move_speed_lerp_weight, delta)
+		if not is_nan(player.get_water_surface_height()) and player.motion_velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
+			surfaced = true
+	player.motion_velocity = Vector3(motion_velocity_xz.x, motion_velocity_y, motion_velocity_xz.z)
 	player.move_and_slide()
+
+	# Coyote timer
+	player.coyote_timer.start()
 
 	# Jump buffering
 	if Input.is_action_just_pressed("player_move_jump"):
@@ -49,10 +43,10 @@ func physics_process(delta: float) -> void:
 func get_transition() -> StringName:
 	if not player.is_in_water():
 		return PlayerStates.FALL
-	elif player.are_raycasts_colliding() and player.global_transform.origin.y > player.get_water_surface_height() + player.water_state_enter_offset:
+	elif player.are_raycasts_colliding() and player.global_transform.origin.y > player.get_water_surface_height() + water_state_enter_offset:
 		return PlayerStates.RUN
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
-		if player.get_water_surface_height() - player.global_transform.origin.y < player.water_jump_max_surface_distance:
+		if surfaced:
 			return PlayerStates.JUMP
 	elif Input.is_action_just_pressed("player_move_dive"):
 		return PlayerStates.DIVE

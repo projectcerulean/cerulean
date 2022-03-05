@@ -1,8 +1,8 @@
 extends PauseMenuState
 
 
-func exit(new_state: StringName) -> void:
-	super.exit(new_state)
+func exit(data: Dictionary) -> void:
+	super.exit(data)
 	Signals.emit_request_settings_save(self)
 
 

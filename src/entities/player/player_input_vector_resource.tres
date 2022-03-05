@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c4t8y3cjatn2"]
+
+[ext_resource type="Script" path="res://src/common/resource_types/vector3_resource.gd" id="1_mqqwt"]
+
+[resource]
+script = ExtResource( "1_mqqwt" )
+value = null

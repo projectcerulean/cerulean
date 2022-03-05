@@ -32,13 +32,13 @@ func process(delta: float) -> void:
 			i_hovered_option = posmod(i_hovered_option + 1, menu.get_child_count())
 
 
-func enter(old_state: StringName, data := {}) -> void:
-	super.enter(old_state, data)
+func enter(data: Dictionary) -> void:
+	super.enter(data)
 	menu.visible = true
 
 
-func exit(new_state: StringName) -> void:
-	super.exit(new_state)
+func exit(data: Dictionary) -> void:
+	super.exit(data)
 	menu.visible = false
 
 

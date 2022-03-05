@@ -1,15 +1,15 @@
 extends DialogueState
 
 
-func enter(old_state: StringName, data := {}) -> void:
-	super.enter(old_state, data)
+func enter(data: Dictionary) -> void:
+	super.enter(data)
 	dialogue_manager.line_index += 1
 	dialogue_manager.label.text = "  " + dialogue_manager.dialogue_resource.dialogue_lines[dialogue_manager.line_index] + "  "
 	dialogue_manager.label.percent_visible = 0.0
 
 
-func exit(new_state: StringName) -> void:
-	super.exit(new_state)
+func exit(data: Dictionary) -> void:
+	super.exit(data)
 	dialogue_manager.label.percent_visible = 1.0
 
 

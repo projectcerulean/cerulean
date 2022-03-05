@@ -1,16 +1,13 @@
 extends PlayerState
 
 
-func enter(old_state: StringName, data := {}) -> void:
-	super.enter(old_state, data)
+func enter(data: Dictionary) -> void:
+	super.enter(data)
 	player.motion_velocity = Vector3.ZERO
-
-	# Update mesh facing direction
-	mesh_root.look_at(mesh_root.get_global_transform().origin + player.facing_direction)
 
 
 func get_transition() -> StringName:
-	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - player.water_state_enter_offset:
+	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - water_state_enter_offset:
 		return PlayerStates.SWIM
 	elif not player.are_raycasts_colliding():
 		return PlayerStates.FALL
