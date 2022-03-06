@@ -34,6 +34,9 @@ func _ready() -> void:
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 
+	assert(input_vector_resource.value == Vector3(), Errors.RESOURCE_BUSY)
+	assert(transform_resource.value == Transform3D(), Errors.RESOURCE_BUSY)
+
 	# Update tranform resource
 	transform_resource.value = global_transform
 
@@ -69,6 +72,7 @@ func _process(_delta: float) -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		input_vector_resource.value = Vector3()
+		transform_resource.value = Transform3D()
 
 
 func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
