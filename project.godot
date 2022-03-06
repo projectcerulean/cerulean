@@ -262,7 +262,7 @@ _global_script_classes=[{
 "base": "Resource",
 "class": &"TransformResource",
 "language": &"GDScript",
-"path": "res://src/common/transform/transform_resource.gd"
+"path": "res://src/common/resource_types/transform_resource.gd"
 }, {
 "base": "Node",
 "class": &"Utils",

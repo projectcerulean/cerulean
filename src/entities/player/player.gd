@@ -35,13 +35,12 @@ func _ready() -> void:
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 
 	# Update tranform resource
-	transform_resource.global_transform = global_transform
-	transform_resource.transform = transform
+	transform_resource.value = global_transform
 
 
 func _process(_delta: float) -> void:
 	# Update input vector according to thumbstick and camera position
-	var camera_vector: Vector3 = camera_transform_resource.global_transform.origin - global_transform.origin
+	var camera_vector: Vector3 = camera_transform_resource.value.origin - global_transform.origin
 	camera_vector.y = 0.0
 	camera_vector = camera_vector.normalized()
 	var forward_vector: Vector3 = camera_vector
@@ -56,8 +55,7 @@ func _process(_delta: float) -> void:
 	input_vector_resource.value = input_vector
 
 	# Update tranform resource
-	transform_resource.global_transform = global_transform
-	transform_resource.transform = transform
+	transform_resource.value = global_transform
 
 	# Perform interaction
 	if Input.is_action_just_pressed(&"interact") and game_state_resource.current_state == GameStates.GAMEPLAY:

@@ -56,7 +56,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_transform.origin = target_transform_resource.global_transform.origin
+	global_transform.origin = target_transform_resource.value.origin
 
 	if game_state_resource.current_state in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
 		if Input.is_action_pressed("camera_move_zoom_toggle"):
@@ -83,11 +83,10 @@ func _process(delta: float) -> void:
 		camera.position.z = Lerp.delta_lerp(camera.position.z, 0.0, camera_push_weight_backwards, delta)
 
 	# Look at target
-	camera.look_at(target_transform_resource.global_transform.origin)
+	camera.look_at(target_transform_resource.value.origin)
 
 	# Update tranform resource
-	transform_resource.global_transform = camera.global_transform
-	transform_resource.transform = camera.transform
+	transform_resource.value = camera.global_transform
 
 
 func _on_scene_changed(_sender: Node) -> void:

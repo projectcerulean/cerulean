@@ -51,6 +51,6 @@ func _on_scene_changed(_sender: Node) -> void:
 
 
 func interactables_sort(interactable: Node3D, interactable_other: Node3D) -> bool:
-	var dist_squared: float = (interactable.global_transform.origin - player_transform_resource.global_transform.origin).length_squared()
-	var dist_squared_other: float = (interactable_other.global_transform.origin - player_transform_resource.global_transform.origin).length_squared()
+	var dist_squared: float = (interactable.global_transform.origin - player_transform_resource.value.origin).length_squared()
+	var dist_squared_other: float = (interactable_other.global_transform.origin - player_transform_resource.value.origin).length_squared()
 	return dist_squared < dist_squared_other
