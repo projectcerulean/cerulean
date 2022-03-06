@@ -7,8 +7,8 @@ extends Node
 @export var _thumbstick_resource_left: Resource
 @export var _thumbstick_resource_right: Resource
 
-@onready var thumbstick_resource_left: ThumbstickResource = _thumbstick_resource_left as ThumbstickResource
-@onready var thumbstick_resource_right: ThumbstickResource = _thumbstick_resource_right as ThumbstickResource
+@onready var thumbstick_resource_left: Vector2Resource = _thumbstick_resource_left as Vector2Resource
+@onready var thumbstick_resource_right: Vector2Resource = _thumbstick_resource_right as Vector2Resource
 
 
 func _ready() -> void:

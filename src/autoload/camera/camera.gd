@@ -25,7 +25,7 @@ const pitch_limit: float = PI / 2.0 - 0.1
 
 var water_collision_shapes: Array
 
-@onready var thumbstick_resource_right: ThumbstickResource = _thumbstick_resource_right as ThumbstickResource
+@onready var thumbstick_resource_right: Vector2Resource = _thumbstick_resource_right as Vector2Resource
 @onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
 @onready var transform_resource: TransformResource = _transform_resource as TransformResource
 @onready var target_transform_resource: TransformResource = _target_transform_resource as TransformResource

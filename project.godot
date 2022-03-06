@@ -249,11 +249,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/entities/puzzle_elements/switch/switch_interaction_action.gd"
 }, {
-"base": "Resource",
-"class": &"ThumbstickResource",
-"language": &"GDScript",
-"path": "res://src/autoload/input/thumbstick_resource.gd"
-}, {
 "base": "MeshInstance3D",
 "class": &"Trail",
 "language": &"GDScript",
@@ -268,6 +263,11 @@ _global_script_classes=[{
 "class": &"Utils",
 "language": &"GDScript",
 "path": "res://src/common/utils/utils.gd"
+}, {
+"base": "Resource",
+"class": &"Vector2Resource",
+"language": &"GDScript",
+"path": "res://src/common/resource_types/vector2_resource.gd"
 }, {
 "base": "Resource",
 "class": &"Vector3Resource",
@@ -328,10 +328,10 @@ _global_script_class_icons={
 "StateTransitionListener": "",
 "Switch": "",
 "SwitchInteractionAction": "",
-"ThumbstickResource": "",
 "Trail": "",
 "TransformResource": "",
 "Utils": "",
+"Vector2Resource": "",
 "Vector3Resource": "",
 "Version": ""
 }

@@ -14,7 +14,7 @@ var water_collision_shapes: Array
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
 
-@onready var thumbstick_resource_left: ThumbstickResource = _thumbstick_resource_left as ThumbstickResource
+@onready var thumbstick_resource_left: Vector2Resource = _thumbstick_resource_left as Vector2Resource
 @onready var input_vector_resource: Vector3Resource = _input_vector_resource as Vector3Resource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 @onready var transform_resource: TransformResource = _transform_resource as TransformResource
