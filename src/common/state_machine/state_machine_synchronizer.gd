@@ -18,6 +18,6 @@ func _ready() -> void:
 		assert(state_machine_child.get_child(i).name == state_machine_parent.get_child(i).name, Errors.CONSISTENCY_ERROR)
 
 
-func _on_state_entered(sender: Node, state: StringName):
+func _on_state_entered(sender: Node, state: StringName, data: Dictionary):
 	if sender == state_machine_parent:
-		Signals.emit_request_state_change(self, state_machine_child, state)
+		Signals.emit_request_state_change(self, state_machine_child, state, data)

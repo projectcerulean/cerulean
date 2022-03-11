@@ -50,6 +50,6 @@ func get_transition() -> StringName:
 	return StringName()
 
 
-func _on_state_exited(sender: Node, state: StringName) -> void:
+func _on_state_exited(sender: Node, state: StringName, _data: Dictionary) -> void:
 	if sender == pause_menu.game_state_resource.state_machine and state == GameStates.PAUSE:
 		i_hovered_option = 0

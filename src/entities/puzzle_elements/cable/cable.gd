@@ -35,7 +35,7 @@ func tween_callback() -> void:
 	Signals.emit_request_state_change(self, state_machine, state_next)
 
 
-func _on_state_entered(sender: Node, state: StringName) -> void:
+func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
 	if sender.owner == input_node:
 		state_next = state
 		var flip_colors: bool = state_next == PuzzleElementStates.DISABLED

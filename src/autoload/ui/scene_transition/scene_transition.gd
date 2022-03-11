@@ -23,7 +23,7 @@ func _on_request_scene_transition_start(_sender: Node, scene_path: String, trans
 	fade_duration = duration
 
 
-func _on_state_entered(sender: Node, state: StringName) -> void:
+func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.SCENE_TRANSITION:
 		self.visible = true
 		if tween != null:

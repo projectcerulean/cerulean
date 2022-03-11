@@ -25,7 +25,7 @@ func _ready() -> void:
 	inputs.resize(len(input_targets))
 
 
-func _on_state_entered(sender: Node, state: StringName) -> void:
+func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
 	for i in range(len(inputs)):
 		if sender.owner == get_node(input_nodes[i]):
 			assert(state in [PuzzleElementStates.DISABLED, PuzzleElementStates.ENABLED], Errors.CONSISTENCY_ERROR)

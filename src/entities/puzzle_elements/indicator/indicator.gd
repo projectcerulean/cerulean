@@ -14,6 +14,6 @@ func _ready() -> void:
 	assert(state_machine.get_child_count() == 2, Errors.CONSISTENCY_ERROR)
 
 
-func _on_state_entered(sender: Node, state: StringName) -> void:
+func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
 	if sender.owner == input_node:
 		Signals.emit_request_state_change(self, state_machine, state)

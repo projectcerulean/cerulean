@@ -26,11 +26,11 @@ func _notification(what: int) -> void:
 		state_resource.current_state = StringName()
 
 
-func _on_state_entered(sender: Node, state: StringName):
+func _on_state_entered(sender: Node, state: StringName, _data: Dictionary):
 	if sender == state_machine:
 		state_resource.current_state = state
 
 
-func _on_state_exited(sender: Node, _state: StringName):
+func _on_state_exited(sender: Node, _state: StringName, _data: Dictionary):
 	if sender == state_machine:
 		state_resource.current_state = StringName()

@@ -104,6 +104,6 @@ func emit_request_state_change_next(sender: Node, state_machine: Node, data: Dic
 func emit_resource_load_completed(sender: Node, resource_path: StringName, resource: Resource) -> void: emit(resource_load_completed, [sender, resource_path, resource])
 func emit_scene_changed(sender: Node) -> void: emit(scene_changed, [sender])
 func emit_setting_updated(sender: Node, key: StringName, value: int) -> void: emit(setting_updated, [sender, key, value])
-func emit_state_entered(sender: Node, state: StringName) -> void: emit(state_entered, [sender, state])
-func emit_state_exited(sender: Node, state: StringName) -> void: emit(state_exited, [sender, state])
+func emit_state_entered(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_entered, [sender, state, data])
+func emit_state_exited(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_exited, [sender, state, data])
 func emit_visualize_vector(sender: Node, vector: Vector2) -> void: emit(visualize_vector, [sender, vector])

@@ -85,8 +85,8 @@ func transition_to_deferred(target_state: StringName, data: Dictionary) -> void:
 		if old_state != null:
 			data[State.OLD_STATE] = old_state.name
 			old_state.exit(data)
-			Signals.emit_state_exited(self, current_state.name)
+			Signals.emit_state_exited(self, current_state.name, data)
 
 		current_state = get_node(str(target_state)) as State
 		current_state.enter(data)
-		Signals.emit_state_entered(self, current_state.name)
+		Signals.emit_state_entered(self, current_state.name, data)

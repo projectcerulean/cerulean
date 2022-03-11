@@ -33,12 +33,12 @@ func _on_request_dialogue_finish(_sender: Node) -> void:
 	dialogue_resource = null
 
 
-func _on_state_entered(sender: Node, state: StringName) -> void:
+func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.DIALOGUE:
 		Signals.emit_request_state_change(self, state_machine, DialogueStates.OUTPUT)
 		self.visible = true
 
 
-func _on_state_exited(sender: Node, state: StringName) -> void:
+func _on_state_exited(sender: Node, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.DIALOGUE:
 		self.visible = false
