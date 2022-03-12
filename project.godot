@@ -372,8 +372,8 @@ gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [input]
 
