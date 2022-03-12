@@ -1,16 +1,19 @@
-[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://c08dhvu7qf20u"]
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://c08dhvu7qf20u"]
 
-[sub_resource type="OpenSimplexNoise" id="8"]
+[ext_resource type="Texture2D" uid="uid://cpwqp3ucex6vn" path="res://assets/graphics/textures/kenney_prototype_textures/light/texture_13.png" id="1_e0b2o"]
+
+[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_nb6gw"]
 octaves = 9
 period = 32.0
 persistence = 1.0
 
-[sub_resource type="NoiseTexture" id="9"]
+[sub_resource type="NoiseTexture" id="NoiseTexture_js128"]
 seamless = true
-noise = SubResource( "8" )
+noise = SubResource( "OpenSimplexNoise_nb6gw" )
 
 [resource]
 specular_mode = 2
-albedo_color = Color(0.534186, 0.702097, 0.622218, 1)
-orm_texture = SubResource( "9" )
+albedo_color = Color(0.639216, 0.839216, 0.741176, 1)
+albedo_texture = ExtResource( "1_e0b2o" )
+orm_texture = SubResource( "NoiseTexture_js128" )
 uv1_triplanar = true
