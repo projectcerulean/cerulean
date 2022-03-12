@@ -7,9 +7,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( "1_7suej" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 _settings_resource = ExtResource( "2_nxtbr" )
 text_color_normal = Color(1, 1, 1, 0.627451)
 text_color_highlight = Color(1, 1, 1, 1)

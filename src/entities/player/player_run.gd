@@ -7,7 +7,7 @@ extends PlayerState
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
-	player.motion_velocity.y = 0.0
+	player.velocity.y = 0.0
 	player.floor_snap_length = move_snap_distance
 
 
@@ -20,7 +20,7 @@ func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
 	# Apply movement
-	player.motion_velocity = Lerp.delta_lerp3(player.motion_velocity, player.input_vector * move_speed, move_speed_lerp_weight, delta)
+	player.velocity = Lerp.delta_lerp3(player.velocity, player.input_vector * move_speed, move_speed_lerp_weight, delta)
 	player.move_and_slide()
 
 	# Coyote timer
@@ -34,7 +34,7 @@ func get_transition() -> StringName:
 		return PlayerStates.FALL
 	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
 		return PlayerStates.JUMP
-	elif Vector3(player.motion_velocity.x, 0.0, player.motion_velocity.z).is_equal_approx(Vector3.ZERO):
+	elif Vector3(player.velocity.x, 0.0, player.velocity.z).is_equal_approx(Vector3.ZERO):
 		return PlayerStates.IDLE
 	else:
 		return StringName()

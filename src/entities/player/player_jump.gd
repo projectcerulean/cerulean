@@ -8,7 +8,7 @@ extends PlayerState
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
-	player.motion_velocity.y = jump_speed
+	player.velocity.y = jump_speed
 	player.coyote_timer.stop()
 	player.jump_buffer_timer.stop()
 
@@ -17,23 +17,23 @@ func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
 	# Apply movement
-	var motion_velocity_xz: Vector3 = Vector3(player.motion_velocity.x, 0.0, player.motion_velocity.z)
-	var motion_velocity_xz_target: Vector3
+	var velocity_xz: Vector3 = Vector3(player.velocity.x, 0.0, player.velocity.z)
+	var velocity_xz_target: Vector3
 
-	if motion_velocity_xz.is_equal_approx(Vector3.ZERO) or player.input_vector.is_equal_approx(Vector3.ZERO) or motion_velocity_xz.length() < move_speed:
-		motion_velocity_xz_target = player.input_vector * move_speed
+	if velocity_xz.is_equal_approx(Vector3.ZERO) or player.input_vector.is_equal_approx(Vector3.ZERO) or velocity_xz.length() < move_speed:
+		velocity_xz_target = player.input_vector * move_speed
 	else:
-		var delta_angle: float = motion_velocity_xz.angle_to(player.input_vector)
+		var delta_angle: float = velocity_xz.angle_to(player.input_vector)
 		if delta_angle < PI / 2.0:
 			# We want ta maintain all speed while in the air, even if it is higher than move_speed
-			var move_speed_extended: float = Math.ellipse(Vector2(motion_velocity_xz.length(), move_speed), delta_angle)
-			motion_velocity_xz_target = player.input_vector.normalized() *  move_speed_extended
+			var move_speed_extended: float = Math.ellipse(Vector2(velocity_xz.length(), move_speed), delta_angle)
+			velocity_xz_target = player.input_vector.normalized() *  move_speed_extended
 			pass
 		else:
-			motion_velocity_xz_target = player.input_vector * move_speed
+			velocity_xz_target = player.input_vector * move_speed
 
-	var motion_velocity_xz_new = Lerp.delta_lerp3(motion_velocity_xz, motion_velocity_xz_target, move_speed_lerp_weight, delta)
-	player.motion_velocity = Vector3(motion_velocity_xz_new.x, player.motion_velocity.y + (jump_acceleration - Physics.GRAVITY) * delta, motion_velocity_xz_new.z)
+	var velocity_xz_new = Lerp.delta_lerp3(velocity_xz, velocity_xz_target, move_speed_lerp_weight, delta)
+	player.velocity = Vector3(velocity_xz_new.x, player.velocity.y + (jump_acceleration - Physics.GRAVITY) * delta, velocity_xz_new.z)
 	player.move_and_slide()
 
 
@@ -41,11 +41,11 @@ func get_transition() -> StringName:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - water_state_enter_offset:
 		return PlayerStates.SWIM
 	elif player.is_on_floor():
-		if is_equal_approx(player.motion_velocity.x, 0.0) and is_equal_approx(player.motion_velocity.z, 0.0):
+		if is_equal_approx(player.velocity.x, 0.0) and is_equal_approx(player.velocity.z, 0.0):
 			return PlayerStates.IDLE
 		else:
 			return PlayerStates.RUN
-	elif player.motion_velocity.y < 0 or not Input.is_action_pressed("player_move_jump"):
+	elif player.velocity.y < 0 or not Input.is_action_pressed("player_move_jump"):
 		return PlayerStates.FALL
 	else:
 		return StringName()

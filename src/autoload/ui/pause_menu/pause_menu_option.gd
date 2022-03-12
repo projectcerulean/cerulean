@@ -36,8 +36,8 @@ func set_highlight(highlight: bool) -> void:
 	var text_color: Color = text_color_normal
 	if highlight:
 		text_color = text_color_highlight
-	key_node.set("custom_colors/font_color", text_color)
-	value_node.set("custom_colors/font_color", text_color)
+	key_node.set("theme_override_colors/font_color", text_color)
+	value_node.set("theme_override_colors/font_color", text_color)
 
 
 func adjust_option(delta: int) -> void:

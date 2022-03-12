@@ -20,16 +20,16 @@ tasks:
       done
 
   - download_godot: |
-      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha2/Godot_v4.0-alpha2_linux.64.zip
-      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha2/SHA512-SUMS.txt
+      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha4/Godot_v4.0-alpha4_linux.64.zip
+      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha4/SHA512-SUMS.txt
       sha512sum --check --ignore-missing SHA512-SUMS.txt
-      unzip Godot_v4.0-alpha2_linux.64.zip
+      unzip Godot_v4.0-alpha4_linux.64.zip
 
   - export_game_pack: |
       cd cerulean
       sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
-      ../Godot_v4.0-alpha2_linux.64 --headless --editor --quit || true
-      ../Godot_v4.0-alpha2_linux.64 --headless --export-pack Linux/X11 ../cerulean.pck || true
+      ../Godot_v4.0-alpha4_linux.64 --headless --editor --quit || true
+      ../Godot_v4.0-alpha4_linux.64 --headless --export-pack Linux/X11 ../cerulean.pck || true
       cd ..
       sha512sum cerulean.pck | tee cerulean.pck.sha512
 

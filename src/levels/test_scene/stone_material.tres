@@ -10,6 +10,6 @@ seamless = true
 noise = SubResource( "8" )
 
 [resource]
-specular_mode = 4
+specular_mode = 2
 orm_texture = SubResource( "9" )
 uv1_triplanar = true

@@ -11,7 +11,7 @@ var roll_angle: float = 0.0
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	glide_start_position = player.position
-	glide_start_velocity = player.motion_velocity
+	glide_start_velocity = player.velocity
 
 
 func physics_process(delta: float) -> void:
@@ -23,7 +23,7 @@ func physics_process(delta: float) -> void:
 	input_vector_spherical = input_vector_spherical.normalized()
 	assert(input_vector_spherical.is_normalized(), Errors.CONSISTENCY_ERROR)
 
-	var velocity_direction_current: Vector3 = player.motion_velocity.normalized()
+	var velocity_direction_current: Vector3 = player.velocity.normalized()
 	var velocity_direction_new: Vector3 = Vector3.ZERO
 
 	if velocity_direction_current == Vector3.ZERO:
@@ -31,13 +31,13 @@ func physics_process(delta: float) -> void:
 	else:
 		velocity_direction_new = Lerp.delta_slerp3(velocity_direction_current, input_vector_spherical, glide_turn_lerp_weight, delta)
 
-	player.motion_velocity = velocity_direction_new * (
+	player.velocity = velocity_direction_new * (
 		Math.signed_sqrt(
 			2.0 * Physics.GRAVITY * glide_gravity_modifier * (glide_start_position.y - player.position.y)
 		) + glide_start_velocity.length()
 	)
 
-	player.motion_velocity.y = player.motion_velocity.y - Physics.GRAVITY * glide_gravity_modifier * delta
+	player.velocity.y = player.velocity.y - Physics.GRAVITY * glide_gravity_modifier * delta
 	player.move_and_slide()
 
 	# Jump buffering
@@ -49,7 +49,7 @@ func get_transition() -> StringName:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - water_state_enter_offset:
 		return PlayerStates.SWIM
 	elif player.is_on_floor():
-		if is_equal_approx(player.motion_velocity.x, 0.0) and is_equal_approx(player.motion_velocity.z, 0.0):
+		if is_equal_approx(player.velocity.x, 0.0) and is_equal_approx(player.velocity.z, 0.0):
 			return PlayerStates.IDLE
 		else:
 			return PlayerStates.RUN

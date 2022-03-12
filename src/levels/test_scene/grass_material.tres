@@ -10,7 +10,7 @@ seamless = true
 noise = SubResource( "8" )
 
 [resource]
-specular_mode = 4
+specular_mode = 2
 albedo_color = Color(0.534186, 0.702097, 0.622218, 1)
 orm_texture = SubResource( "9" )
 uv1_triplanar = true

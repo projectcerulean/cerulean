@@ -2,6 +2,8 @@
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j4l1b"]
 sky_top_color = Color(0.309804, 0.560784, 0.878431, 1)
+sky_horizon_color = Color(0.54902, 0.690196, 0.811765, 1)
+sky_curve = 0.09
 ground_bottom_color = Color(0.309804, 0.560784, 0.878431, 1)
 ground_horizon_color = Color(0.54902, 0.690196, 0.811765, 1)
 

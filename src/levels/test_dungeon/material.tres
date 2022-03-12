@@ -12,7 +12,7 @@ noise = SubResource( "OpenSimplexNoise_myx41" )
 
 [resource]
 diffuse_mode = 3
-specular_mode = 3
+specular_mode = 1
 albedo_texture = ExtResource( "1_832xi" )
 orm_texture = SubResource( "NoiseTexture_fojkg" )
 uv1_triplanar = true

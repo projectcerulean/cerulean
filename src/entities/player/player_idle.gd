@@ -3,7 +3,7 @@ extends PlayerState
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
-	player.motion_velocity = Vector3.ZERO
+	player.velocity = Vector3.ZERO
 
 
 func get_transition() -> StringName:
