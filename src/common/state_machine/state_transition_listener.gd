@@ -17,23 +17,23 @@ func _ready() -> void:
 	assert(target_state in target_state_machine.get_children(), Errors.CONSISTENCY_ERROR)
 
 
-func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_entered(sender: Node, state: StringName, data: Dictionary) -> void:
 	if sender == target_state_machine and state == target_state.name:
 		is_in_target_state = true
-		_on_target_state_entered()
+		_on_target_state_entered(data)
 
 
-func _on_state_exited(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_exited(sender: Node, state: StringName, data: Dictionary) -> void:
 	if sender == target_state_machine and state == target_state.name:
 		is_in_target_state = false
-		_on_target_state_exited()
+		_on_target_state_exited(data)
 
 
 # Override this
-func _on_target_state_entered() -> void:
+func _on_target_state_entered(data: Dictionary) -> void:
 	pass
 
 
 # Override this
-func _on_target_state_exited() -> void:
+func _on_target_state_exited(data: Dictionary) -> void:
 	pass

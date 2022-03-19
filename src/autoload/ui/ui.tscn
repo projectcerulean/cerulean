@@ -138,9 +138,9 @@ anchor_bottom = 1.0
 offset_left = -512.0
 offset_top = -256.0
 theme_override_styles/normal = SubResource( "StyleBoxFlat_17ke0" )
+bbcode_enabled = true
 text = "# To write to the console:
 Signals.emit_debug_write(self, \"hello\")"
-bbcode_enabled = true
 scroll_following = true
 script = ExtResource( "12_qt77i" )
 __meta__ = {

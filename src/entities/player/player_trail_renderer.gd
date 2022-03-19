@@ -22,15 +22,15 @@ func _process(_delta: float) -> void:
 		trail.add_segment(trail_position_a.global_transform.origin, trail_position_b.global_transform.origin)
 
 
-func _on_target_state_entered() -> void:
-	super._on_target_state_entered()
+func _on_target_state_entered(data: Dictionary) -> void:
+	super._on_target_state_entered(data)
 	trail = preload("res://src/entities/effects/trail/trail.tscn").instantiate()
 	add_child(trail)
 	trail.set_color(trail_color)
 	trail.set_lifetime(point_lifetime)
 
 
-func _on_target_state_exited() -> void:
-	super._on_target_state_exited()
+func _on_target_state_exited(data: Dictionary) -> void:
+	super._on_target_state_exited(data)
 	trail.finalize()
 	trail = null

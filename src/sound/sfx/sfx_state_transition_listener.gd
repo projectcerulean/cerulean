@@ -16,8 +16,8 @@ func _ready() -> void:
 	assert(sfx_resource_enter != null or sfx_resource_exit != null, Errors.INVALID_ARGUMENT)
 
 
-func _on_target_state_entered() -> void:
-	super._on_target_state_entered()
+func _on_target_state_entered(data: Dictionary) -> void:
+	super._on_target_state_entered(data)
 	if sfx_resource_enter != null:
 		if parent_3d != null:
 			Signals.emit_request_sfx_play(self, sfx_resource_enter, parent_3d.global_transform.origin)
@@ -25,8 +25,8 @@ func _on_target_state_entered() -> void:
 			Signals.emit_request_sfx_play_non_diegetic(self, sfx_resource_enter)
 
 
-func _on_target_state_exited() -> void:
-	super._on_target_state_exited()
+func _on_target_state_exited(data: Dictionary) -> void:
+	super._on_target_state_exited(data)
 	if sfx_resource_exit != null:
 		if parent_3d != null:
 			Signals.emit_request_sfx_play(self, sfx_resource_exit, parent_3d.global_transform.origin)

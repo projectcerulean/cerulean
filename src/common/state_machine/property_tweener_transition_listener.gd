@@ -18,16 +18,16 @@ func _ready() -> void:
 	assert(property != null and not property.is_empty(), Errors.INVALID_ARGUMENT)
 
 
-func _on_target_state_entered() -> void:
-	super._on_target_state_entered()
+func _on_target_state_entered(data: Dictionary) -> void:
+	super._on_target_state_entered(data)
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
 	tween.tween_property(target_node, property, value_max, tween_duration)
 
 
-func _on_target_state_exited() -> void:
-	super._on_target_state_exited()
+func _on_target_state_exited(data: Dictionary) -> void:
+	super._on_target_state_exited(data)
 	if tween != null:
 		tween.kill()
 	tween = create_tween()

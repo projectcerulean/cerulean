@@ -71,16 +71,16 @@ func _notification(what: int) -> void:
 		assert(AudioServer.get_bus_effect_count(bus_index) == bus_effect_count - 1, Errors.CONSISTENCY_ERROR)
 
 
-func _on_target_state_entered() -> void:
-	super._on_target_state_entered()
+func _on_target_state_entered(data: Dictionary) -> void:
+	super._on_target_state_entered(data)
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
 	tween.tween_property(self, "wet_level", wet_level_max, tween_duration)
 
 
-func _on_target_state_exited() -> void:
-	super._on_target_state_exited()
+func _on_target_state_exited(data: Dictionary) -> void:
+	super._on_target_state_exited(data)
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
