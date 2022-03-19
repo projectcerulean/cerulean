@@ -18,17 +18,21 @@ func _ready() -> void:
 
 func _on_target_state_entered(data: Dictionary) -> void:
 	super._on_target_state_entered(data)
-	if sfx_resource_enter != null:
-		if parent_3d != null:
-			Signals.emit_request_sfx_play(self, sfx_resource_enter, parent_3d.global_transform.origin)
-		else:
-			Signals.emit_request_sfx_play_non_diegetic(self, sfx_resource_enter)
+	if data.get(State.OLD_STATE, StringName()) == StringName() or sfx_resource_enter == null:
+		return
+
+	if parent_3d != null:
+		Signals.emit_request_sfx_play(self, sfx_resource_enter, parent_3d.global_transform.origin)
+	else:
+		Signals.emit_request_sfx_play_non_diegetic(self, sfx_resource_enter)
 
 
 func _on_target_state_exited(data: Dictionary) -> void:
 	super._on_target_state_exited(data)
-	if sfx_resource_exit != null:
-		if parent_3d != null:
-			Signals.emit_request_sfx_play(self, sfx_resource_exit, parent_3d.global_transform.origin)
-		else:
-			Signals.emit_request_sfx_play_non_diegetic(self, sfx_resource_exit)
+	if data.get(State.NEW_STATE, StringName()) == StringName() or sfx_resource_exit == null:
+		return
+
+	if parent_3d != null:
+		Signals.emit_request_sfx_play(self, sfx_resource_exit, parent_3d.global_transform.origin)
+	else:
+		Signals.emit_request_sfx_play_non_diegetic(self, sfx_resource_exit)
