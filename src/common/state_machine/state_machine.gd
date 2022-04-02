@@ -1,6 +1,6 @@
-# Reference: https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine
 # Generic state machine. Initializes states and delegates engine callbacks
 # (_process, _physics_process, _unhandled_input) to the active state.
+# Based on "Finite State Machine in Godot" by GDQuest, https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine
 class_name StateMachine
 extends Node
 

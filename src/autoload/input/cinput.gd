@@ -1,3 +1,6 @@
+# Applies some basic processing to the raw thumbstick input values before they are used in the game.
+# Values are updated each frame (_process callback) and can be queried using the Vector2 resources.
+# Based on "How to Program the Perfect Controller" by Ombarus, https://www.youtube.com/watch?v=Q4aQiuJYZ2s
 extends Node
 
 @export var deadzone_inner: float = 0.1
@@ -21,9 +24,6 @@ func _process(_delta: float) -> void:
 	thumbstick_resource_right.value = process_stick_input("right")
 
 
-# Reference: https://www.youtube.com/watch?v=Q4aQiuJYZ2s
-# Apply some basic processing to the raw thumbstick input values before they are used in the game.
-# Values are updated each frame (_process callback) and can be queried using the `value` variable.
 func process_stick_input(which_stick: String) -> Vector2:
 	assert(which_stick in ["left", "right"], Errors.INVALID_ARGUMENT)
 	var action_up: String = which_stick + "_stick_up"

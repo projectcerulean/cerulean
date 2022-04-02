@@ -1,4 +1,4 @@
-// Reference: https://www.youtube.com/watch?v=sxdBwv384Ic
+// Based on "Create an Animated 3D Flag Shader in Godot" by GDQuest, https://www.youtube.com/watch?v=sxdBwv384Ic
 shader_type spatial;
 render_mode cull_disabled;
 

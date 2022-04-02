@@ -1,5 +1,5 @@
-# Reference: https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine
 # Virtual base class for all states.
+# Based on "Finite State Machine in Godot" by GDQuest, https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine
 class_name State
 extends Node
 

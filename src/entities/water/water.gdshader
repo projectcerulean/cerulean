@@ -1,4 +1,4 @@
-// Reference: https://www.youtube.com/watch?v=PgcMXPdQrLI
+// Based on "Stylized WaterShader Tutorial" by Kmitt 91, https://www.youtube.com/watch?v=PgcMXPdQrLI
 shader_type spatial;
 render_mode unshaded, cull_disabled;
 
