@@ -1,5 +1,7 @@
 # Project Cerulean
 
+![](https://raw.githubusercontent.com/projectcerulean/cerulean-img/master/img/screenshots/2022/test_scene.png)
+
 Just me making a video game. There isn't much to see right now, but check back later!
 
 
