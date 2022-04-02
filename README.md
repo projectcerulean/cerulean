@@ -2,10 +2,20 @@
 
 ![](https://raw.githubusercontent.com/projectcerulean/cerulean-img/master/img/screenshots/2022/test_scene.png)
 
-Just me making a video game. There isn't much to see right now, but check back later!
+[Insert interesting description here]
 
 
-## Syncing assets
+## Running prebuilt version
+
+1. Download the Godot game engine, version 4.0 alpha 5
+2. Grab the latest Cerulean PCK file from the build service: https://builds.sr.ht/~gullik/cerulean
+3. Place the Cerulean PCK and the Godot executable in the same directory
+4. Rename the Godot executable to 'cerulean' and run it
+
+
+## Development
+
+Clone the repository.
 
 Assets are synced using IPFS (https://ipfs.io) to prevent having to check in large binary files into the repository.
 
@@ -21,10 +31,6 @@ Assets are synced using IPFS (https://ipfs.io) to prevent having to check in lar
 ```
 5. Sync assets: `rm -r assets && git reset --hard`
 
-
-## Godot version
-
-Godot 4.0 alpha 5
 
 ## License
 
