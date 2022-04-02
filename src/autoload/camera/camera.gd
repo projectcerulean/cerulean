@@ -17,12 +17,15 @@ const pitch_limit: float = PI / 2.0 - 0.1
 
 @export var camera_distance_min: float = 2.5
 @export var camera_distance_max: float = 25.0
-@export var camera_distance_speed: float = 2.0
-@export var yaw_speed: float = PI
-@export var pitch_speed: float = PI / 2.0
+@export var camera_distance_speed_max: float = 2.0
+@export var camera_distance_lerp_weight: float = 10.0
+@export var camera_rotation_speed_max: Vector2 = Vector2(PI, PI/2.0)
+@export var camera_rotation_lerp_weight: float = 15.0
 @export var camera_push_weight_forwards: float = 10.0
 @export var camera_push_weight_backwards: float = 5.0
 
+var camera_rotation_speed: Vector2 = Vector2()
+var camera_distance_speed: float = 0.0
 var water_collision_shapes: Array
 
 @onready var thumbstick_resource_right: Vector2Resource = _thumbstick_resource_right as Vector2Resource
@@ -59,19 +62,25 @@ func _process(delta: float) -> void:
 	global_transform.origin = target_transform_resource.value.origin
 
 	if game_state_resource.current_state in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
+		var rotation_speed_target: Vector2 = Vector2()
+		var distance_speed_target: float = 0.0
 		if Input.is_action_pressed("camera_move_zoom_toggle"):
-			camera_anchor.position.z = camera_anchor.position.z * (1.0 + thumbstick_resource_right.value.y * camera_distance_speed * delta)
-			camera_anchor.position.z = clamp(camera_anchor.position.z, camera_distance_min, camera_distance_max)
+			distance_speed_target = thumbstick_resource_right.value.y * camera_distance_speed_max
 		else:
-			var thumbstick_value: Vector2 = thumbstick_resource_right.value
+			rotation_speed_target = thumbstick_resource_right.value * camera_rotation_speed_max
 			if settings_resource.settings[Settings.CAMERA_X_INVERTED] == Settings.Boolean.YES:
-				thumbstick_value.x = -thumbstick_value.x
+				rotation_speed_target.x *= -1.0
 			if settings_resource.settings[Settings.CAMERA_Y_INVERTED] == Settings.Boolean.YES:
-				thumbstick_value.y = -thumbstick_value.y
+				rotation_speed_target.y *= -1.0
 
-			yaw_pivot.rotation.y = yaw_pivot.rotation.y - thumbstick_value.x * yaw_speed * delta
-			pitch_pivot.rotation.x = pitch_pivot.rotation.x - thumbstick_value.y * pitch_speed * delta
-			pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -pitch_limit, pitch_limit)
+		camera_distance_speed = Lerp.delta_lerp(camera_distance_speed, distance_speed_target, camera_distance_lerp_weight, delta)
+		camera_anchor.position.z = camera_anchor.position.z * (1.0 + camera_distance_speed * delta)
+		camera_anchor.position.z = clamp(camera_anchor.position.z, camera_distance_min, camera_distance_max)
+
+		camera_rotation_speed = Lerp.delta_lerp2(camera_rotation_speed, rotation_speed_target, camera_rotation_lerp_weight, delta)
+		yaw_pivot.rotation.y -= camera_rotation_speed.x * delta
+		pitch_pivot.rotation.x -= camera_rotation_speed.y * delta
+		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -pitch_limit, pitch_limit)
 
 	# Push camera towards the target if there is solid geometry in the way, helps to prevent clipping
 	raycast.target_position = camera_anchor.position
