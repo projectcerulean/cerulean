@@ -44,7 +44,7 @@ void fragment() {
 	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
 	vec4 world = camera * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	vec3 depth_world_position = world.xyz / world.w;
-	vec3 vertex_world_position = (CAMERA_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	vec3 vertex_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	float depth_world = distance(depth_world_position, vertex_world_position);
 
 	// Foam
@@ -67,5 +67,5 @@ void vertex() {
 	VERTEX.y += wave_strengh.y * sin(VERTEX.y * angular_velocity_y + TIME * wave_time_factor.y) +
 		wave_strengh.x * sin(VERTEX.x * angular_velocity_x + TIME * wave_time_factor.x);
 
-	camera = CAMERA_MATRIX;
+	camera = INV_VIEW_MATRIX;
 }

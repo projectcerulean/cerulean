@@ -7,7 +7,7 @@ uniform vec4 color_new: hint_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform bool flip_colors = false;
 
 void fragment() {
-	vec4 local_position = inverse(WORLD_MATRIX) * CAMERA_MATRIX * vec4(VERTEX, 1.0);
+	vec4 local_position = inverse(MODEL_MATRIX) * INV_VIEW_MATRIX * vec4(VERTEX, 1.0);
 	float x = smoothstep(flow_position - smooth_range, flow_position + smooth_range, local_position.y - flow_position);
 	if (flip_colors) {
 		x = 1.0 - x;

@@ -6,13 +6,13 @@ var colors: Dictionary
 
 func _ready() -> void:
 	Signals.visualize_vector.connect(self._on_visualize_vector)
-	assert(rect_size.x == rect_size.y, Errors.INVALID_ARGUMENT)
-	assert(rect_size.x > 0, Errors.INVALID_ARGUMENT)
+	assert(size.x == size.y, Errors.INVALID_ARGUMENT)
+	assert(size.x > 0, Errors.INVALID_ARGUMENT)
 
 
 func _draw() -> void:
-	var center_point: Vector2 = rect_size / 2.0
-	var radius: float = rect_size.x / 2.0
+	var center_point: Vector2 = size / 2.0
+	var radius: float = size.x / 2.0
 	draw_circle(center_point, 16.0, Color.LIGHT_SLATE_GRAY)
 	draw_arc(center_point, radius, 0, 2 * PI, 128, Color.LIGHT_SLATE_GRAY, 2.0, true)
 	for sender in vectors:
