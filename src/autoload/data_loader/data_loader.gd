@@ -1,3 +1,6 @@
+# This file is part of Project Cerulean <https://projectcerulean.org>
+# Copyright (C) 2021-2022 Martin Gulliksson
+# SPDX-License-Identifier: GPL-3.0-or-later
 extends Node
 
 var DataLoaderWorkerPreload: PackedScene = preload("res://src/autoload/data_loader/data_loader_worker.tscn")

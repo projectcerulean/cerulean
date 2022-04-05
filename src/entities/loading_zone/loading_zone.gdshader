@@ -1,3 +1,6 @@
+// This file is part of Project Cerulean <https://projectcerulean.org>
+// Copyright (C) 2021-2022 Martin Gulliksson
+// SPDX-License-Identifier: GPL-3.0-or-later
 shader_type spatial;
 
 uniform vec4 color: hint_color = vec4(0.0, 0.0, 0.0, 1.0);

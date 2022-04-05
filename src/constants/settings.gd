@@ -1,3 +1,7 @@
+# This file is part of Project Cerulean <https://projectcerulean.org>
+# Copyright (C) 2021-2022 Martin Gulliksson
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Rewrite this file if/when it is possible to create nested const dictionaries.
 # https://github.com/godotengine/godot/issues/50285
 class_name Settings

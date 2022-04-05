@@ -1,3 +1,7 @@
+# This file is part of Project Cerulean <https://projectcerulean.org>
+# Copyright (C) 2021-2022 Martin Gulliksson
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Virtual base class for all states.
 # Based on "Finite State Machine in Godot" by GDQuest, https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine
 class_name State

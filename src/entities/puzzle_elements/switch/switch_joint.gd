@@ -1,3 +1,6 @@
+# This file is part of Project Cerulean <https://projectcerulean.org>
+# Copyright (C) 2021-2022 Martin Gulliksson
+# SPDX-License-Identifier: GPL-3.0-or-later
 extends Node3D
 
 @export var angular_velocity: Vector3 = Vector3(0.5, 0.25, 0.125)

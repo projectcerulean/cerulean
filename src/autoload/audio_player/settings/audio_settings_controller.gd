@@ -1,3 +1,6 @@
+# This file is part of Project Cerulean <https://projectcerulean.org>
+# Copyright (C) 2021-2022 Martin Gulliksson
+# SPDX-License-Identifier: GPL-3.0-or-later
 extends Node
 
 @onready var bus_index_bgm: int = AudioServer.get_bus_index(AudioBuses.BGM)

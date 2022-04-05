@@ -1,3 +1,7 @@
+# This file is part of Project Cerulean <https://projectcerulean.org>
+# Copyright (C) 2021-2022 Martin Gulliksson
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Applies some basic processing to the raw thumbstick input values before they are used in the game.
 # Values are updated each frame (_process callback) and can be queried using the Vector2 resources.
 # Based on "How to Program the Perfect Controller" by Ombarus, https://www.youtube.com/watch?v=Q4aQiuJYZ2s

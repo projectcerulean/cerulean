@@ -1,3 +1,7 @@
+# This file is part of Project Cerulean <https://projectcerulean.org>
+# Copyright (C) 2021-2022 Martin Gulliksson
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Generic state machine. Initializes states and delegates engine callbacks
 # (_process, _physics_process, _unhandled_input) to the active state.
 # Based on "Finite State Machine in Godot" by GDQuest, https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine
