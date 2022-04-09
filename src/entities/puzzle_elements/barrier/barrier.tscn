@@ -11,17 +11,17 @@ size = Vector3(5, 0.5, 5)
 [sub_resource type="BoxMesh" id="BoxMesh_4kh3e"]
 size = Vector3(5, 0.5, 5)
 
-[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_7od6c"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p1s5e"]
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_jviy4"]
+[sub_resource type="NoiseTexture" id="NoiseTexture_g2md3"]
 seamless = true
-noise = SubResource( "OpenSimplexNoise_7od6c" )
+noise = SubResource( "FastNoiseLite_p1s5e" )
 
-[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_dyq7f"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ow20"]
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_psu5q"]
+[sub_resource type="NoiseTexture" id="NoiseTexture_h16ox"]
 seamless = true
-noise = SubResource( "OpenSimplexNoise_dyq7f" )
+noise = SubResource( "FastNoiseLite_4ow20" )
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esmal"]
 render_priority = 1
@@ -32,8 +32,8 @@ shader_param/alpha_factor = 1.0
 shader_param/alpha_min = 0.3
 shader_param/alpha_max = 0.6
 shader_param/noise_time_factor = Vector2(0.1, 0.02)
-shader_param/noise_sampler1 = SubResource( "NoiseTexture_jviy4" )
-shader_param/noise_sampler2 = SubResource( "NoiseTexture_psu5q" )
+shader_param/noise_sampler1 = SubResource( "NoiseTexture_g2md3" )
+shader_param/noise_sampler2 = SubResource( "NoiseTexture_h16ox" )
 
 [node name="Barrier" type="StaticBody3D"]
 collision_layer = 4

@@ -8,20 +8,19 @@ size = Vector2(64, 64)
 subdivide_width = 64
 subdivide_depth = 64
 
-[sub_resource type="OpenSimplexNoise" id="9"]
-period = 256.0
-lacunarity = 4.0
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mtgeo"]
+frequency = 0.003
 
-[sub_resource type="NoiseTexture" id="10"]
+[sub_resource type="NoiseTexture" id="NoiseTexture_bqtil"]
 seamless = true
-noise = SubResource( "9" )
+noise = SubResource( "FastNoiseLite_mtgeo" )
 
-[sub_resource type="OpenSimplexNoise" id="11"]
-lacunarity = 4.0
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ni1l"]
+frequency = 0.008
 
-[sub_resource type="NoiseTexture" id="12"]
+[sub_resource type="NoiseTexture" id="NoiseTexture_8n77n"]
 seamless = true
-noise = SubResource( "11" )
+noise = SubResource( "FastNoiseLite_2ni1l" )
 
 [sub_resource type="ShaderMaterial" id="2"]
 render_priority = 0
@@ -40,8 +39,8 @@ shader_param/wave_periods_x = 4
 shader_param/wave_periods_y = 4
 shader_param/wave_strengh = Vector2(0.25, 0.125)
 shader_param/wave_time_factor = Vector2(0.5, 1)
-shader_param/noise_sampler1 = SubResource( "10" )
-shader_param/noise_sampler2 = SubResource( "12" )
+shader_param/noise_sampler1 = SubResource( "NoiseTexture_bqtil" )
+shader_param/noise_sampler2 = SubResource( "NoiseTexture_8n77n" )
 
 [sub_resource type="BoxShape3D" id="13"]
 size = Vector3(64, 64, 64)

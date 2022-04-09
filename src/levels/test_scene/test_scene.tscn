@@ -1,11 +1,11 @@
-[gd_scene load_steps=86 format=3 uid="uid://3rc1hxqvyhd5"]
+[gd_scene load_steps=86 format=3 uid="uid://ceqsphji2ao1c"]
 
 [ext_resource type="PackedScene" uid="uid://d2sldws2aw68c" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
+[ext_resource type="Material" uid="uid://d8qn64cdtd6i" path="res://src/levels/test_scene/stone_material.tres" id="3_8uyq8"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
-[ext_resource type="Material" uid="uid://df0jxyi8dlx2u" path="res://src/levels/test_scene/stone_material.tres" id="5"]
+[ext_resource type="Material" uid="uid://dbqfk266g0rrm" path="res://src/levels/test_scene/grass_material.tres" id="5_7fh5e"]
 [ext_resource type="PackedScene" uid="uid://3mhvdybo4ccu" path="res://src/levels/test_scene/flag/flag.tscn" id="6_psp6u"]
-[ext_resource type="Material" uid="uid://c08dhvu7qf20u" path="res://src/levels/test_scene/grass_material.tres" id="7_gxhck"]
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="8_l3hhy"]
 [ext_resource type="Resource" uid="uid://b458fluv0h1ap" path="res://assets/dialogue/tutorial/jumping.tres" id="9_ilvj1"]
 [ext_resource type="Resource" uid="uid://df62i7tswvfok" path="res://assets/dialogue/tutorial/diving.tres" id="10_vafey"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="14_e3mr8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="15_7eokh"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="17_55rd1"]
-[ext_resource type="Environment" uid="uid://wsmdsq7i47id" path="res://src/environment/default_env.tres" id="18_11ux8"]
+[ext_resource type="Environment" uid="uid://bhnsvqfnmcgrm" path="res://src/environment/default_env.tres" id="18_11ux8"]
 [ext_resource type="Script" path="res://src/environment/world_environment.gd" id="19_v0qrx"]
 [ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="21_i6ktg"]
@@ -487,7 +487,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 22)
 
 [node name="StartPlatform" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "5" )
+material_override = ExtResource( "3_8uyq8" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -526,7 +526,7 @@ size = Vector3(2, 2, 6)
 
 [node name="Staircase" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "5" )
+material_override = ExtResource( "3_8uyq8" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -573,7 +573,7 @@ size = Vector3(2, 18, 2)
 
 [node name="Tower" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "5" )
+material_override = ExtResource( "3_8uyq8" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -632,7 +632,7 @@ size = Vector3(2, 2, 2)
 
 [node name="Flagpole" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "5" )
+material_override = ExtResource( "3_8uyq8" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -660,7 +660,7 @@ transform = Transform3D(0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, 
 
 [node name="Flagpole2" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "5" )
+material_override = ExtResource( "3_8uyq8" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -679,7 +679,7 @@ size = Vector3(1, 2, 2)
 
 [node name="Island" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "7_gxhck" )
+material_override = ExtResource( "5_7fh5e" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -700,7 +700,7 @@ spin_sides = 8
 
 [node name="Entrance" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "5" )
+material_override = ExtResource( "3_8uyq8" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11

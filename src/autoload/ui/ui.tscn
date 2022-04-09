@@ -16,11 +16,11 @@
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/screen_darken.gd" id="12"]
 [ext_resource type="Script" path="res://src/autoload/ui/debug/debug_console/debug_console.gd" id="12_qt77i"]
 
-[sub_resource type="OpenSimplexNoise" id="8"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gncbr"]
 
-[sub_resource type="NoiseTexture" id="7"]
+[sub_resource type="NoiseTexture" id="NoiseTexture_aa3of"]
 seamless = true
-noise = SubResource( "8" )
+noise = SubResource( "FastNoiseLite_gncbr" )
 
 [sub_resource type="ShaderMaterial" id="9"]
 shader = ExtResource( "1" )
@@ -28,7 +28,7 @@ shader_param/color = Color(0.164706, 0.321569, 0.745098, 0.878431)
 shader_param/distortion_scale = 0.5
 shader_param/distortion_intensity = 0.01
 shader_param/distortion_speed = 0.05
-shader_param/noise = SubResource( "7" )
+shader_param/noise = SubResource( "NoiseTexture_aa3of" )
 
 [sub_resource type="ShaderMaterial" id="10"]
 shader = ExtResource( "8" )
@@ -49,9 +49,6 @@ material = SubResource( "9" )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( "4" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 
@@ -62,15 +59,9 @@ theme_override_font_sizes/font_size = 20
 text = "Compass text"
 horizontal_alignment = 1
 script = ExtResource( "7" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="InteractionMarker" type="Control" parent="HudLayer"]
 script = ExtResource( "4_o1y8t" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 color = Color(1, 1, 1, 0.627451)
 _lfo_resource = ExtResource( "5_f13oq" )
 _game_state_resource = ExtResource( "11" )
@@ -86,9 +77,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( "8_ktx3r" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 _game_state_resource = ExtResource( "11" )
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
@@ -98,9 +86,6 @@ material = SubResource( "10" )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( "10" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 _game_state_resource = ExtResource( "11" )
 
 [node name="ScreenDarken" type="ColorRect" parent="PauseMenuLayer"]
@@ -108,9 +93,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0.0627451, 0.627451)
 script = ExtResource( "12" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 _game_state_resource = ExtResource( "11" )
 
 [node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource( "9_mxrv6" )]
@@ -125,9 +107,6 @@ offset_left = -256.0
 offset_bottom = 256.0
 color = Color(0.180392, 0.180392, 0.180392, 1)
 script = ExtResource( "5" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DebugConsole" type="RichTextLabel" parent="DebugLayer"]
 visible = false
@@ -143,9 +122,6 @@ text = "# To write to the console:
 Signals.emit_debug_write(self, \"hello\")"
 scroll_following = true
 script = ExtResource( "12_qt77i" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VersionLabel" type="Label" parent="DebugLayer"]
 anchor_top = 1.0
@@ -156,6 +132,3 @@ offset_top = -26.0
 theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
 text = "Version text"
 script = ExtResource( "3" )
-__meta__ = {
-"_edit_use_anchors_": false
-}

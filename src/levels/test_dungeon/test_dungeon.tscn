@@ -1,18 +1,18 @@
-[gd_scene load_steps=35 format=3 uid="uid://bsdmk1pxtnmlo"]
+[gd_scene load_steps=35 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="PackedScene" uid="uid://d2sldws2aw68c" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
+[ext_resource type="Material" uid="uid://b84fpimwqkcky" path="res://src/levels/test_dungeon/material.tres" id="3_m5lxh"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="4_oftnn"]
 [ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="5_7fqri"]
-[ext_resource type="Material" uid="uid://u2dixa7fu604" path="res://src/levels/test_dungeon/material.tres" id="5_skqnu"]
 [ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="6_4a13o"]
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="7_b2l1v"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="8_4hvtj"]
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="10_g8ijk"]
 [ext_resource type="Resource" uid="uid://tqf2hjuhigop" path="res://assets/dialogue/end/end.tres" id="11_20llv"]
-[ext_resource type="Environment" uid="uid://wsmdsq7i47id" path="res://src/environment/default_env.tres" id="14_rfdqf"]
+[ext_resource type="Environment" uid="uid://bhnsvqfnmcgrm" path="res://src/environment/default_env.tres" id="14_rfdqf"]
 [ext_resource type="Script" path="res://src/environment/world_environment.gd" id="15_5xosi"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="15_e7a0f"]
 
@@ -158,7 +158,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7, 134)
 [node name="Walls" type="CSGCombiner3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.4058)
 layers = 4
-material_override = ExtResource( "5_skqnu" )
+material_override = ExtResource( "3_m5lxh" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -218,7 +218,7 @@ omni_range = 50.0
 
 [node name="Stairs" type="CSGCombiner3D" parent="Env/Entrance"]
 layers = 4
-material_override = ExtResource( "5_skqnu" )
+material_override = ExtResource( "3_m5lxh" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -319,7 +319,7 @@ depth = 4.0
 
 [node name="Exit" type="CSGCombiner3D" parent="Env/Entrance"]
 layers = 4
-material_override = ExtResource( "5_skqnu" )
+material_override = ExtResource( "3_m5lxh" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -418,7 +418,7 @@ input_node_path = NodePath("../Cable4")
 
 [node name="Block" type="CSGCombiner3D" parent="Env/Ascension"]
 layers = 4
-material_override = ExtResource( "5_skqnu" )
+material_override = ExtResource( "3_m5lxh" )
 use_collision = true
 collision_layer = 4
 collision_mask = 11

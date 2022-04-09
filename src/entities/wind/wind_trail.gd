@@ -7,7 +7,7 @@ extends Node3D
 @export var lifetime: float = 4.0
 
 @export var noise_texture: NoiseTexture
-@export var noise_strength: float = 1.0
+@export var noise_strength: float = 0.5
 
 var time: float = 0
 
