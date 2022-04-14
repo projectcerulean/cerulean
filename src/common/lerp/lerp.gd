@@ -9,28 +9,28 @@ static func delta_lerp(from: float, to: float, weight: float, process_delta: flo
 	if is_equal_approx(from, to):
 		return to
 	else:
-		return lerp(from, to, 1.0 - pow(10.0, -weight * process_delta))
+		return lerp(from, to, calculate_delta_weight(weight, process_delta))
 
 
 static func delta_lerp_angle(from: float, to: float, weight: float, process_delta: float) -> float:
 	if is_equal_approx(from, to):
 		return to
 	else:
-		return lerp_angle(from, to, 1.0 - pow(10.0, -weight * process_delta))
+		return lerp_angle(from, to, calculate_delta_weight(weight, process_delta))
 
 
 static func delta_lerp2(from: Vector2, to: Vector2, weight: float, process_delta: float) -> Vector2:
 	if from.is_equal_approx(to):
 		return to
 	else:
-		return from.lerp(to, 1.0 - pow(10.0, -weight * process_delta))
+		return from.lerp(to, calculate_delta_weight(weight, process_delta))
 
 
 static func delta_lerp3(from: Vector3, to: Vector3, weight: float, process_delta: float) -> Vector3:
 	if from.is_equal_approx(to):
 		return to
 	else:
-		return from.lerp(to, 1.0 - pow(10.0, -weight * process_delta))
+		return from.lerp(to, calculate_delta_weight(weight, process_delta))
 
 
 static func delta_slerp3(from: Vector3, to: Vector3, weight: float, process_delta: float) -> Vector3:
@@ -41,6 +41,10 @@ static func delta_slerp3(from: Vector3, to: Vector3, weight: float, process_delt
 	if from.is_equal_approx(to):
 		return to
 	else:
-		var new: Vector3 = from.slerp(to, 1.0 - pow(10.0, -weight * process_delta))
+		var new: Vector3 = from.slerp(to, calculate_delta_weight(weight, process_delta))
 		assert(new.is_normalized(), Errors.CONSISTENCY_ERROR)
 		return new
+
+
+static func calculate_delta_weight(weight: float, process_delta: float) -> float:
+	return 1.0 - pow(10.0, -weight * process_delta)
