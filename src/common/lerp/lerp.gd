@@ -34,6 +34,8 @@ static func delta_lerp3(from: Vector3, to: Vector3, weight: float, process_delta
 
 
 static func delta_slerp3(from: Vector3, to: Vector3, weight: float, process_delta: float) -> Vector3:
+	from = from.normalized()
+	to = to.normalized()
 	assert(from.is_normalized(), Errors.INVALID_ARGUMENT)
 	assert(to.is_normalized(), Errors.INVALID_ARGUMENT)
 	if from.is_equal_approx(to):
