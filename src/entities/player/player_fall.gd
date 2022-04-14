@@ -31,21 +31,21 @@ func physics_process(delta: float) -> void:
 	player.move_and_slide()
 
 	# Jump buffering
-	if Input.is_action_just_pressed("player_move_jump") and player.coyote_timer.is_stopped():
+	if Input.is_action_just_pressed(InputActions.JUMP) and player.coyote_timer.is_stopped():
 		player.jump_buffer_timer.start()
 
 
 func get_transition() -> StringName:
 	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - water_state_enter_offset:
 		return PlayerStates.SWIM
-	elif Input.is_action_just_pressed("player_move_jump") and not player.coyote_timer.is_stopped():
+	elif Input.is_action_just_pressed(InputActions.JUMP) and not player.coyote_timer.is_stopped():
 		return PlayerStates.JUMP
 	elif player.is_on_floor():
 		if is_equal_approx(player.velocity.x, 0.0) and is_equal_approx(player.velocity.z, 0.0):
 			return PlayerStates.IDLE
 		else:
 			return PlayerStates.RUN
-	elif player.velocity.y < 0.0 and Input.is_action_pressed("player_move_jump"):
+	elif player.velocity.y < 0.0 and Input.is_action_pressed(InputActions.JUMP):
 		return PlayerStates.GLIDE
 	else:
 		return StringName()

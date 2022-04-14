@@ -13,19 +13,19 @@ func process(delta: float) -> void:
 	super.process(delta)
 	if pause_menu.game_state_resource.current_state == GameStates.PAUSE:
 		var hovered_option: PauseMenuOption = menu.get_child(i_hovered_option) as PauseMenuOption
-		if Input.is_action_just_pressed(&"ui_left"):
+		if Input.is_action_just_pressed(InputActions.UI_LEFT):
 			Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 			hovered_option.adjust_option(-1)
-		elif Input.is_action_just_pressed(&"ui_right"):
+		elif Input.is_action_just_pressed(InputActions.UI_RIGHT):
 			Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 			hovered_option.adjust_option(1)
 
 
 func get_transition() -> StringName:
 	if pause_menu.game_state_resource.current_state == GameStates.PAUSE:
-		if Input.is_action_just_pressed(&"pause"):
+		if Input.is_action_just_pressed(InputActions.PAUSE):
 			Signals.emit_request_game_unpause(self)
 			return PauseMenuStates.MAIN
-		elif Input.is_action_just_pressed("ui_cancel"):
+		elif Input.is_action_just_pressed(InputActions.UI_CANCEL):
 			return PauseMenuStates.MAIN
 	return StringName()

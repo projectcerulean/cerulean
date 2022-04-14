@@ -7,11 +7,11 @@ extends PauseMenuState
 func get_transition() -> StringName:
 	if pause_menu.game_state_resource.current_state == GameStates.PAUSE:
 		var hovered_option: PauseMenuOption = menu.get_child(i_hovered_option) as PauseMenuOption
-		if Input.is_action_just_pressed(&"pause"):
+		if Input.is_action_just_pressed(InputActions.PAUSE):
 			Signals.emit_request_game_unpause(self)
-		elif Input.is_action_just_pressed("ui_cancel"):
+		elif Input.is_action_just_pressed(InputActions.UI_CANCEL):
 			Signals.emit_request_game_unpause(self)
-		elif Input.is_action_just_pressed("ui_accept"):
+		elif Input.is_action_just_pressed(InputActions.UI_ACCEPT):
 			if hovered_option.name == &"Resume":
 				Signals.emit_request_game_unpause(self)
 			elif hovered_option.name == &"ReloadLevel":

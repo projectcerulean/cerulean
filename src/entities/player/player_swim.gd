@@ -39,7 +39,7 @@ func physics_process(delta: float) -> void:
 	player.coyote_timer.start()
 
 	# Jump buffering
-	if Input.is_action_just_pressed("player_move_jump"):
+	if Input.is_action_just_pressed(InputActions.JUMP):
 		player.jump_buffer_timer.start()
 
 
@@ -48,10 +48,10 @@ func get_transition() -> StringName:
 		return PlayerStates.FALL
 	elif player.are_raycasts_colliding() and player.global_transform.origin.y > player.get_water_surface_height() + water_state_enter_offset:
 		return PlayerStates.RUN
-	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
+	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
 		if surfaced:
 			return PlayerStates.JUMP
-	elif Input.is_action_just_pressed("player_move_dive"):
+	elif Input.is_action_just_pressed(InputActions.DIVE):
 		return PlayerStates.DIVE
 	else:
 		return StringName()

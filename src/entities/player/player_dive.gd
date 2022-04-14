@@ -12,7 +12,10 @@ func physics_process(delta: float) -> void:
 
 	# Apply movement
 	var input_vector: Vector3 = (
-		player.input_vector + Vector3.UP * (float(Input.is_action_pressed("player_move_jump")) - float(Input.is_action_pressed("player_move_dive")))
+		player.input_vector + Vector3.UP * (
+			float(Input.is_action_pressed(InputActions.JUMP))
+			- float(Input.is_action_pressed(InputActions.DIVE))
+		)
 	)
 	if input_vector.length_squared() > 1.0:
 		input_vector = input_vector.normalized()

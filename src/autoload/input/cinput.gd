@@ -24,17 +24,21 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	thumbstick_resource_left.value = process_stick_input("left")
-	thumbstick_resource_right.value = process_stick_input("right")
+	thumbstick_resource_left.value = process_stick_input(
+		InputActions.LEFT_STICK_UP,
+		InputActions.LEFT_STICK_DOWN,
+		InputActions.LEFT_STICK_LEFT,
+		InputActions.LEFT_STICK_RIGHT,
+	)
+	thumbstick_resource_right.value = process_stick_input(
+		InputActions.RIGHT_STICK_UP,
+		InputActions.RIGHT_STICK_DOWN,
+		InputActions.RIGHT_STICK_LEFT,
+		InputActions.RIGHT_STICK_RIGHT,
+	)
 
 
-func process_stick_input(which_stick: String) -> Vector2:
-	assert(which_stick in ["left", "right"], Errors.INVALID_ARGUMENT)
-	var action_up: String = which_stick + "_stick_up"
-	var action_down: String = which_stick + "_stick_down"
-	var action_left: String = which_stick + "_stick_left"
-	var action_right: String = which_stick + "_stick_right"
-
+func process_stick_input(action_up: StringName, action_down: StringName, action_left: StringName, action_right: StringName) -> Vector2:
 	var value: Vector2 = Vector2.ZERO
 	var value_raw: Vector2 = Vector2.ZERO
 	value_raw.x = Input.get_action_strength(action_right) - Input.get_action_strength(action_left)

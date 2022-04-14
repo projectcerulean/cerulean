@@ -23,6 +23,6 @@ func process(delta: float) -> void:
 
 func get_transition() -> StringName:
 	if dialogue_manager.game_state_resource.current_state == GameStates.DIALOGUE:
-		if dialogue_manager.label.percent_visible >= 1.0 or Input.is_action_just_pressed("ui_accept"):
+		if dialogue_manager.label.percent_visible >= 1.0 or Input.is_action_just_pressed(InputActions.UI_ACCEPT):
 			return DialogueStates.WAIT
 	return StringName()

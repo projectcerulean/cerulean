@@ -26,9 +26,6 @@ offset_right = 512.0
 offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Resume" parent="Main" instance=ExtResource( "3_ht525" )]
 anchor_right = 0.0
@@ -79,9 +76,6 @@ offset_right = 512.0
 offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TestDungeon" parent="Levels" instance=ExtResource( "3_ht525" )]
 anchor_right = 0.0
@@ -112,9 +106,6 @@ offset_right = 512.0
 offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BackgroundMusic" parent="Settings" instance=ExtResource( "3_ht525" )]
 anchor_right = 0.0

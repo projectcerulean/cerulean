@@ -35,7 +35,7 @@ func get_transition() -> StringName:
 		return PlayerStates.SWIM
 	elif not player.are_raycasts_colliding():
 		return PlayerStates.FALL
-	elif Input.is_action_just_pressed("player_move_jump") or not player.jump_buffer_timer.is_stopped():
+	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
 		return PlayerStates.JUMP
 	elif Vector3(player.velocity.x, 0.0, player.velocity.z).is_equal_approx(Vector3.ZERO):
 		return PlayerStates.IDLE

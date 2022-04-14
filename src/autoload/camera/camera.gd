@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 	if game_state_resource.current_state in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
 		var rotation_speed_target: Vector2 = Vector2()
 		var distance_speed_target: float = 0.0
-		if Input.is_action_pressed("camera_move_zoom_toggle"):
+		if Input.is_action_pressed(InputActions.CAMERA_ZOOM_TOGGLE):
 			distance_speed_target = thumbstick_resource_right.value.y * camera_distance_speed_max
 		else:
 			rotation_speed_target = thumbstick_resource_right.value * camera_rotation_speed_max

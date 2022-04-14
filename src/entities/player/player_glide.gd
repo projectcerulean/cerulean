@@ -44,7 +44,7 @@ func physics_process(delta: float) -> void:
 	player.move_and_slide()
 
 	# Jump buffering
-	if Input.is_action_just_pressed("player_move_jump"):
+	if Input.is_action_just_pressed(InputActions.JUMP):
 		player.jump_buffer_timer.start()
 
 
@@ -56,7 +56,7 @@ func get_transition() -> StringName:
 			return PlayerStates.IDLE
 		else:
 			return PlayerStates.RUN
-	elif not Input.is_action_pressed("player_move_jump"):
+	elif not Input.is_action_pressed(InputActions.JUMP):
 		return PlayerStates.FALL
 	else:
 		return StringName()

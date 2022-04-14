@@ -64,11 +64,11 @@ func _process(_delta: float) -> void:
 	transform_resource.value = global_transform
 
 	# Perform interaction
-	if Input.is_action_just_pressed(&"interact") and game_state_resource.current_state == GameStates.GAMEPLAY:
+	if Input.is_action_just_pressed(InputActions.INTERACT) and game_state_resource.current_state == GameStates.GAMEPLAY:
 		Signals.emit_request_interaction(self)
 
 	# Pause the game
-	if Input.is_action_just_pressed(&"pause") and game_state_resource.current_state == GameStates.GAMEPLAY:
+	if Input.is_action_just_pressed(InputActions.PAUSE) and game_state_resource.current_state == GameStates.GAMEPLAY:
 		Signals.emit_request_game_pause(self)
 
 
