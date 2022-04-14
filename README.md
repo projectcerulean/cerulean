@@ -12,6 +12,8 @@
 3. Place the Cerulean PCK and the Godot executable in the same directory
 4. Rename the Godot executable to 'cerulean' and run it
 
+A gamepad is required for playing.
+
 
 ## Development
 
@@ -36,6 +38,8 @@ Assets are synced using IPFS (https://ipfs.io) to prevent having to check in lar
 
 * Source code (`src/` folder): GPLv3-or-later
 * Assets (`assets/` folder): CC BY-SA 4.0
+
+Some files are available under other (compatible) licenses. This is indicated by their license files and/or license headers.
 
 
 ## Links
