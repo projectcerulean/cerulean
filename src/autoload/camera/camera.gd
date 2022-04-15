@@ -19,7 +19,7 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @onready var area3d: Area3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/Area3D") as Area3D
 
 @export var camera_distance_min: float = 2.5
-@export var camera_distance_max: float = 25.0
+@export var camera_distance_max: float = 10.0
 @export var camera_distance_speed_max: float = 2.0
 @export var camera_distance_lerp_weight: float = 10.0
 @export var camera_rotation_speed_max: Vector2 = Vector2(PI, PI/2.0)
