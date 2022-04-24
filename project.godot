@@ -44,11 +44,6 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/autoload/audio_player/bgm/bgm_resource_player.gd"
 }, {
-"base": "Node",
-"class": &"CColor",
-"language": &"GDScript",
-"path": "res://src/common/color/ccolor.gd"
-}, {
 "base": "MeshInstance3D",
 "class": &"Cable",
 "language": &"GDScript",
@@ -292,7 +287,6 @@ _global_script_class_icons={
 "BgmIndex": "",
 "BgmResource": "",
 "BgmResourcePlayer": "",
-"CColor": "",
 "Cable": "",
 "Cardinal": "",
 "DataLoaderWorker": "",

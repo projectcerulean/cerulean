@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _on_debug_write(sender: Node, variant: Variant) -> void:
 	var string: String = str(variant)
-	var hex_color: String = CColor.str_to_color(sender.name).to_html(false)
+	var hex_color: String = Utils.str_to_color(sender.name).to_html(false)
 	buffer.append("[color=#%s][code][%s]:[/code][/color] %s" % [hex_color, sender.name, string])
 	text = "\n".join(buffer.slice(buffer.size() - lines_to_show))
 	visible = true
