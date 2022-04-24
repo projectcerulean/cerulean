@@ -5,7 +5,6 @@ extends StateTransitionListener
 
 @export var _trail_position_a: NodePath
 @export var _trail_position_b: NodePath
-@export var trail_color: Color
 @export var point_lifetime: float = 0.5
 
 var trail: Trail = null
@@ -29,7 +28,6 @@ func _on_target_state_entered(data: Dictionary) -> void:
 	super._on_target_state_entered(data)
 	trail = preload("res://src/entities/effects/trail/trail.tscn").instantiate()
 	add_child(trail)
-	trail.set_color(trail_color)
 	trail.set_lifetime(point_lifetime)
 
 

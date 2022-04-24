@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://ct8hn0mrxp0d6"]
 
-[ext_resource type="PackedScene" uid="uid://d2sldws2aw68c" path="res://src/entities/player/player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://da2ju3bvwkv1e" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="Material" uid="uid://b84fpimwqkcky" path="res://src/levels/test_dungeon/material.tres" id="3_m5lxh"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="10_g8ijk"]
 [ext_resource type="Resource" uid="uid://tqf2hjuhigop" path="res://assets/dialogue/end/end.tres" id="11_20llv"]
-[ext_resource type="Environment" uid="uid://bhnsvqfnmcgrm" path="res://src/environment/default_env.tres" id="14_rfdqf"]
-[ext_resource type="Script" path="res://src/environment/world_environment.gd" id="15_5xosi"]
+[ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="14_11lwf"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="15_e7a0f"]
+[ext_resource type="Environment" uid="uid://cj4m17hiwmdr2" path="res://src/levels/test_dungeon/environment.tres" id="15_nl3es"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ybceq"]
 resource_local_to_scene = true
@@ -446,9 +446,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 140.4)
 scene_key = &"TEST_SCENE"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( "14_rfdqf" )
-script = ExtResource( "15_5xosi" )
+[node name="WorldEnvironment" parent="." instance=ExtResource( "14_11lwf" )]
+environment = ExtResource( "15_nl3es" )
 
 [node name="BgmArea" parent="." instance=ExtResource( "15_e7a0f" )]
 bgm = &"WATERWORKS"

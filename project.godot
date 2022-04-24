@@ -54,6 +54,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/constants/cardinal.gd"
 }, {
+"base": "Environment",
+"class": &"CeruleanEnvironment",
+"language": &"GDScript",
+"path": "res://src/environment/cerulean_environment.gd"
+}, {
 "base": "Node",
 "class": &"DataLoaderWorker",
 "language": &"GDScript",
@@ -83,6 +88,11 @@ _global_script_classes=[{
 "class": &"DialogueStates",
 "language": &"GDScript",
 "path": "res://src/autoload/ui/dialogue_manager/dialogue_states.gd"
+}, {
+"base": "Resource",
+"class": &"EnvironmentResource",
+"language": &"GDScript",
+"path": "res://src/common/resource_types/environment_resource.gd"
 }, {
 "base": "Node",
 "class": &"Errors",
@@ -289,12 +299,14 @@ _global_script_class_icons={
 "BgmResourcePlayer": "",
 "Cable": "",
 "Cardinal": "",
+"CeruleanEnvironment": "",
 "DataLoaderWorker": "",
 "DialogueInteractionAction": "",
 "DialogueManager": "",
 "DialogueResource": "",
 "DialogueState": "",
 "DialogueStates": "",
+"EnvironmentResource": "",
 "Errors": "",
 "GameState": "",
 "GameStateManager": "",
@@ -510,4 +522,3 @@ common/physics_ticks_per_second=120
 
 shadows/directional_shadow/size=8192
 anti_aliasing/quality/msaa=2
-environment/defaults/default_environment="res://src/environment/default_env.tres"

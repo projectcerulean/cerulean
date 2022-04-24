@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 shader_type canvas_item;
 
-uniform vec4 color : hint_color;
+uniform vec4 color : hint_color = vec4(0.0);
 uniform float distortion_scale = 0.5;
 uniform float distortion_intensity = 0.01;
 uniform float distortion_speed = 0.05;

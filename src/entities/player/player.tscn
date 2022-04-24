@@ -284,21 +284,18 @@ script = ExtResource( "8" )
 _target_state = NodePath("../../StateMachine/Glide")
 _trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
 _trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
-trail_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
 _target_state = NodePath("../../StateMachine/Glide")
 _trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
 _trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
-trail_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [node name="DiveTrailRendererLeft" type="Node" parent="TrailRenderers"]
 script = ExtResource( "8" )
 _target_state = NodePath("../../StateMachine/Dive")
 _trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
 _trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
-trail_color = Color(0.310278, 0.560628, 0.878272, 1)
 point_lifetime = 1.0
 
 [node name="DiveTrailRendererRight" type="Node" parent="TrailRenderers"]
@@ -306,7 +303,6 @@ script = ExtResource( "8" )
 _target_state = NodePath("../../StateMachine/Dive")
 _trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
 _trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
-trail_color = Color(0.310278, 0.560628, 0.878272, 1)
 point_lifetime = 1.0
 
 [node name="BlobShadow" type="Node3D" parent="."]

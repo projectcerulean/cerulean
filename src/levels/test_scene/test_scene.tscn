@@ -16,8 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="14_e3mr8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="15_7eokh"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="17_55rd1"]
-[ext_resource type="Environment" uid="uid://ch335k72yegre" path="res://src/environment/default_env.tres" id="18_11ux8"]
-[ext_resource type="Script" path="res://src/environment/world_environment.gd" id="19_v0qrx"]
+[ext_resource type="Environment" uid="uid://jvj72xlqpld8" path="res://src/levels/test_scene/environment.tres" id="18_3u81p"]
+[ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="18_uwe8s"]
 [ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="21_i6ktg"]
 
@@ -1048,9 +1048,8 @@ scene_key = &"TEST_DUNGEON"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 16, 64)
 angle = -1.047
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( "18_11ux8" )
-script = ExtResource( "19_v0qrx" )
+[node name="WorldEnvironment" parent="." instance=ExtResource( "18_uwe8s" )]
+environment = ExtResource( "18_3u81p" )
 
 [node name="BgmArea" parent="." instance=ExtResource( "21_i6ktg" )]
 bgm = &"SEA_AND_SKY"

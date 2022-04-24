@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://bt5yhnick1ydu"]
+[gd_scene load_steps=22 format=3 uid="uid://bt5yhnick1ydu"]
 
 [ext_resource type="Shader" path="res://src/autoload/ui/effects/underwater_effect.gdshader" id="1"]
 [ext_resource type="Script" path="res://src/autoload/ui/debug/version_label/version_label.gd" id="3"]
+[ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="3_34h0a"]
 [ext_resource type="Script" path="res://src/autoload/ui/effects/underwater_effect.gd" id="4"]
 [ext_resource type="Script" path="res://src/autoload/ui/hud/interaction_marker.gd" id="4_o1y8t"]
 [ext_resource type="Script" path="res://src/autoload/ui/debug/vector_visualizer/vector_visualizer.gd" id="5"]
@@ -24,7 +25,7 @@ noise = SubResource( "FastNoiseLite_gncbr" )
 
 [sub_resource type="ShaderMaterial" id="9"]
 shader = ExtResource( "1" )
-shader_param/color = Color(0.164706, 0.321569, 0.745098, 0.878431)
+shader_param/color = Color(0, 0, 0, 0)
 shader_param/distortion_scale = 0.5
 shader_param/distortion_intensity = 0.01
 shader_param/distortion_speed = 0.05
@@ -49,6 +50,7 @@ material = SubResource( "9" )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( "4" )
+_environment_resource = ExtResource( "3_34h0a" )
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 

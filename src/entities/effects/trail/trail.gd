@@ -6,6 +6,7 @@ extends MeshInstance3D
 
 @export var trail_width: Curve
 @export var point_lifetime: float = 1.0
+@export var _environment_resource: Resource
 
 var curve_points_a: PackedVector3Array = []
 var curve_points_b: PackedVector3Array = []
@@ -14,14 +15,14 @@ var time: float = 0.0
 var i_first_nondead_point: int = 0
 var shall_queue_free: bool = false
 
+@onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
 @onready var immediate_mesh: ImmediateMesh = mesh as ImmediateMesh
-@onready var material: StandardMaterial3D = material_override as StandardMaterial3D
 
 
 func _ready() -> void:
+	assert(environment_resource != null, Errors.NULL_RESOURCE)
 	assert(immediate_mesh != null, Errors.NULL_RESOURCE)
 	assert(trail_width != null, Errors.NULL_RESOURCE)
-	assert(material != null, Errors.NULL_RESOURCE)
 	assert(point_lifetime > 0.0, Errors.INVALID_ARGUMENT)
 
 
@@ -42,9 +43,15 @@ func _process(delta: float) -> void:
 			var point_b: Vector3 = curve_points_b[i_point]
 			var point_middle: Vector3 = (point_a + point_b) / 2.0
 
+			var color: Color = environment_resource.value.wind_trail_color
+			if point_middle.y < 0.0:  # Naive but works for now
+				color = environment_resource.value.water_trail_color
+
 			var point_age: float = time - curve_point_creation_times[i_point]
 			var width_factor: float = trail_width.interpolate(point_age / point_lifetime)
+			immediate_mesh.surface_set_color(color)
 			immediate_mesh.surface_add_vertex(point_a * width_factor + point_middle * (1.0 - width_factor))
+			immediate_mesh.surface_set_color(color)
 			immediate_mesh.surface_add_vertex(point_b * width_factor + point_middle * (1.0 - width_factor))
 		immediate_mesh.surface_end()
 	elif shall_queue_free:
@@ -60,10 +67,6 @@ func add_segment(point_position_a: Vector3, point_position_b: Vector3) -> void:
 
 func set_lifetime(lifetime: float):
 	point_lifetime = lifetime
-
-
-func set_color(color: Color):
-	material.albedo_color = color
 
 
 func finalize() -> void:

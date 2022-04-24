@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3la8dk8cql35"]
+[gd_scene load_steps=8 format=3 uid="uid://c3la8dk8cql35"]
 
 [ext_resource type="PackedScene" uid="uid://yqqga1qlo5lc" path="res://src/entities/effects/trail/trail.tscn" id="1_dpfbh"]
 [ext_resource type="Script" path="res://src/entities/wind/wind_trail.gd" id="1_w4d55"]
@@ -10,24 +10,12 @@ frequency = 0.005
 seamless = true
 noise = SubResource( "FastNoiseLite_ve0cu" )
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whbtm"]
-resource_local_to_scene = true
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.835294, 0.835294, 0.941176, 1)
-
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ee5ll"]
 resource_local_to_scene = true
 
 [sub_resource type="Curve" id="Curve_5onm7"]
 resource_local_to_scene = true
 _data = [Vector2(0.00576369, 0), 0.0, 2.64193, 0, 0, Vector2(0.501441, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.69064, 0.0, 0, 0]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2w1vm"]
-resource_local_to_scene = true
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.835294, 0.835294, 0.941176, 1)
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_f5yi6"]
 resource_local_to_scene = true
@@ -51,13 +39,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 [node name="Trails" type="Node" parent="."]
 
 [node name="TrailHorizontal" parent="Trails" instance=ExtResource( "1_dpfbh" )]
-material_override = SubResource( "StandardMaterial3D_whbtm" )
 mesh = SubResource( "ImmediateMesh_ee5ll" )
 skeleton = NodePath("../..")
 trail_width = SubResource( "Curve_5onm7" )
 
 [node name="TrailVertical" parent="Trails" instance=ExtResource( "1_dpfbh" )]
-material_override = SubResource( "StandardMaterial3D_2w1vm" )
 mesh = SubResource( "ImmediateMesh_f5yi6" )
 skeleton = NodePath("../..")
 trail_width = SubResource( "Curve_5onm7" )
