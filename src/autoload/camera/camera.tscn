@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8gdetmgeiwym"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://src/autoload/camera/camera.gd" id="1_dbun4"]
-[ext_resource type="Resource" uid="uid://1jerxlyauuto" path="res://src/autoload/input/thumbstick_resource_right.tres" id="2_sj0tv"]
+[ext_resource type="Resource" path="res://src/autoload/thumbstick_processor/thumbstick_resource_right.tres" id="2_sj0tv"]
 [ext_resource type="Resource" uid="uid://bbaupgv7alorj" path="res://src/autoload/settings_manager/settings.tres" id="3_dhgty"]
 [ext_resource type="Resource" path="res://src/autoload/camera/camera_transform.tres" id="4_n4bb1"]
 [ext_resource type="Resource" path="res://src/autoload/camera/camera_target_transform.tres" id="5_sufsx"]

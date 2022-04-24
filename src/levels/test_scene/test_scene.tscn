@@ -1,6 +1,6 @@
 [gd_scene load_steps=86 format=3 uid="uid://ceqsphji2ao1c"]
 
-[ext_resource type="PackedScene" uid="uid://d2sldws2aw68c" path="res://src/entities/player/player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://da2ju3bvwkv1e" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="Material" uid="uid://d8qn64cdtd6i" path="res://src/levels/test_scene/stone_material.tres" id="3_8uyq8"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="14_e3mr8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="15_7eokh"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="17_55rd1"]
-[ext_resource type="Environment" uid="uid://bhnsvqfnmcgrm" path="res://src/environment/default_env.tres" id="18_11ux8"]
+[ext_resource type="Environment" uid="uid://ch335k72yegre" path="res://src/environment/default_env.tres" id="18_11ux8"]
 [ext_resource type="Script" path="res://src/environment/world_environment.gd" id="19_v0qrx"]
 [ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="21_i6ktg"]
