@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://by2nwnn6lar31"]
+
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/push_button/push_button.gd" id="1_1bmxc"]
+[ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_7i1pt"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="4_rrpi8"]
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="5_fygd5"]
+[ext_resource type="Script" path="res://src/sound/sfx/sfx_state_transition_listener.gd" id="6_ssf8g"]
+[ext_resource type="Resource" uid="uid://dxgetvxs1tqfh" path="res://src/sound/sfx/sfx_resources/switch_enabled.tres" id="7_gi7uk"]
+[ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="8_2adit"]
+[ext_resource type="Resource" uid="uid://cvlcy7dsg6p28" path="res://src/sound/sfx/sfx_resources/switch_disabled.tres" id="8_aedo8"]
+[ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="10_ey7nc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lrnre"]
+height = 0.25
+radius = 0.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1h8m4"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3gut"]
+albedo_color = Color(0.415686, 0.415686, 0.415686, 1)
+metallic = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ewqwe"]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmduj"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource( "5_fygd5" )
+shader_param/activation = 0.0
+shader_param/albedo = Color(1, 0.27, 0, 1)
+shader_param/roughness = 0.5
+shader_param/specular = 0.5
+shader_param/metallic = 1.0
+shader_param/emission_energy = 1.0
+
+[node name="PushButton" type="Area3D"]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource( "1_1bmxc" )
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+shape = SubResource( "CylinderShape3D_lrnre" )
+
+[node name="Base" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
+layers = 8
+mesh = SubResource( "CylinderMesh_1h8m4" )
+surface_material_override/0 = SubResource( "StandardMaterial3D_t3gut" )
+
+[node name="Button" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+script = ExtResource( "2_7i1pt" )
+color_disabled = Color(1, 0.270588, 0, 1)
+color_enabled = Color(0, 0.709804, 1, 1)
+
+[node name="ColorStateEnabled" type="Node" parent="Button"]
+script = ExtResource( "10_ey7nc" )
+_target_state = NodePath("../../StateMachine/Enabled")
+_target_node = NodePath("..")
+property = "activation"
+tween_duration = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Button"]
+layers = 8
+mesh = SubResource( "CylinderMesh_ewqwe" )
+surface_material_override/0 = SubResource( "ShaderMaterial_lmduj" )
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Button"]
+layers = 8
+light_color = Color(1, 0.270588, 0, 1)
+light_energy = 2.0
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( "4_rrpi8" )
+_initial_state = NodePath("Disabled")
+
+[node name="Disabled" type="Node" parent="StateMachine"]
+script = ExtResource( "8_2adit" )
+
+[node name="Enabled" type="Node" parent="StateMachine"]
+script = ExtResource( "8_2adit" )
+
+[node name="SfxStateEnabled" type="Node" parent="."]
+script = ExtResource( "6_ssf8g" )
+_target_state = NodePath("../StateMachine/Enabled")
+_sfx_resource_enter = ExtResource( "7_gi7uk" )
+_sfx_resource_exit = ExtResource( "8_aedo8" )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

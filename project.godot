@@ -204,6 +204,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/common/state_machine/property_tweener_transition_listener.gd"
 }, {
+"base": "Area3D",
+"class": &"PushButton",
+"language": &"GDScript",
+"path": "res://src/entities/puzzle_elements/push_button/push_button.gd"
+}, {
 "base": "Node",
 "class": &"PuzzleElementStates",
 "language": &"GDScript",
@@ -329,6 +334,7 @@ _global_script_class_icons={
 "PlayerState": "",
 "PlayerStates": "",
 "PropertyTweenerTransitionListener": "",
+"PushButton": "",
 "PuzzleElementStates": "",
 "Settings": "",
 "SettingsResource": "",
