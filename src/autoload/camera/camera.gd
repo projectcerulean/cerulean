@@ -26,6 +26,7 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var camera_rotation_lerp_weight: float = 15.0
 @export var camera_push_weight_forwards: float = 10.0
 @export var camera_push_weight_backwards: float = 5.0
+@export var fov_change_tween_time: float = 0.5
 
 var camera_rotation_speed: Vector2 = Vector2()
 var camera_distance_speed: float = 0.0
@@ -40,12 +41,14 @@ var water_collision_shapes: Array
 @onready var camera_distance_default: float = camera_anchor.position.z
 @onready var yaw_default: float = yaw_pivot.rotation.y
 @onready var pitch_default: float = pitch_pivot.rotation.x
+@onready var fov_tween: Tween
 
 
 func _ready() -> void:
 	Signals.scene_changed.connect(self._on_scene_changed)
 	Signals.area_area_entered.connect(self._on_area_area_entered)
 	Signals.area_area_exited.connect(self._on_area_area_exited)
+	Signals.setting_updated.connect(_on_setting_updated)
 
 	assert(thumbstick_resource_right != null, Errors.NULL_RESOURCE)
 	assert(settings_resource != null, Errors.NULL_RESOURCE)
@@ -71,9 +74,9 @@ func _process(delta: float) -> void:
 			distance_speed_target = thumbstick_resource_right.value.y * camera_distance_speed_max
 		else:
 			rotation_speed_target = thumbstick_resource_right.value * camera_rotation_speed_max
-			if settings_resource.settings[Settings.CAMERA_X_INVERTED] == Settings.Boolean.YES:
+			if settings_resource.settings[Settings.CAMERA_X_INVERTED]:
 				rotation_speed_target.x *= -1.0
-			if settings_resource.settings[Settings.CAMERA_Y_INVERTED] == Settings.Boolean.YES:
+			if settings_resource.settings[Settings.CAMERA_Y_INVERTED]:
 				rotation_speed_target.y *= -1.0
 
 		camera_distance_speed = Lerp.delta_lerp(camera_distance_speed, distance_speed_target, camera_distance_lerp_weight, delta)
@@ -134,3 +137,14 @@ func _on_area_area_exited(sender: Area3D, area: Area3D) -> void:
 
 	if water_collision_shapes.size() == 0:
 		Signals.emit_camera_water_exited(camera)
+
+
+func _on_setting_updated(_sender: Node, key: StringName, value_index: int) -> void:
+	if key == Settings.FIELD_OF_VIEW:
+		if fov_tween != null:
+			fov_tween.kill()
+		fov_tween = create_tween()
+		fov_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		fov_tween.set_trans(Tween.TRANS_QUINT)
+		fov_tween.set_ease(Tween.EASE_OUT)
+		fov_tween.tween_property(camera, "fov", float(Settings.SETTINGS[Settings.FIELD_OF_VIEW][Settings.VALUES][value_index]), fov_change_tween_time)

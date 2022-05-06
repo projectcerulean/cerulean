@@ -45,12 +45,12 @@ func set_highlight(highlight: bool) -> void:
 
 func adjust_option(delta: int) -> void:
 	if is_settings_option:
-		var n_options: int = len(Settings.SETTINGS[key_string][Settings.VALUE_NAMES])
+		var n_options: int = len(Settings.SETTINGS[key_string][Settings.VALUES])
 		var value_new: int = posmod(settings_resource.settings[key_string] + delta, n_options)
 		Signals.emit_request_setting_update(self, key_string, value_new)
 
 
-func _on_setting_updated(_sender: Node, _key: StringName, _value: int) -> void:
+func _on_setting_updated(_sender: Node, _key: StringName, _value_index: int) -> void:
 	if is_settings_option:
 		value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings_resource.settings[key_string]]
 

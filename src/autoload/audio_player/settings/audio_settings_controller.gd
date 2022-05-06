@@ -11,6 +11,6 @@ func _ready() -> void:
 	assert(bus_index_bgm >= 0, Errors.INVALID_AUDIO_BUS)
 
 
-func _on_setting_updated(_sender: Node, key: StringName, value: int) -> void:
+func _on_setting_updated(_sender: Node, key: StringName, value_index: int) -> void:
 	if key == Settings.BACKGROUND_MUSIC:
-		AudioServer.set_bus_mute(bus_index_bgm, value == Settings.Boolean.NO)
+		AudioServer.set_bus_mute(bus_index_bgm, not Settings.SETTINGS[Settings.BACKGROUND_MUSIC][Settings.VALUES][value_index])
