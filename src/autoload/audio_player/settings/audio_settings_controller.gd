@@ -28,6 +28,7 @@ func _ready() -> void:
 	assert(settings_resource != null, Errors.NULL_RESOURCE)
 	assert(bus_index_bgm >= 0, Errors.INVALID_AUDIO_BUS)
 	bgm_volume = float(Settings.SETTINGS.BACKGROUND_MUSIC.VALUES[settings_resource.settings[Settings.BACKGROUND_MUSIC]])
+	AudioServer.set_bus_mute(bus_index_bgm, not Settings.SETTINGS.BACKGROUND_MUSIC.VALUES[settings_resource.settings[Settings.BACKGROUND_MUSIC]])
 
 
 func _on_setting_updated(_sender: Node, key: StringName) -> void:
