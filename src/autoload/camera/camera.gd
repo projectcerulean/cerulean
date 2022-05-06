@@ -63,6 +63,8 @@ func _ready() -> void:
 	assert(camera != null, Errors.NULL_NODE)
 	assert(area3d != null, Errors.NULL_NODE)
 
+	camera.fov = float(Settings.SETTINGS.FIELD_OF_VIEW.VALUES[settings_resource.settings[Settings.FIELD_OF_VIEW]])
+
 
 func _process(delta: float) -> void:
 	global_transform.origin = target_transform_resource.value.origin
@@ -74,9 +76,9 @@ func _process(delta: float) -> void:
 			distance_speed_target = thumbstick_resource_right.value.y * camera_distance_speed_max
 		else:
 			rotation_speed_target = thumbstick_resource_right.value * camera_rotation_speed_max
-			if settings_resource.settings[Settings.CAMERA_X_INVERTED]:
+			if Settings.SETTINGS.CAMERA_X_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_X_INVERTED]]:
 				rotation_speed_target.x *= -1.0
-			if settings_resource.settings[Settings.CAMERA_Y_INVERTED]:
+			if Settings.SETTINGS.CAMERA_Y_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_Y_INVERTED]]:
 				rotation_speed_target.y *= -1.0
 
 		camera_distance_speed = Lerp.delta_lerp(camera_distance_speed, distance_speed_target, camera_distance_lerp_weight, delta)
@@ -139,7 +141,7 @@ func _on_area_area_exited(sender: Area3D, area: Area3D) -> void:
 		Signals.emit_camera_water_exited(camera)
 
 
-func _on_setting_updated(_sender: Node, key: StringName, value_index: int) -> void:
+func _on_setting_updated(_sender: Node, key: StringName) -> void:
 	if key == Settings.FIELD_OF_VIEW:
 		if fov_tween != null:
 			fov_tween.kill()
@@ -147,4 +149,4 @@ func _on_setting_updated(_sender: Node, key: StringName, value_index: int) -> vo
 		fov_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		fov_tween.set_trans(Tween.TRANS_QUINT)
 		fov_tween.set_ease(Tween.EASE_OUT)
-		fov_tween.tween_property(camera, "fov", float(Settings.SETTINGS[Settings.FIELD_OF_VIEW][Settings.VALUES][value_index]), fov_change_tween_time)
+		fov_tween.tween_property(camera, "fov", float(Settings.SETTINGS.FIELD_OF_VIEW.VALUES[settings_resource.settings[Settings.FIELD_OF_VIEW]]), fov_change_tween_time)

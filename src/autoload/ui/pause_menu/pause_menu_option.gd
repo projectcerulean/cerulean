@@ -29,6 +29,7 @@ func _ready() -> void:
 
 	if is_settings_option:
 		key_node.text = Settings.SETTINGS[key_string][Settings.OPTION_NAME]
+		value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings_resource.settings[key_string]]
 	elif is_level_option:
 		key_node.text = Levels.LEVELS[key_string][Levels.LEVEL_NAME]
 	else:
@@ -50,7 +51,7 @@ func adjust_option(delta: int) -> void:
 		Signals.emit_request_setting_update(self, key_string, value_new)
 
 
-func _on_setting_updated(_sender: Node, _key: StringName, _value_index: int) -> void:
+func _on_setting_updated(_sender: Node, _key: StringName) -> void:
 	if is_settings_option:
 		value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings_resource.settings[key_string]]
 
