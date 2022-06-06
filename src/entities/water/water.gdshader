@@ -8,11 +8,11 @@ render_mode unshaded, cull_disabled;
 
 uniform int mesh_size_x = 64;
 uniform int mesh_size_y = 64;
-uniform vec4 water_color: hint_color;
-uniform vec4 water_color_highlight: hint_color;
+uniform vec4 water_color: source_color;
+uniform vec4 water_color_highlight: source_color;
 uniform float water_color_highlight_threshold = 0.55;
 
-uniform vec4 foam_color: hint_color;
+uniform vec4 foam_color: source_color;
 uniform float foam_width = 0.2;
 uniform float foam_smooth = 0.01;
 

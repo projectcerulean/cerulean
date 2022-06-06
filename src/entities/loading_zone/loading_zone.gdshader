@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 shader_type spatial;
 
-uniform vec4 color: hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 color: source_color = vec4(0.0, 0.0, 0.0, 1.0);
 uniform float beer_factor = 2.0;
 
 varying mat4 camera;

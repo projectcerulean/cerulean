@@ -5,8 +5,8 @@ shader_type spatial;
 
 uniform float flow_position = 0.0;
 uniform float smooth_range = 0.5;
-uniform vec4 color_old: hint_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform vec4 color_new: hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 color_old: source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 color_new: source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform bool flip_colors = false;
 
 void fragment() {

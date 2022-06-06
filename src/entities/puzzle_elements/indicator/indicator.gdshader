@@ -4,7 +4,7 @@
 shader_type spatial;
 
 uniform float activation: hint_range(0.0, 1.0) = 0.0;
-uniform vec4 albedo: hint_color = vec4(1.0, 0.27, 0.0, 1.0);
+uniform vec4 albedo: source_color = vec4(1.0, 0.27, 0.0, 1.0);
 uniform float roughness: hint_range(0.0, 1.0) = 0.5;
 uniform float specular: hint_range(0.0, 1.0) = 0.5;
 uniform float metallic: hint_range(0.0, 1.0) = 1.0;

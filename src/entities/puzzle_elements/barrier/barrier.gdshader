@@ -4,7 +4,7 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled;
 
-uniform vec4 color: hint_color;
+uniform vec4 color: source_color;
 uniform float noise_threshold = 0.55;
 
 uniform float alpha_factor: hint_range(0.0, 1.0) = 1.0;

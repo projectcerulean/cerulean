@@ -24,11 +24,11 @@ size = Vector3(0.1, 1, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_qiqbg"]
 resource_local_to_scene = true
@@ -38,11 +38,11 @@ size = Vector3(0.1, 2, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_tabba"]
 resource_local_to_scene = true
@@ -52,11 +52,11 @@ size = Vector3(0.1, 5.6, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_7bvkp"]
 resource_local_to_scene = true
@@ -66,11 +66,11 @@ size = Vector3(0.1, 2, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_c0wn1"]
 resource_local_to_scene = true
@@ -80,11 +80,11 @@ size = Vector3(0.1, 4, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_fy0ne"]
 resource_local_to_scene = true
@@ -94,11 +94,11 @@ size = Vector3(0.1, 10, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_noxna"]
 resource_local_to_scene = true
@@ -108,11 +108,11 @@ size = Vector3(0.1, 6, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_s1nv1"]
 resource_local_to_scene = true
@@ -122,11 +122,11 @@ size = Vector3(0.1, 18.6, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_vq164"]
 resource_local_to_scene = true
@@ -136,11 +136,11 @@ size = Vector3(0.1, 22.2, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource( "8_4hvtj" )
+shader_param/color_new = Color(0, 0.709804, 1, 1)
+shader_param/color_old = Color(1, 0.270588, 0, 1)
+shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/flip_colors = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vrsx2"]
 size = Vector3(512, 512, 512)
