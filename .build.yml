@@ -21,8 +21,7 @@ tasks:
 
   - download_godot: |
       curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha9/Godot_v4.0-alpha9_linux.64.zip
-      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha9/SHA512-SUMS.txt
-      sha512sum --check --ignore-missing SHA512-SUMS.txt
+      echo '36dcd045ed1bf93f5f333704689716c4cdde185c68fe23ebcd90e3da07768637c1fc0372e3f523cfcf9673d54a2e090dcc2c22e397a39d15c6067772fd6bfa12  Godot_v4.0-alpha9_linux.64.zip' | sha512sum --check
       unzip Godot_v4.0-alpha9_linux.64.zip
 
   - export_game_pack: |
