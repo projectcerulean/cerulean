@@ -6,6 +6,11 @@ extends PlayerState
 @export var move_speed: float = 5.0
 @export var move_speed_lerp_weight: float = 1.0
 
+func enter(data: Dictionary) -> void:
+	super.enter(data)
+	if data[OLD_STATE] == PlayerStates.SWIM:
+		player.global_transform.origin.y = minf(player.global_transform.origin.y, player.get_water_surface_height() - water_state_enter_offset)
+
 
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
@@ -25,8 +30,9 @@ func physics_process(delta: float) -> void:
 
 func get_transition() -> StringName:
 	if not player.is_in_water():
-		return PlayerStates.FALL
-	elif player.velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
-		return PlayerStates.SWIM
+		if is_inf(player.get_water_surface_height()):
+			return PlayerStates.FALL
+		else:
+			return PlayerStates.SWIM
 	else:
 		return StringName()

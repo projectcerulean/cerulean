@@ -10,7 +10,7 @@ func enter(data: Dictionary) -> void:
 
 
 func get_transition() -> StringName:
-	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - water_state_enter_offset:
+	if player.is_in_water():
 		return PlayerStates.SWIM
 	elif not player.are_raycasts_colliding():
 		return PlayerStates.FALL

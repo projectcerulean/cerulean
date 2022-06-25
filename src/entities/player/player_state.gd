@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 class_name PlayerState extends State
 
-@export var water_state_enter_offset: float = 0.01
+@export var water_state_enter_offset: float = 0.1
 
 # Reference to the player object so that it can be manipulated inside the states
 var player: Player = null

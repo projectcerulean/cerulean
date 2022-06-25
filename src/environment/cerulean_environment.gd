@@ -10,4 +10,7 @@ extends Environment
 @export var water_color_foam: Color
 @export var water_screen_effect_color: Color
 @export var water_trail_color: Color
+@export var water_wave_period: Vector2
+@export var water_wave_strength: Vector2
+@export var water_wave_time_factor: Vector2
 @export var wind_trail_color: Color

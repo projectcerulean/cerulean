@@ -36,7 +36,7 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if player.is_in_water() and player.global_transform.origin.y < player.get_water_surface_height() - water_state_enter_offset:
+	if player.is_in_water():
 		return PlayerStates.SWIM
 	elif Input.is_action_just_pressed(InputActions.JUMP) and not player.coyote_timer.is_stopped():
 		return PlayerStates.JUMP

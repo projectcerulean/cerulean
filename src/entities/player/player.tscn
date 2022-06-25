@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://da2ju3bvwkv1e"]
+[gd_scene load_steps=42 format=3 uid="uid://da2ju3bvwkv1e"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://src/entities/player/player_glide.gd" id="7"]
 [ext_resource type="Script" path="res://src/entities/player/squash_stretch.gd" id="7_pchkq"]
 [ext_resource type="Script" path="res://src/entities/player/spring.gd" id="7_pus1y"]
+[ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="7_ufvp6"]
 [ext_resource type="Script" path="res://src/entities/player/player_trail_renderer.gd" id="8"]
 [ext_resource type="Script" path="res://src/entities/player/player_swim.gd" id="9"]
 [ext_resource type="Script" path="res://src/entities/player/player_mesh_state_glide.gd" id="9_uwrsl"]
@@ -88,6 +89,7 @@ _input_vector_resource = ExtResource( "3_2i2xh" )
 _game_state_resource = ExtResource( "4_gviv5" )
 _transform_resource = ExtResource( "5_f776o" )
 _camera_transform_resource = ExtResource( "6_sk484" )
+_environment_resource = ExtResource( "7_ufvp6" )
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource( "1" )

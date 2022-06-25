@@ -14,6 +14,10 @@ func _ready() -> void:
 	assert(shader_material != null, Errors.NULL_RESOURCE)
 
 func _process(_delta: float) -> void:
+	shader_material.set_shader_param(&"wave_time", Utils.get_game_uptime())
+	shader_material.set_shader_param(&"wave_period", environment_resource.value.water_wave_period)
+	shader_material.set_shader_param(&"wave_strength", environment_resource.value.water_wave_strength)
+	shader_material.set_shader_param(&"wave_time_factor", environment_resource.value.water_wave_time_factor)
 	shader_material.set_shader_param(&"beer_factor", environment_resource.value.water_beer_factor)
 	shader_material.set_shader_param(&"water_color", environment_resource.value.water_color)
 	shader_material.set_shader_param(&"water_color_highlight", environment_resource.value.water_color_highlight)

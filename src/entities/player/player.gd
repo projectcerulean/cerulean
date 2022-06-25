@@ -9,9 +9,10 @@ extends CharacterBody3D
 @export var _game_state_resource: Resource
 @export var _transform_resource: Resource
 @export var _camera_transform_resource: Resource
+@export var _environment_resource: Resource
 
 var input_vector: Vector3
-var water_collision_shapes: Array
+var water_bodies: Array[Area3D]
 
 @onready var raycast_container: Node3D = get_node("RaycastContainer") as Node3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
@@ -22,6 +23,7 @@ var water_collision_shapes: Array
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 @onready var transform_resource: TransformResource = _transform_resource as TransformResource
 @onready var camera_transform_resource: TransformResource = _camera_transform_resource as TransformResource
+@onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
 
 
 func _ready() -> void:
@@ -33,6 +35,7 @@ func _ready() -> void:
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
+	assert(environment_resource != null, Errors.NULL_RESOURCE)
 	assert(raycast_container != null, Errors.NULL_NODE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
@@ -82,21 +85,16 @@ func _on_area_body_entered(sender: Area3D, body: PhysicsBody3D) -> void:
 	if body != self:
 		return
 
-	var collision_shape: CollisionShape3D = Utils.get_collision_shape_for_area(sender)
-	assert(collision_shape != null, Errors.NULL_NODE)
-
-	if str(sender.owner.name).begins_with("Water"):
-		water_collision_shapes.append(collision_shape)
+	assert(str(sender.owner.name).begins_with("Water"), Errors.CONSISTENCY_ERROR)
+	water_bodies.append(sender)
 
 
 func _on_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void:
 	if body != self:
 		return
 
-	var collision_shape: CollisionShape3D = Utils.get_collision_shape_for_area(sender)
-
-	if collision_shape in water_collision_shapes:
-		water_collision_shapes.erase(collision_shape)
+	if sender in water_bodies:
+		water_bodies.erase(sender)
 
 
 func are_raycasts_colliding() -> bool:
@@ -108,14 +106,16 @@ func are_raycasts_colliding() -> bool:
 
 
 func is_in_water() -> bool:
-	return water_collision_shapes.size() > 0
+	return global_transform.origin.y < get_water_surface_height()
 
 
 func get_water_surface_height() -> float:
-	if not is_in_water():
-		return NAN
-
 	var height: float = -INF
-	for shape in water_collision_shapes:
-		height = max(height, shape.global_transform.origin.y + shape.shape.size.y / 2.0)
+	for area in water_bodies:
+		height = max(
+			height,
+			area.global_transform.origin.y + Utils.get_water_surface_height(
+				environment_resource.value, Vector2(global_transform.origin.x, global_transform.origin.z)
+			)
+	)
 	return height

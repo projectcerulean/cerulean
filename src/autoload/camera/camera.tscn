@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://drr0a4475wkje"]
+[gd_scene load_steps=9 format=3 uid="uid://drr0a4475wkje"]
 
 [ext_resource type="Script" path="res://src/autoload/camera/camera.gd" id="1_dbun4"]
 [ext_resource type="Resource" uid="uid://1jerxlyauuto" path="res://src/autoload/thumbstick_processor/thumbstick_resource_right.tres" id="2_sj0tv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" path="res://src/autoload/camera/camera_transform.tres" id="4_n4bb1"]
 [ext_resource type="Resource" path="res://src/autoload/camera/camera_target_transform.tres" id="5_sufsx"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="6_3eh25"]
+[ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="7_61jfu"]
 
 [sub_resource type="SphereShape3D" id="7"]
 radius = 0.1
@@ -18,6 +19,7 @@ _settings_resource = ExtResource( "3_dhgty" )
 _transform_resource = ExtResource( "4_n4bb1" )
 _target_transform_resource = ExtResource( "5_sufsx" )
 _game_state_resource = ExtResource( "6_3eh25" )
+_environment_resource = ExtResource( "7_61jfu" )
 
 [node name="YawPivot" type="Position3D" parent="."]
 
