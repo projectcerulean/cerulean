@@ -358,9 +358,9 @@ _global_script_class_icons={
 
 config/name="Project Cerulean"
 run/main_scene="res://src/levels/test_scene/test_scene.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://assets/graphics/icon/icon.png"
 config/windows_native_icon="res://assets/graphics/icon/icon.ico"
-config/features=PackedStringArray("4.0")
 
 [audio]
 

@@ -7,7 +7,7 @@
 
 ## Running prebuilt version
 
-1. Download the Godot game engine, version 4.0 alpha 9: https://godotengine.org/article/dev-snapshot-godot-4-0-alpha-9
+1. Download the Godot game engine, version 4.0 alpha 10: https://godotengine.org/article/dev-snapshot-godot-4-0-alpha-10
 2. Grab the latest Cerulean PCK file from the build service: https://builds.sr.ht/~gullik/cerulean
 3. Place the Cerulean PCK and the Godot executable in the same directory
 4. Rename the Godot executable to 'cerulean' and run it
