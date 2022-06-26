@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drr0a4475wkje"]
+[gd_scene load_steps=11 format=3 uid="uid://drr0a4475wkje"]
 
 [ext_resource type="Script" path="res://src/autoload/camera/camera.gd" id="1_dbun4"]
 [ext_resource type="Resource" uid="uid://1jerxlyauuto" path="res://src/autoload/thumbstick_processor/thumbstick_resource_right.tres" id="2_sj0tv"]
@@ -8,6 +8,9 @@
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="6_3eh25"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="7_61jfu"]
 [ext_resource type="Resource" uid="uid://caltt67cj0pty" path="res://src/autoload/time_manager/time_resource_gameplay.tres" id="8_gpjes"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hcul6"]
+radius = 0.24
 
 [sub_resource type="SphereShape3D" id="7"]
 radius = 0.1
@@ -31,6 +34,14 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 [node name="RayCast3D" type="RayCast3D" parent="YawPivot/PitchPivot"]
 collision_mask = 68
 
+[node name="WallDetector" type="StaticBody3D" parent="YawPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/WallDetector"]
+shape = SubResource( "SphereShape3D_hcul6" )
+
 [node name="CameraAnchor" type="Position3D" parent="YawPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 5)
 
@@ -38,9 +49,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 5)
 transform = Transform3D(1, 0, 0, 0, 1, 8.9407e-08, 0, -8.9407e-08, 1, 0, 0, 0)
 current = true
 
-[node name="Area3D" type="Area3D" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D"]
+[node name="WaterDetector" type="Area3D" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D"]
 collision_layer = 2
 collision_mask = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector"]
 shape = SubResource( "7" )

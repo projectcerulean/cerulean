@@ -15,10 +15,10 @@ const pitch_limit: float = PI / 2.0 - 0.1
 
 @onready var yaw_pivot: Position3D = get_node("YawPivot") as Position3D
 @onready var pitch_pivot: Position3D = get_node("YawPivot/PitchPivot") as Position3D
-@onready var raycast: RayCast3D = get_node("YawPivot/PitchPivot/RayCast3D") as RayCast3D
 @onready var camera_anchor: Position3D = get_node("YawPivot/PitchPivot/CameraAnchor") as Position3D
 @onready var camera: Camera3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D") as Camera3D
-@onready var area3d: Area3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/Area3D") as Area3D
+@onready var water_detector: Area3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector") as Area3D
+@onready var wall_detector: StaticBody3D = get_node("YawPivot/PitchPivot/WallDetector") as StaticBody3D
 
 @export var camera_distance_min: float = 2.5
 @export var camera_distance_max: float = 10.0
@@ -65,10 +65,10 @@ func _ready() -> void:
 
 	assert(yaw_pivot != null, Errors.NULL_NODE)
 	assert(pitch_pivot != null, Errors.NULL_NODE)
-	assert(raycast != null, Errors.NULL_NODE)
 	assert(camera_anchor != null, Errors.NULL_NODE)
 	assert(camera != null, Errors.NULL_NODE)
-	assert(area3d != null, Errors.NULL_NODE)
+	assert(water_detector != null, Errors.NULL_NODE)
+	assert(wall_detector != null, Errors.NULL_NODE)
 
 	camera.fov = float(Settings.SETTINGS.FIELD_OF_VIEW.VALUES[settings_resource.settings[Settings.FIELD_OF_VIEW]])
 
@@ -98,10 +98,14 @@ func _process(delta: float) -> void:
 		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -pitch_limit, pitch_limit)
 
 	# Push camera towards the target if there is solid geometry in the way, helps to prevent clipping
-	raycast.target_position = camera_anchor.position
-	raycast.force_raycast_update()
-	if raycast.is_colliding():
-		var camera_distance_target: float = -(raycast.get_collision_point() - camera_anchor.global_transform.origin).length() - 0.1
+	var collision: KinematicCollision3D = KinematicCollision3D.new()
+	var is_colliding: bool = wall_detector.test_move(
+		global_transform,
+		camera_anchor.global_transform.origin - global_transform.origin,
+		collision,
+	)
+	if is_colliding:
+		var camera_distance_target: float = -(collision.get_position() - camera_anchor.global_transform.origin).length()
 		camera.position.z = Lerp.delta_lerp(camera.position.z, camera_distance_target, camera_push_weight_forwards, delta)
 	else:
 		camera.position.z = Lerp.delta_lerp(camera.position.z, 0.0, camera_push_weight_backwards, delta)
@@ -130,7 +134,7 @@ func _on_scene_changed(_sender: Node) -> void:
 
 
 func _on_area_area_entered(sender: Area3D, area: Area3D) -> void:
-	if area != self.area3d:
+	if area != self.water_detector:
 		return
 
 	assert(str(sender.owner.name).begins_with("Water"), Errors.CONSISTENCY_ERROR)
@@ -138,7 +142,7 @@ func _on_area_area_entered(sender: Area3D, area: Area3D) -> void:
 
 
 func _on_area_area_exited(sender: Area3D, area: Area3D) -> void:
-	if area != self.area3d:
+	if area != self.water_detector:
 		return
 
 	if sender in water_bodies:
