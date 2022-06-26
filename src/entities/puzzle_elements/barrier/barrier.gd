@@ -29,15 +29,18 @@ func _ready() -> void:
 
 
 func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
+	var inputs_changed: bool = false
 	for i in range(len(inputs)):
 		if sender.owner == get_node(input_nodes[i]):
 			assert(state in [PuzzleElementStates.DISABLED, PuzzleElementStates.ENABLED], Errors.CONSISTENCY_ERROR)
 			inputs[i] = state == PuzzleElementStates.ENABLED
+			inputs_changed = true
 
-	if inputs == input_targets:
-		Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.DISABLED)
-	else:
-		Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.ENABLED)
+	if inputs_changed:
+		if inputs == input_targets:
+			Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.DISABLED)
+		else:
+			Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.ENABLED)
 
 
 func set_alpha(alpha: float) -> void:
