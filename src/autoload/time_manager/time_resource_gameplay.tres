@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://caltt67cj0pty"]
+
+[ext_resource type="Script" path="res://src/common/resource_types/float_resource.gd" id="1_drow2"]
+
+[resource]
+script = ExtResource( "1_drow2" )
+value = null

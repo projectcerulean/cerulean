@@ -1,6 +1,7 @@
 extends AnimatableBody3D
 
 @export var _environment_resource: Resource
+@export var _time_resource_gameplay: Resource
 
 var angle: float = TAU*randf()
 var water_bodies: Array[Area3D]
@@ -9,6 +10,7 @@ var look_direction_lerp_weight: float = 1.0
 var transform_lerp_weight: float = 10.0
 
 @onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
+@onready var time_resource_gameplay: FloatResource = _time_resource_gameplay as FloatResource
 
 
 func _ready() -> void:
@@ -16,6 +18,7 @@ func _ready() -> void:
 	Signals.area_body_exited.connect(self._on_area_body_exited)
 
 	assert(environment_resource != null, Errors.NULL_RESOURCE)
+	assert(time_resource_gameplay != null, Errors.NULL_RESOURCE)
 
 
 func _process(delta: float) -> void:
@@ -47,7 +50,9 @@ func get_water_surface_height() -> float:
 		height = max(
 			height,
 			area.global_transform.origin.y + Utils.get_water_surface_height(
-				environment_resource.value, Vector2(global_transform.origin.x, global_transform.origin.z)
+				time_resource_gameplay.value,
+				environment_resource.value,
+				Vector2(global_transform.origin.x, global_transform.origin.z),
 			)
 	)
 	return height
@@ -55,7 +60,8 @@ func get_water_surface_height() -> float:
 
 func get_water_surface_normal() -> Vector3:
 	var normal: Vector3 = Utils.get_water_surface_normal(
+		time_resource_gameplay.value,
 		environment_resource.value,
-		Vector2(global_transform.origin.x, global_transform.origin.z)
+		Vector2(global_transform.origin.x, global_transform.origin.z),
 	)
 	return normal

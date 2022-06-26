@@ -4,17 +4,20 @@
 extends MeshInstance3D
 
 @export var _environment_resource: Resource
+@export var _time_resource_gameplay: Resource
 
 @onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
+@onready var time_resource_gameplay: FloatResource = _time_resource_gameplay as FloatResource
 @onready var shader_material: ShaderMaterial = get_surface_override_material(0) as ShaderMaterial
 
 
 func _ready() -> void:
 	assert(environment_resource != null, Errors.NULL_RESOURCE)
+	assert(time_resource_gameplay != null, Errors.NULL_RESOURCE)
 	assert(shader_material != null, Errors.NULL_RESOURCE)
 
 func _process(_delta: float) -> void:
-	shader_material.set_shader_param(&"wave_time", Utils.get_game_uptime())
+	shader_material.set_shader_param(&"wave_time", time_resource_gameplay.value)
 	shader_material.set_shader_param(&"wave_period", environment_resource.value.water_wave_period)
 	shader_material.set_shader_param(&"wave_strength", environment_resource.value.water_wave_strength)
 	shader_material.set_shader_param(&"wave_time_factor", environment_resource.value.water_wave_time_factor)

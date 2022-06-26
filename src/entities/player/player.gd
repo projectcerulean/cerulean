@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var _transform_resource: Resource
 @export var _camera_transform_resource: Resource
 @export var _environment_resource: Resource
+@export var _time_resource_gameplay: Resource
 
 var input_vector: Vector3
 var water_bodies: Array[Area3D]
@@ -24,6 +25,7 @@ var water_bodies: Array[Area3D]
 @onready var transform_resource: TransformResource = _transform_resource as TransformResource
 @onready var camera_transform_resource: TransformResource = _camera_transform_resource as TransformResource
 @onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
+@onready var time_resource_gameplay: FloatResource = _time_resource_gameplay as FloatResource
 
 
 func _ready() -> void:
@@ -36,6 +38,7 @@ func _ready() -> void:
 	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(environment_resource != null, Errors.NULL_RESOURCE)
+	assert(time_resource_gameplay != null, Errors.NULL_RESOURCE)
 	assert(raycast_container != null, Errors.NULL_NODE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
@@ -115,7 +118,9 @@ func get_water_surface_height() -> float:
 		height = max(
 			height,
 			area.global_transform.origin.y + Utils.get_water_surface_height(
-				environment_resource.value, Vector2(global_transform.origin.x, global_transform.origin.z)
+				time_resource_gameplay.value,
+				environment_resource.value,
+				Vector2(global_transform.origin.x, global_transform.origin.z),
 			)
 	)
 	return height

@@ -11,6 +11,7 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var _target_transform_resource: Resource
 @export var _game_state_resource: Resource
 @export var _environment_resource: Resource
+@export var _time_resource_gameplay: Resource
 
 @onready var yaw_pivot: Position3D = get_node("YawPivot") as Position3D
 @onready var pitch_pivot: Position3D = get_node("YawPivot/PitchPivot") as Position3D
@@ -40,6 +41,7 @@ var is_in_water_prev: bool = false
 @onready var target_transform_resource: TransformResource = _target_transform_resource as TransformResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 @onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
+@onready var time_resource_gameplay: FloatResource = _time_resource_gameplay as FloatResource
 
 @onready var camera_distance_default: float = camera_anchor.position.z
 @onready var yaw_default: float = yaw_pivot.rotation.y
@@ -59,6 +61,7 @@ func _ready() -> void:
 	assert(target_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(environment_resource != null, Errors.NULL_RESOURCE)
+	assert(time_resource_gameplay != null, Errors.NULL_RESOURCE)
 
 	assert(yaw_pivot != null, Errors.NULL_NODE)
 	assert(pitch_pivot != null, Errors.NULL_NODE)
@@ -98,7 +101,7 @@ func _process(delta: float) -> void:
 	raycast.target_position = camera_anchor.position
 	raycast.force_raycast_update()
 	if raycast.is_colliding():
-		var camera_distance_target: float = -(raycast.get_collision_point() - camera_anchor.global_transform.origin).length()
+		var camera_distance_target: float = -(raycast.get_collision_point() - camera_anchor.global_transform.origin).length() - 0.1
 		camera.position.z = Lerp.delta_lerp(camera.position.z, camera_distance_target, camera_push_weight_forwards, delta)
 	else:
 		camera.position.z = Lerp.delta_lerp(camera.position.z, 0.0, camera_push_weight_backwards, delta)
@@ -152,7 +155,9 @@ func get_water_surface_height() -> float:
 		height = max(
 			height,
 			area.global_transform.origin.y + Utils.get_water_surface_height(
-				environment_resource.value, Vector2(camera.global_transform.origin.x, camera.global_transform.origin.z)
+				time_resource_gameplay.value,
+				environment_resource.value,
+				Vector2(camera.global_transform.origin.x, camera.global_transform.origin.z),
 			)
 	)
 	return height

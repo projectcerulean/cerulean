@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://kpdocm35x0ii"]
+
+[ext_resource type="Script" path="res://src/common/resource_types/float_resource.gd" id="1_uns0q"]
+
+[resource]
+script = ExtResource( "1_uns0q" )
+value = null

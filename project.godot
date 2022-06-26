@@ -99,6 +99,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/constants/errors.gd"
 }, {
+"base": "Resource",
+"class": &"FloatResource",
+"language": &"GDScript",
+"path": "res://src/common/resource_types/float_resource.gd"
+}, {
 "base": "State",
 "class": &"GameState",
 "language": &"GDScript",
@@ -313,6 +318,7 @@ _global_script_class_icons={
 "DialogueStates": "",
 "EnvironmentResource": "",
 "Errors": "",
+"FloatResource": "",
 "GameState": "",
 "GameStateManager": "",
 "GameStates": "",
@@ -369,6 +375,7 @@ buses/default_bus_layout="res://src/sound/bus_layouts/default_bus_layout.tres"
 [autoload]
 
 Randomize="res://src/autoload/randomize/randomize.gd"
+TimeManager="res://src/autoload/time_manager/time_manager.tscn"
 Signals="*res://src/autoload/signals/signals.gd"
 SettingsManager="res://src/autoload/settings_manager/settings_manager.tscn"
 DataLoader="res://src/autoload/data_loader/data_loader.tscn"
