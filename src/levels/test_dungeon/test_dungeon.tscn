@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ct8hn0mrxp0d6"]
+[gd_scene load_steps=36 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="PackedScene" uid="uid://da2ju3bvwkv1e" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="14_11lwf"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="15_e7a0f"]
 [ext_resource type="Environment" uid="uid://cj4m17hiwmdr2" path="res://src/levels/test_dungeon/environment.tres" id="15_nl3es"]
+[ext_resource type="PackedScene" uid="uid://bou2ry8dnyiop" path="res://src/entities/box/box.tscn" id="16_p0we0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ybceq"]
 resource_local_to_scene = true
@@ -454,5 +455,11 @@ bgm = &"WATERWORKS"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BgmArea"]
 shape = SubResource( "BoxShape3D_vrsx2" )
+
+[node name="Box" parent="." instance=ExtResource( "16_p0we0" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 16)
+
+[node name="Box2" parent="." instance=ExtResource( "16_p0we0" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 39)
 
 [editable path="Env/Ascension/Block/Block/SignPost"]

@@ -5,13 +5,12 @@ extends PlayerState
 
 @export var move_speed: float = 8.5
 @export var move_speed_lerp_weight: float = 7.0
-@export var move_snap_distance: float = 0.25
 
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	player.velocity.y = 0.0
-	player.floor_snap_length = move_snap_distance
+	player.floor_snap_length = floor_snap_length
 
 
 func exit(data: Dictionary) -> void:

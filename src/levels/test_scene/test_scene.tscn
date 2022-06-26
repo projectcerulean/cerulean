@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://ceqsphji2ao1c"]
+[gd_scene load_steps=87 format=3 uid="uid://cjthoivnv81ud"]
 
 [ext_resource type="PackedScene" uid="uid://da2ju3bvwkv1e" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -19,6 +19,7 @@
 [ext_resource type="Environment" uid="uid://jvj72xlqpld8" path="res://src/levels/test_scene/environment.tres" id="18_3u81p"]
 [ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="18_uwe8s"]
 [ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
+[ext_resource type="PackedScene" uid="uid://bou2ry8dnyiop" path="res://src/entities/box/box.tscn" id="21_0mayf"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="21_i6ktg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4stb"]
@@ -1056,6 +1057,9 @@ bgm = &"SEA_AND_SKY"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BgmArea"]
 shape = SubResource( "BoxShape3D_pv52q" )
+
+[node name="Box" parent="." instance=ExtResource( "21_0mayf" )]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 19)
 
 [editable path="SignPost"]
 [editable path="SignPost2"]

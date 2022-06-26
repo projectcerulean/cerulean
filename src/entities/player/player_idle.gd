@@ -7,6 +7,22 @@ extends PlayerState
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	player.velocity = Vector3.ZERO
+	player.floor_snap_length = floor_snap_length
+
+
+func exit(data: Dictionary) -> void:
+	super.exit(data)
+	player.floor_snap_length = 0.0
+
+
+func physics_process(delta: float) -> void:
+	super.physics_process(delta)
+
+	# Apply movement
+	player.move_and_slide()
+
+	# Coyote timer
+	player.coyote_timer.start()
 
 
 func get_transition() -> StringName:
