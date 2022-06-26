@@ -231,47 +231,47 @@ _state_resource = ExtResource( "12" )
 
 [node name="RayCast3D" type="RayCast3D" parent="RaycastContainer"]
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="RayCast3D2" type="RayCast3D" parent="RaycastContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="RayCast3D3" type="RayCast3D" parent="RaycastContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0)
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="RayCast3D4" type="RayCast3D" parent="RaycastContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="RayCast3D5" type="RayCast3D" parent="RaycastContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="RayCast3D6" type="RayCast3D" parent="RaycastContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141421, 0, -0.141421)
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="RayCast3D7" type="RayCast3D" parent="RaycastContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141421, 0, 0.141421)
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="RayCast3D8" type="RayCast3D" parent="RaycastContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.141421, 0, 0.141421)
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="RayCast3D9" type="RayCast3D" parent="RaycastContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.141421, 0, -0.141421)
 target_position = Vector3(0, -0.65, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -320,7 +320,7 @@ extents = Vector3(0.2, 0.01, 0.2)
 texture_albedo = SubResource( "GradientTexture2D_o4yl3" )
 upper_fade = 1e-05
 lower_fade = 1.10957e-05
-cull_mask = 4
+cull_mask = 12
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BlobShadow/DecalPivot/Decal"]
 visible = false
@@ -329,7 +329,7 @@ skeleton = NodePath("../../../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="BlobShadow"]
 target_position = Vector3(0, -100, 0)
-collision_mask = 4
+collision_mask = 12
 
 [node name="AudioEffects" type="Node" parent="."]
 

@@ -12,7 +12,7 @@ size = Vector3(2, 2, 2)
 size = Vector3(2, 2, 2)
 
 [node name="Box" type="AnimatableBody3D"]
-collision_layer = 12
+collision_layer = 8
 sync_to_physics = false
 script = ExtResource( "1_j8n7c" )
 _environment_resource = ExtResource( "2_w2dbm" )
@@ -22,6 +22,6 @@ _time_resource_gameplay = ExtResource( "3_s15d8" )
 shape = SubResource( "BoxShape3D_mf2os" )
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-layers = 12
+layers = 8
 mesh = SubResource( "BoxMesh_bkski" )
 surface_material_override/0 = ExtResource( "2_ckxdu" )
