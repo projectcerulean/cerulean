@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ct8hn0mrxp0d6"]
+[gd_scene load_steps=37 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="PackedScene" uid="uid://da2ju3bvwkv1e" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -142,6 +142,13 @@ shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
 shader_param/flow_position = 0.0
 shader_param/smooth_range = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5bge"]
+resource_local_to_scene = true
+albedo_color = Color(0.702097, 0.612501, 0.556948, 1)
+distance_fade_mode = 3
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vrsx2"]
 size = Vector3(512, 512, 512)
@@ -429,6 +436,12 @@ size = Vector3(4, 2, 4)
 
 [node name="SignPost" parent="Env/Ascension/Block/Block" instance=ExtResource( "10_g8ijk" )]
 transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Post" parent="Env/Ascension/Block/Block/SignPost" index="0"]
+surface_material_override/0 = SubResource( "StandardMaterial3D_p5bge" )
+
+[node name="Sign" parent="Env/Ascension/Block/Block/SignPost" index="1"]
+surface_material_override/0 = SubResource( "StandardMaterial3D_p5bge" )
 
 [node name="Action" parent="Env/Ascension/Block/Block/SignPost/Interaction" index="1"]
 dialogue_resource = ExtResource( "11_20llv" )

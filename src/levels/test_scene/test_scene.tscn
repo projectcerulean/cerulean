@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cjthoivnv81ud"]
+[gd_scene load_steps=90 format=3 uid="uid://cjthoivnv81ud"]
 
 [ext_resource type="PackedScene" uid="uid://da2ju3bvwkv1e" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -21,6 +21,27 @@
 [ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
 [ext_resource type="PackedScene" uid="uid://bou2ry8dnyiop" path="res://src/entities/box/box.tscn" id="21_0mayf"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="21_i6ktg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wenkw"]
+resource_local_to_scene = true
+albedo_color = Color(0.702097, 0.612501, 0.556948, 1)
+distance_fade_mode = 3
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msdho"]
+resource_local_to_scene = true
+albedo_color = Color(0.702097, 0.612501, 0.556948, 1)
+distance_fade_mode = 3
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6lo3"]
+resource_local_to_scene = true
+albedo_color = Color(0.702097, 0.612501, 0.556948, 1)
+distance_fade_mode = 3
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_j4stb"]
 resource_local_to_scene = true
@@ -801,17 +822,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
 [node name="SignPost" parent="." instance=ExtResource( "8_l3hhy" )]
 transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, -17.7, 3, -2)
 
+[node name="Post" parent="SignPost" index="0"]
+surface_material_override/0 = SubResource( "StandardMaterial3D_wenkw" )
+
+[node name="Sign" parent="SignPost" index="1"]
+surface_material_override/0 = SubResource( "StandardMaterial3D_wenkw" )
+
 [node name="Action" parent="SignPost/Interaction" index="1"]
 dialogue_resource = ExtResource( "9_ilvj1" )
 
 [node name="SignPost2" parent="." instance=ExtResource( "8_l3hhy" )]
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, -19.6, 3.2, -2)
 
+[node name="Post" parent="SignPost2" index="0"]
+surface_material_override/0 = SubResource( "StandardMaterial3D_msdho" )
+
+[node name="Sign" parent="SignPost2" index="1"]
+surface_material_override/0 = SubResource( "StandardMaterial3D_msdho" )
+
 [node name="Action" parent="SignPost2/Interaction" index="1"]
 dialogue_resource = ExtResource( "11_qt3s6" )
 
 [node name="SignPost3" parent="." instance=ExtResource( "8_l3hhy" )]
 transform = Transform3D(0.964711, -0.163252, -0.206596, 0.220667, 0.0731603, 0.972602, -0.143664, -0.983869, 0.106603, -28.0864, 0.258082, 0.501245)
+
+[node name="Post" parent="SignPost3" index="0"]
+surface_material_override/0 = SubResource( "StandardMaterial3D_w6lo3" )
+
+[node name="Sign" parent="SignPost3" index="1"]
+surface_material_override/0 = SubResource( "StandardMaterial3D_w6lo3" )
 
 [node name="Action" parent="SignPost3/Interaction" index="1"]
 dialogue_resource = ExtResource( "10_vafey" )
