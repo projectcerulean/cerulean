@@ -7,10 +7,10 @@ size = Vector3(192, 32, 192)
 
 [node name="WindTrailGenerator" type="Node3D"]
 process_mode = 3
-script = ExtResource( "1_a5r1a" )
+script = ExtResource("1_a5r1a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( "BoxShape3D_d1y50" )
+shape = SubResource("BoxShape3D_d1y50")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true

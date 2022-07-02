@@ -8,10 +8,10 @@
 seamless = true
 as_normal_map = true
 bump_strength = 2.0
-noise = SubResource( "FastNoiseLite_tf0vr" )
+noise = SubResource("FastNoiseLite_tf0vr")
 
 [resource]
-albedo_texture = ExtResource( "1_ijax4" )
+albedo_texture = ExtResource("1_ijax4")
 normal_enabled = true
-normal_texture = SubResource( "NoiseTexture_2h4l3" )
+normal_texture = SubResource("NoiseTexture_2h4l3")
 uv1_triplanar = true

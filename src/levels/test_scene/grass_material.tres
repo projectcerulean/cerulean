@@ -8,11 +8,11 @@
 seamless = true
 as_normal_map = true
 bump_strength = 4.0
-noise = SubResource( "FastNoiseLite_pa1h8" )
+noise = SubResource("FastNoiseLite_pa1h8")
 
 [resource]
 albedo_color = Color(0.490196, 0.690196, 0.588235, 1)
-albedo_texture = ExtResource( "1_yajh2" )
+albedo_texture = ExtResource("1_yajh2")
 normal_enabled = true
-normal_texture = SubResource( "NoiseTexture_qrbti" )
+normal_texture = SubResource("NoiseTexture_qrbti")
 uv1_triplanar = true

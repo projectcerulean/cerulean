@@ -21,18 +21,18 @@
 
 [sub_resource type="NoiseTexture" id="NoiseTexture_aa3of"]
 seamless = true
-noise = SubResource( "FastNoiseLite_gncbr" )
+noise = SubResource("FastNoiseLite_gncbr")
 
 [sub_resource type="ShaderMaterial" id="9"]
-shader = ExtResource( "1" )
+shader = ExtResource("1")
 shader_param/color = Color(0, 0, 0, 0)
 shader_param/distortion_intensity = 0.01
 shader_param/distortion_scale = 0.5
 shader_param/distortion_speed = 0.05
-shader_param/noise = SubResource( "NoiseTexture_aa3of" )
+shader_param/noise = SubResource("NoiseTexture_aa3of")
 
 [sub_resource type="ShaderMaterial" id="10"]
-shader = ExtResource( "8" )
+shader = ExtResource("8")
 shader_param/blur_strength = 2.5
 shader_param/kernel_size = 11
 
@@ -46,11 +46,11 @@ process_mode = 3
 
 [node name="UnderwaterEffect" type="ColorRect" parent="EffectsLayer"]
 visible = false
-material = SubResource( "9" )
+material = SubResource("9")
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( "4" )
-_environment_resource = ExtResource( "3_34h0a" )
+script = ExtResource("4")
+_environment_resource = ExtResource("3_34h0a")
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 
@@ -60,17 +60,17 @@ offset_bottom = 31.0
 theme_override_font_sizes/font_size = 20
 text = "Compass text"
 horizontal_alignment = 1
-script = ExtResource( "7" )
+script = ExtResource("7")
 
 [node name="InteractionMarker" type="Control" parent="HudLayer"]
-script = ExtResource( "4_o1y8t" )
+script = ExtResource("4_o1y8t")
 color = Color(1, 1, 1, 0.627451)
-_lfo_resource = ExtResource( "5_f13oq" )
-_game_state_resource = ExtResource( "11" )
+_lfo_resource = ExtResource("5_f13oq")
+_game_state_resource = ExtResource("11")
 
 [node name="DialogueLayer" type="CanvasLayer" parent="."]
 
-[node name="DialogueManager" parent="DialogueLayer" instance=ExtResource( "6_vu52l" )]
+[node name="DialogueManager" parent="DialogueLayer" instance=ExtResource("6_vu52l")]
 
 [node name="SceneTransitionLayer" type="CanvasLayer" parent="."]
 
@@ -78,26 +78,26 @@ _game_state_resource = ExtResource( "11" )
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( "8_ktx3r" )
-_game_state_resource = ExtResource( "11" )
+script = ExtResource("8_ktx3r")
+_game_state_resource = ExtResource("11")
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 
 [node name="ScreenBlur" type="ColorRect" parent="PauseMenuLayer"]
-material = SubResource( "10" )
+material = SubResource("10")
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( "10" )
-_game_state_resource = ExtResource( "11" )
+script = ExtResource("10")
+_game_state_resource = ExtResource("11")
 
 [node name="ScreenDarken" type="ColorRect" parent="PauseMenuLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0.0627451, 0.627451)
-script = ExtResource( "12" )
-_game_state_resource = ExtResource( "11" )
+script = ExtResource("12")
+_game_state_resource = ExtResource("11")
 
-[node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource( "9_mxrv6" )]
+[node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource("9_mxrv6")]
 
 [node name="DebugLayer" type="CanvasLayer" parent="."]
 
@@ -108,7 +108,7 @@ anchor_right = 1.0
 offset_left = -256.0
 offset_bottom = 256.0
 color = Color(0.180392, 0.180392, 0.180392, 1)
-script = ExtResource( "5" )
+script = ExtResource("5")
 
 [node name="DebugConsole" type="RichTextLabel" parent="DebugLayer"]
 visible = false
@@ -118,12 +118,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -512.0
 offset_top = -256.0
-theme_override_styles/normal = SubResource( "StyleBoxFlat_17ke0" )
+theme_override_styles/normal = SubResource("StyleBoxFlat_17ke0")
 bbcode_enabled = true
 text = "# To write to the console:
 Signals.emit_debug_write(self, \"hello\")"
 scroll_following = true
-script = ExtResource( "12_qt77i" )
+script = ExtResource("12_qt77i")
 
 [node name="VersionLabel" type="Label" parent="DebugLayer"]
 anchor_top = 1.0
@@ -133,4 +133,4 @@ offset_left = 4.0
 offset_top = -26.0
 theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
 text = "Version text"
-script = ExtResource( "3" )
+script = ExtResource("3")

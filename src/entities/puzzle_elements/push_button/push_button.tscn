@@ -31,38 +31,38 @@ height = 0.1
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmduj"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "5_fygd5" )
+shader = ExtResource("5_fygd5")
 shader_param/activation = 0.0
 shader_param/albedo = Color(1, 0.27, 0, 1)
+shader_param/emission_energy = 1.0
+shader_param/metallic = 1.0
 shader_param/roughness = 0.5
 shader_param/specular = 0.5
-shader_param/metallic = 1.0
-shader_param/emission_energy = 1.0
 
 [node name="PushButton" type="Area3D"]
 collision_layer = 8
 collision_mask = 9
-script = ExtResource( "1_1bmxc" )
+script = ExtResource("1_1bmxc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
-shape = SubResource( "CylinderShape3D_lrnre" )
+shape = SubResource("CylinderShape3D_lrnre")
 
 [node name="Base" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
 layers = 8
-mesh = SubResource( "CylinderMesh_1h8m4" )
-surface_material_override/0 = SubResource( "StandardMaterial3D_t3gut" )
+mesh = SubResource("CylinderMesh_1h8m4")
+surface_material_override/0 = SubResource("StandardMaterial3D_t3gut")
 
 [node name="Button" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-script = ExtResource( "2_7i1pt" )
+script = ExtResource("2_7i1pt")
 color_disabled = Color(1, 0.270588, 0, 1)
 color_enabled = Color(0, 0.709804, 1, 1)
 
 [node name="ColorStateEnabled" type="Node" parent="Button"]
-script = ExtResource( "10_ey7nc" )
+script = ExtResource("10_ey7nc")
 _target_state = NodePath("../../StateMachine/Enabled")
 _target_node = NodePath("..")
 property = "activation"
@@ -70,8 +70,8 @@ tween_duration = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Button"]
 layers = 8
-mesh = SubResource( "CylinderMesh_ewqwe" )
-surface_material_override/0 = SubResource( "ShaderMaterial_lmduj" )
+mesh = SubResource("CylinderMesh_ewqwe")
+surface_material_override/0 = SubResource("ShaderMaterial_lmduj")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Button"]
 layers = 8
@@ -79,20 +79,20 @@ light_color = Color(1, 0.270588, 0, 1)
 light_energy = 2.0
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( "4_rrpi8" )
+script = ExtResource("4_rrpi8")
 _initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
-script = ExtResource( "8_2adit" )
+script = ExtResource("8_2adit")
 
 [node name="Enabled" type="Node" parent="StateMachine"]
-script = ExtResource( "8_2adit" )
+script = ExtResource("8_2adit")
 
 [node name="SfxStateEnabled" type="Node" parent="."]
-script = ExtResource( "6_ssf8g" )
+script = ExtResource("6_ssf8g")
 _target_state = NodePath("../StateMachine/Enabled")
-_sfx_resource_enter = ExtResource( "7_gi7uk" )
-_sfx_resource_exit = ExtResource( "8_aedo8" )
+_sfx_resource_enter = ExtResource("7_gi7uk")
+_sfx_resource_exit = ExtResource("8_aedo8")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

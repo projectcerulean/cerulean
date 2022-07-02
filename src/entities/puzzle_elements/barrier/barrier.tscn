@@ -15,45 +15,45 @@ size = Vector3(5, 0.5, 5)
 
 [sub_resource type="NoiseTexture" id="NoiseTexture_g2md3"]
 seamless = true
-noise = SubResource( "FastNoiseLite_p1s5e" )
+noise = SubResource("FastNoiseLite_p1s5e")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4ow20"]
 
 [sub_resource type="NoiseTexture" id="NoiseTexture_h16ox"]
 seamless = true
-noise = SubResource( "FastNoiseLite_4ow20" )
+noise = SubResource("FastNoiseLite_4ow20")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esmal"]
 render_priority = 1
-shader = ExtResource( "1_alkq1" )
+shader = ExtResource("1_alkq1")
 shader_param/alpha_factor = 1.0
 shader_param/alpha_max = 0.6
 shader_param/alpha_min = 0.3
 shader_param/color = Color(0.376471, 0.196078, 0.192157, 1)
-shader_param/noise_sampler1 = SubResource( "NoiseTexture_g2md3" )
-shader_param/noise_sampler2 = SubResource( "NoiseTexture_h16ox" )
+shader_param/noise_sampler1 = SubResource("NoiseTexture_g2md3")
+shader_param/noise_sampler2 = SubResource("NoiseTexture_h16ox")
 shader_param/noise_threshold = 0.55
 shader_param/noise_time_factor = Vector2(0.1, 0.02)
 
 [node name="Barrier" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 11
-script = ExtResource( "1_8dbv4" )
+script = ExtResource("1_8dbv4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( "BoxShape3D_rojgn" )
+shape = SubResource("BoxShape3D_rojgn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 layers = 8
-mesh = SubResource( "BoxMesh_4kh3e" )
-surface_material_override/0 = SubResource( "ShaderMaterial_esmal" )
+mesh = SubResource("BoxMesh_4kh3e")
+surface_material_override/0 = SubResource("ShaderMaterial_esmal")
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( "3_qqest" )
+script = ExtResource("3_qqest")
 _initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
-script = ExtResource( "4_nmhmp" )
+script = ExtResource("4_nmhmp")
 
 [node name="Enabled" type="Node" parent="StateMachine"]
-script = ExtResource( "4_nmhmp" )
+script = ExtResource("4_nmhmp")

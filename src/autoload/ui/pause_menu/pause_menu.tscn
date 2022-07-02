@@ -13,9 +13,9 @@
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( "1_ra0py" )
-_game_state_resource = ExtResource( "2_rjkev" )
-_sfx_resource_select = ExtResource( "9_rbp0b" )
+script = ExtResource("1_ra0py")
+_game_state_resource = ExtResource("2_rjkev")
+_sfx_resource_select = ExtResource("9_rbp0b")
 
 [node name="Main" type="VBoxContainer" parent="."]
 anchor_top = 1.0
@@ -27,7 +27,7 @@ offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="Resume" parent="Main" instance=ExtResource( "3_ht525" )]
+[node name="Resume" parent="Main" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 104.0
@@ -35,7 +35,7 @@ offset_right = 384.0
 offset_bottom = 152.0
 key_string = &"Resume"
 
-[node name="ReloadLevel" parent="Main" instance=ExtResource( "3_ht525" )]
+[node name="ReloadLevel" parent="Main" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 162.0
@@ -43,7 +43,7 @@ offset_right = 384.0
 offset_bottom = 210.0
 key_string = &"Reload level"
 
-[node name="ChangeLevel" parent="Main" instance=ExtResource( "3_ht525" )]
+[node name="ChangeLevel" parent="Main" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 220.0
@@ -51,7 +51,7 @@ offset_right = 384.0
 offset_bottom = 268.0
 key_string = &"Change level"
 
-[node name="Settings" parent="Main" instance=ExtResource( "3_ht525" )]
+[node name="Settings" parent="Main" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 278.0
@@ -59,7 +59,7 @@ offset_right = 384.0
 offset_bottom = 326.0
 key_string = &"Settings"
 
-[node name="Quit" parent="Main" instance=ExtResource( "3_ht525" )]
+[node name="Quit" parent="Main" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 336.0
@@ -77,7 +77,7 @@ offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="TestDungeon" parent="Levels" instance=ExtResource( "3_ht525" )]
+[node name="TestDungeon" parent="Levels" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 278.0
@@ -87,7 +87,7 @@ is_settings_option = false
 is_level_option = true
 key_string = &"TEST_DUNGEON"
 
-[node name="TestScene" parent="Levels" instance=ExtResource( "3_ht525" )]
+[node name="TestScene" parent="Levels" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 336.0
@@ -107,7 +107,7 @@ offset_bottom = -128.0
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="BackgroundMusic" parent="Settings" instance=ExtResource( "3_ht525" )]
+[node name="BackgroundMusic" parent="Settings" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 162.0
@@ -116,7 +116,7 @@ offset_bottom = 210.0
 is_settings_option = true
 key_string = &"BACKGROUND_MUSIC"
 
-[node name="CameraX" parent="Settings" instance=ExtResource( "3_ht525" )]
+[node name="CameraX" parent="Settings" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 220.0
@@ -125,7 +125,7 @@ offset_bottom = 268.0
 is_settings_option = true
 key_string = &"CAMERA_X_INVERTED"
 
-[node name="CameraY" parent="Settings" instance=ExtResource( "3_ht525" )]
+[node name="CameraY" parent="Settings" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 278.0
@@ -134,7 +134,7 @@ offset_bottom = 326.0
 is_settings_option = true
 key_string = &"CAMERA_Y_INVERTED"
 
-[node name="FieldOfView" parent="Settings" instance=ExtResource( "3_ht525" )]
+[node name="FieldOfView" parent="Settings" instance=ExtResource("3_ht525")]
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_top = 336.0
@@ -144,20 +144,20 @@ is_settings_option = true
 key_string = &"FIELD_OF_VIEW"
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( "1_4bqbk" )
+script = ExtResource("1_4bqbk")
 _initial_state = NodePath("Main")
 
 [node name="Main" type="Node" parent="StateMachine"]
-script = ExtResource( "4_eom5a" )
+script = ExtResource("4_eom5a")
 
 [node name="Levels" type="Node" parent="StateMachine"]
-script = ExtResource( "7_or3k2" )
+script = ExtResource("7_or3k2")
 
 [node name="Settings" type="Node" parent="StateMachine"]
-script = ExtResource( "5_kygh5" )
+script = ExtResource("5_kygh5")
 
 [node name="SfxMenuSwitch" type="Node" parent="."]
-script = ExtResource( "8_25px7" )
+script = ExtResource("8_25px7")
 _target_state = NodePath("../StateMachine/Main")
-_sfx_resource_enter = ExtResource( "9_rbp0b" )
-_sfx_resource_exit = ExtResource( "9_rbp0b" )
+_sfx_resource_enter = ExtResource("9_rbp0b")
+_sfx_resource_exit = ExtResource("9_rbp0b")

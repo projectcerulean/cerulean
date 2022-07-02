@@ -50,7 +50,7 @@ size = Vector3(0.1, 1, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1udw3"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -64,7 +64,7 @@ size = Vector3(0.1, 0.6, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xxle3"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -78,7 +78,7 @@ size = Vector3(0.1, 2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_unhpp"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -92,7 +92,7 @@ size = Vector3(0.1, 2.5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cex3e"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -106,7 +106,7 @@ size = Vector3(0.1, 6, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xd0r"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -120,7 +120,7 @@ size = Vector3(0.1, 3.1, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tgcj3"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -134,7 +134,7 @@ size = Vector3(0.1, 6, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wucln"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -148,7 +148,7 @@ size = Vector3(0.1, 1.4, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2suao"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -162,7 +162,7 @@ size = Vector3(0.1, 0.5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xu14g"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -176,7 +176,7 @@ size = Vector3(0.1, 1, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lg0bc"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -190,7 +190,7 @@ size = Vector3(0.1, 2.5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pj4e6"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -204,7 +204,7 @@ size = Vector3(0.1, 1, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pclyg"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -218,7 +218,7 @@ size = Vector3(0.1, 2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jg23m"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -232,7 +232,7 @@ size = Vector3(0.1, 0.25, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w3wav"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -246,7 +246,7 @@ size = Vector3(0.1, 5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4775l"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -260,7 +260,7 @@ size = Vector3(0.1, 8, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1b8kw"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -274,7 +274,7 @@ size = Vector3(0.1, 1, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysx8w"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -288,7 +288,7 @@ size = Vector3(0.1, 2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gx1b"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -302,7 +302,7 @@ size = Vector3(0.1, 2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aac3c"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -316,7 +316,7 @@ size = Vector3(0.1, 2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fl7o5"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -330,7 +330,7 @@ size = Vector3(0.1, 6, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7osmr"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -344,7 +344,7 @@ size = Vector3(0.1, 4, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l2a6u"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -358,7 +358,7 @@ size = Vector3(0.1, 1, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bnfqb"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -372,7 +372,7 @@ size = Vector3(0.1, 24, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ajvgy"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -386,7 +386,7 @@ size = Vector3(0.1, 0.5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b83ql"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -400,7 +400,7 @@ size = Vector3(0.1, 1.5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0fkl4"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -414,7 +414,7 @@ size = Vector3(0.1, 3.5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m5g54"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -428,7 +428,7 @@ size = Vector3(0.1, 1, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f4wlr"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -442,7 +442,7 @@ size = Vector3(0.1, 2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o1qef"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -456,7 +456,7 @@ size = Vector3(0.1, 0.7, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w4o0e"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -470,7 +470,7 @@ size = Vector3(0.1, 5.5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_no8sb"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -484,7 +484,7 @@ size = Vector3(0.1, 8, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0eay"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "15_7eokh" )
+shader = ExtResource("15_7eokh")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -495,21 +495,21 @@ shader_param/smooth_range = 0.5
 size = Vector3(192, 192, 192)
 
 [node name="TestScene" type="Node"]
-script = ExtResource( "1_arp3q" )
+script = ExtResource("1_arp3q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_max_distance = 250.0
 
-[node name="Player" parent="." instance=ExtResource( "1" )]
+[node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 22)
 
 [node name="Env" type="Node3D" parent="."]
 
 [node name="StartPlatform" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "3_8uyq8" )
+material_override = ExtResource("3_8uyq8")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -548,7 +548,7 @@ size = Vector3(2, 2, 6)
 
 [node name="Staircase" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "3_8uyq8" )
+material_override = ExtResource("3_8uyq8")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -595,7 +595,7 @@ size = Vector3(2, 18, 2)
 
 [node name="Tower" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "3_8uyq8" )
+material_override = ExtResource("3_8uyq8")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -654,7 +654,7 @@ size = Vector3(2, 2, 2)
 
 [node name="Flagpole" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "3_8uyq8" )
+material_override = ExtResource("3_8uyq8")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -677,12 +677,12 @@ radius = 0.1
 height = 10.0
 sides = 32
 
-[node name="Flag" parent="Env/Flagpole" instance=ExtResource( "6_psp6u" )]
+[node name="Flag" parent="Env/Flagpole" instance=ExtResource("6_psp6u")]
 transform = Transform3D(0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, 0.866025, -3.78552e-08, -23.9, 29.9, -27.2)
 
 [node name="Flagpole2" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "3_8uyq8" )
+material_override = ExtResource("3_8uyq8")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -701,7 +701,7 @@ size = Vector3(1, 2, 2)
 
 [node name="Island" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "5_7fh5e" )
+material_override = ExtResource("5_7fh5e")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -722,7 +722,7 @@ spin_sides = 8
 
 [node name="Entrance" type="CSGCombiner3D" parent="Env"]
 layers = 4
-material_override = ExtResource( "3_8uyq8" )
+material_override = ExtResource("3_8uyq8")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -793,311 +793,311 @@ size = Vector3(2, 8, 2)
 
 [node name="Water" type="Node3D" parent="."]
 
-[node name="Water" parent="Water" instance=ExtResource( "4" )]
+[node name="Water" parent="Water" instance=ExtResource("4")]
 
-[node name="Water2" parent="Water" instance=ExtResource( "4" )]
+[node name="Water2" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, 0)
 
-[node name="Water3" parent="Water" instance=ExtResource( "4" )]
+[node name="Water3" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
 
-[node name="Water4" parent="Water" instance=ExtResource( "4" )]
+[node name="Water4" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, -64)
 
-[node name="Water5" parent="Water" instance=ExtResource( "4" )]
+[node name="Water5" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)
 
-[node name="Water6" parent="Water" instance=ExtResource( "4" )]
+[node name="Water6" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, -64)
 
-[node name="Water7" parent="Water" instance=ExtResource( "4" )]
+[node name="Water7" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 0, 64)
 
-[node name="Water8" parent="Water" instance=ExtResource( "4" )]
+[node name="Water8" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
 
-[node name="Water9" parent="Water" instance=ExtResource( "4" )]
+[node name="Water9" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
 
-[node name="SignPost" parent="." instance=ExtResource( "8_l3hhy" )]
+[node name="SignPost" parent="." instance=ExtResource("8_l3hhy")]
 transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, -17.7, 3, -2)
 
 [node name="Post" parent="SignPost" index="0"]
-surface_material_override/0 = SubResource( "StandardMaterial3D_wenkw" )
+surface_material_override/0 = SubResource("StandardMaterial3D_wenkw")
 
 [node name="Sign" parent="SignPost" index="1"]
-surface_material_override/0 = SubResource( "StandardMaterial3D_wenkw" )
+surface_material_override/0 = SubResource("StandardMaterial3D_wenkw")
 
 [node name="Action" parent="SignPost/Interaction" index="1"]
-dialogue_resource = ExtResource( "9_ilvj1" )
+dialogue_resource = ExtResource("9_ilvj1")
 
-[node name="SignPost2" parent="." instance=ExtResource( "8_l3hhy" )]
+[node name="SignPost2" parent="." instance=ExtResource("8_l3hhy")]
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, -19.6, 3.2, -2)
 
 [node name="Post" parent="SignPost2" index="0"]
-surface_material_override/0 = SubResource( "StandardMaterial3D_msdho" )
+surface_material_override/0 = SubResource("StandardMaterial3D_msdho")
 
 [node name="Sign" parent="SignPost2" index="1"]
-surface_material_override/0 = SubResource( "StandardMaterial3D_msdho" )
+surface_material_override/0 = SubResource("StandardMaterial3D_msdho")
 
 [node name="Action" parent="SignPost2/Interaction" index="1"]
-dialogue_resource = ExtResource( "11_qt3s6" )
+dialogue_resource = ExtResource("11_qt3s6")
 
-[node name="SignPost3" parent="." instance=ExtResource( "8_l3hhy" )]
+[node name="SignPost3" parent="." instance=ExtResource("8_l3hhy")]
 transform = Transform3D(0.964711, -0.163252, -0.206596, 0.220667, 0.0731603, 0.972602, -0.143664, -0.983869, 0.106603, -28.0864, 0.258082, 0.501245)
 
 [node name="Post" parent="SignPost3" index="0"]
-surface_material_override/0 = SubResource( "StandardMaterial3D_w6lo3" )
+surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
 
 [node name="Sign" parent="SignPost3" index="1"]
-surface_material_override/0 = SubResource( "StandardMaterial3D_w6lo3" )
+surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
 
 [node name="Action" parent="SignPost3/Interaction" index="1"]
-dialogue_resource = ExtResource( "10_vafey" )
+dialogue_resource = ExtResource("10_vafey")
 
-[node name="Barrier" parent="." instance=ExtResource( "12_vimad" )]
+[node name="Barrier" parent="." instance=ExtResource("12_vimad")]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 3, -44)
 input_nodes = [NodePath("../Switch2/Indicator"), NodePath("../Switch4/Indicator2"), NodePath("../Switch/Indicator3"), NodePath("../Switch3/Indicator4")]
 input_targets = [true, true, true, true]
 
-[node name="Switch" parent="." instance=ExtResource( "13_m46gq" )]
+[node name="Switch" parent="." instance=ExtResource("13_m46gq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -39)
 
-[node name="Cable" parent="Switch" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable" parent="Switch" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.5)
-mesh = SubResource( "BoxMesh_j4stb" )
-surface_material_override/0 = SubResource( "ShaderMaterial_1udw3" )
+mesh = SubResource("BoxMesh_j4stb")
+surface_material_override/0 = SubResource("ShaderMaterial_1udw3")
 input_node_path = NodePath("..")
 
-[node name="Cable2" parent="Switch" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable2" parent="Switch" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.25, 0, -2)
-mesh = SubResource( "BoxMesh_q5sbj" )
-surface_material_override/0 = SubResource( "ShaderMaterial_xxle3" )
+mesh = SubResource("BoxMesh_q5sbj")
+surface_material_override/0 = SubResource("ShaderMaterial_xxle3")
 input_node_path = NodePath("../Cable")
 
-[node name="Cable3" parent="Switch" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable3" parent="Switch" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, -5.96046e-08, -3)
-mesh = SubResource( "BoxMesh_4yu8e" )
-surface_material_override/0 = SubResource( "ShaderMaterial_unhpp" )
+mesh = SubResource("BoxMesh_4yu8e")
+surface_material_override/0 = SubResource("ShaderMaterial_unhpp")
 input_node_path = NodePath("../Cable2")
 
-[node name="Cable4" parent="Switch" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable4" parent="Switch" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3, -4)
-mesh = SubResource( "BoxMesh_6vhep" )
-surface_material_override/0 = SubResource( "ShaderMaterial_cex3e" )
+mesh = SubResource("BoxMesh_6vhep")
+surface_material_override/0 = SubResource("ShaderMaterial_cex3e")
 input_node_path = NodePath("../Cable3")
 
-[node name="Indicator3" parent="Switch" instance=ExtResource( "14_1w6v1" )]
+[node name="Indicator3" parent="Switch" instance=ExtResource("14_1w6v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.5, -3.9)
 input_node_path = NodePath("../Cable4")
 
-[node name="Switch2" parent="." instance=ExtResource( "13_m46gq" )]
+[node name="Switch2" parent="." instance=ExtResource("13_m46gq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 6, -56)
 
-[node name="Cable" parent="Switch2" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable" parent="Switch2" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 4)
-mesh = SubResource( "BoxMesh_wagw5" )
-surface_material_override/0 = SubResource( "ShaderMaterial_2xd0r" )
+mesh = SubResource("BoxMesh_wagw5")
+surface_material_override/0 = SubResource("ShaderMaterial_2xd0r")
 input_node_path = NodePath("..")
 
-[node name="Cable2" parent="Switch2" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable2" parent="Switch2" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.5, 0, 7)
-mesh = SubResource( "BoxMesh_j2rru" )
-surface_material_override/0 = SubResource( "ShaderMaterial_tgcj3" )
+mesh = SubResource("BoxMesh_j2rru")
+surface_material_override/0 = SubResource("ShaderMaterial_tgcj3")
 input_node_path = NodePath("../Cable")
 
-[node name="Cable3" parent="Switch2" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable3" parent="Switch2" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0, 10)
-mesh = SubResource( "BoxMesh_wvylb" )
-surface_material_override/0 = SubResource( "ShaderMaterial_wucln" )
+mesh = SubResource("BoxMesh_wvylb")
+surface_material_override/0 = SubResource("ShaderMaterial_wucln")
 input_node_path = NodePath("../Cable2")
 
-[node name="Cable4" parent="Switch2" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable4" parent="Switch2" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3, -0.65, 13)
-mesh = SubResource( "BoxMesh_pqvum" )
-surface_material_override/0 = SubResource( "ShaderMaterial_2suao" )
+mesh = SubResource("BoxMesh_pqvum")
+surface_material_override/0 = SubResource("ShaderMaterial_2suao")
 input_node_path = NodePath("../Cable3")
 
-[node name="Indicator" parent="Switch2" instance=ExtResource( "14_1w6v1" )]
+[node name="Indicator" parent="Switch2" instance=ExtResource("14_1w6v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1.5, 13.1)
 input_node_path = NodePath("../Cable4")
 
-[node name="Switch3" parent="." instance=ExtResource( "13_m46gq" )]
+[node name="Switch3" parent="." instance=ExtResource("13_m46gq")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 11, -6, -3)
 
-[node name="Cable" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 14.8, -9.5, -40)
-mesh = SubResource( "BoxMesh_ce82m" )
-surface_material_override/0 = SubResource( "ShaderMaterial_xu14g" )
+mesh = SubResource("BoxMesh_ce82m")
+surface_material_override/0 = SubResource("ShaderMaterial_xu14g")
 input_node_path = NodePath("../Cable2")
 
-[node name="Cable2" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable2" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 3.82137e-15, 8.74228e-08, 8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, 15, -9.5, -40.5)
-mesh = SubResource( "BoxMesh_scjar" )
-surface_material_override/0 = SubResource( "ShaderMaterial_lg0bc" )
+mesh = SubResource("BoxMesh_scjar")
+surface_material_override/0 = SubResource("ShaderMaterial_lg0bc")
 input_node_path = NodePath("../Cable3")
 
-[node name="Cable3" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable3" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 15, -8.2, -40.95)
-mesh = SubResource( "BoxMesh_bwxww" )
-surface_material_override/0 = SubResource( "ShaderMaterial_pj4e6" )
+mesh = SubResource("BoxMesh_bwxww")
+surface_material_override/0 = SubResource("ShaderMaterial_pj4e6")
 input_node_path = NodePath("../Cable4")
 
-[node name="Cable4" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable4" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 15.5, -7, -40.95)
-mesh = SubResource( "BoxMesh_70lvf" )
-surface_material_override/0 = SubResource( "ShaderMaterial_pclyg" )
+mesh = SubResource("BoxMesh_70lvf")
+surface_material_override/0 = SubResource("ShaderMaterial_pclyg")
 input_node_path = NodePath("../Cable5")
 
-[node name="Cable5" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable5" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 16, -6, -40.95)
-mesh = SubResource( "BoxMesh_aifhg" )
-surface_material_override/0 = SubResource( "ShaderMaterial_jg23m" )
+mesh = SubResource("BoxMesh_aifhg")
+surface_material_override/0 = SubResource("ShaderMaterial_jg23m")
 input_node_path = NodePath("../Cable6")
 
-[node name="Cable6" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable6" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 15.9, -5, -40.95)
-mesh = SubResource( "BoxMesh_b5lnc" )
-surface_material_override/0 = SubResource( "ShaderMaterial_w3wav" )
+mesh = SubResource("BoxMesh_b5lnc")
+surface_material_override/0 = SubResource("ShaderMaterial_w3wav")
 input_node_path = NodePath("../Cable7")
 
-[node name="Cable7" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable7" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 3.82137e-15, -8.74228e-08, 8.74228e-08, 4.37114e-08, -1, 0, -1, -4.37114e-08, 15.8, -5, -38.5)
-mesh = SubResource( "BoxMesh_pgsjy" )
-surface_material_override/0 = SubResource( "ShaderMaterial_4775l" )
+mesh = SubResource("BoxMesh_pgsjy")
+surface_material_override/0 = SubResource("ShaderMaterial_4775l")
 input_node_path = NodePath("../Cable8")
 
-[node name="Cable8" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable8" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 15.8, -1, -36)
-mesh = SubResource( "BoxMesh_gwg4l" )
-surface_material_override/0 = SubResource( "ShaderMaterial_1b8kw" )
+mesh = SubResource("BoxMesh_gwg4l")
+surface_material_override/0 = SubResource("ShaderMaterial_1b8kw")
 input_node_path = NodePath("../Cable13")
 
-[node name="Cable9" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable9" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 1.78814e-07, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -1.78814e-07, -1, 4.37114e-08, 0, 0, -1.5)
-mesh = SubResource( "BoxMesh_gmino" )
-surface_material_override/0 = SubResource( "ShaderMaterial_ysx8w" )
+mesh = SubResource("BoxMesh_gmino")
+surface_material_override/0 = SubResource("ShaderMaterial_ysx8w")
 input_node_path = NodePath("..")
 
-[node name="Cable10" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable10" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 5.09713e-15, 8.74228e-08, 1, 8.9407e-08, 7.10543e-15, 8.9407e-08, -1, 0, 1, -2)
-mesh = SubResource( "BoxMesh_jmtx7" )
-surface_material_override/0 = SubResource( "ShaderMaterial_6gx1b" )
+mesh = SubResource("BoxMesh_jmtx7")
+surface_material_override/0 = SubResource("ShaderMaterial_6gx1b")
 input_node_path = NodePath("../Cable9")
 
-[node name="Cable11" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable11" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, -8.74228e-08, 8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, 0, 2, -3)
-mesh = SubResource( "BoxMesh_epdn4" )
-surface_material_override/0 = SubResource( "ShaderMaterial_aac3c" )
+mesh = SubResource("BoxMesh_epdn4")
+surface_material_override/0 = SubResource("ShaderMaterial_aac3c")
 input_node_path = NodePath("../Cable10")
 
-[node name="Cable12" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable12" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 1, -4)
-mesh = SubResource( "BoxMesh_1i6ko" )
-surface_material_override/0 = SubResource( "ShaderMaterial_fl7o5" )
+mesh = SubResource("BoxMesh_1i6ko")
+surface_material_override/0 = SubResource("ShaderMaterial_fl7o5")
 input_node_path = NodePath("../Cable11")
 
-[node name="Cable13" parent="Switch3" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable13" parent="Switch3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 3, -4.76837e-07, -4)
-mesh = SubResource( "BoxMesh_n5n57" )
-surface_material_override/0 = SubResource( "ShaderMaterial_7osmr" )
+mesh = SubResource("BoxMesh_n5n57")
+surface_material_override/0 = SubResource("ShaderMaterial_7osmr")
 input_node_path = NodePath("../Cable12")
 
-[node name="Indicator4" parent="Switch3" instance=ExtResource( "14_1w6v1" )]
+[node name="Indicator4" parent="Switch3" instance=ExtResource("14_1w6v1")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 14.5, -9.5, -39.9)
 input_node_path = NodePath("../Cable")
 
-[node name="Switch4" parent="." instance=ExtResource( "13_m46gq" )]
+[node name="Switch4" parent="." instance=ExtResource("13_m46gq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 19, 43)
 
-[node name="Cable" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -2, 1)
-mesh = SubResource( "BoxMesh_kca76" )
-surface_material_override/0 = SubResource( "ShaderMaterial_l2a6u" )
+mesh = SubResource("BoxMesh_kca76")
+surface_material_override/0 = SubResource("ShaderMaterial_l2a6u")
 input_node_path = NodePath("..")
 
-[node name="Cable2" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable2" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, -4, 1.5)
-mesh = SubResource( "BoxMesh_gkciu" )
-surface_material_override/0 = SubResource( "ShaderMaterial_bnfqb" )
+mesh = SubResource("BoxMesh_gkciu")
+surface_material_override/0 = SubResource("ShaderMaterial_bnfqb")
 input_node_path = NodePath("../Cable")
 
-[node name="Cable3" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable3" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.9407e-08, 0, -8.9407e-08, -1, 0, 0, 0, 1, 0, -16, 2)
-mesh = SubResource( "BoxMesh_4gky3" )
-surface_material_override/0 = SubResource( "ShaderMaterial_ajvgy" )
+mesh = SubResource("BoxMesh_4gky3")
+surface_material_override/0 = SubResource("ShaderMaterial_ajvgy")
 input_node_path = NodePath("../Cable2")
 
-[node name="Cable4" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable4" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -50.8, -14.5, -86)
-mesh = SubResource( "BoxMesh_sg8tk" )
-surface_material_override/0 = SubResource( "ShaderMaterial_b83ql" )
+mesh = SubResource("BoxMesh_sg8tk")
+surface_material_override/0 = SubResource("ShaderMaterial_b83ql")
 input_node_path = NodePath("../Cable5")
 
-[node name="Cable5" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable5" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -51, -14.5, -86.7)
-mesh = SubResource( "BoxMesh_nmuj6" )
-surface_material_override/0 = SubResource( "ShaderMaterial_0fkl4" )
+mesh = SubResource("BoxMesh_nmuj6")
+surface_material_override/0 = SubResource("ShaderMaterial_0fkl4")
 input_node_path = NodePath("../Cable6")
 
-[node name="Cable6" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable6" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, -16.3, -87.4)
-mesh = SubResource( "BoxMesh_05g57" )
-surface_material_override/0 = SubResource( "ShaderMaterial_m5g54" )
+mesh = SubResource("BoxMesh_05g57")
+surface_material_override/0 = SubResource("ShaderMaterial_m5g54")
 input_node_path = NodePath("../Cable7")
 
-[node name="Cable7" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable7" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -51.5, -18, -87.4)
-mesh = SubResource( "BoxMesh_djmdr" )
-surface_material_override/0 = SubResource( "ShaderMaterial_f4wlr" )
+mesh = SubResource("BoxMesh_djmdr")
+surface_material_override/0 = SubResource("ShaderMaterial_f4wlr")
 input_node_path = NodePath("../Cable8")
 
-[node name="Cable8" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable8" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, -19, -87.4)
-mesh = SubResource( "BoxMesh_mgh8o" )
-surface_material_override/0 = SubResource( "ShaderMaterial_o1qef" )
+mesh = SubResource("BoxMesh_mgh8o")
+surface_material_override/0 = SubResource("ShaderMaterial_o1qef")
 input_node_path = NodePath("../Cable9")
 
-[node name="Cable9" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable9" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -51.7, -20, -87.4)
-mesh = SubResource( "BoxMesh_bxbx7" )
-surface_material_override/0 = SubResource( "ShaderMaterial_w4o0e" )
+mesh = SubResource("BoxMesh_bxbx7")
+surface_material_override/0 = SubResource("ShaderMaterial_w4o0e")
 input_node_path = NodePath("../Cable10")
 
-[node name="Cable10" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable10" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -51.4, -20, -84.7)
-mesh = SubResource( "BoxMesh_f572y" )
-surface_material_override/0 = SubResource( "ShaderMaterial_no8sb" )
+mesh = SubResource("BoxMesh_f572y")
+surface_material_override/0 = SubResource("ShaderMaterial_no8sb")
 input_node_path = NodePath("../Cable11")
 
-[node name="Cable11" parent="Switch4" instance=ExtResource( "14_e3mr8" )]
+[node name="Cable11" parent="Switch4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.4, -24, -82)
-mesh = SubResource( "BoxMesh_8mew1" )
-surface_material_override/0 = SubResource( "ShaderMaterial_e0eay" )
+mesh = SubResource("BoxMesh_8mew1")
+surface_material_override/0 = SubResource("ShaderMaterial_e0eay")
 input_node_path = NodePath("../Cable3")
 
-[node name="Indicator2" parent="Switch4" instance=ExtResource( "14_1w6v1" )]
+[node name="Indicator2" parent="Switch4" instance=ExtResource("14_1w6v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.5, -14.5, -85.9)
 input_node_path = NodePath("../Cable4")
 
-[node name="LoadingZone" parent="." instance=ExtResource( "17_55rd1" )]
+[node name="LoadingZone" parent="." instance=ExtResource("17_55rd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9911, -47)
 scene_key = &"TEST_DUNGEON"
 
-[node name="WindTrailGenerator" parent="." instance=ExtResource( "20_0xlde" )]
+[node name="WindTrailGenerator" parent="." instance=ExtResource("20_0xlde")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 16, 64)
 angle = -1.047
 
-[node name="WorldEnvironment" parent="." instance=ExtResource( "18_uwe8s" )]
-environment = ExtResource( "18_3u81p" )
+[node name="WorldEnvironment" parent="." instance=ExtResource("18_uwe8s")]
+environment = ExtResource("18_3u81p")
 
-[node name="BgmArea" parent="." instance=ExtResource( "21_i6ktg" )]
+[node name="BgmArea" parent="." instance=ExtResource("21_i6ktg")]
 bgm = &"SEA_AND_SKY"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BgmArea"]
-shape = SubResource( "BoxShape3D_pv52q" )
+shape = SubResource("BoxShape3D_pv52q")
 
-[node name="Box" parent="." instance=ExtResource( "21_0mayf" )]
+[node name="Box" parent="." instance=ExtResource("21_0mayf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 19)
 
 [editable path="SignPost"]

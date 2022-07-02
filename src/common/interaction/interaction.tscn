@@ -7,10 +7,10 @@ radius = 2.0
 
 [node name="Interaction" type="Area3D"]
 collision_layer = 32
-script = ExtResource( "1_u7vor" )
+script = ExtResource("1_u7vor")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( "SphereShape3D_hd2wc" )
+shape = SubResource("SphereShape3D_hd2wc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

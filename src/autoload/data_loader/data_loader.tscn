@@ -4,4 +4,4 @@
 
 [node name="DataLoader" type="Node"]
 process_mode = 3
-script = ExtResource( "1_nw3it" )
+script = ExtResource("1_nw3it")

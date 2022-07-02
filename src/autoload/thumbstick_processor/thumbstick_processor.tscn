@@ -6,6 +6,6 @@
 
 [node name="ThumbstickProcessor" type="Node"]
 process_mode = 3
-script = ExtResource( "1_eikts" )
-_thumbstick_resource_left = ExtResource( "2_7kar6" )
-_thumbstick_resource_right = ExtResource( "3_u7q3x" )
+script = ExtResource("1_eikts")
+_thumbstick_resource_left = ExtResource("2_7kar6")
+_thumbstick_resource_right = ExtResource("3_u7q3x")

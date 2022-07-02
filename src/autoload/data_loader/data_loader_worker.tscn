@@ -3,4 +3,4 @@
 [ext_resource type="Script" path="res://src/autoload/data_loader/data_loader_worker.gd" id="1_vclku"]
 
 [node name="DataLoaderThread" type="Node"]
-script = ExtResource( "1_vclku" )
+script = ExtResource("1_vclku")

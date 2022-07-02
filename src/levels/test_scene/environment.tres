@@ -10,11 +10,11 @@ ground_bottom_color = Color(0.309804, 0.560784, 0.878431, 1)
 ground_horizon_color = Color(0.54902, 0.690196, 0.811765, 1)
 
 [sub_resource type="Sky" id="Sky_hh2mq"]
-sky_material = SubResource( "ProceduralSkyMaterial_7r50w" )
+sky_material = SubResource("ProceduralSkyMaterial_7r50w")
 
 [resource]
 background_mode = 2
-sky = SubResource( "Sky_hh2mq" )
+sky = SubResource("Sky_hh2mq")
 ambient_light_color = Color(0.501961, 0.501961, 0.501961, 1)
 ambient_light_sky_contribution = 0.25
 tonemap_mode = 2
@@ -23,7 +23,7 @@ glow_intensity = 4.0
 glow_hdr_scale = 1.0
 fog_light_color = Color(0.164706, 0.431373, 0.745098, 1)
 fog_density = 0.05
-script = ExtResource( "1_0ts5e" )
+script = ExtResource("1_0ts5e")
 water_beer_factor = 0.2
 water_color = Color(0.309804, 0.560784, 0.878431, 0.878431)
 water_color_highlight = Color(0.458824, 0.643137, 0.929412, 0.909804)

@@ -57,7 +57,7 @@ distance_fade_min_distance = 0.5
 distance_fade_max_distance = 2.0
 
 [sub_resource type="CapsuleMesh" id="6"]
-material = SubResource( "5" )
+material = SubResource("5")
 radius = 0.25
 height = 1.25
 
@@ -75,7 +75,7 @@ offsets = PackedFloat32Array(0.391218, 0.742515)
 colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_o4yl3"]
-gradient = SubResource( "Gradient_g33fs" )
+gradient = SubResource("Gradient_g33fs")
 width = 1024
 height = 1024
 fill = 1
@@ -102,56 +102,56 @@ volume_db = -80.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 60
-script = ExtResource( "1" )
-_thumbstick_resource_left = ExtResource( "2_t6dk8" )
-_input_vector_resource = ExtResource( "3_2i2xh" )
-_game_state_resource = ExtResource( "4_gviv5" )
-_transform_resource = ExtResource( "5_f776o" )
-_camera_transform_resource = ExtResource( "6_sk484" )
-_environment_resource = ExtResource( "7_ufvp6" )
-_time_resource_gameplay = ExtResource( "8_u0now" )
+script = ExtResource("1")
+_thumbstick_resource_left = ExtResource("2_t6dk8")
+_input_vector_resource = ExtResource("3_2i2xh")
+_game_state_resource = ExtResource("4_gviv5")
+_transform_resource = ExtResource("5_f776o")
+_camera_transform_resource = ExtResource("6_sk484")
+_environment_resource = ExtResource("7_ufvp6")
+_time_resource_gameplay = ExtResource("8_u0now")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource( "1" )
+shape = SubResource("1")
 
 [node name="Mesh" type="Node3D" parent="."]
 
 [node name="SquashStretch" type="Node3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
-script = ExtResource( "7_pchkq" )
+script = ExtResource("7_pchkq")
 stretch_factor = 0.75
 
 [node name="Spring" type="Node3D" parent="Mesh/SquashStretch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 top_level = true
-script = ExtResource( "7_pus1y" )
+script = ExtResource("7_pus1y")
 spring_length = 1.25
 
 [node name="Default" type="Node3D" parent="Mesh/SquashStretch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.623865, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/SquashStretch/Default"]
-mesh = SubResource( "2" )
+mesh = SubResource("2")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource( "3" )
+surface_material_override/0 = SubResource("3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/SquashStretch/Default/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
-mesh = SubResource( "4" )
-surface_material_override/0 = SubResource( "StandardMaterial3D_54w1t" )
+mesh = SubResource("4")
+surface_material_override/0 = SubResource("StandardMaterial3D_54w1t")
 
 [node name="Glide" type="Node3D" parent="Mesh"]
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Glide"]
 transform = Transform3D(1, 6.51352e-16, 1.49012e-08, 0, -4.37114e-08, -1, -2.98023e-08, 1, -1.6292e-07, 0, 0, 0)
-mesh = SubResource( "6" )
+mesh = SubResource("6")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Glide/MeshInstance3D"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource( "7" )
-surface_material_override/0 = SubResource( "StandardMaterial3D_d3eg8" )
+mesh = SubResource("7")
+surface_material_override/0 = SubResource("StandardMaterial3D_d3eg8")
 
 [node name="TrailPositionLeftInner" type="Position3D" parent="Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)
@@ -166,86 +166,86 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.35355
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -0.37, 0)
 
 [node name="StateMachine" type="Node" parent="Mesh"]
-script = ExtResource( "2" )
+script = ExtResource("2")
 _initial_state = NodePath("Idle")
 
 [node name="Dive" type="Node" parent="Mesh/StateMachine"]
-script = ExtResource( "9_uwrsl" )
+script = ExtResource("9_uwrsl")
 _mesh_root = NodePath("../../Glide")
-_player_input_vector_resource = ExtResource( "3_2i2xh" )
+_player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight = 0.01
 roll_lerp_weight = 1.0
 
 [node name="Fall" type="Node" parent="Mesh/StateMachine"]
-script = ExtResource( "10_vowrm" )
+script = ExtResource("10_vowrm")
 _mesh_root = NodePath("../../SquashStretch/Default")
-_player_input_vector_resource = ExtResource( "3_2i2xh" )
+_player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
 
 [node name="Glide" type="Node" parent="Mesh/StateMachine"]
-script = ExtResource( "9_uwrsl" )
+script = ExtResource("9_uwrsl")
 _mesh_root = NodePath("../../Glide")
-_player_input_vector_resource = ExtResource( "3_2i2xh" )
+_player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Idle" type="Node" parent="Mesh/StateMachine"]
-script = ExtResource( "10_vowrm" )
+script = ExtResource("10_vowrm")
 _mesh_root = NodePath("../../SquashStretch/Default")
-_player_input_vector_resource = ExtResource( "3_2i2xh" )
+_player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Jump" type="Node" parent="Mesh/StateMachine"]
-script = ExtResource( "10_vowrm" )
+script = ExtResource("10_vowrm")
 _mesh_root = NodePath("../../SquashStretch/Default")
-_player_input_vector_resource = ExtResource( "3_2i2xh" )
+_player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
 
 [node name="Run" type="Node" parent="Mesh/StateMachine"]
-script = ExtResource( "10_vowrm" )
+script = ExtResource("10_vowrm")
 _mesh_root = NodePath("../../SquashStretch/Default")
-_player_input_vector_resource = ExtResource( "3_2i2xh" )
+_player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Swim" type="Node" parent="Mesh/StateMachine"]
-script = ExtResource( "10_vowrm" )
+script = ExtResource("10_vowrm")
 _mesh_root = NodePath("../../SquashStretch/Default")
-_player_input_vector_resource = ExtResource( "3_2i2xh" )
+_player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 1.0
 turn_lerp_weight_max = 3.0
 
 [node name="StateMachineSynchronizer" type="Node" parent="Mesh"]
-script = ExtResource( "11_mhki8" )
+script = ExtResource("11_mhki8")
 _state_machine_parent = NodePath("../../StateMachine")
 _state_machine_child = NodePath("../StateMachine")
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( "2" )
+script = ExtResource("2")
 _initial_state = NodePath("Idle")
 
 [node name="Dive" type="Node" parent="StateMachine"]
-script = ExtResource( "10" )
+script = ExtResource("10")
 
 [node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource( "5" )
+script = ExtResource("5")
 
 [node name="Glide" type="Node" parent="StateMachine"]
-script = ExtResource( "7" )
+script = ExtResource("7")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource( "3" )
+script = ExtResource("3")
 
 [node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource( "6" )
+script = ExtResource("6")
 
 [node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource( "4" )
+script = ExtResource("4")
 
 [node name="Swim" type="Node" parent="StateMachine"]
-script = ExtResource( "9" )
+script = ExtResource("9")
 
 [node name="StateResourceManager" type="Node" parent="."]
-script = ExtResource( "15_p5vjh" )
+script = ExtResource("15_p5vjh")
 _state_machine = NodePath("../StateMachine")
-_state_resource = ExtResource( "12" )
+_state_resource = ExtResource("12")
 
 [node name="RaycastContainer" type="Node3D" parent="."]
 
@@ -304,47 +304,47 @@ one_shot = true
 [node name="TrailRenderers" type="Node" parent="."]
 
 [node name="GlideTrailRendererLeft" type="Node" parent="TrailRenderers"]
-script = ExtResource( "8" )
+script = ExtResource("8")
 _target_state = NodePath("../../StateMachine/Glide")
 _trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
 _trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 
 [node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers"]
-script = ExtResource( "8" )
+script = ExtResource("8")
 _target_state = NodePath("../../StateMachine/Glide")
 _trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
 _trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 
 [node name="DiveTrailRendererLeft" type="Node" parent="TrailRenderers"]
-script = ExtResource( "8" )
+script = ExtResource("8")
 _target_state = NodePath("../../StateMachine/Dive")
 _trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
 _trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 point_lifetime = 1.0
 
 [node name="DiveTrailRendererRight" type="Node" parent="TrailRenderers"]
-script = ExtResource( "8" )
+script = ExtResource("8")
 _target_state = NodePath("../../StateMachine/Dive")
 _trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
 _trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 point_lifetime = 1.0
 
 [node name="BlobShadow" type="Node3D" parent="."]
-script = ExtResource( "16_3ec8c" )
+script = ExtResource("16_3ec8c")
 
 [node name="DecalPivot" type="Node3D" parent="BlobShadow"]
 
 [node name="Decal" type="Decal" parent="BlobShadow/DecalPivot"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 extents = Vector3(0.2, 0.01, 0.2)
-texture_albedo = SubResource( "GradientTexture2D_o4yl3" )
+texture_albedo = SubResource("GradientTexture2D_o4yl3")
 upper_fade = 1e-05
 lower_fade = 1.10957e-05
 cull_mask = 12
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BlobShadow/DecalPivot/Decal"]
 visible = false
-mesh = SubResource( "CylinderMesh_dd8js" )
+mesh = SubResource("CylinderMesh_dd8js")
 skeleton = NodePath("../../../..")
 
 [node name="RayCast3D" type="RayCast3D" parent="BlobShadow"]
@@ -354,27 +354,27 @@ collision_mask = 12
 [node name="AudioEffects" type="Node" parent="."]
 
 [node name="DiveLowpass" type="Node" parent="AudioEffects"]
-script = ExtResource( "18_nptr4" )
+script = ExtResource("18_nptr4")
 _target_state = NodePath("../../StateMachine/Dive")
-audio_effect_dry = SubResource( "AudioEffectLowPassFilter_xejwy" )
-audio_effect_wet = SubResource( "AudioEffectLowPassFilter_v0sjn" )
+audio_effect_dry = SubResource("AudioEffectLowPassFilter_xejwy")
+audio_effect_wet = SubResource("AudioEffectLowPassFilter_v0sjn")
 tween_duration = 0.25
 tween_type = 2
 
 [node name="GlideAmplifyBgmGlide" type="Node" parent="AudioEffects"]
-script = ExtResource( "18_nptr4" )
+script = ExtResource("18_nptr4")
 _target_state = NodePath("../../StateMachine/Glide")
-audio_effect_dry = SubResource( "AudioEffectAmplify_crae5" )
-audio_effect_wet = SubResource( "AudioEffectAmplify_a1p08" )
+audio_effect_dry = SubResource("AudioEffectAmplify_crae5")
+audio_effect_wet = SubResource("AudioEffectAmplify_a1p08")
 audio_bus_name = &"BgmGlide"
 tween_duration = 2.5
 tween_type = 1
 
 [node name="GlideAmplifyBgmRhythm" type="Node" parent="AudioEffects"]
-script = ExtResource( "18_nptr4" )
+script = ExtResource("18_nptr4")
 _target_state = NodePath("../../StateMachine/Glide")
-audio_effect_dry = SubResource( "AudioEffectAmplify_4ml5m" )
-audio_effect_wet = SubResource( "AudioEffectAmplify_wy87q" )
+audio_effect_dry = SubResource("AudioEffectAmplify_4ml5m")
+audio_effect_wet = SubResource("AudioEffectAmplify_wy87q")
 audio_bus_name = &"BgmRhythm"
 tween_duration = 2.5
 tween_type = 1

@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://src/environment/effects/underwater_fog.gd" id="3_nmuvn"]
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
-script = ExtResource( "1_yx8pc" )
-_environment_resource = ExtResource( "2_5vtiw" )
+script = ExtResource("1_yx8pc")
+_environment_resource = ExtResource("2_5vtiw")
 
 [node name="UnderwaterFog" type="Node" parent="."]
-script = ExtResource( "3_nmuvn" )
-_environment_resource = ExtResource( "2_5vtiw" )
+script = ExtResource("3_nmuvn")
+_environment_resource = ExtResource("2_5vtiw")

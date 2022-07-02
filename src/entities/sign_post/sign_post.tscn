@@ -21,20 +21,20 @@ collision_layer = 8
 [node name="Post" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 layers = 8
-mesh = SubResource( "CylinderMesh_hm6r0" )
-surface_material_override/0 = ExtResource( "2_vxxwp" )
+mesh = SubResource("CylinderMesh_hm6r0")
+surface_material_override/0 = ExtResource("2_vxxwp")
 
 [node name="Sign" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07288e-06, 0)
 layers = 8
-mesh = SubResource( "BoxMesh_otxnp" )
-surface_material_override/0 = ExtResource( "2_vxxwp" )
+mesh = SubResource("BoxMesh_otxnp")
+surface_material_override/0 = ExtResource("2_vxxwp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource( "BoxShape3D_6bn8e" )
+shape = SubResource("BoxShape3D_6bn8e")
 
-[node name="Interaction" parent="." instance=ExtResource( "4_w1abi" )]
+[node name="Interaction" parent="." instance=ExtResource("4_w1abi")]
 
 [node name="Action" type="Node3D" parent="Interaction"]
-script = ExtResource( "3_o1tm2" )
+script = ExtResource("3_o1tm2")

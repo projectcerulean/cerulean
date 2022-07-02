@@ -12,7 +12,7 @@ size = Vector3(0.1, 5, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eeml1"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "1_c8xt7" )
+shader = ExtResource("1_c8xt7")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -21,16 +21,16 @@ shader_param/smooth_range = 0.5
 
 [node name="Cable" type="MeshInstance3D"]
 layers = 8
-mesh = SubResource( "BoxMesh_nssbg" )
-surface_material_override/0 = SubResource( "ShaderMaterial_eeml1" )
-script = ExtResource( "2_gr7c4" )
+mesh = SubResource("BoxMesh_nssbg")
+surface_material_override/0 = SubResource("ShaderMaterial_eeml1")
+script = ExtResource("2_gr7c4")
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource( "3_0rjeb" )
+script = ExtResource("3_0rjeb")
 _initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
-script = ExtResource( "4_3jue8" )
+script = ExtResource("4_3jue8")
 
 [node name="Enabled" type="Node" parent="StateMachine"]
-script = ExtResource( "4_3jue8" )
+script = ExtResource("4_3jue8")

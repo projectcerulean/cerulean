@@ -9,10 +9,10 @@
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="7_k5mso"]
 
 [node name="TimeManager" type="Node"]
-script = ExtResource( "1_oqwax" )
-_time_resource = ExtResource( "2_fp52s" )
-_time_resource_dialogue = ExtResource( "3_kmn78" )
-_time_resource_gameplay = ExtResource( "4_nm84l" )
-_time_resource_pause = ExtResource( "5_r3hwd" )
-_time_resource_scene_transition = ExtResource( "6_vsubl" )
-_game_state_resource = ExtResource( "7_k5mso" )
+script = ExtResource("1_oqwax")
+_time_resource = ExtResource("2_fp52s")
+_time_resource_dialogue = ExtResource("3_kmn78")
+_time_resource_gameplay = ExtResource("4_nm84l")
+_time_resource_pause = ExtResource("5_r3hwd")
+_time_resource_scene_transition = ExtResource("6_vsubl")
+_game_state_resource = ExtResource("7_k5mso")

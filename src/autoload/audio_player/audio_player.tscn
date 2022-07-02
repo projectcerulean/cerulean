@@ -12,16 +12,16 @@ process_mode = 3
 [node name="Bgm" type="Node" parent="."]
 
 [node name="BgmPlayer" type="Node" parent="Bgm"]
-script = ExtResource( "2" )
+script = ExtResource("2")
 
 [node name="Sfx" type="Node" parent="."]
 
 [node name="SfxPlayer" type="Node" parent="Sfx"]
-script = ExtResource( "4_p84st" )
+script = ExtResource("4_p84st")
 
 [node name="SfxPlayerNonDiegetic" type="Node" parent="Sfx"]
-script = ExtResource( "5_7273u" )
+script = ExtResource("5_7273u")
 
 [node name="SettingsController" type="Node" parent="."]
-script = ExtResource( "6_j2jn5" )
-_settings_resource = ExtResource( "5_u60uf" )
+script = ExtResource("6_j2jn5")
+_settings_resource = ExtResource("5_u60uf")

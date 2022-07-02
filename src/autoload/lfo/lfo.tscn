@@ -5,5 +5,5 @@
 
 [node name="LFO" type="Node"]
 process_mode = 3
-script = ExtResource( "1_aof2r" )
-_lfo_resource = ExtResource( "2_2sdf1" )
+script = ExtResource("1_aof2r")
+_lfo_resource = ExtResource("2_2sdf1")

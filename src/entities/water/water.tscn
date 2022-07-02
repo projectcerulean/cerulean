@@ -16,24 +16,24 @@ frequency = 0.003
 
 [sub_resource type="NoiseTexture" id="NoiseTexture_bqtil"]
 seamless = true
-noise = SubResource( "FastNoiseLite_mtgeo" )
+noise = SubResource("FastNoiseLite_mtgeo")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2ni1l"]
 frequency = 0.008
 
 [sub_resource type="NoiseTexture" id="NoiseTexture_8n77n"]
 seamless = true
-noise = SubResource( "FastNoiseLite_2ni1l" )
+noise = SubResource("FastNoiseLite_2ni1l")
 
 [sub_resource type="ShaderMaterial" id="2"]
 render_priority = 0
-shader = ExtResource( "1" )
+shader = ExtResource("1")
 shader_param/beer_factor = 0.2
 shader_param/foam_color = Color(0.878431, 0.878431, 1, 0.909804)
 shader_param/foam_smooth = 0.01
 shader_param/foam_width = 0.2
-shader_param/noise_sampler1 = SubResource( "NoiseTexture_bqtil" )
-shader_param/noise_sampler2 = SubResource( "NoiseTexture_8n77n" )
+shader_param/noise_sampler1 = SubResource("NoiseTexture_bqtil")
+shader_param/noise_sampler2 = SubResource("NoiseTexture_8n77n")
 shader_param/noise_time_factor = Vector2(0.01, 0.002)
 shader_param/water_color = Color(0.309804, 0.560784, 0.878431, 0.878431)
 shader_param/water_color_highlight = Color(0.458824, 0.643137, 0.929412, 0.909804)
@@ -48,15 +48,15 @@ size = Vector3(64, 128, 64)
 
 [node name="Water" type="MeshInstance3D"]
 layers = 16
-mesh = SubResource( "1" )
-surface_material_override/0 = SubResource( "2" )
-script = ExtResource( "2_3s67h" )
-_environment_resource = ExtResource( "3_378uc" )
-_time_resource_gameplay = ExtResource( "4_46k1v" )
+mesh = SubResource("1")
+surface_material_override/0 = SubResource("2")
+script = ExtResource("2_3s67h")
+_environment_resource = ExtResource("3_378uc")
+_time_resource_gameplay = ExtResource("4_46k1v")
 
-[node name="Area3D" parent="." instance=ExtResource( "2_5wdg5" )]
+[node name="Area3D" parent="." instance=ExtResource("2_5wdg5")]
 collision_layer = 16
 collision_mask = 11
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource( "13" )
+shape = SubResource("13")

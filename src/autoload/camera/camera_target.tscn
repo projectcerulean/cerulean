@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://cyvmbau3f180w"]
 
 [ext_resource type="Script" path="res://src/autoload/camera/camera_target.gd" id="1_vv2vj"]
-[ext_resource type="Resource" uid="uid://cgtbw50lpa6fi" path="res://src/autoload/camera/camera_target_transform.tres" id="2_kekmw"]
-[ext_resource type="Resource" uid="uid://cf5mdlivktsoa" path="res://src/entities/player/player_transform.tres" id="3_scv08"]
+[ext_resource type="Resource" path="res://src/autoload/camera/camera_target_transform.tres" id="2_kekmw"]
+[ext_resource type="Resource" path="res://src/entities/player/player_transform.tres" id="3_scv08"]
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="4_02ywf"]
-[ext_resource type="Resource" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="5_os347"]
+[ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="5_os347"]
 
 [node name="CameraTarget" type="Position3D"]
 process_mode = 3
-script = ExtResource( "1_vv2vj" )
-_transform_resource = ExtResource( "2_kekmw" )
-_player_transform_resource = ExtResource( "3_scv08" )
-_player_state_resource = ExtResource( "4_02ywf" )
-_game_state_resource = ExtResource( "5_os347" )
+script = ExtResource("1_vv2vj")
+_transform_resource = ExtResource("2_kekmw")
+_player_transform_resource = ExtResource("3_scv08")
+_player_state_resource = ExtResource("4_02ywf")
+_game_state_resource = ExtResource("5_os347")

@@ -4,5 +4,5 @@
 [ext_resource type="Resource" uid="uid://bbaupgv7alorj" path="res://src/autoload/settings_manager/settings.tres" id="2_qs4ts"]
 
 [node name="SettingsManager" type="Node"]
-script = ExtResource( "1_8b7oe" )
-_settings_resource = ExtResource( "2_qs4ts" )
+script = ExtResource("1_8b7oe")
+_settings_resource = ExtResource("2_qs4ts")

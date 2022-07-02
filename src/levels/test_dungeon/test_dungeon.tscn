@@ -24,7 +24,7 @@ size = Vector3(0.1, 1, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ihnfk"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -38,7 +38,7 @@ size = Vector3(0.1, 2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8s5j1"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -52,7 +52,7 @@ size = Vector3(0.1, 5.6, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fyibl"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -66,7 +66,7 @@ size = Vector3(0.1, 2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_skgf6"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -80,7 +80,7 @@ size = Vector3(0.1, 4, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ke8v"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -94,7 +94,7 @@ size = Vector3(0.1, 10, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmem4"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -108,7 +108,7 @@ size = Vector3(0.1, 6, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ocej7"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -122,7 +122,7 @@ size = Vector3(0.1, 18.6, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spgm6"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -136,7 +136,7 @@ size = Vector3(0.1, 22.2, 0.1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6fb6s"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource( "8_4hvtj" )
+shader = ExtResource("8_4hvtj")
 shader_param/color_new = Color(0, 0.709804, 1, 1)
 shader_param/color_old = Color(1, 0.270588, 0, 1)
 shader_param/flip_colors = false
@@ -154,9 +154,9 @@ distance_fade_max_distance = 2.0
 size = Vector3(512, 512, 512)
 
 [node name="TestDungeon" type="Node"]
-script = ExtResource( "1_arp3q" )
+script = ExtResource("1_arp3q")
 
-[node name="Player" parent="." instance=ExtResource( "1" )]
+[node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7, 134)
 
 [node name="Env" type="Node3D" parent="."]
@@ -166,7 +166,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.7, 134)
 [node name="Walls" type="CSGCombiner3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.4058)
 layers = 4
-material_override = ExtResource( "3_m5lxh" )
+material_override = ExtResource("3_m5lxh")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -226,7 +226,7 @@ omni_range = 50.0
 
 [node name="Stairs" type="CSGCombiner3D" parent="Env/Entrance"]
 layers = 4
-material_override = ExtResource( "3_m5lxh" )
+material_override = ExtResource("3_m5lxh")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -327,7 +327,7 @@ depth = 4.0
 
 [node name="Exit" type="CSGCombiner3D" parent="Env/Entrance"]
 layers = 4
-material_override = ExtResource( "3_m5lxh" )
+material_override = ExtResource("3_m5lxh")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -344,81 +344,81 @@ size = Vector3(4, 4, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63.4058)
 size = Vector3(4, 2, 2)
 
-[node name="Barrier" parent="Env/Entrance" instance=ExtResource( "5_7fqri" )]
+[node name="Barrier" parent="Env/Entrance" instance=ExtResource("5_7fqri")]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 6, 67.5)
 input_nodes = [NodePath("../Switch/Indicator"), NodePath("../Switch2/Indicator")]
 input_targets = [true, true]
 
-[node name="Switch" parent="Env/Entrance" instance=ExtResource( "6_4a13o" )]
+[node name="Switch" parent="Env/Entrance" instance=ExtResource("6_4a13o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 74)
 
-[node name="Cable" parent="Env/Entrance/Switch" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable" parent="Env/Entrance/Switch" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.5, 0, 0)
-mesh = SubResource( "BoxMesh_ybceq" )
+mesh = SubResource("BoxMesh_ybceq")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource( "ShaderMaterial_ihnfk" )
+surface_material_override/0 = SubResource("ShaderMaterial_ihnfk")
 input_node_path = NodePath("..")
 
-[node name="Cable2" parent="Env/Entrance/Switch" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable2" parent="Env/Entrance/Switch" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2, -0.95, 0)
-mesh = SubResource( "BoxMesh_qiqbg" )
+mesh = SubResource("BoxMesh_qiqbg")
 skeleton = NodePath("../Cable")
-surface_material_override/0 = SubResource( "ShaderMaterial_8s5j1" )
+surface_material_override/0 = SubResource("ShaderMaterial_8s5j1")
 input_node_path = NodePath("../Cable")
 
-[node name="Cable3" parent="Env/Entrance/Switch" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable3" parent="Env/Entrance/Switch" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, 1.31134e-07, 1, 0, -1, 1.31134e-07, -2, -1.9, -2.75)
-mesh = SubResource( "BoxMesh_tabba" )
+mesh = SubResource("BoxMesh_tabba")
 skeleton = NodePath("../Cable2")
-surface_material_override/0 = SubResource( "ShaderMaterial_fyibl" )
+surface_material_override/0 = SubResource("ShaderMaterial_fyibl")
 input_node_path = NodePath("../Cable2")
 
-[node name="Cable4" parent="Env/Entrance/Switch" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable4" parent="Env/Entrance/Switch" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(-4.37114e-08, -1, 1.31134e-07, 0, 1.31134e-07, 1, -1, 4.37114e-08, 0, -3, -1.9, -5.55)
-mesh = SubResource( "BoxMesh_7bvkp" )
+mesh = SubResource("BoxMesh_7bvkp")
 skeleton = NodePath("../Cable3")
-surface_material_override/0 = SubResource( "ShaderMaterial_skgf6" )
+surface_material_override/0 = SubResource("ShaderMaterial_skgf6")
 input_node_path = NodePath("../Cable3")
 
-[node name="Cable5" parent="Env/Entrance/Switch" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable5" parent="Env/Entrance/Switch" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95, 0.0500002, -5.55)
-mesh = SubResource( "BoxMesh_c0wn1" )
+mesh = SubResource("BoxMesh_c0wn1")
 skeleton = NodePath("../Cable4")
-surface_material_override/0 = SubResource( "ShaderMaterial_0ke8v" )
+surface_material_override/0 = SubResource("ShaderMaterial_0ke8v")
 input_node_path = NodePath("../Cable4")
 
-[node name="Indicator" parent="Env/Entrance/Switch" instance=ExtResource( "9_7mq4f" )]
+[node name="Indicator" parent="Env/Entrance/Switch" instance=ExtResource("9_7mq4f")]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3.95, 2.15, -5.55)
 input_node_path = NodePath("../Cable5")
 
-[node name="Switch2" parent="Env/Entrance" instance=ExtResource( "6_4a13o" )]
+[node name="Switch2" parent="Env/Entrance" instance=ExtResource("6_4a13o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 98)
 
-[node name="Cable" parent="Env/Entrance/Switch2" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable" parent="Env/Entrance/Switch2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -6)
-mesh = SubResource( "BoxMesh_fy0ne" )
-surface_material_override/0 = SubResource( "ShaderMaterial_rmem4" )
+mesh = SubResource("BoxMesh_fy0ne")
+surface_material_override/0 = SubResource("ShaderMaterial_rmem4")
 input_node_path = NodePath("..")
 
-[node name="Cable2" parent="Env/Entrance/Switch2" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable2" parent="Env/Entrance/Switch2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -2.95, 0, -10.95)
-mesh = SubResource( "BoxMesh_noxna" )
-surface_material_override/0 = SubResource( "ShaderMaterial_ocej7" )
+mesh = SubResource("BoxMesh_noxna")
+surface_material_override/0 = SubResource("ShaderMaterial_ocej7")
 input_node_path = NodePath("../Cable")
 
-[node name="Cable3" parent="Env/Entrance/Switch2" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable3" parent="Env/Entrance/Switch2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.9, 0, -20.2)
-mesh = SubResource( "BoxMesh_s1nv1" )
-surface_material_override/0 = SubResource( "ShaderMaterial_spgm6" )
+mesh = SubResource("BoxMesh_s1nv1")
+surface_material_override/0 = SubResource("ShaderMaterial_spgm6")
 input_node_path = NodePath("../Cable2")
 
-[node name="Cable4" parent="Env/Entrance/Switch2" instance=ExtResource( "7_b2l1v" )]
+[node name="Cable4" parent="Env/Entrance/Switch2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 11.1, -29.6)
-mesh = SubResource( "BoxMesh_vq164" )
-surface_material_override/0 = SubResource( "ShaderMaterial_6fb6s" )
+mesh = SubResource("BoxMesh_vq164")
+surface_material_override/0 = SubResource("ShaderMaterial_6fb6s")
 input_node_path = NodePath("../Cable3")
 
-[node name="Indicator" parent="Env/Entrance/Switch2" instance=ExtResource( "9_7mq4f" )]
+[node name="Indicator" parent="Env/Entrance/Switch2" instance=ExtResource("9_7mq4f")]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -5.9, 22.15, -29.55)
 input_node_path = NodePath("../Cable4")
 
@@ -426,7 +426,7 @@ input_node_path = NodePath("../Cable4")
 
 [node name="Block" type="CSGCombiner3D" parent="Env/Ascension"]
 layers = 4
-material_override = ExtResource( "3_m5lxh" )
+material_override = ExtResource("3_m5lxh")
 use_collision = true
 collision_layer = 4
 collision_mask = 11
@@ -434,45 +434,45 @@ collision_mask = 11
 [node name="Block" type="CSGBox3D" parent="Env/Ascension/Block"]
 size = Vector3(4, 2, 4)
 
-[node name="SignPost" parent="Env/Ascension/Block/Block" instance=ExtResource( "10_g8ijk" )]
+[node name="SignPost" parent="Env/Ascension/Block/Block" instance=ExtResource("10_g8ijk")]
 transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Post" parent="Env/Ascension/Block/Block/SignPost" index="0"]
-surface_material_override/0 = SubResource( "StandardMaterial3D_p5bge" )
+surface_material_override/0 = SubResource("StandardMaterial3D_p5bge")
 
 [node name="Sign" parent="Env/Ascension/Block/Block/SignPost" index="1"]
-surface_material_override/0 = SubResource( "StandardMaterial3D_p5bge" )
+surface_material_override/0 = SubResource("StandardMaterial3D_p5bge")
 
 [node name="Action" parent="Env/Ascension/Block/Block/SignPost/Interaction" index="1"]
-dialogue_resource = ExtResource( "11_20llv" )
+dialogue_resource = ExtResource("11_20llv")
 
 [node name="Water" type="Node3D" parent="."]
 
-[node name="Water" parent="Water" instance=ExtResource( "4" )]
+[node name="Water" parent="Water" instance=ExtResource("4")]
 
-[node name="Water2" parent="Water" instance=ExtResource( "4" )]
+[node name="Water2" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
 
-[node name="Water3" parent="Water" instance=ExtResource( "4" )]
+[node name="Water3" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 
-[node name="LoadingZone" parent="." instance=ExtResource( "4_oftnn" )]
+[node name="LoadingZone" parent="." instance=ExtResource("4_oftnn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 140.4)
 scene_key = &"TEST_SCENE"
 
-[node name="WorldEnvironment" parent="." instance=ExtResource( "14_11lwf" )]
-environment = ExtResource( "15_nl3es" )
+[node name="WorldEnvironment" parent="." instance=ExtResource("14_11lwf")]
+environment = ExtResource("15_nl3es")
 
-[node name="BgmArea" parent="." instance=ExtResource( "15_e7a0f" )]
+[node name="BgmArea" parent="." instance=ExtResource("15_e7a0f")]
 bgm = &"WATERWORKS"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BgmArea"]
-shape = SubResource( "BoxShape3D_vrsx2" )
+shape = SubResource("BoxShape3D_vrsx2")
 
-[node name="Box" parent="." instance=ExtResource( "16_p0we0" )]
+[node name="Box" parent="." instance=ExtResource("16_p0we0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 16)
 
-[node name="Box2" parent="." instance=ExtResource( "16_p0we0" )]
+[node name="Box2" parent="." instance=ExtResource("16_p0we0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 39)
 
 [editable path="Env/Ascension/Block/Block/SignPost"]

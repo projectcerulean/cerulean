@@ -17,14 +17,14 @@ radius = 0.1
 
 [node name="Camera" type="Position3D"]
 process_mode = 3
-script = ExtResource( "1_dbun4" )
-_thumbstick_resource_right = ExtResource( "2_sj0tv" )
-_settings_resource = ExtResource( "3_dhgty" )
-_transform_resource = ExtResource( "4_n4bb1" )
-_target_transform_resource = ExtResource( "5_sufsx" )
-_game_state_resource = ExtResource( "6_3eh25" )
-_environment_resource = ExtResource( "7_61jfu" )
-_time_resource_gameplay = ExtResource( "8_gpjes" )
+script = ExtResource("1_dbun4")
+_thumbstick_resource_right = ExtResource("2_sj0tv")
+_settings_resource = ExtResource("3_dhgty")
+_transform_resource = ExtResource("4_n4bb1")
+_target_transform_resource = ExtResource("5_sufsx")
+_game_state_resource = ExtResource("6_3eh25")
+_environment_resource = ExtResource("7_61jfu")
+_time_resource_gameplay = ExtResource("8_gpjes")
 
 [node name="YawPivot" type="Position3D" parent="."]
 
@@ -35,12 +35,11 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 collision_mask = 68
 
 [node name="WallDetector" type="StaticBody3D" parent="YawPivot/PitchPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/WallDetector"]
-shape = SubResource( "SphereShape3D_hcul6" )
+shape = SubResource("SphereShape3D_hcul6")
 
 [node name="CameraAnchor" type="Position3D" parent="YawPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 5)
@@ -54,4 +53,4 @@ collision_layer = 2
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector"]
-shape = SubResource( "7" )
+shape = SubResource("7")
