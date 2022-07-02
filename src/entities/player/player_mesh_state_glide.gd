@@ -30,7 +30,8 @@ func process(delta: float) -> void:
 		yaw_direction = yaw_direction_new
 
 	if is_zero_approx(player.velocity.x) and is_zero_approx(player.velocity.z):
-		mesh_root.look_at(mesh_root.get_global_transform().origin + (Vector3.UP if player.velocity.y > 0.0 else Vector3.DOWN), yaw_direction)
+		if not is_zero_approx(player.velocity.y):
+			mesh_root.look_at(mesh_root.get_global_transform().origin + (Vector3.UP if player.velocity.y > 0.0 else Vector3.DOWN), yaw_direction)
 	else:
 		var input_direction_2d: Vector3 = Vector3(player_input_vector_resource.value.x, 0.0, player_input_vector_resource.value.z)
 		var velocity_2d: Vector3 = Vector3(player.velocity.x, 0.0, player.velocity.z)
