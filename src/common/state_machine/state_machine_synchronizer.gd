@@ -3,11 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends Node
 
-@export var _state_machine_parent: NodePath
-@export var _state_machine_child: NodePath
-
-@onready var state_machine_parent = get_node(_state_machine_parent) as Node
-@onready var state_machine_child = get_node(_state_machine_child) as Node
+@export var state_machine_parent: Node
+@export var state_machine_child: Node
 
 
 func _ready() -> void:

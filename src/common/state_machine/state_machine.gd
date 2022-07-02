@@ -9,11 +9,11 @@ class_name StateMachine
 extends Node
 
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
-@export var _initial_state: NodePath
+@export var _initial_state: Node
 
 var current_state: State
 
-@onready var initial_state: State = get_node(_initial_state) as State
+@onready var initial_state: State = _initial_state as State
 
 
 # Enter the initial state when initializing the state machine.

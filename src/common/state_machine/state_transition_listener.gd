@@ -4,11 +4,10 @@
 class_name StateTransitionListener
 extends Node
 
-@export var _target_state: NodePath
+@export var target_state: Node
 
 var is_in_target_state: bool = false
 
-@onready var target_state: Node = get_node(_target_state) as Node
 @onready var target_state_machine: Node = target_state.get_parent() as Node
 
 

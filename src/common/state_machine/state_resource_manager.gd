@@ -3,10 +3,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends Node
 
-@export var _state_machine: NodePath
+@export var state_machine: Node
 @export var _state_resource: Resource
 
-@onready var state_machine: Node = get_node(_state_machine) as Node
 @onready var state_resource: StateResource = _state_resource as StateResource
 
 

@@ -20,7 +20,7 @@ anchor_bottom = 1.0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_7a8fw")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("3_y7dcq")
 _initial_state = NodePath("Wait")
 

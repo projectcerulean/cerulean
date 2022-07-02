@@ -48,7 +48,7 @@ layers = 8
 mesh = SubResource("BoxMesh_4kh3e")
 surface_material_override/0 = SubResource("ShaderMaterial_esmal")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("3_qqest")
 _initial_state = NodePath("Disabled")
 

@@ -165,59 +165,59 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.35355
 [node name="TrailPositionRightOuter" type="Position3D" parent="Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -0.37, 0)
 
-[node name="StateMachine" type="Node" parent="Mesh"]
+[node name="StateMachine" type="Node" parent="Mesh" node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("2")
 _initial_state = NodePath("Idle")
 
-[node name="Dive" type="Node" parent="Mesh/StateMachine"]
+[node name="Dive" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
-_mesh_root = NodePath("../../Glide")
+mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight = 0.01
 roll_lerp_weight = 1.0
 
-[node name="Fall" type="Node" parent="Mesh/StateMachine"]
+[node name="Fall" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
-_mesh_root = NodePath("../../SquashStretch/Default")
+mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
 
-[node name="Glide" type="Node" parent="Mesh/StateMachine"]
+[node name="Glide" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
-_mesh_root = NodePath("../../Glide")
+mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Idle" type="Node" parent="Mesh/StateMachine"]
+[node name="Idle" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
-_mesh_root = NodePath("../../SquashStretch/Default")
+mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Jump" type="Node" parent="Mesh/StateMachine"]
+[node name="Jump" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
-_mesh_root = NodePath("../../SquashStretch/Default")
+mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
 
-[node name="Run" type="Node" parent="Mesh/StateMachine"]
+[node name="Run" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
-_mesh_root = NodePath("../../SquashStretch/Default")
+mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Swim" type="Node" parent="Mesh/StateMachine"]
+[node name="Swim" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
-_mesh_root = NodePath("../../SquashStretch/Default")
+mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 1.0
 turn_lerp_weight_max = 3.0
 
-[node name="StateMachineSynchronizer" type="Node" parent="Mesh"]
+[node name="StateMachineSynchronizer" type="Node" parent="Mesh" node_paths=PackedStringArray("state_machine_parent", "state_machine_child")]
 script = ExtResource("11_mhki8")
-_state_machine_parent = NodePath("../../StateMachine")
-_state_machine_child = NodePath("../StateMachine")
+state_machine_parent = NodePath("../../StateMachine")
+state_machine_child = NodePath("../StateMachine")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("2")
 _initial_state = NodePath("Idle")
 
@@ -242,9 +242,9 @@ script = ExtResource("4")
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("9")
 
-[node name="StateResourceManager" type="Node" parent="."]
+[node name="StateResourceManager" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
 script = ExtResource("15_p5vjh")
-_state_machine = NodePath("../StateMachine")
+state_machine = NodePath("../StateMachine")
 _state_resource = ExtResource("12")
 
 [node name="RaycastContainer" type="Node3D" parent="."]
@@ -303,30 +303,30 @@ one_shot = true
 
 [node name="TrailRenderers" type="Node" parent="."]
 
-[node name="GlideTrailRendererLeft" type="Node" parent="TrailRenderers"]
+[node name="GlideTrailRendererLeft" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("target_state", "trail_position_a", "trail_position_b")]
 script = ExtResource("8")
-_target_state = NodePath("../../StateMachine/Glide")
-_trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-_trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+target_state = NodePath("../../StateMachine/Glide")
+trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 
-[node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers"]
+[node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("target_state", "trail_position_a", "trail_position_b")]
 script = ExtResource("8")
-_target_state = NodePath("../../StateMachine/Glide")
-_trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-_trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+target_state = NodePath("../../StateMachine/Glide")
+trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 
-[node name="DiveTrailRendererLeft" type="Node" parent="TrailRenderers"]
+[node name="DiveTrailRendererLeft" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("target_state", "trail_position_a", "trail_position_b")]
 script = ExtResource("8")
-_target_state = NodePath("../../StateMachine/Dive")
-_trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-_trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+target_state = NodePath("../../StateMachine/Dive")
+trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 point_lifetime = 1.0
 
-[node name="DiveTrailRendererRight" type="Node" parent="TrailRenderers"]
+[node name="DiveTrailRendererRight" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("target_state", "trail_position_a", "trail_position_b")]
 script = ExtResource("8")
-_target_state = NodePath("../../StateMachine/Dive")
-_trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-_trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+target_state = NodePath("../../StateMachine/Dive")
+trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 point_lifetime = 1.0
 
 [node name="BlobShadow" type="Node3D" parent="."]
@@ -353,26 +353,26 @@ collision_mask = 12
 
 [node name="AudioEffects" type="Node" parent="."]
 
-[node name="DiveLowpass" type="Node" parent="AudioEffects"]
+[node name="DiveLowpass" type="Node" parent="AudioEffects" node_paths=PackedStringArray("target_state")]
 script = ExtResource("18_nptr4")
-_target_state = NodePath("../../StateMachine/Dive")
+target_state = NodePath("../../StateMachine/Dive")
 audio_effect_dry = SubResource("AudioEffectLowPassFilter_xejwy")
 audio_effect_wet = SubResource("AudioEffectLowPassFilter_v0sjn")
 tween_duration = 0.25
 tween_type = 2
 
-[node name="GlideAmplifyBgmGlide" type="Node" parent="AudioEffects"]
+[node name="GlideAmplifyBgmGlide" type="Node" parent="AudioEffects" node_paths=PackedStringArray("target_state")]
 script = ExtResource("18_nptr4")
-_target_state = NodePath("../../StateMachine/Glide")
+target_state = NodePath("../../StateMachine/Glide")
 audio_effect_dry = SubResource("AudioEffectAmplify_crae5")
 audio_effect_wet = SubResource("AudioEffectAmplify_a1p08")
 audio_bus_name = &"BgmGlide"
 tween_duration = 2.5
 tween_type = 1
 
-[node name="GlideAmplifyBgmRhythm" type="Node" parent="AudioEffects"]
+[node name="GlideAmplifyBgmRhythm" type="Node" parent="AudioEffects" node_paths=PackedStringArray("target_state")]
 script = ExtResource("18_nptr4")
-_target_state = NodePath("../../StateMachine/Glide")
+target_state = NodePath("../../StateMachine/Glide")
 audio_effect_dry = SubResource("AudioEffectAmplify_4ml5m")
 audio_effect_wet = SubResource("AudioEffectAmplify_wy87q")
 audio_bus_name = &"BgmRhythm"

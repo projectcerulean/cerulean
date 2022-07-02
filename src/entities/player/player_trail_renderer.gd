@@ -3,14 +3,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends StateTransitionListener
 
-@export var _trail_position_a: NodePath
-@export var _trail_position_b: NodePath
+@export var trail_position_a: Node3D
+@export var trail_position_b: Node3D
 @export var point_lifetime: float = 0.5
 
 var trail: Trail = null
-
-@onready var trail_position_a: Node3D = get_node(_trail_position_a) as Node3D
-@onready var trail_position_b: Node3D = get_node(_trail_position_b) as Node3D
 
 
 func _ready() -> void:

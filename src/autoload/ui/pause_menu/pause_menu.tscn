@@ -143,7 +143,7 @@ offset_bottom = 384.0
 is_settings_option = true
 key_string = &"FIELD_OF_VIEW"
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("1_4bqbk")
 _initial_state = NodePath("Main")
 
@@ -156,8 +156,8 @@ script = ExtResource("7_or3k2")
 [node name="Settings" type="Node" parent="StateMachine"]
 script = ExtResource("5_kygh5")
 
-[node name="SfxMenuSwitch" type="Node" parent="."]
+[node name="SfxMenuSwitch" type="Node" parent="." node_paths=PackedStringArray("target_state")]
 script = ExtResource("8_25px7")
-_target_state = NodePath("../StateMachine/Main")
+target_state = NodePath("../StateMachine/Main")
 _sfx_resource_enter = ExtResource("9_rbp0b")
 _sfx_resource_exit = ExtResource("9_rbp0b")

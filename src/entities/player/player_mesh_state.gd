@@ -7,10 +7,9 @@ extends State
 const YAW_DIRECTION: StringName = &"YAW_DIRECTION"
 const YAW_DIRECTION_TARGET: StringName = &"YAW_DIRECTION_TARGET"
 
-@export var _mesh_root: NodePath
+@export var mesh_root: Node3D
 @export var _player_input_vector_resource: Resource
 
-@onready var mesh_root: Node3D = get_node(_mesh_root) as Node3D
 @onready var player: CharacterBody3D = owner as CharacterBody3D
 @onready var player_input_vector_resource: Vector3Resource = _player_input_vector_resource as Vector3Resource
 

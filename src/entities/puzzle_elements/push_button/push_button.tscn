@@ -61,10 +61,10 @@ script = ExtResource("2_7i1pt")
 color_disabled = Color(1, 0.270588, 0, 1)
 color_enabled = Color(0, 0.709804, 1, 1)
 
-[node name="ColorStateEnabled" type="Node" parent="Button"]
+[node name="ColorStateEnabled" type="Node" parent="Button" node_paths=PackedStringArray("target_state", "target_node")]
 script = ExtResource("10_ey7nc")
-_target_state = NodePath("../../StateMachine/Enabled")
-_target_node = NodePath("..")
+target_state = NodePath("../../StateMachine/Enabled")
+target_node = NodePath("..")
 property = "activation"
 tween_duration = 0.1
 
@@ -78,7 +78,7 @@ layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 light_energy = 2.0
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("4_rrpi8")
 _initial_state = NodePath("Disabled")
 
@@ -88,9 +88,9 @@ script = ExtResource("8_2adit")
 [node name="Enabled" type="Node" parent="StateMachine"]
 script = ExtResource("8_2adit")
 
-[node name="SfxStateEnabled" type="Node" parent="."]
+[node name="SfxStateEnabled" type="Node" parent="." node_paths=PackedStringArray("target_state")]
 script = ExtResource("6_ssf8g")
-_target_state = NodePath("../StateMachine/Enabled")
+target_state = NodePath("../StateMachine/Enabled")
 _sfx_resource_enter = ExtResource("7_gi7uk")
 _sfx_resource_exit = ExtResource("8_aedo8")
 

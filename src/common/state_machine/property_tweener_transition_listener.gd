@@ -4,15 +4,13 @@
 class_name PropertyTweenerTransitionListener
 extends StateTransitionListener
 
-@export var _target_node: NodePath
+@export var target_node: Node
 @export var property: String
 @export var value_min: float = 0.0
 @export var value_max: float = 1.0
 @export var tween_duration: float = 1.0
 
 var tween: Tween
-
-@onready var target_node: Node = get_node(_target_node) as Node
 
 
 func _ready() -> void:
