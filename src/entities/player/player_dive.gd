@@ -9,7 +9,7 @@ extends PlayerState
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	if data[OLD_STATE] == PlayerStates.SWIM:
-		player.global_transform.origin.y = minf(player.global_transform.origin.y, player.get_water_surface_height() - water_state_enter_offset)
+		player.global_transform.origin.y = minf(player.global_transform.origin.y, player.water_detector.get_water_surface_height() - water_state_enter_offset)
 
 
 func physics_process(delta: float) -> void:
@@ -29,8 +29,8 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if not player.is_in_water():
-		if is_inf(player.get_water_surface_height()):
+	if not player.water_detector.is_in_water():
+		if is_inf(player.water_detector.get_water_surface_height()):
 			return PlayerStates.FALL
 		else:
 			return PlayerStates.SWIM

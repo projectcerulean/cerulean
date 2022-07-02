@@ -10,8 +10,8 @@ extends ColorRect
 
 
 func _ready() -> void:
-	Signals.camera_water_entered.connect(self._on_camera_water_entered)
-	Signals.camera_water_exited.connect(self._on_camera_water_exited)
+	Signals.water_entered.connect(self._on_water_entered)
+	Signals.water_exited.connect(self._on_water_exited)
 	Signals.scene_changed.connect(self._on_scene_changed)
 	assert(environment_resource != null, Errors.NULL_RESOURCE)
 	assert(shader_material != null, Errors.NULL_RESOURCE)
@@ -21,13 +21,13 @@ func _process(_delta: float) -> void:
 	shader_material.set_shader_param(&"color", environment_resource.value.water_screen_effect_color)
 
 
-func _on_camera_water_entered(sender: Camera3D) -> void:
-	if get_viewport().get_camera_3d() == sender:
+func _on_water_entered(sender: Area3D) -> void:
+	if sender.owner == get_viewport().get_camera_3d().owner:
 		visible = true
 
 
-func _on_camera_water_exited(sender: Camera3D) -> void:
-	if get_viewport().get_camera_3d() == sender:
+func _on_water_exited(sender: Area3D) -> void:
+	if sender.owner == get_viewport().get_camera_3d().owner:
 		visible = false
 
 

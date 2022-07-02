@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bou2ry8dnyiop"]
+[gd_scene load_steps=6 format=3 uid="uid://b25s8e4xiy0gw"]
 
 [ext_resource type="Script" path="res://src/entities/box/box.gd" id="1_j8n7c"]
 [ext_resource type="Material" uid="uid://ciq7rqyrt6uv2" path="res://src/entities/sign_post/wood_material.tres" id="2_ckxdu"]
-[ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="2_w2dbm"]
-[ext_resource type="Resource" uid="uid://caltt67cj0pty" path="res://src/autoload/time_manager/time_resource_gameplay.tres" id="3_s15d8"]
+[ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="5_aukln"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mf2os"]
 size = Vector3(2, 2, 2)
@@ -15,8 +14,6 @@ size = Vector3(2, 2, 2)
 collision_layer = 8
 sync_to_physics = false
 script = ExtResource("1_j8n7c")
-_environment_resource = ExtResource("2_w2dbm")
-_time_resource_gameplay = ExtResource("3_s15d8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mf2os")
@@ -25,3 +22,5 @@ shape = SubResource("BoxShape3D_mf2os")
 layers = 8
 mesh = SubResource("BoxMesh_bkski")
 surface_material_override/0 = ExtResource("2_ckxdu")
+
+[node name="WaterDetector" parent="." instance=ExtResource("5_aukln")]

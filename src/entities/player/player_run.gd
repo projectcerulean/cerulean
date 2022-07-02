@@ -30,7 +30,7 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if player.is_in_water():
+	if player.water_detector.is_in_water():
 		return PlayerStates.SWIM
 	elif not player.are_raycasts_colliding():
 		return PlayerStates.FALL

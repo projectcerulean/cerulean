@@ -9,8 +9,8 @@ extends Node
 
 
 func _ready() -> void:
-	Signals.camera_water_entered.connect(self._on_camera_water_entered)
-	Signals.camera_water_exited.connect(self._on_camera_water_exited)
+	Signals.water_entered.connect(self._on_water_entered)
+	Signals.water_exited.connect(self._on_water_exited)
 	assert(environment_resource != null, Errors.NULL_RESOURCE)
 
 
@@ -19,11 +19,11 @@ func _notification(what: int) -> void:
 		environment_resource.value.fog_enabled = false
 
 
-func _on_camera_water_entered(sender: Camera3D) -> void:
-	if get_viewport().get_camera_3d() == sender:
+func _on_water_entered(sender: Area3D) -> void:
+	if sender.owner == get_viewport().get_camera_3d().owner:
 		environment_resource.value.fog_enabled = true
 
 
-func _on_camera_water_exited(sender: Camera3D) -> void:
-	if get_viewport().get_camera_3d() == sender:
+func _on_water_exited(sender: Area3D) -> void:
+	if sender.owner == get_viewport().get_camera_3d().owner:
 		environment_resource.value.fog_enabled = false

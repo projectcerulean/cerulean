@@ -26,14 +26,15 @@ func physics_process(delta: float) -> void:
 	var velocity_xz: Vector3 = Vector3(player.velocity.x, 0.0, player.velocity.z)
 	velocity_xz = Lerp.delta_lerp3(velocity_xz, player.input_vector * move_speed, move_speed_lerp_weight, delta)
 	var velocity_y: float = player.velocity.y
+	var water_surface_height: float = player.water_detector.get_water_surface_height()
 	if surfaced:
 		velocity_y = 0.0
-		if not is_inf(player.get_water_surface_height()):
-			player.global_transform.origin.y = player.get_water_surface_height()
+		if not is_inf(water_surface_height):
+			player.global_transform.origin.y = water_surface_height
 	else:
 		velocity_y = Lerp.delta_lerp(velocity_y, water_buoyancy_speed, water_bouyancy_speed_lerp_weight, delta)
 		player.velocity = Lerp.delta_lerp3(player.velocity, player.input_vector * move_speed, move_speed_lerp_weight, delta)
-		if not is_inf(player.get_water_surface_height()) and player.velocity.y > 0.0 and player.global_transform.origin.y > player.get_water_surface_height():
+		if not is_inf(water_surface_height) and player.velocity.y > 0.0 and player.global_transform.origin.y > player.water_detector.get_water_surface_height():
 			surfaced = true
 	player.velocity = Vector3(velocity_xz.x, velocity_y, velocity_xz.z)
 	player.move_and_slide()
@@ -47,9 +48,9 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if not player.is_in_water() and player.are_raycasts_colliding():
+	if not player.water_detector.is_in_water() and player.are_raycasts_colliding():
 		return PlayerStates.RUN
-	elif not player.is_in_water() and is_inf(player.get_water_surface_height()):
+	elif not player.water_detector.is_in_water() and is_inf(player.water_detector.get_water_surface_height()):
 		return PlayerStates.FALL
 	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
 		if surfaced:

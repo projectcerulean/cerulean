@@ -49,7 +49,7 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if player.is_in_water():
+	if player.water_detector.is_in_water():
 		return PlayerStates.SWIM
 	elif player.is_on_floor():
 		if is_equal_approx(player.velocity.x, 0.0) and is_equal_approx(player.velocity.z, 0.0):

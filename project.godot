@@ -298,6 +298,11 @@ _global_script_classes=[{
 "class": &"Version",
 "language": &"GDScript",
 "path": "res://src/constants/version.gd"
+}, {
+"base": "Area3D",
+"class": &"WaterDetector",
+"language": &"GDScript",
+"path": "res://src/common/water_detector/water_detector.gd"
 }]
 _global_script_class_icons={
 "AudioBuses": "",
@@ -357,7 +362,8 @@ _global_script_class_icons={
 "Utils": "",
 "Vector2Resource": "",
 "Vector3Resource": "",
-"Version": ""
+"Version": "",
+"WaterDetector": ""
 }
 
 [application]

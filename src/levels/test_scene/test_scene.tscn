@@ -19,7 +19,7 @@
 [ext_resource type="Environment" uid="uid://jvj72xlqpld8" path="res://src/levels/test_scene/environment.tres" id="18_3u81p"]
 [ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="18_uwe8s"]
 [ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
-[ext_resource type="PackedScene" uid="uid://bou2ry8dnyiop" path="res://src/entities/box/box.tscn" id="21_0mayf"]
+[ext_resource type="PackedScene" uid="uid://b25s8e4xiy0gw" path="res://src/entities/box/box.tscn" id="21_0mayf"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="21_i6ktg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wenkw"]

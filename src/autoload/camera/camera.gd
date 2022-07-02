@@ -10,8 +10,6 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var _transform_resource: Resource
 @export var _target_transform_resource: Resource
 @export var _game_state_resource: Resource
-@export var _environment_resource: Resource
-@export var _time_resource_gameplay: Resource
 
 @onready var yaw_pivot: Position3D = get_node("YawPivot") as Position3D
 @onready var pitch_pivot: Position3D = get_node("YawPivot/PitchPivot") as Position3D
@@ -32,16 +30,12 @@ const pitch_limit: float = PI / 2.0 - 0.1
 
 var camera_rotation_speed: Vector2 = Vector2()
 var camera_distance_speed: float = 0.0
-var water_bodies: Array[Area3D]
-var is_in_water_prev: bool = false
 
 @onready var thumbstick_resource_right: Vector2Resource = _thumbstick_resource_right as Vector2Resource
 @onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
 @onready var transform_resource: TransformResource = _transform_resource as TransformResource
 @onready var target_transform_resource: TransformResource = _target_transform_resource as TransformResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
-@onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
-@onready var time_resource_gameplay: FloatResource = _time_resource_gameplay as FloatResource
 
 @onready var camera_distance_default: float = camera_anchor.position.z
 @onready var yaw_default: float = yaw_pivot.rotation.y
@@ -51,8 +45,6 @@ var is_in_water_prev: bool = false
 
 func _ready() -> void:
 	Signals.scene_changed.connect(self._on_scene_changed)
-	Signals.area_area_entered.connect(self._on_area_area_entered)
-	Signals.area_area_exited.connect(self._on_area_area_exited)
 	Signals.setting_updated.connect(_on_setting_updated)
 
 	assert(thumbstick_resource_right != null, Errors.NULL_RESOURCE)
@@ -60,8 +52,6 @@ func _ready() -> void:
 	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(target_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
-	assert(environment_resource != null, Errors.NULL_RESOURCE)
-	assert(time_resource_gameplay != null, Errors.NULL_RESOURCE)
 
 	assert(yaw_pivot != null, Errors.NULL_NODE)
 	assert(pitch_pivot != null, Errors.NULL_NODE)
@@ -116,55 +106,12 @@ func _process(delta: float) -> void:
 	# Update tranform resource
 	transform_resource.value = camera.global_transform
 
-	# Underwater effects
-	var is_in_water_cached: bool = is_in_water()
-	if is_in_water_cached and not is_in_water_prev:
-		Signals.emit_camera_water_entered(camera)
-	if not is_in_water_cached and is_in_water_prev:
-		Signals.emit_camera_water_exited(camera)
-	is_in_water_prev = is_in_water_cached
-
 
 func _on_scene_changed(_sender: Node) -> void:
-	water_bodies.clear()
 	camera.position.z = 0.0
 	camera_anchor.position.z = camera_distance_default
 	yaw_pivot.rotation.y = yaw_default
 	pitch_pivot.rotation.x = pitch_default
-
-
-func _on_area_area_entered(sender: Area3D, area: Area3D) -> void:
-	if area != self.water_detector:
-		return
-
-	assert(str(sender.owner.name).begins_with("Water"), Errors.CONSISTENCY_ERROR)
-	water_bodies.append(sender)
-
-
-func _on_area_area_exited(sender: Area3D, area: Area3D) -> void:
-	if area != self.water_detector:
-		return
-
-	if sender in water_bodies:
-		water_bodies.erase(sender)
-
-
-func is_in_water() -> bool:
-	return camera.global_transform.origin.y < get_water_surface_height()
-
-
-func get_water_surface_height() -> float:
-	var height: float = -INF
-	for area in water_bodies:
-		height = max(
-			height,
-			area.global_transform.origin.y + Utils.get_water_surface_height(
-				time_resource_gameplay.value,
-				environment_resource.value,
-				Vector2(camera.global_transform.origin.x, camera.global_transform.origin.z),
-			)
-	)
-	return height
 
 
 func _on_setting_updated(_sender: Node, key: StringName) -> void:

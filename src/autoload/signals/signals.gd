@@ -10,8 +10,6 @@ signal area_body_exited
 signal bgm_area_entered
 signal bgm_area_exited
 signal bgm_changed
-signal camera_water_entered
-signal camera_water_exited
 signal debug_write
 signal interaction_highlight_set
 signal request_dialogue_start
@@ -38,6 +36,8 @@ signal setting_updated
 signal state_entered
 signal state_exited
 signal visualize_vector
+signal water_entered
+signal water_exited
 
 
 # Assert that all the signals above have a corresponding emission function below
@@ -82,8 +82,6 @@ func emit_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void: emit(ar
 func emit_bgm_area_entered(sender: Area3D, bgm: StringName) -> void: emit(bgm_area_entered, [sender, bgm])
 func emit_bgm_area_exited(sender: Area3D) -> void: emit(bgm_area_exited, [sender])
 func emit_bgm_changed(sender: Node, bgm: StringName) -> void: emit(bgm_changed, [sender, bgm])
-func emit_camera_water_entered(sender: Camera3D) -> void: emit(camera_water_entered, [sender])
-func emit_camera_water_exited(sender: Camera3D) -> void: emit(camera_water_exited, [sender])
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, [sender, variant])
 func emit_interaction_highlight_set(sender: Node, target: Node3D) -> void: emit(interaction_highlight_set, [sender, target])
 func emit_request_dialogue_start(sender: Node3D, dialogue_resource: DialogueResource) -> void: emit(request_dialogue_start, [sender, dialogue_resource])
@@ -110,3 +108,5 @@ func emit_setting_updated(sender: Node, key: StringName) -> void: emit(setting_u
 func emit_state_entered(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_entered, [sender, state, data])
 func emit_state_exited(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_exited, [sender, state, data])
 func emit_visualize_vector(sender: Node, vector: Vector2) -> void: emit(visualize_vector, [sender, vector])
+func emit_water_entered(sender: Area3D) -> void: emit(water_entered, [sender])
+func emit_water_exited(sender: Area3D) -> void: emit(water_exited, [sender])
