@@ -70,6 +70,16 @@ func _process(_delta: float) -> void:
 		Signals.emit_request_game_pause(self)
 
 
+func _physics_process(delta: float) -> void:
+	for i in range(get_slide_collision_count()):
+		var collision: KinematicCollision3D = get_slide_collision(i)
+		var rigid_body: RigidDynamicBody3D = collision.get_collider() as RigidDynamicBody3D
+		if rigid_body != null:
+			var force: Vector3 = -collision.get_normal() * (velocity - rigid_body.linear_velocity).length()
+			var force_position: Vector3 = collision.get_position() - rigid_body.global_transform.origin
+			rigid_body.apply_force(force, force_position)
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		input_vector_resource.value = Vector3()

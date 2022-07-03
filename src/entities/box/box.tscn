@@ -10,9 +10,12 @@ size = Vector3(2, 2, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_bkski"]
 size = Vector3(2, 2, 2)
 
-[node name="Box" type="AnimatableBody3D"]
+[node name="Box" type="RigidDynamicBody3D"]
 collision_layer = 8
-sync_to_physics = false
+collision_mask = 5
+mass = 0.1
+linear_damp = 1.0
+angular_damp = 1.0
 script = ExtResource("1_j8n7c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -23,4 +26,16 @@ layers = 8
 mesh = SubResource("BoxMesh_bkski")
 surface_material_override/0 = ExtResource("2_ckxdu")
 
-[node name="WaterDetector" parent="." instance=ExtResource("5_aukln")]
+[node name="WaterDetectors" type="Node3D" parent="."]
+
+[node name="WaterDetector1" parent="WaterDetectors" instance=ExtResource("5_aukln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="WaterDetector2" parent="WaterDetectors" instance=ExtResource("5_aukln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="WaterDetector3" parent="WaterDetectors" instance=ExtResource("5_aukln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="WaterDetector4" parent="WaterDetectors" instance=ExtResource("5_aukln")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
