@@ -2,8 +2,11 @@
 # Copyright (C) 2021-2022 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
 class_name Player
-extends CharacterBody3D
+extends RigidDynamicBody3D
 
+@export var floor_max_angle: float = PI / 4.0
+@export var floor_snap_length_max: float = 0.1
+@export var floor_snap_length_min: float = 0.001
 @export var _thumbstick_resource_left: Resource
 @export var _input_vector_resource: Resource
 @export var _game_state_resource: Resource
@@ -11,8 +14,14 @@ extends CharacterBody3D
 @export var _camera_transform_resource: Resource
 
 var input_vector: Vector3
+var force_vector: Vector3
+var floor_snapping_enabled: bool
+var _is_on_floor: bool
+var bottom_point_height: float
+var top_point_height: float
+var floor_collisions: Array[KinematicCollision3D]
 
-@onready var raycast_container: Node3D = get_node("RaycastContainer") as Node3D
+@onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
 @onready var water_detector: WaterDetector = get_node("WaterDetector") as WaterDetector
@@ -30,7 +39,7 @@ func _ready() -> void:
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
-	assert(raycast_container != null, Errors.NULL_NODE)
+	assert(collision_shape != null, Errors.NULL_RESOURCE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
@@ -70,14 +79,31 @@ func _process(_delta: float) -> void:
 		Signals.emit_request_game_pause(self)
 
 
-func _physics_process(delta: float) -> void:
-	for i in range(get_slide_collision_count()):
-		var collision: KinematicCollision3D = get_slide_collision(i)
-		var rigid_body: RigidDynamicBody3D = collision.get_collider() as RigidDynamicBody3D
-		if rigid_body != null:
-			var force: Vector3 = -collision.get_normal() * (velocity - rigid_body.linear_velocity).length()
-			var force_position: Vector3 = collision.get_position() - rigid_body.global_transform.origin
-			rigid_body.apply_force(force, force_position)
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	state.apply_central_force(force_vector)
+
+	# Floor snapping
+	var shape: CapsuleShape3D = collision_shape.shape as CapsuleShape3D
+	assert(shape != null, Errors.NULL_RESOURCE)
+	bottom_point_height = collision_shape.global_transform.origin.y - shape.height / 2.0
+	top_point_height = collision_shape.global_transform.origin.y + shape.height / 2.0
+
+	_is_on_floor = false
+	floor_collisions.clear()
+	var floor_height: float = -INF
+	var collision: KinematicCollision3D = KinematicCollision3D.new()
+	test_move(global_transform, floor_snap_length_max * Vector3.DOWN, collision)
+	for i in range(collision.get_collision_count()):
+		if collision.get_position(i).y < global_transform.origin.y and collision.get_angle(i) <= floor_max_angle:
+			floor_collisions.append(collision)
+			floor_height = maxf(floor_height, collision.get_position(i).y)
+	if not is_inf(floor_height):
+		_is_on_floor = true
+		if floor_snapping_enabled:
+			var floor_distance: float = bottom_point_height - floor_height
+			if floor_distance > floor_snap_length_min:
+				state.set_transform(state.get_transform().translated(floor_distance * Vector3.DOWN))
+				state.linear_velocity.y = 0.0
 
 
 func _notification(what: int) -> void:
@@ -86,9 +112,5 @@ func _notification(what: int) -> void:
 		transform_resource.value = Transform3D()
 
 
-func are_raycasts_colliding() -> bool:
-	for _raycast in raycast_container.get_children():
-		var raycast: RayCast3D = _raycast as RayCast3D
-		if raycast.is_colliding():
-			return true
-	return false
+func is_on_floor() -> bool:
+	return _is_on_floor

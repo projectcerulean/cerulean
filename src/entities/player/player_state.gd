@@ -3,13 +3,32 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 class_name PlayerState extends State
 
-@export var water_state_enter_offset: float = 0.1
-@export var floor_snap_length: float = 0.25
+@export var gravity_scale: float = 1.0
+@export var floor_snapping_enabled: bool = false
 
 # Reference to the player object so that it can be manipulated inside the states
-var player: Player = null
+@onready var player: Player = owner as Player
 
 
 func _ready() -> void:
-	player = owner as Player
 	assert(player != null, Errors.NULL_NODE)
+
+
+func enter(data: Dictionary) -> void:
+	super.enter(data)
+	player.gravity_scale = gravity_scale
+	player.floor_snapping_enabled = floor_snapping_enabled
+
+
+func exit(data: Dictionary) -> void:
+	super.exit(data)
+	player.force_vector = Vector3.ZERO
+
+
+func calculate_friction_coefficient(acceleration_time: float):
+	var body: RigidDynamicBody3D = owner as RigidDynamicBody3D
+	return -body.mass/acceleration_time * log(0.01)
+
+
+func calculate_move_force(move_speed: float, friction_coefficient: float):
+	return move_speed * friction_coefficient

@@ -179,12 +179,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/autoload/ui/pause_menu/pause_menu_states.gd"
 }, {
-"base": "Node",
-"class": &"Physics",
-"language": &"GDScript",
-"path": "res://src/constants/physics.gd"
-}, {
-"base": "CharacterBody3D",
+"base": "RigidDynamicBody3D",
 "class": &"Player",
 "language": &"GDScript",
 "path": "res://src/entities/player/player.gd"
@@ -339,7 +334,6 @@ _global_script_class_icons={
 "PauseMenuOption": "",
 "PauseMenuState": "",
 "PauseMenuStates": "",
-"Physics": "",
 "Player": "",
 "PlayerMeshState": "",
 "PlayerState": "",
@@ -536,6 +530,7 @@ pause={
 [physics]
 
 common/physics_ticks_per_second=120
+3d/default_gravity=30.0
 
 [rendering]
 

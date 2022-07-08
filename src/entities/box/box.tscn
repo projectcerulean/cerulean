@@ -12,9 +12,9 @@ size = Vector3(2, 2, 2)
 
 [node name="Box" type="RigidDynamicBody3D"]
 collision_layer = 8
-collision_mask = 5
-mass = 0.1
-linear_damp = 1.0
+collision_mask = 13
+mass = 500.0
+linear_damp = 0.5
 angular_damp = 1.0
 script = ExtResource("1_j8n7c")
 

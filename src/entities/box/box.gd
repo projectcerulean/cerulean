@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends RigidDynamicBody3D
 
-@export var buoyancy_force_factor: float = 0.5
-@export var buoyancy_central_factor: float = 0.8
+@export var buoyancy_force_factor: float = 5000.0
+@export var buoyancy_central_factor: float = 0.9
 
 @onready var water_detectors: Node3D = get_node("WaterDetectors") as Node3D
 
