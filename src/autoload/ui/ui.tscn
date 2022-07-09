@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bj1cgwskd4oli"]
+[gd_scene load_steps=23 format=3 uid="uid://dm267sxiobypt"]
 
 [ext_resource type="Shader" path="res://src/autoload/ui/effects/underwater_effect.gdshader" id="1"]
 [ext_resource type="Script" path="res://src/autoload/ui/debug/version_label/version_label.gd" id="3"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="3_34h0a"]
 [ext_resource type="Script" path="res://src/autoload/ui/effects/underwater_effect.gd" id="4"]
 [ext_resource type="Script" path="res://src/autoload/ui/hud/interaction_marker.gd" id="4_o1y8t"]
-[ext_resource type="Script" path="res://src/autoload/ui/debug/vector_visualizer/vector_visualizer.gd" id="5"]
+[ext_resource type="Script" path="res://src/autoload/ui/debug/vector2_visualizer/vector2_visualizer.gd" id="5"]
 [ext_resource type="Resource" uid="uid://bqsrxvfl6htqr" path="res://src/autoload/lfo/lfo_resource.tres" id="5_f13oq"]
 [ext_resource type="PackedScene" uid="uid://com3qcbnk0t72" path="res://src/autoload/ui/dialogue_manager/dialogue_manager.tscn" id="6_vu52l"]
 [ext_resource type="Script" path="res://src/autoload/ui/hud/compass.gd" id="7"]
@@ -107,7 +107,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("14_mwu71")
 
-[node name="VectorVisualizer" type="ColorRect" parent="DebugLayer"]
+[node name="Vector2Visualizer" type="ColorRect" parent="DebugLayer"]
 visible = false
 anchor_left = 1.0
 anchor_right = 1.0

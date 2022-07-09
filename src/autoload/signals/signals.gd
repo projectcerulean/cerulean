@@ -35,7 +35,7 @@ signal scene_changed
 signal setting_updated
 signal state_entered
 signal state_exited
-signal visualize_vector
+signal visualize_vector2
 signal visualize_vector3
 signal water_entered
 signal water_exited
@@ -108,7 +108,7 @@ func emit_scene_changed(sender: Node) -> void: emit(scene_changed, [sender])
 func emit_setting_updated(sender: Node, key: StringName) -> void: emit(setting_updated, [sender, key])
 func emit_state_entered(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_entered, [sender, state, data])
 func emit_state_exited(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_exited, [sender, state, data])
-func emit_visualize_vector(sender: Node, vector: Vector2) -> void: emit(visualize_vector, [sender, vector])
+func emit_visualize_vector2(sender: Node, vector: Vector2) -> void: emit(visualize_vector2, [sender, vector])
 func emit_visualize_vector3(sender: Node3D, vector: Vector3) -> void: emit(visualize_vector3, [sender, vector])
 func emit_water_entered(sender: Area3D) -> void: emit(water_entered, [sender])
 func emit_water_exited(sender: Area3D) -> void: emit(water_exited, [sender])

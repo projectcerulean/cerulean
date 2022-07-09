@@ -8,7 +8,7 @@ var colors: Dictionary
 
 
 func _ready() -> void:
-	Signals.visualize_vector.connect(self._on_visualize_vector)
+	Signals.visualize_vector2.connect(self._on_visualize_vector2)
 	assert(size.x == size.y, Errors.INVALID_ARGUMENT)
 	assert(size.x > 0, Errors.INVALID_ARGUMENT)
 
@@ -25,7 +25,7 @@ func _draw() -> void:
 		draw_line(center_point, center_point + vector * radius, colors[sender], 8.0)
 
 
-func _on_visualize_vector(sender: Node, vector: Vector2) -> void:
+func _on_visualize_vector2(sender: Node, vector: Vector2) -> void:
 	visible = true
 	vectors[sender] = vector
 	if not colors.has(sender):
