@@ -6,21 +6,19 @@ extends MeshInstance3D
 
 @export var trail_width: Curve
 @export var point_lifetime: float = 1.0
-@export var _environment_resource: Resource
 
 var curve_points_a: PackedVector3Array = []
 var curve_points_b: PackedVector3Array = []
+var curve_point_colors: PackedColorArray = []
 var curve_point_creation_times: PackedFloat64Array = []
 var time: float = 0.0
 var i_first_nondead_point: int = 0
 var shall_queue_free: bool = false
 
-@onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
 @onready var immediate_mesh: ImmediateMesh = mesh as ImmediateMesh
 
 
 func _ready() -> void:
-	assert(environment_resource != null, Errors.NULL_RESOURCE)
 	assert(immediate_mesh != null, Errors.NULL_RESOURCE)
 	assert(trail_width != null, Errors.NULL_RESOURCE)
 	assert(point_lifetime > 0.0, Errors.INVALID_ARGUMENT)
@@ -28,6 +26,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	assert(curve_points_b.size() == curve_points_a.size(), Errors.CONSISTENCY_ERROR)
+	assert(curve_point_colors.size() == curve_points_a.size(), Errors.CONSISTENCY_ERROR)
 	assert(curve_point_creation_times.size() == curve_points_a.size(), Errors.CONSISTENCY_ERROR)
 
 	time += delta
@@ -42,10 +41,7 @@ func _process(delta: float) -> void:
 			var point_a: Vector3 = curve_points_a[i_point]
 			var point_b: Vector3 = curve_points_b[i_point]
 			var point_middle: Vector3 = (point_a + point_b) / 2.0
-
-			var color: Color = environment_resource.value.wind_trail_color
-			if point_middle.y < 0.0:  # Naive but works for now
-				color = environment_resource.value.water_trail_color
+			var color: Color = curve_point_colors[i_point]
 
 			var point_age: float = time - curve_point_creation_times[i_point]
 			var width_factor: float = trail_width.interpolate(point_age / point_lifetime)
@@ -58,10 +54,11 @@ func _process(delta: float) -> void:
 		queue_free()
 
 
-func add_segment(point_position_a: Vector3, point_position_b: Vector3) -> void:
+func add_segment(point_position_a: Vector3, point_position_b: Vector3, color: Color) -> void:
 	assert(not shall_queue_free, Errors.INVALID_CONTEXT)
 	curve_points_a.append(point_position_a)
 	curve_points_b.append(point_position_b)
+	curve_point_colors.append(color)
 	curve_point_creation_times.append(time)
 
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://yqqga1qlo5lc"]
 
 [ext_resource type="Script" path="res://src/entities/effects/trail/trail.gd" id="1_rsfg8"]
-[ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="2_aye4t"]
+[ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="3_f5cm2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bri76"]
 resource_local_to_scene = true
@@ -25,4 +25,5 @@ cast_shadow = 2
 mesh = SubResource("ImmediateMesh_w32ps")
 script = ExtResource("1_rsfg8")
 trail_width = SubResource("Curve_qeqgy")
-_environment_resource = ExtResource("2_aye4t")
+
+[node name="WaterDetector" parent="." instance=ExtResource("3_f5cm2")]

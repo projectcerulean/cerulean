@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3la8dk8cql35"]
+[gd_scene load_steps=12 format=3 uid="uid://c3la8dk8cql35"]
 
 [ext_resource type="PackedScene" uid="uid://yqqga1qlo5lc" path="res://src/entities/effects/trail/trail.tscn" id="1_dpfbh"]
 [ext_resource type="Script" path="res://src/entities/wind/wind_trail.gd" id="1_w4d55"]
+[ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="2_euocp"]
+[ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="3_o18us"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ve0cu"]
 frequency = 0.005
@@ -38,6 +40,7 @@ resource_local_to_scene = true
 [node name="WindTrail" type="Node3D"]
 script = ExtResource("1_w4d55")
 noise_texture = SubResource("NoiseTexture_12ms2")
+_environment_resource = ExtResource("2_euocp")
 
 [node name="PositionHorizontalA" type="Position3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
@@ -64,3 +67,5 @@ material_override = SubResource("StandardMaterial3D_8c834")
 mesh = SubResource("ImmediateMesh_f5yi6")
 skeleton = NodePath("../..")
 trail_width = SubResource("Curve_5onm7")
+
+[node name="WaterDetector" parent="." instance=ExtResource("3_o18us")]
