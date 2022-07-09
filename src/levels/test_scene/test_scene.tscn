@@ -699,6 +699,37 @@ size = Vector3(2, 4, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5, 16, 43)
 size = Vector3(1, 2, 2)
 
+[node name="Base" type="CSGCombiner3D" parent="Env"]
+layers = 4
+material_override = ExtResource("3_8uyq8")
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -8, 43)
+size = Vector3(50, 2, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -8, 2)
+size = Vector3(2, 2, 80)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, -8, -26)
+size = Vector3(19, 2, 2)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Env/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -6, -6)
+size = Vector3(6, 2, 2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Env/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, -8, 5)
+size = Vector3(19, 2, 2)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Env/Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -5, 5)
+size = Vector3(2, 10, 2)
+
 [node name="Island" type="CSGCombiner3D" parent="Env"]
 layers = 4
 material_override = ExtResource("5_7fh5e")
