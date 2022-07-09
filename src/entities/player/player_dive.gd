@@ -8,17 +8,17 @@ extends PlayerState
 
 @onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
 @onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
-@onready var state_enter_time: Timer = get_node("StateEnterTimer") as Timer
+@onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
 
 
 func _ready() -> void:
 	super._ready()
-	assert(state_enter_time != null, Errors.NULL_NODE)
+	assert(state_enter_timer != null, Errors.NULL_NODE)
 
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
-	state_enter_time.start()
+	state_enter_timer.start()
 	player.apply_central_impulse(2.5 * Vector3.DOWN)
 
 
@@ -38,7 +38,7 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if player.top_point_height > player.water_detector.get_water_surface_height() and state_enter_time.is_stopped():
+	if player.top_point_height > player.water_detector.get_water_surface_height() and state_enter_timer.is_stopped():
 		return PlayerStates.SWIM
 	else:
 		return StringName()

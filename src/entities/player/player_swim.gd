@@ -8,7 +8,7 @@ extends PlayerState
 @export var buoyancy_speed: float = 10.0
 @export var buoyancy_acceleration_time: float = 2.0
 
-@onready var state_enter_time: Timer = get_node("StateEnterTimer") as Timer
+@onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
 @onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
 @onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
 @onready var buoyancy_friction_coefficient: float = calculate_friction_coefficient(buoyancy_acceleration_time)
@@ -17,12 +17,12 @@ extends PlayerState
 
 func _ready() -> void:
 	super._ready()
-	assert(state_enter_time != null, Errors.NULL_NODE)
+	assert(state_enter_timer != null, Errors.NULL_NODE)
 
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
-	state_enter_time.start()
+	state_enter_timer.start()
 
 
 func physics_process(delta: float) -> void:
@@ -50,7 +50,7 @@ func get_transition() -> StringName:
 	elif not player.water_detector.is_in_water() and is_inf(player.water_detector.get_water_surface_height()):
 		return PlayerStates.FALL
 	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
-		if state_enter_time.is_stopped() and player.top_point_height > player.water_detector.get_water_surface_height():
+		if state_enter_timer.is_stopped() and player.top_point_height > player.water_detector.get_water_surface_height():
 			return PlayerStates.JUMP
 	elif Input.is_action_just_pressed(InputActions.DIVE):
 		return PlayerStates.DIVE
