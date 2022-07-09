@@ -4,7 +4,6 @@
 class_name Cable
 extends MeshInstance3D
 
-@export var input_node_path: NodePath
 @export var flow_speed: float = 50.0
 
 @onready var box_mesh: BoxMesh = mesh as BoxMesh
@@ -15,7 +14,7 @@ extends MeshInstance3D
 @onready var state_next: StringName
 
 @onready var state_machine: Node = get_node("StateMachine") as Node
-@onready var input_node: Node = get_node(input_node_path) as Node
+@onready var input_node: Node = get_parent().get_child(get_index() - 1)
 @onready var tween: Tween
 
 

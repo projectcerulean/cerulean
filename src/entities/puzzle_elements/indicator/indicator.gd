@@ -4,9 +4,7 @@
 class_name Indicator
 extends Node3D
 
-@export var input_node_path: NodePath
-
-@onready var input_node: Node = get_node(input_node_path) as Node
+@onready var input_node: Node = get_parent() if get_index() == 0 else get_parent().get_child(get_index() - 1)
 @onready var state_machine: Node = get_node("StateMachine") as Node
 
 
