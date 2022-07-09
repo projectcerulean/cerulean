@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://da2ju3bvwkv1e"]
+[gd_scene load_steps=48 format=3 uid="uid://da2ju3bvwkv1e"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
@@ -92,6 +92,17 @@ cutoff_hz = 20500.0
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_v0sjn"]
 cutoff_hz = 1000.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_vxsdq"]
+room_size = 0.5
+spread = 0.5
+wet = 0.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_m7tgk"]
+room_size = 0.5
+spread = 0.5
+dry = 0.8
+wet = 0.1
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_crae5"]
 volume_db = -80.0
@@ -346,6 +357,12 @@ audio_effect_dry = SubResource("AudioEffectLowPassFilter_xejwy")
 audio_effect_wet = SubResource("AudioEffectLowPassFilter_v0sjn")
 tween_duration = 0.25
 tween_type = 2
+
+[node name="DiveReverb" type="Node" parent="AudioEffects" node_paths=PackedStringArray("target_state")]
+script = ExtResource("18_nptr4")
+target_state = NodePath("../../StateMachine/Dive")
+audio_effect_dry = SubResource("AudioEffectReverb_vxsdq")
+audio_effect_wet = SubResource("AudioEffectReverb_m7tgk")
 
 [node name="GlideAmplifyBgmGlide" type="Node" parent="AudioEffects" node_paths=PackedStringArray("target_state")]
 script = ExtResource("18_nptr4")
