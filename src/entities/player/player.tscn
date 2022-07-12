@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://da2ju3bvwkv1e"]
+[gd_scene load_steps=46 format=3 uid="uid://da2ju3bvwkv1e"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
@@ -16,8 +16,10 @@
 [ext_resource type="Script" path="res://src/entities/player/spring.gd" id="7_pus1y"]
 [ext_resource type="Script" path="res://src/entities/player/player_trail_renderer.gd" id="8"]
 [ext_resource type="Script" path="res://src/entities/player/player_swim.gd" id="9"]
+[ext_resource type="Material" uid="uid://dh7tbqymoqlu6" path="res://src/entities/player/body_material.tres" id="9_evt60"]
 [ext_resource type="Script" path="res://src/entities/player/player_mesh_state_glide.gd" id="9_uwrsl"]
 [ext_resource type="Script" path="res://src/entities/player/player_dive.gd" id="10"]
+[ext_resource type="Material" uid="uid://c0qs1grnnbj3x" path="res://src/entities/player/detail_material.tres" id="10_kc8d0"]
 [ext_resource type="Script" path="res://src/entities/player/player_mesh_state_default.gd" id="10_vowrm"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine_synchronizer.gd" id="11_mhki8"]
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
@@ -38,40 +40,15 @@ height = 1.25
 radius = 0.25
 height = 1.25
 
-[sub_resource type="StandardMaterial3D" id="3"]
-albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
-distance_fade_mode = 3
-distance_fade_min_distance = 0.5
-distance_fade_max_distance = 2.0
-
 [sub_resource type="BoxMesh" id="4"]
 size = Vector3(0.25, 0.25, 0.25)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54w1t"]
-albedo_color = Color(0.878431, 0.878431, 1, 1)
-distance_fade_mode = 3
-distance_fade_min_distance = 0.5
-distance_fade_max_distance = 2.0
-
-[sub_resource type="StandardMaterial3D" id="5"]
-albedo_color = Color(0.164706, 0.321569, 0.745098, 1)
-distance_fade_mode = 3
-distance_fade_min_distance = 0.5
-distance_fade_max_distance = 2.0
-
 [sub_resource type="CapsuleMesh" id="6"]
-material = SubResource("5")
 radius = 0.25
 height = 1.25
 
 [sub_resource type="BoxMesh" id="7"]
 size = Vector3(0.75, 0.75, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3eg8"]
-albedo_color = Color(0.878431, 0.878431, 1, 1)
-distance_fade_mode = 3
-distance_fade_min_distance = 0.5
-distance_fade_max_distance = 2.0
 
 [sub_resource type="Gradient" id="Gradient_g33fs"]
 offsets = PackedFloat32Array(0.391218, 0.742515)
@@ -149,12 +126,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.623865, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/SquashStretch/Default"]
 mesh = SubResource("2")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("3")
+surface_material_override/0 = ExtResource("9_evt60")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/SquashStretch/Default/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
 mesh = SubResource("4")
-surface_material_override/0 = SubResource("StandardMaterial3D_54w1t")
+surface_material_override/0 = ExtResource("10_kc8d0")
 
 [node name="Glide" type="Node3D" parent="Mesh"]
 visible = false
@@ -163,11 +140,12 @@ visible = false
 transform = Transform3D(1, 6.51352e-16, 1.49012e-08, 0, -4.37114e-08, -1, -2.98023e-08, 1, -1.6292e-07, 0, 0, 0)
 mesh = SubResource("6")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("9_evt60")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Glide/MeshInstance3D"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("7")
-surface_material_override/0 = SubResource("StandardMaterial3D_d3eg8")
+surface_material_override/0 = ExtResource("10_kc8d0")
 
 [node name="TrailPositionLeftInner" type="Position3D" parent="Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)

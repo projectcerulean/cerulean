@@ -1,0 +1,26 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c0qs1grnnbj3x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bf4g5"]
+render_priority = -127
+transparency = 1
+albedo_color = Color(0.878431, 0.878431, 1, 1)
+distance_fade_mode = 3
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep1tb"]
+render_priority = -128
+next_pass = SubResource("StandardMaterial3D_bf4g5")
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.25098, 0.25098, 0.25098, 0.25098)
+distance_fade_mode = 3
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_ep1tb")
+distance_fade_mode = 3
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
