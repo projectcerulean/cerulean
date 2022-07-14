@@ -13,10 +13,10 @@ const pitch_limit: float = PI / 2.0 - 0.1
 
 @onready var yaw_pivot: Position3D = get_node("YawPivot") as Position3D
 @onready var pitch_pivot: Position3D = get_node("YawPivot/PitchPivot") as Position3D
+@onready var raycast: RayCast3D = get_node("YawPivot/PitchPivot/RayCast3D") as RayCast3D
 @onready var camera_anchor: Position3D = get_node("YawPivot/PitchPivot/CameraAnchor") as Position3D
 @onready var camera: Camera3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D") as Camera3D
 @onready var water_detector: Area3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector") as Area3D
-@onready var wall_detector: StaticBody3D = get_node("YawPivot/PitchPivot/WallDetector") as StaticBody3D
 
 @export var camera_distance_min: float = 2.5
 @export var camera_distance_max: float = 10.0
@@ -24,8 +24,9 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var camera_distance_lerp_weight: float = 10.0
 @export var camera_rotation_speed_max: Vector2 = Vector2(PI, PI/2.0)
 @export var camera_rotation_lerp_weight: float = 15.0
-@export var camera_push_weight_forwards: float = 10.0
+@export var camera_push_weight_forwards: float = 25.0
 @export var camera_push_weight_backwards: float = 5.0
+@export var camera_push_frustum_scale: float = 2.5
 @export var fov_change_tween_time: float = 0.5
 
 var camera_rotation_speed: Vector2 = Vector2()
@@ -55,10 +56,10 @@ func _ready() -> void:
 
 	assert(yaw_pivot != null, Errors.NULL_NODE)
 	assert(pitch_pivot != null, Errors.NULL_NODE)
+	assert(raycast != null, Errors.NULL_NODE)
 	assert(camera_anchor != null, Errors.NULL_NODE)
 	assert(camera != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
-	assert(wall_detector != null, Errors.NULL_NODE)
 
 	camera.fov = float(Settings.SETTINGS.FIELD_OF_VIEW.VALUES[settings_resource.settings[Settings.FIELD_OF_VIEW]])
 
@@ -88,17 +89,43 @@ func _process(delta: float) -> void:
 		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -pitch_limit, pitch_limit)
 
 	# Push camera towards the target if there is solid geometry in the way, helps to prevent clipping
-	var collision: KinematicCollision3D = KinematicCollision3D.new()
-	var is_colliding: bool = wall_detector.test_move(
-		global_transform,
-		camera_anchor.global_transform.origin - global_transform.origin,
-		collision,
-	)
-	if is_colliding:
-		var camera_distance_target: float = -(collision.get_position() - camera_anchor.global_transform.origin).length()
-		camera.position.z = Lerp.delta_lerp(camera.position.z, camera_distance_target, camera_push_weight_forwards, delta)
-	else:
-		camera.position.z = Lerp.delta_lerp(camera.position.z, 0.0, camera_push_weight_backwards, delta)
+	var camera_vector: Vector3 = (camera_anchor.global_transform.origin - global_transform.origin).normalized()
+	var frustum: Array[Plane] = camera.get_frustum()
+	var frustum_near: Plane = frustum[0]
+	var frustum_far: Plane = frustum[1]
+	var frustum_sides: Array[Plane] = frustum.slice(2)
+
+	var camera_distance_target: float = 0.0
+	for i in range(len(frustum_sides)):
+		# Need to calculate some points
+		var frustum_near_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_near)
+		var frustum_far_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_far)
+		var frustum_vector: Vector3 = (frustum_far_vertex - frustum_near_vertex).project(camera_vector)
+		var frustum_near_vertex_scaled: Vector3 = camera_push_frustum_scale * (frustum_near_vertex - camera.global_transform.origin) + camera.global_transform.origin
+		var frustum_near_vertex_anchor: Vector3 = camera_anchor.global_transform.origin + (frustum_near_vertex_scaled - camera.global_transform.origin)
+
+		# Raycast forwards
+		raycast.look_at_from_position(frustum_near_vertex_scaled, frustum_near_vertex_scaled + frustum_vector)
+		raycast.target_position = Vector3.FORWARD * frustum_vector.length()
+		raycast.force_raycast_update()
+		var collision_point_forward: Vector3 = raycast.get_collision_point() if raycast.is_colliding() else frustum_near_vertex_scaled + frustum_vector
+		var collider: CollisionObject3D = raycast.get_collider() as CollisionObject3D
+		if collider != null:
+			raycast.add_exception(collider)
+
+		# Raycast backwards
+		raycast.look_at_from_position(collision_point_forward, frustum_near_vertex_anchor)
+		raycast.target_position = Vector3.FORWARD * (frustum_near_vertex_anchor - collision_point_forward).length()
+		raycast.force_raycast_update()
+		var collision_point_backward: Vector3 = raycast.get_collision_point() if raycast.is_colliding() else frustum_near_vertex_anchor
+		raycast.clear_exceptions()
+
+		# Calculate camera position
+		camera_distance_target = max(camera_distance_target, (collision_point_backward - frustum_near_vertex_anchor).length())
+
+	# Actually set the camera push position
+	var camera_push_weight = camera_push_weight_forwards if camera.position.z > -camera_distance_target else camera_push_weight_backwards
+	camera.position.z = Lerp.delta_lerp(camera.position.z, -camera_distance_target, camera_push_weight, delta)
 
 	# Look at target
 	camera.look_at(target_transform_resource.value.origin)

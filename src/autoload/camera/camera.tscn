@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2p5fclrby2a"]
+[gd_scene load_steps=8 format=3 uid="uid://b2p5fclrby2a"]
 
 [ext_resource type="Script" path="res://src/autoload/camera/camera.gd" id="1_dbun4"]
 [ext_resource type="Resource" uid="uid://1jerxlyauuto" path="res://src/autoload/thumbstick_processor/thumbstick_resource_right.tres" id="2_sj0tv"]
@@ -7,9 +7,6 @@
 [ext_resource type="Resource" path="res://src/autoload/camera/camera_target_transform.tres" id="5_sufsx"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="6_3eh25"]
 [ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="9_fo7g8"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_hcul6"]
-radius = 0.15
 
 [node name="Camera" type="Position3D"]
 process_mode = 3
@@ -26,20 +23,13 @@ _game_state_resource = ExtResource("6_3eh25")
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="YawPivot/PitchPivot"]
+enabled = false
 collision_mask = 68
-
-[node name="WallDetector" type="StaticBody3D" parent="YawPivot/PitchPivot"]
-collision_layer = 2
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="YawPivot/PitchPivot/WallDetector"]
-shape = SubResource("SphereShape3D_hcul6")
 
 [node name="CameraAnchor" type="Position3D" parent="YawPivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 5)
 
 [node name="Camera3D" type="Camera3D" parent="YawPivot/PitchPivot/CameraAnchor"]
-transform = Transform3D(1, 0, 0, 0, 1, 8.9407e-08, 0, -8.9407e-08, 1, 0, 0, 0)
 current = true
 
 [node name="WaterDetector" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D" instance=ExtResource("9_fo7g8")]
