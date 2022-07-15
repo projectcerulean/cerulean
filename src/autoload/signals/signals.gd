@@ -109,6 +109,6 @@ func emit_setting_updated(sender: Node, key: StringName) -> void: emit(setting_u
 func emit_state_entered(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_entered, [sender, state, data])
 func emit_state_exited(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_exited, [sender, state, data])
 func emit_visualize_vector2(sender: Node, vector: Vector2) -> void: emit(visualize_vector2, [sender, vector])
-func emit_visualize_vector3(sender: Node3D, vector: Vector3) -> void: emit(visualize_vector3, [sender, vector])
+func emit_visualize_vector3(sender: Node, from: Vector3, to: Vector3) -> void: emit(visualize_vector3, [sender, from, to])
 func emit_water_entered(sender: Area3D) -> void: emit(water_entered, [sender])
 func emit_water_exited(sender: Area3D) -> void: emit(water_exited, [sender])

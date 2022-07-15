@@ -4,7 +4,6 @@
 extends Control
 
 @export var line_width: float = 10.0
-@export var max_length: float = 5.0
 
 var vectors_from: Dictionary
 var vectors_to: Dictionary
@@ -21,10 +20,10 @@ func _ready() -> void:
 
 func _draw() -> void:
 	for sender in vectors_from:
-		var p1: Vector3 = vectors_from[sender]
-		var p2: Vector3 = p1 + vectors_to[sender].limit_length(max_length)
-		if not camera.is_position_behind(p1) and not camera.is_position_behind(p2):
-			draw_line(camera.unproject_position(p1), camera.unproject_position(p2), colors[sender], line_width, true)
+		var point_from: Vector3 = vectors_from[sender]
+		var point_to: Vector3 = vectors_to[sender]
+		if not camera.is_position_behind(point_from) and not camera.is_position_behind(point_to):
+			draw_line(camera.unproject_position(point_from), camera.unproject_position(point_to), colors[sender], line_width, true)
 
 
 func _on_scene_changed(sender: Node):
@@ -33,9 +32,9 @@ func _on_scene_changed(sender: Node):
 	colors.clear()
 
 
-func _on_visualize_vector3(sender: Node3D, vector: Vector3):
-	vectors_from[sender] = sender.global_transform.origin
-	vectors_to[sender] = vector
+func _on_visualize_vector3(sender: Node, from: Vector3, to: Vector3):
+	vectors_from[sender] = from
+	vectors_to[sender] = to
 	if not colors.has(sender):
 		colors[sender] = Utils.str_to_color(sender.name)
 	update()
