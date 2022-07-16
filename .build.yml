@@ -20,15 +20,15 @@ tasks:
       done
 
   - download_godot: |
-      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha11/Godot_v4.0-alpha11_linux.64.zip
-      echo '8808182ddbac2238dd8cc51f58cec2a5f7ad322136f9a263829bf6766843c9b4015570cfcc954340c9f3c54abceaaf883d3ba480961137c15b592c2eadba8704  Godot_v4.0-alpha11_linux.64.zip' | sha512sum --check
-      unzip Godot_v4.0-alpha11_linux.64.zip
+      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/alpha12/Godot_v4.0-alpha12_linux.64.zip
+      echo '1d027e0700a26049ea403ab7b75427185a4b0d4e62948222d3f34eb4aa2e735d5a685ae918b73132ca67e6e527334cce154912f286b80ad0075b19aae1d910a8  Godot_v4.0-alpha12_linux.64.zip' | sha512sum --check
+      unzip Godot_v4.0-alpha12_linux.64.zip
 
   - export_game_pack: |
       cd cerulean
       sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
-      ../Godot_v4.0-alpha11_linux.64 --headless --editor --quit || true
-      ../Godot_v4.0-alpha11_linux.64 --headless --export-pack Linux/X11 ../cerulean.pck || true
+      ../Godot_v4.0-alpha12_linux.64 --headless --editor --quit || true
+      ../Godot_v4.0-alpha12_linux.64 --headless --export-pack Linux/X11 ../cerulean.pck || true
       cd ..
       sha512sum cerulean.pck | tee cerulean.pck.sha512
 
