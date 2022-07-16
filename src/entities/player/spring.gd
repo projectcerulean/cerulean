@@ -17,9 +17,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_transform.origin.x = parent.global_transform.origin.x
-	global_transform.origin.z = parent.global_transform.origin.z
+	global_position.x = parent.global_position.x
+	global_position.z = parent.global_position.z
 
 	velocity -= velocity * damping_constant
-	velocity -= spring_constant * (global_transform.origin.y - parent.global_transform.origin.y - spring_length) * delta
-	global_transform.origin.y += velocity * delta
+	velocity -= spring_constant * (global_position.y - parent.global_position.y - spring_length) * delta
+	global_position.y += velocity * delta

@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 		var color: Color = environment_resource.value.wind_trail_color
 		if water_detector.is_in_water():
 			color = environment_resource.value.water_trail_color
-		trail.add_segment(trail_position_a.global_transform.origin, trail_position_b.global_transform.origin, color)
+		trail.add_segment(trail_position_a.global_position, trail_position_b.global_position, color)
 
 
 func _on_target_state_entered(data: Dictionary) -> void:

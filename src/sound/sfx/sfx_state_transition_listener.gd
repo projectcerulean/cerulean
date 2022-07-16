@@ -25,7 +25,7 @@ func _on_target_state_entered(data: Dictionary) -> void:
 		return
 
 	if parent_3d != null:
-		Signals.emit_request_sfx_play(self, sfx_resource_enter, parent_3d.global_transform.origin)
+		Signals.emit_request_sfx_play(self, sfx_resource_enter, parent_3d.global_position)
 	else:
 		Signals.emit_request_sfx_play_non_diegetic(self, sfx_resource_enter)
 
@@ -36,6 +36,6 @@ func _on_target_state_exited(data: Dictionary) -> void:
 		return
 
 	if parent_3d != null:
-		Signals.emit_request_sfx_play(self, sfx_resource_exit, parent_3d.global_transform.origin)
+		Signals.emit_request_sfx_play(self, sfx_resource_exit, parent_3d.global_position)
 	else:
 		Signals.emit_request_sfx_play_non_diegetic(self, sfx_resource_exit)

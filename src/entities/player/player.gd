@@ -53,7 +53,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	# Update input vector according to thumbstick and camera position
-	var camera_vector: Vector3 = camera_transform_resource.value.origin - global_transform.origin
+	var camera_vector: Vector3 = camera_transform_resource.value.origin - global_position
 	camera_vector.y = 0.0
 	camera_vector = camera_vector.normalized()
 	var forward_vector: Vector3 = camera_vector
@@ -85,8 +85,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Floor snapping
 	var shape: CapsuleShape3D = collision_shape.shape as CapsuleShape3D
 	assert(shape != null, Errors.NULL_RESOURCE)
-	bottom_point_height = collision_shape.global_transform.origin.y - shape.height / 2.0
-	top_point_height = collision_shape.global_transform.origin.y + shape.height / 2.0
+	bottom_point_height = collision_shape.global_position.y - shape.height / 2.0
+	top_point_height = collision_shape.global_position.y + shape.height / 2.0
 
 	_is_on_floor = false
 	floor_collisions.clear()
@@ -94,7 +94,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var collision: KinematicCollision3D = KinematicCollision3D.new()
 	test_move(global_transform, floor_snap_length_max * Vector3.DOWN, collision)
 	for i in range(collision.get_collision_count()):
-		if collision.get_position(i).y < global_transform.origin.y and collision.get_angle(i) <= floor_max_angle:
+		if collision.get_position(i).y < global_position.y and collision.get_angle(i) <= floor_max_angle:
 			floor_collisions.append(collision)
 			floor_height = maxf(floor_height, collision.get_position(i).y)
 	if not is_inf(floor_height):

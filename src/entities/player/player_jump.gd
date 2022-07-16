@@ -25,7 +25,7 @@ func enter(data: Dictionary) -> void:
 		for i in range(collision.get_collision_count()):
 			var rigid_body: RigidDynamicBody3D = collision.get_collider(i) as RigidDynamicBody3D
 			if rigid_body != null:
-				var impulse_position: Vector3 = collision.get_position(i) - rigid_body.global_transform.origin
+				var impulse_position: Vector3 = collision.get_position(i) - rigid_body.global_position
 				rigid_body.apply_impulse(-impulse, impulse_position)
 
 

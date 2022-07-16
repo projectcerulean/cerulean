@@ -36,24 +36,24 @@ func _process(delta: float) -> void:
 	match game_state_resource.current_state:
 		GameStates.DIALOGUE:
 			if dialogue_target != null:
-				dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target.global_transform.origin - player_transform_resource.value.origin) / 2.0, dialogue_lerp_weight, delta)
-				global_transform.origin = dialogue_target_position_start + dialogue_target_offset
+				dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target.global_position - player_transform_resource.value.origin) / 2.0, dialogue_lerp_weight, delta)
+				global_position = dialogue_target_position_start + dialogue_target_offset
 		GameStates.GAMEPLAY:
 			dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, Vector3.ZERO, dialogue_lerp_weight, delta)
-			global_transform.origin.x = player_transform_resource.value.origin.x + dialogue_target_offset.x
-			global_transform.origin.z = player_transform_resource.value.origin.z + dialogue_target_offset.z
+			global_position.x = player_transform_resource.value.origin.x + dialogue_target_offset.x
+			global_position.z = player_transform_resource.value.origin.z + dialogue_target_offset.z
 			var y_lerp_weight: float = y_lerp_weight_player_grounded if player_state_resource.current_state in [PlayerStates.RUN, PlayerStates.IDLE] else y_lerp_weight_player_air
-			global_transform.origin.y = Lerp.delta_lerp(global_transform.origin.y, player_transform_resource.value.origin.y, y_lerp_weight, delta)
+			global_position.y = Lerp.delta_lerp(global_position.y, player_transform_resource.value.origin.y, y_lerp_weight, delta)
 
 	# Update tranform resource
 	transform_resource.value = global_transform
 
 
 func _on_scene_changed(_sender: Node) -> void:
-	global_transform.origin = player_transform_resource.value.origin
+	global_position = player_transform_resource.value.origin
 
 
 func _on_request_dialogue_start(sender: Node3D, _dialogue_resource: DialogueResource) -> void:
 	dialogue_target = sender
 	dialogue_target_offset = Vector3.ZERO
-	dialogue_target_position_start = global_transform.origin
+	dialogue_target_position_start = global_position

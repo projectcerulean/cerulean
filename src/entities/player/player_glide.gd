@@ -11,7 +11,7 @@ var glide_start_velocity: Vector3 = Vector3.ZERO
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
-	glide_start_position = player.global_transform.origin
+	glide_start_position = player.global_position
 	glide_start_velocity = player.linear_velocity
 
 
@@ -36,7 +36,7 @@ func physics_process(delta: float) -> void:
 	# Energy conservation
 	var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 	var velocity_length_target: float = glide_start_velocity.length() + Math.signed_sqrt(
-		2.0 * gravity * player.gravity_scale * (glide_start_position.y - player.global_transform.origin.y)
+		2.0 * gravity * player.gravity_scale * (glide_start_position.y - player.global_position.y)
 	)
 	var delta_velocity: float = velocity_length_target - player.linear_velocity.length()
 	player.apply_central_impulse(velocity_direction * delta_velocity * player.mass)

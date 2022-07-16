@@ -42,8 +42,8 @@ func _process(delta: float) -> void:
 		color = environment_resource.value.water_trail_color
 
 	if time < lifetime:
-		trail_horizontal.add_segment(position_horizontal_a.global_transform.origin, position_horizontal_b.global_transform.origin, color)
-		trail_vertical.add_segment(position_vertical_a.global_transform.origin, position_vertical_b.global_transform.origin, color)
+		trail_horizontal.add_segment(position_horizontal_a.global_position, position_horizontal_b.global_position, color)
+		trail_vertical.add_segment(position_vertical_a.global_position, position_vertical_b.global_position, color)
 
 	translate(speed * Vector3.FORWARD + (float(noise_texture_data[i_noise_sample]) / 255.0 - 0.5) * noise_strength * Vector3.UP)
 	i_noise_sample = (i_noise_sample + 1) % noise_texture_data.size()

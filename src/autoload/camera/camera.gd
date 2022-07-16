@@ -65,7 +65,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_transform.origin = target_transform_resource.value.origin
+	global_position = target_transform_resource.value.origin
 
 	if game_state_resource.current_state in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
 		var rotation_speed_target: Vector2 = Vector2()
@@ -89,7 +89,7 @@ func _process(delta: float) -> void:
 		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -pitch_limit, pitch_limit)
 
 	# Push camera towards the target if there is solid geometry in the way, helps to prevent clipping
-	var camera_vector: Vector3 = (camera_anchor.global_transform.origin - global_transform.origin).normalized()
+	var camera_vector: Vector3 = (camera_anchor.global_position - global_position).normalized()
 	var frustum: Array[Plane] = camera.get_frustum()
 	var frustum_near: Plane = frustum[0]
 	var frustum_far: Plane = frustum[1]
@@ -101,8 +101,8 @@ func _process(delta: float) -> void:
 		var frustum_near_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_near)
 		var frustum_far_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_far)
 		var frustum_vector: Vector3 = (frustum_far_vertex - frustum_near_vertex).project(camera_vector)
-		var frustum_near_vertex_scaled: Vector3 = camera_push_frustum_scale * (frustum_near_vertex - camera.global_transform.origin) + camera.global_transform.origin
-		var frustum_near_vertex_anchor: Vector3 = camera_anchor.global_transform.origin + (frustum_near_vertex_scaled - camera.global_transform.origin)
+		var frustum_near_vertex_scaled: Vector3 = camera_push_frustum_scale * (frustum_near_vertex - camera.global_position) + camera.global_position
+		var frustum_near_vertex_anchor: Vector3 = camera_anchor.global_position + (frustum_near_vertex_scaled - camera.global_position)
 
 		# Raycast forwards
 		raycast.look_at_from_position(frustum_near_vertex_scaled, frustum_near_vertex_scaled + frustum_vector)

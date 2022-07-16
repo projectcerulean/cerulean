@@ -45,7 +45,7 @@ func _on_area_exited(area: Area3D) -> void:
 
 
 func is_in_water() -> bool:
-	return global_transform.origin.y < get_water_surface_height()
+	return global_position.y < get_water_surface_height()
 
 
 func get_water_surface_height() -> float:
@@ -56,13 +56,13 @@ func get_water_surface_height() -> float:
 	for area in water_bodies:
 		height = max(
 			height,
-			area.global_transform.origin.y + (
+			area.global_position.y + (
 				environment.water_wave_strength.x * sin(
-					global_transform.origin.x * TAU / environment.water_wave_period.x
+					global_position.x * TAU / environment.water_wave_period.x
 					+ time * environment.water_wave_time_factor.x
 				)
 				+ environment.water_wave_strength.y * sin(
-					global_transform.origin.z * TAU / environment.water_wave_period.y
+					global_position.z * TAU / environment.water_wave_period.y
 					+ time * environment.water_wave_time_factor.y
 				)
 			)

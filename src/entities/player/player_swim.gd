@@ -33,7 +33,7 @@ func physics_process(delta: float) -> void:
 
 	# Buoyancy
 	if player.water_detector.is_in_water():
-		var depth: float = player.water_detector.get_water_surface_height() - player.water_detector.global_transform.origin.y
+		var depth: float = player.water_detector.get_water_surface_height() - player.water_detector.global_position.y
 		player.force_vector.y += buoyancy_force * clampf(depth, 0.0, 1.0) - buoyancy_friction_coefficient*player.linear_velocity.y
 
 	# Coyote timer

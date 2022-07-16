@@ -42,10 +42,10 @@ func _draw() -> void:
 	if camera == null:
 		return
 
-	var position3d: Vector3 = target.global_transform.origin
+	var position3d: Vector3 = target.global_position
 	if not camera.is_position_behind(position3d):
 		var position2d: Vector2 = camera.unproject_position(position3d)
-		var camera_distance: float = (camera.global_transform.origin - position3d).length()
+		var camera_distance: float = (camera.global_position - position3d).length()
 		var vertex_positions: PackedVector2Array = PackedVector2Array(polygon_shape)
 		for i in range(vertex_positions.size()):
 			vertex_positions[i] *= scale_factor

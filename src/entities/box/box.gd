@@ -17,8 +17,8 @@ func _physics_process(delta: float) -> void:
 	for i in range(water_detectors.get_child_count()):
 		var water_detector: WaterDetector = water_detectors.get_child(i) as WaterDetector
 		if not is_inf(water_detector.get_water_surface_height()):
-			var depth: float = water_detector.get_water_surface_height() - water_detector.global_transform.origin.y
+			var depth: float = water_detector.get_water_surface_height() - water_detector.global_position.y
 			var force: float = buoyancy_force_factor * clampf(depth, 0.0, 1.0)
-			var force_position: Vector3 = water_detector.global_transform.origin - global_transform.origin
+			var force_position: Vector3 = water_detector.global_position - global_position
 			apply_central_force(buoyancy_central_factor * force * Vector3.UP)
 			apply_force((1.0 - buoyancy_central_factor) * force * Vector3.UP, force_position)

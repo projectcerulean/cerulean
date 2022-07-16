@@ -14,7 +14,7 @@ func enter(data: Dictionary) -> void:
 	super.enter(data)
 	roll_angle = 0.0
 	yaw_direction = data.get(YAW_DIRECTION, Vector3.ZERO)
-	mesh_root.look_at(mesh_root.get_global_transform().origin + player.linear_velocity.normalized())
+	mesh_root.look_at(mesh_root.global_position + player.linear_velocity.normalized())
 	process(get_process_delta_time())
 
 
@@ -32,7 +32,7 @@ func process(delta: float) -> void:
 
 	if is_zero_approx(player.linear_velocity.x) and is_zero_approx(player.linear_velocity.z):
 		if not is_zero_approx(player.linear_velocity.y):
-			mesh_root.look_at(mesh_root.get_global_transform().origin + (Vector3.UP if player.linear_velocity.y > 0.0 else Vector3.DOWN), yaw_direction)
+			mesh_root.look_at(mesh_root.global_position + (Vector3.UP if player.linear_velocity.y > 0.0 else Vector3.DOWN), yaw_direction)
 	else:
 		var input_direction_2d: Vector3 = Vector3(player_input_vector_resource.value.x, 0.0, player_input_vector_resource.value.z)
 		var velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
@@ -45,4 +45,4 @@ func process(delta: float) -> void:
 		input_vector_spherical = input_vector_spherical.normalized()
 		assert(input_vector_spherical.is_normalized(), Errors.CONSISTENCY_ERROR)
 		var mesh_direction: Vector3 = player.linear_velocity.slerp(input_vector_spherical, turn_lerp_weight).normalized()
-		mesh_root.look_at(mesh_root.get_global_transform().origin + mesh_direction, Vector3.UP.rotated(mesh_direction, -roll_angle))
+		mesh_root.look_at(mesh_root.global_position + mesh_direction, Vector3.UP.rotated(mesh_direction, -roll_angle))
