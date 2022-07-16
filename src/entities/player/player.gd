@@ -16,15 +16,17 @@ extends RigidDynamicBody3D
 var input_vector: Vector3
 var force_vector: Vector3
 var floor_snapping_enabled: bool
-var _is_on_floor: bool
 var bottom_point_height: float
 var top_point_height: float
-var floor_collisions: Array[KinematicCollision3D]
+var floor_collision: KinematicCollision3D
+var floor_velocity_prober_position_prev: Vector3
 
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
 @onready var water_detector: WaterDetector = get_node("WaterDetector") as WaterDetector
+@onready var parent: Node3D = get_parent_node_3d() as Node3D
+@onready var floor_velocity_prober: Node3D = Node3D.new()
 
 @onready var thumbstick_resource_left: Vector2Resource = _thumbstick_resource_left as Vector2Resource
 @onready var input_vector_resource: Vector3Resource = _input_vector_resource as Vector3Resource
@@ -43,6 +45,7 @@ func _ready() -> void:
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
+	assert(parent != null, Errors.NULL_NODE)
 
 	assert(input_vector_resource.value == Vector3(), Errors.RESOURCE_BUSY)
 	assert(transform_resource.value == Transform3D(), Errors.RESOURCE_BUSY)
@@ -88,22 +91,30 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	bottom_point_height = collision_shape.global_position.y - shape.height / 2.0
 	top_point_height = collision_shape.global_position.y + shape.height / 2.0
 
-	_is_on_floor = false
-	floor_collisions.clear()
-	var floor_height: float = -INF
+	floor_collision = null
 	var collision: KinematicCollision3D = KinematicCollision3D.new()
-	test_move(global_transform, floor_snap_length_max * Vector3.DOWN, collision)
-	for i in range(collision.get_collision_count()):
-		if collision.get_position(i).y < global_position.y and collision.get_angle(i) <= floor_max_angle:
-			floor_collisions.append(collision)
-			floor_height = maxf(floor_height, collision.get_position(i).y)
-	if not is_inf(floor_height):
-		_is_on_floor = true
-		if floor_snapping_enabled:
-			var floor_distance: float = bottom_point_height - floor_height
-			if floor_distance > floor_snap_length_min:
-				state.set_transform(state.get_transform().translated(floor_distance * Vector3.DOWN))
-				state.linear_velocity.y = 0.0
+	if test_move(global_transform, floor_snap_length_max * Vector3.DOWN, collision):
+		if collision.get_position().y < global_position.y and collision.get_angle() <= floor_max_angle:
+			floor_collision = collision
+
+	if floor_snapping_enabled and floor_collision != null:
+		var floor_height: float = collision.get_position().y
+		var floor_distance: float = bottom_point_height - floor_height
+		if floor_distance > floor_snap_length_min:
+			state.set_transform(state.get_transform().translated(floor_distance * Vector3.DOWN))
+			state.linear_velocity.y = 0.0
+
+	# Apply floor transform
+	var node_reparented: bool = Utils.reparent_node(
+		floor_velocity_prober,
+		floor_collision.get_collider() if floor_collision != null else parent
+	)
+
+	if not node_reparented:
+		state.transform.origin += floor_velocity_prober.global_position - floor_velocity_prober_position_prev
+		floor_velocity_prober.global_position = floor_collision.get_position() if floor_collision != null else Vector3.ZERO
+
+	floor_velocity_prober_position_prev = floor_velocity_prober.global_position
 
 
 func _notification(what: int) -> void:
@@ -113,4 +124,4 @@ func _notification(what: int) -> void:
 
 
 func is_on_floor() -> bool:
-	return _is_on_floor
+	return floor_collision != null

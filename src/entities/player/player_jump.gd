@@ -20,13 +20,11 @@ func enter(data: Dictionary) -> void:
 	player.apply_central_impulse(impulse)
 
 	# Newton's third
-	for _collision in player.floor_collisions:
-		var collision: KinematicCollision3D = _collision as KinematicCollision3D
-		for i in range(collision.get_collision_count()):
-			var rigid_body: RigidDynamicBody3D = collision.get_collider(i) as RigidDynamicBody3D
-			if rigid_body != null:
-				var impulse_position: Vector3 = collision.get_position(i) - rigid_body.global_position
-				rigid_body.apply_impulse(-impulse, impulse_position)
+	if player.floor_collision != null:
+		var rigid_body: RigidDynamicBody3D = player.floor_collision.get_collider() as RigidDynamicBody3D
+		if rigid_body != null:
+			var impulse_position: Vector3 = player.floor_collision.get_position() - rigid_body.global_position
+			rigid_body.apply_impulse(-impulse, impulse_position)
 
 
 func physics_process(delta: float) -> void:

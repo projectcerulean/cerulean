@@ -676,7 +676,7 @@ shader_param/smooth_range = 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_pv52q"]
 size = Vector3(192, 192, 192)
 
-[node name="TestScene" type="Node"]
+[node name="TestScene" type="Node3D"]
 script = ExtResource("1_arp3q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

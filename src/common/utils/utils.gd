@@ -32,6 +32,18 @@ static func get_collision_shape_for_body(body: PhysicsBody3D) -> CollisionShape3
 	return collision_shape
 
 
+static func reparent_node(node: Node, parent_new: Node) -> bool:
+	assert(node != null, Errors.NULL_NODE)
+	assert(parent_new != null, Errors.NULL_NODE)
+	var parent_prev: Node = node.get_parent()
+	if parent_new == parent_prev:
+		return false
+	if parent_prev != null:
+		parent_prev.remove_child(node)
+	parent_new.add_child(node)
+	return true
+
+
 static func str_to_color(string: String) -> Color:
 	var color_r: float = (str(string).sha256_text().substr(0, 8).hex_to_int() % 255) / 255.0
 	var color_g: float = (str(color_r).sha256_text().substr(0, 8).hex_to_int() % 255) / 255.0
