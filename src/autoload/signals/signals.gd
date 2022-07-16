@@ -10,6 +10,7 @@ signal area_body_exited
 signal bgm_area_entered
 signal bgm_area_exited
 signal bgm_changed
+signal body_bounced
 signal debug_write
 signal interaction_highlight_set
 signal request_dialogue_start
@@ -83,6 +84,7 @@ func emit_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void: emit(ar
 func emit_bgm_area_entered(sender: Area3D, bgm: StringName) -> void: emit(bgm_area_entered, [sender, bgm])
 func emit_bgm_area_exited(sender: Area3D) -> void: emit(bgm_area_exited, [sender])
 func emit_bgm_changed(sender: Node, bgm: StringName) -> void: emit(bgm_changed, [sender, bgm])
+func emit_body_bounced(sender: Node, body: RigidDynamicBody3D) -> void: emit(body_bounced, [sender, body])
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, [sender, variant])
 func emit_interaction_highlight_set(sender: Node, target: Node3D) -> void: emit(interaction_highlight_set, [sender, target])
 func emit_request_dialogue_start(sender: Node3D, dialogue_resource: DialogueResource) -> void: emit(request_dialogue_start, [sender, dialogue_resource])

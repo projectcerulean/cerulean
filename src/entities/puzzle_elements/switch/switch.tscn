@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_7i1pt"]
 [ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interaction.tscn" id="2_hkiaq"]
+[ext_resource type="Material" uid="uid://n73fv878e5k0" path="res://src/entities/puzzle_elements/switch/base_material.tres" id="2_kaiug"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_joint.gd" id="2_pjdkd"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_interaction_action.gd" id="3_bgjta"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="4_rrpi8"]
@@ -21,10 +22,6 @@ height = 2.5
 top_radius = 1.0
 bottom_radius = 1.0
 height = 0.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3gut"]
-albedo_color = Color(0.415686, 0.415686, 0.415686, 1)
-metallic = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_yrp7q"]
 size = Vector3(0.75, 0.75, 0.75)
@@ -53,7 +50,7 @@ shape = SubResource("CapsuleShape3D_jmta0")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
 layers = 8
 mesh = SubResource("CylinderMesh_1h8m4")
-surface_material_override/0 = SubResource("StandardMaterial3D_t3gut")
+surface_material_override/0 = ExtResource("2_kaiug")
 
 [node name="Joint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

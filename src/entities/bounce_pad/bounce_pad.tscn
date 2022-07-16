@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dkkf5h4ihyja0"]
+
+[ext_resource type="Script" path="res://src/entities/bounce_pad/bounce_pad.gd" id="1_33s86"]
+[ext_resource type="Material" uid="uid://n73fv878e5k0" path="res://src/entities/puzzle_elements/switch/base_material.tres" id="2_qvdsi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kilfe"]
+size = Vector3(1.9, 0.25, 1.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_73doq"]
+size = Vector3(1.9, 0.25, 1.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sec7j"]
+size = Vector3(1.8, 0.5, 1.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_abgwj"]
+size = Vector3(1.8, 0.25, 1.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j6bf"]
+albedo_color = Color(0.482353, 0.960784, 1, 1)
+
+[node name="BouncePad" type="StaticBody3D"]
+collision_layer = 4
+script = ExtResource("1_33s86")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kilfe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 4
+mesh = SubResource("BoxMesh_73doq")
+surface_material_override/0 = ExtResource("2_qvdsi")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+collision_layer = 0
+collision_mask = 9
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_sec7j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+layers = 8
+mesh = SubResource("BoxMesh_abgwj")
+skeleton = NodePath("../../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_6j6bf")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]

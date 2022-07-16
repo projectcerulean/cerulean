@@ -4,6 +4,7 @@
 class_name PlayerStates
 extends Node
 
+const BOUNCE: StringName = &"Bounce"
 const DIVE: StringName = &"Dive"
 const FALL: StringName = &"Fall"
 const GLIDE: StringName = &"Glide"

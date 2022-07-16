@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://da2ju3bvwkv1e"]
+[gd_scene load_steps=47 format=3 uid="uid://da2ju3bvwkv1e"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
@@ -25,6 +25,7 @@
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_resource_manager.gd" id="15_p5vjh"]
 [ext_resource type="Script" path="res://src/entities/player/player_blob_shadow.gd" id="16_3ec8c"]
+[ext_resource type="Script" path="res://src/entities/player/player_bounce.gd" id="17_lgpkh"]
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="18_nptr4"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="24_hgnac"]
 [ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="25_e1r3t"]
@@ -167,6 +168,13 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -
 script = ExtResource("2")
 _initial_state = NodePath("Idle")
 
+[node name="Bounce" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+script = ExtResource("10_vowrm")
+mesh_root = NodePath("../../SquashStretch/Default")
+_player_input_vector_resource = ExtResource("3_2i2xh")
+turn_lerp_weight_min = 0.0
+turn_lerp_weight_max = 0.0
+
 [node name="Dive" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
 mesh_root = NodePath("../../Glide")
@@ -218,6 +226,14 @@ state_machine_child = NodePath("../StateMachine")
 script = ExtResource("2")
 _initial_state = NodePath("Idle")
 
+[node name="Bounce" type="Node" parent="StateMachine"]
+script = ExtResource("17_lgpkh")
+gravity_scale = 0.6
+
+[node name="StateEnterTimer" type="Timer" parent="StateMachine/Bounce"]
+wait_time = 0.1
+one_shot = true
+
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource("10")
 gravity_scale = 0.0
@@ -262,6 +278,10 @@ _state_resource = ExtResource("12")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
+
+[node name="BounceBufferTimer" type="Timer" parent="."]
+wait_time = 0.25
 one_shot = true
 
 [node name="JumpBufferTimer" type="Timer" parent="."]

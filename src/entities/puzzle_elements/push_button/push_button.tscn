@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/push_button/push_button.gd" id="1_1bmxc"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_7i1pt"]
+[ext_resource type="Material" uid="uid://n73fv878e5k0" path="res://src/entities/puzzle_elements/switch/base_material.tres" id="2_t4va4"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="4_rrpi8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="5_fygd5"]
 [ext_resource type="Script" path="res://src/sound/sfx/sfx_state_transition_listener.gd" id="6_ssf8g"]
@@ -18,10 +19,6 @@ radius = 0.75
 top_radius = 1.0
 bottom_radius = 1.0
 height = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3gut"]
-albedo_color = Color(0.415686, 0.415686, 0.415686, 1)
-metallic = 1.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ewqwe"]
 top_radius = 0.75
@@ -53,7 +50,7 @@ shape = SubResource("CylinderShape3D_lrnre")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Base"]
 layers = 8
 mesh = SubResource("CylinderMesh_1h8m4")
-surface_material_override/0 = SubResource("StandardMaterial3D_t3gut")
+surface_material_override/0 = ExtResource("2_t4va4")
 
 [node name="Button" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

@@ -23,8 +23,10 @@ var floor_velocity_prober_position_prev: Vector3
 
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
+@onready var bounce_buffer_timer: Timer = get_node("BounceBufferTimer") as Timer
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
 @onready var water_detector: WaterDetector = get_node("WaterDetector") as WaterDetector
+@onready var state_machine: Node = get_node("StateMachine") as Node
 @onready var parent: Node3D = get_parent_node_3d() as Node3D
 @onready var floor_velocity_prober: Node3D = Node3D.new()
 
@@ -36,6 +38,8 @@ var floor_velocity_prober_position_prev: Vector3
 
 
 func _ready() -> void:
+	Signals.body_bounced.connect(_on_body_bounced)
+
 	assert(thumbstick_resource_left != null, Errors.NULL_RESOURCE)
 	assert(input_vector_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
@@ -43,8 +47,10 @@ func _ready() -> void:
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(collision_shape != null, Errors.NULL_RESOURCE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
+	assert(bounce_buffer_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
+	assert(state_machine != null, Errors.NULL_NODE)
 	assert(parent != null, Errors.NULL_NODE)
 
 	assert(input_vector_resource.value == Vector3(), Errors.RESOURCE_BUSY)
@@ -121,6 +127,15 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		input_vector_resource.value = Vector3()
 		transform_resource.value = Transform3D()
+
+
+func _on_body_bounced(sender: Node, body: RigidDynamicBody3D):
+	if body == self:
+		if Input.is_action_pressed(InputActions.JUMP) or not jump_buffer_timer.is_stopped():
+			Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
+		else:
+			Signals.emit_request_state_change(self, state_machine, PlayerStates.FALL)
+			bounce_buffer_timer.start()
 
 
 func is_on_floor() -> bool:
