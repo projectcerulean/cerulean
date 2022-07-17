@@ -16,6 +16,7 @@ const BACKGROUND_MUSIC: StringName = &"BACKGROUND_MUSIC"
 const CAMERA_X_INVERTED: StringName = &"CAMERA_X_INVERTED"
 const CAMERA_Y_INVERTED: StringName = &"CAMERA_Y_INVERTED"
 const FIELD_OF_VIEW: StringName = &"FIELD_OF_VIEW"
+const VSYNC: StringName = &"VSYNC"
 
 const SETTINGS: Dictionary = {
 	BACKGROUND_MUSIC: {
@@ -41,5 +42,11 @@ const SETTINGS: Dictionary = {
 		VALUES: [60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120],
 		VALUE_NAMES: ["60", "65", "70", "75", "80", "85", "90", "95", "100", "105", "110", "115", "120"],
 		DEFAULT_VALUE_INDEX: 6,
+	},
+	VSYNC: {
+		OPTION_NAME: "VSync",
+		VALUES: BOOLEAN_VALUES,
+		VALUE_NAMES: BOOLEAN_VALUE_NAMES,
+		DEFAULT_VALUE_INDEX: 1,
 	},
 }
