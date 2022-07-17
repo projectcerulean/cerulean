@@ -101,6 +101,7 @@ linear_damp_mode = 1
 script = ExtResource("1")
 _thumbstick_resource_left = ExtResource("2_t6dk8")
 _input_vector_resource = ExtResource("3_2i2xh")
+_state_resource = ExtResource("12")
 _game_state_resource = ExtResource("4_gviv5")
 _transform_resource = ExtResource("5_f776o")
 _camera_transform_resource = ExtResource("6_sk484")

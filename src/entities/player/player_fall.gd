@@ -22,7 +22,7 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if player.water_detector.is_in_water():
+	if player.global_position.y < player.water_detector.get_water_surface_height():
 		return PlayerStates.SWIM
 	elif Input.is_action_just_pressed(InputActions.JUMP) and not player.bounce_buffer_timer.is_stopped():
 		return PlayerStates.BOUNCE

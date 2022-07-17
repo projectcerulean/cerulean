@@ -24,6 +24,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_4ow20")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_esmal"]
+resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("1_alkq1")
 shader_param/alpha_factor = 1.0

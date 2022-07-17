@@ -274,6 +274,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/common/resource_types/transform_resource.gd"
 }, {
+"base": "StateTransitionListener",
+"class": &"Translate3DTransitionListener",
+"language": &"GDScript",
+"path": "res://src/common/state_machine/translate3d_transition_listener.gd"
+}, {
 "base": "Node",
 "class": &"Utils",
 "language": &"GDScript",
@@ -353,6 +358,7 @@ _global_script_class_icons={
 "SwitchInteractionAction": "",
 "Trail": "",
 "TransformResource": "",
+"Translate3DTransitionListener": "",
 "Utils": "",
 "Vector2Resource": "",
 "Vector3Resource": "",

@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends PlayerState
 
-@export var move_speed: float = 6.0
+@export var move_speed: float = 7.0
 @export var acceleration_time: float = 3.0
 
 @onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)

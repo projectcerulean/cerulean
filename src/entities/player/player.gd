@@ -9,6 +9,7 @@ extends RigidDynamicBody3D
 @export var floor_snap_length_min: float = 0.001
 @export var _thumbstick_resource_left: Resource
 @export var _input_vector_resource: Resource
+@export var _state_resource: Resource
 @export var _game_state_resource: Resource
 @export var _transform_resource: Resource
 @export var _camera_transform_resource: Resource
@@ -32,6 +33,7 @@ var floor_velocity_prober_position_prev: Vector3
 
 @onready var thumbstick_resource_left: Vector2Resource = _thumbstick_resource_left as Vector2Resource
 @onready var input_vector_resource: Vector3Resource = _input_vector_resource as Vector3Resource
+@onready var state_resource: StateResource = _state_resource as StateResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 @onready var transform_resource: TransformResource = _transform_resource as TransformResource
 @onready var camera_transform_resource: TransformResource = _camera_transform_resource as TransformResource
@@ -42,6 +44,7 @@ func _ready() -> void:
 
 	assert(thumbstick_resource_left != null, Errors.NULL_RESOURCE)
 	assert(input_vector_resource != null, Errors.NULL_RESOURCE)
+	assert(state_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
@@ -130,12 +133,12 @@ func _notification(what: int) -> void:
 
 
 func _on_body_bounced(sender: Node, body: RigidDynamicBody3D):
-	if body == self:
-		if Input.is_action_pressed(InputActions.JUMP) or not jump_buffer_timer.is_stopped():
-			Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
-		else:
-			Signals.emit_request_state_change(self, state_machine, PlayerStates.FALL)
-			bounce_buffer_timer.start()
+	if body == self and state_resource.current_state != PlayerStates.DIVE:
+			if Input.is_action_pressed(InputActions.JUMP) or not jump_buffer_timer.is_stopped():
+				Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
+			else:
+				Signals.emit_request_state_change(self, state_machine, PlayerStates.FALL)
+				bounce_buffer_timer.start()
 
 
 func is_on_floor() -> bool:

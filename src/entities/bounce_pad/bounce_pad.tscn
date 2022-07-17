@@ -16,6 +16,7 @@ size = Vector3(1.8, 0.5, 1.8)
 size = Vector3(1.8, 0.25, 1.8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j6bf"]
+resource_local_to_scene = true
 albedo_color = Color(0.482353, 0.960784, 1, 1)
 
 [node name="BouncePad" type="StaticBody3D"]
