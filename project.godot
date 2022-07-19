@@ -214,6 +214,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/entities/puzzle_elements/puzzle_element_states.gd"
 }, {
+"base": "StateTransitionListener",
+"class": &"ScreenShakeTransitionListener",
+"language": &"GDScript",
+"path": "res://src/common/state_machine/screen_shake_transition_listener.gd"
+}, {
 "base": "Node",
 "class": &"Settings",
 "language": &"GDScript",
@@ -346,6 +351,7 @@ _global_script_class_icons={
 "PropertyTweenerTransitionListener": "",
 "PushButton": "",
 "PuzzleElementStates": "",
+"ScreenShakeTransitionListener": "",
 "Settings": "",
 "SettingsResource": "",
 "SfxResource": "",
