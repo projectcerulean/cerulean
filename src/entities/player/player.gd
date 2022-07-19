@@ -133,6 +133,7 @@ func _notification(what: int) -> void:
 
 
 func _on_body_bounced(sender: Node, body: RigidDynamicBody3D):
+	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
 	if body == self and state_resource.current_state != PlayerStates.DIVE:
 			if Input.is_action_pressed(InputActions.JUMP) or not jump_buffer_timer.is_stopped():
 				Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
