@@ -25,6 +25,7 @@ signal request_resource_load
 signal request_scene_change
 signal request_scene_transition_start
 signal request_scene_transition_finish
+signal request_screen_shake
 signal request_setting_update
 signal request_settings_save
 signal request_sfx_play
@@ -99,6 +100,7 @@ func emit_request_resource_load(sender: Node, resource_path: StringName) -> void
 func emit_request_scene_change(sender: Node, scene_path: String) -> void: emit(request_scene_change, [sender, scene_path])
 func emit_request_scene_transition_start(sender: Node, scene_path: String, color: Color, duration: float) -> void: emit(request_scene_transition_start, [sender, scene_path, color, duration])
 func emit_request_scene_transition_finish(sender: Node) -> void: emit(request_scene_transition_finish, [sender])
+func emit_request_screen_shake(sender: Node, total_duration: float, frequency: float, amplitude: float) -> void: emit(request_screen_shake, [sender, total_duration, frequency, amplitude])
 func emit_request_setting_update(sender: Node, key: StringName, value_index: int) -> void: emit(request_setting_update, [sender, key, value_index])
 func emit_request_settings_save(sender: Node) -> void: emit(request_settings_save, [sender])
 func emit_request_sfx_play(sender: Node, sfx_resource: SfxResource, position: Vector3) -> void: emit(request_sfx_play, [sender, sfx_resource, position])
