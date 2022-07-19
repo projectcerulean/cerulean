@@ -5,10 +5,14 @@ extends PlayerState
 
 @export var move_speed: float = 8.5
 @export var acceleration_time: float = 3.0
+@export var _sfx_resource: Resource
+
+
 
 @onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
 @onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
 @onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
+@onready var sfx_resource: SfxResource = _sfx_resource as SfxResource
 
 
 func _ready() -> void:
@@ -19,6 +23,7 @@ func _ready() -> void:
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	state_enter_timer.start()
+	Signals.emit_request_sfx_play(self, sfx_resource, player.global_position)
 
 
 func physics_process(delta: float) -> void:

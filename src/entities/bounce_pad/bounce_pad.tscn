@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkkf5h4ihyja0"]
+[gd_scene load_steps=10 format=3 uid="uid://cx6853dllog27"]
 
 [ext_resource type="Script" path="res://src/entities/bounce_pad/bounce_pad.gd" id="1_33s86"]
+[ext_resource type="Resource" uid="uid://caay0hexewak6" path="res://src/sound/sfx/sfx_resources/bounce_pad.tres" id="2_jm3eu"]
 [ext_resource type="Material" uid="uid://n73fv878e5k0" path="res://src/entities/puzzle_elements/switch/base_material.tres" id="2_qvdsi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kilfe"]
@@ -25,6 +26,7 @@ size = Vector3(1.8, 0.25, 1.8)
 [node name="BouncePad" type="StaticBody3D"]
 collision_layer = 4
 script = ExtResource("1_33s86")
+_sfx_resource = ExtResource("2_jm3eu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_kilfe")
