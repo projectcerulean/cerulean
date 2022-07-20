@@ -47,7 +47,7 @@ func physics_process(delta: float) -> void:
 func get_transition() -> StringName:
 	if player.is_on_floor() and player.global_position.y > player.water_detector.get_water_surface_height():
 		return PlayerStates.RUN
-	elif not player.water_detector.is_in_water() and is_inf(player.water_detector.get_water_surface_height()):
+	elif player.bottom_point_height > player.water_detector.get_water_surface_height():
 		return PlayerStates.FALL
 	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
 		if (
