@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://caay0hexewak6"]
 
 [ext_resource type="Script" path="res://src/sound/sfx/sfx_resource.gd" id="1_fojka"]
-[ext_resource type="AudioStream" path="res://assets/sound/sfx/kenney_impactsounds/impactPlate_heavy_003.wav" id="2_lx6vh"]
+[ext_resource type="AudioStream" uid="uid://tof1cjc6wd86" path="res://assets/sound/sfx/kenney_impactsounds/impactPlate_heavy_003.wav" id="2_lx6vh"]
 
 [resource]
 script = ExtResource("1_fojka")

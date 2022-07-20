@@ -1394,10 +1394,10 @@ bgm = &"SEA_AND_SKY"
 shape = SubResource("BoxShape3D_pv52q")
 
 [node name="Box" parent="." instance=ExtResource("21_0mayf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -0.5, 19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -0.5, -23)
 
 [node name="Box2" parent="." instance=ExtResource("21_0mayf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, -63)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -0.5, 19)
 
 [node name="BouncePad" parent="Box2" instance=ExtResource("22_6nnfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13, 0)

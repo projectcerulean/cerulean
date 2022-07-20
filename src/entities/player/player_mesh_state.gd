@@ -4,6 +4,7 @@
 class_name PlayerMeshState
 extends State
 
+const ROLL_ANGLE: StringName = &"ROLL_ANGLE"
 const YAW_DIRECTION: StringName = &"YAW_DIRECTION"
 const YAW_DIRECTION_TARGET: StringName = &"YAW_DIRECTION_TARGET"
 

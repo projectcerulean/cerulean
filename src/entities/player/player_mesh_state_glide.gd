@@ -6,38 +6,44 @@ extends PlayerMeshState
 @export var turn_lerp_weight: float = 0.1
 @export var roll_lerp_weight: float = 2.0
 
+var input_direction_planar: Vector3
 var yaw_direction: Vector3 = Vector3.ZERO
 var roll_angle: float = 0.0
 
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
-	roll_angle = 0.0
+	roll_angle = data.get(ROLL_ANGLE, 0.0)
 	yaw_direction = data.get(YAW_DIRECTION, Vector3.ZERO)
+	input_direction_planar = yaw_direction
 	mesh_root.look_at(mesh_root.global_position + player.linear_velocity.normalized())
 	process(get_process_delta_time())
 
 
 func exit(data: Dictionary) -> void:
 	super.exit(data)
+	data[ROLL_ANGLE] = roll_angle
 	data[YAW_DIRECTION] = yaw_direction
 	data[YAW_DIRECTION_TARGET] = yaw_direction
 
 
 func process(delta: float) -> void:
 	super.process(delta)
-	var yaw_direction_new: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z).normalized()
+	var velocity_planar: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
+
+	var yaw_direction_new: Vector3 = velocity_planar.normalized()
 	if yaw_direction_new.is_normalized():
 		yaw_direction = yaw_direction_new
 
-	if is_zero_approx(player.linear_velocity.x) and is_zero_approx(player.linear_velocity.z):
+	if velocity_planar.is_equal_approx(Vector3.ZERO):
 		if not is_zero_approx(player.linear_velocity.y):
 			mesh_root.look_at(mesh_root.global_position + (Vector3.UP if player.linear_velocity.y > 0.0 else Vector3.DOWN), yaw_direction)
 	else:
-		var input_direction_2d: Vector3 = Vector3(player_input_vector_resource.value.x, 0.0, player_input_vector_resource.value.z)
-		var velocity_2d: Vector3 = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z)
+		var input_direction_planar_new: Vector3 = Vector3(player_input_vector_resource.value.x, 0.0, player_input_vector_resource.value.z).normalized()
+		if input_direction_planar_new.is_normalized():
+			input_direction_planar = input_direction_planar_new
 		roll_angle = Lerp.delta_lerp_angle(
-			roll_angle, velocity_2d.signed_angle_to(input_direction_2d, Vector3.UP), roll_lerp_weight, delta
+			roll_angle, velocity_planar.signed_angle_to(input_direction_planar, Vector3.UP), roll_lerp_weight, delta
 		)
 
 		var input_vector_spherical: Vector3 = player_input_vector_resource.value

@@ -24,7 +24,6 @@ var floor_velocity_prober_position_prev: Vector3
 
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
-@onready var bounce_buffer_timer: Timer = get_node("BounceBufferTimer") as Timer
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
 @onready var water_detector: WaterDetector = get_node("WaterDetector") as WaterDetector
 @onready var state_machine: Node = get_node("StateMachine") as Node
@@ -50,7 +49,6 @@ func _ready() -> void:
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(collision_shape != null, Errors.NULL_RESOURCE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
-	assert(bounce_buffer_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
@@ -134,12 +132,8 @@ func _notification(what: int) -> void:
 
 func _on_body_bounced(sender: Node, body: RigidDynamicBody3D):
 	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
-	if body == self and state_resource.current_state != PlayerStates.DIVE:
-			if Input.is_action_pressed(InputActions.JUMP) or not jump_buffer_timer.is_stopped():
-				Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
-			else:
-				Signals.emit_request_state_change(self, state_machine, PlayerStates.FALL)
-				bounce_buffer_timer.start()
+	if body == self and state_resource.current_state == PlayerStates.GLIDE:
+		Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
 
 
 func is_on_floor() -> bool:

@@ -7,8 +7,6 @@ extends PlayerState
 @export var acceleration_time: float = 3.0
 @export var _sfx_resource: Resource
 
-
-
 @onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
 @onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
 @onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
@@ -29,7 +27,6 @@ func enter(data: Dictionary) -> void:
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 	player.coyote_timer.stop()
-	player.bounce_buffer_timer.stop()
 	player.jump_buffer_timer.stop()
 
 	# Apply movement
@@ -37,7 +34,12 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if state_enter_timer.is_stopped() and (player.linear_velocity.y < 0 or not Input.is_action_pressed(InputActions.JUMP)):
+	if not Input.is_action_pressed(InputActions.JUMP):
 		return PlayerStates.FALL
+	elif state_enter_timer.is_stopped() and player.linear_velocity.y < 0.0:
+		if Input.is_action_pressed(InputActions.JUMP):
+			return PlayerStates.GLIDE
+		else:
+			return PlayerStates.FALL
 	else:
 		return StringName()

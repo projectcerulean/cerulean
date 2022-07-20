@@ -157,11 +157,9 @@ script = ExtResource("2")
 _initial_state = NodePath("Idle")
 
 [node name="Bounce" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
-script = ExtResource("10_vowrm")
-mesh_root = NodePath("../../SquashStretch/Default")
+script = ExtResource("9_uwrsl")
+mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
-turn_lerp_weight_min = 0.0
-turn_lerp_weight_max = 0.0
 
 [node name="Dive" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
@@ -269,10 +267,6 @@ _state_resource = ExtResource("12")
 wait_time = 0.1
 one_shot = true
 
-[node name="BounceBufferTimer" type="Timer" parent="."]
-wait_time = 0.25
-one_shot = true
-
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
@@ -290,6 +284,22 @@ _environment_resource = ExtResource("24_hgnac")
 [node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("target_state", "trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
 target_state = NodePath("../../StateMachine/Glide")
+trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_water_detector = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter/WaterDetector")
+_environment_resource = ExtResource("24_hgnac")
+
+[node name="BounceTrailRendererLeft" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("target_state", "trail_position_a", "trail_position_b", "_water_detector")]
+script = ExtResource("8")
+target_state = NodePath("../../StateMachine/Bounce")
+trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_water_detector = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter/WaterDetector")
+_environment_resource = ExtResource("24_hgnac")
+
+[node name="BounceTrailRendererRight" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("target_state", "trail_position_a", "trail_position_b", "_water_detector")]
+script = ExtResource("8")
+target_state = NodePath("../../StateMachine/Bounce")
 trail_position_a = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
 trail_position_b = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 _water_detector = NodePath("../../Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter/WaterDetector")
