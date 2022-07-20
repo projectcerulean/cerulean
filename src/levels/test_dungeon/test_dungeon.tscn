@@ -886,15 +886,15 @@ surface_material_override/0 = SubResource("ShaderMaterial_u6wj8")
 [node name="Indicator" parent="Env/CentralRoom/Walls/Circuit" instance=ExtResource("9_7mq4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4.8)
 
-[node name="ScreenShakeDisabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator" node_paths=PackedStringArray("target_state")]
+[node name="ScreenShakeDisabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator"]
 script = ExtResource("10_1f3do")
-target_state = NodePath("../../../Barrier/StateMachine/Disabled")
+_target_states = [NodePath("../../../Barrier/StateMachine/Disabled")]
 total_duration = 10.0
 shake_frequency = 15.0
 
-[node name="ScreenShakeEnabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator" node_paths=PackedStringArray("target_state")]
+[node name="ScreenShakeEnabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator"]
 script = ExtResource("10_1f3do")
-target_state = NodePath("../../../Barrier/StateMachine/Enabled")
+_target_states = [NodePath("../../../Barrier/StateMachine/Enabled")]
 total_duration = 10.0
 shake_frequency = 15.0
 
@@ -1382,9 +1382,9 @@ size = Vector3(4, 1, 2)
 
 [node name="Water" type="Node3D" parent="."]
 
-[node name="Translate3DTransitionListener" type="Node" parent="Water" node_paths=PackedStringArray("target_state", "target_node", "position_target", "position_other")]
+[node name="Translate3DTransitionListener" type="Node" parent="Water" node_paths=PackedStringArray("target_node", "position_target", "position_other")]
 script = ExtResource("12_we2p8")
-target_state = NodePath("../../Env/CentralRoom/Walls/Barrier/StateMachine/Enabled")
+_target_states = [NodePath("../../Env/CentralRoom/Walls/Barrier/StateMachine/Enabled")]
 target_node = NodePath("..")
 position_target = NodePath("../../WaterPositionHigh")
 position_other = NodePath("../../WaterPositionLow")

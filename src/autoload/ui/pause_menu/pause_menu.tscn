@@ -165,8 +165,8 @@ script = ExtResource("7_or3k2")
 [node name="Settings" type="Node" parent="StateMachine"]
 script = ExtResource("5_kygh5")
 
-[node name="SfxMenuSwitch" type="Node" parent="." node_paths=PackedStringArray("target_state")]
+[node name="SfxMenuSwitch" type="Node" parent="."]
 script = ExtResource("8_25px7")
-target_state = NodePath("../StateMachine/Main")
+_target_states = [NodePath("../StateMachine/Main")]
 _sfx_resource_enter = ExtResource("9_rbp0b")
 _sfx_resource_exit = ExtResource("9_rbp0b")

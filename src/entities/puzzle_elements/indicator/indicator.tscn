@@ -27,9 +27,9 @@ script = ExtResource("1_bsmqb")
 [node name="Mesh" type="Node3D" parent="."]
 script = ExtResource("2_u67b3")
 
-[node name="ColorStateEnabled" type="Node" parent="Mesh" node_paths=PackedStringArray("target_state", "target_node")]
+[node name="ColorStateEnabled" type="Node" parent="Mesh" node_paths=PackedStringArray("target_node")]
 script = ExtResource("5_dsacl")
-target_state = NodePath("../../StateMachine/Enabled")
+_target_states = [NodePath("../../StateMachine/Enabled")]
 target_node = NodePath("..")
 property = "activation"
 tween_duration = 0.1
