@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3llgup5ja26a"]
+[gd_scene load_steps=4 format=3 uid="uid://d3llgup5ja26a"]
 
 [ext_resource type="Script" path="res://src/entities/blob_shadow/blob_shadow.gd" id="1_bjd74"]
 
@@ -13,8 +13,6 @@ height = 1024
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_n6fml"]
-
 [node name="BlobShadow" type="Node3D"]
 script = ExtResource("1_bjd74")
 
@@ -22,20 +20,15 @@ script = ExtResource("1_bjd74")
 
 [node name="Decal" type="Decal" parent="DecalPivot"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+layers = 9
 extents = Vector3(1, 0.01, 1)
 texture_albedo = SubResource("GradientTexture2D_o4yl3")
 upper_fade = 1e-05
 lower_fade = 1.10957e-05
-cull_mask = 12
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DecalPivot/Decal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.18557e-08)
-visible = false
-layers = 9
-mesh = SubResource("BoxMesh_n6fml")
+cull_mask = 128
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
-collision_mask = 12
+collision_mask = 128
 collide_with_areas = true

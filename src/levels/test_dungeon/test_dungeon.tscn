@@ -322,10 +322,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.4058)
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Outer" type="CSGBox3D" parent="Env/Entrance/Walls"]
@@ -388,10 +388,10 @@ shadow_enabled = true
 omni_range = 50.0
 
 [node name="Stairs" type="CSGCombiner3D" parent="Env/Entrance"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="DoorwayPlatform" type="CSGBox3D" parent="Env/Entrance/Stairs"]
@@ -489,10 +489,10 @@ polygon = PackedVector2Array(0, 0, 0, 1, 0, 4, 10, 0)
 depth = 4.0
 
 [node name="Exit" type="CSGCombiner3D" parent="Env/Entrance"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="ExitPlatform" type="CSGBox3D" parent="Env/Entrance/Exit"]
@@ -577,10 +577,10 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -5.9, 22.15, -29.55)
 [node name="CentralRoom" type="Node3D" parent="Env"]
 
 [node name="Block" type="CSGCombiner3D" parent="Env/CentralRoom"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Block" type="CSGBox3D" parent="Env/CentralRoom/Block"]
@@ -696,10 +696,10 @@ _input_nodes = [NodePath("../Circuit/Indicator")]
 input_targets = [true]
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/CentralRoom"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Outer" type="CSGBox3D" parent="Env/CentralRoom/Walls"]
@@ -917,10 +917,10 @@ bounce_height = 6.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 0)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/PushButtonRoom"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Outer" type="CSGBox3D" parent="Env/PushButtonRoom/Walls"]
@@ -1040,10 +1040,10 @@ input_targets = [true]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0, 0)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/Ascension"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Outer" type="CSGBox3D" parent="Env/Ascension/Walls"]
@@ -1261,10 +1261,10 @@ size = Vector3(4, 4, 16)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 46, -28)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/Balcony"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Outer" type="CSGBox3D" parent="Env/Balcony/Walls"]
@@ -1294,10 +1294,10 @@ size = Vector3(2, 2, 36)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -42)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/Progression"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Outer" type="CSGBox3D" parent="Env/Progression/Walls"]
@@ -1343,10 +1343,10 @@ size = Vector3(4, 4, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -128)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/End"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Block" type="CSGBox3D" parent="Env/End/Walls"]

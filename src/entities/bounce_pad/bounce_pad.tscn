@@ -47,13 +47,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_sec7j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-layers = 8
+layers = 136
 mesh = SubResource("BoxMesh_abgwj")
 skeleton = NodePath("../../MeshInstance3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_6j6bf")
 
 [node name="BlobShadowCollider" type="Area3D" parent="Area3D"]
-collision_layer = 8
+collision_layer = 128
 collision_mask = 0
 monitoring = false
 
