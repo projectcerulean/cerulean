@@ -160,6 +160,7 @@ _initial_state = NodePath("Idle")
 script = ExtResource("9_uwrsl")
 mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
+spin_rate = 2.0
 
 [node name="Dive" type="Node" parent="Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
