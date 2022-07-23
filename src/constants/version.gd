@@ -12,4 +12,4 @@ const PATCH: int = 0
 const STATUS: String = "dev"
 const GIT_HASH: String = ""
 const YEAR: int = 2022
-const WEBSITE: String = "https://github.com/projectcerulean/cerulean"
+const WEBSITE: String = "https://projectcerulean.org"
