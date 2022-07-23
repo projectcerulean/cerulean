@@ -21,6 +21,7 @@ distance_fade_max_distance = 2.0
 
 [resource]
 next_pass = SubResource("StandardMaterial3D_ep1tb")
+albedo_color = Color(0.878431, 0.878431, 1, 1)
 distance_fade_mode = 3
 distance_fade_min_distance = 0.5
 distance_fade_max_distance = 2.0

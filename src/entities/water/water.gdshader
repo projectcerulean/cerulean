@@ -26,38 +26,53 @@ uniform vec2 wave_period = vec2(16.0, 16.0);
 uniform vec2 wave_strength = vec2(0.25, 0.125);
 uniform vec2 wave_time_factor = vec2(0.5, 1.0);
 
-varying mat4 camera;
+uniform sampler2D displacement_noise;
+uniform float displacement_amount = 0.01;
+uniform float displacement_time_factor = 0.015;
+
+
+float calculate_depth(sampler2D depth_texture, vec2 screen_uv, vec3 vertex, mat4 inv_projection_matrix, mat4 inv_view_matrix) {
+	float depth = texture(depth_texture, screen_uv).x;
+	vec3 ndc = vec3(screen_uv * 2.0 - 1.0, depth);
+	vec4 world = inv_view_matrix * inv_projection_matrix * vec4(ndc, 1.0);
+	vec3 depth_world_position = world.xyz / world.w;
+	vec3 vertex_world_position = (inv_view_matrix * vec4(vertex, 1.0)).xyz;
+	vec3 camera_position = inv_view_matrix[3].xyz;
+	return distance(depth_world_position, camera_position) - distance(vertex_world_position, camera_position);
+}
 
 
 void fragment() {
 	vec3 noise_texture1 = texture(noise_sampler1, UV + TIME * noise_time_factor.x).rgb;
 	vec3 noise_texture2 = texture(noise_sampler2, UV - TIME * noise_time_factor.y).rgb;
 	float noise_sum = (noise_texture1.r + noise_texture2.r) / 2.0;
-	if (noise_sum > water_color_highlight_threshold) {
-		ALBEDO = water_color_highlight.rgb;
-		ALPHA = water_color_highlight.a;
-	}
-	else {
-		ALBEDO = water_color.rgb;
-		ALPHA = water_color.a;
-	}
+	vec4 color = (noise_sum > water_color_highlight_threshold) ? water_color_highlight : water_color;
+	
+	// Displacement
+	float displacement1 = ((texture(displacement_noise, UV + vec2(0.0, TIME * displacement_time_factor)).rg - 0.5) * 2.0).r;
+	float displacement2 = ((texture(displacement_noise, UV + vec2(TIME * displacement_time_factor), 0.0).rg - 0.5) * 2.0).r;
+	vec2 displacement = vec2(displacement1, displacement2) * displacement_amount;
 
 	// Get water depth
-	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
-	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
-	vec4 world = camera * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
-	vec3 depth_world_position = world.xyz / world.w;
-	vec3 vertex_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	float depth_world = distance(depth_world_position, vertex_world_position);
+	float depth = calculate_depth(DEPTH_TEXTURE, SCREEN_UV + displacement, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
 
-	// Foam
-	float foam_factor = 1.0 - smoothstep(foam_width - foam_smooth, foam_width + foam_smooth, depth_world);
-	ALBEDO = foam_factor * foam_color.rgb + (1.0 - foam_factor) * ALBEDO;
-	ALPHA = foam_factor * foam_color.a + (1.0 - foam_factor) * ALPHA;
+	if (depth < 0.0) {
+		// Undo the displacement, don't want to grab pixels from objects which are above the water.
+		displacement = vec2(0.0);
+		depth = calculate_depth(DEPTH_TEXTURE, SCREEN_UV + displacement, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
+	}
 
 	// Depth fade
-	ALPHA = clamp(1.0 - exp(-depth_world * beer_factor), ALPHA, 1.0);
+	color.a = clamp(1.0 - exp(-depth * beer_factor), color.a, 1.0);
+	
+	// Foam
+	float foam_depth = calculate_depth(DEPTH_TEXTURE, SCREEN_UV, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
+	if (foam_depth > 0.0) {
+		float foam_factor = 1.0 - smoothstep(foam_width - foam_smooth, foam_width + foam_smooth, foam_depth);
+		color = foam_factor * foam_color + (1.0 - foam_factor) * color;
+	}
 
+	ALBEDO = mix(texture(SCREEN_TEXTURE, SCREEN_UV + displacement).rgb, color.rgb, color.a);
 	SPECULAR = 1.0;
 	METALLIC = 0.25;
 	ROUGHNESS = 0.0;
@@ -67,6 +82,4 @@ void fragment() {
 void vertex() {
 	VERTEX.y += wave_strength.x * sin(VERTEX.x * TAU / wave_period.x + wave_time * wave_time_factor.x) +
 		wave_strength.y * sin(VERTEX.z * TAU / wave_period.y + wave_time * wave_time_factor.y);
-
-	camera = INV_VIEW_MATRIX;
 }

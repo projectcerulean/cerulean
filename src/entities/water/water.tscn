@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpm1ys1xoym5i"]
+[gd_scene load_steps=15 format=3 uid="uid://bpm1ys1xoym5i"]
 
 [ext_resource type="Shader" path="res://src/entities/water/water.gdshader" id="1"]
 [ext_resource type="Script" path="res://src/entities/water/water.gd" id="2_3s67h"]
@@ -10,6 +10,13 @@
 size = Vector2(64, 64)
 subdivide_width = 64
 subdivide_depth = 64
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8k1fg"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture" id="NoiseTexture_qscl5"]
+seamless = true
+noise = SubResource("FastNoiseLite_8k1fg")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mtgeo"]
 frequency = 0.003
@@ -29,6 +36,9 @@ noise = SubResource("FastNoiseLite_2ni1l")
 render_priority = 0
 shader = ExtResource("1")
 shader_param/beer_factor = 0.2
+shader_param/displacement_amount = 0.01
+shader_param/displacement_noise = SubResource("NoiseTexture_qscl5")
+shader_param/displacement_time_factor = 0.015
 shader_param/foam_color = Color(0.878431, 0.878431, 1, 0.909804)
 shader_param/foam_smooth = 0.01
 shader_param/foam_width = 0.2
