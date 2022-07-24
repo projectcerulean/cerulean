@@ -664,6 +664,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -28, -
 operation = 2
 size = Vector3(3, 4, 16)
 
+[node name="BouncePad" parent="Env/CentralRoom/Block" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 26, 0)
+bounce_height = 4.0
+
 [node name="Circuit" type="Node3D" parent="Env/CentralRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 47.5, -24)
 
@@ -1346,7 +1350,7 @@ operation = 2
 size = Vector3(2, 2, 36)
 
 [node name="Progression" type="Node3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -24)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/Progression"]
 layers = 132
@@ -1354,9 +1358,6 @@ material_override = ExtResource("3_m5lxh")
 use_collision = true
 collision_layer = 132
 collision_mask = 11
-
-[node name="Outer" type="CSGBox3D" parent="Env/Progression/Walls"]
-size = Vector3(20, 20, 16)
 
 [node name="Outer2" type="CSGBox3D" parent="Env/Progression/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -24)
@@ -1395,7 +1396,7 @@ operation = 2
 size = Vector3(4, 4, 4)
 
 [node name="End" type="Node3D" parent="Env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -110)
 
 [node name="Walls" type="CSGCombiner3D" parent="Env/End"]
 layers = 132
@@ -1499,10 +1500,10 @@ shape = SubResource("BoxShape3D_vrsx2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 16)
 
 [node name="Box3" parent="." instance=ExtResource("16_p0we0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, -116)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0, -96)
 
 [node name="Box4" parent="." instance=ExtResource("16_p0we0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, -140)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, -120)
 
 [node name="Box2" parent="." instance=ExtResource("16_p0we0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 49, -24.1226)
