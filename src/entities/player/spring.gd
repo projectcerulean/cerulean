@@ -4,7 +4,7 @@
 extends Node3D
 
 @export var spring_constant: float = 500.0
-@export var damping_constant: float = 0.25
+@export var damping_constant: float = 15.0
 @export var spring_length: float = 1.0
 
 var velocity: float = 0.0
@@ -20,6 +20,6 @@ func _process(delta: float) -> void:
 	global_position.x = parent.global_position.x
 	global_position.z = parent.global_position.z
 
-	velocity -= velocity * damping_constant
+	velocity -= velocity * damping_constant * delta
 	velocity -= spring_constant * (global_position.y - parent.global_position.y - spring_length) * delta
 	global_position.y += velocity * delta
