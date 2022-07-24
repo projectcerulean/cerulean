@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=3 uid="uid://cakfuk8ocptkq"]
+
+[ext_resource type="Script" path="res://src/entities/rotator/rotator.gd" id="1_062hk"]
+[ext_resource type="Material" uid="uid://c883jsyxw8s5g" path="res://src/entities/rotator/material.tres" id="2_1vwjv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8x2d5"]
+height = 8.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6ypda"]
+height = 8.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g851e"]
+size = Vector3(1, 0.5, 3.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8brk7"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ad1ke"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d6eco"]
+size = Vector3(1, 0.5, 3.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cko8p"]
+radius = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8px2n"]
+top_radius = 2.0
+bottom_radius = 2.0
+
+[node name="Rotator" type="AnimatableBody3D"]
+collision_layer = 136
+collision_mask = 0
+script = ExtResource("1_062hk")
+
+[node name="ArmShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+shape = SubResource("CylinderShape3D_8x2d5")
+
+[node name="ArmMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+layers = 136
+mesh = SubResource("CylinderMesh_6ypda")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="ConnectorShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 1.25)
+shape = SubResource("BoxShape3D_g851e")
+
+[node name="PlatformPosition" type="Position3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 4)
+
+[node name="Platform" type="AnimatableBody3D" parent="PlatformPosition"]
+top_level = true
+collision_layer = 136
+collision_mask = 0
+
+[node name="PlatformShape" type="CollisionShape3D" parent="PlatformPosition/Platform"]
+shape = SubResource("BoxShape3D_8brk7")
+
+[node name="PlatformMesh" type="MeshInstance3D" parent="PlatformPosition/Platform"]
+layers = 136
+mesh = SubResource("BoxMesh_ad1ke")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="ConnectorMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 1.25)
+layers = 136
+mesh = SubResource("BoxMesh_d6eco")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="ArmShape2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 5.19615, -3, 0)
+shape = SubResource("CylinderShape3D_8x2d5")
+
+[node name="ArmMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 5.19615, -3, 0)
+layers = 136
+mesh = SubResource("CylinderMesh_6ypda")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="ConnectorShape2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 8.66025, -5, 1.25)
+shape = SubResource("BoxShape3D_g851e")
+
+[node name="ConnectorMesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 8.66025, -5, 1.25)
+layers = 136
+mesh = SubResource("BoxMesh_d6eco")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="PlatformPosition2" type="Position3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.66025, -5, 4)
+
+[node name="Platform2" type="AnimatableBody3D" parent="PlatformPosition2"]
+top_level = true
+collision_layer = 136
+collision_mask = 0
+
+[node name="PlatformShape" type="CollisionShape3D" parent="PlatformPosition2/Platform2"]
+shape = SubResource("BoxShape3D_8brk7")
+
+[node name="PlatformMesh" type="MeshInstance3D" parent="PlatformPosition2/Platform2"]
+layers = 136
+mesh = SubResource("BoxMesh_ad1ke")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="ArmShape3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.5, -0.866026, 0, 0.866026, -0.5, 0, 0, 0, 1, -5.19615, -3, 0)
+shape = SubResource("CylinderShape3D_8x2d5")
+
+[node name="ArmMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, -0.866026, 0, 0.866026, -0.5, 0, 0, 0, 1, -5.19615, -3, 0)
+layers = 136
+mesh = SubResource("CylinderMesh_6ypda")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="ConnectorShape3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.5, -0.866026, 0, 0.866026, -0.5, 0, 0, 0, 1, -8.66026, -5, 1.25)
+shape = SubResource("BoxShape3D_g851e")
+
+[node name="ConnectorMesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, -0.866026, 0, 0.866026, -0.5, 0, 0, 0, 1, -8.66026, -5, 1.25)
+layers = 136
+mesh = SubResource("BoxMesh_d6eco")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="PlatformPosition3" type="Position3D" parent="."]
+transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0, 1, -8.66026, -5, 4)
+
+[node name="Platform3" type="AnimatableBody3D" parent="PlatformPosition3"]
+transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+top_level = true
+collision_layer = 136
+collision_mask = 0
+
+[node name="PlatformShape" type="CollisionShape3D" parent="PlatformPosition3/Platform3"]
+shape = SubResource("BoxShape3D_8brk7")
+
+[node name="PlatformMesh" type="MeshInstance3D" parent="PlatformPosition3/Platform3"]
+layers = 136
+mesh = SubResource("BoxMesh_ad1ke")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_1vwjv")
+
+[node name="HubShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_cko8p")
+
+[node name="HubMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+layers = 136
+mesh = SubResource("CylinderMesh_8px2n")
+surface_material_override/0 = ExtResource("2_1vwjv")

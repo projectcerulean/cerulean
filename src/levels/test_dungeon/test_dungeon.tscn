@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ct8hn0mrxp0d6"]
+[gd_scene load_steps=66 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="PackedScene" uid="uid://da2ju3bvwkv1e" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://by2nwnn6lar31" path="res://src/entities/puzzle_elements/push_button/push_button.tscn" id="12_osc62"]
 [ext_resource type="Script" path="res://src/common/state_machine/translate3d_transition_listener.gd" id="12_we2p8"]
 [ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="14_11lwf"]
+[ext_resource type="PackedScene" uid="uid://cakfuk8ocptkq" path="res://src/entities/rotator/rotator.tscn" id="14_l6rq7"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="15_e7a0f"]
 [ext_resource type="Environment" uid="uid://cj4m17hiwmdr2" path="res://src/levels/test_dungeon/environment.tres" id="15_nl3es"]
 [ext_resource type="PackedScene" uid="uid://b25s8e4xiy0gw" path="res://src/entities/box/box.tscn" id="16_p0we0"]
@@ -967,15 +968,23 @@ shadow_enabled = true
 omni_range = 50.0
 omni_attenuation = 0.0220971
 
-[node name="OmniLight3D10" type="OmniLight3D" parent="Env/PushButtonRoom/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 64.4391, 0)
+[node name="OmniLight3D11" type="OmniLight3D" parent="Env/PushButtonRoom/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 49.4391, -12)
+light_color = Color(0.678431, 0.341176, 0.376471, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 10.0
+omni_attenuation = 0.0220971
+
+[node name="OmniLight3D12" type="OmniLight3D" parent="Env/PushButtonRoom/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, -17.5609, -15)
 light_color = Color(0.4, 0.678431, 0.643137, 1)
 shadow_enabled = true
 omni_range = 50.0
 omni_attenuation = 0.0220971
 
-[node name="OmniLight3D11" type="OmniLight3D" parent="Env/PushButtonRoom/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 64.4391, 0)
+[node name="OmniLight3D13" type="OmniLight3D" parent="Env/PushButtonRoom/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, -17.5609, 15)
 light_color = Color(0.4, 0.678431, 0.643137, 1)
 shadow_enabled = true
 omni_range = 50.0
@@ -1228,24 +1237,25 @@ size = Vector3(4, 1, 4)
 
 [node name="BouncePad" parent="Env/Ascension2/Walls2/CSGBox3D4" instance=ExtResource("19_any5i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-bounce_height = 20.0
+bounce_height = 5.0
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Env/Ascension2/Walls2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2.5, 0)
-size = Vector3(4, 1, 4)
-
-[node name="BouncePad" parent="Env/Ascension2/Walls2/CSGBox3D5" instance=ExtResource("19_any5i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-bounce_height = 7.0
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Env/Ascension2/Walls2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 18.5, -15)
-size = Vector3(4, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 26, 0)
+size = Vector3(32, 48, 32)
 
 [node name="DoorwayExitInner11" type="CSGBox3D" parent="Env/Ascension2/Walls2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 20, -29)
 operation = 2
 size = Vector3(2, 2, 36)
+
+[node name="DoorwayExitInner12" type="CSGBox3D" parent="Env/Ascension2/Walls2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 20, -12)
+operation = 2
+size = Vector3(2, 2, 36)
+
+[node name="DoorwayExitInner13" type="CSGBox3D" parent="Env/Ascension2/Walls2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 18, -12)
+size = Vector3(4, 2, 8)
 
 [node name="DoorwayExitInner6" type="CSGBox3D" parent="Env/Ascension2/Walls2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, -5, 0)
@@ -1256,6 +1266,51 @@ size = Vector3(4, 4, 16)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30, -42, 8)
 operation = 2
 size = Vector3(4, 4, 16)
+
+[node name="Rotator" parent="Env/Ascension2/Walls2" instance=ExtResource("14_l6rq7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -36, -15)
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator/PlatformPosition/Platform" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.599999, 0)
+bounce_height = 6.0
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator/PlatformPosition2/Platform2" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+bounce_height = 6.0
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator/PlatformPosition3/Platform3" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+bounce_height = 6.0
+
+[node name="Rotator2" parent="Env/Ascension2/Walls2" instance=ExtResource("14_l6rq7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, -17, 0)
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator2/PlatformPosition/Platform" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.599999, 0)
+bounce_height = 6.0
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator2/PlatformPosition2/Platform2" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+bounce_height = 6.0
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator2/PlatformPosition3/Platform3" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+bounce_height = 6.0
+
+[node name="Rotator3" parent="Env/Ascension2/Walls2" instance=ExtResource("14_l6rq7")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 31, 2, 0)
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator3/PlatformPosition/Platform" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.599999, 0)
+bounce_height = 6.0
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator3/PlatformPosition2/Platform2" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+bounce_height = 6.0
+
+[node name="BouncePad" parent="Env/Ascension2/Walls2/Rotator3/PlatformPosition3/Platform3" index="2" instance=ExtResource("19_any5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+bounce_height = 6.0
 
 [node name="Balcony" type="Node3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 46, -28)
@@ -1456,4 +1511,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 49, -24.1226)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13, 0)
 
 [editable path="Env/CentralRoom/Walls/Barrier"]
+[editable path="Env/Ascension2/Walls2/Rotator"]
+[editable path="Env/Ascension2/Walls2/Rotator2"]
+[editable path="Env/Ascension2/Walls2/Rotator3"]
 [editable path="Env/End/Walls/Block/SignPost"]
