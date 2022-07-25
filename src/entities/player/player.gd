@@ -11,7 +11,6 @@ extends RigidDynamicBody3D
 @export var _input_vector_resource: Resource
 @export var _state_resource: Resource
 @export var _game_state_resource: Resource
-@export var _transform_resource: Resource
 @export var _camera_transform_resource: Resource
 
 var input_vector: Vector3
@@ -34,7 +33,6 @@ var floor_velocity_prober_position_prev: Vector3
 @onready var input_vector_resource: Vector3Resource = _input_vector_resource as Vector3Resource
 @onready var state_resource: StateResource = _state_resource as StateResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
-@onready var transform_resource: TransformResource = _transform_resource as TransformResource
 @onready var camera_transform_resource: TransformResource = _camera_transform_resource as TransformResource
 
 
@@ -45,7 +43,6 @@ func _ready() -> void:
 	assert(input_vector_resource != null, Errors.NULL_RESOURCE)
 	assert(state_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
-	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(collision_shape != null, Errors.NULL_RESOURCE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
@@ -55,10 +52,6 @@ func _ready() -> void:
 	assert(parent != null, Errors.NULL_NODE)
 
 	assert(input_vector_resource.value == Vector3(), Errors.RESOURCE_BUSY)
-	assert(transform_resource.value == Transform3D(), Errors.RESOURCE_BUSY)
-
-	# Update tranform resource
-	transform_resource.value = global_transform
 
 
 func _process(_delta: float) -> void:
@@ -76,9 +69,6 @@ func _process(_delta: float) -> void:
 		input_vector = Vector3.ZERO
 
 	input_vector_resource.value = input_vector
-
-	# Update tranform resource
-	transform_resource.value = global_transform
 
 	# Perform interaction
 	if Input.is_action_just_pressed(InputActions.INTERACT) and game_state_resource.current_state == GameStates.GAMEPLAY:
@@ -127,7 +117,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		input_vector_resource.value = Vector3()
-		transform_resource.value = Transform3D()
 
 
 func _on_body_bounced(sender: Node, body: RigidDynamicBody3D):

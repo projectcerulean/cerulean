@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxo7bfhp6ojpb"]
+
+[ext_resource type="Script" path="res://src/common/transform_resource_manager/transform_resource_manager.gd" id="1_gfihf"]
+
+[node name="TransformResourceManager" type="Node3D"]
+script = ExtResource("1_gfihf")

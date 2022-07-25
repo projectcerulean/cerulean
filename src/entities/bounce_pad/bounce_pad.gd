@@ -9,7 +9,7 @@ var tween: Tween
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var bounce_speed: float = 2.0 * sqrt(gravity * bounce_height)
-@onready var mesh_instance: MeshInstance3D = get_node("Area3D/MeshInstance3D") as MeshInstance3D
+@onready var mesh_instance: MeshInstance3D = get_node("PhysicsStepInterpolator/BounceMesh") as MeshInstance3D
 @onready var material: StandardMaterial3D = mesh_instance.get_surface_override_material(0) as StandardMaterial3D
 @onready var color_default: Color = material.albedo_color
 @onready var sfx_resource: SfxResource = _sfx_resource as SfxResource

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=3]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dsjf0vjev2thx"]
 
-[ext_resource type="Script" path="res://src/common/resource_types/transform_resource.gd" id="1_aea14"]
+[ext_resource type="Script" path="res://src/common/resource_types/transform_resource.gd" id="1_drrxn"]
 
 [resource]
-script = ExtResource( "1_aea14" )
+script = ExtResource("1_drrxn")
+value = null

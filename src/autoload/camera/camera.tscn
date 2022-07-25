@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2p5fclrby2a"]
+[gd_scene load_steps=10 format=3 uid="uid://b2p5fclrby2a"]
 
 [ext_resource type="Script" path="res://src/autoload/camera/camera.gd" id="1_dbun4"]
 [ext_resource type="Resource" uid="uid://1jerxlyauuto" path="res://src/autoload/thumbstick_processor/thumbstick_resource_right.tres" id="2_sj0tv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" path="res://src/autoload/camera/camera_transform.tres" id="4_n4bb1"]
 [ext_resource type="Resource" path="res://src/autoload/camera/camera_target_transform.tres" id="5_sufsx"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="6_3eh25"]
+[ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="7_d5n03"]
 [ext_resource type="Script" path="res://src/autoload/camera/camera_shake.gd" id="8_svev4"]
 [ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="9_fo7g8"]
 
@@ -14,7 +15,6 @@ process_mode = 3
 script = ExtResource("1_dbun4")
 _thumbstick_resource_right = ExtResource("2_sj0tv")
 _settings_resource = ExtResource("3_dhgty")
-_transform_resource = ExtResource("4_n4bb1")
 _target_transform_resource = ExtResource("5_sufsx")
 _game_state_resource = ExtResource("6_3eh25")
 
@@ -34,6 +34,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 5)
 current = true
 
 [node name="WaterDetector" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D" instance=ExtResource("9_fo7g8")]
+
+[node name="TransformResourceManager" parent="YawPivot/PitchPivot/CameraAnchor/Camera3D" instance=ExtResource("7_d5n03")]
+_transform_resource = ExtResource("4_n4bb1")
 
 [node name="CameraShake" type="Node" parent="." node_paths=PackedStringArray("camera")]
 process_mode = 1

@@ -23,6 +23,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	raycast.force_raycast_update()
 	if raycast.is_colliding():
 		var up_direction: Vector3 = Vector3.RIGHT if raycast.get_collision_normal().is_equal_approx(Vector3.UP) else Vector3.UP
 		decal_pivot.look_at_from_position(raycast.get_collision_point(), raycast.get_collision_point() + raycast.get_collision_normal(), up_direction)

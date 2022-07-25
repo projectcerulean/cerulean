@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b81k6jxhrod56"]
+
+[ext_resource type="Script" path="res://src/common/physics_step_interpolator/physics_step_interpolator.gd" id="1_gqxim"]
+
+[node name="PhysicsStepInterpolator" type="Node3D"]
+top_level = true
+script = ExtResource("1_gqxim")

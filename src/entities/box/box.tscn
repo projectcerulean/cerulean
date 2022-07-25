@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b25s8e4xiy0gw"]
+[gd_scene load_steps=8 format=3 uid="uid://b25s8e4xiy0gw"]
 
 [ext_resource type="Script" path="res://src/entities/box/box.gd" id="1_j8n7c"]
 [ext_resource type="Material" uid="uid://ciq7rqyrt6uv2" path="res://src/entities/sign_post/wood_material.tres" id="2_ckxdu"]
+[ext_resource type="PackedScene" uid="uid://b81k6jxhrod56" path="res://src/common/physics_step_interpolator/physics_step_interpolator.tscn" id="2_wog3p"]
 [ext_resource type="PackedScene" uid="uid://d3llgup5ja26a" path="res://src/entities/blob_shadow/blob_shadow.tscn" id="4_wl3la"]
 [ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="5_aukln"]
 
@@ -22,9 +23,12 @@ script = ExtResource("1_j8n7c")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mf2os")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="PhysicsStepInterpolator" parent="." instance=ExtResource("2_wog3p")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PhysicsStepInterpolator"]
 layers = 136
 mesh = SubResource("BoxMesh_bkski")
+skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_ckxdu")
 
 [node name="WaterDetectors" type="Node3D" parent="."]

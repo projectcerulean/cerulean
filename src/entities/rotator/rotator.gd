@@ -19,7 +19,7 @@ func _ready() -> void:
 	assert(platform3 != null, Errors.NULL_NODE)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	global_rotate(global_transform.basis.z, angular_velocity * delta)
 	platform1.global_position = platform_position1.global_position
 	platform2.global_position = platform_position2.global_position

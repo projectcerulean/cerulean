@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cx6853dllog27"]
+[gd_scene load_steps=11 format=3 uid="uid://cx6853dllog27"]
 
 [ext_resource type="Script" path="res://src/entities/bounce_pad/bounce_pad.gd" id="1_33s86"]
 [ext_resource type="Resource" uid="uid://caay0hexewak6" path="res://src/sound/sfx/sfx_resources/bounce_pad.tres" id="2_jm3eu"]
 [ext_resource type="Material" uid="uid://n73fv878e5k0" path="res://src/entities/puzzle_elements/switch/base_material.tres" id="2_qvdsi"]
+[ext_resource type="PackedScene" uid="uid://b81k6jxhrod56" path="res://src/common/physics_step_interpolator/physics_step_interpolator.tscn" id="3_78kcs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kilfe"]
 size = Vector3(1.9, 0.25, 1.9)
@@ -10,15 +11,15 @@ size = Vector3(1.9, 0.25, 1.9)
 [sub_resource type="BoxMesh" id="BoxMesh_73doq"]
 size = Vector3(1.9, 0.25, 1.9)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sec7j"]
-size = Vector3(1.8, 0.5, 1.8)
-
 [sub_resource type="BoxMesh" id="BoxMesh_abgwj"]
 size = Vector3(1.8, 0.25, 1.8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j6bf"]
 resource_local_to_scene = true
 albedo_color = Color(0.482353, 0.960784, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sec7j"]
+size = Vector3(1.8, 0.5, 1.8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fb63n"]
 size = Vector3(1.8, 0.25, 1.8)
@@ -31,33 +32,37 @@ _sfx_resource = ExtResource("2_jm3eu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_kilfe")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="PhysicsStepInterpolator" parent="." instance=ExtResource("3_78kcs")]
+
+[node name="BaseMesh" type="MeshInstance3D" parent="PhysicsStepInterpolator"]
 layers = 4
 mesh = SubResource("BoxMesh_73doq")
+skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_qvdsi")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="BounceMesh" type="MeshInstance3D" parent="PhysicsStepInterpolator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+layers = 136
+mesh = SubResource("BoxMesh_abgwj")
+skeleton = NodePath("../BaseMesh")
+surface_material_override/0 = SubResource("StandardMaterial3D_6j6bf")
+
+[node name="BounceArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 collision_layer = 0
 collision_mask = 9
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BounceArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_sec7j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-layers = 136
-mesh = SubResource("BoxMesh_abgwj")
-skeleton = NodePath("../../MeshInstance3D")
-surface_material_override/0 = SubResource("StandardMaterial3D_6j6bf")
-
-[node name="BlobShadowCollider" type="Area3D" parent="Area3D"]
+[node name="BlobShadowCollider" type="Area3D" parent="BounceArea"]
 collision_layer = 128
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D/BlobShadowCollider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BounceArea/BlobShadowCollider"]
 shape = SubResource("BoxShape3D_fb63n")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="BounceArea" to="." method="_on_body_entered"]

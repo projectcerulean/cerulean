@@ -7,7 +7,6 @@ const pitch_limit: float = PI / 2.0 - 0.1
 
 @export var _thumbstick_resource_right: Resource
 @export var _settings_resource: Resource
-@export var _transform_resource: Resource
 @export var _target_transform_resource: Resource
 @export var _game_state_resource: Resource
 
@@ -34,7 +33,6 @@ var camera_distance_speed: float = 0.0
 
 @onready var thumbstick_resource_right: Vector2Resource = _thumbstick_resource_right as Vector2Resource
 @onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
-@onready var transform_resource: TransformResource = _transform_resource as TransformResource
 @onready var target_transform_resource: TransformResource = _target_transform_resource as TransformResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
@@ -50,7 +48,6 @@ func _ready() -> void:
 
 	assert(thumbstick_resource_right != null, Errors.NULL_RESOURCE)
 	assert(settings_resource != null, Errors.NULL_RESOURCE)
-	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(target_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
@@ -129,9 +126,6 @@ func _process(delta: float) -> void:
 
 	# Look at target
 	camera.look_at(target_transform_resource.value.origin)
-
-	# Update tranform resource
-	transform_resource.value = camera.global_transform
 
 
 func _on_scene_changed(_sender: Node) -> void:
