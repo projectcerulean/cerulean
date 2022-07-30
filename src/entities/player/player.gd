@@ -98,7 +98,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var floor_height: float = collision.get_position().y
 		var floor_distance: float = bottom_point_height - floor_height
 		if floor_distance > floor_snap_length_min:
-			state.set_transform(state.get_transform().translated(floor_distance * Vector3.DOWN))
+			state.set_transform(state.get_transform().translated_local(floor_distance * Vector3.DOWN))
 			state.linear_velocity.y = 0.0
 
 	# Apply floor transform

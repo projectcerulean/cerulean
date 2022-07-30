@@ -12,8 +12,8 @@ size = Vector3(4, 4, 4)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uu3cq"]
 render_priority = 0
 shader = ExtResource("2_sf7fn")
-shader_param/beer_factor = 2.0
-shader_param/color = Color(0, 0, 0, 1)
+beer_factor = 2.0
+color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4ru0"]
 size = Vector3(4, 4, 4)

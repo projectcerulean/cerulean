@@ -14,12 +14,12 @@ size = Vector3(0.5, 0.5, 0.5)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_a0m1r")
-shader_param/activation = 0.0
-shader_param/albedo = Color(1, 0.27, 0, 1)
-shader_param/emission_energy = 1.0
-shader_param/metallic = 1.0
-shader_param/roughness = 0.5
-shader_param/specular = 0.5
+activation = 0.0
+albedo = Color(1, 0.27, 0, 1)
+emission_energy = 1.0
+metallic = 1.0
+roughness = 0.5
+specular = 0.5
 
 [node name="Indicator" type="Node3D"]
 script = ExtResource("1_bsmqb")

@@ -13,11 +13,11 @@ size = Vector3(0.1, 5, 0.1)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_c8xt7")
-shader_param/color_new = Color(0, 0.709804, 1, 1)
-shader_param/color_old = Color(1, 0.270588, 0, 1)
-shader_param/flip_colors = false
-shader_param/flow_position = 0.0
-shader_param/smooth_range = 0.5
+color_new = Color(0, 0.709804, 1, 1)
+color_old = Color(1, 0.270588, 0, 1)
+flip_colors = false
+flow_position = 0.0
+smooth_range = 0.5
 
 [node name="Cable" type="MeshInstance3D"]
 layers = 8
