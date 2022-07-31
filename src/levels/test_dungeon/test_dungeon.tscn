@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://ct8hn0mrxp0d6"]
+[gd_scene load_steps=62 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="PackedScene" uid="uid://b4ihx6a2lcbde" path="res://src/entities/player/player.tscn" id="1"]
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
 [ext_resource type="Script" path="res://src/common/state_machine/screen_shake_transition_listener.gd" id="10_1f3do"]
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="10_g8ijk"]
-[ext_resource type="Shader" path="res://src/entities/puzzle_elements/barrier/barrier.gdshader" id="10_reqew"]
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="10_imkh8"]
 [ext_resource type="Resource" uid="uid://tqf2hjuhigop" path="res://assets/dialogue/end/end.tres" id="11_20llv"]
 [ext_resource type="PackedScene" uid="uid://by2nwnn6lar31" path="res://src/entities/puzzle_elements/push_button/push_button.tscn" id="12_osc62"]
 [ext_resource type="Script" path="res://src/common/state_machine/translate3d_transition_listener.gd" id="12_we2p8"]
@@ -219,30 +219,16 @@ flip_colors = false
 flow_position = 0.0
 smooth_range = 0.5
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_p1s5e"]
-
-[sub_resource type="NoiseTexture" id="NoiseTexture_g2md3"]
-seamless = true
-noise = SubResource("FastNoiseLite_p1s5e")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ow20"]
-
-[sub_resource type="NoiseTexture" id="NoiseTexture_h16ox"]
-seamless = true
-noise = SubResource("FastNoiseLite_4ow20")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxcld"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x3iwq"]
 resource_local_to_scene = true
-render_priority = 1
-shader = ExtResource("10_reqew")
-alpha_factor = 1.0
-alpha_max = 0.6
-alpha_min = 0.3
-color = Color(0.376471, 0.196078, 0.192157, 1)
-noise_sampler1 = SubResource("NoiseTexture_g2md3")
-noise_sampler2 = SubResource("NoiseTexture_h16ox")
-noise_threshold = 0.55
-noise_time_factor = Vector2(0.1, 0.02)
+render_priority = 0
+shader = ExtResource("10_imkh8")
+activation = 0.0
+albedo = Color(1, 0.27, 0, 1)
+emission_energy = 1.0
+metallic = 1.0
+roughness = 0.5
+specular = 0.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_qdhda"]
 resource_local_to_scene = true
@@ -891,15 +877,18 @@ surface_material_override/0 = SubResource("ShaderMaterial_u6wj8")
 [node name="Indicator" parent="Env/CentralRoom/Walls/Circuit" instance=ExtResource("9_7mq4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4.8)
 
+[node name="MeshInstance3D" parent="Env/CentralRoom/Walls/Circuit/Indicator/Mesh" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_x3iwq")
+
 [node name="ScreenShakeDisabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator"]
 script = ExtResource("10_1f3do")
-_target_states = [NodePath("../../../Barrier/StateMachine/Disabled")]
+_target_states = [NodePath("../StateMachine/Disabled")]
 total_duration = 10.0
 shake_frequency = 15.0
 
 [node name="ScreenShakeEnabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator"]
 script = ExtResource("10_1f3do")
-_target_states = [NodePath("../../../Barrier/StateMachine/Enabled")]
+_target_states = [NodePath("../StateMachine/Enabled")]
 total_duration = 10.0
 shake_frequency = 15.0
 
@@ -907,12 +896,6 @@ shake_frequency = 15.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, -32.4, 31)
 _input_nodes = [NodePath("../Circuit/Indicator")]
 input_targets = [true]
-
-[node name="MeshInstance3D" parent="Env/CentralRoom/Walls/Barrier" index="1"]
-surface_material_override/0 = SubResource("ShaderMaterial_sxcld")
-
-[node name="StateMachine" parent="Env/CentralRoom/Walls/Barrier" index="2" node_paths=PackedStringArray("_initial_state")]
-_initial_state = NodePath("Enabled")
 
 [node name="BouncePad" parent="Env/CentralRoom/Walls" instance=ExtResource("19_any5i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -32, 8)
@@ -1438,12 +1421,18 @@ size = Vector3(4, 1, 2)
 
 [node name="Water" type="Node3D" parent="."]
 
-[node name="Translate3DTransitionListener" type="Node" parent="Water" node_paths=PackedStringArray("target_node", "position_target", "position_other")]
+[node name="Translate3DDisabled" type="Node" parent="Water" node_paths=PackedStringArray("target_node", "position_target")]
 script = ExtResource("12_we2p8")
-_target_states = [NodePath("../../Env/CentralRoom/Walls/Barrier/StateMachine/Enabled")]
+_target_states = [NodePath("../../Env/CentralRoom/Walls/Circuit/Indicator/StateMachine/Disabled")]
 target_node = NodePath("..")
 position_target = NodePath("../../WaterPositionHigh")
-position_other = NodePath("../../WaterPositionLow")
+tween_duration = 10.0
+
+[node name="Translate3DEnabled" type="Node" parent="Water" node_paths=PackedStringArray("target_node", "position_target")]
+script = ExtResource("12_we2p8")
+_target_states = [NodePath("../../Env/CentralRoom/Walls/Circuit/Indicator/StateMachine/Enabled")]
+target_node = NodePath("..")
+position_target = NodePath("../../WaterPositionLow")
 tween_duration = 10.0
 
 [node name="Water" parent="Water" instance=ExtResource("4")]
@@ -1511,7 +1500,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 49, -24.1226)
 [node name="BouncePad" parent="Box2" instance=ExtResource("19_any5i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13, 0)
 
-[editable path="Env/CentralRoom/Walls/Barrier"]
+[editable path="Env/CentralRoom/Walls/Circuit/Indicator"]
 [editable path="Env/Ascension2/Walls2/Rotator"]
 [editable path="Env/Ascension2/Walls2/Rotator2"]
 [editable path="Env/Ascension2/Walls2/Rotator3"]

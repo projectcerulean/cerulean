@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://blysdbts7tc6d"]
+[gd_scene load_steps=19 format=3 uid="uid://blysdbts7tc6d"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_7i1pt"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="8_2adit"]
 [ext_resource type="Resource" uid="uid://cvlcy7dsg6p28" path="res://src/sound/sfx/sfx_resources/switch_disabled.tres" id="8_aedo8"]
 [ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="10_ey7nc"]
+[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/autoload/persistent_data/persistent_data.tres" id="10_kk3af"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmta0"]
 radius = 1.0
@@ -125,6 +126,7 @@ script = ExtResource("3_bgjta")
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("4_rrpi8")
 _initial_state = NodePath("Disabled")
+_persistent_data = ExtResource("10_kk3af")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
 script = ExtResource("8_2adit")

@@ -11,9 +11,14 @@ extends Node
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
 @export var _initial_state: Node
 
+# Optional data resource for storing persistent state
+@export var _persistent_data: Resource
+
 var current_state: State
 
 @onready var initial_state: State = _initial_state as State
+@onready var persistent_data: DictionaryResource = _persistent_data as DictionaryResource
+@onready var persistent_data_state_path: StringName = String(get_path()) + ":current_state"
 
 
 # Enter the initial state when initializing the state machine.
@@ -22,6 +27,13 @@ func _ready() -> void:
 	Signals.request_state_change_next.connect(_on_request_state_change_next)
 	assert(initial_state != null, Errors.NULL_NODE)
 	assert(initial_state in get_children(), Errors.INVALID_ARGUMENT)
+
+	if _persistent_data:
+		assert(persistent_data != null, Errors.NULL_RESOURCE)
+		if persistent_data_state_path in persistent_data.value:
+			var persistent_data_value: String = persistent_data.value.get(persistent_data_state_path)
+			initial_state = get_node(persistent_data_value) as State
+			assert(initial_state != null, Errors.NULL_NODE)
 
 	transition_to(initial_state.name, {})
 
@@ -94,3 +106,6 @@ func transition_to_deferred(target_state: StringName, data: Dictionary) -> void:
 		current_state = get_node(str(target_state)) as State
 		current_state.enter(data)
 		Signals.emit_state_entered(self, current_state.name, data)
+
+		if persistent_data != null:
+			persistent_data.value[persistent_data_state_path] = String(target_state)
