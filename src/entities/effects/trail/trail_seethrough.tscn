@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bj0npio65cdcx"]
+
+[ext_resource type="PackedScene" uid="uid://yqqga1qlo5lc" path="res://src/entities/effects/trail/trail.tscn" id="1_ds0en"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpmqg"]
+render_priority = -127
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbh5d"]
+render_priority = -128
+next_pass = SubResource("StandardMaterial3D_qpmqg")
+transparency = 1
+cull_mode = 2
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.25098, 0.25098, 0.25098, 0.25098)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_150yc"]
+resource_local_to_scene = true
+next_pass = SubResource("StandardMaterial3D_vbh5d")
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_cm133"]
+resource_local_to_scene = true
+
+[sub_resource type="Curve" id="Curve_2hymo"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="Trail" instance=ExtResource("1_ds0en")]
+material_override = SubResource("StandardMaterial3D_150yc")
+mesh = SubResource("ImmediateMesh_cm133")
+trail_width = SubResource("Curve_2hymo")

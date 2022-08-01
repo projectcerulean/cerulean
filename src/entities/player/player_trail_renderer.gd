@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 
 func _on_target_state_entered(data: Dictionary) -> void:
 	super._on_target_state_entered(data)
-	trail = preload("res://src/entities/effects/trail/trail.tscn").instantiate()
+	trail = preload("res://src/entities/effects/trail/trail_seethrough.tscn").instantiate()
 	add_child(trail)
 	trail.set_lifetime(point_lifetime)
 
