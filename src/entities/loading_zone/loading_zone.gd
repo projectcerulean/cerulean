@@ -17,7 +17,7 @@ func _ready() -> void:
 	assert(mesh_instance != null, Errors.NULL_NODE)
 	assert(shader_material != null, Errors.NULL_RESOURCE)
 
-	shader_material.set_shader_param("color", scene_transition_color)
+	shader_material.set_shader_uniform("color", scene_transition_color)
 
 
 func _on_body_entered(body: Node3D) -> void:

@@ -54,4 +54,4 @@ func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> vo
 
 
 func set_alpha(alpha: float) -> void:
-	shader_material.set_shader_param("alpha_factor", alpha)
+	shader_material.set_shader_uniform("alpha_factor", alpha)

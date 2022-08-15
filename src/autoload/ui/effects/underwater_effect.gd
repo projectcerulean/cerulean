@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	shader_material.set_shader_param(&"color", environment_resource.value.water_screen_effect_color)
+	shader_material.set_shader_uniform(&"color", environment_resource.value.water_screen_effect_color)
 
 
 func _on_water_entered(sender: Area3D) -> void:
