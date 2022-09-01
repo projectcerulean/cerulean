@@ -26,7 +26,7 @@ func exit(data: Dictionary) -> void:
 
 
 func calculate_friction_coefficient(acceleration_time: float):
-	var body: RigidDynamicBody3D = owner as RigidDynamicBody3D
+	var body: RigidBody3D = owner as RigidBody3D
 	return -body.mass/acceleration_time * log(0.01)
 
 

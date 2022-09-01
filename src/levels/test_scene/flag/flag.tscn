@@ -10,7 +10,7 @@ subdivide_depth = 32
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tscnb"]
 frequency = 0.002
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_b4nfu"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b4nfu"]
 seamless = true
 noise = SubResource("FastNoiseLite_tscnb")
 
@@ -22,7 +22,7 @@ curvature = 5.0
 face_distortion = 1.0
 time_scale = Vector2(0.25, 0)
 uv_offset_scale = Vector2(-0.2, -0.1)
-uv_offset_texture = SubResource("NoiseTexture_b4nfu")
+uv_offset_texture = SubResource("NoiseTexture2D_b4nfu")
 vertex_offset_scale = 1.0
 
 [node name="Flag" type="MeshInstance3D"]

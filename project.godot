@@ -184,7 +184,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/autoload/ui/pause_menu/pause_menu_states.gd"
 }, {
-"base": "RigidDynamicBody3D",
+"base": "RigidBody3D",
 "class": &"Player",
 "language": &"GDScript",
 "path": "res://src/entities/player/player.gd"

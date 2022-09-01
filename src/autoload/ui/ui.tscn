@@ -21,7 +21,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gncbr"]
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_aa3of"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aa3of"]
 seamless = true
 noise = SubResource("FastNoiseLite_gncbr")
 
@@ -31,7 +31,7 @@ color = Color(0, 0, 0, 0)
 distortion_intensity = 0.01
 distortion_scale = 0.5
 distortion_speed = 0.05
-noise = SubResource("NoiseTexture_aa3of")
+noise = SubResource("NoiseTexture2D_aa3of")
 
 [sub_resource type="ShaderMaterial" id="10"]
 shader = ExtResource("8")

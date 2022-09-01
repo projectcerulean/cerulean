@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="5_jsavd"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="5_os347"]
 
-[node name="CameraTarget" type="Position3D"]
+[node name="CameraTarget" type="Marker3D"]
 process_mode = 3
 script = ExtResource("1_vv2vj")
 _player_transform_resource = ExtResource("3_scv08")

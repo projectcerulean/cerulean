@@ -4,7 +4,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yj0yq"]
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_iksen"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iksen"]
 seamless = true
 as_normal_map = true
 bump_strength = 2.0
@@ -15,5 +15,5 @@ specular_mode = 2
 albedo_color = Color(0.9, 0.98, 1.1, 1)
 albedo_texture = ExtResource("1_a80jy")
 normal_enabled = true
-normal_texture = SubResource("NoiseTexture_iksen")
+normal_texture = SubResource("NoiseTexture2D_iksen")
 uv1_triplanar = true

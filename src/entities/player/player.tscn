@@ -82,7 +82,7 @@ volume_db = -80.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_wy87q"]
 
-[node name="Player" type="RigidDynamicBody3D"]
+[node name="Player" type="RigidBody3D"]
 collision_mask = 60
 mass = 42.0
 physics_material_override = SubResource("PhysicsMaterial_khrrq")
@@ -140,18 +140,18 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 mesh = SubResource("7")
 surface_material_override/0 = ExtResource("10_kc8d0")
 
-[node name="TrailPositionLeftInner" type="Position3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftInner" type="Marker3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)
 
-[node name="TrailPositionLeftOuter" type="Position3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftOuter" type="Marker3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.37, 0.37, 0)
 
 [node name="WaterDetector" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter" instance=ExtResource("25_e1r3t")]
 
-[node name="TrailPositionRightInner" type="Position3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionRightInner" type="Marker3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.353553, -0.353553, 0)
 
-[node name="TrailPositionRightOuter" type="Position3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionRightOuter" type="Marker3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -0.37, 0)
 
 [node name="WaterDetector" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter" instance=ExtResource("25_e1r3t")]

@@ -18,8 +18,8 @@ var bgm_volume: float:
 	get:
 		return bgm_volume
 	set(value):
-		value = clampf(value, db2linear(volume_db_low), db2linear(volume_db_high))
-		AudioServer.set_bus_volume_db(bus_index_bgm, linear2db(value))
+		value = clampf(value, db_to_linear(volume_db_low), db_to_linear(volume_db_high))
+		AudioServer.set_bus_volume_db(bus_index_bgm, linear_to_db(value))
 		bgm_volume = value
 
 

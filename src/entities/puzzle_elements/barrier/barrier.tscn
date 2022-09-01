@@ -14,13 +14,13 @@ size = Vector3(5, 0.5, 5)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_p1s5e"]
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_g2md3"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g2md3"]
 seamless = true
 noise = SubResource("FastNoiseLite_p1s5e")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4ow20"]
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_h16ox"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h16ox"]
 seamless = true
 noise = SubResource("FastNoiseLite_4ow20")
 
@@ -32,8 +32,8 @@ alpha_factor = 1.0
 alpha_max = 0.6
 alpha_min = 0.3
 color = Color(0.376471, 0.196078, 0.192157, 1)
-noise_sampler1 = SubResource("NoiseTexture_g2md3")
-noise_sampler2 = SubResource("NoiseTexture_h16ox")
+noise_sampler1 = SubResource("NoiseTexture2D_g2md3")
+noise_sampler2 = SubResource("NoiseTexture2D_h16ox")
 noise_threshold = 0.55
 noise_time_factor = Vector2(0.1, 0.02)
 

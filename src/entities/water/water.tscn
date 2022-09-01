@@ -14,21 +14,21 @@ subdivide_depth = 64
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8k1fg"]
 frequency = 0.05
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_qscl5"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qscl5"]
 seamless = true
 noise = SubResource("FastNoiseLite_8k1fg")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mtgeo"]
 frequency = 0.003
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_bqtil"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bqtil"]
 seamless = true
 noise = SubResource("FastNoiseLite_mtgeo")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2ni1l"]
 frequency = 0.008
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_8n77n"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8n77n"]
 seamless = true
 noise = SubResource("FastNoiseLite_2ni1l")
 
@@ -43,13 +43,13 @@ water_color_highlight_threshold = 0.55
 water_color_highlight = Color(0.458824, 0.643137, 0.929412, 0.909804)
 water_color = Color(0.309804, 0.560784, 0.878431, 0.878431)
 noise_time_factor = Vector2(0.01, 0.002)
-noise_sampler2 = SubResource("NoiseTexture_8n77n")
-noise_sampler1 = SubResource("NoiseTexture_bqtil")
+noise_sampler2 = SubResource("NoiseTexture2D_8n77n")
+noise_sampler1 = SubResource("NoiseTexture2D_bqtil")
 foam_width = 0.2
 foam_smooth = 0.01
 foam_color = Color(0.878431, 0.878431, 1, 0.909804)
 displacement_time_factor = 0.015
-displacement_noise = SubResource("NoiseTexture_qscl5")
+displacement_noise = SubResource("NoiseTexture2D_qscl5")
 displacement_amount = 0.01
 beer_factor = 0.2
 

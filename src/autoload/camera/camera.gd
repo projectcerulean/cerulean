@@ -1,7 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2022 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends Position3D
+extends Marker3D
 
 const pitch_limit: float = PI / 2.0 - 0.1
 
@@ -10,10 +10,10 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var _target_transform_resource: Resource
 @export var _game_state_resource: Resource
 
-@onready var yaw_pivot: Position3D = get_node("YawPivot") as Position3D
-@onready var pitch_pivot: Position3D = get_node("YawPivot/PitchPivot") as Position3D
+@onready var yaw_pivot: Marker3D = get_node("YawPivot") as Marker3D
+@onready var pitch_pivot: Marker3D = get_node("YawPivot/PitchPivot") as Marker3D
 @onready var raycast: RayCast3D = get_node("YawPivot/PitchPivot/RayCast3D") as RayCast3D
-@onready var camera_anchor: Position3D = get_node("YawPivot/PitchPivot/CameraAnchor") as Position3D
+@onready var camera_anchor: Marker3D = get_node("YawPivot/PitchPivot/CameraAnchor") as Marker3D
 @onready var camera: Camera3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D") as Camera3D
 @onready var water_detector: Area3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector") as Area3D
 

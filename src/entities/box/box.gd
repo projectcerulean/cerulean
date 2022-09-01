@@ -1,7 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2022 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends RigidDynamicBody3D
+extends RigidBody3D
 
 @export var buoyancy_force_factor: float = 5000.0
 @export var buoyancy_central_factor: float = 0.9

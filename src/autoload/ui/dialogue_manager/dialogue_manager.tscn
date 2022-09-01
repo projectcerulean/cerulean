@@ -10,13 +10,15 @@
 bg_color = Color(0, 0, 0.0627451, 0.627451)
 
 [node name="DialogueManager" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_r7ctw")
 _game_state_resource = ExtResource("2_f52uj")
 
 [node name="Label" type="Label" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 45.0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_7a8fw")
 

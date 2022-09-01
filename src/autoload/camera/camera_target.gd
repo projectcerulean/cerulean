@@ -1,7 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2022 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends Position3D
+extends Marker3D
 
 @export var _player_transform_resource: Resource
 @export var _player_state_resource: Resource

@@ -21,7 +21,7 @@ func enter(data: Dictionary) -> void:
 
 	# Newton's third
 	if player.floor_collision != null:
-		var rigid_body: RigidDynamicBody3D = player.floor_collision.get_collider() as RigidDynamicBody3D
+		var rigid_body: RigidBody3D = player.floor_collision.get_collider() as RigidBody3D
 		if rigid_body != null:
 			var impulse_position: Vector3 = player.floor_collision.get_position() - rigid_body.global_position
 			rigid_body.apply_impulse(-impulse, impulse_position)

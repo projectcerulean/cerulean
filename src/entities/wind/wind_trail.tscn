@@ -8,7 +8,7 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ve0cu"]
 frequency = 0.005
 
-[sub_resource type="NoiseTexture" id="NoiseTexture_12ms2"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_12ms2"]
 seamless = true
 noise = SubResource("FastNoiseLite_ve0cu")
 
@@ -39,19 +39,19 @@ resource_local_to_scene = true
 
 [node name="WindTrail" type="Node3D"]
 script = ExtResource("1_w4d55")
-noise_texture = SubResource("NoiseTexture_12ms2")
+noise_texture = SubResource("NoiseTexture2D_12ms2")
 _environment_resource = ExtResource("2_euocp")
 
-[node name="PositionHorizontalA" type="Position3D" parent="."]
+[node name="PositionHorizontalA" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
 
-[node name="PositionHorizontalB" type="Position3D" parent="."]
+[node name="PositionHorizontalB" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
 
-[node name="PositionVerticalA" type="Position3D" parent="."]
+[node name="PositionVerticalA" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
-[node name="PositionVerticalB" type="Position3D" parent="."]
+[node name="PositionVerticalB" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 
 [node name="Trails" type="Node" parent="."]

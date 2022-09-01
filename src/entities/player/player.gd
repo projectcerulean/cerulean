@@ -2,7 +2,7 @@
 # Copyright (C) 2021-2022 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
 class_name Player
-extends RigidDynamicBody3D
+extends RigidBody3D
 
 @export var floor_max_angle: float = PI / 4.0
 @export var floor_snap_length_max: float = 0.1
@@ -119,7 +119,7 @@ func _notification(what: int) -> void:
 		input_vector_resource.value = Vector3()
 
 
-func _on_body_bounced(sender: Node, body: RigidDynamicBody3D):
+func _on_body_bounced(sender: Node, body: RigidBody3D):
 	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
 	if body == self and state_resource.current_state == PlayerStates.GLIDE:
 		Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)

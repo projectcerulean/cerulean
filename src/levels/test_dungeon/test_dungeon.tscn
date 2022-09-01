@@ -1467,9 +1467,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
 [node name="Water3" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 
-[node name="WaterPositionHigh" type="Position3D" parent="."]
+[node name="WaterPositionHigh" type="Marker3D" parent="."]
 
-[node name="WaterPositionLow" type="Position3D" parent="."]
+[node name="WaterPositionLow" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33, 0)
 
 [node name="LoadingZone" parent="." instance=ExtResource("4_oftnn")]

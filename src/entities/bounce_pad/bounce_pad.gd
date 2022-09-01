@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if basis.y.dot(Vector3.UP) > 0.0:
-		var rigid_body: RigidDynamicBody3D = body as RigidDynamicBody3D
+		var rigid_body: RigidBody3D = body as RigidBody3D
 		if rigid_body != null:
 			var impulse: Vector3 = body.mass * (bounce_speed - rigid_body.linear_velocity.y) * Vector3.UP
 			rigid_body.apply_central_impulse(impulse)

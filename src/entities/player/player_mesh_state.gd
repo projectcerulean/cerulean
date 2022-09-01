@@ -11,7 +11,7 @@ const YAW_DIRECTION_TARGET: StringName = &"YAW_DIRECTION_TARGET"
 @export var mesh_root: Node3D
 @export var _player_input_vector_resource: Resource
 
-@onready var player: RigidDynamicBody3D = owner as RigidDynamicBody3D
+@onready var player: RigidBody3D = owner as RigidBody3D
 @onready var player_input_vector_resource: Vector3Resource = _player_input_vector_resource as Vector3Resource
 
 

@@ -2,9 +2,9 @@ extends AnimatableBody3D
 
 @export var angular_velocity: float = 0.5
 
-@onready var platform_position1: Position3D = get_node("PlatformPosition") as Position3D
-@onready var platform_position2: Position3D = get_node("PlatformPosition2") as Position3D
-@onready var platform_position3: Position3D = get_node("PlatformPosition3") as Position3D
+@onready var platform_position1: Marker3D = get_node("PlatformPosition") as Marker3D
+@onready var platform_position2: Marker3D = get_node("PlatformPosition2") as Marker3D
+@onready var platform_position3: Marker3D = get_node("PlatformPosition3") as Marker3D
 @onready var platform1: AnimatableBody3D = get_node("PlatformPosition/Platform") as AnimatableBody3D
 @onready var platform2: AnimatableBody3D = get_node("PlatformPosition2/Platform2") as AnimatableBody3D
 @onready var platform3: AnimatableBody3D = get_node("PlatformPosition3/Platform3") as AnimatableBody3D
