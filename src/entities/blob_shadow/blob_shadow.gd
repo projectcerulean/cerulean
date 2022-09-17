@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 
 		var raycast_distance: float = (raycast.get_collision_point() - raycast.global_position).length()
 		decal.extents = Vector3(0.0, decal.extents.y, 0.0) + Vector3(1.0, 0.0, 1.0) * clamp(
-			range_lerp(
+			remap(
 				raycast_distance,
 				visual_change_min_distance,
 				visual_change_max_distance,
@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 			max_extents,
 		)
 		decal.albedo_mix = clamp(
-			range_lerp(
+			remap(
 				raycast_distance,
 				visual_change_min_distance,
 				visual_change_max_distance,

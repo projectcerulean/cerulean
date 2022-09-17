@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 			var color: Color = curve_point_colors[i_point]
 
 			var point_age: float = time - curve_point_creation_times[i_point]
-			var width_factor: float = trail_width.interpolate(point_age / point_lifetime)
+			var width_factor: float = trail_width.sample(point_age / point_lifetime)
 			immediate_mesh.surface_set_color(color)
 			immediate_mesh.surface_add_vertex(point_a * width_factor + point_middle * (1.0 - width_factor))
 			immediate_mesh.surface_set_color(color)

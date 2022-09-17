@@ -47,7 +47,7 @@ func _on_request_scene_transition_finish(_sender: Node) -> void:
 
 
 func _on_request_scene_change(_sender: Node, scene_path: String) -> void:
-	get_tree().call_deferred(get_tree().change_scene.get_method(), scene_path)
+	get_tree().call_deferred(get_tree().change_scene_to_file.get_method(), scene_path)
 
 
 func _on_request_game_quit(_sender: Node) -> void:

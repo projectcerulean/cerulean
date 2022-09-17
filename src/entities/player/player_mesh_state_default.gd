@@ -30,6 +30,6 @@ func process(delta: float) -> void:
 		yaw_direction_target = player_input_vector_normalized
 
 	if not yaw_direction_target.is_equal_approx(Vector3.ZERO):
-		var turn_lerp_weight: float = range_lerp(player_input_vector_resource.value.length(), 0.0, 1.0, turn_lerp_weight_min, turn_lerp_weight_max)
+		var turn_lerp_weight: float = remap(player_input_vector_resource.value.length(), 0.0, 1.0, turn_lerp_weight_min, turn_lerp_weight_max)
 		var yaw_direction: Vector3 = Lerp.delta_slerp3(-mesh_root.get_global_transform().basis.z, yaw_direction_target, turn_lerp_weight, delta)
 		mesh_root.look_at(mesh_root.global_position + yaw_direction)

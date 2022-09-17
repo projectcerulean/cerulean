@@ -49,8 +49,8 @@ func process_stick_input(action_up: StringName, action_down: StringName, action_
 	value_clamped.x = clamp(abs(value_raw.x), deadzone_inner, deadzone_outer)
 	value_clamped.y = clamp(abs(value_raw.y), deadzone_inner, deadzone_outer)
 	var value_lerped: Vector2 = Vector2.ZERO
-	value_lerped.x = range_lerp(value_clamped.x, deadzone_inner, deadzone_outer, 0.0, 1.0)
-	value_lerped.y = range_lerp(value_clamped.y, deadzone_inner, deadzone_outer, 0.0, 1.0)
+	value_lerped.x = remap(value_clamped.x, deadzone_inner, deadzone_outer, 0.0, 1.0)
+	value_lerped.y = remap(value_clamped.y, deadzone_inner, deadzone_outer, 0.0, 1.0)
 	value = Vector2(value_lerped.x * sign(value_raw.x), value_lerped.y * sign(value_raw.y))
 
 	# Remap square input to circle

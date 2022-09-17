@@ -7,7 +7,7 @@ extends ColorRect
 @export var _game_state_resource: Resource
 
 @onready var shader_material: ShaderMaterial = material as ShaderMaterial
-@onready var blur_strength_max: float = shader_material.get_shader_uniform("blur_strength")
+@onready var blur_strength_max: float = shader_material.get_shader_parameter("blur_strength")
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 var blur_strength: float = 0.0
@@ -22,4 +22,4 @@ func _process(delta: float) -> void:
 	if game_state_resource.current_state == GameStates.PAUSE:
 		blur_strength_target = blur_strength_max
 	blur_strength = Lerp.delta_lerp(blur_strength, blur_strength_target, lerp_weight, delta)
-	shader_material.set_shader_uniform("blur_strength", blur_strength)
+	shader_material.set_shader_parameter("blur_strength", blur_strength)

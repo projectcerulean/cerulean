@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 	if camera_angle < 0.0:
 		camera_angle += 2.0 * PI
 
-	var i_char_middle: int = str(range_lerp(camera_angle, 0.0, 2.0 * PI, 0.0, len(characters))).to_int()
+	var i_char_middle: int = str(remap(camera_angle, 0.0, 2.0 * PI, 0.0, len(characters))).to_int()
 	text = ""
 	for i in range(i_char_middle - n_characters_visible, i_char_middle + n_characters_visible):
 		text += characters.substr((i % characters.length() + characters.length()) % characters.length(), 1)

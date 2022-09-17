@@ -55,7 +55,7 @@ func _draw() -> void:
 
 
 func _process(_delta: float) -> void:
-	update()
+	queue_redraw()
 
 
 func _on_interaction_highlight_set(_sender: Node, highlight_target: Node3D) -> void:
