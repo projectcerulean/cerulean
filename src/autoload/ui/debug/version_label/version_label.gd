@@ -20,16 +20,11 @@ func _ready() -> void:
 
 	var git_hash: String = Version.GIT_HASH
 	if git_hash.is_empty():
-		var file: File = File.new()
-		if file.file_exists(git_folder + "HEAD"):
-			file.open(git_folder + "HEAD", File.READ)
-			var head: String = file.get_as_text().strip_edges()
-			file.close()
+		if FileAccess.file_exists(git_folder + "HEAD"):
+			var head: String = FileAccess.open(git_folder + "HEAD", FileAccess.READ).get_as_text().strip_edges()
 			if head.begins_with("ref: "):
-				if file.file_exists(git_folder + head.trim_prefix("ref: ")):
-					file.open(git_folder + head.trim_prefix("ref: "), File.READ)
-					head = file.get_as_text().strip_edges()
-					file.close()
+				if FileAccess.file_exists(git_folder + head.trim_prefix("ref: ")):
+					head = FileAccess.open(git_folder + head.trim_prefix("ref: "), FileAccess.READ).get_as_text().strip_edges()
 					if head.length() == git_hash_length and head.is_valid_hex_number():
 						git_hash = head
 			elif head.length() == git_hash_length and head.is_valid_hex_number():
