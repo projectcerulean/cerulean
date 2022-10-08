@@ -16,6 +16,7 @@ const BACKGROUND_MUSIC: StringName = &"BACKGROUND_MUSIC"
 const CAMERA_X_INVERTED: StringName = &"CAMERA_X_INVERTED"
 const CAMERA_Y_INVERTED: StringName = &"CAMERA_Y_INVERTED"
 const FIELD_OF_VIEW: StringName = &"FIELD_OF_VIEW"
+const MSAA: StringName = &"MSAA"
 const VSYNC: StringName = &"VSYNC"
 
 const SETTINGS: Dictionary = {
@@ -42,6 +43,12 @@ const SETTINGS: Dictionary = {
 		VALUES: [60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120],
 		VALUE_NAMES: ["60", "65", "70", "75", "80", "85", "90", "95", "100", "105", "110", "115", "120"],
 		DEFAULT_VALUE_INDEX: 6,
+	},
+	MSAA: {
+		OPTION_NAME: "MSAA",
+		VALUES: [Viewport.MSAA_DISABLED, Viewport.MSAA_2X, Viewport.MSAA_4X, Viewport.MSAA_8X],
+		VALUE_NAMES: ["Disabled", "2x", "4x", "8x"],
+		DEFAULT_VALUE_INDEX: 2,
 	},
 	VSYNC: {
 		OPTION_NAME: "VSync",

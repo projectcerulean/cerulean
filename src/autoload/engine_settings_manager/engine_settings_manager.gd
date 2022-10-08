@@ -9,8 +9,13 @@ func _ready() -> void:
 	Signals.setting_updated.connect(_on_setting_updated)
 	assert(settings_resource != null, Errors.NULL_RESOURCE)
 	DisplayServer.window_set_vsync_mode(Settings.SETTINGS.VSYNC.VALUES[settings_resource.settings[Settings.VSYNC]])
+	get_viewport().msaa_2d = Settings.SETTINGS.MSAA.VALUES[settings_resource.settings[Settings.MSAA]]
+	get_viewport().msaa_3d = Settings.SETTINGS.MSAA.VALUES[settings_resource.settings[Settings.MSAA]]
 
 
 func _on_setting_updated(_sender: Node, key: StringName) -> void:
 	if key == Settings.VSYNC:
 		DisplayServer.window_set_vsync_mode(Settings.SETTINGS.VSYNC.VALUES[settings_resource.settings[Settings.VSYNC]])
+	elif key == Settings.MSAA:
+		get_viewport().msaa_2d = Settings.SETTINGS.MSAA.VALUES[settings_resource.settings[Settings.MSAA]]
+		get_viewport().msaa_3d = Settings.SETTINGS.MSAA.VALUES[settings_resource.settings[Settings.MSAA]]
