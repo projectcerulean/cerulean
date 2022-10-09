@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends ColorRect
 
-@export var lerp_weight: float = 36.12
+@export var tween_duration: float = 0.1
 @export var _game_state_resource: Resource
 
 @onready var shader_material: ShaderMaterial = material as ShaderMaterial
@@ -11,15 +11,34 @@ extends ColorRect
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 var blur_strength: float = 0.0
+var tween: Tween
 
 
 func _ready() -> void:
+	Signals.state_entered.connect(_on_state_entered)
+	Signals.state_exited.connect(_on_state_exited)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
+	shader_material.set_shader_parameter("blur_strength", 0.0)
+	hide()
 
 
-func _process(delta: float) -> void:
-	var blur_strength_target: float = 0.0
-	if game_state_resource.current_state == GameStates.PAUSE:
-		blur_strength_target = blur_strength_max
-	blur_strength = Lerp.delta_lerp(blur_strength, blur_strength_target, lerp_weight, delta)
-	shader_material.set_shader_parameter("blur_strength", blur_strength)
+func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
+	if sender == game_state_resource.state_machine and state == GameStates.PAUSE:
+		show()
+		if tween != null:
+				tween.kill()
+		tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUINT)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(shader_material, "shader_parameter/blur_strength", blur_strength_max, tween_duration)
+
+
+func _on_state_exited(sender: Node, state: StringName, _data: Dictionary) -> void:
+	if sender == game_state_resource.state_machine and state == GameStates.PAUSE:
+		if tween != null:
+				tween.kill()
+		tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUINT)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(shader_material, "shader_parameter/blur_strength", 0.0, tween_duration)
+		tween.tween_callback(hide)
