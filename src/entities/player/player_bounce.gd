@@ -7,8 +7,6 @@ extends PlayerState
 @export var acceleration_time: float = 3.0
 @export var _sfx_resource: Resource
 
-@onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
-@onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
 @onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
 @onready var sfx_resource: SfxResource = _sfx_resource as SfxResource
 
@@ -30,7 +28,24 @@ func physics_process(delta: float) -> void:
 	player.jump_buffer_timer.stop()
 
 	# Apply movement
-	player.force_vector = player.input_vector * move_force - move_friction_coefficient * player.linear_velocity * Vector3(1.0, 0.0, 1.0)
+	var linear_velocity_planar: Vector3 = player.linear_velocity * Vector3(1.0, 0.0, 1.0)
+	if (linear_velocity_planar).length() < move_speed:
+		var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
+		var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
+		player.force_vector = player.input_vector * move_force - move_friction_coefficient * linear_velocity_planar
+	else:
+		var move_friction_coefficient_parallel: float = calculate_friction_coefficient(acceleration_time * linear_velocity_planar.length() / move_speed)
+		var move_friction_coefficient_perpendicular: float = calculate_friction_coefficient(acceleration_time)
+		var move_force_parallel: float = calculate_move_force(linear_velocity_planar.length(), move_friction_coefficient_parallel)
+		var move_force_perpendicular: float = calculate_move_force(move_speed, move_friction_coefficient_perpendicular)
+
+		var input_vector_parallel = player.input_vector.project(linear_velocity_planar)
+		var input_vector_perpendicular = player.input_vector.project(linear_velocity_planar.cross(Vector3.UP))
+
+		player.force_vector = (
+			input_vector_parallel * move_force_parallel - move_friction_coefficient_parallel * linear_velocity_planar
+			+ input_vector_perpendicular * move_force_perpendicular
+		)
 
 
 func get_transition() -> StringName:
