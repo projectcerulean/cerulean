@@ -1193,10 +1193,10 @@ omni_attenuation = 0.0220971
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 29, 0)
 
 [node name="Walls2" type="CSGCombiner3D" parent="Env/Ascension2"]
-layers = 4
+layers = 132
 material_override = ExtResource("3_m5lxh")
 use_collision = true
-collision_layer = 4
+collision_layer = 132
 collision_mask = 11
 
 [node name="Outer2" type="CSGBox3D" parent="Env/Ascension2/Walls2"]
