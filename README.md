@@ -1,6 +1,6 @@
 # Project Cerulean
 
-![](https://raw.githubusercontent.com/projectcerulean/cerulean-img/master/img/screenshots/2022/test_scene.png)
+![](https://raw.githubusercontent.com/projectcerulean/cerulean-img/master/img/screenshots/2022/test_scene.jpg)
 
 [Insert interesting description here]
 
