@@ -2,7 +2,7 @@
 
 ![](https://raw.githubusercontent.com/projectcerulean/cerulean-img/master/img/screenshots/2022/test_scene.jpg)
 
-[Insert interesting description here]
+Just me making a video game.
 
 
 ## Running prebuilt version
