@@ -10,17 +10,17 @@ sources:
 tasks:
   - sync_assets: |
       cd cerulean
-      ipfs init
-      for file in $(find assets -type f | sort); do
-        hash="$(cat $file)"
-        curl --silent --max-time 600 "https://cloudflare-ipfs.com/ipfs/$hash" | tee "$file" | ipfs add --offline --only-hash --hash=sha2-512 --quiet | grep "^$hash$" \
-          || curl --silent --max-time 600 "https://gateway.pinata.cloud/ipfs/$hash" | tee "$file" | ipfs add --offline --only-hash --hash=sha2-512 --quiet | grep "^$hash$" \
-          || curl --silent --max-time 600 "https://ipfs.io/ipfs/$hash" | tee "$file" | ipfs add --offline --only-hash --hash=sha2-512 --quiet | grep "^$hash$" \
-          || exit 1
+      ipfs daemon --init --init-profile server > /dev/null 2>&1 &
+      timeout 1000 sh -c 'while ! ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
+      for file in $(find assets/ -type f | sort); do
+        hash="$(cat "$file")"
+        timeout 1000 ipfs get --output="$file" "$hash" > /dev/null 2>&1
+        ipfs add --offline --only-hash --hash=sha2-512 --quiet "$file" | grep --quiet "^$hash$"
       done
+      kill "$!"
 
   - download_godot: |
-      curl --silent --max-time 600 --remote-name https://downloads.tuxfamily.org/godotengine/4.0/beta3/Godot_v4.0-beta3_linux.x86_64.zip
+      curl --silent --max-time 1000 --remote-name 'https://downloads.tuxfamily.org/godotengine/4.0/beta3/Godot_v4.0-beta3_linux.x86_64.zip'
       echo 'a5d3e6e33107f2cae272b459994cd0cb65e13a2d5e4e7f387dde9f815074999ecf23e3b3b8c2673f591bb97126a2376816c6dff7209f75645ff3c536fe603323  Godot_v4.0-beta3_linux.x86_64.zip' | sha512sum --check
       unzip Godot_v4.0-beta3_linux.x86_64.zip
 
