@@ -27,7 +27,7 @@ func _on_request_sfx_play(_sender: Node, sfx_resource: SfxResource, position: Ve
 	var audio_stream_player: AudioStreamPlayer3D = get_child(i_current_player) as AudioStreamPlayer3D
 	audio_stream_player.stop()
 	audio_stream_player.stream = sfx_resource.stream_samples[randi() % sfx_resource.stream_samples.size()]
-	audio_stream_player.unit_db = sfx_resource.volume_db
+	audio_stream_player.volume_db = sfx_resource.volume_db
 	audio_stream_player.pitch_scale = sfx_resource.pitch_scale
 	audio_stream_player.global_position = position
 	audio_stream_player.play()
