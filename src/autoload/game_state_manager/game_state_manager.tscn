@@ -76,59 +76,59 @@ _state_resource = ExtResource("3")
 
 [node name="PauseAmplify" type="Node" parent="AudioEffects"]
 script = ExtResource("9_fgrmj")
-_target_states = [NodePath("../../StateMachine/Pause")]
 audio_effect_dry = SubResource("AudioEffectAmplify_ita52")
 audio_effect_wet = SubResource("AudioEffectAmplify_wfpy3")
 tween_duration = 0.1
 tween_type = 1
+_target_states = [NodePath("../../StateMachine/Pause")]
 
 [node name="PauseLowpass" type="Node" parent="AudioEffects"]
 script = ExtResource("9_fgrmj")
-_target_states = [NodePath("../../StateMachine/Pause")]
 audio_effect_dry = SubResource("AudioEffectLowPassFilter_e7168")
 audio_effect_wet = SubResource("AudioEffectLowPassFilter_8lf5o")
 tween_duration = 0.1
 tween_type = 2
+_target_states = [NodePath("../../StateMachine/Pause")]
 
 [node name="DialogueAmplify" type="Node" parent="AudioEffects"]
 script = ExtResource("9_fgrmj")
-_target_states = [NodePath("../../StateMachine/Dialogue")]
 audio_effect_dry = SubResource("AudioEffectAmplify_65cid")
 audio_effect_wet = SubResource("AudioEffectAmplify_uptt5")
 tween_type = 1
+_target_states = [NodePath("../../StateMachine/Dialogue")]
 
 [node name="DialogueAmplifyBgmGlide" type="Node" parent="AudioEffects"]
 script = ExtResource("9_fgrmj")
-_target_states = [NodePath("../../StateMachine/Dialogue")]
 audio_effect_dry = SubResource("AudioEffectAmplify_hgsf5")
 audio_effect_wet = SubResource("AudioEffectAmplify_t6kat")
 audio_bus_name = &"BgmGlide"
 tween_duration = 2.5
 tween_type = 1
+_target_states = [NodePath("../../StateMachine/Dialogue")]
 
 [node name="DialogueAmplifyBgmRhythm" type="Node" parent="AudioEffects"]
 script = ExtResource("9_fgrmj")
-_target_states = [NodePath("../../StateMachine/Dialogue")]
 audio_effect_dry = SubResource("AudioEffectAmplify_hfltb")
 audio_effect_wet = SubResource("AudioEffectAmplify_433m3")
 audio_bus_name = &"BgmRhythm"
 tween_duration = 2.5
 tween_type = 1
+_target_states = [NodePath("../../StateMachine/Dialogue")]
 
 [node name="SceneTransitionAmplifyBgmGlide" type="Node" parent="AudioEffects"]
 script = ExtResource("9_fgrmj")
-_target_states = [NodePath("../../StateMachine/SceneTransition")]
 audio_effect_dry = SubResource("AudioEffectAmplify_w7j73")
 audio_effect_wet = SubResource("AudioEffectAmplify_ihwqq")
 audio_bus_name = &"BgmGlide"
 tween_duration = 0.5
 tween_type = 1
+_target_states = [NodePath("../../StateMachine/SceneTransition")]
 
 [node name="SceneTransitionAmplifyBgmRhythm" type="Node" parent="AudioEffects"]
 script = ExtResource("9_fgrmj")
-_target_states = [NodePath("../../StateMachine/SceneTransition")]
 audio_effect_dry = SubResource("AudioEffectAmplify_upiu6")
 audio_effect_wet = SubResource("AudioEffectAmplify_0bb08")
 audio_bus_name = &"BgmRhythm"
 tween_duration = 0.5
 tween_type = 1
+_target_states = [NodePath("../../StateMachine/SceneTransition")]

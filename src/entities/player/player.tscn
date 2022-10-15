@@ -162,22 +162,22 @@ _initial_state = NodePath("Idle")
 
 [node name="Bounce" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
+spin_rate = 2.0
 mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
-spin_rate = 2.0
 
 [node name="Dive" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
+turn_lerp_weight = 0.01
 mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
-turn_lerp_weight = 0.01
 
 [node name="Fall" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
-mesh_root = NodePath("../../SquashStretch/Default")
-_player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
+mesh_root = NodePath("../../SquashStretch/Default")
+_player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Glide" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
@@ -191,10 +191,10 @@ _player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Jump" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
-mesh_root = NodePath("../../SquashStretch/Default")
-_player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
+mesh_root = NodePath("../../SquashStretch/Default")
+_player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Run" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
@@ -203,10 +203,10 @@ _player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Swim" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
-mesh_root = NodePath("../../SquashStretch/Default")
-_player_input_vector_resource = ExtResource("3_2i2xh")
 turn_lerp_weight_min = 1.0
 turn_lerp_weight_max = 3.0
+mesh_root = NodePath("../../SquashStretch/Default")
+_player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="StateMachineSynchronizer" type="Node" parent="PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("state_machine_parent", "state_machine_child")]
 script = ExtResource("11_mhki8")
@@ -224,8 +224,8 @@ _initial_state = NodePath("Idle")
 
 [node name="Bounce" type="Node" parent="StateMachine"]
 script = ExtResource("17_lgpkh")
-gravity_scale = 0.6
 _sfx_resource = ExtResource("18_1l0sl")
+gravity_scale = 0.6
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Bounce"]
 wait_time = 0.1
@@ -285,71 +285,71 @@ one_shot = true
 
 [node name="GlideTrailRendererLeft" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
-_target_states = [NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")]
 trail_position_a = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
 trail_position_b = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 _water_detector = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter/WaterDetector")
 _environment_resource = ExtResource("24_hgnac")
+_target_states = [NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")]
 
 [node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
-_target_states = [NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")]
 trail_position_a = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
 trail_position_b = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 _water_detector = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter/WaterDetector")
 _environment_resource = ExtResource("24_hgnac")
+_target_states = [NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")]
 
 [node name="DiveTrailRendererLeft" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
-_target_states = [NodePath("../../StateMachine/Dive")]
 trail_position_a = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
 trail_position_b = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
 _water_detector = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter/WaterDetector")
 _environment_resource = ExtResource("24_hgnac")
 point_lifetime = 1.0
+_target_states = [NodePath("../../StateMachine/Dive")]
 
 [node name="DiveTrailRendererRight" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
-_target_states = [NodePath("../../StateMachine/Dive")]
 trail_position_a = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
 trail_position_b = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
 _water_detector = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter/WaterDetector")
 _environment_resource = ExtResource("24_hgnac")
 point_lifetime = 1.0
+_target_states = [NodePath("../../StateMachine/Dive")]
 
 [node name="AudioEffects" type="Node" parent="."]
 
 [node name="DiveLowpass" type="Node" parent="AudioEffects"]
 script = ExtResource("18_nptr4")
-_target_states = [NodePath("../../StateMachine/Dive")]
 audio_effect_dry = SubResource("AudioEffectLowPassFilter_xejwy")
 audio_effect_wet = SubResource("AudioEffectLowPassFilter_v0sjn")
 tween_duration = 0.25
 tween_type = 2
+_target_states = [NodePath("../../StateMachine/Dive")]
 
 [node name="DiveReverb" type="Node" parent="AudioEffects"]
 script = ExtResource("18_nptr4")
-_target_states = [NodePath("../../StateMachine/Dive")]
 audio_effect_dry = SubResource("AudioEffectReverb_vxsdq")
 audio_effect_wet = SubResource("AudioEffectReverb_m7tgk")
+_target_states = [NodePath("../../StateMachine/Dive")]
 
 [node name="GlideAmplifyBgmGlide" type="Node" parent="AudioEffects"]
 script = ExtResource("18_nptr4")
-_target_states = [NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")]
 audio_effect_dry = SubResource("AudioEffectAmplify_crae5")
 audio_effect_wet = SubResource("AudioEffectAmplify_a1p08")
 audio_bus_name = &"BgmGlide"
 tween_duration = 2.5
 tween_type = 1
+_target_states = [NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")]
 
 [node name="GlideAmplifyBgmRhythm" type="Node" parent="AudioEffects"]
 script = ExtResource("18_nptr4")
-_target_states = [NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")]
 audio_effect_dry = SubResource("AudioEffectAmplify_4ml5m")
 audio_effect_wet = SubResource("AudioEffectAmplify_wy87q")
 audio_bus_name = &"BgmRhythm"
 tween_duration = 2.5
 tween_type = 1
+_target_states = [NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")]
 
 [node name="WaterDetector" parent="." instance=ExtResource("25_e1r3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)

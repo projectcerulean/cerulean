@@ -17,13 +17,13 @@ noise = SubResource("FastNoiseLite_tscnb")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rrpj1"]
 render_priority = 0
 shader = ExtResource("1_w2utg")
-albedo = Color(0.164706, 0.321569, 0.745098, 1)
-curvature = 5.0
-face_distortion = 1.0
-time_scale = Vector2(0.25, 0)
-uv_offset_scale = Vector2(-0.2, -0.1)
-uv_offset_texture = SubResource("NoiseTexture2D_b4nfu")
-vertex_offset_scale = 1.0
+shader_parameter/albedo = Color(0.164706, 0.321569, 0.745098, 1)
+shader_parameter/curvature = 5.0
+shader_parameter/face_distortion = 1.0
+shader_parameter/time_scale = Vector2(0.25, 0)
+shader_parameter/uv_offset_scale = Vector2(-0.2, -0.1)
+shader_parameter/uv_offset_texture = SubResource("NoiseTexture2D_b4nfu")
+shader_parameter/vertex_offset_scale = 1.0
 
 [node name="Flag" type="MeshInstance3D"]
 mesh = SubResource("PlaneMesh_lnelb")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3la8dk8cql35"]
+[gd_scene load_steps=13 format=3 uid="uid://c3la8dk8cql35"]
 
 [ext_resource type="PackedScene" uid="uid://yqqga1qlo5lc" path="res://src/entities/effects/trail/trail.tscn" id="1_dpfbh"]
 [ext_resource type="Script" path="res://src/entities/wind/wind_trail.gd" id="1_w4d55"]
@@ -12,30 +12,35 @@ frequency = 0.005
 seamless = true
 noise = SubResource("FastNoiseLite_ve0cu")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiq4b"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqw16"]
 resource_local_to_scene = true
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_ee5ll"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_6sr4v"]
 resource_local_to_scene = true
 
-[sub_resource type="Curve" id="Curve_5onm7"]
+[sub_resource type="Curve" id="Curve_s1cfj"]
 resource_local_to_scene = true
 _data = [Vector2(0.00576369, 0), 0.0, 2.64193, 0, 0, Vector2(0.501441, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.69064, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c834"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5lyj"]
 resource_local_to_scene = true
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_f5yi6"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_idaey"]
 resource_local_to_scene = true
+
+[sub_resource type="Curve" id="Curve_qf76g"]
+resource_local_to_scene = true
+_data = [Vector2(0.00576369, 0), 0.0, 2.64193, 0, 0, Vector2(0.501441, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.69064, 0.0, 0, 0]
+point_count = 3
 
 [node name="WindTrail" type="Node3D"]
 script = ExtResource("1_w4d55")
@@ -57,15 +62,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 [node name="Trails" type="Node" parent="."]
 
 [node name="TrailHorizontal" parent="Trails" instance=ExtResource("1_dpfbh")]
-material_override = SubResource("StandardMaterial3D_xiq4b")
-mesh = SubResource("ImmediateMesh_ee5ll")
+material_override = SubResource("StandardMaterial3D_dqw16")
+mesh = SubResource("ImmediateMesh_6sr4v")
 skeleton = NodePath("../..")
-trail_width = SubResource("Curve_5onm7")
+trail_width = SubResource("Curve_s1cfj")
 
 [node name="TrailVertical" parent="Trails" instance=ExtResource("1_dpfbh")]
-material_override = SubResource("StandardMaterial3D_8c834")
-mesh = SubResource("ImmediateMesh_f5yi6")
+material_override = SubResource("StandardMaterial3D_y5lyj")
+mesh = SubResource("ImmediateMesh_idaey")
 skeleton = NodePath("../..")
-trail_width = SubResource("Curve_5onm7")
+trail_width = SubResource("Curve_qf76g")
 
 [node name="WaterDetector" parent="." instance=ExtResource("3_o18us")]
