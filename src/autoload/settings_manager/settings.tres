@@ -3,4 +3,4 @@
 [ext_resource type="Script" path="res://src/autoload/settings_manager/settings_resource.gd" id="1_fhg83"]
 
 [resource]
-script = ExtResource( "1_fhg83" )
+script = ExtResource("1_fhg83")

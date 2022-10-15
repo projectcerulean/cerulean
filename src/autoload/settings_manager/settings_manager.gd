@@ -3,10 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends Node
 
-@export var _settings_resource: Resource
-@export var settings_file_path: String = "user://settings_resource.cfg"
-
-@onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
+@export var settings_resource: SettingsResource
+@export var settings_file_path: String = "user://settings.json"
 
 
 func _ready() -> void:
@@ -23,23 +21,22 @@ func _ready() -> void:
 		var value_index: int = settings_resource.settings[key]
 		assert(value_index >= 0 and value_index < n_options, Errors.CONSISTENCY_ERROR)
 
-	var config_file: ConfigFile = ConfigFile.new()
-	if config_file.load(settings_file_path) == OK:
-		for section in config_file.get_sections():
-			for key in config_file.get_section_keys(section):
+	var file: FileAccess = FileAccess.open(settings_file_path, FileAccess.READ)
+	if file != null:
+		var settings_load_data: Variant = JSON.parse_string(file.get_as_text())
+		if settings_load_data is Dictionary:
+			var settings_load_dict: Dictionary = settings_load_data as Dictionary
+			for key in settings_load_dict:
 				if key in settings_resource.settings:
-					var n_options: int = len(Settings.SETTINGS[key][Settings.VALUE_NAMES])
-					var value: String = str(config_file.get_value(section, key))
-					if value.is_valid_int():
-						var value_index: int = value.to_int()
-						if value_index >= 0 and value_index < n_options:
-							settings_resource.settings[key] = value_index
-						else:
-							push_warning("Invalid value '", value, "' for setting '", key, "'. Expected an integer between 0 and ", n_options - 1, ".")
+					var value_index: int = get_settings_value_index(key, settings_load_dict[key])
+					if value_index != -1:
+						settings_resource.settings[key] = value_index
 					else:
-						push_warning("Invalid value '", value, "' for setting '", key, "'. Expected an integer between 0 and ", n_options - 1, ".")
+						push_warning("Ignoring invalid value '", settings_load_dict[key], "' for setting '", key, "'.")
 				else:
-					push_warning("Invalid setting '", key, "'.")
+					push_warning("Ignoring invalid setting '", key, "'.")
+		else:
+			push_warning("Failed to parse config file, using default settings.")
 	else:
 		push_warning("Failed to open config file, using default settings.")
 
@@ -52,7 +49,30 @@ func _on_request_setting_update(_sender: Node, key: StringName, value_index: int
 
 
 func _on_request_settings_save(_sender: Node) -> void:
-	var config_file: ConfigFile = ConfigFile.new()
+	var settings_save_dict: Dictionary = {}
 	for key in settings_resource.settings:
-		config_file.set_value("Settings", key, settings_resource.settings[key])
-	config_file.save(settings_file_path)
+		var value_name: String = get_settings_value_name(key, settings_resource.settings[key])
+		if value_name:
+			settings_save_dict[key] = value_name
+		else:
+			push_warning("Ignoring invalid index '", settings_resource.settings[key], "' for setting '", key, "'.")
+	var file: FileAccess = FileAccess.open(settings_file_path, FileAccess.WRITE)
+	if file != null:
+		file.store_string("%s\n" % JSON.stringify(settings_save_dict, " ".repeat(2)))
+	else:
+		push_warning("Failed to save config file.")
+
+
+func get_settings_value_index(setting_key: String, setting_value_name: String) -> int:
+	var n_options: int = len(Settings.SETTINGS[setting_key][Settings.VALUE_NAMES])
+	for i in range(n_options):
+		if Settings.SETTINGS[setting_key][Settings.VALUE_NAMES][i] == setting_value_name:
+			return i
+	return -1
+
+
+func get_settings_value_name(setting_key: String, setting_value_index: int) -> String:
+	var n_options: int = len(Settings.SETTINGS[setting_key][Settings.VALUE_NAMES])
+	if setting_value_index >= 0 and setting_value_index < n_options:
+		return Settings.SETTINGS[setting_key][Settings.VALUE_NAMES][setting_value_index]
+	return String()
