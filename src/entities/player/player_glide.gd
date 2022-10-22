@@ -4,6 +4,8 @@
 extends PlayerState
 
 @export var turn_rate: float = 4.0
+@export var air_brake_strength: float = 1.0
+@export var air_brake_min_speed: float = 5.0
 
 var glide_start_position: Vector3 = Vector3.ZERO
 var glide_start_velocity: Vector3 = Vector3.ZERO
@@ -33,13 +35,22 @@ func physics_process(delta: float) -> void:
 		var angle: float = input_vector_spherical.angle_to(velocity_direction)
 		player.force_vector = -force_direction * turn_rate * player.mass * player.linear_velocity.length() * angle / PI
 
-	# Energy conservation
-	var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-	var velocity_length_target: float = glide_start_velocity.length() + Math.signed_sqrt(
-		2.0 * gravity * player.gravity_scale * (glide_start_position.y - player.global_position.y)
-	)
-	var delta_velocity: float = velocity_length_target - player.linear_velocity.length()
-	player.apply_central_impulse(velocity_direction * delta_velocity * player.mass)
+	if Input.is_action_pressed(InputActions.AIR_BRAKE):
+		glide_start_position = player.global_position
+		glide_start_velocity = player.linear_velocity
+		var velocity_length: float = player.linear_velocity.length()
+		if velocity_length > air_brake_min_speed:
+			player.apply_central_force(
+				-air_brake_strength * player.linear_velocity.normalized() * (velocity_length - air_brake_min_speed) * player.mass
+			)
+	else:
+		# Energy conservation
+		var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+		var velocity_length_target: float = glide_start_velocity.length() + Math.signed_sqrt(
+			2.0 * gravity * player.gravity_scale * (glide_start_position.y - player.global_position.y)
+		)
+		var delta_velocity: float = velocity_length_target - player.linear_velocity.length()
+		player.apply_central_impulse(velocity_direction * delta_velocity * player.mass)
 
 	# Jump buffering
 	if Input.is_action_just_pressed(InputActions.JUMP):

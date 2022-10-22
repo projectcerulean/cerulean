@@ -9,6 +9,8 @@ extends StateTransitionListener
 @export var _environment_resource: Resource
 @export var point_lifetime: float = 0.5
 @export var n_subdivisions: int = 2
+@export var air_brake_color: Color = Color.ORANGE_RED
+@export var air_brake_color_strength: float = 0.4
 
 var trail: Trail = null
 
@@ -26,6 +28,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if is_in_target_state and trail != null:
 		var color: Color = environment_resource.value.wind_trail_color
+		if Input.is_action_pressed(InputActions.AIR_BRAKE):
+			color = color.lerp(air_brake_color, air_brake_color_strength)
 		if water_detector.is_in_water():
 			color = environment_resource.value.water_trail_color
 		trail.add_segment(trail_position_a.global_position, trail_position_b.global_position, color)

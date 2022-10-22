@@ -19,6 +19,7 @@ const UI_DOWN: StringName = &"ui_down"
 const UI_LEFT: StringName = &"ui_left"
 const UI_RIGHT: StringName = &"ui_right"
 
+const AIR_BRAKE: StringName = &"air_brake"
 const CAMERA_ZOOM_TOGGLE: StringName = &"camera_zoom_toggle"
 const DIVE: StringName = &"dive"
 const INTERACT: StringName = &"interact"
