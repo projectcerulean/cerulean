@@ -8,6 +8,7 @@ extends StateTransitionListener
 @export var _water_detector: Area3D
 @export var _environment_resource: Resource
 @export var point_lifetime: float = 0.5
+@export var n_subdivisions: int = 2
 
 var trail: Trail = null
 
@@ -35,6 +36,7 @@ func _on_target_state_entered(data: Dictionary) -> void:
 	trail = preload("res://src/entities/effects/trail/trail_seethrough.tscn").instantiate()
 	add_child(trail)
 	trail.set_lifetime(point_lifetime)
+	trail.set_n_subdivisions(n_subdivisions)
 
 
 func _on_target_state_exited(data: Dictionary) -> void:

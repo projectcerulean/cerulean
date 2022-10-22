@@ -6,6 +6,7 @@ extends MeshInstance3D
 
 @export var trail_width: Curve
 @export var point_lifetime: float = 1.0
+@export var n_subdivisions: int = 0
 
 var curve_points_a: PackedVector3Array = []
 var curve_points_b: PackedVector3Array = []
@@ -35,15 +36,35 @@ func _process(delta: float) -> void:
 	while i_first_nondead_point < curve_points_a.size() and time - curve_point_creation_times[i_first_nondead_point] > point_lifetime:
 		i_first_nondead_point += 1
 
-	if curve_points_a.size() - i_first_nondead_point > 1:
-		immediate_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
-		for i_point in range(i_first_nondead_point, curve_points_a.size()):
-			var point_a: Vector3 = curve_points_a[i_point]
-			var point_b: Vector3 = curve_points_b[i_point]
-			var point_middle: Vector3 = (point_a + point_b) / 2.0
-			var color: Color = curve_point_colors[i_point]
+	var curve_points_a_subdivided: PackedVector3Array = Subdivision.subdivide_vector3_array(
+		curve_points_a.slice(i_first_nondead_point),
+		n_subdivisions,
+	)
+	var curve_points_b_subdivided: PackedVector3Array = Subdivision.subdivide_vector3_array(
+		curve_points_b.slice(i_first_nondead_point),
+		n_subdivisions,
+	)
+	var curve_point_colors_subdivided: PackedColorArray = Subdivision.subdivide_color_array(
+		curve_point_colors.slice(i_first_nondead_point),
+		n_subdivisions,
+	)
+	var curve_point_creation_times_subdivided: PackedFloat64Array = Subdivision.subdivide_float64_array(
+		curve_point_creation_times.slice(i_first_nondead_point),
+		n_subdivisions,
+	)
+	assert(curve_points_b_subdivided.size() == curve_points_a_subdivided.size(), Errors.CONSISTENCY_ERROR)
+	assert(curve_point_colors_subdivided.size() == curve_points_a_subdivided.size(), Errors.CONSISTENCY_ERROR)
+	assert(curve_point_creation_times_subdivided.size() == curve_points_a_subdivided.size(), Errors.CONSISTENCY_ERROR)
 
-			var point_age: float = time - curve_point_creation_times[i_point]
+	if curve_points_a_subdivided.size() > 1:
+		immediate_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
+		for i_point in range(curve_points_a_subdivided.size()):
+			var point_a: Vector3 = curve_points_a_subdivided[i_point]
+			var point_b: Vector3 = curve_points_b_subdivided[i_point]
+			var point_middle: Vector3 = (point_a + point_b) / 2.0
+			var color: Color = curve_point_colors_subdivided[i_point]
+
+			var point_age: float = time - curve_point_creation_times_subdivided[i_point]
 			var width_factor: float = trail_width.sample(point_age / point_lifetime)
 			immediate_mesh.surface_set_color(color)
 			immediate_mesh.surface_add_vertex(point_a * width_factor + point_middle * (1.0 - width_factor))
@@ -62,8 +83,12 @@ func add_segment(point_position_a: Vector3, point_position_b: Vector3, color: Co
 	curve_point_creation_times.append(time)
 
 
-func set_lifetime(lifetime: float):
+func set_lifetime(lifetime: float) -> void:
 	point_lifetime = lifetime
+
+
+func set_n_subdivisions(n: int) -> void:
+	n_subdivisions = n
 
 
 func finalize() -> void:
