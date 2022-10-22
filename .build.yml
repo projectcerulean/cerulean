@@ -14,8 +14,9 @@ tasks:
       timeout 1000 sh -c 'while ! ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
       for file in $(find assets/ -type f | sort); do
         hash="$(cat "$file")"
+        [ -n "$hash" ]
         timeout 1000 ipfs get --output="$file" "$hash" > /dev/null 2>&1
-        ipfs add --offline --only-hash --hash=sha2-512 --quiet "$file" | grep --quiet "^$hash$"
+        [ "$(ipfs add --offline --only-hash --hash=sha2-512 --quiet "$file")" = "$hash" ]
       done
       kill "$!"
 
