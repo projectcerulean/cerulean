@@ -12,7 +12,7 @@ Just me making a video game.
 3. Place the Cerulean PCK and the Godot executable in the same directory
 4. Rename the Godot executable to 'cerulean' and run it
 
-### Input map
+## Input map
 
 Using a gamepad is highly recommended.
 
