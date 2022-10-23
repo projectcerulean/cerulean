@@ -12,7 +12,20 @@ Just me making a video game.
 3. Place the Cerulean PCK and the Godot executable in the same directory
 4. Rename the Godot executable to 'cerulean' and run it
 
-A gamepad is required for playing.
+### Input map
+
+Using a gamepad is highly recommended.
+
+| Input                    | Gamepad                                     | Keyboard + mouse     |
+| ------------------------ | ------------------------------------------- | -------------------- |
+| Move                     | Left stick                                  | WASD                 |
+| Jump/Glide/Swim upwards  | Left bumper                                 | Space                |
+| Air-brake/Swim downwards | Right bumper                                | Ctrl                 |
+| Interact                 | A                                           | E                    |
+| Rotate camera            | Right stick                                 | Move mouse           |
+| Zoom camera in/out       | Press left stick + move right stick up/down | Scroll wheel up/down |
+| Pause menu               | Start                                       | Escape               |
+| Performance statistics   | Select                                      | F12                  |
 
 ![](https://raw.githubusercontent.com/projectcerulean/cerulean-img/master/img/screenshots/2022/test_dungeon_bounce.jpg)
 

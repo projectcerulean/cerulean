@@ -13,6 +13,7 @@ signal bgm_changed
 signal body_bounced
 signal debug_write
 signal interaction_highlight_set
+signal mouse_entered_control
 signal request_dialogue_start
 signal request_dialogue_finish
 signal request_game_pause
@@ -88,6 +89,7 @@ func emit_bgm_changed(sender: Node, bgm: StringName) -> void: emit(bgm_changed, 
 func emit_body_bounced(sender: Node, body: RigidBody3D) -> void: emit(body_bounced, [sender, body])
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, [sender, variant])
 func emit_interaction_highlight_set(sender: Node, target: Node3D) -> void: emit(interaction_highlight_set, [sender, target])
+func emit_mouse_entered_control(sender: Control) -> void: emit(mouse_entered_control, [sender])
 func emit_request_dialogue_start(sender: Node3D, dialogue_resource: DialogueResource) -> void: emit(request_dialogue_start, [sender, dialogue_resource])
 func emit_request_dialogue_finish(sender: Node) -> void: emit(request_dialogue_finish, [sender])
 func emit_request_game_pause(sender: Node) -> void: emit(request_game_pause, [sender])

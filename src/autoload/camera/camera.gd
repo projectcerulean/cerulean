@@ -76,6 +76,13 @@ func _process(delta: float) -> void:
 			if Settings.SETTINGS.CAMERA_Y_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_Y_INVERTED]]:
 				rotation_speed_target.y *= -1.0
 
+		# Mouse wheel only generates 'released' events, not 'pressed' events.
+		# https://github.com/godotengine/godot/issues/36322
+		if Input.is_action_just_released(InputActions.CAMERA_ZOOM_IN):
+			distance_speed_target = -camera_distance_speed_max
+		elif Input.is_action_just_released(InputActions.CAMERA_ZOOM_OUT):
+			distance_speed_target = camera_distance_speed_max
+
 		camera_distance_speed = Lerp.delta_lerp(camera_distance_speed, distance_speed_target, camera_distance_lerp_weight, delta)
 		camera_anchor.position.z = camera_anchor.position.z * (1.0 + camera_distance_speed * delta)
 		camera_anchor.position.z = clamp(camera_anchor.position.z, camera_distance_min, camera_distance_max)

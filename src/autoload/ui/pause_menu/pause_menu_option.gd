@@ -62,3 +62,7 @@ func _on_scene_changed(_sender: Node) -> void:
 			value_node.text = "(Current)"
 		else:
 			value_node.text = ""
+
+
+func _on_mouse_entered() -> void:
+	Signals.emit_mouse_entered_control(self)

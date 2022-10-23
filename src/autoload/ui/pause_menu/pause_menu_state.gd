@@ -15,7 +15,8 @@ var i_hovered_option: int:
 
 
 func _ready() -> void:
-	Signals.state_exited.connect(self._on_state_exited)
+	Signals.state_exited.connect(_on_state_exited)
+	Signals.mouse_entered_control.connect(_on_mouse_entered_control)
 
 	assert(menu != null, Errors.NULL_NODE)
 	assert(menu.get_child_count() > 0, Errors.NULL_NODE)
@@ -56,3 +57,13 @@ func get_transition() -> StringName:
 func _on_state_exited(sender: Node, state: StringName, _data: Dictionary) -> void:
 	if sender == pause_menu.game_state_resource.state_machine and state == GameStates.PAUSE:
 		i_hovered_option = 0
+
+
+func _on_mouse_entered_control(sender: Control) -> void:
+	for i in range(menu.get_child_count()):
+		var child: Control = menu.get_child(i) as Control
+		if child == sender:
+			if i_hovered_option != i:
+				Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
+				i_hovered_option = i
+			break

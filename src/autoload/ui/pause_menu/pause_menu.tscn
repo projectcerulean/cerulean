@@ -22,7 +22,6 @@ _game_state_resource = ExtResource("2_rjkev")
 _sfx_resource_select = ExtResource("9_rbp0b")
 
 [node name="Main" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -35,7 +34,6 @@ theme_override_constants/separation = 10
 alignment = 2
 
 [node name="Resume" parent="Main" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -47,7 +45,6 @@ grow_vertical = 1
 key_string = &"Resume"
 
 [node name="ReloadLevel" parent="Main" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -59,7 +56,6 @@ grow_vertical = 1
 key_string = &"Reload level"
 
 [node name="ChangeLevel" parent="Main" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -71,7 +67,6 @@ grow_vertical = 1
 key_string = &"Change level"
 
 [node name="Settings" parent="Main" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -83,7 +78,6 @@ grow_vertical = 1
 key_string = &"Settings"
 
 [node name="Quit" parent="Main" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -95,7 +89,6 @@ grow_vertical = 1
 key_string = &"Quit"
 
 [node name="Levels" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -108,7 +101,6 @@ theme_override_constants/separation = 10
 alignment = 2
 
 [node name="TestScene" parent="Levels" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -122,7 +114,6 @@ is_level_option = true
 key_string = &"TEST_SCENE"
 
 [node name="TestDungeon" parent="Levels" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -136,7 +127,6 @@ is_level_option = true
 key_string = &"TEST_DUNGEON"
 
 [node name="Settings" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -149,7 +139,6 @@ theme_override_constants/separation = 10
 alignment = 2
 
 [node name="BackgroundMusic" parent="Settings" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -162,7 +151,6 @@ is_settings_option = true
 key_string = &"BACKGROUND_MUSIC"
 
 [node name="CameraX" parent="Settings" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -175,7 +163,6 @@ is_settings_option = true
 key_string = &"CAMERA_X_INVERTED"
 
 [node name="CameraY" parent="Settings" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -188,7 +175,6 @@ is_settings_option = true
 key_string = &"CAMERA_Y_INVERTED"
 
 [node name="FieldOfView" parent="Settings" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -201,7 +187,6 @@ is_settings_option = true
 key_string = &"FIELD_OF_VIEW"
 
 [node name="Msaa" parent="Settings" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -214,7 +199,6 @@ is_settings_option = true
 key_string = &"MSAA"
 
 [node name="Vsync" parent="Settings" instance=ExtResource("3_ht525")]
-layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0

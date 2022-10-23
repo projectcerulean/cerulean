@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2p5fclrby2a"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://src/autoload/camera/camera.gd" id="1_dbun4"]
 [ext_resource type="Resource" uid="uid://1jerxlyauuto" path="res://src/autoload/thumbstick_processor/thumbstick_resource_right.tres" id="2_sj0tv"]

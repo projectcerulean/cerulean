@@ -4,6 +4,8 @@
 class_name Lerp
 extends Node
 
+const rotation_epsilon: float = 0.001
+
 
 static func delta_lerp(from: float, to: float, weight: float, process_delta: float) -> float:
 	if is_equal_approx(from, to):
@@ -40,10 +42,14 @@ static func delta_slerp3(from: Vector3, to: Vector3, weight: float, process_delt
 	assert(to.is_normalized(), Errors.INVALID_ARGUMENT)
 	if from.is_equal_approx(to):
 		return to
-	else:
-		var new: Vector3 = from.slerp(to, calculate_delta_weight(weight, process_delta))
-		assert(new.is_normalized(), Errors.CONSISTENCY_ERROR)
-		return new
+	if from.is_equal_approx(-to):
+		if not to.is_equal_approx(Vector3.UP) and not to.is_equal_approx(-Vector3.UP):
+			to = to.rotated(Vector3.UP, rotation_epsilon)
+		else:
+			to = to.rotated(Vector3.RIGHT, rotation_epsilon)
+	var new: Vector3 = from.slerp(to, calculate_delta_weight(weight, process_delta))
+	assert(new.is_normalized(), Errors.CONSISTENCY_ERROR)
+	return new
 
 
 static func calculate_delta_weight(weight: float, process_delta: float) -> float:

@@ -16,7 +16,7 @@ func process(delta: float) -> void:
 		if Input.is_action_just_pressed(InputActions.UI_LEFT):
 			Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 			hovered_option.adjust_option(-1)
-		elif Input.is_action_just_pressed(InputActions.UI_RIGHT):
+		elif Input.is_action_just_pressed(InputActions.UI_RIGHT) or Input.is_action_just_pressed(InputActions.UI_ACCEPT):
 			Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 			hovered_option.adjust_option(1)
 
