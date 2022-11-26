@@ -54,9 +54,7 @@ func _process(_delta: float) -> void:
 
 func process_stick_input(action_up: StringName, action_down: StringName, action_left: StringName, action_right: StringName) -> Vector2:
 	var value: Vector2 = Vector2.ZERO
-	var value_raw: Vector2 = Vector2.ZERO
-	value_raw.x = Input.get_action_raw_strength(action_right) - Input.get_action_raw_strength(action_left)
-	value_raw.y =  Input.get_action_raw_strength(action_down) - Input.get_action_raw_strength(action_up)
+	var value_raw: Vector2 = Input.get_vector(action_left, action_right, action_up, action_down)
 
 	# Dead zone
 	var value_clamped: Vector2 = Vector2.ZERO
@@ -66,14 +64,6 @@ func process_stick_input(action_up: StringName, action_down: StringName, action_
 	value_lerped.x = remap(value_clamped.x, deadzone_inner, deadzone_outer, 0.0, 1.0)
 	value_lerped.y = remap(value_clamped.y, deadzone_inner, deadzone_outer, 0.0, 1.0)
 	value = Vector2(value_lerped.x * sign(value_raw.x), value_lerped.y * sign(value_raw.y))
-
-	# Remap square input to circle
-	var value_circle: Vector2 = Vector2.ZERO
-	value_circle.x = value.x * sqrt(1.0 - value.y * value.y / 2.0)
-	value_circle.y = value.y * sqrt(1.0 - value.x * value.x / 2.0)
-	if value_circle.length() > 1.0:
-		value_circle = value_circle.normalized()
-	value = value_circle
 
 	# Non-linear response
 	var value_nonlinear: Vector2 = value.normalized() * pow(value.length_squared(), response_exponent / 2.0)

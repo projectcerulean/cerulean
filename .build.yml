@@ -21,15 +21,15 @@ tasks:
       kill "$!"
 
   - download_godot: |
-      curl --silent --max-time 1000 --remote-name 'https://downloads.tuxfamily.org/godotengine/4.0/beta3/Godot_v4.0-beta3_linux.x86_64.zip'
-      echo 'a5d3e6e33107f2cae272b459994cd0cb65e13a2d5e4e7f387dde9f815074999ecf23e3b3b8c2673f591bb97126a2376816c6dff7209f75645ff3c536fe603323  Godot_v4.0-beta3_linux.x86_64.zip' | sha512sum --check
-      unzip Godot_v4.0-beta3_linux.x86_64.zip
+      curl --silent --max-time 1000 --remote-name 'https://downloads.tuxfamily.org/godotengine/4.0/beta6/Godot_v4.0-beta6_linux.x86_64.zip'
+      echo '47995403b38ae0967499b4530eb7c65a8f61d544f19eb350388e9fea86e42eeb9136ce35e8d5e4ae07c22bbc47dc46a52b706000d8509cab156812a21c46c491  Godot_v4.0-beta6_linux.x86_64.zip' | sha512sum --check
+      unzip Godot_v4.0-beta6_linux.x86_64.zip
 
   - export_game_pack: |
       cd cerulean
       sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
-      ../Godot_v4.0-beta3_linux.x86_64 --headless --editor --quit || true
-      ../Godot_v4.0-beta3_linux.x86_64 --headless --export-pack Linux/X11 ../cerulean.pck || true
+      ../Godot_v4.0-beta6_linux.x86_64 --headless --editor --quit || true
+      ../Godot_v4.0-beta6_linux.x86_64 --headless --export-pack Linux/X11 ../cerulean.pck || true
       cd ..
       sha512sum cerulean.pck | tee cerulean.pck.sha512
 
