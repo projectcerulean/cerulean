@@ -2,7 +2,7 @@
 image: archlinux
 
 packages:
-  - curl go-ipfs godot unzip
+  - curl godot kubo unzip
 
 sources:
   - https://git.sr.ht/~gullik/cerulean
