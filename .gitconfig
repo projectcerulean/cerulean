@@ -1,0 +1,4 @@
+[filter "git_ipfs"]
+        smudge = src/tools/git_ipfs/git_ipfs.sh smudge
+        clean = src/tools/git_ipfs/git_ipfs.sh clean
+        required = true

@@ -39,14 +39,8 @@ Assets are synced using IPFS (https://ipfs.tech) to prevent having to check in l
 1. Install IPFS by installing the package `go-ipfs`
 2. Initialize: `ipfs init`
 3. Run the IPFS daemon: `ipfs daemon`
-4. Enable the `git-ipfs` filter by adding the following section to `cerulean/.git/config`:
-```
-[filter "git_ipfs"]
-        smudge = src/tools/git_ipfs/git_ipfs.sh smudge
-        clean = src/tools/git_ipfs/git_ipfs.sh clean
-        required = true
-```
-5. Sync assets: `rm -r assets && git reset --hard`
+4. Enable the `git_ipfs` smudge filter using the command `git config --local include.path ../.gitconfig`
+5. Sync assets: `rm -rf assets && git reset --hard`
 
 ![](https://raw.githubusercontent.com/projectcerulean/cerulean-img/master/img/screenshots/2022/test_dungeon_button.jpg)
 
