@@ -34,7 +34,7 @@ Using a gamepad is highly recommended.
 
 Clone the repository.
 
-Assets are synced using IPFS (https://ipfs.io) to prevent having to check in large binary files into the repository.
+Assets are synced using IPFS (https://ipfs.tech) to prevent having to check in large binary files into the repository.
 
 1. Install IPFS by installing the package `go-ipfs`
 2. Initialize: `ipfs init`
