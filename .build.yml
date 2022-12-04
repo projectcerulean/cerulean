@@ -2,7 +2,7 @@
 image: archlinux
 
 packages:
-  - curl godot kubo unzip
+  - curl git godot kubo unzip
 
 sources:
   - https://git.sr.ht/~gullik/cerulean
@@ -12,12 +12,9 @@ tasks:
       cd cerulean
       ipfs daemon --init --init-profile server > /dev/null 2>&1 &
       timeout 1000 sh -c 'while ! ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
-      for file in $(find assets/ -type f | sort); do
-        hash="$(cat "$file")"
-        [ -n "$hash" ]
-        timeout 1000 ipfs get --output="$file" "$hash" > /dev/null 2>&1
-        [ "$(ipfs add --offline --only-hash --hash=sha2-512 --quiet "$file")" = "$hash" ]
-      done
+      git config --local include.path ../.gitconfig
+      rm -rf assets
+      timeout 1000 git reset --hard
       kill "$!"
 
   - download_godot: |
