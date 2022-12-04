@@ -41,9 +41,9 @@ Assets are synced using IPFS (https://ipfs.tech) to prevent having to check in l
 3. Run the IPFS daemon: `ipfs daemon`
 4. Enable the `git-ipfs` filter by adding the following section to `cerulean/.git/config`:
 ```
-[filter "git-ipfs"]
-        smudge = src/tools/git-ipfs/git-ipfs.sh smudge
-        clean = src/tools/git-ipfs/git-ipfs.sh clean
+[filter "git_ipfs"]
+        smudge = src/tools/git_ipfs/git_ipfs.sh smudge
+        clean = src/tools/git_ipfs/git_ipfs.sh clean
         required = true
 ```
 5. Sync assets: `rm -r assets && git reset --hard`
