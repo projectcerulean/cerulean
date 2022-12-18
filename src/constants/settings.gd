@@ -49,7 +49,7 @@ const SETTINGS: Dictionary = {
 		OPTION_NAME: "MSAA",
 		VALUES: [Viewport.MSAA_DISABLED, Viewport.MSAA_2X, Viewport.MSAA_4X, Viewport.MSAA_8X],
 		VALUE_NAMES: ["Disabled", "2x", "4x", "8x"],
-		DEFAULT_VALUE_INDEX: 2,
+		DEFAULT_VALUE_INDEX: 0,
 	},
 	RENDER_SCALE: {
 		OPTION_NAME: "Render scale",
