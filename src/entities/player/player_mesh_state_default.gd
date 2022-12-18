@@ -12,7 +12,8 @@ var yaw_direction_target: Vector3 = Vector3.ZERO
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	var yaw_direction: Vector3 = data.get(YAW_DIRECTION, Vector3.ZERO)
-	mesh_root.look_at(mesh_root.global_position + yaw_direction)
+	if not yaw_direction.is_equal_approx(Vector3.ZERO):
+		mesh_root.look_at(mesh_root.global_position + yaw_direction)
 	yaw_direction_target = data.get(YAW_DIRECTION_TARGET, Vector3.ZERO)
 	process(get_process_delta_time())
 

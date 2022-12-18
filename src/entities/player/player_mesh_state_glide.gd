@@ -20,7 +20,14 @@ func enter(data: Dictionary) -> void:
 	roll_angle_spin = 0.0
 	yaw_direction = data.get(YAW_DIRECTION, Vector3.ZERO)
 	input_direction_planar = yaw_direction
-	mesh_root.look_at(mesh_root.global_position + player.linear_velocity.normalized())
+	var player_velocity_normalized: Vector3 = player.linear_velocity.normalized()
+	if player_velocity_normalized.is_normalized():
+		if player_velocity_normalized.is_equal_approx(Vector3.UP):
+			mesh_root.look_at(mesh_root.global_position + Vector3.UP, Vector3.RIGHT)
+		elif player_velocity_normalized.is_equal_approx(Vector3.DOWN):
+			mesh_root.look_at(mesh_root.global_position + Vector3.DOWN, Vector3.RIGHT)
+		else:
+			mesh_root.look_at(mesh_root.global_position + player_velocity_normalized)
 	spin_direction = 1.0 if randf() > 0.5 else -1.0
 	process(get_process_delta_time())
 
@@ -43,7 +50,7 @@ func process(delta: float) -> void:
 
 	if velocity_planar.is_equal_approx(Vector3.ZERO):
 		if not is_zero_approx(player.linear_velocity.y):
-			mesh_root.look_at(mesh_root.global_position + (Vector3.UP if player.linear_velocity.y > 0.0 else Vector3.DOWN), yaw_direction)
+			mesh_root.look_at(mesh_root.global_position + (Vector3.UP if player.linear_velocity.y > 0.0 else Vector3.DOWN), yaw_direction.rotated(Vector3.UP, -(roll_angle + roll_angle_spin * spin_direction)))
 	else:
 		var input_direction_planar_new: Vector3 = Vector3(player_input_vector_resource.value.x, 0.0, player_input_vector_resource.value.z).normalized()
 		if input_direction_planar_new.is_normalized():
@@ -53,8 +60,13 @@ func process(delta: float) -> void:
 		)
 
 		var input_vector_spherical: Vector3 = player_input_vector_resource.value
-		input_vector_spherical.y = -sqrt(1.0 - min(input_vector_spherical.length_squared(), 1.0))
+		input_vector_spherical.y = sqrt(1.0 - min(input_vector_spherical.length_squared(), 1.0)) * sign(player.linear_velocity.y)
 		input_vector_spherical = input_vector_spherical.normalized()
 		assert(input_vector_spherical.is_normalized(), Errors.CONSISTENCY_ERROR)
 		var mesh_direction: Vector3 = player.linear_velocity.slerp(input_vector_spherical, turn_lerp_weight).normalized()
-		mesh_root.look_at(mesh_root.global_position + mesh_direction, Vector3.UP.rotated(mesh_direction, -(roll_angle + roll_angle_spin * spin_direction)))
+		if mesh_direction.is_equal_approx(Vector3.UP):
+			mesh_root.look_at(mesh_root.global_position + Vector3.UP, yaw_direction.rotated(Vector3.UP, -(roll_angle + roll_angle_spin * spin_direction)))
+		elif mesh_direction.is_equal_approx(Vector3.DOWN):
+			mesh_root.look_at(mesh_root.global_position + Vector3.DOWN, yaw_direction.rotated(Vector3.UP, -(roll_angle + roll_angle_spin * spin_direction)))
+		else:
+			mesh_root.look_at(mesh_root.global_position + mesh_direction, Vector3.UP.rotated(mesh_direction, -(roll_angle + roll_angle_spin * spin_direction)))
