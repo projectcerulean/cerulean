@@ -17,6 +17,7 @@ const CAMERA_X_INVERTED: StringName = &"CAMERA_X_INVERTED"
 const CAMERA_Y_INVERTED: StringName = &"CAMERA_Y_INVERTED"
 const FIELD_OF_VIEW: StringName = &"FIELD_OF_VIEW"
 const MSAA: StringName = &"MSAA"
+const RENDER_SCALE: StringName = &"RENDER_SCALE"
 const VSYNC: StringName = &"VSYNC"
 
 const SETTINGS: Dictionary = {
@@ -49,6 +50,12 @@ const SETTINGS: Dictionary = {
 		VALUES: [Viewport.MSAA_DISABLED, Viewport.MSAA_2X, Viewport.MSAA_4X, Viewport.MSAA_8X],
 		VALUE_NAMES: ["Disabled", "2x", "4x", "8x"],
 		DEFAULT_VALUE_INDEX: 2,
+	},
+	RENDER_SCALE: {
+		OPTION_NAME: "Render scale",
+		VALUES: [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0],
+		VALUE_NAMES: ["0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "1.75", "2.0"],
+		DEFAULT_VALUE_INDEX: 3,
 	},
 	VSYNC: {
 		OPTION_NAME: "VSync",
