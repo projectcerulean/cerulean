@@ -25,8 +25,8 @@ tasks:
   - export_game_pack: |
       cd cerulean
       sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
-      ../Godot_v4.0-beta7_linux.x86_64 --headless --editor --quit || true
-      ../Godot_v4.0-beta7_linux.x86_64 --headless --export-pack Linux/X11 ../cerulean.pck || true
+      timeout 1000 sh -c '../Godot_v4.0-beta7_linux.x86_64 --headless --editor --quit || true'
+      timeout 1000 sh -c '../Godot_v4.0-beta7_linux.x86_64 --headless --export-pack Linux/X11 ../cerulean.pck || true'
       cd ..
       sha512sum cerulean.pck | tee cerulean.pck.sha512
 
