@@ -18,15 +18,15 @@ tasks:
       kill "$!"
 
   - download_godot: |
-      timeout --verbose 1000 curl --silent --remote-name 'https://downloads.tuxfamily.org/godotengine/4.0/beta7/Godot_v4.0-beta7_linux.x86_64.zip'
-      echo 'de83279874806a18719a8641e199e513fe09d63f4a87f9e6935daddadd50db650d873b21e045124da076d542f25c3b435459e326809185a71175a294db7b88a8  Godot_v4.0-beta7_linux.x86_64.zip' | sha512sum --check
-      unzip Godot_v4.0-beta7_linux.x86_64.zip
+      timeout --verbose 1000 curl --silent --remote-name 'https://downloads.tuxfamily.org/godotengine/4.0/beta10/Godot_v4.0-beta10_linux.x86_64.zip'
+      echo '0d8a9d6eaca4211247b21236479866bddd7c77d7ced3d97ae640dc499a5de58ee4aedad1727308a26308c201abb8c93916fafa4fb8010d84aa96ac93d3dc1a7e  Godot_v4.0-beta10_linux.x86_64.zip' | sha512sum --check
+      unzip Godot_v4.0-beta10_linux.x86_64.zip
 
   - export_game_pack: |
       cd cerulean
       sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
-      timeout --verbose 1000 sh -c '../Godot_v4.0-beta7_linux.x86_64 --headless --editor --quit || true'
-      timeout --verbose 1000 sh -c '../Godot_v4.0-beta7_linux.x86_64 --headless --export-pack Linux/X11 ../cerulean.pck || true'
+      timeout --verbose 1000 sh -c '../Godot_v4.0-beta10_linux.x86_64 --headless --editor --quit || true'
+      timeout --verbose 1000 sh -c '../Godot_v4.0-beta10_linux.x86_64 --headless --export-pack Linux/X11 ../cerulean.pck || true'
       cd ..
       sha512sum cerulean.pck | tee cerulean.pck.sha512
 
