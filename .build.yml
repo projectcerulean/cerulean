@@ -2,7 +2,7 @@
 image: archlinux
 
 packages:
-  - curl git godot kubo unzip
+  - curl git kubo unzip
 
 sources:
   - https://git.sr.ht/~gullik/cerulean
