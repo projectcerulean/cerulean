@@ -60,7 +60,10 @@ func process(delta: float) -> void:
 		)
 
 		var input_vector_spherical: Vector3 = player_input_vector_resource.value
-		input_vector_spherical.y = sqrt(1.0 - min(input_vector_spherical.length_squared(), 1.0)) * sign(player.linear_velocity.y)
+		if player.linear_velocity.y > 0.0:
+			input_vector_spherical.y = sqrt(1.0 - min(input_vector_spherical.length_squared(), 1.0))
+		else:
+			input_vector_spherical.y = -sqrt(1.0 - min(input_vector_spherical.length_squared(), 1.0))
 		input_vector_spherical = input_vector_spherical.normalized()
 		assert(input_vector_spherical.is_normalized(), Errors.CONSISTENCY_ERROR)
 		var mesh_direction: Vector3 = player.linear_velocity.slerp(input_vector_spherical, turn_lerp_weight).normalized()
