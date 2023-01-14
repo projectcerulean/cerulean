@@ -8,8 +8,16 @@
 class_name StateMachine
 extends Node
 
+enum TRANSITION_FRAME {
+	PROCESS,
+	PHYSICS_PROCESS,
+};
+
 # Path to the initial active state. We export it to be able to pick the initial state in the inspector.
 @export var _initial_state: Node
+
+# When to handle state transitions.
+@export var transition_frame: TRANSITION_FRAME = TRANSITION_FRAME.PROCESS
 
 # Optional data resource for storing persistent state
 @export var _persistent_data: Resource
@@ -49,16 +57,21 @@ func _process(delta: float) -> void:
 	if current_state != null:
 		current_state.process(delta)
 
-		# Change the current state
-		var target_state: StringName = current_state.get_transition()
-		if target_state != StringName():
-			transition_to(target_state, {})
+		if transition_frame == TRANSITION_FRAME.PROCESS:
+			var target_state: StringName = current_state.get_transition()
+			if target_state != StringName():
+				transition_to(target_state, {})
 
 
 # Delegate `_physics_process` callback to the active state.
 func _physics_process(delta: float) -> void:
 	if current_state != null:
 		current_state.physics_process(delta)
+
+		if transition_frame == TRANSITION_FRAME.PHYSICS_PROCESS:
+			var target_state: StringName = current_state.get_transition()
+			if target_state != StringName():
+				transition_to(target_state, {})
 
 
 func _on_request_state_change(_sender: Node, state_machine: Node, state: StringName, data: Dictionary = {}):

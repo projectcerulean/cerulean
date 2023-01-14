@@ -221,6 +221,7 @@ _transform_resource = ExtResource("5_f776o")
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
 script = ExtResource("2")
 _initial_state = NodePath("Idle")
+transition_frame = 1
 
 [node name="Bounce" type="Node" parent="StateMachine"]
 script = ExtResource("17_lgpkh")
