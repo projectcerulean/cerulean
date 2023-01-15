@@ -4,6 +4,7 @@
 extends StaticBody3D
 
 @export var bounce_height: float = 2.5
+@export var bounce_elasticy: float = sqrt(0.6)  # sqrt(Player.GRAVITY_BOUNCE / Player.GRAVITY_FALL)
 @export var color_bounce: Color = Color(1.0, 1.0, 1.0)
 @export var color_tween_duration: float = 0.5
 @export var _sfx_resource: Resource
@@ -25,19 +26,15 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if basis.y.dot(Vector3.UP) > 0.0:
-		var rigid_body: RigidBody3D = body as RigidBody3D
-		if rigid_body != null:
-			var impulse: Vector3 = body.mass * (bounce_speed - rigid_body.linear_velocity.y) * Vector3.UP
-			rigid_body.apply_central_impulse(impulse)
-			Signals.emit_body_bounced(self, body)
+	if body is RigidBody3D and basis.y.dot(Vector3.UP) > 0.0:
+		Signals.emit_request_body_bounce(self, body, bounce_speed * Vector3.UP, bounce_elasticy)
 
-			material.albedo_color = color_bounce
-			if tween != null:
-				tween.kill()
-			tween = create_tween()
-			tween.set_trans(Tween.TRANS_QUINT)
-			tween.set_ease(Tween.EASE_OUT)
-			tween.tween_property(material, "albedo_color", color_default, color_tween_duration)
+		material.albedo_color = color_bounce
+		if tween != null:
+			tween.kill()
+		tween = create_tween()
+		tween.set_trans(Tween.TRANS_QUINT)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(material, "albedo_color", color_default, color_tween_duration)
 
-			Signals.emit_request_sfx_play(self, sfx_resource, global_position)
+		Signals.emit_request_sfx_play(self, sfx_resource, global_position)

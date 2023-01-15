@@ -185,6 +185,11 @@ _global_script_classes=[{
 "path": "res://src/autoload/ui/pause_menu/pause_menu_states.gd"
 }, {
 "base": "RigidBody3D",
+"class": &"PhysicsEntity",
+"language": &"GDScript",
+"path": "res://src/common/physics_entity/physics_entity.gd"
+}, {
+"base": "PhysicsEntity",
 "class": &"Player",
 "language": &"GDScript",
 "path": "res://src/entities/player/player.gd"
@@ -355,6 +360,7 @@ _global_script_class_icons={
 "PauseMenuOption": "",
 "PauseMenuState": "",
 "PauseMenuStates": "",
+"PhysicsEntity": "",
 "Player": "",
 "PlayerMeshState": "",
 "PlayerState": "",

@@ -10,10 +10,10 @@ signal area_body_exited
 signal bgm_area_entered
 signal bgm_area_exited
 signal bgm_changed
-signal body_bounced
 signal debug_write
 signal interaction_highlight_set
 signal mouse_entered_control
+signal request_body_bounce
 signal request_dialogue_start
 signal request_dialogue_finish
 signal request_game_pause
@@ -86,10 +86,10 @@ func emit_area_body_exited(sender: Area3D, body: PhysicsBody3D) -> void: emit(ar
 func emit_bgm_area_entered(sender: Area3D, bgm: StringName) -> void: emit(bgm_area_entered, [sender, bgm])
 func emit_bgm_area_exited(sender: Area3D) -> void: emit(bgm_area_exited, [sender])
 func emit_bgm_changed(sender: Node, bgm: StringName) -> void: emit(bgm_changed, [sender, bgm])
-func emit_body_bounced(sender: Node, body: RigidBody3D) -> void: emit(body_bounced, [sender, body])
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, [sender, variant])
 func emit_interaction_highlight_set(sender: Node, target: Node3D) -> void: emit(interaction_highlight_set, [sender, target])
 func emit_mouse_entered_control(sender: Control) -> void: emit(mouse_entered_control, [sender])
+func emit_request_body_bounce(sender: Node, body: Node3D, target_velocity: Vector3, elasticy: float) -> void: emit(request_body_bounce, [sender, body, target_velocity, elasticy])
 func emit_request_dialogue_start(sender: Node3D, dialogue_resource: DialogueResource) -> void: emit(request_dialogue_start, [sender, dialogue_resource])
 func emit_request_dialogue_finish(sender: Node) -> void: emit(request_dialogue_finish, [sender])
 func emit_request_game_pause(sender: Node) -> void: emit(request_game_pause, [sender])

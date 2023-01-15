@@ -2,7 +2,7 @@
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
 class_name Player
-extends RigidBody3D
+extends PhysicsEntity
 
 @export var floor_max_angle: float = PI / 4.0
 @export var floor_snap_length_max: float = 0.1
@@ -37,7 +37,7 @@ var floor_velocity_prober_position_prev: Vector3
 
 
 func _ready() -> void:
-	Signals.body_bounced.connect(_on_body_bounced)
+	super._ready()
 
 	assert(thumbstick_resource_left != null, Errors.NULL_RESOURCE)
 	assert(input_vector_resource != null, Errors.NULL_RESOURCE)
@@ -80,6 +80,8 @@ func _process(_delta: float) -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	super._integrate_forces(state)
+
 	state.apply_central_force(force_vector)
 
 	# Floor snapping
@@ -119,10 +121,12 @@ func _notification(what: int) -> void:
 		input_vector_resource.value = Vector3()
 
 
-func _on_body_bounced(sender: Node, body: RigidBody3D):
-	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
-	if body == self and state_resource.current_state == PlayerStates.GLIDE:
-		Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
+func _on_request_body_bounce(sender: Node, body: Node3D, target_velocity: Vector3, elasticy: float) -> void:
+	super._on_request_body_bounce(sender, body, target_velocity, elasticy)
+	if body == self:
+		Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
+		if Input.is_action_pressed(InputActions.JUMP) and state_resource.current_state != PlayerStates.DIVE:
+			Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
 
 
 func is_on_floor() -> bool:

@@ -7,19 +7,26 @@ extends PlayerState
 @export var acceleration_time: float = 3.0
 @export var jump_speed: float = 10.0
 
+@onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
+
+func _ready() -> void:
+	super._ready()
+	assert(state_enter_timer != null, Errors.NULL_NODE)
+
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
+	state_enter_timer.start()
 	player.coyote_timer.stop()
 	player.jump_buffer_timer.stop()
 
-	var impulse: Vector3 = player.mass * (jump_speed - player.linear_velocity.y) * Vector3.UP
-	player.apply_central_impulse(impulse)
+	player.enqueue_impulse(jump_speed * Vector3.UP)
 
 	# Newton's third
 	if player.floor_collision != null:
 		var rigid_body: RigidBody3D = player.floor_collision.get_collider() as RigidBody3D
 		if rigid_body != null:
+			var impulse: Vector3 = player.mass * (jump_speed - player.linear_velocity.y) * Vector3.UP
 			var impulse_position: Vector3 = player.floor_collision.get_position() - rigid_body.global_position
 			rigid_body.apply_impulse(-impulse, impulse_position)
 
@@ -49,7 +56,7 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if player.linear_velocity.y < 0 or not Input.is_action_pressed(InputActions.JUMP):
+	if not Input.is_action_pressed(InputActions.JUMP) or (player.linear_velocity.y < 0.0 and state_enter_timer.is_stopped()):
 		return PlayerStates.FALL
 	else:
 		return StringName()

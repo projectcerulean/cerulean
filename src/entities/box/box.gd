@@ -1,7 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends RigidBody3D
+extends PhysicsEntity
 
 @export var buoyancy_force_factor: float = 5000.0
 @export var buoyancy_central_factor: float = 0.9
@@ -10,6 +10,7 @@ extends RigidBody3D
 
 
 func _ready() -> void:
+	super._ready()
 	assert(water_detectors != null, Errors.NULL_NODE)
 
 

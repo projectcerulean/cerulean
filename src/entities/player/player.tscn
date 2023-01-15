@@ -256,6 +256,10 @@ floor_snapping_enabled = true
 script = ExtResource("6")
 gravity_scale = 0.667
 
+[node name="StateEnterTimer" type="Timer" parent="StateMachine/Jump"]
+wait_time = 0.1
+one_shot = true
+
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("4")
 gravity_scale = 0.0
