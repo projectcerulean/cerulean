@@ -4,9 +4,6 @@
 class_name Player
 extends PhysicsEntity
 
-@export var floor_max_angle: float = PI / 4.0
-@export var floor_snap_length_max: float = 0.1
-@export var floor_snap_length_min: float = 0.001
 @export var _thumbstick_resource_left: Resource
 @export var _input_vector_resource: Resource
 @export var _state_resource: Resource
@@ -14,20 +11,12 @@ extends PhysicsEntity
 @export var _camera_transform_resource: Resource
 
 var input_vector: Vector3
-var force_vector: Vector3
-var floor_snapping_enabled: bool
-var bottom_point_height: float
-var top_point_height: float
-var floor_collision: KinematicCollision3D
-var floor_velocity_prober_position_prev: Vector3
 
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
 @onready var water_detector: WaterDetector = get_node("WaterDetector") as WaterDetector
 @onready var state_machine: Node = get_node("StateMachine") as Node
-@onready var parent: Node3D = get_parent_node_3d() as Node3D
-@onready var floor_velocity_prober: Node3D = Node3D.new()
 
 @onready var thumbstick_resource_left: Vector2Resource = _thumbstick_resource_left as Vector2Resource
 @onready var input_vector_resource: Vector3Resource = _input_vector_resource as Vector3Resource
@@ -49,7 +38,6 @@ func _ready() -> void:
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
-	assert(parent != null, Errors.NULL_NODE)
 
 	assert(input_vector_resource.value == Vector3(), Errors.RESOURCE_BUSY)
 
@@ -77,43 +65,6 @@ func _process(_delta: float) -> void:
 	# Pause the game
 	if Input.is_action_just_pressed(InputActions.PAUSE) and game_state_resource.current_state == GameStates.GAMEPLAY:
 		Signals.emit_request_game_pause(self)
-
-
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	super._integrate_forces(state)
-
-	state.apply_central_force(force_vector)
-
-	# Floor snapping
-	var shape: CapsuleShape3D = collision_shape.shape as CapsuleShape3D
-	assert(shape != null, Errors.NULL_RESOURCE)
-	bottom_point_height = collision_shape.global_position.y - shape.height / 2.0
-	top_point_height = collision_shape.global_position.y + shape.height / 2.0
-
-	floor_collision = null
-	var collision: KinematicCollision3D = KinematicCollision3D.new()
-	if test_move(global_transform, floor_snap_length_max * Vector3.DOWN, collision):
-		if collision.get_position().y < global_position.y and collision.get_angle() <= floor_max_angle:
-			floor_collision = collision
-
-	if floor_snapping_enabled and floor_collision != null:
-		var floor_height: float = collision.get_position().y
-		var floor_distance: float = bottom_point_height - floor_height
-		if floor_distance > floor_snap_length_min:
-			state.set_transform(state.get_transform().translated_local(floor_distance * Vector3.DOWN))
-			state.linear_velocity.y = 0.0
-
-	# Apply floor transform
-	var node_reparented: bool = Utils.reparent_node(
-		floor_velocity_prober,
-		floor_collision.get_collider() if floor_collision != null else parent
-	)
-
-	if not node_reparented:
-		state.transform.origin += floor_velocity_prober.global_position - floor_velocity_prober_position_prev
-		floor_velocity_prober.global_position = floor_collision.get_position() if floor_collision != null else Vector3.ZERO
-
-	floor_velocity_prober_position_prev = floor_velocity_prober.global_position
 
 
 func _notification(what: int) -> void:

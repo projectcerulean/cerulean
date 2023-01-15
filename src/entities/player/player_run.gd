@@ -14,7 +14,7 @@ func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
 	# Apply movement
-	player.force_vector = player.input_vector * move_force - move_friction_coefficient * player.linear_velocity * Vector3(1.0, 0.0, 1.0)
+	player.enqueue_force(player.input_vector * move_force - move_friction_coefficient * player.linear_velocity * Vector3(1.0, 0.0, 1.0))
 
 	# Coyote timer
 	player.coyote_timer.start()

@@ -29,12 +29,12 @@ func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
 	# Apply movement
-	player.force_vector = player.input_vector * move_force - move_friction_coefficient * player.linear_velocity * Vector3(1.0, 0.0, 1.0)
+	player.enqueue_force(player.input_vector * move_force - move_friction_coefficient * player.linear_velocity * Vector3(1.0, 0.0, 1.0))
 
 	# Buoyancy
 	if player.water_detector.is_in_water():
 		var depth: float = player.water_detector.get_water_surface_height() - player.water_detector.global_position.y
-		player.force_vector.y += buoyancy_force * clampf(depth, 0.0, 1.0) - buoyancy_friction_coefficient*player.linear_velocity.y
+		player.enqueue_force(Vector3.UP * (buoyancy_force * clampf(depth, 0.0, 1.0) - buoyancy_friction_coefficient*player.linear_velocity.y))
 
 	# Coyote timer
 	player.coyote_timer.start()
@@ -45,15 +45,19 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
+	var shape: CapsuleShape3D = player.collision_shape.shape as CapsuleShape3D
+	var bottom_point_height: float = player.collision_shape.global_position.y - shape.height / 2.0
+	var top_point_height: float = player.collision_shape.global_position.y + shape.height / 2.0
+
 	if player.is_on_floor() and player.global_position.y > player.water_detector.get_water_surface_height():
 		return PlayerStates.RUN
-	elif player.bottom_point_height > player.water_detector.get_water_surface_height():
+	elif bottom_point_height > player.water_detector.get_water_surface_height():
 		return PlayerStates.FALL
 	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
 		if (
 			state_enter_timer.is_stopped()
-			and player.top_point_height > player.water_detector.get_water_surface_height()
-			and player.bottom_point_height < player.water_detector.get_water_surface_height()
+			and top_point_height > player.water_detector.get_water_surface_height()
+			and bottom_point_height < player.water_detector.get_water_surface_height()
 		):
 			return PlayerStates.JUMP
 	elif Input.is_action_just_pressed(InputActions.DIVE):

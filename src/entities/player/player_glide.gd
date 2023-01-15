@@ -27,20 +27,18 @@ func physics_process(delta: float) -> void:
 	assert(input_vector_spherical.is_normalized(), Errors.CONSISTENCY_ERROR)
 	var velocity_direction: Vector3 = player.linear_velocity.normalized()
 	var turn_force_vector: Vector3 = Vector3.ZERO
-	if input_vector_spherical.is_equal_approx(velocity_direction) or input_vector_spherical.is_equal_approx(-velocity_direction):
-		player.force_vector = Vector3.ZERO
-	else:
+	if not input_vector_spherical.is_equal_approx(velocity_direction) and not input_vector_spherical.is_equal_approx(-velocity_direction):
 		var plane: Plane = Plane(Vector3.ZERO, input_vector_spherical, velocity_direction)
 		var force_direction: Vector3 = velocity_direction.cross(plane.normal)
 		var angle: float = input_vector_spherical.angle_to(velocity_direction)
-		player.force_vector = -force_direction * turn_rate * player.mass * player.linear_velocity.length() * angle / PI
+		player.enqueue_force(-force_direction * turn_rate * player.mass * player.linear_velocity.length() * angle / PI)
 
 	if Input.is_action_pressed(InputActions.AIR_BRAKE):
 		glide_start_position = player.global_position
 		glide_start_velocity = player.linear_velocity
 		var velocity_length: float = player.linear_velocity.length()
 		if velocity_length > air_brake_min_speed:
-			player.apply_central_force(
+			player.enqueue_force(
 				-air_brake_strength * player.linear_velocity.normalized() * (velocity_length - air_brake_min_speed) * player.mass
 			)
 	else:
@@ -49,8 +47,7 @@ func physics_process(delta: float) -> void:
 		var velocity_length_target: float = glide_start_velocity.length() + Math.signed_sqrt(
 			2.0 * gravity * player.gravity_scale * (glide_start_position.y - player.global_position.y)
 		)
-		var delta_velocity: float = velocity_length_target - player.linear_velocity.length()
-		player.apply_central_impulse(velocity_direction * delta_velocity * player.mass)
+		player.enqueue_impulse(velocity_direction * velocity_length_target)
 
 	# Jump buffering
 	if Input.is_action_just_pressed(InputActions.JUMP):

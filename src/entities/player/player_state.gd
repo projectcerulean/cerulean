@@ -20,11 +20,6 @@ func enter(data: Dictionary) -> void:
 	player.floor_snapping_enabled = floor_snapping_enabled
 
 
-func exit(data: Dictionary) -> void:
-	super.exit(data)
-	player.force_vector = Vector3.ZERO
-
-
 func calculate_friction_coefficient(acceleration_time: float):
 	var body: RigidBody3D = owner as RigidBody3D
 	return -body.mass/acceleration_time * log(0.01)
