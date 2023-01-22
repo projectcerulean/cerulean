@@ -96,15 +96,14 @@ func _process(delta: float) -> void:
 	var camera_vector: Vector3 = (camera_anchor.global_position - global_position).normalized()
 	var frustum: Array[Plane] = camera.get_frustum()
 	var frustum_near: Plane = frustum[0]
-	var frustum_far: Plane = frustum[1]
 	var frustum_sides: Array[Plane] = frustum.slice(2)
 
 	var camera_distance_target: float = 0.0
+
 	for i in range(len(frustum_sides)):
 		# Need to calculate some points
 		var frustum_near_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_near)
-		var frustum_far_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_far)
-		var frustum_vector: Vector3 = (frustum_far_vertex - frustum_near_vertex).project(camera_vector)
+		var frustum_vector: Vector3 = (global_position - frustum_near_vertex).project(camera_vector)
 		var frustum_near_vertex_scaled: Vector3 = camera_push_frustum_scale * (frustum_near_vertex - camera.global_position) + camera.global_position
 		var frustum_near_vertex_anchor: Vector3 = camera_anchor.global_position + (frustum_near_vertex_scaled - camera.global_position)
 
