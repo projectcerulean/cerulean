@@ -44,635 +44,635 @@ distance_fade_mode = 3
 distance_fade_min_distance = 0.5
 distance_fade_max_distance = 2.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_1hevw"]
+[sub_resource type="BoxMesh" id="BoxMesh_58ksp"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lp4dc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yuxut"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_u3rih"]
+[sub_resource type="BoxMesh" id="BoxMesh_e4srb"]
 resource_local_to_scene = true
 size = Vector3(0.1, 0.6, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qovub"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ompsj"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_6xofx"]
+[sub_resource type="BoxMesh" id="BoxMesh_e60fi"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk57o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cavcw"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_442ap"]
+[sub_resource type="BoxMesh" id="BoxMesh_nlmqs"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2.5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpyqa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_te6pe"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_rcq51"]
+[sub_resource type="BoxMesh" id="BoxMesh_irht2"]
 resource_local_to_scene = true
 size = Vector3(0.1, 6, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnrcr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h4sm2"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_53gqk"]
+[sub_resource type="BoxMesh" id="BoxMesh_i141f"]
 resource_local_to_scene = true
 size = Vector3(0.1, 3.1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sd76c"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eqrh4"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_rtn4k"]
+[sub_resource type="BoxMesh" id="BoxMesh_p2qy7"]
 resource_local_to_scene = true
 size = Vector3(0.1, 6, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp6st"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gig2l"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_w7dw8"]
+[sub_resource type="BoxMesh" id="BoxMesh_1p8ty"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1.4, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hyn1c"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_la6m8"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_3ts5j"]
+[sub_resource type="BoxMesh" id="BoxMesh_t17m2"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgib6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmwnh"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_cnxs6"]
+[sub_resource type="BoxMesh" id="BoxMesh_cfxhf"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrplc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0uh8"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_e1avi"]
+[sub_resource type="BoxMesh" id="BoxMesh_uqrfw"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3wfj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jttko"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_kr0mf"]
+[sub_resource type="BoxMesh" id="BoxMesh_thhp8"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sd6n3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1hbx"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_ux0lr"]
+[sub_resource type="BoxMesh" id="BoxMesh_l5sxc"]
 resource_local_to_scene = true
 size = Vector3(0.1, 13, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kw0os"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m08xm"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_mfgu7"]
+[sub_resource type="BoxMesh" id="BoxMesh_xo48n"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7kqk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uljkh"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_otrvu"]
+[sub_resource type="BoxMesh" id="BoxMesh_b3qqu"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x0c3i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wrwox"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_nw5ua"]
+[sub_resource type="BoxMesh" id="BoxMesh_y631u"]
 resource_local_to_scene = true
 size = Vector3(0.1, 25, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbbcu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7iv7"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_txygi"]
+[sub_resource type="BoxMesh" id="BoxMesh_dt51m"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3f4eh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtw3s"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_07dps"]
+[sub_resource type="BoxMesh" id="BoxMesh_lfugk"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ame6x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2ysy"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_50gd3"]
+[sub_resource type="BoxMesh" id="BoxMesh_x0cbj"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8wdbb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_arp8l"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_5yltw"]
+[sub_resource type="BoxMesh" id="BoxMesh_66ml1"]
 resource_local_to_scene = true
 size = Vector3(0.1, 7, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7k6v4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ydin8"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_ktd3r"]
+[sub_resource type="BoxMesh" id="BoxMesh_u305o"]
 resource_local_to_scene = true
 size = Vector3(0.1, 0.3, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7c6cs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jat6n"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_14cf5"]
+[sub_resource type="BoxMesh" id="BoxMesh_yee03"]
 resource_local_to_scene = true
 size = Vector3(0.1, 7, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_15aub"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhw24"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_jibrb"]
+[sub_resource type="BoxMesh" id="BoxMesh_7j5uw"]
 resource_local_to_scene = true
 size = Vector3(0.1, 5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0hoq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d6c6v"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_dfobg"]
+[sub_resource type="BoxMesh" id="BoxMesh_k6eon"]
 resource_local_to_scene = true
 size = Vector3(0.1, 0.25, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2fkr5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m82sx"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_6t0am"]
+[sub_resource type="BoxMesh" id="BoxMesh_4b3n8"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_800ot"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhof0"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_qkx3m"]
+[sub_resource type="BoxMesh" id="BoxMesh_on2bl"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t7uwq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slgms"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_82ae0"]
+[sub_resource type="BoxMesh" id="BoxMesh_fnl7x"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2.5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hs0q4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nt7r0"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_cus1s"]
+[sub_resource type="BoxMesh" id="BoxMesh_whxwe"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lgyp8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dwga"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_io004"]
+[sub_resource type="BoxMesh" id="BoxMesh_6hmjk"]
 resource_local_to_scene = true
 size = Vector3(0.1, 0.5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_unrnw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w81cb"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_8dqeh"]
+[sub_resource type="BoxMesh" id="BoxMesh_py0fm"]
 resource_local_to_scene = true
 size = Vector3(0.1, 4, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqttj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2321h"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_4pceb"]
+[sub_resource type="BoxMesh" id="BoxMesh_3npc4"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqvqn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ce2bi"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_nwrai"]
+[sub_resource type="BoxMesh" id="BoxMesh_v7uk3"]
 resource_local_to_scene = true
 size = Vector3(0.1, 23, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2esmv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjkyv"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_vs4p4"]
+[sub_resource type="BoxMesh" id="BoxMesh_nmiaq"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bhd2j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_31qk5"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_ojtis"]
+[sub_resource type="BoxMesh" id="BoxMesh_e14vx"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_grw03"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7x1yu"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_kgxrt"]
+[sub_resource type="BoxMesh" id="BoxMesh_1mmx8"]
 resource_local_to_scene = true
 size = Vector3(0.1, 49.5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jgek2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48bgp"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_5irf2"]
+[sub_resource type="BoxMesh" id="BoxMesh_rn8pa"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ftc5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1736j"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_y1ynm"]
+[sub_resource type="BoxMesh" id="BoxMesh_4li5g"]
 resource_local_to_scene = true
 size = Vector3(0.1, 83, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7iu8i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cb0uv"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_e0w12"]
+[sub_resource type="BoxMesh" id="BoxMesh_cmc3r"]
 resource_local_to_scene = true
 size = Vector3(0.1, 8, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3wj5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtnwx"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_rmjmn"]
+[sub_resource type="BoxMesh" id="BoxMesh_svqpq"]
 resource_local_to_scene = true
 size = Vector3(0.1, 5.5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_btmd6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i00ui"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_6nold"]
+[sub_resource type="BoxMesh" id="BoxMesh_4vlrv"]
 resource_local_to_scene = true
 size = Vector3(0.1, 0.7, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jotm3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcibi"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_kekhb"]
+[sub_resource type="BoxMesh" id="BoxMesh_xiwa3"]
 resource_local_to_scene = true
 size = Vector3(0.1, 2, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gyg37"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ymrcn"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_dxihf"]
+[sub_resource type="BoxMesh" id="BoxMesh_8yfuc"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0bwcx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7yd4k"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_o3310"]
+[sub_resource type="BoxMesh" id="BoxMesh_yne0i"]
 resource_local_to_scene = true
 size = Vector3(0.1, 3.5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnbf1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_amrc2"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_w0bp5"]
+[sub_resource type="BoxMesh" id="BoxMesh_u7s3d"]
 resource_local_to_scene = true
 size = Vector3(0.1, 1.5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f3381"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e25rp"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_atasm"]
+[sub_resource type="BoxMesh" id="BoxMesh_ds6hh"]
 resource_local_to_scene = true
 size = Vector3(0.1, 0.5, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqotf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_685ya"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("15_7eokh")
-shader_parameter/color_new = Color(0, 0.709804, 1, 1)
-shader_parameter/color_old = Color(1, 0.270588, 0, 1)
-shader_parameter/flip_colors = false
 shader_parameter/flow_position = 0.0
 shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pv52q"]
 size = Vector3(192, 192, 192)
@@ -1071,8 +1071,8 @@ dialogue_resource = ExtResource("10_vafey")
 
 [node name="Barrier" parent="." instance=ExtResource("12_vimad")]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 3, -44)
-_input_nodes = [NodePath("../Connection/Indicator"), NodePath("../Connection2/Indicator"), NodePath("../Connection3/Indicator"), NodePath("../Connection4/Indicator")]
-input_targets = [true, true, true, true]
+_input_nodes = Array[NodePath]([NodePath("../Connection/Indicator"), NodePath("../Connection2/Indicator"), NodePath("../Connection3/Indicator"), NodePath("../Connection4/Indicator")])
+input_targets = Array[bool]([true, true, true, true])
 
 [node name="Connection" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -39)
@@ -1081,27 +1081,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -39)
 
 [node name="Cable" parent="Connection" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.5)
-mesh = SubResource("BoxMesh_1hevw")
+mesh = SubResource("BoxMesh_58ksp")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_lp4dc")
+surface_material_override/0 = SubResource("ShaderMaterial_yuxut")
 
 [node name="Cable2" parent="Connection" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.25, 0, -2)
-mesh = SubResource("BoxMesh_u3rih")
+mesh = SubResource("BoxMesh_e4srb")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_qovub")
+surface_material_override/0 = SubResource("ShaderMaterial_ompsj")
 
 [node name="Cable3" parent="Connection" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, -5.96046e-08, -3)
-mesh = SubResource("BoxMesh_6xofx")
+mesh = SubResource("BoxMesh_e60fi")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_sk57o")
+surface_material_override/0 = SubResource("ShaderMaterial_cavcw")
 
 [node name="Cable4" parent="Connection" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3, -4)
-mesh = SubResource("BoxMesh_442ap")
+mesh = SubResource("BoxMesh_nlmqs")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_xpyqa")
+surface_material_override/0 = SubResource("ShaderMaterial_te6pe")
 
 [node name="Indicator" parent="Connection" instance=ExtResource("14_1w6v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.5, -3.9)
@@ -1113,27 +1113,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 6, -56)
 
 [node name="Cable" parent="Connection2" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 4)
-mesh = SubResource("BoxMesh_rcq51")
+mesh = SubResource("BoxMesh_irht2")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_mnrcr")
+surface_material_override/0 = SubResource("ShaderMaterial_h4sm2")
 
 [node name="Cable2" parent="Connection2" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.5, 0, 7)
-mesh = SubResource("BoxMesh_53gqk")
+mesh = SubResource("BoxMesh_i141f")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_sd76c")
+surface_material_override/0 = SubResource("ShaderMaterial_eqrh4")
 
 [node name="Cable3" parent="Connection2" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0, 10)
-mesh = SubResource("BoxMesh_rtn4k")
+mesh = SubResource("BoxMesh_p2qy7")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_dp6st")
+surface_material_override/0 = SubResource("ShaderMaterial_gig2l")
 
 [node name="Cable4" parent="Connection2" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3, -0.65, 13)
-mesh = SubResource("BoxMesh_w7dw8")
+mesh = SubResource("BoxMesh_1p8ty")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_hyn1c")
+surface_material_override/0 = SubResource("ShaderMaterial_la6m8")
 
 [node name="Indicator" parent="Connection2" instance=ExtResource("14_1w6v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1.5, 13.1)
@@ -1145,129 +1145,129 @@ transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 11, -6
 
 [node name="Cable9" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 1.78814e-07, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -1.78814e-07, -1, 4.37114e-08, 0, 0, -1.5)
-mesh = SubResource("BoxMesh_3ts5j")
+mesh = SubResource("BoxMesh_t17m2")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_dgib6")
+surface_material_override/0 = SubResource("ShaderMaterial_dmwnh")
 
 [node name="Cable10" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 5.09713e-15, 8.74228e-08, 1, 8.9407e-08, 7.10543e-15, 8.9407e-08, -1, 0, 1, -2)
-mesh = SubResource("BoxMesh_cnxs6")
+mesh = SubResource("BoxMesh_cfxhf")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_nrplc")
+surface_material_override/0 = SubResource("ShaderMaterial_f0uh8")
 
 [node name="Cable11" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, -8.74228e-08, 8.74228e-08, -8.74228e-08, -4.37114e-08, 1, -8.74228e-08, -1, -4.37114e-08, 0, 2, -3)
-mesh = SubResource("BoxMesh_e1avi")
+mesh = SubResource("BoxMesh_uqrfw")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_t3wfj")
+surface_material_override/0 = SubResource("ShaderMaterial_jttko")
 
 [node name="Cable12" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 1, -4)
-mesh = SubResource("BoxMesh_kr0mf")
+mesh = SubResource("BoxMesh_thhp8")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_sd6n3")
+surface_material_override/0 = SubResource("ShaderMaterial_p1hbx")
 
 [node name="Cable13" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6.5, 0, -4)
-mesh = SubResource("BoxMesh_ux0lr")
+mesh = SubResource("BoxMesh_l5sxc")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_kw0os")
+surface_material_override/0 = SubResource("ShaderMaterial_m08xm")
 
 [node name="Cable14" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, -1.74846e-07, 0, 1.74846e-07, 1, 0, 0, 0, 1, 13, 0.999999, -4)
-mesh = SubResource("BoxMesh_mfgu7")
+mesh = SubResource("BoxMesh_xo48n")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_r7kqk")
+surface_material_override/0 = SubResource("ShaderMaterial_uljkh")
 
 [node name="Cable15" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1.31134e-07, 1, 0, -1, 1.31134e-07, 0, 0, 0, 1, 13.5, 2, -4)
-mesh = SubResource("BoxMesh_otrvu")
+mesh = SubResource("BoxMesh_b3qqu")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_x0c3i")
+surface_material_override/0 = SubResource("ShaderMaterial_wrwox")
 
 [node name="Cable16" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-8.74228e-08, -4.37114e-08, 1, -1, 4.37114e-08, -8.74228e-08, -4.37114e-08, -1, -4.37114e-08, 14, 2, -16.5)
-mesh = SubResource("BoxMesh_nw5ua")
+mesh = SubResource("BoxMesh_y631u")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_kbbcu")
+surface_material_override/0 = SubResource("ShaderMaterial_r7iv7")
 
 [node name="Cable17" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 14, 1.5, -29)
-mesh = SubResource("BoxMesh_txygi")
+mesh = SubResource("BoxMesh_dt51m")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_3f4eh")
+surface_material_override/0 = SubResource("ShaderMaterial_xtw3s")
 
 [node name="Cable18" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1.31134e-07, 1, 0, -1, 1.31134e-07, 0, 0, 0, 1, 15, 0.999999, -29)
-mesh = SubResource("BoxMesh_07dps")
+mesh = SubResource("BoxMesh_lfugk")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_ame6x")
+surface_material_override/0 = SubResource("ShaderMaterial_l2ysy")
 
 [node name="Cable19" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 2.62268e-07, -7.64274e-15, 2.62268e-07, 1, -8.74228e-08, -1.52855e-14, -8.74228e-08, -1, 16, 1.5, -29)
-mesh = SubResource("BoxMesh_50gd3")
+mesh = SubResource("BoxMesh_x0cbj")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_8wdbb")
+surface_material_override/0 = SubResource("ShaderMaterial_arp8l")
 
 [node name="Cable20" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 1.74846e-07, -8.74228e-08, 8.74228e-08, -1.31134e-07, -1, -1.74846e-07, -1, 1.31134e-07, 16, 2, -32.48)
-mesh = SubResource("BoxMesh_5yltw")
+mesh = SubResource("BoxMesh_66ml1")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_7k6v4")
+surface_material_override/0 = SubResource("ShaderMaterial_ydin8")
 
 [node name="Cable21" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1.31134e-07, -1, 4.37114e-08, -9.85216e-15, -4.37114e-08, -1, 1, -1.31134e-07, -5.73206e-15, 15.9, 2, -35.99)
-mesh = SubResource("BoxMesh_ktd3r")
+mesh = SubResource("BoxMesh_u305o")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_7c6cs")
+surface_material_override/0 = SubResource("ShaderMaterial_jat6n")
 
 [node name="Cable8" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 15.8, -1.5, -36)
-mesh = SubResource("BoxMesh_14cf5")
+mesh = SubResource("BoxMesh_yee03")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_15aub")
+surface_material_override/0 = SubResource("ShaderMaterial_xhw24")
 
 [node name="Cable7" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 3.82137e-15, -8.74228e-08, 8.74228e-08, 4.37114e-08, -1, 0, -1, -4.37114e-08, 15.8, -5, -38.5)
-mesh = SubResource("BoxMesh_jibrb")
+mesh = SubResource("BoxMesh_7j5uw")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_l0hoq")
+surface_material_override/0 = SubResource("ShaderMaterial_d6c6v")
 
 [node name="Cable6" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 15.9, -5, -40.95)
-mesh = SubResource("BoxMesh_dfobg")
+mesh = SubResource("BoxMesh_k6eon")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_2fkr5")
+surface_material_override/0 = SubResource("ShaderMaterial_m82sx")
 
 [node name="Cable5" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 16, -6, -40.95)
-mesh = SubResource("BoxMesh_6t0am")
+mesh = SubResource("BoxMesh_4b3n8")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_800ot")
+surface_material_override/0 = SubResource("ShaderMaterial_mhof0")
 
 [node name="Cable4" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 15.5, -7, -40.95)
-mesh = SubResource("BoxMesh_qkx3m")
+mesh = SubResource("BoxMesh_on2bl")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_t7uwq")
+surface_material_override/0 = SubResource("ShaderMaterial_slgms")
 
 [node name="Cable3" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 15, -8.2, -40.95)
-mesh = SubResource("BoxMesh_82ae0")
+mesh = SubResource("BoxMesh_fnl7x")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_hs0q4")
+surface_material_override/0 = SubResource("ShaderMaterial_nt7r0")
 
 [node name="Cable2" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 3.82137e-15, 8.74228e-08, 8.74228e-08, 4.37114e-08, 1, 0, 1, -4.37114e-08, 15, -9.5, -40.5)
-mesh = SubResource("BoxMesh_cus1s")
+mesh = SubResource("BoxMesh_whxwe")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_lgyp8")
+surface_material_override/0 = SubResource("ShaderMaterial_1dwga")
 
 [node name="Cable" parent="Connection3" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 14.8, -9.5, -40)
-mesh = SubResource("BoxMesh_io004")
+mesh = SubResource("BoxMesh_6hmjk")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_unrnw")
+surface_material_override/0 = SubResource("ShaderMaterial_w81cb")
 
 [node name="Indicator" parent="Connection3" instance=ExtResource("14_1w6v1")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 14.5, -9.5, -39.9)
@@ -1279,99 +1279,99 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 19, 43)
 
 [node name="Cable" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, -2, 1)
-mesh = SubResource("BoxMesh_8dqeh")
+mesh = SubResource("BoxMesh_py0fm")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_tqttj")
+surface_material_override/0 = SubResource("ShaderMaterial_2321h")
 
 [node name="Cable2" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, -4, 1.5)
-mesh = SubResource("BoxMesh_4pceb")
+mesh = SubResource("BoxMesh_3npc4")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_cqvqn")
+surface_material_override/0 = SubResource("ShaderMaterial_ce2bi")
 
 [node name="Cable3" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-1, 8.9407e-08, 0, -8.9407e-08, -1, 0, 0, 0, 1, 0, -15.5, 2)
-mesh = SubResource("BoxMesh_nwrai")
+mesh = SubResource("BoxMesh_v7uk3")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_2esmv")
+surface_material_override/0 = SubResource("ShaderMaterial_xjkyv")
 
 [node name="Cable15" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1, -27, 2)
-mesh = SubResource("BoxMesh_vs4p4")
+mesh = SubResource("BoxMesh_nmiaq")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_bhd2j")
+surface_material_override/0 = SubResource("ShaderMaterial_31qk5")
 
 [node name="Cable16" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -2, -27, 1.5)
-mesh = SubResource("BoxMesh_ojtis")
+mesh = SubResource("BoxMesh_e14vx")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_grw03")
+surface_material_override/0 = SubResource("ShaderMaterial_7x1yu")
 
 [node name="Cable14" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, -26.6, -27, 1)
-mesh = SubResource("BoxMesh_kgxrt")
+mesh = SubResource("BoxMesh_1mmx8")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_jgek2")
+surface_material_override/0 = SubResource("ShaderMaterial_48bgp")
 
 [node name="Cable13" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -51.4, -27.5, 1)
-mesh = SubResource("BoxMesh_5irf2")
+mesh = SubResource("BoxMesh_rn8pa")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_3ftc5")
+surface_material_override/0 = SubResource("ShaderMaterial_1736j")
 
 [node name="Cable12" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -51.4, -28.009, -40.5)
-mesh = SubResource("BoxMesh_y1ynm")
+mesh = SubResource("BoxMesh_4li5g")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_7iu8i")
+surface_material_override/0 = SubResource("ShaderMaterial_cb0uv")
 
 [node name="Cable11" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.4, -24, -82)
-mesh = SubResource("BoxMesh_e0w12")
+mesh = SubResource("BoxMesh_cmc3r")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_s3wj5")
+surface_material_override/0 = SubResource("ShaderMaterial_mtnwx")
 
 [node name="Cable10" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -51.4, -20, -84.7)
-mesh = SubResource("BoxMesh_rmjmn")
+mesh = SubResource("BoxMesh_svqpq")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_btmd6")
+surface_material_override/0 = SubResource("ShaderMaterial_i00ui")
 
 [node name="Cable9" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -51.7, -20, -87.4)
-mesh = SubResource("BoxMesh_6nold")
+mesh = SubResource("BoxMesh_4vlrv")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_jotm3")
+surface_material_override/0 = SubResource("ShaderMaterial_rcibi")
 
 [node name="Cable8" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, -19, -87.4)
-mesh = SubResource("BoxMesh_kekhb")
+mesh = SubResource("BoxMesh_xiwa3")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_gyg37")
+surface_material_override/0 = SubResource("ShaderMaterial_ymrcn")
 
 [node name="Cable7" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -51.5, -18, -87.4)
-mesh = SubResource("BoxMesh_dxihf")
+mesh = SubResource("BoxMesh_8yfuc")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_0bwcx")
+surface_material_override/0 = SubResource("ShaderMaterial_7yd4k")
 
 [node name="Cable6" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51, -16.3, -87.4)
-mesh = SubResource("BoxMesh_o3310")
+mesh = SubResource("BoxMesh_yne0i")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_bnbf1")
+surface_material_override/0 = SubResource("ShaderMaterial_amrc2")
 
 [node name="Cable5" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -51, -14.5, -86.7)
-mesh = SubResource("BoxMesh_w0bp5")
+mesh = SubResource("BoxMesh_u7s3d")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_f3381")
+surface_material_override/0 = SubResource("ShaderMaterial_e25rp")
 
 [node name="Cable4" parent="Connection4" instance=ExtResource("14_e3mr8")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -50.8, -14.5, -86)
-mesh = SubResource("BoxMesh_atasm")
+mesh = SubResource("BoxMesh_ds6hh")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("ShaderMaterial_dqotf")
+surface_material_override/0 = SubResource("ShaderMaterial_685ya")
 
 [node name="Indicator" parent="Connection4" instance=ExtResource("14_1w6v1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.5, -14.5, -85.9)

@@ -28,15 +28,15 @@ noise = SubResource("FastNoiseLite_gncbr")
 [sub_resource type="ShaderMaterial" id="9"]
 shader = ExtResource("1")
 shader_parameter/color = Color(0, 0, 0, 0)
-shader_parameter/distortion_intensity = 0.01
 shader_parameter/distortion_scale = 0.5
+shader_parameter/distortion_intensity = 0.01
 shader_parameter/distortion_speed = 0.05
 shader_parameter/noise = SubResource("NoiseTexture2D_aa3of")
 
 [sub_resource type="ShaderMaterial" id="10"]
 shader = ExtResource("8")
-shader_parameter/blur_strength = 2.5
 shader_parameter/kernel_size = 11
+shader_parameter/blur_strength = 2.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17ke0"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)

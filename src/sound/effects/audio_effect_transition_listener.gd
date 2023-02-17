@@ -15,7 +15,7 @@ const TWEEN_TYPE_EXPONENTIAL: int = 2
 @export var audio_effect_wet: AudioEffect
 @export var audio_bus_name: StringName = AudioBuses.EFFECTS
 @export var tween_duration: float = 1.0
-@export_enum(Linear, Decibel, Exponential) var tween_type: int = TWEEN_TYPE_LINEAR
+@export_enum("Linear", "Decibel", "Exponential") var tween_type: int = TWEEN_TYPE_LINEAR
 
 var audio_effect: AudioEffect
 var tween: Tween

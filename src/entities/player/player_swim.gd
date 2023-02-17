@@ -62,5 +62,4 @@ func get_transition() -> StringName:
 			return PlayerStates.JUMP
 	elif Input.is_action_just_pressed(InputActions.DIVE):
 		return PlayerStates.DIVE
-	else:
-		return StringName()
+	return StringName()

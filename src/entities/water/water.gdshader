@@ -30,8 +30,11 @@ uniform sampler2D displacement_noise;
 uniform float displacement_amount = 0.01;
 uniform float displacement_time_factor = 0.015;
 
+uniform sampler2D depth_texture : hint_depth_texture, filter_linear_mipmap;
+uniform sampler2D screen_texture : hint_screen_texture, filter_linear_mipmap;
 
-float calculate_depth(sampler2D depth_texture, vec2 screen_uv, vec3 vertex, mat4 inv_projection_matrix, mat4 inv_view_matrix) {
+
+float calculate_depth(vec2 screen_uv, vec3 vertex, mat4 inv_projection_matrix, mat4 inv_view_matrix) {
 	float depth = texture(depth_texture, screen_uv).x;
 	vec3 ndc = vec3(screen_uv * 2.0 - 1.0, depth);
 	vec4 world = inv_view_matrix * inv_projection_matrix * vec4(ndc, 1.0);
@@ -54,25 +57,25 @@ void fragment() {
 	vec2 displacement = vec2(displacement1, displacement2) * displacement_amount;
 
 	// Get water depth
-	float depth = calculate_depth(DEPTH_TEXTURE, SCREEN_UV + displacement, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
+	float depth = calculate_depth(SCREEN_UV + displacement, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
 
 	if (depth < 0.0) {
 		// Undo the displacement, don't want to grab pixels from objects which are above the water.
 		displacement = vec2(0.0);
-		depth = calculate_depth(DEPTH_TEXTURE, SCREEN_UV + displacement, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
+		depth = calculate_depth(SCREEN_UV + displacement, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
 	}
 
 	// Depth fade
 	color.a = clamp(1.0 - exp(-depth * beer_factor), color.a, 1.0);
 	
 	// Foam
-	float foam_depth = calculate_depth(DEPTH_TEXTURE, SCREEN_UV, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
+	float foam_depth = calculate_depth(SCREEN_UV, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
 	if (foam_depth > 0.0) {
 		float foam_factor = 1.0 - smoothstep(foam_width - foam_smooth, foam_width + foam_smooth, foam_depth);
 		color = foam_factor * foam_color + (1.0 - foam_factor) * color;
 	}
 
-	ALBEDO = mix(texture(SCREEN_TEXTURE, SCREEN_UV + displacement).rgb, color.rgb, color.a);
+	ALBEDO = mix(texture(screen_texture, SCREEN_UV + displacement).rgb, color.rgb, color.a);
 	SPECULAR = 1.0;
 	METALLIC = 0.25;
 	ROUGHNESS = 0.0;

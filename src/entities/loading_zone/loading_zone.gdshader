@@ -5,12 +5,13 @@ shader_type spatial;
 
 uniform vec4 color: source_color = vec4(0.0, 0.0, 0.0, 1.0);
 uniform float beer_factor = 2.0;
+uniform sampler2D depth_texture : hint_depth_texture, filter_linear_mipmap;
 
 varying mat4 camera;
 
 
 void fragment() {
-	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
+	float depth = texture(depth_texture, SCREEN_UV).x;
 	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
 	vec4 world = camera * INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	vec3 depth_world_position = world.xyz / world.w;

@@ -9,13 +9,15 @@ uniform float distortion_intensity = 0.01;
 uniform float distortion_speed = 0.05;
 uniform sampler2D noise;
 
+uniform sampler2D screen_texture : hint_screen_texture, filter_linear_mipmap;
+
 vec2 wrapf(vec2 x) {
 	return x - floor(x);
 }
 
 void fragment() {  // TODO: Compensate for screen aspect ratio?
 	float distortion = texture(noise, wrapf(UV * distortion_scale + TIME * distortion_speed)).x * 2.0 - 1.0;
-	vec3 screen_texture = textureLod(SCREEN_TEXTURE, vec2(SCREEN_UV.x - distortion_intensity * distortion, SCREEN_UV.y), 0.0).rgb;
-	COLOR.rgb = screen_texture * color.rgb * color.a + screen_texture * (1.0 - color.a);
+	vec3 screen_texture_sample = textureLod(screen_texture, vec2(SCREEN_UV.x - distortion_intensity * distortion, SCREEN_UV.y), 0.0).rgb;
+	COLOR.rgb = screen_texture_sample * color.rgb * color.a + screen_texture_sample * (1.0 - color.a);
 	COLOR.a = 1.0;
 }

@@ -35,23 +35,23 @@ noise = SubResource("FastNoiseLite_2ni1l")
 [sub_resource type="ShaderMaterial" id="2"]
 render_priority = 0
 shader = ExtResource("1")
-shader_parameter/beer_factor = 0.2
-shader_parameter/displacement_amount = 0.01
-shader_parameter/displacement_noise = SubResource("NoiseTexture2D_qscl5")
-shader_parameter/displacement_time_factor = 0.015
-shader_parameter/foam_color = Color(0.878431, 0.878431, 1, 0.909804)
-shader_parameter/foam_smooth = 0.01
-shader_parameter/foam_width = 0.2
-shader_parameter/noise_sampler1 = SubResource("NoiseTexture2D_bqtil")
-shader_parameter/noise_sampler2 = SubResource("NoiseTexture2D_8n77n")
-shader_parameter/noise_time_factor = Vector2(0.01, 0.002)
 shader_parameter/water_color = Color(0.309804, 0.560784, 0.878431, 0.878431)
 shader_parameter/water_color_highlight = Color(0.458824, 0.643137, 0.929412, 0.909804)
 shader_parameter/water_color_highlight_threshold = 0.55
+shader_parameter/foam_color = Color(0.878431, 0.878431, 1, 0.909804)
+shader_parameter/foam_width = 0.2
+shader_parameter/foam_smooth = 0.01
+shader_parameter/beer_factor = 0.2
+shader_parameter/noise_time_factor = Vector2(0.01, 0.002)
+shader_parameter/wave_time = 0.0
 shader_parameter/wave_period = Vector2(16, 16)
 shader_parameter/wave_strength = Vector2(0.25, 0.125)
-shader_parameter/wave_time = 0.0
 shader_parameter/wave_time_factor = Vector2(0.5, 1)
+shader_parameter/displacement_amount = 0.01
+shader_parameter/displacement_time_factor = 0.015
+shader_parameter/noise_sampler1 = SubResource("NoiseTexture2D_bqtil")
+shader_parameter/noise_sampler2 = SubResource("NoiseTexture2D_8n77n")
+shader_parameter/displacement_noise = SubResource("NoiseTexture2D_qscl5")
 
 [sub_resource type="BoxShape3D" id="13"]
 size = Vector3(64, 128, 64)
