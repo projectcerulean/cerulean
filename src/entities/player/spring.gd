@@ -16,7 +16,8 @@ func _ready() -> void:
 	assert(parent != null, Errors.NULL_NODE)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	# Use physics process since spring simulation is unstable at large timesteps/low framerates.
 	global_position.x = parent.global_position.x
 	global_position.z = parent.global_position.z
 
