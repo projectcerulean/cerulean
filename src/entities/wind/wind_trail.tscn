@@ -12,32 +12,32 @@ frequency = 0.005
 seamless = true
 noise = SubResource("FastNoiseLite_ve0cu")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqw16"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ehk5"]
 resource_local_to_scene = true
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_6sr4v"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_nsfxj"]
 resource_local_to_scene = true
 
-[sub_resource type="Curve" id="Curve_s1cfj"]
+[sub_resource type="Curve" id="Curve_crjkb"]
 resource_local_to_scene = true
 _data = [Vector2(0.00576369, 0), 0.0, 2.64193, 0, 0, Vector2(0.501441, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.69064, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5lyj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34suf"]
 resource_local_to_scene = true
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_idaey"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_t2wx0"]
 resource_local_to_scene = true
 
-[sub_resource type="Curve" id="Curve_qf76g"]
+[sub_resource type="Curve" id="Curve_ds6ey"]
 resource_local_to_scene = true
 _data = [Vector2(0.00576369, 0), 0.0, 2.64193, 0, 0, Vector2(0.501441, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.69064, 0.0, 0, 0]
 point_count = 3
@@ -62,15 +62,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 [node name="Trails" type="Node" parent="."]
 
 [node name="TrailHorizontal" parent="Trails" instance=ExtResource("1_dpfbh")]
-material_override = SubResource("StandardMaterial3D_dqw16")
-mesh = SubResource("ImmediateMesh_6sr4v")
+material_override = SubResource("StandardMaterial3D_7ehk5")
+mesh = SubResource("ImmediateMesh_nsfxj")
 skeleton = NodePath("../..")
-trail_width = SubResource("Curve_s1cfj")
+trail_width = SubResource("Curve_crjkb")
 
 [node name="TrailVertical" parent="Trails" instance=ExtResource("1_dpfbh")]
-material_override = SubResource("StandardMaterial3D_y5lyj")
-mesh = SubResource("ImmediateMesh_idaey")
+material_override = SubResource("StandardMaterial3D_34suf")
+mesh = SubResource("ImmediateMesh_t2wx0")
 skeleton = NodePath("../..")
-trail_width = SubResource("Curve_qf76g")
+trail_width = SubResource("Curve_ds6ey")
 
 [node name="WaterDetector" parent="." instance=ExtResource("3_o18us")]

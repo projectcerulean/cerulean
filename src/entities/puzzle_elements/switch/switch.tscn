@@ -33,10 +33,10 @@ render_priority = 0
 shader = ExtResource("5_fygd5")
 shader_parameter/activation = 0.0
 shader_parameter/albedo = Color(1, 0.27, 0, 1)
-shader_parameter/emission_energy = 1.0
-shader_parameter/metallic = 1.0
 shader_parameter/roughness = 0.5
 shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/emission_energy = 1.0
 
 [node name="Switch" type="StaticBody3D"]
 collision_layer = 8
@@ -64,7 +64,7 @@ property = "angular_velocity_factor"
 value_min = 1.0
 value_max = 2.0
 tween_duration = 0.25
-_target_states = [NodePath("../../StateMachine/Enabled")]
+_target_states = Array[NodePath]([NodePath("../../StateMachine/Enabled")])
 
 [node name="Crystal" type="Node3D" parent="Joint"]
 script = ExtResource("2_7i1pt")
@@ -76,7 +76,7 @@ script = ExtResource("10_ey7nc")
 target_node = NodePath("..")
 property = "activation"
 tween_duration = 0.1
-_target_states = [NodePath("../../../StateMachine/Enabled")]
+_target_states = Array[NodePath]([NodePath("../../../StateMachine/Enabled")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Joint/Crystal"]
 layers = 8
@@ -138,4 +138,4 @@ script = ExtResource("8_2adit")
 script = ExtResource("6_ssf8g")
 _sfx_resource_enter = ExtResource("7_gi7uk")
 _sfx_resource_exit = ExtResource("8_aedo8")
-_target_states = [NodePath("../StateMachine/Enabled")]
+_target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])

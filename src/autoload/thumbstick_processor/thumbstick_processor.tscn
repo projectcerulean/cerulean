@@ -17,7 +17,6 @@ thumbstick_resource_right = ExtResource("3_10ay5")
 
 [node name="GamepadStickProcessorLeft" type="Node" parent="Gamepad"]
 script = ExtResource("2_sq22r")
-stick = 0
 thumbstick_resource = ExtResource("2_7kar6")
 
 [node name="GamepadStickProcessorRight" type="Node" parent="Gamepad"]

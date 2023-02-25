@@ -31,10 +31,10 @@ render_priority = 0
 shader = ExtResource("5_fygd5")
 shader_parameter/activation = 0.0
 shader_parameter/albedo = Color(1, 0.27, 0, 1)
-shader_parameter/emission_energy = 1.0
-shader_parameter/metallic = 1.0
 shader_parameter/roughness = 0.5
 shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/emission_energy = 1.0
 
 [node name="PushButton" type="Area3D"]
 collision_layer = 8
@@ -63,7 +63,7 @@ script = ExtResource("10_ey7nc")
 target_node = NodePath("..")
 property = "activation"
 tween_duration = 0.1
-_target_states = [NodePath("../../StateMachine/Enabled")]
+_target_states = Array[NodePath]([NodePath("../../StateMachine/Enabled")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Button"]
 layers = 8
@@ -89,7 +89,7 @@ script = ExtResource("8_2adit")
 script = ExtResource("6_ssf8g")
 _sfx_resource_enter = ExtResource("7_gi7uk")
 _sfx_resource_exit = ExtResource("8_aedo8")
-_target_states = [NodePath("../StateMachine/Enabled")]
+_target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

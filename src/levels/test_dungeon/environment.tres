@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://cj4m17hiwmdr2"]
+[gd_resource type="Environment" script_class="CeruleanEnvironment" load_steps=4 format=3 uid="uid://cj4m17hiwmdr2"]
 
 [ext_resource type="Script" path="res://src/environment/cerulean_environment.gd" id="1_lhmo3"]
 

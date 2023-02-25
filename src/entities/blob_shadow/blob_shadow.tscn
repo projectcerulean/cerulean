@@ -21,7 +21,7 @@ script = ExtResource("1_bjd74")
 [node name="Decal" type="Decal" parent="DecalPivot"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 layers = 9
-extents = Vector3(1, 0.1, 1)
+size = Vector3(2, 0.2, 2)
 texture_albedo = SubResource("GradientTexture2D_o4yl3")
 upper_fade = 1e-05
 lower_fade = 1.10957e-05

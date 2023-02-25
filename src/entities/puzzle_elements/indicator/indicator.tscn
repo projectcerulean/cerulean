@@ -17,10 +17,10 @@ render_priority = 0
 shader = ExtResource("2_a0m1r")
 shader_parameter/activation = 0.0
 shader_parameter/albedo = Color(1, 0.27, 0, 1)
-shader_parameter/emission_energy = 1.0
-shader_parameter/metallic = 1.0
 shader_parameter/roughness = 0.5
 shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/emission_energy = 1.0
 
 [node name="Indicator" type="Node3D"]
 script = ExtResource("1_bsmqb")
@@ -33,7 +33,7 @@ script = ExtResource("5_dsacl")
 target_node = NodePath("..")
 property = "activation"
 tween_duration = 0.1
-_target_states = [NodePath("../../StateMachine/Enabled")]
+_target_states = Array[NodePath]([NodePath("../../StateMachine/Enabled")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
 layers = 8

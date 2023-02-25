@@ -28,14 +28,14 @@ noise = SubResource("FastNoiseLite_4ow20")
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource("1_alkq1")
-shader_parameter/alpha_factor = 1.0
-shader_parameter/alpha_max = 0.6
-shader_parameter/alpha_min = 0.3
 shader_parameter/color = Color(0.376471, 0.196078, 0.192157, 1)
+shader_parameter/noise_threshold = 0.55
+shader_parameter/alpha_factor = 1.0
+shader_parameter/alpha_min = 0.3
+shader_parameter/alpha_max = 0.6
+shader_parameter/noise_time_factor = Vector2(0.1, 0.02)
 shader_parameter/noise_sampler1 = SubResource("NoiseTexture2D_g2md3")
 shader_parameter/noise_sampler2 = SubResource("NoiseTexture2D_h16ox")
-shader_parameter/noise_threshold = 0.55
-shader_parameter/noise_time_factor = Vector2(0.1, 0.02)
 
 [node name="Barrier" type="StaticBody3D"]
 collision_layer = 4

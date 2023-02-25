@@ -69,13 +69,11 @@ alignment = 2
 
 [node name="TestScene" parent="Levels" instance=ExtResource("3_ht525")]
 layout_mode = 2
-is_settings_option = false
 is_level_option = true
 key_string = &"TEST_SCENE"
 
 [node name="TestDungeon" parent="Levels" instance=ExtResource("3_ht525")]
 layout_mode = 2
-is_settings_option = false
 is_level_option = true
 key_string = &"TEST_DUNGEON"
 
@@ -144,4 +142,4 @@ script = ExtResource("5_kygh5")
 script = ExtResource("8_25px7")
 _sfx_resource_enter = ExtResource("9_rbp0b")
 _sfx_resource_exit = ExtResource("9_rbp0b")
-_target_states = [NodePath("../StateMachine/Main")]
+_target_states = Array[NodePath]([NodePath("../StateMachine/Main")])
