@@ -36,5 +36,5 @@ func _on_visualize_vector3(sender: Node, from: Vector3, to: Vector3):
 	vectors_from[sender] = from
 	vectors_to[sender] = to
 	if not colors.has(sender):
-		colors[sender] = Utils.str_to_color(sender.name)
+		colors[sender] = ColorUtils.str_to_color(sender.name)
 	queue_redraw()

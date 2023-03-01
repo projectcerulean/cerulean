@@ -251,7 +251,7 @@ gravity_scale = 0.05
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3")
-gravity_scale = 0.0
+gravity_scale = 0.1
 floor_snapping_enabled = true
 
 [node name="Jump" type="Node" parent="StateMachine"]
@@ -264,7 +264,7 @@ one_shot = true
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("4")
-gravity_scale = 0.0
+gravity_scale = 0.1
 floor_snapping_enabled = true
 
 [node name="Swim" type="Node" parent="StateMachine"]

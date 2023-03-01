@@ -45,9 +45,9 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	var shape: CapsuleShape3D = player.collision_shape.shape as CapsuleShape3D
-	var bottom_point_height: float = player.collision_shape.global_position.y - shape.height / 2.0
-	var top_point_height: float = player.collision_shape.global_position.y + shape.height / 2.0
+	var shape: Shape3D = player.collision_shape.shape
+	var bottom_point_height: float = player.collision_shape.global_position.y - ShapeUtils.get_shape_height(shape) / 2.0
+	var top_point_height: float = player.collision_shape.global_position.y + ShapeUtils.get_shape_height(shape) / 2.0
 
 	if player.is_on_floor() and player.global_position.y > player.water_detector.get_water_surface_height():
 		return PlayerStates.RUN

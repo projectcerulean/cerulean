@@ -23,12 +23,11 @@ func enter(data: Dictionary) -> void:
 	player.enqueue_impulse(jump_speed * Vector3.UP)
 
 	# Newton's third
-	if player.floor_collision != null:
-		var rigid_body: RigidBody3D = player.floor_collision.get_collider() as RigidBody3D
-		if rigid_body != null:
-			var impulse: Vector3 = player.mass * (jump_speed - player.linear_velocity.y) * Vector3.UP
-			var impulse_position: Vector3 = player.floor_collision.get_position() - rigid_body.global_position
-			rigid_body.apply_impulse(-impulse, impulse_position)
+	var rigid_body: RigidBody3D = player.get_floor_collider() as RigidBody3D
+	if rigid_body != null:
+		var impulse: Vector3 = player.mass * (jump_speed - player.linear_velocity.y) * Vector3.UP
+		var impulse_position: Vector3 = player.get_floor_collision_position() - rigid_body.global_position
+		rigid_body.apply_impulse(-impulse, impulse_position)
 
 
 func physics_process(delta: float) -> void:

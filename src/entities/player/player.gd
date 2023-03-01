@@ -78,7 +78,3 @@ func _on_request_body_bounce(sender: Node, body: Node3D, target_velocity: Vector
 		Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
 		if Input.is_action_pressed(InputActions.JUMP) and state_resource.current_state != PlayerStates.DIVE:
 			Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
-
-
-func is_on_floor() -> bool:
-	return floor_collision != null

@@ -36,8 +36,8 @@ func update_bgm() -> void:
 	var area_volume_min: float = INF
 
 	for area in bgm_area_map.keys():
-		var collision_shape: CollisionShape3D = Utils.get_collision_shape_for_area(area)
-		var area_volume: float = Utils.calculate_shape_volume(collision_shape.shape)
+		var collision_shape: CollisionShape3D = TreeUtils.get_collision_shape_for_area(area)
+		var area_volume: float = ShapeUtils.calculate_shape_volume(collision_shape.shape)
 		if area_volume < area_volume_min:
 			area_volume_min = area_volume
 			bgm_current = bgm_area_map[area]

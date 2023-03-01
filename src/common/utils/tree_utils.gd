@@ -1,17 +1,8 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-class_name Utils
+class_name TreeUtils
 extends Node
-
-
-static func calculate_shape_volume(shape: Shape3D) -> float:
-	if shape is BoxShape3D:
-		var box_shape: BoxShape3D = shape as BoxShape3D
-		return box_shape.size.x * box_shape.size.y * box_shape.size.z
-	else:
-		# Not implemented
-		return NAN
 
 
 static func get_collision_shape_for_area(area: Area3D) -> CollisionShape3D:

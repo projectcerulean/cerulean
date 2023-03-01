@@ -29,5 +29,5 @@ func _on_visualize_vector2(sender: Node, vector: Vector2) -> void:
 	visible = true
 	vectors[sender] = vector
 	if not colors.has(sender):
-		colors[sender] = Utils.str_to_color(sender.name)
+		colors[sender] = ColorUtils.str_to_color(sender.name)
 	queue_redraw()

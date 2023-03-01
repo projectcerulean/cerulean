@@ -25,8 +25,8 @@ func enter(data: Dictionary) -> void:
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
-	var shape: CapsuleShape3D = player.collision_shape.shape as CapsuleShape3D
-	var top_point_height: float = player.collision_shape.global_position.y + shape.height / 2.0
+	var shape: Shape3D = player.collision_shape.shape
+	var top_point_height: float = player.collision_shape.global_position.y + ShapeUtils.get_shape_height(shape) / 2.0
 
 	# Apply movement
 	var input_vector: Vector3 = (
@@ -41,8 +41,8 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	var shape: CapsuleShape3D = player.collision_shape.shape as CapsuleShape3D
-	var top_point_height: float = player.collision_shape.global_position.y + shape.height / 2.0
+	var shape: Shape3D = player.collision_shape.shape
+	var top_point_height: float = player.collision_shape.global_position.y + ShapeUtils.get_shape_height(shape) / 2.0
 
 	if top_point_height > player.water_detector.get_water_surface_height() and state_enter_timer.is_stopped():
 		return PlayerStates.SWIM
