@@ -52,7 +52,10 @@ func get_transition() -> StringName:
 	if player.is_on_floor() and player.global_position.y > player.water_detector.get_water_surface_height():
 		return PlayerStates.RUN
 	elif bottom_point_height > player.water_detector.get_water_surface_height():
-		return PlayerStates.FALL
+		if Input.is_action_pressed(InputActions.JUMP):
+			return PlayerStates.GLIDE
+		else:
+			return PlayerStates.FALL
 	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
 		if (
 			state_enter_timer.is_stopped()

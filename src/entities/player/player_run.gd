@@ -24,7 +24,10 @@ func get_transition() -> StringName:
 	if player.global_position.y < player.water_detector.get_water_surface_height():
 		return PlayerStates.SWIM
 	elif not player.is_near_floor():
-		return PlayerStates.FALL
+		if Input.is_action_pressed(InputActions.JUMP):
+			return PlayerStates.GLIDE
+		else:
+			return PlayerStates.FALL
 	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
 		return PlayerStates.JUMP
 	elif player.linear_velocity.is_equal_approx(Vector3.ZERO):
