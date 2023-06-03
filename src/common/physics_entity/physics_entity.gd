@@ -61,7 +61,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	for i in range(len(pending_impulse_velocities)):
 		var impulse_velocity: Vector3 = pending_impulse_velocities[i]
 		var impulse_normal: Vector3 = impulse_velocity.normalized()
-		assert(impulse_normal.is_normalized(), Errors.CONSISTENCY_ERROR)
+		if not impulse_normal.is_normalized():
+			push_error("impulse normal not normalized")
+			continue
 
 		var planar_velocity: Vector3 = Plane(impulse_normal).project(state.linear_velocity)
 		var projected_velocity: Vector3 = state.linear_velocity.project(impulse_normal)
@@ -73,7 +75,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	for i in range(len(pending_bounce_velocities)):
 		var bounce_velocity: Vector3 = pending_bounce_velocities[i]
 		var bounce_normal: Vector3 = bounce_velocity.normalized()
-		assert(bounce_normal.is_normalized(), Errors.CONSISTENCY_ERROR)
+		if not bounce_normal.is_normalized():
+			push_error("bounce normal not normalized")
+			continue
 
 		var elasticy: float = pending_bounce_elasticities[i]
 		assert(elasticy >= 0.0 and elasticy <= 1.0, Errors.INVALID_ARGUMENT)
