@@ -17,8 +17,8 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @onready var camera: Camera3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D") as Camera3D
 @onready var water_detector: Area3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector") as Area3D
 
-@export var camera_distance_min: float = 2.5
-@export var camera_distance_max: float = 10.0
+@export var camera_distance_min: float = 3.0
+@export var camera_distance_max: float = 10.5
 @export var camera_distance_speed_max: float = 2.0
 @export var camera_distance_lerp_weight: float = 10.0
 @export var camera_rotation_speed_max: Vector2 = Vector2(PI, PI/2.0)
@@ -26,6 +26,8 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var camera_push_weight_forwards: float = 25.0
 @export var camera_push_weight_backwards: float = 5.0
 @export var camera_push_frustum_scale: float = 2.5
+@export var camera_push_extra_distance: float = 0.5
+@export var camera_push_min_pivot_distance: float = 0.1 # Has to be less than player collision shape radius
 @export var fov_change_tween_time: float = 0.5
 
 var camera_rotation_speed: Vector2 = Vector2()
@@ -97,7 +99,7 @@ func _process(delta: float) -> void:
 	var frustum_near: Plane = frustum[0]
 	var frustum_sides: Array[Plane] = frustum.slice(2)
 
-	var camera_distance_target: float = 0.0
+	var camera_push_distance_target: float = 0.0
 
 	for i in range(len(frustum_sides)):
 		# Need to calculate some points
@@ -123,11 +125,14 @@ func _process(delta: float) -> void:
 		raycast.clear_exceptions()
 
 		# Calculate camera position
-		camera_distance_target = max(camera_distance_target, (collision_point_backward - frustum_near_vertex_anchor).length())
+		camera_push_distance_target = max(camera_push_distance_target, (collision_point_backward - frustum_near_vertex_anchor).length() + camera_push_extra_distance)
 
 	# Actually set the camera push position
-	var camera_push_weight = camera_push_weight_forwards if camera.position.z > -camera_distance_target else camera_push_weight_backwards
-	camera.position.z = Lerp.delta_lerp(camera.position.z, -camera_distance_target, camera_push_weight, delta)
+	var camera_push_max: float = (camera_anchor.global_position - global_position).length() - camera_push_min_pivot_distance
+	if camera_push_distance_target > camera_push_max:
+		camera_push_distance_target = camera_push_max
+	var camera_push_weight = camera_push_weight_forwards if camera.position.z > -camera_push_distance_target else camera_push_weight_backwards
+	camera.position.z = Lerp.delta_lerp(camera.position.z, -camera_push_distance_target, camera_push_weight, delta)
 
 	# Look at target
 	camera.look_at(target_transform_resource.value.origin)
