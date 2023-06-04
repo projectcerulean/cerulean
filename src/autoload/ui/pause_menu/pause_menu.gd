@@ -4,13 +4,11 @@
 class_name PauseMenu
 extends Control
 
-@export var _game_state_resource: Resource
-@export var _sfx_resource_select: Resource
+@export var game_state_resource: StateResource
+@export var sfx_resource_select: SfxResource
+@export var scene_transition_resource: SceneTransitionResource
 @export var scene_transition_color: Color = Color.WHITE_SMOKE
 @export var scene_transition_fade_duration: float = 0.5
-
-@onready var game_state_resource: StateResource = _game_state_resource as StateResource
-@onready var sfx_resource_select: SfxResource = _sfx_resource_select as SfxResource
 
 
 func _ready() -> void:
@@ -19,6 +17,7 @@ func _ready() -> void:
 
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(sfx_resource_select != null, Errors.NULL_RESOURCE)
+	assert(scene_transition_resource != null, Errors.NULL_RESOURCE)
 	self.visible = false
 
 

@@ -100,7 +100,7 @@ func emit_request_interaction_highlight(sender: Node3D) -> void: emit(request_in
 func emit_request_interaction_unhighlight(sender: Node3D) -> void: emit(request_interaction_unhighlight, [sender])
 func emit_request_resource_load(sender: Node, resource_path: StringName) -> void: emit(request_resource_load, [sender, resource_path])
 func emit_request_scene_change(sender: Node, scene_path: String) -> void: emit(request_scene_change, [sender, scene_path])
-func emit_request_scene_transition_start(sender: Node, scene_path: String, color: Color, duration: float) -> void: emit(request_scene_transition_start, [sender, scene_path, color, duration])
+func emit_request_scene_transition_start(sender: Node, scene_path: String, spawn_point_id: int, color: Color, duration: float) -> void: emit(request_scene_transition_start, [sender, scene_path, spawn_point_id, color, duration])
 func emit_request_scene_transition_finish(sender: Node) -> void: emit(request_scene_transition_finish, [sender])
 func emit_request_screen_shake(sender: Node, total_duration: float, frequency: float, amplitude: float) -> void: emit(request_screen_shake, [sender, total_duration, frequency, amplitude])
 func emit_request_setting_update(sender: Node, key: StringName, value_index: int) -> void: emit(request_setting_update, [sender, key, value_index])

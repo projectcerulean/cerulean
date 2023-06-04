@@ -9,15 +9,24 @@ extends Node3D
 
 
 func _ready() -> void:
+	Signals.scene_changed.connect(self._on_scene_changed)
 	assert(transform_resource != null, Errors.NULL_RESOURCE)
 	assert(transform_resource.value == Transform3D(), Errors.RESOURCE_BUSY)
-	transform_resource.value = global_transform
+	update_resource()
 
 
 func _process(_delta: float) -> void:
-	transform_resource.value = global_transform
+	update_resource()
+
+
+func _on_scene_changed(_sender: Node) -> void:
+	update_resource()
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		transform_resource.value = Transform3D()
+
+
+func update_resource() -> void:
+	transform_resource.value = global_transform

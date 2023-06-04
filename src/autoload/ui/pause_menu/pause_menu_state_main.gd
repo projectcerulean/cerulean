@@ -15,8 +15,9 @@ func get_transition() -> StringName:
 			if hovered_option.name == &"Resume":
 				Signals.emit_request_game_unpause(self)
 			elif hovered_option.name == &"ReloadLevel":
-				var scene_path: String = get_tree().current_scene.scene_file_path
-				Signals.emit_request_scene_transition_start(self, scene_path, pause_menu.scene_transition_color, pause_menu.scene_transition_fade_duration)
+				var scene_path: String = pause_menu.scene_transition_resource.scene_path
+				var spawn_point_id: int = pause_menu.scene_transition_resource.spawn_point_id
+				Signals.emit_request_scene_transition_start(self, scene_path, spawn_point_id, pause_menu.scene_transition_color, pause_menu.scene_transition_fade_duration)
 			elif hovered_option.name == &"ChangeLevel":
 				return PauseMenuStates.LEVELS
 			elif hovered_option.name == &"Settings":

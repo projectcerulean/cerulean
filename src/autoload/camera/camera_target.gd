@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 
 
 func _on_scene_changed(_sender: Node) -> void:
-	global_position = player_transform_resource.value.origin
+	global_transform = player_transform_resource.value
 
 
 func _on_request_dialogue_start(sender: Node3D, _dialogue_resource: DialogueResource) -> void:

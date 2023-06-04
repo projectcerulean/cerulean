@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3kve5ytakd60"]
+[gd_scene load_steps=11 format=3 uid="uid://d3kve5ytakd60"]
 
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="1_4bqbk"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu.gd" id="1_ra0py"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="2_rjkev"]
 [ext_resource type="PackedScene" uid="uid://di72lcsa2dva7" path="res://src/autoload/ui/pause_menu/pause_menu_option.tscn" id="3_ht525"]
+[ext_resource type="Resource" uid="uid://dwq73chlxsr7b" path="res://src/autoload/ui/scene_transition/scene_transition_resource.tres" id="4_cnh5c"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_main.gd" id="4_eom5a"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_settings.gd" id="5_kygh5"]
 [ext_resource type="Script" path="res://src/autoload/ui/pause_menu/pause_menu_state_levels.gd" id="7_or3k2"]
@@ -18,8 +19,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ra0py")
-_game_state_resource = ExtResource("2_rjkev")
-_sfx_resource_select = ExtResource("9_rbp0b")
+game_state_resource = ExtResource("2_rjkev")
+sfx_resource_select = ExtResource("9_rbp0b")
+scene_transition_resource = ExtResource("4_cnh5c")
 
 [node name="Main" type="VBoxContainer" parent="."]
 layout_mode = 1

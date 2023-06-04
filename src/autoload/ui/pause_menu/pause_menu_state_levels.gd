@@ -14,6 +14,6 @@ func get_transition() -> StringName:
 			return PauseMenuStates.MAIN
 		elif Input.is_action_just_pressed(InputActions.UI_ACCEPT):
 			var scene_path: String = Levels.LEVELS[hovered_option.key_string][Levels.LEVEL_PATH]
-			Signals.emit_request_scene_transition_start(self, scene_path, pause_menu.scene_transition_color, pause_menu.scene_transition_fade_duration)
+			Signals.emit_request_scene_transition_start(self, scene_path, 0, pause_menu.scene_transition_color, pause_menu.scene_transition_fade_duration)
 			return PauseMenuStates.MAIN
 	return StringName()

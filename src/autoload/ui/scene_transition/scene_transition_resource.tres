@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SceneTransitionResource" load_steps=2 format=3 uid="uid://dwq73chlxsr7b"]
+
+[ext_resource type="Script" path="res://src/autoload/ui/scene_transition/scene_transition_resource.gd" id="1_h7yjc"]
+
+[resource]
+script = ExtResource("1_h7yjc")

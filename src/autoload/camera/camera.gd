@@ -37,7 +37,6 @@ var camera_distance_speed: float = 0.0
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 @onready var camera_distance_default: float = camera_anchor.position.z
-@onready var yaw_default: float = yaw_pivot.rotation.y
 @onready var pitch_default: float = pitch_pivot.rotation.x
 @onready var fov_tween: Tween
 
@@ -137,8 +136,11 @@ func _process(delta: float) -> void:
 func _on_scene_changed(_sender: Node) -> void:
 	camera.position.z = 0.0
 	camera_anchor.position.z = camera_distance_default
-	yaw_pivot.rotation.y = yaw_default
 	pitch_pivot.rotation.x = pitch_default
+
+	# Center camera behind player
+	var yaw: float = target_transform_resource.value.basis.get_euler().y
+	yaw_pivot.rotation.y = yaw
 
 
 func _on_setting_updated(_sender: Node, key: StringName) -> void:

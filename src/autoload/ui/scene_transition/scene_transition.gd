@@ -4,12 +4,10 @@
 extends ColorRect
 
 @export var fade_duration: float = 1.0
-@export var _game_state_resource: Resource
-
-var scene_path_next: String
+@export var game_state_resource: StateResource
+@export var scene_transition_resource: SceneTransitionResource
 
 @onready var tween: Tween
-@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 
 func _ready() -> void:
@@ -17,10 +15,15 @@ func _ready() -> void:
 	Signals.state_entered.connect(self._on_state_entered)
 	Signals.scene_changed.connect(self._on_scene_changed)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
+	assert(scene_transition_resource != null, Errors.NULL_RESOURCE)
+
+	scene_transition_resource.scene_path = get_tree().current_scene.scene_file_path
+	scene_transition_resource.spawn_point_id = 0
 
 
-func _on_request_scene_transition_start(_sender: Node, scene_path: String, transition_color: Color, duration: float):
-	scene_path_next = scene_path
+func _on_request_scene_transition_start(_sender: Node, scene_path: String, spawn_point_id: int, transition_color: Color, duration: float):
+	scene_transition_resource.scene_path = scene_path
+	scene_transition_resource.spawn_point_id = spawn_point_id
 	transition_color.a = 0.0
 	color = transition_color
 	fade_duration = duration
@@ -40,7 +43,7 @@ func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> vo
 
 
 func _on_fade_out_finished() -> void:
-	Signals.emit_request_scene_change(self, scene_path_next)
+	Signals.emit_request_scene_change(self, scene_transition_resource.scene_path)
 
 
 func _on_scene_changed(_sender: Node):
