@@ -20,7 +20,7 @@ func enter(data: Dictionary) -> void:
 	player.coyote_timer.stop()
 	player.jump_buffer_timer.stop()
 
-	player.enqueue_impulse(jump_speed * Vector3.UP)
+	player.enqueue_minimum_velocity(jump_speed * Vector3.UP)
 
 	# Newton's third
 	var rigid_body: RigidBody3D = player.get_floor_collider() as RigidBody3D

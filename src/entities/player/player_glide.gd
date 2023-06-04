@@ -47,7 +47,7 @@ func physics_process(delta: float) -> void:
 		var velocity_length_target: float = glide_start_velocity.length() + Math.signed_sqrt(
 			2.0 * gravity * player.gravity_scale * (glide_start_position.y - player.global_position.y)
 		)
-		player.enqueue_impulse(velocity_direction * velocity_length_target)
+		player.enqueue_exact_velocity(velocity_direction * velocity_length_target)
 
 	# Jump buffering
 	if Input.is_action_just_pressed(InputActions.JUMP):

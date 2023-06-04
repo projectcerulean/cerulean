@@ -19,7 +19,8 @@ var shape_cast_i_floor_collision: int = -1
 var ray_cast_floor_collision = false
 var floor_velocity_prober_position_prev: Vector3
 var linear_velocity_prev: Vector3 = Vector3.ZERO
-var pending_impulse_velocities: PackedVector3Array = PackedVector3Array()
+var pending_exact_velocities: PackedVector3Array = PackedVector3Array()
+var pending_minimum_velocities: PackedVector3Array = PackedVector3Array()
 var pending_bounce_velocities: PackedVector3Array = PackedVector3Array()
 var pending_bounce_elasticities: PackedFloat64Array = PackedFloat64Array()
 var pending_forces: PackedVector3Array = PackedVector3Array()
@@ -57,9 +58,22 @@ func _ready() -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	# Impulses
-	for i in range(len(pending_impulse_velocities)):
-		var impulse_velocity: Vector3 = pending_impulse_velocities[i]
+	# Exact velocity impulses
+	for i in range(len(pending_exact_velocities)):
+		var impulse_velocity: Vector3 = pending_exact_velocities[i]
+		var impulse_normal: Vector3 = impulse_velocity.normalized()
+		if not impulse_normal.is_normalized():
+			push_error("impulse normal not normalized")
+			continue
+
+		var planar_velocity: Vector3 = Plane(impulse_normal).project(state.linear_velocity)
+		var projected_velocity: Vector3 = state.linear_velocity.project(impulse_normal)
+		state.linear_velocity = impulse_velocity + planar_velocity
+	pending_exact_velocities.clear()
+
+	# Minimum velocity impulses
+	for i in range(len(pending_minimum_velocities)):
+		var impulse_velocity: Vector3 = pending_minimum_velocities[i]
 		var impulse_normal: Vector3 = impulse_velocity.normalized()
 		if not impulse_normal.is_normalized():
 			push_error("impulse normal not normalized")
@@ -69,7 +83,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var projected_velocity: Vector3 = state.linear_velocity.project(impulse_normal)
 		if projected_velocity.length() < impulse_velocity.length() or projected_velocity.dot(impulse_velocity) < 0.0:
 			state.linear_velocity = impulse_velocity + planar_velocity
-	pending_impulse_velocities.clear()
+	pending_minimum_velocities.clear()
 
 	# Bounces
 	for i in range(len(pending_bounce_velocities)):
@@ -146,8 +160,12 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	linear_velocity_prev = state.linear_velocity
 
 
-func enqueue_impulse(target_velocity: Vector3):
-	pending_impulse_velocities.append(target_velocity)
+func enqueue_exact_velocity(target_exact_velocity: Vector3):
+	pending_exact_velocities.append(target_exact_velocity)
+
+
+func enqueue_minimum_velocity(target_minimum_velocity: Vector3):
+	pending_minimum_velocities.append(target_minimum_velocity)
 
 
 func enqueue_bounce(bounce_velocity: Vector3, elasticy: float):
