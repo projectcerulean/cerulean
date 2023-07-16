@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends GutTest
 
-const ERROR_INTERVAL: float = 0.001
+const ERROR_INTERVAL: float = 0.000001
 
 
 func test_signed_sqrt_positive() -> void:
