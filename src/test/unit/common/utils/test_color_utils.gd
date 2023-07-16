@@ -5,16 +5,15 @@ extends GutTest
 
 const ERROR_INTERVAL: float = 0.001
 
-const str_to_color_params = [
-	["a", Color(0.9804, 0.9706, 0.5078, 1.0000)],
-	["b", Color(0.6882, 0.9216, 0.7510, 1.0000)],
-	["c", Color(0.9275, 0.8608, 0.5529, 1.0000)],
-	["test", Color(0.7353, 0.9176, 0.8118, 1.0000)],
+const variant_to_color_params = [
+	["string", Color(0.6471, 0.5196, 0.7176, 1.0000)],
+	[&"stringname", Color(0.6196, 0.8216, 0.7333, 1.0000)],
+	[Vector3.ONE, Color(0.6176, 0.8392, 0.6118, 1.0000)],
 ]
 
 
-func test_str_to_color(params=use_parameters(str_to_color_params)) -> void:
-	var color: Color = ColorUtils.str_to_color(params[0])
+func test_variant_to_color(params=use_parameters(variant_to_color_params)) -> void:
+	var color: Color = ColorUtils.variant_to_color(params[0])
 	var color_expected: Color = params[1]
 
 	assert_almost_eq(color.r, color_expected.r, ERROR_INTERVAL)
