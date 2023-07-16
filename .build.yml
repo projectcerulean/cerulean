@@ -1,8 +1,12 @@
 # Build manifest for sourcehut (https://builds.sr.ht/~gullik/cerulean)
 image: archlinux
 
+environment:
+  GODOT_VERSION: 4.0.3
+  GODOT_LINUX_64_ZIP_SHA512: 56a41dfdf96e20b015a9d9b245fb91bfbb13add62d7eabb377282a1ea15b6043a6aa59800cba08fcd3c5c2bca9bf3a499b0e18a6ccb9d22b514d86f7c6528bd4
+
 packages:
-  - curl git kubo unzip
+  - curl git kubo make unzip
 
 sources:
   - https://git.sr.ht/~gullik/cerulean
@@ -18,16 +22,24 @@ tasks:
       kill "$!"
 
   - download_godot: |
-      timeout --verbose 1000 curl --silent --remote-name 'https://downloads.tuxfamily.org/godotengine/4.0.3/Godot_v4.0.3-stable_linux.x86_64.zip'
-      echo '56a41dfdf96e20b015a9d9b245fb91bfbb13add62d7eabb377282a1ea15b6043a6aa59800cba08fcd3c5c2bca9bf3a499b0e18a6ccb9d22b514d86f7c6528bd4  Godot_v4.0.3-stable_linux.x86_64.zip' | sha512sum --check
-      unzip Godot_v4.0.3-stable_linux.x86_64.zip
+      timeout --verbose 1000 curl --silent --remote-name "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+      echo "${GODOT_LINUX_64_ZIP_SHA512}  Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" | sha512sum --check
+      unzip "Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+      [ -x "Godot_v${GODOT_VERSION}-stable_linux.x86_64" ]
+
+  - set_version: |
+      cd cerulean
+      sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
+
+  - run_unit_tests: |
+      cd cerulean
+      timeout --verbose 1000 sh -c "make GODOT=../Godot_v${GODOT_VERSION}-stable_linux.x86_64 test"
 
   - export_game_pack: |
       cd cerulean
-      sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
-      timeout --verbose 1000 sh -c '../Godot_v4.0.3-stable_linux.x86_64 --headless --editor --quit || true'
-      timeout --verbose 1000 sh -c '../Godot_v4.0.3-stable_linux.x86_64 --headless --export-pack Linux/X11 ../cerulean.pck || true'
+      timeout --verbose 1000 sh -c "make GODOT=../Godot_v${GODOT_VERSION}-stable_linux.x86_64 cerulean.pck"
       cd ..
+      mv cerulean/cerulean.pck .
       sha512sum cerulean.pck | tee cerulean.pck.sha512
 
 artifacts:

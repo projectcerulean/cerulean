@@ -17,7 +17,7 @@ func _ready() -> void:
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(scene_transition_resource != null, Errors.NULL_RESOURCE)
 
-	scene_transition_resource.scene_path = get_tree().current_scene.scene_file_path
+	scene_transition_resource.scene_path = ""
 	scene_transition_resource.spawn_point_id = 0
 
 

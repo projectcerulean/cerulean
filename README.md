@@ -32,7 +32,7 @@ Using a gamepad is highly recommended.
 
 ## Development
 
-Clone the repository.
+Clone the repository: `git clone --recursive [repo url]`
 
 Assets are synced using IPFS (https://ipfs.tech) to prevent having to check in large binary files into the repository.
 
