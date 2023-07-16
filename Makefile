@@ -21,6 +21,7 @@ $(TEST_REPORT_XML):
 	$(GODOT) --headless --script addons/gut/gut_cmdln.gd -gjunit_xml_file=$@
 	@[ -f $@ ]
 	@if grep -q 'tests="0"' $(TEST_REPORT_XML); then echo 'Some tests did not run.'; exit 1; fi
+	@if grep -q 'status="no asserts"' $(TEST_REPORT_XML); then echo 'Some tests did not have any assertions.'; exit 1; fi
 	@if grep -q '<failure' $(TEST_REPORT_XML); then echo 'There were failing tests.'; exit 1; fi
 .PHONY: $(TEST_REPORT_XML)
 
