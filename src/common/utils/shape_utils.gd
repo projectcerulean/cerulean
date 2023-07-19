@@ -27,18 +27,20 @@ static func get_shape_height(shape: Shape3D) -> float:
 		return 0.0
 
 
-static func get_shape_scaled_xy(shape: Shape3D, scale: float) -> Shape3D:
+static func get_shape_scaled_xz(shape: Shape3D, scale: float) -> Shape3D:
 	var box_shape: BoxShape3D = shape as BoxShape3D
 	var capsule_shape: CapsuleShape3D = shape as CapsuleShape3D
 
 	if box_shape != null:
 		var shape_scaled: BoxShape3D = shape.duplicate() as BoxShape3D
 		shape_scaled.size.x *= scale
-		shape_scaled.size.y *= scale
+		shape_scaled.size.z *= scale
 		return shape_scaled
 	elif capsule_shape != null:
 		var shape_scaled: CapsuleShape3D = shape.duplicate() as CapsuleShape3D
 		shape_scaled.radius *= scale
+		assert(is_equal_approx(shape_scaled.radius, capsule_shape.radius * scale), Errors.INVALID_ARGUMENT)
+		assert(is_equal_approx(shape_scaled.height, capsule_shape.height), Errors.INVALID_ARGUMENT)
 		return shape_scaled
 	else:
 		assert(false, Errors.NOT_IMPLEMENTED)

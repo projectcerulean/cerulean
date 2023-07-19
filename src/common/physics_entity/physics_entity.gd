@@ -46,7 +46,7 @@ func _ready() -> void:
 	shape = collision_shape.shape
 	assert(shape != null, Errors.NULL_RESOURCE)
 
-	shape_cast.shape = ShapeUtils.get_shape_scaled_xy(shape, shape_cast_scale)
+	shape_cast.shape = ShapeUtils.get_shape_scaled_xz(shape, shape_cast_scale)
 	shape_cast.target_position = shape_cast_target_position
 	shape_cast.collision_mask = collision_mask
 	shape_cast.position.y = shape_cast.shape.margin + EPSILON
