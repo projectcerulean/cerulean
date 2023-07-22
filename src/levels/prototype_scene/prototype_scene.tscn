@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="2_vqmgf"]
-[ext_resource type="Material" uid="uid://dsxq365kahp0q" path="res://src/levels/test_scene/stone_material.tres" id="3_8uyq8"]
+[ext_resource type="Material" uid="uid://dsxq365kahp0q" path="res://src/levels/prototype_scene/stone_material.tres" id="3_8uyq8"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
-[ext_resource type="Material" uid="uid://bt1s8fd833wwo" path="res://src/levels/test_scene/grass_material.tres" id="5_7fh5e"]
-[ext_resource type="PackedScene" uid="uid://3mhvdybo4ccu" path="res://src/levels/test_scene/flag/flag.tscn" id="6_psp6u"]
+[ext_resource type="Material" uid="uid://bt1s8fd833wwo" path="res://src/levels/prototype_scene/grass_material.tres" id="5_7fh5e"]
+[ext_resource type="PackedScene" uid="uid://3mhvdybo4ccu" path="res://src/levels/prototype_scene/flag/flag.tscn" id="6_psp6u"]
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="8_l3hhy"]
 [ext_resource type="Resource" uid="uid://b458fluv0h1ap" path="res://assets/dialogue/tutorial/jumping.tres" id="9_ilvj1"]
 [ext_resource type="Resource" uid="uid://df62i7tswvfok" path="res://assets/dialogue/tutorial/diving.tres" id="10_vafey"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="14_e3mr8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="15_7eokh"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="17_55rd1"]
-[ext_resource type="Environment" uid="uid://d007esvebm5xg" path="res://src/levels/test_scene/environment.tres" id="18_3u81p"]
+[ext_resource type="Environment" uid="uid://d007esvebm5xg" path="res://src/levels/prototype_scene/environment.tres" id="18_3u81p"]
 [ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="18_uwe8s"]
 [ext_resource type="PackedScene" uid="uid://dbyi08edsf61l" path="res://src/entities/wind/wind_trail_generator.tscn" id="20_0xlde"]
 [ext_resource type="PackedScene" uid="uid://b25s8e4xiy0gw" path="res://src/entities/box/box.tscn" id="21_0mayf"]
@@ -1383,7 +1383,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.5, -14.5, -85.9)
 
 [node name="LoadingZone" parent="." instance=ExtResource("17_55rd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9911, -47)
-scene_key = &"TEST_DUNGEON"
+scene_key = &"PROTOTYPE_DUNGEON"
 spawn_point_id = 0
 
 [node name="WindTrailGenerator" parent="." instance=ExtResource("20_0xlde")]

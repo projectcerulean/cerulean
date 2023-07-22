@@ -30,7 +30,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
 offset_top = -512.0
-offset_right = 512.0
+offset_right = 628.0
 offset_bottom = -128.0
 grow_vertical = 0
 theme_override_constants/separation = 10
@@ -63,7 +63,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
 offset_top = -512.0
-offset_right = 512.0
+offset_right = 628.0
 offset_bottom = -128.0
 grow_vertical = 0
 theme_override_constants/separation = 10
@@ -72,12 +72,12 @@ alignment = 2
 [node name="TestScene" parent="Levels" instance=ExtResource("5_jy57n")]
 layout_mode = 2
 is_level_option = true
-key_string = &"TEST_SCENE"
+key_string = &"PROTOTYPE_SCENE"
 
 [node name="TestDungeon" parent="Levels" instance=ExtResource("5_jy57n")]
 layout_mode = 2
 is_level_option = true
-key_string = &"TEST_DUNGEON"
+key_string = &"PROTOTYPE_DUNGEON"
 
 [node name="Settings" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -85,8 +85,8 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 128.0
-offset_top = -512.0
-offset_right = 512.0
+offset_top = -524.0
+offset_right = 628.0
 offset_bottom = -128.0
 grow_vertical = 0
 theme_override_constants/separation = 10

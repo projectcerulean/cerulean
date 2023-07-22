@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="2_af2ft"]
-[ext_resource type="Material" uid="uid://b84fpimwqkcky" path="res://src/levels/test_dungeon/material.tres" id="3_m5lxh"]
+[ext_resource type="Material" uid="uid://b84fpimwqkcky" path="res://src/levels/prototype_dungeon/material.tres" id="3_m5lxh"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="4_oftnn"]
 [ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="5_7fqri"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="14_11lwf"]
 [ext_resource type="PackedScene" uid="uid://cakfuk8ocptkq" path="res://src/entities/rotator/rotator.tscn" id="14_l6rq7"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="15_e7a0f"]
-[ext_resource type="Environment" uid="uid://cj4m17hiwmdr2" path="res://src/levels/test_dungeon/environment.tres" id="15_nl3es"]
+[ext_resource type="Environment" uid="uid://cj4m17hiwmdr2" path="res://src/levels/prototype_dungeon/environment.tres" id="15_nl3es"]
 [ext_resource type="PackedScene" uid="uid://b25s8e4xiy0gw" path="res://src/entities/box/box.tscn" id="16_p0we0"]
 [ext_resource type="PackedScene" uid="uid://cx6853dllog27" path="res://src/entities/bounce_pad/bounce_pad.tscn" id="19_any5i"]
 
@@ -1475,7 +1475,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -33, 0)
 
 [node name="LoadingZone" parent="." instance=ExtResource("4_oftnn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 107.4)
-scene_key = &"TEST_SCENE"
+scene_key = &"PROTOTYPE_SCENE"
 spawn_point_id = 1
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("14_11lwf")]
