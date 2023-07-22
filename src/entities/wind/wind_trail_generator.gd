@@ -21,7 +21,7 @@ func _ready() -> void:
 func _on_spawn_timer_timeout() -> void:
 	if is_instance_valid(wind_trails[i_trail]):
 		wind_trails[i_trail].queue_free()
-	wind_trails[i_trail] = preload("res://src/entities/wind/wind_trail.tscn").instantiate()
+	wind_trails[i_trail] = preload("wind_trail.tscn").instantiate()
 	add_child(wind_trails[i_trail])
 	wind_trails[i_trail].position = Vector3(randf(), randf(), randf()) * shape_size - shape_size / 2.0
 	wind_trails[i_trail].rotate_y(angle)

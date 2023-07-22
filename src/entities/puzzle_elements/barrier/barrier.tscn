@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/barrier/barrier.gdshader" id="1_alkq1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="3_qqest"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/barrier/barrier_state.gd" id="4_nmhmp"]
-[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/autoload/persistent_data/persistent_data.tres" id="4_trjsg"]
+[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="4_trjsg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rojgn"]
 size = Vector3(5, 0.5, 5)

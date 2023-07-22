@@ -1,0 +1,45 @@
+[gd_scene load_steps=14 format=3 uid="uid://cel5c4pn2hi7a"]
+
+[ext_resource type="PackedScene" uid="uid://6mrawjjm5bds" path="res://src/singletons/audio_player/audio_player.tscn" id="1_1usg1"]
+[ext_resource type="PackedScene" uid="uid://cyvmbau3f180w" path="res://src/singletons/camera/camera_target.tscn" id="2_nknvc"]
+[ext_resource type="PackedScene" uid="uid://jbkbt1h6gqsx" path="res://src/singletons/camera/camera.tscn" id="2_w681v"]
+[ext_resource type="PackedScene" uid="uid://bxhhyuuna1qrq" path="res://src/singletons/engine_settings_manager/engine_settings_manager.tscn" id="3_c1tpn"]
+[ext_resource type="PackedScene" uid="uid://b7penkjrvi0vj" path="res://src/singletons/game_state_manager/game_state_manager.tscn" id="4_13i7i"]
+[ext_resource type="PackedScene" uid="uid://dvo8jy16tym0q" path="res://src/singletons/data_loader/data_loader.tscn" id="4_gty8g"]
+[ext_resource type="PackedScene" uid="uid://bu8gqbu0haqpa" path="res://src/singletons/interaction_manager/interaction_manager.tscn" id="5_2jem2"]
+[ext_resource type="PackedScene" uid="uid://bmx1c40eaao3u" path="res://src/singletons/lfo/lfo.tscn" id="6_kk4yf"]
+[ext_resource type="PackedScene" uid="uid://b0kqfucoyljto" path="res://src/singletons/scene_manager/scene_manager.tscn" id="7_1jgg5"]
+[ext_resource type="PackedScene" uid="uid://cvkldn8xjhau1" path="res://src/singletons/settings_manager/settings_manager.tscn" id="7_6mcus"]
+[ext_resource type="PackedScene" uid="uid://7eqxy7hhj1dr" path="res://src/singletons/thumbstick_processor/thumbstick_processor.tscn" id="8_v3taq"]
+[ext_resource type="PackedScene" uid="uid://cip7576h1b4xa" path="res://src/singletons/time_manager/time_manager.tscn" id="9_ucb7t"]
+[ext_resource type="PackedScene" uid="uid://dm267sxiobypt" path="res://src/singletons/ui/ui.tscn" id="10_u4357"]
+
+[node name="Main" type="Node"]
+
+[node name="Singletons" type="Node" parent="."]
+
+[node name="TimeManager" parent="Singletons" instance=ExtResource("9_ucb7t")]
+
+[node name="SettingsManager" parent="Singletons" instance=ExtResource("7_6mcus")]
+
+[node name="EngineSettingsManager" parent="Singletons" instance=ExtResource("3_c1tpn")]
+
+[node name="DataLoader" parent="Singletons" instance=ExtResource("4_gty8g")]
+
+[node name="ThumbstickProcessor" parent="Singletons" instance=ExtResource("8_v3taq")]
+
+[node name="CameraTarget" parent="Singletons" instance=ExtResource("2_nknvc")]
+
+[node name="Camera" parent="Singletons" instance=ExtResource("2_w681v")]
+
+[node name="AudioPlayer" parent="Singletons" instance=ExtResource("1_1usg1")]
+
+[node name="LFO" parent="Singletons" instance=ExtResource("6_kk4yf")]
+
+[node name="InteractionManager" parent="Singletons" instance=ExtResource("5_2jem2")]
+
+[node name="UI" parent="Singletons" instance=ExtResource("10_u4357")]
+
+[node name="GameStateManager" parent="Singletons" instance=ExtResource("4_13i7i")]
+
+[node name="SceneManager" parent="Singletons" instance=ExtResource("7_1jgg5")]

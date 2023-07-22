@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/common/water_detector/water_detector.gd" id="1_axsn5"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="2_otj83"]
-[ext_resource type="Resource" uid="uid://caltt67cj0pty" path="res://src/autoload/time_manager/time_resource_gameplay.tres" id="3_s0c6i"]
+[ext_resource type="Resource" uid="uid://caltt67cj0pty" path="res://src/singletons/time_manager/time_resource_gameplay.tres" id="3_s0c6i"]
 
 [sub_resource type="SphereShape3D" id="7"]
 radius = 0.1

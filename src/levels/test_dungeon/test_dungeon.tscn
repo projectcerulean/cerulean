@@ -1,7 +1,7 @@
 [gd_scene load_steps=62 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
-[ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/spawn_point/spawn_point.tscn" id="2_af2ft"]
+[ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="2_af2ft"]
 [ext_resource type="Material" uid="uid://b84fpimwqkcky" path="res://src/levels/test_dungeon/material.tres" id="3_m5lxh"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="4_oftnn"]

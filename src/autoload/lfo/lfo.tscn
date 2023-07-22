@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmx1c40eaao3u"]
-
-[ext_resource type="Script" path="res://src/autoload/lfo/lfo.gd" id="1_aof2r"]
-[ext_resource type="Resource" uid="uid://bqsrxvfl6htqr" path="res://src/autoload/lfo/lfo_resource.tres" id="2_2sdf1"]
-
-[node name="LFO" type="Node"]
-process_mode = 3
-script = ExtResource("1_aof2r")
-_lfo_resource = ExtResource("2_2sdf1")

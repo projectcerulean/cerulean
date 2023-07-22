@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Cerulean"
-run/main_scene="res://src/levels/test_scene/test_scene.tscn"
+run/main_scene="res://src/main/main.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://assets/graphics/icon/icon.png"
 config/windows_native_icon="res://assets/graphics/icon/icon.ico"
@@ -22,20 +22,7 @@ buses/default_bus_layout="res://src/sound/bus_layouts/default_bus_layout.tres"
 
 [autoload]
 
-Randomize="res://src/autoload/randomize/randomize.gd"
-TimeManager="res://src/autoload/time_manager/time_manager.tscn"
 Signals="*res://src/autoload/signals/signals.gd"
-SettingsManager="res://src/autoload/settings_manager/settings_manager.tscn"
-EngineSettingsManager="res://src/autoload/engine_settings_manager/engine_settings_manager.tscn"
-DataLoader="res://src/autoload/data_loader/data_loader.tscn"
-ThumbstickProcessor="res://src/autoload/thumbstick_processor/thumbstick_processor.tscn"
-CameraTarget="res://src/autoload/camera/camera_target.tscn"
-Camera="res://src/autoload/camera/camera.tscn"
-AudioPlayer="res://src/autoload/audio_player/audio_player.tscn"
-LowFrequencyOscillator="res://src/autoload/lfo/lfo.tscn"
-InteractionManager="res://src/autoload/interaction_manager/interaction_manager.tscn"
-UI="res://src/autoload/ui/ui.tscn"
-GameStateManager="res://src/autoload/game_state_manager/game_state_manager.tscn"
 
 [debug]
 

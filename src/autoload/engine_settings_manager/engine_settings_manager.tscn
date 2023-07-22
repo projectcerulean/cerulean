@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxhhyuuna1qrq"]
-
-[ext_resource type="Script" path="res://src/autoload/engine_settings_manager/engine_settings_manager.gd" id="1_gpn4q"]
-[ext_resource type="Resource" uid="uid://bbaupgv7alorj" path="res://src/autoload/settings_manager/settings.tres" id="2_4ta38"]
-
-[node name="EngineSettingsManager" type="Node"]
-script = ExtResource("1_gpn4q")
-_settings_resource = ExtResource("2_4ta38")

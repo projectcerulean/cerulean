@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bqsrxvfl6htqr"]
+
+[ext_resource type="Script" path="res://src/singletons/lfo/lfo_resource.gd" id="1_4lfl5"]
+
+[resource]
+script = ExtResource( "1_4lfl5" )

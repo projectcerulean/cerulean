@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/entities/water/water.gd" id="2_3s67h"]
 [ext_resource type="PackedScene" uid="uid://tubld1hhwoc" path="res://src/common/area/area.tscn" id="2_5wdg5"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="3_378uc"]
-[ext_resource type="Resource" uid="uid://caltt67cj0pty" path="res://src/autoload/time_manager/time_resource_gameplay.tres" id="4_46k1v"]
+[ext_resource type="Resource" uid="uid://caltt67cj0pty" path="res://src/singletons/time_manager/time_resource_gameplay.tres" id="4_46k1v"]
 
 [sub_resource type="PlaneMesh" id="1"]
 size = Vector2(64, 64)

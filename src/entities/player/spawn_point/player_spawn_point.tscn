@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://k4hm5laohna7"]
+
+[ext_resource type="Script" path="res://src/entities/player/spawn_point/player_spawn_point.gd" id="1_opnij"]
+[ext_resource type="Resource" uid="uid://dwq73chlxsr7b" path="res://src/singletons/scene_manager/scene_info_resource.tres" id="2_4iyn0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2gsjs"]
+radius = 0.25
+height = 1.25
+
+[node name="PlayerSpawnPoint" type="Marker3D"]
+script = ExtResource("1_opnij")
+scene_info_resource = ExtResource("2_4iyn0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2gsjs")
+disabled = true

@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
-[ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/autoload/thumbstick_processor/thumbstick_resource_left.tres" id="2_t6dk8"]
+[ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
 [ext_resource type="Script" path="res://src/entities/player/player_idle.gd" id="3"]
 [ext_resource type="Resource" uid="uid://c4t8y3cjatn2" path="res://src/entities/player/player_input_vector_resource.tres" id="3_2i2xh"]
 [ext_resource type="Script" path="res://src/entities/player/player_run.gd" id="4"]
-[ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/autoload/game_state_manager/game_state_resource.tres" id="4_gviv5"]
 [ext_resource type="Script" path="res://src/entities/player/player_fall.gd" id="5"]
 [ext_resource type="Resource" path="res://src/entities/player/player_transform_interpolated.tres" id="5_f776o"]
+[ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="5_okm0g"]
 [ext_resource type="Script" path="res://src/entities/player/player_jump.gd" id="6"]
-[ext_resource type="Resource" path="res://src/autoload/camera/camera_transform.tres" id="6_sk484"]
+[ext_resource type="Resource" path="res://src/singletons/camera/camera_transform.tres" id="6_ibr24"]
 [ext_resource type="Script" path="res://src/entities/player/player_glide.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://b81k6jxhrod56" path="res://src/common/physics_step_interpolator/physics_step_interpolator.tscn" id="7_3cj2e"]
 [ext_resource type="Script" path="res://src/entities/player/squash_stretch.gd" id="7_pchkq"]
@@ -89,11 +89,11 @@ physics_material_override = SubResource("PhysicsMaterial_khrrq")
 lock_rotation = true
 linear_damp_mode = 1
 script = ExtResource("1")
-_thumbstick_resource_left = ExtResource("2_t6dk8")
+_thumbstick_resource_left = ExtResource("2_4s2oi")
 _input_vector_resource = ExtResource("3_2i2xh")
 _state_resource = ExtResource("12")
-_game_state_resource = ExtResource("4_gviv5")
-_camera_transform_resource = ExtResource("6_sk484")
+_game_state_resource = ExtResource("5_okm0g")
+_camera_transform_resource = ExtResource("6_ibr24")
 transform_inheritence_enabled = true
 floor_snapping_enabled = true
 

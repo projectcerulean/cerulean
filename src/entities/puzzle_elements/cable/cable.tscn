@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/cable/cable.gd" id="2_gr7c4"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="3_0rjeb"]
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="4_3jue8"]
-[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/autoload/persistent_data/persistent_data.tres" id="4_pi5qb"]
+[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="4_pi5qb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nssbg"]
 resource_local_to_scene = true

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu8gqbu0haqpa"]
+
+[ext_resource type="Script" path="res://src/singletons/interaction_manager/interaction_manager.gd" id="1_a6yb8"]
+[ext_resource type="Resource" uid="uid://dsjf0vjev2thx" path="res://src/entities/player/player_transform.tres" id="2_dnnhr"]
+
+[node name="InteractionManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_a6yb8")
+_player_transform_resource = ExtResource("2_dnnhr")

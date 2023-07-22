@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0kqfucoyljto"]
+
+[ext_resource type="Script" path="res://src/singletons/scene_manager/scene_manager.gd" id="1_s666b"]
+[ext_resource type="Resource" uid="uid://dwq73chlxsr7b" path="res://src/singletons/scene_manager/scene_info_resource.tres" id="2_nej1v"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_s666b")
+scene_key_default = &"TEST_SCENE"
+scene_info_resource = ExtResource("2_nej1v")

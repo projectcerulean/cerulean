@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_u67b3"]
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="3_oyjwr"]
 [ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="5_dsacl"]
-[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/autoload/persistent_data/persistent_data.tres" id="6_bdtk4"]
+[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="6_bdtk4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5rgmq"]
 size = Vector3(0.5, 0.5, 0.5)

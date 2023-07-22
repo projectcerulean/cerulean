@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3kve5ytakd60"]
+
+[ext_resource type="Script" path="res://src/singletons/ui/pause_menu/pause_menu.gd" id="1_liyvp"]
+[ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="2_5wlx4"]
+[ext_resource type="Resource" uid="uid://cgbec5sqyvjw6" path="res://src/sound/sfx/sfx_resources/menu_select.tres" id="3_75cpk"]
+[ext_resource type="Resource" uid="uid://dwq73chlxsr7b" path="res://src/singletons/scene_manager/scene_info_resource.tres" id="4_qtid3"]
+[ext_resource type="PackedScene" uid="uid://di72lcsa2dva7" path="res://src/singletons/ui/pause_menu/pause_menu_option.tscn" id="5_jy57n"]
+[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="6_fqptd"]
+[ext_resource type="Script" path="res://src/singletons/ui/pause_menu/pause_menu_state_main.gd" id="7_rgeje"]
+[ext_resource type="Script" path="res://src/singletons/ui/pause_menu/pause_menu_state_levels.gd" id="8_k64mm"]
+[ext_resource type="Script" path="res://src/singletons/ui/pause_menu/pause_menu_state_settings.gd" id="9_tnl2d"]
+[ext_resource type="Script" path="res://src/sound/sfx/sfx_state_transition_listener.gd" id="10_0mtdj"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_liyvp")
+game_state_resource = ExtResource("2_5wlx4")
+sfx_resource_select = ExtResource("3_75cpk")
+scene_info_resource = ExtResource("4_qtid3")
+
+[node name="Main" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = -128.0
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Resume" parent="Main" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+key_string = &"Resume"
+
+[node name="ReloadLevel" parent="Main" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+key_string = &"Reload level"
+
+[node name="ChangeLevel" parent="Main" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+key_string = &"Change level"
+
+[node name="Settings" parent="Main" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+key_string = &"Settings"
+
+[node name="Quit" parent="Main" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+key_string = &"Quit"
+
+[node name="Levels" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = -128.0
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="TestScene" parent="Levels" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_level_option = true
+key_string = &"TEST_SCENE"
+
+[node name="TestDungeon" parent="Levels" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_level_option = true
+key_string = &"TEST_DUNGEON"
+
+[node name="Settings" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -512.0
+offset_right = 512.0
+offset_bottom = -128.0
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="BackgroundMusic" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_settings_option = true
+key_string = &"BACKGROUND_MUSIC"
+
+[node name="CameraX" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_settings_option = true
+key_string = &"CAMERA_X_INVERTED"
+
+[node name="CameraY" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_settings_option = true
+key_string = &"CAMERA_Y_INVERTED"
+
+[node name="FieldOfView" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_settings_option = true
+key_string = &"FIELD_OF_VIEW"
+
+[node name="RenderScale" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_settings_option = true
+key_string = &"RENDER_SCALE"
+
+[node name="Msaa" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_settings_option = true
+key_string = &"MSAA"
+
+[node name="Vsync" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+is_settings_option = true
+key_string = &"VSYNC"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+script = ExtResource("6_fqptd")
+_initial_state = NodePath("Main")
+
+[node name="Main" type="Node" parent="StateMachine"]
+script = ExtResource("7_rgeje")
+
+[node name="Levels" type="Node" parent="StateMachine"]
+script = ExtResource("8_k64mm")
+
+[node name="Settings" type="Node" parent="StateMachine"]
+script = ExtResource("9_tnl2d")
+
+[node name="SfxMenuSwitch" type="Node" parent="."]
+script = ExtResource("10_0mtdj")
+_sfx_resource_enter = ExtResource("3_75cpk")
+_sfx_resource_exit = ExtResource("3_75cpk")
+_target_states = Array[NodePath]([NodePath("../StateMachine/Main")])

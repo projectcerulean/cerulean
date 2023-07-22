@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SceneInfoResource" load_steps=2 format=3 uid="uid://dwq73chlxsr7b"]
+
+[ext_resource type="Script" path="res://src/singletons/scene_manager/scene_info_resource.gd" id="1_h7yjc"]
+
+[resource]
+script = ExtResource("1_h7yjc")

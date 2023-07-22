@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqqkay40lit0k"]
+
+[ext_resource type="Script" path="res://src/singletons/audio_player/bgm/bgm_resource_player.gd" id="1_5xjrb"]
+
+[node name="BgmResourcePlayer" type="Node"]
+script = ExtResource("1_5xjrb")

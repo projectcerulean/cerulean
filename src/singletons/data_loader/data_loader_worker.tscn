@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://be517apkf1ffh"]
+
+[ext_resource type="Script" path="res://src/singletons/data_loader/data_loader_worker.gd" id="1_vclku"]
+
+[node name="DataLoaderThread" type="Node"]
+script = ExtResource("1_vclku")
