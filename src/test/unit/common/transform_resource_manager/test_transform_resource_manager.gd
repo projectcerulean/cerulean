@@ -39,7 +39,7 @@ func after_each() -> void:
 func test_transform_resource_updates_on_process_update() -> void:
 	for position in positions:
 		anchor_node.global_position = position
-		await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame")
+		await TestUtils.wait_for_process_frame(self)
 		assert_eq(transform_resource.value, anchor_node.global_transform)
 
 

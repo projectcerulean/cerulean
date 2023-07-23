@@ -52,3 +52,21 @@ static func get_dir_name(file_path: String) -> String:
 	var file_path_stripped: String = file_path.rstrip("/")
 	var dir_name: String = file_path_stripped.rsplit("/", false, 1)[0]
 	return dir_name
+
+
+static func wait_for_process_frame(test: GutTest):
+	await test.wait_for_signal(test.get_tree().process_frame, 1.0, "Waiting for process frame")
+
+
+static func wait_for_process_frames(test: GutTest, count: int):
+	for i in range(count):
+		await test.wait_for_signal(test.get_tree().process_frame, 1.0, "Waiting for process frame %s/%s" % [i + 1, count])
+
+
+static func wait_for_physics_frame(test: GutTest):
+	await test.wait_for_signal(test.get_tree().physics_frame, 1.0, "Waiting for physics frame")
+
+
+static func wait_for_physics_frames(test: GutTest, count: int):
+	for i in range(count):
+		await test.wait_for_signal(test.get_tree().physics_frame, 1.0, "Waiting for physics frame %s/%s" % [i + 1, count])

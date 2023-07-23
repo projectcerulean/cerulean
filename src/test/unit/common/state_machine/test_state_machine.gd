@@ -13,7 +13,7 @@ func before_each() -> void:
 
 func test_state_machine_initial_state() -> void:
 	var state_machine: StateMachine = await create_state_machine(I_DEFAULT_INITIAL_STATE)
-	await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame")
+	await TestUtils.wait_for_process_frame(self)
 	verify_initial_state(state_machine, I_DEFAULT_INITIAL_STATE)
 	state_machine.free()
 
@@ -26,7 +26,7 @@ func test_state_machine_request_state_change() -> void:
 	var new_state_name: StringName = state_machine.get_child(i_new_state).name
 	var data_dict: Dictionary = {"some key": "some value"}
 	Signals.emit_request_state_change(self, state_machine, new_state_name, data_dict)
-	await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame")
+	await TestUtils.wait_for_process_frame(self)
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, data_dict)
 
@@ -39,7 +39,7 @@ func test_state_machine_request_state_change_next() -> void:
 
 	var data_dict: Dictionary = {"some key": "some value"}
 	Signals.emit_request_state_change_next(self, state_machine, data_dict)
-	await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame")
+	await TestUtils.wait_for_process_frame(self)
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, I_DEFAULT_INITIAL_STATE + 1, data_dict)
 
@@ -53,7 +53,7 @@ func test_state_machine_request_state_change_next_wrap() -> void:
 
 	var data_dict: Dictionary = {"some key": "some value"}
 	Signals.emit_request_state_change_next(self, state_machine, data_dict)
-	await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame")
+	await TestUtils.wait_for_process_frame(self)
 
 	verify_state_change(state_machine, i_initial_state, 0, data_dict)
 
@@ -63,7 +63,7 @@ func test_state_machine_request_state_change_next_wrap() -> void:
 func test_state_machine_get_state_transition_from_state_transition_frame_process() -> void:
 	var i_new_state: int = 4
 	var state_machine: StateMachine = await create_state_machine(I_DEFAULT_INITIAL_STATE, i_new_state)
-	await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame")
+	await TestUtils.wait_for_process_frame(self)
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, {})
 
@@ -77,7 +77,7 @@ func test_state_machine_get_state_transition_from_state_transition_frame_physics
 		i_new_state,
 		StateMachine.TRANSITION_FRAME.PHYSICS_PROCESS,
 	)
-	await wait_for_signal(get_tree().physics_frame, 1.0, "Waiting for physics frame")
+	await TestUtils.wait_for_physics_frame(self)
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, {})
 
@@ -99,7 +99,7 @@ func test_state_machine_persistent_data() -> void:
 	var new_state_name: StringName = state_machine.get_child(i_new_state).name
 	var data_dict: Dictionary = {"some key": "some value"}
 	Signals.emit_request_state_change(self, state_machine, new_state_name, data_dict)
-	await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame")
+	await TestUtils.wait_for_process_frame(self)
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, data_dict)
 
 	state_machine.free()
@@ -168,7 +168,7 @@ func create_state_machine(
 	else:
 		fail_test("Invalid physics frame parameter")
 
-	await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame")
+	await TestUtils.wait_for_process_frame(self)
 
 	return state_machine
 
