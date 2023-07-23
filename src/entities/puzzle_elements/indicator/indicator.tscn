@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cdlxuj1emu411"]
 
-[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="1_54p1h"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator.gd" id="1_bsmqb"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="2_a0m1r"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_u67b3"]
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="3_oyjwr"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="5_6h84w"]
 [ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="5_dsacl"]
 [ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="6_bdtk4"]
 
@@ -46,8 +46,7 @@ layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 light_energy = 2.0
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("1_54p1h")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("5_6h84w")]
 _initial_state = NodePath("Disabled")
 _persistent_data = ExtResource("6_bdtk4")
 

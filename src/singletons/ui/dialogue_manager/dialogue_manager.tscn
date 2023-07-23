@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/singletons/ui/dialogue_manager/dialogue_manager.gd" id="1_r7ctw"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="2_f52uj"]
-[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="3_y7dcq"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="3_5jouh"]
 [ext_resource type="Script" path="res://src/singletons/ui/dialogue_manager/dialogue_state_wait.gd" id="6_ic3li"]
 [ext_resource type="Script" path="res://src/singletons/ui/dialogue_manager/dialogue_state_output.gd" id="6_n3v8x"]
 
@@ -22,8 +22,7 @@ offset_bottom = 45.0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_7a8fw")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("3_y7dcq")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("3_5jouh")]
 _initial_state = NodePath("Wait")
 
 [node name="Output" type="Node" parent="StateMachine"]

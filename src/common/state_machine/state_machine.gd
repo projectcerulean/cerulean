@@ -46,12 +46,6 @@ func _ready() -> void:
 	transition_to(initial_state.name, {})
 
 
-# Delegate `_unhandled_input` callback to the active state.
-func _unhandled_input(event: InputEvent) -> void:
-	if current_state != null:
-		current_state.unhandled_input(event)
-
-
 # Delegate `_process` callback to the active state.
 func _process(delta: float) -> void:
 	if current_state != null:

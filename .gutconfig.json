@@ -1,6 +1,6 @@
 {
   "dirs": [
-    "res://src/test/"
+    "res://src/test/unit/"
   ],
   "should_exit": true,
   "ignore_pause": true,

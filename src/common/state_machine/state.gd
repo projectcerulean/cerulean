@@ -11,11 +11,6 @@ const NEW_STATE: StringName = &"NEW_STATE"
 const OLD_STATE: StringName = &"OLD_STATE"
 
 
-# Virtual function. Receives events from the `_unhandled_input()` callback.
-func unhandled_input(_event: InputEvent) -> void:
-	pass
-
-
 # Virtual function. Corresponds to the `_process()` callback.
 func process(_delta: float) -> void:
 	pass

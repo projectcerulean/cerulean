@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://cgbec5sqyvjw6" path="res://src/sound/sfx/sfx_resources/menu_select.tres" id="3_75cpk"]
 [ext_resource type="Resource" uid="uid://dwq73chlxsr7b" path="res://src/singletons/scene_manager/scene_info_resource.tres" id="4_qtid3"]
 [ext_resource type="PackedScene" uid="uid://di72lcsa2dva7" path="res://src/singletons/ui/pause_menu/pause_menu_option.tscn" id="5_jy57n"]
-[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="6_fqptd"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="6_qsjkl"]
 [ext_resource type="Script" path="res://src/singletons/ui/pause_menu/pause_menu_state_main.gd" id="7_rgeje"]
 [ext_resource type="Script" path="res://src/singletons/ui/pause_menu/pause_menu_state_levels.gd" id="8_k64mm"]
 [ext_resource type="Script" path="res://src/singletons/ui/pause_menu/pause_menu_state_settings.gd" id="9_tnl2d"]
@@ -127,8 +127,7 @@ layout_mode = 2
 is_settings_option = true
 key_string = &"VSYNC"
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("6_fqptd")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("6_qsjkl")]
 _initial_state = NodePath("Main")
 
 [node name="Main" type="Node" parent="StateMachine"]

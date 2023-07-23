@@ -6,12 +6,12 @@
 [ext_resource type="Material" uid="uid://n73fv878e5k0" path="res://src/entities/puzzle_elements/switch/base_material.tres" id="2_kaiug"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_joint.gd" id="2_pjdkd"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_interaction_action.gd" id="3_bgjta"]
-[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="4_rrpi8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="5_fygd5"]
 [ext_resource type="Script" path="res://src/sound/sfx/sfx_state_transition_listener.gd" id="6_ssf8g"]
 [ext_resource type="Resource" uid="uid://dxgetvxs1tqfh" path="res://src/sound/sfx/sfx_resources/switch_enabled.tres" id="7_gi7uk"]
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="8_2adit"]
 [ext_resource type="Resource" uid="uid://cvlcy7dsg6p28" path="res://src/sound/sfx/sfx_resources/switch_disabled.tres" id="8_aedo8"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="9_tdrh8"]
 [ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="10_ey7nc"]
 [ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="10_kk3af"]
 
@@ -123,8 +123,7 @@ light_color = Color(1, 0.270588, 0, 1)
 [node name="Action" type="Node3D" parent="Joint/Crystal/Interaction"]
 script = ExtResource("3_bgjta")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("4_rrpi8")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("9_tdrh8")]
 _initial_state = NodePath("Disabled")
 _persistent_data = ExtResource("10_kk3af")
 

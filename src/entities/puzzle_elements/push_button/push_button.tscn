@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/push_button/push_button.gd" id="1_1bmxc"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_7i1pt"]
 [ext_resource type="Material" uid="uid://n73fv878e5k0" path="res://src/entities/puzzle_elements/switch/base_material.tres" id="2_t4va4"]
-[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="4_rrpi8"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="5_fygd5"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="6_jrfqd"]
 [ext_resource type="Script" path="res://src/sound/sfx/sfx_state_transition_listener.gd" id="6_ssf8g"]
 [ext_resource type="Resource" uid="uid://dxgetvxs1tqfh" path="res://src/sound/sfx/sfx_resources/switch_enabled.tres" id="7_gi7uk"]
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="8_2adit"]
@@ -75,8 +75,7 @@ layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 light_energy = 2.0
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("4_rrpi8")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("6_jrfqd")]
 _initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="StateMachine"]

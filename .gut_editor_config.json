@@ -3,7 +3,7 @@
  "compact_mode": false,
  "config_file": "res://.gutconfig.json",
  "dirs": [
-  "res://src/test/"
+  "res://src/test/unit/"
  ],
  "disable_colors": false,
  "double_strategy": "partial",

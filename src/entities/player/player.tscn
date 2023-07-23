@@ -1,7 +1,6 @@
 [gd_scene load_steps=48 format=3 uid="uid://b4ihx6a2lcbde"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
-[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="2"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
 [ext_resource type="Script" path="res://src/entities/player/player_idle.gd" id="3"]
 [ext_resource type="Resource" uid="uid://c4t8y3cjatn2" path="res://src/entities/player/player_input_vector_resource.tres" id="3_2i2xh"]
@@ -24,6 +23,7 @@
 [ext_resource type="Script" path="res://src/entities/player/player_mesh_state_default.gd" id="10_vowrm"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine_synchronizer.gd" id="11_mhki8"]
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="13_m5ip5"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_resource_manager.gd" id="15_p5vjh"]
 [ext_resource type="Script" path="res://src/entities/player/player_bounce.gd" id="17_lgpkh"]
 [ext_resource type="Resource" uid="uid://bmra0kxfxo4o" path="res://src/sound/sfx/sfx_resources/bounce_pad_high.tres" id="18_1l0sl"]
@@ -158,8 +158,7 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -
 
 [node name="WaterDetector" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter" instance=ExtResource("25_e1r3t")]
 
-[node name="StateMachine" type="Node" parent="PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("2")
+[node name="StateMachine" parent="PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
 _initial_state = NodePath("Idle")
 
 [node name="Bounce" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
@@ -220,8 +219,7 @@ _transform_resource = ExtResource("5_f776o")
 
 [node name="BlobShadow" parent="PhysicsStepInterpolator" instance=ExtResource("28_5hoqt")]
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("2")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
 _initial_state = NodePath("Idle")
 transition_frame = 1
 

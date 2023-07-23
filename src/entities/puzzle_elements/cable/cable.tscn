@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="1_c8xt7"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/cable/cable.gd" id="2_gr7c4"]
-[ext_resource type="Script" path="res://src/common/state_machine/state_machine.gd" id="3_0rjeb"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="3_qh7ys"]
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="4_3jue8"]
 [ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="4_pi5qb"]
 
@@ -26,8 +26,7 @@ mesh = SubResource("BoxMesh_nssbg")
 surface_material_override/0 = SubResource("ShaderMaterial_eeml1")
 script = ExtResource("2_gr7c4")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
-script = ExtResource("3_0rjeb")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("3_qh7ys")]
 _initial_state = NodePath("Disabled")
 _persistent_data = ExtResource("4_pi5qb")
 
