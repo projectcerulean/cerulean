@@ -1,6 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
+class_name TransformResourceManager
 extends Node3D
 
 @export var _transform_resource: Resource
