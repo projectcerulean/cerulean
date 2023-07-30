@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://src/singletons/game_state_manager/game_state_dialogue.gd" id="4_26nrj"]
 [ext_resource type="Script" path="res://src/singletons/game_state_manager/game_state_pause.gd" id="5"]
 [ext_resource type="Script" path="res://src/singletons/game_state_manager/game_state_scene_transition.gd" id="7_ry6mk"]
-[ext_resource type="Script" path="res://src/common/state_machine/state_resource_manager.gd" id="8_mh8vj"]
+[ext_resource type="PackedScene" uid="uid://bxjp2ck6k1jt6" path="res://src/common/state_machine/state_resource_manager.tscn" id="8_e4ws0"]
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="9_fgrmj"]
 [ext_resource type="Script" path="res://src/singletons/game_state_manager/mouse_capture_controller.gd" id="10_2diqu"]
 
@@ -67,8 +67,7 @@ script = ExtResource("5")
 [node name="SceneTransition" type="Node" parent="StateMachine"]
 script = ExtResource("7_ry6mk")
 
-[node name="StateResourceManager" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
-script = ExtResource("8_mh8vj")
+[node name="StateResourceManager" parent="." node_paths=PackedStringArray("state_machine") instance=ExtResource("8_e4ws0")]
 state_machine = NodePath("../StateMachine")
 _state_resource = ExtResource("3")
 
