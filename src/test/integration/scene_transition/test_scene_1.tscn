@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds0aatxwx5k1k"]
+
+[ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_5mhv1"]
+[ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="1_wdt7x"]
+
+[node name="TestScene1" type="Node3D"]
+script = ExtResource("1_5mhv1")
+
+[node name="PlayerSpawnPoint1" parent="." instance=ExtResource("1_wdt7x")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, -2, 0)
+id = 1
+
+[node name="PlayerSpawnPoint2" parent="." instance=ExtResource("1_wdt7x")]
+transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, 3, -7, 0)
+id = 2
+
+[node name="PlayerSpawnPoint3" parent="." instance=ExtResource("1_wdt7x")]
+transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -3, 2, 0)
+id = 0

@@ -1,7 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends GutTest
+extends UnitTest
 
 const positions: PackedVector3Array = [
 	Vector3(1.0, 2.0, 3.0),
@@ -19,7 +19,7 @@ func before_each() -> void:
 
 	transform_resource = TransformResource.new()
 
-	var transform_resource_manager_scene: PackedScene = TestUtils.load_scene(self, "transform_resource_manager.tscn")
+	var transform_resource_manager_scene: PackedScene = load_scene("transform_resource_manager.tscn")
 	transform_resource_manager = transform_resource_manager_scene.instantiate() as TransformResourceManager
 	assert(transform_resource_manager != null)
 
@@ -41,7 +41,7 @@ func after_each() -> void:
 func test_transform_resource_updates_on_process_update() -> void:
 	for position in positions:
 		anchor_node.global_position = position
-		await TestUtils.wait_for_process_frame(self)
+		await wait_for_process_frame()
 		assert_eq(transform_resource.value, anchor_node.global_transform)
 
 

@@ -1,7 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends GutTest
+extends UnitTest
 
 const AREA_POSITION: Vector3 = Vector3(100.0, 200.0, 300.0)
 const N_PHYSICS_FRAMES_TO_WAIT: int = 3
@@ -16,7 +16,7 @@ func before_each() -> void:
 
 	watch_signals(Signals)
 
-	var area_scene: PackedScene = TestUtils.load_scene(self, "area.tscn")
+	var area_scene: PackedScene = load_scene("area.tscn")
 	area = area_scene.instantiate() as Area
 	assert(area != null)
 	add_collision_shape(area)
@@ -33,27 +33,27 @@ func before_each() -> void:
 
 
 func test_no_collision() -> void:
-	await TestUtils.wait_for_physics_frames(self, N_PHYSICS_FRAMES_TO_WAIT)
+	await wait_for_physics_frames(N_PHYSICS_FRAMES_TO_WAIT)
 	verify_signals_emitted(false, false, false, false)
 
 
 func test_area_collision() -> void:
 	area_collider.global_position = AREA_POSITION
-	await TestUtils.wait_for_physics_frames(self, N_PHYSICS_FRAMES_TO_WAIT)
+	await wait_for_physics_frames(N_PHYSICS_FRAMES_TO_WAIT)
 	verify_signals_emitted(true, false, false, false)
 
 	area_collider.global_position = Vector3()
-	await TestUtils.wait_for_physics_frames(self, N_PHYSICS_FRAMES_TO_WAIT)
+	await wait_for_physics_frames(N_PHYSICS_FRAMES_TO_WAIT)
 	verify_signals_emitted(true, true, false, false)
 
 
 func test_body_collision() -> void:
 	body_collider.global_position = AREA_POSITION
-	await TestUtils.wait_for_physics_frames(self, N_PHYSICS_FRAMES_TO_WAIT)
+	await wait_for_physics_frames(N_PHYSICS_FRAMES_TO_WAIT)
 	verify_signals_emitted(false, false, true, false)
 
 	body_collider.global_position = Vector3()
-	await TestUtils.wait_for_physics_frames(self, N_PHYSICS_FRAMES_TO_WAIT)
+	await wait_for_physics_frames(N_PHYSICS_FRAMES_TO_WAIT)
 	verify_signals_emitted(false, false, true, true)
 
 

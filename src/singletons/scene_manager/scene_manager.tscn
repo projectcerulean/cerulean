@@ -5,5 +5,5 @@
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_s666b")
-scene_key_default = &"PROTOTYPE_SCENE"
+scene_default = &"PROTOTYPE_SCENE"
 scene_info_resource = ExtResource("2_nej1v")

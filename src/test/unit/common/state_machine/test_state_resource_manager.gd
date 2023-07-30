@@ -1,7 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends GutTest
+extends UnitTest
 
 const test_state_resource_manager_params = [
 	[[], true],
@@ -33,12 +33,12 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 
 	for state in states:
 		Signals.emit_state_entered(state_machine_dummy_emitting, StringName(state), {})
-		await TestUtils.wait_for_process_frame(self)
+		await wait_for_process_frame()
 		var expected_state: StringName = state if is_correct_state_machine_emitting else StringName()
 		assert_eq(state_resource.current_state, StringName(expected_state))
 
 		Signals.emit_state_exited(state_machine_dummy_emitting, StringName(state), {})
-		await TestUtils.wait_for_process_frame(self)
+		await wait_for_process_frame()
 		assert_eq(state_resource.current_state, StringName())
 
 	state_resource_manager.free()
@@ -52,7 +52,7 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 
 
 func create_state_resource_manager(state_machine: Node, state_resource: StateResource) -> StateResourceManager:
-	var state_resource_manager_scene: PackedScene = TestUtils.load_scene(self, "state_resource_manager.tscn")
+	var state_resource_manager_scene: PackedScene = load_scene("state_resource_manager.tscn")
 	var state_resource_manager: StateResourceManager = state_resource_manager_scene.instantiate() as StateResourceManager
 	assert(state_resource_manager != null)
 

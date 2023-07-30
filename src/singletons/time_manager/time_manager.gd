@@ -29,6 +29,14 @@ func _ready() -> void:
 	assert(time_resource_pause.value == 0.0, Errors.RESOURCE_BUSY)
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		time_resource.value = 0.0
+		time_resource_dialogue.value = 0.0
+		time_resource_gameplay.value = 0.0
+		time_resource_pause.value = 0.0
+
+
 func _process(delta: float) -> void:
 	time_resource.value += delta
 

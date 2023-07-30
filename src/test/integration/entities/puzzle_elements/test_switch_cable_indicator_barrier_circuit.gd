@@ -1,26 +1,27 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends GutTest
+extends IntegrationTest
 
 const WAIT_FRAMES: int = 10
 
 
+func get_test_scene_name() -> String:
+	return "switch_cable_indicator_barrier_circuit.tscn"
+
+
 func test_switch_cable_indicator_barrier_circuit() -> void:
-	var test_scene: PackedScene = TestUtils.load_test_scene(self, "switch_cable_indicator_barrier_circuit.tscn")
-	var test_scene_instance: SwitchCableIndicatorBarrierCircuit = test_scene.instantiate() as SwitchCableIndicatorBarrierCircuit
-	assert(test_scene_instance != null)
+	var test_scene: SwitchCableIndicatorBarrierCircuit =  get_test_scene() as SwitchCableIndicatorBarrierCircuit
 
-	add_child_autofree(test_scene_instance)
-	assert_false(test_scene_instance.barrier.collision_shape.disabled)
+	assert_false(test_scene.barrier.collision_shape.disabled)
 
-	await TestUtils.wait_for_process_frames(self, WAIT_FRAMES)
-	assert_false(test_scene_instance.barrier.collision_shape.disabled)
+	await wait_for_process_frames(WAIT_FRAMES)
+	assert_false(test_scene.barrier.collision_shape.disabled)
 
-	test_scene_instance.switch.flip()
-	await TestUtils.wait_for_process_frames(self, WAIT_FRAMES)
-	assert_true(test_scene_instance.barrier.collision_shape.disabled)
+	test_scene.switch_interaction_action.interact()
+	await wait_for_process_frames(WAIT_FRAMES)
+	assert_true(test_scene.barrier.collision_shape.disabled)
 
-	test_scene_instance.switch.flip()
-	await TestUtils.wait_for_process_frames(self, WAIT_FRAMES)
-	assert_false(test_scene_instance.barrier.collision_shape.disabled)
+	test_scene.switch_interaction_action.interact()
+	await wait_for_process_frames(WAIT_FRAMES)
+	assert_false(test_scene.barrier.collision_shape.disabled)

@@ -1,7 +1,7 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends GutTest
+extends UnitTest
 
 const N_STATES: int = 5
 const I_DEFAULT_INITIAL_STATE: int = 2
@@ -14,7 +14,7 @@ func before_each() -> void:
 
 func test_state_machine_initial_state() -> void:
 	var state_machine: StateMachine = await create_state_machine(I_DEFAULT_INITIAL_STATE)
-	await TestUtils.wait_for_process_frame(self)
+	await wait_for_process_frame()
 	verify_initial_state(state_machine, I_DEFAULT_INITIAL_STATE)
 	state_machine.free()
 
@@ -27,7 +27,7 @@ func test_state_machine_request_state_change() -> void:
 	var new_state_name: StringName = state_machine.get_child(i_new_state).name
 	var data_dict: Dictionary = {"some key": "some value"}
 	Signals.emit_request_state_change(self, state_machine, new_state_name, data_dict)
-	await TestUtils.wait_for_process_frame(self)
+	await wait_for_process_frame()
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, data_dict)
 
@@ -40,7 +40,7 @@ func test_state_machine_request_state_change_next() -> void:
 
 	var data_dict: Dictionary = {"some key": "some value"}
 	Signals.emit_request_state_change_next(self, state_machine, data_dict)
-	await TestUtils.wait_for_process_frame(self)
+	await wait_for_process_frame()
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, I_DEFAULT_INITIAL_STATE + 1, data_dict)
 
@@ -54,7 +54,7 @@ func test_state_machine_request_state_change_next_wrap() -> void:
 
 	var data_dict: Dictionary = {"some key": "some value"}
 	Signals.emit_request_state_change_next(self, state_machine, data_dict)
-	await TestUtils.wait_for_process_frame(self)
+	await wait_for_process_frame()
 
 	verify_state_change(state_machine, i_initial_state, 0, data_dict)
 
@@ -64,7 +64,7 @@ func test_state_machine_request_state_change_next_wrap() -> void:
 func test_state_machine_get_state_transition_from_state_transition_frame_process() -> void:
 	var i_new_state: int = 4
 	var state_machine: StateMachine = await create_state_machine(I_DEFAULT_INITIAL_STATE, i_new_state)
-	await TestUtils.wait_for_process_frame(self)
+	await wait_for_process_frame()
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, {})
 
@@ -78,7 +78,7 @@ func test_state_machine_get_state_transition_from_state_transition_frame_physics
 		i_new_state,
 		StateMachine.TRANSITION_FRAME.PHYSICS_PROCESS,
 	)
-	await TestUtils.wait_for_physics_frame(self)
+	await wait_for_physics_frame()
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, {})
 
@@ -100,7 +100,7 @@ func test_state_machine_persistent_data() -> void:
 	var new_state_name: StringName = state_machine.get_child(i_new_state).name
 	var data_dict: Dictionary = {"some key": "some value"}
 	Signals.emit_request_state_change(self, state_machine, new_state_name, data_dict)
-	await TestUtils.wait_for_process_frame(self)
+	await wait_for_process_frame()
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, data_dict)
 
 	state_machine.free()
@@ -125,7 +125,7 @@ func create_state_machine(
 		transition_frame: StateMachine.TRANSITION_FRAME = StateMachine.TRANSITION_FRAME.PROCESS,
 		persistent_data_resource: DictionaryResource = null,
 	) -> StateMachine:
-	var state_machine_scene: PackedScene = TestUtils.load_scene(self, "state_machine.tscn")
+	var state_machine_scene: PackedScene = load_scene("state_machine.tscn")
 	var state_machine: StateMachine = state_machine_scene.instantiate() as StateMachine
 	assert(state_machine != null)
 
@@ -138,7 +138,7 @@ func create_state_machine(
 	if i_next_state >= 0:
 		transition = StringName(state_names[i_next_state])
 
-	var state_script: Script = TestUtils.load_script(self, "state.gd")
+	var state_script: Script = load_script("state.gd")
 	var state_script_doubled: Script = double(state_script, DOUBLE_STRATEGY.SCRIPT_ONLY)
 	stub(state_script_doubled, 'enter').to_do_nothing()
 	stub(state_script_doubled, 'exit').to_do_nothing()
@@ -169,7 +169,7 @@ func create_state_machine(
 	else:
 		fail_test("Invalid physics frame parameter")
 
-	await TestUtils.wait_for_process_frame(self)
+	await wait_for_process_frame()
 
 	return state_machine
 
