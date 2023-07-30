@@ -5,6 +5,7 @@ class_name TestUtils
 extends Node
 
 const GUT_TEST_DIRS: PackedStringArray = [
+	"res://src/test/integration/",
 	"res://src/test/unit/",
 ]
 
@@ -32,12 +33,29 @@ static func load_resource(test: GutTest, file_name: String) -> Resource:
 	return resource
 
 
-static func get_src_path(test: GutTest) -> String:
-	var script: Script = test.get_script() as Script
-	assert(script != null, "Test script is null")
+static func load_test_scene(test: GutTest, file_name: String) -> PackedScene:
+	var resource: Resource = load_test_resource(test, file_name)
+	var scene: PackedScene = resource as PackedScene
+	assert(scene != null, "Failed to load test scene: " + file_name)
+	return scene
 
-	var script_path: String = script.get_path()
-	var script_dir_path: String = get_dir_name(script_path)
+
+static func load_test_script(test: GutTest, file_name: String) -> Script:
+	var resource: Resource = load_test_resource(test, file_name)
+	var script: Script = resource as Script
+	assert(script != null, "Failed to load test script: " + file_name)
+	return script
+
+
+static func load_test_resource(test: GutTest, file_name: String) -> Resource:
+	var resource_path: String = get_script_dir_path(test) + "/" + file_name
+	var resource: Resource = load(resource_path)
+	assert(resource != null, "Failed to load test resource: " + resource_path)
+	return resource
+
+
+static func get_src_path(test: GutTest) -> String:
+	var script_dir_path: String = get_script_dir_path(test)
 	for i in range(len(GUT_TEST_DIRS)):
 		var gut_test_dir: String = GUT_TEST_DIRS[i]
 		var main_src_path = script_dir_path.replace(gut_test_dir, MAIN_SRC_DIR)
@@ -48,9 +66,11 @@ static func get_src_path(test: GutTest) -> String:
 	return String()
 
 
-static func get_dir_name(file_path: String) -> String:
-	var file_path_stripped: String = file_path.rstrip("/")
-	var dir_name: String = file_path_stripped.rsplit("/", false, 1)[0]
+static func get_script_dir_path(test: GutTest) -> String:
+	var script: Script = test.get_script() as Script
+	assert(script != null, "Test script is null")
+	var script_path: String = script.get_path()
+	var dir_name: String = script_path.rsplit("/", false, 1)[0]
 	return dir_name
 
 

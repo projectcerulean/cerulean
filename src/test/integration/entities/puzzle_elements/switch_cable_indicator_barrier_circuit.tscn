@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://drrmbwhfxs552"]
+
+[ext_resource type="Script" path="res://src/test/integration/entities/puzzle_elements/switch_cable_indicator_barrier_circuit.gd" id="1_6003x"]
+[ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="2_kuiq8"]
+[ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="3_0sbtd"]
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="4_v7xof"]
+[ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="5_36ayg"]
+[ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="6_c2p7n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w3he5"]
+resource_local_to_scene = true
+size = Vector3(0.1, 5, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3tmie"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_v7xof")
+shader_parameter/flow_position = 0.0
+shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
+
+[sub_resource type="BoxMesh" id="BoxMesh_3gkaq"]
+resource_local_to_scene = true
+size = Vector3(0.1, 5, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s627t"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_v7xof")
+shader_parameter/flow_position = 0.0
+shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
+
+[node name="SwitchCableIndicatorBarrierCircuit" type="Node3D"]
+script = ExtResource("1_6003x")
+
+[node name="Circuit" type="Node3D" parent="."]
+
+[node name="Switch" parent="Circuit" instance=ExtResource("2_kuiq8")]
+
+[node name="Cable1" parent="Circuit" instance=ExtResource("3_0sbtd")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -3)
+mesh = SubResource("BoxMesh_w3he5")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_3tmie")
+
+[node name="Cable2" parent="Circuit" instance=ExtResource("3_0sbtd")]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 2.5, 0, -5.5)
+mesh = SubResource("BoxMesh_3gkaq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_s627t")
+
+[node name="Indicator" parent="Circuit" instance=ExtResource("5_36ayg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5.5)
+
+[node name="Barrier" parent="Circuit" instance=ExtResource("6_c2p7n")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, 0, 0)
+_input_nodes = Array[NodePath]([NodePath("../Indicator")])
+input_targets = Array[bool]([true])

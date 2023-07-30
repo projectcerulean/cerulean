@@ -5,10 +5,11 @@ class_name Cable
 extends MeshInstance3D
 
 @export var flow_speed: float = 50.0
+@export var flow_smooth_range: float = 0.5
 
 @onready var box_mesh: BoxMesh = mesh as BoxMesh
 @onready var shader_material: ShaderMaterial = get_surface_override_material(0) as ShaderMaterial
-@onready var flow_position_start: float = -box_mesh.size.y / 4.0 - shader_material.get_shader_parameter("smooth_range") / 2.0
+@onready var flow_position_start: float = -box_mesh.size.y / 4.0 - flow_smooth_range / 2.0
 @onready var flow_position_end: float = -flow_position_start
 @onready var flow_duration: float = abs(flow_position_end - flow_position_start) / flow_speed
 @onready var state_next: StringName
@@ -25,6 +26,7 @@ func _ready() -> void:
 	assert(state_machine != null, Errors.NULL_NODE)
 	assert(input_node != null, Errors.NULL_NODE)
 
+	shader_material.set_shader_parameter("smooth_range", flow_smooth_range)
 	shader_material.set_shader_parameter("flip_colors", state_next)
 	set_flow_position(flow_position_start)
 

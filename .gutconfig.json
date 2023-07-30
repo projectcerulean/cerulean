@@ -1,5 +1,6 @@
 {
   "dirs": [
+    "res://src/test/integration/",
     "res://src/test/unit/"
   ],
   "should_exit": true,
