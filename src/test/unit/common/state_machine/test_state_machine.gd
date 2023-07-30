@@ -8,6 +8,7 @@ const I_DEFAULT_INITIAL_STATE: int = 2
 
 
 func before_each() -> void:
+	super.before_each()
 	watch_signals(Signals)
 
 

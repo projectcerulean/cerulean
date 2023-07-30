@@ -12,6 +12,8 @@ var body_collider: RigidBody3D
 
 
 func before_each() -> void:
+	super.before_each()
+
 	watch_signals(Signals)
 
 	var area_scene: PackedScene = TestUtils.load_scene(self, "area.tscn")

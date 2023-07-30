@@ -15,6 +15,8 @@ var anchor_node: Node3D
 
 
 func before_each() -> void:
+	super.before_each()
+
 	transform_resource = TransformResource.new()
 
 	var transform_resource_manager_scene: PackedScene = TestUtils.load_scene(self, "transform_resource_manager.tscn")
