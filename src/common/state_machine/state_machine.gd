@@ -68,13 +68,13 @@ func _physics_process(delta: float) -> void:
 				transition_to(target_state, {})
 
 
-func _on_request_state_change(_sender: Node, state_machine: Node, state: StringName, data: Dictionary = {}):
-	if state_machine == self:
+func _on_request_state_change(_sender: NodePath, state_machine: NodePath, state: StringName, data: Dictionary = {}):
+	if state_machine == get_path():
 		transition_to(state, data)
 
 
-func _on_request_state_change_next(_sender: Node, state_machine: Node, data: Dictionary = {}):
-	if state_machine == self:
+func _on_request_state_change_next(_sender: NodePath, state_machine: NodePath, data: Dictionary = {}):
+	if state_machine == get_path():
 		transition_to_next(data)
 
 

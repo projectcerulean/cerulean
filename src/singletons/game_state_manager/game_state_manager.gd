@@ -21,29 +21,29 @@ func _ready() -> void:
 	assert(state_resource as StateResource != null, Errors.NULL_RESOURCE)
 
 
-func _on_request_game_pause(_sender: Node) -> void:
+func _on_request_game_pause(_sender: NodePath) -> void:
 	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.PAUSE)
 
 
-func _on_request_game_unpause(_sender: Node) -> void:
+func _on_request_game_unpause(_sender: NodePath) -> void:
 	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
 
 
-func _on_request_dialogue_start(_sender: Node3D, _dialogue_resource: DialogueResource) -> void:
+func _on_request_dialogue_start(_sender: NodePath, _dialogue_resource: DialogueResource) -> void:
 	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.DIALOGUE)
 
 
-func _on_request_dialogue_finish(_sender: Node) -> void:
+func _on_request_dialogue_finish(_sender: NodePath) -> void:
 	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
 
 
-func _on_request_scene_transition_start(_sender: Node, _scene: String, _spawn_point_id: int, _color: Color, _fade_duration: float):
+func _on_request_scene_transition_start(_sender: NodePath, _scene: String, _spawn_point_id: int, _color: Color, _fade_duration: float):
 	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.SCENE_TRANSITION)
 
 
-func _on_request_scene_transition_finish(_sender: Node) -> void:
+func _on_request_scene_transition_finish(_sender: NodePath) -> void:
 	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
 
 
-func _on_request_game_quit(_sender: Node) -> void:
+func _on_request_game_quit(_sender: NodePath) -> void:
 	get_tree().call_deferred(get_tree().quit.get_method())

@@ -40,12 +40,12 @@ func load_scene(scene_path: String, spawn_point_id: int) -> void:
 	Signals.emit_request_resource_load(self, scene_path)
 
 
-func _on_request_scene_change(_sender: Node, scene_path: String, spawn_point_id: int) -> void:
+func _on_request_scene_change(_sender: NodePath, scene_path: String, spawn_point_id: int) -> void:
 	assert(get_child_count() == 1, Errors.CONSISTENCY_ERROR)
 	load_scene(scene_path, spawn_point_id)
 
 
-func _on_resource_load_completed(_sender: Node, resource_path: String, resource: Resource) -> void:
+func _on_resource_load_completed(_sender: NodePath, resource_path: String, resource: Resource) -> void:
 	if resource_path != scene_path_next:
 		return
 

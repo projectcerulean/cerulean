@@ -18,11 +18,11 @@ func _on_body_entered(body: Node3D) -> void:
 	if body not in bodies:
 		bodies.append(body)
 	if bodies.size() > 0:
-		Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.ENABLED)
+		Signals.emit_request_state_change(self, state_machine.get_path(), PuzzleElementStates.ENABLED)
 
 
 func _on_body_exited(body: Node3D) -> void:
 	if body in bodies:
 		bodies.erase(body)
 	if bodies.size() == 0:
-		Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.DISABLED)
+		Signals.emit_request_state_change(self, state_machine.get_path(), PuzzleElementStates.DISABLED)

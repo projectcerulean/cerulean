@@ -51,12 +51,12 @@ func adjust_option(delta: int) -> void:
 		Signals.emit_request_setting_update(self, key_string, value_new)
 
 
-func _on_setting_updated(_sender: Node, _key: StringName) -> void:
+func _on_setting_updated(_sender: NodePath, _key: StringName) -> void:
 	if is_settings_option:
 		value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings_resource.settings[key_string]]
 
 
-func _on_scene_changed(_sender: Node) -> void:
+func _on_scene_changed(_sender: NodePath) -> void:
 	if is_level_option:
 		if Levels.LEVELS[key_string][Levels.LEVEL_PATH] == scene_info_resource.scene_path:
 			value_node.text = "(Current)"

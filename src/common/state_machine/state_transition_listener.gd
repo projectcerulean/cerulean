@@ -7,7 +7,7 @@ extends Node
 @export var _target_states: Array[NodePath]
 
 var target_states: Array[StringName]
-var target_state_machine: Node
+var target_state_machine: NodePath
 var is_in_target_state: bool = false
 
 
@@ -25,20 +25,20 @@ func _ready() -> void:
 				continue
 			assert(target_states[i] != target_states[j], Errors.INVALID_ARGUMENT)
 
-	target_state_machine = get_node(_target_states[0]).get_parent()
+	target_state_machine = get_node(_target_states[0]).get_parent().get_path()
 	assert(target_state_machine != null, Errors.NULL_NODE)
 	for i in range(len(_target_states)):
-		assert(get_node(_target_states[i]).get_parent() == target_state_machine, Errors.CONSISTENCY_ERROR)
+		assert(get_node(_target_states[i]).get_parent().get_path() == target_state_machine, Errors.CONSISTENCY_ERROR)
 
 
-func _on_state_entered(sender: Node, _state: StringName, data: Dictionary) -> void:
+func _on_state_entered(sender: NodePath, _state: StringName, data: Dictionary) -> void:
 	if sender == target_state_machine:
 		if data[State.NEW_STATE] in target_states and data[State.OLD_STATE] not in target_states:
 			is_in_target_state = true
 			_on_target_state_entered(data)
 
 
-func _on_state_exited(sender: Node, _state: StringName, data: Dictionary) -> void:
+func _on_state_exited(sender: NodePath, _state: StringName, data: Dictionary) -> void:
 	if sender == target_state_machine:
 		if data[State.NEW_STATE] not in target_states and data[State.OLD_STATE] in target_states:
 			is_in_target_state = false

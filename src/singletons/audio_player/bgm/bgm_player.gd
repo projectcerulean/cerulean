@@ -6,7 +6,8 @@ extends Node
 @export var n_bgm_resource_players: int = 3
 
 var BgmResourcePlayerPreload: PackedScene = preload("bgm_resource_player.tscn")
-var bgm_area_map: Dictionary  # Area3D -> StringName
+var bgm_resource_map: Dictionary  # NodePath -> StringName
+var bgm_priority_map: Dictionary  # NodePath -> float
 var bgm_current: StringName = StringName()
 
 
@@ -16,31 +17,33 @@ func _ready() -> void:
 	Signals.scene_changed.connect(_on_scene_changed)
 
 
-func _on_bgm_area_entered(sender: Area3D, bgm: StringName) -> void:
-	bgm_area_map[sender] = bgm
+func _on_bgm_area_entered(sender: NodePath, bgm: StringName, priority: float) -> void:
+	bgm_resource_map[sender] = bgm
+	bgm_priority_map[sender] = priority
 	update_bgm()
 
 
-func _on_bgm_area_exited(sender: Area3D) -> void:
-	bgm_area_map.erase(sender)
+func _on_bgm_area_exited(sender: NodePath) -> void:
+	bgm_resource_map.erase(sender)
+	bgm_priority_map.erase(sender)
 	update_bgm()
 
 
-func _on_scene_changed(_sender: Node):
-	bgm_area_map.clear()
+func _on_scene_changed(_sender: NodePath):
+	bgm_resource_map.clear()
+	bgm_priority_map.clear()
 	update_bgm()
 
 
 func update_bgm() -> void:
 	bgm_current = StringName()
-	var area_volume_min: float = INF
+	var priority_max: float = -INF
 
-	for area in bgm_area_map.keys():
-		var collision_shape: CollisionShape3D = TreeUtils.get_collision_shape_for_area(area)
-		var area_volume: float = ShapeUtils.calculate_shape_volume(collision_shape.shape)
-		if area_volume < area_volume_min:
-			area_volume_min = area_volume
-			bgm_current = bgm_area_map[area]
+	for sender in bgm_resource_map.keys():
+		var priority: float = bgm_priority_map[sender]
+		if priority > priority_max:
+			priority_max = priority
+			bgm_current = bgm_resource_map[sender]
 
 	if bgm_current != StringName():
 		var bgm_resource_player: BgmResourcePlayer = get_node_or_null(str(bgm_current))

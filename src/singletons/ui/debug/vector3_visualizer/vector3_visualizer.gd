@@ -26,15 +26,16 @@ func _draw() -> void:
 			draw_line(camera.unproject_position(point_from), camera.unproject_position(point_to), colors[sender], line_width, true)
 
 
-func _on_scene_changed(sender: Node):
+func _on_scene_changed(_sender: NodePath):
 	vectors_from.clear()
 	vectors_to.clear()
 	colors.clear()
 
 
-func _on_visualize_vector3(sender: Node, from: Vector3, to: Vector3):
+func _on_visualize_vector3(sender: NodePath, from: Vector3, to: Vector3):
 	vectors_from[sender] = from
 	vectors_to[sender] = to
 	if not colors.has(sender):
-		colors[sender] = ColorUtils.variant_to_color(sender.name)
+		var sender_name: StringName = NodePathUtils.get_node_name(sender)
+		colors[sender] = ColorUtils.variant_to_color(sender_name)
 	queue_redraw()

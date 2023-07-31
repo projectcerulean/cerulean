@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 	update_resource()
 
 
-func _on_scene_changed(_sender: Node) -> void:
+func _on_scene_changed(_sender: NodePath) -> void:
 	update_resource()
 
 

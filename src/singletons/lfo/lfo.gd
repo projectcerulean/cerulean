@@ -32,5 +32,5 @@ func _process(_delta: float) -> void:
 	lfo_resource.value_fourth_shifted = cos(0.25 * angle)
 
 
-func _on_bgm_changed(_sender: Node, bgm_new: StringName) -> void:
+func _on_bgm_changed(_sender: NodePath, bgm_new: StringName) -> void:
 	bpm = BgmIndex.BGM_INDEX[bgm_new][BgmIndex.BGM_BPM] if bgm_new != null and bgm_new != StringName() else bpm_default

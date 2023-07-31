@@ -14,7 +14,7 @@ func _ready() -> void:
 	update_settings()
 
 
-func _on_setting_updated(_sender: Node, _key: StringName) -> void:
+func _on_setting_updated(_sender: NodePath, _key: StringName) -> void:
 	update_settings()
 
 

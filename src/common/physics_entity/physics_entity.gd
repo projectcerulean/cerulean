@@ -177,8 +177,8 @@ func enqueue_force(force_vector: Vector3):
 	pending_forces.append(force_vector)
 
 
-func _on_request_body_bounce(_sender: Node, body: Node3D, target_velocity: Vector3, elasticy: float) -> void:
-	if body == self:
+func _on_request_body_bounce(_sender: NodePath, body: NodePath, target_velocity: Vector3, elasticy: float) -> void:
+	if body == get_path():
 		enqueue_bounce(target_velocity, elasticy)
 
 

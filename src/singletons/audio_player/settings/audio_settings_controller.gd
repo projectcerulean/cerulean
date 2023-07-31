@@ -31,7 +31,7 @@ func _ready() -> void:
 	AudioServer.set_bus_mute(bus_index_bgm, not Settings.SETTINGS.BACKGROUND_MUSIC.VALUES[settings_resource.settings[Settings.BACKGROUND_MUSIC]])
 
 
-func _on_setting_updated(_sender: Node, key: StringName) -> void:
+func _on_setting_updated(_sender: NodePath, key: StringName) -> void:
 	if key == Settings.BACKGROUND_MUSIC:
 		AudioServer.set_bus_mute(bus_index_bgm, false)
 		if bgm_tween != null:

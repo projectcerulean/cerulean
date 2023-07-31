@@ -51,7 +51,7 @@ func _ready() -> void:
 	Signals.emit_request_resource_load(self, BgmIndex.BGM_INDEX[name][BgmIndex.BGM_PATH])
 
 
-func _on_resource_load_completed(_sender: Node, resource_path: String, resource: Resource) -> void:
+func _on_resource_load_completed(_sender: NodePath, resource_path: String, resource: Resource) -> void:
 	if resource_path != BgmIndex.BGM_INDEX[name][BgmIndex.BGM_PATH]:
 		return
 

@@ -67,8 +67,8 @@ script = ExtResource("5")
 [node name="SceneTransition" type="Node" parent="StateMachine"]
 script = ExtResource("7_ry6mk")
 
-[node name="StateResourceManager" parent="." node_paths=PackedStringArray("state_machine") instance=ExtResource("8_e4ws0")]
-state_machine = NodePath("../StateMachine")
+[node name="StateResourceManager" parent="." instance=ExtResource("8_e4ws0")]
+_state_machine = NodePath("../StateMachine")
 _state_resource = ExtResource("3")
 
 [node name="AudioEffects" type="Node" parent="."]

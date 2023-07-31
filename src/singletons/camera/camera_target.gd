@@ -12,7 +12,7 @@ extends Marker3D
 
 @export var dialogue_lerp_weight: float = 5.491
 
-var dialogue_target: Node3D
+var dialogue_target: NodePath
 var dialogue_target_offset: Vector3
 var dialogue_target_position_start: Vector3
 
@@ -32,9 +32,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	match game_state_resource.current_state:
 		GameStates.DIALOGUE:
-			if dialogue_target != null:
-				dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target.global_position - player_transform_resource.value.origin) / 2.0, dialogue_lerp_weight, delta)
-				global_position = dialogue_target_position_start + dialogue_target_offset
+			if dialogue_target:
+				var dialogue_target_node: Node3D = get_node(dialogue_target) as Node3D
+				if is_instance_valid(dialogue_target_node):
+					dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target_node.global_position - player_transform_resource.value.origin) / 2.0, dialogue_lerp_weight, delta)
+					global_position = dialogue_target_position_start + dialogue_target_offset
 		GameStates.GAMEPLAY:
 			dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, Vector3.ZERO, dialogue_lerp_weight, delta)
 			global_position.x = player_transform_resource.value.origin.x + dialogue_target_offset.x
@@ -43,11 +45,11 @@ func _process(delta: float) -> void:
 			global_position.y = Lerp.delta_lerp(global_position.y, player_transform_resource.value.origin.y, y_lerp_weight, delta)
 
 
-func _on_scene_changed(_sender: Node) -> void:
+func _on_scene_changed(_sender: NodePath) -> void:
 	global_transform = player_transform_resource.value
 
 
-func _on_request_dialogue_start(sender: Node3D, _dialogue_resource: DialogueResource) -> void:
+func _on_request_dialogue_start(sender: NodePath, _dialogue_resource: DialogueResource) -> void:
 	dialogue_target = sender
 	dialogue_target_offset = Vector3.ZERO
 	dialogue_target_position_start = global_position

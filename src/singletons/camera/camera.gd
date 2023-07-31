@@ -138,7 +138,7 @@ func _process(delta: float) -> void:
 	camera.look_at(target_transform_resource.value.origin)
 
 
-func _on_scene_changed(_sender: Node) -> void:
+func _on_scene_changed(_sender: NodePath) -> void:
 	camera.position.z = 0.0
 	camera_anchor.position.z = camera_distance_default
 	pitch_pivot.rotation.x = pitch_default
@@ -148,7 +148,7 @@ func _on_scene_changed(_sender: Node) -> void:
 	yaw_pivot.rotation.y = yaw
 
 
-func _on_setting_updated(_sender: Node, key: StringName) -> void:
+func _on_setting_updated(_sender: NodePath, key: StringName) -> void:
 	if key == Settings.FIELD_OF_VIEW:
 		if fov_tween != null:
 			fov_tween.kill()

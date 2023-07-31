@@ -22,7 +22,7 @@ func _ready() -> void:
 	hide()
 
 
-func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.PAUSE:
 		show()
 		if tween != null:
@@ -33,7 +33,7 @@ func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> vo
 		tween.tween_property(shader_material, "shader_parameter/blur_strength", blur_strength_max, tween_duration)
 
 
-func _on_state_exited(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.PAUSE:
 		if tween != null:
 				tween.kill()

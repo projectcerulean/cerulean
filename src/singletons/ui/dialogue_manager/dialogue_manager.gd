@@ -26,22 +26,22 @@ func _ready() -> void:
 	self.visible = false
 
 
-func _on_request_dialogue_start(_sender: Node3D, dialogue_resource_new: DialogueResource) -> void:
+func _on_request_dialogue_start(_sender: NodePath, dialogue_resource_new: DialogueResource) -> void:
 	assert(dialogue_resource_new != null, Errors.NULL_RESOURCE)
 	dialogue_resource = dialogue_resource_new
 	line_index = -1
 
 
-func _on_request_dialogue_finish(_sender: Node) -> void:
+func _on_request_dialogue_finish(_sender: NodePath) -> void:
 	dialogue_resource = null
 
 
-func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.DIALOGUE:
-		Signals.emit_request_state_change(self, state_machine, DialogueStates.OUTPUT)
+		Signals.emit_request_state_change(self, state_machine.get_path(), DialogueStates.OUTPUT)
 		self.visible = true
 
 
-func _on_state_exited(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.DIALOGUE:
 		self.visible = false

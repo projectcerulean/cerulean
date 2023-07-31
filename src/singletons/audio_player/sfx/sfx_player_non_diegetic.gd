@@ -23,7 +23,7 @@ func _ready() -> void:
 		assert(child as AudioStreamPlayer != null, Errors.CONSISTENCY_ERROR)
 
 
-func _on_request_sfx_play_non_diegetic(_sender: Node, sfx_resource: SfxResource) -> void:
+func _on_request_sfx_play_non_diegetic(_sender: NodePath, sfx_resource: SfxResource) -> void:
 	var audio_stream_player: AudioStreamPlayer = get_child(i_current_player) as AudioStreamPlayer
 	audio_stream_player.stop()
 	audio_stream_player.stream = sfx_resource.stream_samples[randi() % sfx_resource.stream_samples.size()]
@@ -33,7 +33,7 @@ func _on_request_sfx_play_non_diegetic(_sender: Node, sfx_resource: SfxResource)
 	i_current_player = (i_current_player + 1) % n_sfx_channels
 
 
-func _on_scene_changed(_sender: Node) -> void:
+func _on_scene_changed(_sender: NodePath) -> void:
 	for _audio_stream_player in get_children():
 		var audio_stream_player: AudioStreamPlayer = _audio_stream_player as AudioStreamPlayer
 		audio_stream_player.stop()

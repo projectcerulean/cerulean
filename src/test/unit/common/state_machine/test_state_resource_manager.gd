@@ -16,20 +16,22 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 	var is_correct_state_machine_emitting: bool = params[1]
 
 	var state_machine_dummy_target: Node = Node.new()
+	add_child_autofree(state_machine_dummy_target)
 	var state_machine_dummy_emitting: Node = state_machine_dummy_target
 	if not is_correct_state_machine_emitting:
 		state_machine_dummy_emitting = Node.new()
+		add_child_autofree(state_machine_dummy_emitting)
 
 	var state_resource: StateResource = StateResource.new()
 	var state_resource_manager: StateResourceManager = create_state_resource_manager(
-		state_machine_dummy_target,
+		state_machine_dummy_target.get_path(),
 		state_resource,
 	)
-	assert_eq(state_resource.state_machine, null)
+	assert_eq(state_resource.state_machine, NodePath())
 	add_child(state_resource_manager)
 
 	assert_eq(state_resource.current_state, StringName())
-	assert_eq(state_resource.state_machine, state_machine_dummy_target)
+	assert_eq(state_resource.state_machine, state_machine_dummy_target.get_path())
 
 	for state in states:
 		Signals.emit_state_entered(state_machine_dummy_emitting, StringName(state), {})
@@ -44,19 +46,19 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 	state_resource_manager.free()
 
 	assert_eq(state_resource.current_state, StringName())
-	assert_eq(state_resource.state_machine, null)
+	assert_eq(state_resource.state_machine, NodePath())
 
 	state_machine_dummy_target.free()
 	if is_instance_valid(state_machine_dummy_emitting):
 		state_machine_dummy_emitting.free()
 
 
-func create_state_resource_manager(state_machine: Node, state_resource: StateResource) -> StateResourceManager:
+func create_state_resource_manager(state_machine_path: NodePath, state_resource: StateResource) -> StateResourceManager:
 	var state_resource_manager_scene: PackedScene = load_scene("state_resource_manager.tscn")
 	var state_resource_manager: StateResourceManager = state_resource_manager_scene.instantiate() as StateResourceManager
 	assert(state_resource_manager != null)
 
-	state_resource_manager.state_machine = state_machine
+	state_resource_manager._state_machine = state_machine_path
 	state_resource_manager._state_resource = state_resource
 
 	return state_resource_manager

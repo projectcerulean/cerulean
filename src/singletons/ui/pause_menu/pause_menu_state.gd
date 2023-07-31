@@ -54,15 +54,15 @@ func get_transition() -> StringName:
 	return StringName()
 
 
-func _on_state_exited(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if sender == pause_menu.game_state_resource.state_machine and state == GameStates.PAUSE:
 		i_hovered_option = 0
 
 
-func _on_mouse_entered_control(sender: Control) -> void:
+func _on_mouse_entered_control(sender: NodePath) -> void:
 	for i in range(menu.get_child_count()):
 		var child: Control = menu.get_child(i) as Control
-		if child == sender:
+		if child.get_path() == sender:
 			if i_hovered_option != i:
 				Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 				i_hovered_option = i

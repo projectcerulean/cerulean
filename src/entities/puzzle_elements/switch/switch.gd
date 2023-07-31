@@ -12,4 +12,4 @@ func _ready() -> void:
 	assert(state_machine.get_child_count() == 2, Errors.CONSISTENCY_ERROR)
 
 func flip() -> void:
-	Signals.emit_request_state_change_next(self, state_machine)
+	Signals.emit_request_state_change_next(self, state_machine.get_path())

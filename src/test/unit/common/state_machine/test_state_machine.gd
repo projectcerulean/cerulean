@@ -26,7 +26,7 @@ func test_state_machine_request_state_change() -> void:
 	var i_new_state: int = 4
 	var new_state_name: StringName = state_machine.get_child(i_new_state).name
 	var data_dict: Dictionary = {"some key": "some value"}
-	Signals.emit_request_state_change(self, state_machine, new_state_name, data_dict)
+	Signals.emit_request_state_change(self, state_machine.get_path(), new_state_name, data_dict)
 	await wait_for_process_frame()
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, data_dict)
@@ -39,7 +39,7 @@ func test_state_machine_request_state_change_next() -> void:
 	verify_initial_state(state_machine, I_DEFAULT_INITIAL_STATE)
 
 	var data_dict: Dictionary = {"some key": "some value"}
-	Signals.emit_request_state_change_next(self, state_machine, data_dict)
+	Signals.emit_request_state_change_next(self, state_machine.get_path(), data_dict)
 	await wait_for_process_frame()
 
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, I_DEFAULT_INITIAL_STATE + 1, data_dict)
@@ -53,7 +53,7 @@ func test_state_machine_request_state_change_next_wrap() -> void:
 	verify_initial_state(state_machine, i_initial_state)
 
 	var data_dict: Dictionary = {"some key": "some value"}
-	Signals.emit_request_state_change_next(self, state_machine, data_dict)
+	Signals.emit_request_state_change_next(self, state_machine.get_path(), data_dict)
 	await wait_for_process_frame()
 
 	verify_state_change(state_machine, i_initial_state, 0, data_dict)
@@ -99,7 +99,7 @@ func test_state_machine_persistent_data() -> void:
 
 	var new_state_name: StringName = state_machine.get_child(i_new_state).name
 	var data_dict: Dictionary = {"some key": "some value"}
-	Signals.emit_request_state_change(self, state_machine, new_state_name, data_dict)
+	Signals.emit_request_state_change(self, state_machine.get_path(), new_state_name, data_dict)
 	await wait_for_process_frame()
 	verify_state_change(state_machine, I_DEFAULT_INITIAL_STATE, i_new_state, data_dict)
 
@@ -185,7 +185,7 @@ func verify_initial_state(state_machine: StateMachine, i_initial_state: int) -> 
 	assert_signal_emit_count(Signals, Signals.state_exited.get_name(), 0)
 	assert_signal_emit_count(Signals, Signals.state_entered.get_name(), 1)
 	assert_signal_emitted_with_parameters(Signals, Signals.state_entered.get_name(), [
-		state_machine,
+		state_machine.get_path(),
 		state_machine.get_child(i_initial_state).name,
 		{
 			&"NEW_STATE": state_machine.get_child(i_initial_state).name,
@@ -210,14 +210,14 @@ func verify_state_change(state_machine: StateMachine, i_old_state: int, i_new_st
 
 	assert_signal_emit_count(Signals, Signals.state_exited.get_name(), 1)
 	assert_signal_emitted_with_parameters(Signals, Signals.state_exited.get_name(), [
-		state_machine,
+		state_machine.get_path(),
 		state_machine.get_child(i_old_state).name,
 		data_dict_merged,
 	])
 
 	assert_signal_emit_count(Signals, Signals.state_entered.get_name(), 2)
 	assert_signal_emitted_with_parameters(Signals, Signals.state_entered.get_name(), [
-		state_machine,
+		state_machine.get_path(),
 		state_machine.get_child(i_new_state).name,
 		data_dict_merged,
 	])

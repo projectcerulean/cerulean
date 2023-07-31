@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is RigidBody3D and basis.y.dot(Vector3.UP) > 0.0:
-		Signals.emit_request_body_bounce(self, body, bounce_speed * Vector3.UP, bounce_elasticy)
+		Signals.emit_request_body_bounce(self, body.get_path(), bounce_speed * Vector3.UP, bounce_elasticy)
 
 		material.albedo_color = color_bounce
 		if tween != null:

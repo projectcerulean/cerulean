@@ -16,7 +16,7 @@ extends Control
 ])
 
 var scale_factor: float = 1.0
-var target: Node3D = null
+var target: NodePath = NodePath()
 
 @onready var color_default: Color = color
 @onready var tween: Tween
@@ -42,30 +42,32 @@ func _draw() -> void:
 	if camera == null:
 		return
 
-	var position3d: Vector3 = target.global_position
-	if not camera.is_position_behind(position3d):
-		var position2d: Vector2 = camera.unproject_position(position3d)
-		var camera_distance: float = (camera.global_position - position3d).length()
-		var vertex_positions: PackedVector2Array = PackedVector2Array(polygon_shape)
-		for i in range(vertex_positions.size()):
-			vertex_positions[i] *= scale_factor
-			vertex_positions[i] /= camera_distance
-			vertex_positions[i] += position2d - Vector2(0.0, oscillation_amplitude * abs(lfo_resource.value_fourth_shifted) / camera_distance)
-		draw_polygon(vertex_positions, PackedColorArray([color, color, color]))
+	var target_node: Node3D = get_node_or_null(target) as Node3D
+	if is_instance_valid(target_node):
+		var position3d: Vector3 = target_node.global_position
+		if not camera.is_position_behind(position3d):
+			var position2d: Vector2 = camera.unproject_position(position3d)
+			var camera_distance: float = (camera.global_position - position3d).length()
+			var vertex_positions: PackedVector2Array = PackedVector2Array(polygon_shape)
+			for i in range(vertex_positions.size()):
+				vertex_positions[i] *= scale_factor
+				vertex_positions[i] /= camera_distance
+				vertex_positions[i] += position2d - Vector2(0.0, oscillation_amplitude * abs(lfo_resource.value_fourth_shifted) / camera_distance)
+			draw_polygon(vertex_positions, PackedColorArray([color, color, color]))
 
 
 func _process(_delta: float) -> void:
 	queue_redraw()
 
 
-func _on_interaction_highlight_set(_sender: Node, highlight_target: Node3D) -> void:
-	if highlight_target != null and highlight_target != target:
+func _on_interaction_highlight_set(_sender: NodePath, highlight_target: NodePath) -> void:
+	if highlight_target != NodePath() and highlight_target != target:
 		animate()
 	target = highlight_target
 
 
-func _on_request_interaction(_sender: Node) -> void:
-	if target != null:
+func _on_request_interaction(_sender: NodePath) -> void:
+	if target != NodePath():
 		animate()
 
 

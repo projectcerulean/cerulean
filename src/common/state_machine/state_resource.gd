@@ -4,5 +4,5 @@
 class_name StateResource
 extends Resource
 
-var state_machine: Node = null
+var state_machine: NodePath = NodePath()
 var current_state: StringName = StringName()

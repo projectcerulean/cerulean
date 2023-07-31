@@ -25,9 +25,10 @@ func _draw() -> void:
 		draw_line(center_point, center_point + vector * radius, colors[sender], 8.0)
 
 
-func _on_visualize_vector2(sender: Node, vector: Vector2) -> void:
+func _on_visualize_vector2(sender: NodePath, vector: Vector2) -> void:
 	visible = true
 	vectors[sender] = vector
 	if not colors.has(sender):
-		colors[sender] = ColorUtils.variant_to_color(sender.name)
+		var sender_name: StringName = NodePathUtils.get_node_name(sender)
+		colors[sender] = ColorUtils.variant_to_color(sender_name)
 	queue_redraw()

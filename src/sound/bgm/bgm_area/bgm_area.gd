@@ -11,7 +11,10 @@ func _ready() -> void:
 
 
 func _on_body_entered(_body: Node3D) -> void:
-	Signals.emit_bgm_area_entered(self, bgm)
+	var collision_shape: CollisionShape3D = TreeUtils.get_collision_shape_for_area(self)
+	var area_volume: float = ShapeUtils.calculate_shape_volume(collision_shape.shape)
+	var bgm_priority: float = 1.0 / area_volume
+	Signals.emit_bgm_area_entered(self, bgm, bgm_priority)
 
 
 func _on_body_exited(_body: Node3D) -> void:

@@ -19,7 +19,7 @@ func _ready() -> void:
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
 
-func _on_request_scene_transition_start(_sender: Node, scene_path: String, spawn_point_id: int, transition_color: Color, duration: float):
+func _on_request_scene_transition_start(_sender: NodePath, scene_path: String, spawn_point_id: int, transition_color: Color, duration: float):
 	scene_path_next = scene_path
 	spawn_point_id_next = spawn_point_id
 	transition_color.a = 0.0
@@ -27,7 +27,7 @@ func _on_request_scene_transition_start(_sender: Node, scene_path: String, spawn
 	fade_duration = duration
 
 
-func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.SCENE_TRANSITION:
 		self.visible = true
 		if tween != null:
@@ -44,7 +44,7 @@ func _on_fade_out_finished() -> void:
 	Signals.emit_request_scene_change(self, scene_path_next, spawn_point_id_next)
 
 
-func _on_scene_changed(_sender: Node):
+func _on_scene_changed(_sender: NodePath):
 	if game_state_resource.current_state == GameStates.SCENE_TRANSITION:
 		if tween != null:
 			tween.kill()

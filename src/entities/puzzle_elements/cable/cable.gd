@@ -36,18 +36,21 @@ func set_flow_position(flow_position: float) -> void:
 
 
 func tween_callback() -> void:
-	Signals.emit_request_state_change(self, state_machine, state_next)
+	Signals.emit_request_state_change(self, state_machine.get_path(), state_next)
 
 
-func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
-	if sender.owner == input_node:
-		state_next = state
-		var flip_colors: bool = state_next == PuzzleElementStates.DISABLED
-		shader_material.set_shader_parameter("flip_colors", flip_colors)
-		set_flow_position(flow_position_start)
+func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
+	var state_machine: Node = get_node(sender)
+	if is_instance_valid(state_machine):
+		var state_machine_owner: Node = state_machine.owner
+		if is_instance_valid(state_machine_owner) and state_machine_owner == input_node:
+			state_next = state
+			var flip_colors: bool = state_next == PuzzleElementStates.DISABLED
+			shader_material.set_shader_parameter("flip_colors", flip_colors)
+			set_flow_position(flow_position_start)
 
-		if tween != null:
-			tween.kill()
-		tween = create_tween()
-		tween.tween_method(set_flow_position, flow_position_start, flow_position_end, flow_duration)
-		tween.tween_callback(tween_callback)
+			if tween != null:
+				tween.kill()
+			tween = create_tween()
+			tween.tween_method(set_flow_position, flow_position_start, flow_position_end, flow_duration)
+			tween.tween_callback(tween_callback)

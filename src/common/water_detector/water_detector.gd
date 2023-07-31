@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	is_in_water_prev = is_in_water_cached
 
 
-func _on_scene_changed(_sender: Node) -> void:
+func _on_scene_changed(_sender: NodePath) -> void:
 	water_bodies.clear()
 
 

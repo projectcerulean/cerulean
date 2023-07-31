@@ -6,7 +6,7 @@ extends IntegrationTest
 const ERROR_INTERVAL: Vector3 = Vector3.ONE * 0.01
 const FADE_COLOR: Color = Color.BLACK
 const FADE_DURATION: float = 0.1
-const SIGNAL_WAIT_TIME: float = 10.0
+const SIGNAL_WAIT_TIME: float = 1.0
 
 @onready var player_transform_resource: TransformResource = load("res://src/entities/player/player_transform.tres")
 @onready var camera_transform_resource: TransformResource = load("res://src/singletons/camera/camera_transform.tres")

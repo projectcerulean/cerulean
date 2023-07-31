@@ -19,11 +19,17 @@ func _notification(what: int) -> void:
 		environment_resource.value.fog_enabled = false
 
 
-func _on_water_entered(sender: Area3D) -> void:
-	if sender.owner == get_viewport().get_camera_3d().owner:
-		environment_resource.value.fog_enabled = true
+func _on_water_entered(sender: NodePath) -> void:
+	var sender_node: Node = get_node(sender)
+	if is_instance_valid(sender_node):
+		var sender_node_owner: Node = sender_node.owner
+		if is_instance_valid(sender_node_owner) and sender_node_owner == get_viewport().get_camera_3d().owner:
+			environment_resource.value.fog_enabled = true
 
 
-func _on_water_exited(sender: Area3D) -> void:
-	if sender.owner == get_viewport().get_camera_3d().owner:
-		environment_resource.value.fog_enabled = false
+func _on_water_exited(sender: NodePath) -> void:
+	var sender_node: Node = get_node(sender)
+	if is_instance_valid(sender_node):
+		var sender_node_owner: Node = sender_node.owner
+		if is_instance_valid(sender_node_owner) and sender_node_owner == get_viewport().get_camera_3d().owner:
+			environment_resource.value.fog_enabled = false

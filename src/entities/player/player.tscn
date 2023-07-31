@@ -209,10 +209,10 @@ turn_lerp_weight_max = 3.0
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="StateMachineSynchronizer" type="Node" parent="PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("state_machine_parent", "state_machine_child")]
+[node name="StateMachineSynchronizer" type="Node" parent="PhysicsStepInterpolator/Mesh"]
 script = ExtResource("11_mhki8")
-state_machine_parent = NodePath("../../../StateMachine")
-state_machine_child = NodePath("../StateMachine")
+_state_machine_parent = NodePath("../../../StateMachine")
+_state_machine_child = NodePath("../StateMachine")
 
 [node name="TransformResourceManager" parent="PhysicsStepInterpolator" instance=ExtResource("31_jeewe")]
 _transform_resource = ExtResource("5_f776o")
@@ -273,8 +273,8 @@ gravity_scale = 0.5
 wait_time = 0.5
 one_shot = true
 
-[node name="StateResourceManager" parent="." node_paths=PackedStringArray("state_machine") instance=ExtResource("29_l8kw8")]
-state_machine = NodePath("../StateMachine")
+[node name="StateResourceManager" parent="." instance=ExtResource("29_l8kw8")]
+_state_machine = NodePath("../StateMachine")
 _state_resource = ExtResource("12")
 
 [node name="CoyoteTimer" type="Timer" parent="."]

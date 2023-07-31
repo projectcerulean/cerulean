@@ -38,19 +38,22 @@ func _ready() -> void:
 			assert(input_nodes[i] != input_nodes[j], Errors.INVALID_ARGUMENT)
 
 
-func _on_state_entered(sender: Node, state: StringName, _data: Dictionary) -> void:
+func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	var inputs_changed: bool = false
 	for i in range(len(inputs)):
-		if sender.owner == input_nodes[i]:
-			assert(state in [PuzzleElementStates.DISABLED, PuzzleElementStates.ENABLED], Errors.CONSISTENCY_ERROR)
-			inputs[i] = state == PuzzleElementStates.ENABLED
-			inputs_changed = true
+		var state_machine: Node = get_node(sender)
+		if is_instance_valid(state_machine):
+			var state_machine_owner: Node = state_machine.owner
+			if is_instance_valid(state_machine_owner) and state_machine_owner == input_nodes[i]:
+				assert(state in [PuzzleElementStates.DISABLED, PuzzleElementStates.ENABLED], Errors.CONSISTENCY_ERROR)
+				inputs[i] = state == PuzzleElementStates.ENABLED
+				inputs_changed = true
 
 	if inputs_changed:
 		if inputs == input_targets:
-			Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.DISABLED)
+			Signals.emit_request_state_change(self, state_machine.get_path(), PuzzleElementStates.DISABLED)
 		else:
-			Signals.emit_request_state_change(self, state_machine, PuzzleElementStates.ENABLED)
+			Signals.emit_request_state_change(self, state_machine.get_path(), PuzzleElementStates.ENABLED)
 
 
 func set_alpha(alpha: float) -> void:

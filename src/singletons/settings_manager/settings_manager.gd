@@ -41,14 +41,14 @@ func _ready() -> void:
 		push_warning("Failed to open config file, using default settings.")
 
 
-func _on_request_setting_update(_sender: Node, key: StringName, value_index: int) -> void:
+func _on_request_setting_update(_sender: NodePath, key: StringName, value_index: int) -> void:
 	var n_options: int = len(Settings.SETTINGS[key][Settings.VALUE_NAMES])
 	assert(value_index >= 0 and value_index < n_options, Errors.INVALID_ARGUMENT)
 	settings_resource.settings[key] = value_index
 	Signals.emit_setting_updated(self, key)
 
 
-func _on_request_settings_save(_sender: Node) -> void:
+func _on_request_settings_save(_sender: NodePath) -> void:
 	var settings_save_dict: Dictionary = {}
 	for key in settings_resource.settings:
 		var value_name: String = get_settings_value_name(key, settings_resource.settings[key])

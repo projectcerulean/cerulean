@@ -21,15 +21,21 @@ func _process(_delta: float) -> void:
 	shader_material.set_shader_parameter(&"color", environment_resource.value.water_screen_effect_color)
 
 
-func _on_water_entered(sender: Area3D) -> void:
-	if sender.owner == get_viewport().get_camera_3d().owner:
-		visible = true
+func _on_water_entered(sender: NodePath) -> void:
+	var sender_node: Node = get_node(sender)
+	if is_instance_valid(sender_node):
+		var sender_node_owner: Node = sender_node.owner
+		if is_instance_valid(sender_node_owner) and sender_node_owner == get_viewport().get_camera_3d().owner:
+			visible = true
 
 
-func _on_water_exited(sender: Area3D) -> void:
-	if sender.owner == get_viewport().get_camera_3d().owner:
-		visible = false
+func _on_water_exited(sender: NodePath) -> void:
+	var sender_node: Node = get_node(sender)
+	if is_instance_valid(sender_node):
+		var sender_node_owner: Node = sender_node.owner
+		if is_instance_valid(sender_node_owner) and sender_node_owner == get_viewport().get_camera_3d().owner:
+			visible = false
 
 
-func _on_scene_changed(_sender: Node) -> void:
+func _on_scene_changed(_sender: NodePath) -> void:
 	visible = false

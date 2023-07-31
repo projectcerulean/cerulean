@@ -72,9 +72,9 @@ func _notification(what: int) -> void:
 		input_vector_resource.value = Vector3()
 
 
-func _on_request_body_bounce(sender: Node, body: Node3D, target_velocity: Vector3, elasticy: float) -> void:
+func _on_request_body_bounce(sender: NodePath, body: NodePath, target_velocity: Vector3, elasticy: float) -> void:
 	super._on_request_body_bounce(sender, body, target_velocity, elasticy)
-	if body == self:
+	if body == get_path():
 		Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
 		if Input.is_action_pressed(InputActions.JUMP) and state_resource.current_state != PlayerStates.DIVE:
-			Signals.emit_request_state_change(self, state_machine, PlayerStates.BOUNCE)
+			Signals.emit_request_state_change(self, state_machine.get_path(), PlayerStates.BOUNCE)
