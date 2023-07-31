@@ -19,6 +19,7 @@ var dialogue_target_position_start: Vector3
 @onready var player_transform_resource: TransformResource = _player_transform_resource as TransformResource
 @onready var player_state_resource: StateResource = _player_state_resource as StateResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
+@onready var transform_resource_manager: TransformResourceManager = get_node("TransformResourceManager") as TransformResourceManager
 
 
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _ready() -> void:
 	assert(player_transform_resource != null, Errors.NULL_RESOURCE)
 	assert(player_state_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
+	assert(transform_resource_manager != null, Errors.NULL_NODE)
 
 
 func _process(delta: float) -> void:
@@ -47,6 +49,7 @@ func _process(delta: float) -> void:
 
 func _on_scene_changed(_sender: NodePath) -> void:
 	global_transform = player_transform_resource.value
+	transform_resource_manager.update_resource()
 
 
 func _on_request_dialogue_start(sender: NodePath, _dialogue_resource: DialogueResource) -> void:
