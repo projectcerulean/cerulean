@@ -23,15 +23,17 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 		add_child_autofree(state_machine_dummy_emitting)
 
 	var state_resource: StateResource = StateResource.new()
+	assert_eq(state_resource.state_machine, NodePath(), "State machine reference not empty after state resource created")
+	assert_eq(state_resource.current_state, StringName(), "State value not empty after state resource created")
+
 	var state_resource_manager: StateResourceManager = create_state_resource_manager(
 		state_machine_dummy_target.get_path(),
 		state_resource,
 	)
-	assert_eq(state_resource.state_machine, NodePath())
 	add_child(state_resource_manager)
 
-	assert_eq(state_resource.current_state, StringName())
-	assert_eq(state_resource.state_machine, state_machine_dummy_target.get_path())
+	assert_eq(state_resource.state_machine, state_machine_dummy_target.get_path(), "State machine reference not set in state resource")
+	assert_eq(state_resource.current_state, StringName(), "State value not empty before entering first state")
 
 	for state in states:
 		Signals.emit_state_entered(state_machine_dummy_emitting, StringName(state), {})
@@ -45,8 +47,8 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 
 	state_resource_manager.free()
 
-	assert_eq(state_resource.current_state, StringName())
-	assert_eq(state_resource.state_machine, NodePath())
+	assert_eq(state_resource.current_state, StringName(), "State resource not reset after deleting state resource manager node")
+	assert_eq(state_resource.state_machine, NodePath(), "State resource not reset after deleting state resource manager node")
 
 	state_machine_dummy_target.free()
 	if is_instance_valid(state_machine_dummy_emitting):
@@ -56,7 +58,7 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 func create_state_resource_manager(state_machine_path: NodePath, state_resource: StateResource) -> StateResourceManager:
 	var state_resource_manager_scene: PackedScene = load_scene("state_resource_manager.tscn")
 	var state_resource_manager: StateResourceManager = state_resource_manager_scene.instantiate() as StateResourceManager
-	assert(state_resource_manager != null)
+	assert(state_resource_manager != null, Errors.NULL_NODE)
 
 	state_resource_manager._state_machine = state_machine_path
 	state_resource_manager._state_resource = state_resource

@@ -127,7 +127,7 @@ func create_state_machine(
 	) -> StateMachine:
 	var state_machine_scene: PackedScene = load_scene("state_machine.tscn")
 	var state_machine: StateMachine = state_machine_scene.instantiate() as StateMachine
-	assert(state_machine != null)
+	assert(state_machine != null, Errors.NULL_NODE)
 
 	var state_names: PackedStringArray = []
 	state_names.resize(N_STATES)
@@ -155,7 +155,7 @@ func create_state_machine(
 		if i == i_initial_state:
 			initial_state = state
 
-	assert(initial_state != null)
+	assert(initial_state != null, Errors.NULL_NODE)
 	state_machine._initial_state = initial_state
 	state_machine._persistent_data = persistent_data_resource
 	state_machine.transition_frame = transition_frame
@@ -182,8 +182,8 @@ func verify_initial_state(state_machine: StateMachine, i_initial_state: int) -> 
 	if state_machine.is_physics_processing():
 		verify_method_called_for_states(state_machine, [i_initial_state], "physics_process")
 
-	assert_signal_emit_count(Signals, Signals.state_exited.get_name(), 0)
-	assert_signal_emit_count(Signals, Signals.state_entered.get_name(), 1)
+	assert_signal_emit_count(Signals, Signals.state_exited.get_name(), 0, "Expected no state_exited signals after instatiating state machine")
+	assert_signal_emit_count(Signals, Signals.state_entered.get_name(), 1, "Expected exactly one state_entered signal after instatiating state machine")
 	assert_signal_emitted_with_parameters(Signals, Signals.state_entered.get_name(), [
 		state_machine.get_path(),
 		state_machine.get_child(i_initial_state).name,
@@ -208,14 +208,14 @@ func verify_state_change(state_machine: StateMachine, i_old_state: int, i_new_st
 		&"OLD_STATE": state_machine.get_child(i_old_state).name,
 	})
 
-	assert_signal_emit_count(Signals, Signals.state_exited.get_name(), 1)
+	assert_signal_emit_count(Signals, Signals.state_exited.get_name(), 1, "Expected exactly one state_exited signal after changing state once")
 	assert_signal_emitted_with_parameters(Signals, Signals.state_exited.get_name(), [
 		state_machine.get_path(),
 		state_machine.get_child(i_old_state).name,
 		data_dict_merged,
 	])
 
-	assert_signal_emit_count(Signals, Signals.state_entered.get_name(), 2)
+	assert_signal_emit_count(Signals, Signals.state_entered.get_name(), 2, "Expected exactly two state_entered signals after changing state once")
 	assert_signal_emitted_with_parameters(Signals, Signals.state_entered.get_name(), [
 		state_machine.get_path(),
 		state_machine.get_child(i_new_state).name,

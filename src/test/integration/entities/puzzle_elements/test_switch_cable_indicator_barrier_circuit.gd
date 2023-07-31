@@ -12,15 +12,15 @@ func get_test_scene_name() -> String:
 
 func test_switch_cable_indicator_barrier_circuit() -> void:
 	var test_scene: SwitchCableIndicatorBarrierCircuit =  get_test_scene() as SwitchCableIndicatorBarrierCircuit
-	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier enabled after instantiation")
+	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier not enabled after instantiation")
 
 	await wait_for_process_frames(WAIT_FRAMES)
-	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier still enabled a few frames after instantiation")
-
-	test_scene.switch_interaction_action.interact()
-	await wait_for_process_frames(WAIT_FRAMES)
-	assert_true(test_scene.barrier.collision_shape.disabled, "Barrier disabled after flipping switch")
+	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier not enabled a few frames after instantiation")
 
 	test_scene.switch_interaction_action.interact()
 	await wait_for_process_frames(WAIT_FRAMES)
-	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier enabled again after flipping switch again")
+	assert_true(test_scene.barrier.collision_shape.disabled, "Barrier not disabled after flipping switch")
+
+	test_scene.switch_interaction_action.interact()
+	await wait_for_process_frames(WAIT_FRAMES)
+	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier not enabled again after flipping switch again")

@@ -18,7 +18,7 @@ func before_each() -> void:
 
 	var area_scene: PackedScene = load_scene("area.tscn")
 	area = area_scene.instantiate() as Area
-	assert(area != null)
+	assert(area != null, Errors.NULL_NODE)
 	add_collision_shape(area)
 	add_child_autofree(area)
 	area.global_position = AREA_POSITION
