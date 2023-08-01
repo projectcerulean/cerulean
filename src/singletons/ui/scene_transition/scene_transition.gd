@@ -45,7 +45,7 @@ func _on_fade_out_finished() -> void:
 
 
 func _on_scene_changed(_sender: NodePath):
-	if game_state_resource.current_state == GameStates.SCENE_TRANSITION:
+	if game_state_resource.current_state == GameStates.LOADING_SCREEN:
 		if tween != null:
 			tween.kill()
 		tween = create_tween()

@@ -4,7 +4,7 @@
 class_name SceneManager
 extends Node
 
-@export var scene_default: StringName
+@export var game_state_resource: StateResource
 @export var scene_info_resource: SceneInfoResource
 
 var scene_path_next: String = String()
@@ -14,35 +14,26 @@ var spawn_point_id_next: int = 0
 func _ready() -> void:
 	Signals.request_scene_change.connect(_on_request_scene_change)
 	Signals.resource_load_completed.connect(_on_resource_load_completed)
+	Signals.state_entered.connect(_on_state_entered)
 
-	assert(scene_default, Errors.INVALID_ARGUMENT)
 	assert(scene_info_resource, Errors.NULL_RESOURCE)
-	call_deferred(load_default_scene.get_method())
 
 
-func load_default_scene() -> void:
-	assert(get_child_count() == 0, Errors.CONSISTENCY_ERROR)
-	var scene_path: String = scene_default
-	if not scene_path.begins_with("res://"):
-		scene_path = Levels.LEVELS[scene_default][Levels.LEVEL_PATH]
-	load_scene(scene_path, 0)
-
-
-func load_scene(scene_path: String, spawn_point_id: int) -> void:
-	assert(scene_path_next == String(), Errors.CONSISTENCY_ERROR)
-	if get_child_count() > 0:
-		assert(get_child_count() == 1, Errors.CONSISTENCY_ERROR)
-		get_child(0).queue_free()
-	while get_child_count() > 0:
-		await get_tree().process_frame
-	scene_path_next = scene_path
-	spawn_point_id_next = spawn_point_id
-	Signals.emit_request_resource_load(self, scene_path)
+func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
+	if sender == game_state_resource.state_machine and state == GameStates.LOADING_SCREEN:
+		if get_child_count() > 0:
+			assert(get_child_count() == 1, Errors.CONSISTENCY_ERROR)
+			get_child(0).queue_free()
+		while get_child_count() > 0:
+			await get_tree().process_frame
+		Signals.emit_request_resource_load(self, scene_path_next)
 
 
 func _on_request_scene_change(_sender: NodePath, scene_path: String, spawn_point_id: int) -> void:
-	assert(get_child_count() == 1, Errors.CONSISTENCY_ERROR)
-	load_scene(scene_path, spawn_point_id)
+	assert(scene_path_next == String(), Errors.CONSISTENCY_ERROR)
+	scene_path_next = scene_path
+	spawn_point_id_next = spawn_point_id
+	Signals.emit_request_loading_screen_start(self)
 
 
 func _on_resource_load_completed(_sender: NodePath, resource_path: String, resource: Resource) -> void:
@@ -58,5 +49,6 @@ func _on_resource_load_completed(_sender: NodePath, resource_path: String, resou
 	scene_path_next = String()
 	spawn_point_id_next = 0
 
-	var node: Node = packed_scene.instantiate()
-	add_child(node)
+	var scene: Scene = packed_scene.instantiate()
+	assert(scene != null, Errors.NULL_NODE)
+	add_child(scene)

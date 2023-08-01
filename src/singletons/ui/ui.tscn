@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dm267sxiobypt"]
+[gd_scene load_steps=29 format=3 uid="uid://dm267sxiobypt"]
 
 [ext_resource type="Shader" path="res://src/singletons/ui/effects/underwater_effect.gdshader" id="1"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/version_label/version_label.gd" id="3"]
@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://d3kve5ytakd60" path="res://src/singletons/ui/pause_menu/pause_menu.tscn" id="9_mxrv6"]
 [ext_resource type="Script" path="res://src/singletons/ui/pause_menu/screen_blur.gd" id="10"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="11"]
+[ext_resource type="Script" path="res://src/singletons/ui/loading_screen/loading_spinner.gd" id="11_55gbi"]
+[ext_resource type="Script" path="res://src/singletons/ui/loading_screen/loading_screen.gd" id="11_nsjao"]
+[ext_resource type="Shader" path="res://src/singletons/ui/loading_screen/loading_spinner.gdshader" id="11_ykqb8"]
 [ext_resource type="Script" path="res://src/singletons/ui/pause_menu/screen_darken.gd" id="12"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/debug_console/debug_console.gd" id="12_qt77i"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/vector3_visualizer/vector3_visualizer.gd" id="14_mwu71"]
@@ -33,6 +36,13 @@ shader_parameter/distortion_scale = 0.5
 shader_parameter/distortion_intensity = 0.01
 shader_parameter/distortion_speed = 0.05
 shader_parameter/noise = SubResource("NoiseTexture2D_aa3of")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3t3c"]
+shader = ExtResource("11_ykqb8")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/center_dist_squared_max = 0.25
+shader_parameter/center_dist_squared_min = 0.2
+shader_parameter/speed = 5.0
 
 [sub_resource type="ShaderMaterial" id="10"]
 shader = ExtResource("8")
@@ -95,6 +105,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_ktx3r")
 game_state_resource = ExtResource("11")
+
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+script = ExtResource("11_nsjao")
+game_state_resource = ExtResource("11")
+
+[node name="LoadingSpinnerContainer" type="Control" parent="LoadingScreen"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -150.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="LoadingSpinner" type="ColorRect" parent="LoadingScreen/LoadingSpinnerContainer"]
+material = SubResource("ShaderMaterial_m3t3c")
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+color = Color(0.501961, 0.501961, 0.501961, 0.501961)
+script = ExtResource("11_55gbi")
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 

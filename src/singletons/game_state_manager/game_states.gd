@@ -7,4 +7,6 @@ extends Node
 const DIALOGUE: StringName = &"Dialogue"
 const GAMEPLAY: StringName = &"Gameplay"
 const PAUSE: StringName = &"Pause"
+const LOADING_SCREEN: StringName = &"LoadingScreen"
 const SCENE_TRANSITION: StringName = &"SceneTransition"
+const STARTUP: StringName = &"Startup"

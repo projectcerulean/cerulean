@@ -238,4 +238,5 @@ common/physics_ticks_per_second=120
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0.0196078, 0.0196078, 0.0196078, 1)
 shadows/directional_shadow/size=8192

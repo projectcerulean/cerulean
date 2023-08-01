@@ -22,6 +22,7 @@ signal request_game_unpause
 signal request_interaction
 signal request_interaction_highlight
 signal request_interaction_unhighlight
+signal request_loading_screen_start
 signal request_resource_load
 signal request_scene_change
 signal request_scene_transition_start
@@ -99,6 +100,7 @@ func emit_request_game_unpause(sender: Node) -> void: emit(request_game_unpause,
 func emit_request_interaction(sender: Node) -> void: emit(request_interaction, sender, [])
 func emit_request_interaction_highlight(sender: Node3D) -> void: emit(request_interaction_highlight, sender, [])
 func emit_request_interaction_unhighlight(sender: Node3D) -> void: emit(request_interaction_unhighlight, sender, [])
+func emit_request_loading_screen_start(sender: Node) -> void: emit(request_loading_screen_start, sender, [])
 func emit_request_resource_load(sender: Node, resource_path: String) -> void: emit(request_resource_load, sender, [resource_path])
 func emit_request_scene_change(sender: Node, scene_path: String, spawn_point_id: int) -> void: emit(request_scene_change, sender, [scene_path, spawn_point_id])
 func emit_request_scene_transition_start(sender: Node, scene_path: String, spawn_point_id: int, color: Color, duration: float) -> void: emit(request_scene_transition_start, sender, [scene_path, spawn_point_id, color, duration])

@@ -16,6 +16,7 @@ func _ready() -> void:
 	Signals.request_dialogue_finish.connect(self._on_request_dialogue_finish)
 	Signals.request_scene_transition_start.connect(self._on_request_scene_transition_start)
 	Signals.request_scene_transition_finish.connect(self._on_request_scene_transition_finish)
+	Signals.request_loading_screen_start.connect(self._on_request_loading_screen_start)
 	Signals.request_game_quit.connect(self._on_request_game_quit)
 
 	assert(state_resource as StateResource != null, Errors.NULL_RESOURCE)
@@ -43,6 +44,10 @@ func _on_request_scene_transition_start(_sender: NodePath, _scene: String, _spaw
 
 func _on_request_scene_transition_finish(_sender: NodePath) -> void:
 	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
+
+
+func _on_request_loading_screen_start(_sender: NodePath) -> void:
+	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.LOADING_SCREEN)
 
 
 func _on_request_game_quit(_sender: NodePath) -> void:
