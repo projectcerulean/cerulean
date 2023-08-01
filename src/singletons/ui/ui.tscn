@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://src/singletons/ui/debug/version_label/version_label.gd" id="3"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="3_34h0a"]
 [ext_resource type="Script" path="res://src/singletons/ui/effects/underwater_effect.gd" id="4"]
+[ext_resource type="Script" path="res://src/singletons/ui/hud/hud.gd" id="4_4636l"]
 [ext_resource type="Script" path="res://src/singletons/ui/hud/interaction_marker.gd" id="4_o1y8t"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/vector2_visualizer/vector2_visualizer.gd" id="5"]
 [ext_resource type="Resource" uid="uid://bqsrxvfl6htqr" path="res://src/singletons/lfo/lfo_resource.tres" id="5_f13oq"]
@@ -13,7 +14,6 @@
 [ext_resource type="Script" path="res://src/singletons/ui/scene_transition/scene_transition.gd" id="8_ktx3r"]
 [ext_resource type="PackedScene" uid="uid://d3kve5ytakd60" path="res://src/singletons/ui/pause_menu/pause_menu.tscn" id="9_mxrv6"]
 [ext_resource type="Script" path="res://src/singletons/ui/pause_menu/screen_blur.gd" id="10"]
-[ext_resource type="Resource" uid="uid://dwq73chlxsr7b" path="res://src/singletons/scene_manager/scene_info_resource.tres" id="10_lx760"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="11"]
 [ext_resource type="Script" path="res://src/singletons/ui/pause_menu/screen_darken.gd" id="12"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/debug_console/debug_console.gd" id="12_qt77i"]
@@ -59,6 +59,8 @@ script = ExtResource("4")
 _environment_resource = ExtResource("3_34h0a")
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_4636l")
+game_state_resource = ExtResource("11")
 
 [node name="Compass" type="Label" parent="HudLayer"]
 anchors_preset = 10
@@ -93,7 +95,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_ktx3r")
 game_state_resource = ExtResource("11")
-scene_info_resource = ExtResource("10_lx760")
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 
