@@ -296,7 +296,7 @@ distance_fade_max_distance = 2.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_vrsx2"]
 size = Vector3(512, 512, 512)
 
-[node name="TestDungeon" type="Node3D"]
+[node name="PrototypeDungeon" type="Node3D"]
 script = ExtResource("1_arp3q")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("2_af2ft")]
