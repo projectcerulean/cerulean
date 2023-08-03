@@ -48,6 +48,11 @@ func _on_scene_changed(_sender: NodePath):
 	if game_state_resource.current_state == GameStates.LOADING_SCREEN:
 		if tween != null:
 			tween.kill()
+
+		# Make sure camera position is updated, etc.
+		await get_tree().process_frame
+		await get_tree().physics_frame
+
 		tween = create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.set_trans(Tween.TRANS_QUINT)
