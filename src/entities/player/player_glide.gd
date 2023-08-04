@@ -41,7 +41,7 @@ func physics_process(delta: float) -> void:
 			player.enqueue_force(
 				-air_brake_strength * player.linear_velocity.normalized() * (velocity_length - air_brake_min_speed) * player.mass
 			)
-	else:
+	elif not player.is_near_floor():
 		# Energy conservation
 		var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 		var velocity_length_target: float = glide_start_velocity.length() + Math.signed_sqrt(
