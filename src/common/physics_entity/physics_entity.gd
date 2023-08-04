@@ -10,9 +10,10 @@ const EPSILON: float = 0.01
 @export var floor_snapping_enabled: bool = false
 @export var floor_max_angle: float = PI / 4.0
 @export var floor_collision_check_length: float = 0.25
-@export var floor_snap_min_distance: float = 0.01
+@export var floor_snap_distance_target: float = 0.01
 @export var floor_snap_max_distance: float = floor_collision_check_length
-@export var floor_snap_lerp_weight: float = 0.95
+@export var floor_snap_lerp_weight: float = 30.0
+@export var floor_snap_y_speed_decay_lerp_weight: float = 30.0
 @export var shape_cast_scale: float = 0.95
 
 var shape_cast_i_floor_collision: int = -1
@@ -25,7 +26,6 @@ var pending_forces: PackedVector3Array = PackedVector3Array()
 var shape: Shape3D = null
 
 @onready var floor_velocity_prober: Node3D = Node3D.new()
-@onready var ray_cast: RayCast3D = RayCast3D.new()
 @onready var shape_cast: ShapeCast3D = ShapeCast3D.new()
 @onready var shape_cast_target_position: Vector3 = Vector3.DOWN * floor_collision_check_length
 @onready var bounce_shape_cast: ShapeCast3D = ShapeCast3D.new()
@@ -43,10 +43,6 @@ func _ready() -> void:
 	shape_cast.collision_mask = collision_mask
 	shape_cast.position.y = shape_cast.shape.margin + EPSILON
 	add_child(shape_cast)
-
-	ray_cast.target_position = Vector3.DOWN * (ShapeUtils.get_shape_height(shape) / 2.0 + floor_collision_check_length)
-	ray_cast.collision_mask = collision_mask
-	add_child(ray_cast)
 
 	bounce_shape_cast.shape = shape
 	bounce_shape_cast.collide_with_areas = true
@@ -139,15 +135,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 					):
 						shape_cast_i_floor_collision = i_collision
 
-	# Find floor collider using raycast (shape cast is sometimes unreliable)
-	ray_cast_floor_collision = false
-	ray_cast.force_raycast_update()
-	if ray_cast.is_colliding():
-		var is_below_entity: bool = ray_cast.get_collision_point().y < global_position.y
-		var is_floor: bool = ray_cast.get_collision_normal().angle_to(Vector3.UP) <= floor_max_angle
-		if is_below_entity and is_floor:
-			ray_cast_floor_collision = true
-
 	# Apply floor transform
 	var node_reparented: bool = TreeUtils.reparent_node(
 		floor_velocity_prober,
@@ -162,8 +149,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if floor_snapping_enabled:
 		var floor_distance: float = get_floor_distance()
 		if not is_nan(floor_distance):
-			if floor_distance > floor_snap_min_distance and floor_distance < floor_snap_max_distance:
-				state.transform.origin.y -= floor_distance * floor_snap_lerp_weight
+			if absf(floor_distance) < floor_snap_max_distance:
+				state.linear_velocity.y = Lerp.delta_lerp(state.linear_velocity.y, 0.0, floor_snap_y_speed_decay_lerp_weight, state.step)
+				var floor_snap_distance_target_lerped: float = Lerp.delta_lerp(floor_distance, floor_snap_distance_target, floor_snap_lerp_weight, state.step)
+				state.transform.origin.y -= floor_distance - floor_snap_distance_target_lerped
 
 	floor_velocity_prober_position_prev = floor_velocity_prober.global_position
 
@@ -184,7 +173,7 @@ func enqueue_force(force_vector: Vector3):
 
 func is_on_floor() -> bool:
 	var floor_distance: float = get_floor_distance()
-	return not is_nan(floor_distance) and floor_distance < floor_snap_min_distance
+	return not is_nan(floor_distance) and absf(floor_distance) < 2.0 * floor_snap_distance_target
 
 
 func is_near_floor() -> bool:
@@ -194,8 +183,6 @@ func is_near_floor() -> bool:
 func get_floor_normal() -> Vector3:
 	if shape_cast_i_floor_collision >= 0:
 		return shape_cast.get_collision_normal(shape_cast_i_floor_collision)
-	elif ray_cast_floor_collision:
-		return ray_cast.get_collision_normal()
 	else:
 		return Vector3.ZERO
 
@@ -203,8 +190,6 @@ func get_floor_normal() -> Vector3:
 func get_floor_collision_position() -> Vector3:
 	if shape_cast_i_floor_collision >= 0:
 		return shape_cast.get_collision_point(shape_cast_i_floor_collision)
-	elif ray_cast_floor_collision:
-		return ray_cast.get_collision_point()
 	else:
 		return Vector3.ZERO
 
@@ -212,8 +197,6 @@ func get_floor_collision_position() -> Vector3:
 func get_floor_collider() -> Node3D:
 	if shape_cast_i_floor_collision >= 0:
 		return shape_cast.get_collider(shape_cast_i_floor_collision) as Node3D
-	elif ray_cast_floor_collision:
-		return ray_cast.get_collider() as Node3D
 	else:
 		return null
 
@@ -222,10 +205,6 @@ func get_floor_distance() -> float:
 	if shape_cast_i_floor_collision >= 0:
 		var collision_distance: float = (shape_cast.get_closest_collision_safe_fraction() * shape_cast_target_position).length()
 		var floor_distance: float = collision_distance - shape_cast.position.y
-		return floor_distance
-	elif ray_cast_floor_collision:
-		var collision_distance: float = (ray_cast.get_collision_point() - ray_cast.global_position).length()
-		var floor_distance: float = collision_distance - ShapeUtils.get_shape_height(shape) / 2.0
 		return floor_distance
 	else:
 		return NAN
