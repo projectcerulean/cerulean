@@ -50,7 +50,6 @@ volume_db = -80.0
 [node name="GameStateManager" type="Node"]
 process_mode = 3
 script = ExtResource("4")
-_state_resource = ExtResource("3")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("3_hoole")]
 _initial_state = NodePath("Startup")

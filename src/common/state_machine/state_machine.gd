@@ -22,7 +22,8 @@ enum TRANSITION_FRAME {
 # Optional data resource for storing persistent state
 @export var _persistent_data: Resource
 
-var current_state: State
+var current_state: State = null
+var is_state_change_pending: bool = false
 
 @onready var initial_state: State = _initial_state as State
 @onready var persistent_data: DictionaryResource = _persistent_data as DictionaryResource
@@ -31,8 +32,6 @@ var current_state: State
 
 # Enter the initial state when initializing the state machine.
 func _ready() -> void:
-	Signals.request_state_change.connect(_on_request_state_change)
-	Signals.request_state_change_next.connect(_on_request_state_change_next)
 	assert(initial_state != null, Errors.NULL_NODE)
 	assert(initial_state in get_children(), Errors.INVALID_ARGUMENT)
 
@@ -43,49 +42,44 @@ func _ready() -> void:
 			initial_state = get_node(persistent_data_value) as State
 			assert(initial_state != null, Errors.NULL_NODE)
 
-	transition_to(initial_state.name, {})
+	transition_to_state(initial_state.name)
 
 
 # Delegate `_process` callback to the active state.
 func _process(delta: float) -> void:
-	if current_state != null:
-		current_state.process(delta)
+	if current_state == null or is_state_change_pending:
+		return
 
-		if transition_frame == TRANSITION_FRAME.PROCESS:
-			var target_state: StringName = current_state.get_transition()
-			if target_state != StringName():
-				transition_to(target_state, {})
+	current_state.process(delta)
+
+	if transition_frame == TRANSITION_FRAME.PROCESS:
+		var target_state: StringName = current_state.get_transition()
+		if target_state != StringName():
+			transition_to_state(target_state)
 
 
 # Delegate `_physics_process` callback to the active state.
 func _physics_process(delta: float) -> void:
-	if current_state != null:
-		current_state.physics_process(delta)
+	if current_state == null or is_state_change_pending:
+		return
 
-		if transition_frame == TRANSITION_FRAME.PHYSICS_PROCESS:
-			var target_state: StringName = current_state.get_transition()
-			if target_state != StringName():
-				transition_to(target_state, {})
+	current_state.physics_process(delta)
 
-
-func _on_request_state_change(_sender: NodePath, state_machine: NodePath, state: StringName, data: Dictionary = {}):
-	if state_machine == get_path():
-		transition_to(state, data)
-
-
-func _on_request_state_change_next(_sender: NodePath, state_machine: NodePath, data: Dictionary = {}):
-	if state_machine == get_path():
-		transition_to_next(data)
+	if transition_frame == TRANSITION_FRAME.PHYSICS_PROCESS:
+		var target_state: StringName = current_state.get_transition()
+		if target_state != StringName():
+			transition_to_state(target_state)
 
 
 # This function calls the current state's exit() function, then changes the active state,
 # and calls its enter function.
 # It optionally takes a `data` dictionary to pass to the next state's enter() function.
-func transition_to(target_state: StringName, data: Dictionary) -> void:
+func transition_to_state(target_state: StringName, data: Dictionary = {}) -> void:
 	call_deferred(transition_to_deferred.get_method(), target_state, data)
+	is_state_change_pending = true
 
 
-func transition_to_next(data: Dictionary) -> void:
+func transition_to_next_state(data: Dictionary = {}) -> void:
 	var current_state_index: int = -1
 	for i in range(get_child_count()):
 		if get_children()[i] == current_state:
@@ -94,7 +88,7 @@ func transition_to_next(data: Dictionary) -> void:
 	assert(current_state_index >= 0, Errors.CONSISTENCY_ERROR)
 
 	var next_state_index: int = (current_state_index + 1) % get_child_count()
-	transition_to(get_children()[next_state_index].name, data)
+	transition_to_state(get_children()[next_state_index].name, data)
 
 
 func transition_to_deferred(target_state: StringName, data: Dictionary) -> void:
@@ -116,3 +110,5 @@ func transition_to_deferred(target_state: StringName, data: Dictionary) -> void:
 
 		if persistent_data != null:
 			persistent_data.value[persistent_data_state_path] = String(target_state)
+
+	is_state_change_pending = false

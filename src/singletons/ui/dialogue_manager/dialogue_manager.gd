@@ -11,7 +11,7 @@ var dialogue_resource: DialogueResource = null
 var line_index: int = 0
 
 @onready var label: Label = get_node("Label") as Label
-@onready var state_machine: Node = get_node("StateMachine") as Node
+@onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 
@@ -38,7 +38,7 @@ func _on_request_dialogue_finish(_sender: NodePath) -> void:
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if sender == game_state_resource.state_machine and state == GameStates.DIALOGUE:
-		Signals.emit_request_state_change(self, state_machine.get_path(), DialogueStates.OUTPUT)
+		state_machine.transition_to_state(DialogueStates.OUTPUT)
 		self.visible = true
 
 

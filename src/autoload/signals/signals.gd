@@ -13,7 +13,6 @@ signal bgm_changed
 signal debug_write
 signal interaction_highlight_set
 signal mouse_entered_control
-signal request_body_bounce
 signal request_dialogue_start
 signal request_dialogue_finish
 signal request_game_pause
@@ -32,8 +31,6 @@ signal request_setting_update
 signal request_settings_save
 signal request_sfx_play
 signal request_sfx_play_non_diegetic
-signal request_state_change
-signal request_state_change_next
 signal resource_load_completed
 signal scene_changed
 signal setting_updated
@@ -91,7 +88,6 @@ func emit_bgm_changed(sender: Node, bgm: StringName) -> void: emit(bgm_changed, 
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, sender, [variant])
 func emit_interaction_highlight_set(sender: Node, target: NodePath) -> void: emit(interaction_highlight_set, sender, [target])
 func emit_mouse_entered_control(sender: Control) -> void: emit(mouse_entered_control, sender, [])
-func emit_request_body_bounce(sender: Node, body: NodePath, target_velocity: Vector3, elasticy: float) -> void: emit(request_body_bounce, sender, [body, target_velocity, elasticy])
 func emit_request_dialogue_start(sender: Node3D, dialogue_resource: DialogueResource) -> void: emit(request_dialogue_start, sender, [dialogue_resource])
 func emit_request_dialogue_finish(sender: Node) -> void: emit(request_dialogue_finish, sender, [])
 func emit_request_game_pause(sender: Node) -> void: emit(request_game_pause, sender, [])
@@ -110,8 +106,6 @@ func emit_request_setting_update(sender: Node, key: StringName, value_index: int
 func emit_request_settings_save(sender: Node) -> void: emit(request_settings_save, sender, [])
 func emit_request_sfx_play(sender: Node, sfx_resource: SfxResource, position: Vector3) -> void: emit(request_sfx_play, sender, [sfx_resource, position])
 func emit_request_sfx_play_non_diegetic(sender: Node, sfx_resource: SfxResource) -> void: emit(request_sfx_play_non_diegetic, sender, [sfx_resource])
-func emit_request_state_change(sender: Node, state_machine: NodePath, state: StringName, data: Dictionary = {}) -> void: emit(request_state_change, sender, [state_machine, state, data])
-func emit_request_state_change_next(sender: Node, state_machine: NodePath, data: Dictionary = {}) -> void: emit(request_state_change_next, sender, [state_machine, data])
 func emit_resource_load_completed(sender: Node, resource_path: String, resource: Resource) -> void: emit(resource_load_completed, sender, [resource_path, resource])
 func emit_scene_changed(sender: Node) -> void: emit(scene_changed, sender, [])
 func emit_setting_updated(sender: Node, key: StringName) -> void: emit(setting_updated, sender, [key])

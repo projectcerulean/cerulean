@@ -11,10 +11,10 @@ extends MeshInstance3D
 @onready var shader_material: ShaderMaterial = get_surface_override_material(0) as ShaderMaterial
 @onready var flow_position_start: float = -box_mesh.size.y / 4.0 - flow_smooth_range / 2.0
 @onready var flow_position_end: float = -flow_position_start
-@onready var flow_duration: float = abs(flow_position_end - flow_position_start) / flow_speed
+@onready var flow_duration: float = absf(flow_position_end - flow_position_start) / flow_speed
 @onready var state_next: StringName
 
-@onready var state_machine: Node = get_node("StateMachine") as Node
+@onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 @onready var input_node: Node = get_parent().get_child(get_index() - 1)
 @onready var tween: Tween
 
@@ -36,14 +36,14 @@ func set_flow_position(flow_position: float) -> void:
 
 
 func tween_callback() -> void:
-	Signals.emit_request_state_change(self, state_machine.get_path(), state_next)
+	state_machine.transition_to_state(state_next)
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	var state_machine: Node = get_node(sender)
-	if is_instance_valid(state_machine):
-		var state_machine_owner: Node = state_machine.owner
-		if is_instance_valid(state_machine_owner) and state_machine_owner == input_node:
+	var sender_state_machine: StateMachine = get_node(sender) as StateMachine
+	if is_instance_valid(sender_state_machine):
+		var sender_state_machine_owner: Node = sender_state_machine.owner
+		if is_instance_valid(sender_state_machine_owner) and sender_state_machine_owner == input_node:
 			state_next = state
 			var flip_colors: bool = state_next == PuzzleElementStates.DISABLED
 			shader_material.set_shader_parameter("flip_colors", flip_colors)

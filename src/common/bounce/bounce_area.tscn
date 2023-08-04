@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3qm7cftlbshl"]
+
+[ext_resource type="Script" path="res://src/common/bounce/bounce_area.gd" id="1_kubpq"]
+
+[node name="BounceArea" type="Area3D"]
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_kubpq")

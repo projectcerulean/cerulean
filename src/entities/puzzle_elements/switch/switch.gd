@@ -4,7 +4,7 @@
 class_name Switch
 extends StaticBody3D
 
-@onready var state_machine: Node = get_node("StateMachine") as Node
+@onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 
 
 func _ready() -> void:
@@ -12,4 +12,4 @@ func _ready() -> void:
 	assert(state_machine.get_child_count() == 2, Errors.CONSISTENCY_ERROR)
 
 func flip() -> void:
-	Signals.emit_request_state_change_next(self, state_machine.get_path())
+	state_machine.transition_to_next_state()

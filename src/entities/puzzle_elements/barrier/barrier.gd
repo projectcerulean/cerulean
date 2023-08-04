@@ -13,7 +13,7 @@ var inputs: Array[bool]
 
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
 @onready var mesh_instance: MeshInstance3D = get_node("MeshInstance3D") as MeshInstance3D
-@onready var state_machine: Node = get_node("StateMachine") as Node
+@onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 @onready var tween: Tween
 @onready var shader_material: ShaderMaterial = mesh_instance.get_surface_override_material(0) as ShaderMaterial
 
@@ -50,10 +50,8 @@ func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -
 				inputs_changed = true
 
 	if inputs_changed:
-		if inputs == input_targets:
-			Signals.emit_request_state_change(self, state_machine.get_path(), PuzzleElementStates.DISABLED)
-		else:
-			Signals.emit_request_state_change(self, state_machine.get_path(), PuzzleElementStates.ENABLED)
+		var state_name: StringName = PuzzleElementStates.DISABLED if inputs == input_targets else PuzzleElementStates.ENABLED
+		state_machine.transition_to_state(state_name)
 
 
 func set_alpha(alpha: float) -> void:

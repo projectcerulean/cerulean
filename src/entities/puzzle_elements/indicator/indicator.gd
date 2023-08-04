@@ -5,7 +5,7 @@ class_name Indicator
 extends Node3D
 
 @onready var input_node: Node = get_parent() if get_index() == 0 else get_parent().get_child(get_index() - 1)
-@onready var state_machine: Node = get_node("StateMachine") as Node
+@onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 
 
 func _ready() -> void:
@@ -16,8 +16,8 @@ func _ready() -> void:
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	var sender_state_machine: Node = get_node(sender)
+	var sender_state_machine: StateMachine = get_node(sender) as StateMachine
 	if is_instance_valid(sender_state_machine):
 		var sender_state_machine_owner: Node = sender_state_machine.owner
 		if is_instance_valid(sender_state_machine_owner) and sender_state_machine_owner == input_node:
-			Signals.emit_request_state_change(self, state_machine.get_path(), state)
+			state_machine.transition_to_state(state)

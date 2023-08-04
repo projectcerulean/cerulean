@@ -16,7 +16,7 @@ var input_vector: Vector3
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
 @onready var jump_buffer_timer: Timer = get_node("JumpBufferTimer") as Timer
 @onready var water_detector: WaterDetector = get_node("WaterDetector") as WaterDetector
-@onready var state_machine: Node = get_node("StateMachine") as Node
+@onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 
 @onready var thumbstick_resource_left: Vector2Resource = _thumbstick_resource_left as Vector2Resource
 @onready var input_vector_resource: Vector3Resource = _input_vector_resource as Vector3Resource
@@ -72,9 +72,11 @@ func _notification(what: int) -> void:
 		input_vector_resource.value = Vector3()
 
 
-func _on_request_body_bounce(sender: NodePath, body: NodePath, target_velocity: Vector3, elasticy: float) -> void:
-	super._on_request_body_bounce(sender, body, target_velocity, elasticy)
-	if body == get_path():
-		Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
-		if Input.is_action_pressed(InputActions.JUMP) and state_resource.current_state != PlayerStates.DIVE:
-			Signals.emit_request_state_change(self, state_machine.get_path(), PlayerStates.BOUNCE)
+func on_bounce(bounce_normal: Vector3, bounce_min_speed: float, bounce_elasticity: float):
+	super.on_bounce(bounce_normal, bounce_min_speed, bounce_elasticity)
+	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
+	if state_resource.current_state != PlayerStates.DIVE:
+		if Input.is_action_pressed(InputActions.JUMP):
+			state_machine.transition_to_state(PlayerStates.BOUNCE)
+		else:
+			state_machine.transition_to_state(PlayerStates.FALL)

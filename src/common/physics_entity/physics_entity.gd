@@ -21,8 +21,6 @@ var floor_velocity_prober_position_prev: Vector3
 var linear_velocity_prev: Vector3 = Vector3.ZERO
 var pending_exact_velocities: PackedVector3Array = PackedVector3Array()
 var pending_minimum_velocities: PackedVector3Array = PackedVector3Array()
-var pending_bounce_velocities: PackedVector3Array = PackedVector3Array()
-var pending_bounce_elasticities: PackedFloat64Array = PackedFloat64Array()
 var pending_forces: PackedVector3Array = PackedVector3Array()
 var shape: Shape3D = null
 
@@ -30,17 +28,11 @@ var shape: Shape3D = null
 @onready var ray_cast: RayCast3D = RayCast3D.new()
 @onready var shape_cast: ShapeCast3D = ShapeCast3D.new()
 @onready var shape_cast_target_position: Vector3 = Vector3.DOWN * floor_collision_check_length
+@onready var bounce_shape_cast: ShapeCast3D = ShapeCast3D.new()
 
 
 func _ready() -> void:
-	Signals.request_body_bounce.connect(_on_request_body_bounce)
-
-	var collision_shape: CollisionShape3D = null
-	for i in range(get_child_count()):
-		var child: Node = get_child(i)
-		collision_shape = child as CollisionShape3D
-		if collision_shape != null:
-			break
+	var collision_shape: CollisionShape3D = TreeUtils.get_collision_shape_for_body(self)
 	assert(collision_shape != null, Errors.NULL_NODE)
 
 	shape = collision_shape.shape
@@ -56,8 +48,49 @@ func _ready() -> void:
 	ray_cast.collision_mask = collision_mask
 	add_child(ray_cast)
 
+	bounce_shape_cast.shape = shape
+	bounce_shape_cast.collide_with_areas = true
+	bounce_shape_cast.collide_with_bodies = false
+	bounce_shape_cast.collision_mask = 256 # bounce layer
+	add_child(bounce_shape_cast)
+
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	# Bounces
+	bounce_shape_cast.target_position = state.linear_velocity * state.step
+	bounce_shape_cast.force_shapecast_update()
+	for i in range(bounce_shape_cast.get_collision_count()):
+		var bounce_area: BounceArea = bounce_shape_cast.get_collider(i) as BounceArea
+		if bounce_area != null:
+			var bounce_normal: Vector3 = bounce_area.global_transform.basis.y
+			var bounce_min_speed: float = bounce_area.bounce_min_speed
+			var bounce_elasticity: float = bounce_area.bounce_elasticity
+			assert(bounce_elasticity >= 0.0 and bounce_elasticity <= 1.0, Errors.INVALID_ARGUMENT)
+
+			# Don't want bounce area to trigger from behind/below
+			if bounce_normal.dot(global_position - bounce_area.global_position) <= 0.0:
+				continue
+
+			state.linear_velocity = linear_velocity_prev.bounce(bounce_normal)
+			var planar_velocity: Vector3 = Plane(bounce_normal).project(state.linear_velocity)
+			var projected_velocity: Vector3 = state.linear_velocity.project(bounce_normal)
+			if bounce_elasticity * projected_velocity.length() < bounce_min_speed or projected_velocity.dot(bounce_normal) < 0.0:
+				state.linear_velocity = bounce_min_speed * bounce_normal + planar_velocity
+			else:
+				state.linear_velocity = bounce_elasticity * projected_velocity + planar_velocity
+
+			# Notify that body has bounced
+			on_bounce(bounce_normal, bounce_min_speed, bounce_elasticity)
+			bounce_area.on_body_bounced()
+
+			# Clear pending velocities and forces (they are most likely no longer valid after a bounce)
+			pending_exact_velocities.clear()
+			pending_minimum_velocities.clear()
+			pending_forces.clear()
+
+			# Do not handle any more bounces (if any)
+			break
+
 	# Exact velocity impulses
 	for i in range(len(pending_exact_velocities)):
 		var impulse_velocity: Vector3 = pending_exact_velocities[i]
@@ -67,7 +100,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			continue
 
 		var planar_velocity: Vector3 = Plane(impulse_normal).project(state.linear_velocity)
-		var projected_velocity: Vector3 = state.linear_velocity.project(impulse_normal)
 		state.linear_velocity = impulse_velocity + planar_velocity
 	pending_exact_velocities.clear()
 
@@ -84,27 +116,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		if projected_velocity.length() < impulse_velocity.length() or projected_velocity.dot(impulse_velocity) < 0.0:
 			state.linear_velocity = impulse_velocity + planar_velocity
 	pending_minimum_velocities.clear()
-
-	# Bounces
-	for i in range(len(pending_bounce_velocities)):
-		var bounce_velocity: Vector3 = pending_bounce_velocities[i]
-		var bounce_normal: Vector3 = bounce_velocity.normalized()
-		if not bounce_normal.is_normalized():
-			push_error("bounce normal not normalized")
-			continue
-
-		var elasticy: float = pending_bounce_elasticities[i]
-		assert(elasticy >= 0.0 and elasticy <= 1.0, Errors.INVALID_ARGUMENT)
-
-		state.linear_velocity = linear_velocity_prev.bounce(bounce_normal)
-		var planar_velocity: Vector3 = Plane(bounce_normal).project(state.linear_velocity)
-		var projected_velocity: Vector3 = state.linear_velocity.project(bounce_normal)
-		if elasticy * projected_velocity.length() < bounce_velocity.length() or projected_velocity.dot(bounce_velocity) < 0.0:
-			state.linear_velocity = bounce_velocity + planar_velocity
-		else:
-			state.linear_velocity = elasticy * projected_velocity + planar_velocity
-	pending_bounce_velocities.clear()
-	pending_bounce_elasticities.clear()
 
 	# Forces
 	for i in range(len(pending_forces)):
@@ -152,7 +163,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var floor_distance: float = get_floor_distance()
 		if not is_nan(floor_distance):
 			if floor_distance > floor_snap_min_distance and floor_distance < floor_snap_max_distance:
-				var origin_before: Vector3 = state.transform.origin
 				state.transform.origin.y -= floor_distance * floor_snap_lerp_weight
 
 	floor_velocity_prober_position_prev = floor_velocity_prober.global_position
@@ -168,18 +178,8 @@ func enqueue_minimum_velocity(target_minimum_velocity: Vector3):
 	pending_minimum_velocities.append(target_minimum_velocity)
 
 
-func enqueue_bounce(bounce_velocity: Vector3, elasticy: float):
-	pending_bounce_velocities.append(bounce_velocity)
-	pending_bounce_elasticities.append(elasticy)
-
-
 func enqueue_force(force_vector: Vector3):
 	pending_forces.append(force_vector)
-
-
-func _on_request_body_bounce(_sender: NodePath, body: NodePath, target_velocity: Vector3, elasticy: float) -> void:
-	if body == get_path():
-		enqueue_bounce(target_velocity, elasticy)
 
 
 func is_on_floor() -> bool:
@@ -229,3 +229,8 @@ func get_floor_distance() -> float:
 		return floor_distance
 	else:
 		return NAN
+
+
+# Virtual function
+func on_bounce(_bounce_normal: Vector3, _bounce_min_speed: float, _bounce_elasticity: float):
+	pass

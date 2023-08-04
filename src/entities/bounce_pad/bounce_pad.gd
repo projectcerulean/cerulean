@@ -12,7 +12,8 @@ extends StaticBody3D
 var tween: Tween
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var bounce_speed: float = 2.0 * sqrt(gravity * bounce_height)
+@onready var bounce_min_speed: float = 2.0 * sqrt(gravity * bounce_height)
+@onready var bounce_area: BounceArea = get_node("BounceArea") as BounceArea
 @onready var mesh_instance: MeshInstance3D = get_node("PhysicsStepInterpolator/BounceMesh") as MeshInstance3D
 @onready var material: StandardMaterial3D = mesh_instance.get_surface_override_material(0) as StandardMaterial3D
 @onready var color_default: Color = material.albedo_color
@@ -20,21 +21,23 @@ var tween: Tween
 
 
 func _ready() -> void:
+	assert(bounce_area != null, Errors.NULL_NODE)
 	assert(mesh_instance != null, Errors.NULL_NODE)
 	assert(material != null, Errors.NULL_RESOURCE)
 	assert(sfx_resource != null, Errors.NULL_RESOURCE)
 
+	bounce_area.bounce_elasticity = bounce_elasticy
+	bounce_area.bounce_min_speed = bounce_min_speed
+	bounce_area.body_bounced.connect(on_body_bounced)
 
-func _on_body_entered(body: Node3D) -> void:
-	if body is RigidBody3D and basis.y.dot(Vector3.UP) > 0.0:
-		Signals.emit_request_body_bounce(self, body.get_path(), bounce_speed * Vector3.UP, bounce_elasticy)
 
-		material.albedo_color = color_bounce
-		if tween != null:
-			tween.kill()
-		tween = create_tween()
-		tween.set_trans(Tween.TRANS_QUINT)
-		tween.set_ease(Tween.EASE_OUT)
-		tween.tween_property(material, "albedo_color", color_default, color_tween_duration)
+func on_body_bounced() -> void:
+	material.albedo_color = color_bounce
+	if tween != null:
+		tween.kill()
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUINT)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(material, "albedo_color", color_default, color_tween_duration)
 
-		Signals.emit_request_sfx_play(self, sfx_resource, global_position)
+	Signals.emit_request_sfx_play(self, sfx_resource, global_position)

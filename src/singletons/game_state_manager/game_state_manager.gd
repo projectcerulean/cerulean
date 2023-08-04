@@ -4,9 +4,7 @@
 class_name GameStateManager
 extends Node
 
-@export var _state_resource: Resource
-
-@onready var state_resource: StateResource = _state_resource as StateResource
+@onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 
 
 func _ready() -> void:
@@ -19,35 +17,35 @@ func _ready() -> void:
 	Signals.request_loading_screen_start.connect(self._on_request_loading_screen_start)
 	Signals.request_game_quit.connect(self._on_request_game_quit)
 
-	assert(state_resource as StateResource != null, Errors.NULL_RESOURCE)
+	assert(state_machine != null, Errors.NULL_NODE)
 
 
 func _on_request_game_pause(_sender: NodePath) -> void:
-	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.PAUSE)
+	state_machine.transition_to_state(GameStates.PAUSE)
 
 
 func _on_request_game_unpause(_sender: NodePath) -> void:
-	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
+	state_machine.transition_to_state(GameStates.GAMEPLAY)
 
 
 func _on_request_dialogue_start(_sender: NodePath, _dialogue_resource: DialogueResource) -> void:
-	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.DIALOGUE)
+	state_machine.transition_to_state(GameStates.DIALOGUE)
 
 
 func _on_request_dialogue_finish(_sender: NodePath) -> void:
-	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
+	state_machine.transition_to_state(GameStates.GAMEPLAY)
 
 
 func _on_request_scene_transition_start(_sender: NodePath, _scene: String, _spawn_point_id: int, _color: Color, _fade_duration: float):
-	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.SCENE_TRANSITION)
+	state_machine.transition_to_state(GameStates.SCENE_TRANSITION)
 
 
 func _on_request_scene_transition_finish(_sender: NodePath) -> void:
-	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.GAMEPLAY)
+	state_machine.transition_to_state(GameStates.GAMEPLAY)
 
 
 func _on_request_loading_screen_start(_sender: NodePath) -> void:
-	Signals.emit_request_state_change(self, state_resource.state_machine, GameStates.LOADING_SCREEN)
+	state_machine.transition_to_state(GameStates.LOADING_SCREEN)
 
 
 func _on_request_game_quit(_sender: NodePath) -> void:

@@ -222,6 +222,7 @@ stats={
 3d_render/layer_6="Interactions"
 3d_render/layer_7="LoadingZones"
 3d_render/layer_8="BlobShadow"
+3d_render/layer_9="Bounce"
 3d_physics/layer_1="Player"
 3d_physics/layer_2="Camera"
 3d_physics/layer_3="Solids"
@@ -230,6 +231,7 @@ stats={
 3d_physics/layer_6="Interactions"
 3d_physics/layer_7="LoadingZones"
 3d_physics/layer_8="BlobShadow"
+3d_physics/layer_9="Bounce"
 
 [physics]
 
