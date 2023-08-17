@@ -15,4 +15,4 @@ func _on_target_state_entered(data: Dictionary) -> void:
 
 func _on_target_state_exited(data: Dictionary) -> void:
 	super._on_target_state_exited(data)
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
