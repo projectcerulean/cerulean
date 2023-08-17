@@ -36,7 +36,7 @@ shape = SubResource("BoxShape3D_kilfe")
 [node name="PhysicsStepInterpolator" parent="." instance=ExtResource("3_78kcs")]
 
 [node name="BaseMesh" type="MeshInstance3D" parent="PhysicsStepInterpolator"]
-layers = 4
+layers = 132
 mesh = SubResource("BoxMesh_73doq")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_qvdsi")
