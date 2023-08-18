@@ -1,0 +1,180 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxg7qn6h5w2c"]
+
+[ext_resource type="Script" path="res://src/singletons/ui/hud/compass.gd" id="1_g8nqw"]
+[ext_resource type="PackedScene" uid="uid://bq8jurmtxk0vf" path="res://src/singletons/ui/hud/compass_label.tscn" id="2_6fl0y"]
+[ext_resource type="PackedScene" uid="uid://bu8vp67fnxcno" path="res://src/singletons/ui/hud/compass_label_sep.tscn" id="3_ncmmb"]
+
+[node name="Compass" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+script = ExtResource("1_g8nqw")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="N" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_6fl0y")]
+layout_mode = 2
+text = " N "
+
+[node name="Sep" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep3" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep4" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep5" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="E" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_6fl0y")]
+layout_mode = 2
+text = " E "
+
+[node name="Sep6" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep7" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep8" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep9" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep10" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="S" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_6fl0y")]
+layout_mode = 2
+text = " S "
+
+[node name="Sep11" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep12" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep13" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep14" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep15" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="W" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_6fl0y")]
+layout_mode = 2
+text = " W "
+
+[node name="Sep16" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep17" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep18" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep19" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep20" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="N2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_6fl0y")]
+layout_mode = 2
+text = " N "
+
+[node name="Sep21" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep22" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep23" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep24" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep25" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="E2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_6fl0y")]
+layout_mode = 2
+text = " E "
+
+[node name="Sep26" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep27" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep28" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep29" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep30" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="S2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_6fl0y")]
+layout_mode = 2
+text = " S "
+
+[node name="Sep31" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep32" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep33" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep34" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep35" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="W2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("2_6fl0y")]
+layout_mode = 2
+text = " W "
+
+[node name="Sep36" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep37" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep38" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep39" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2
+
+[node name="Sep40" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_ncmmb")]
+layout_mode = 2

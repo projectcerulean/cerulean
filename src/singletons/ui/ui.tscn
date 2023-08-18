@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://src/singletons/ui/hud/interaction_marker.gd" id="4_o1y8t"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/vector2_visualizer/vector2_visualizer.gd" id="5"]
 [ext_resource type="Resource" uid="uid://bqsrxvfl6htqr" path="res://src/singletons/lfo/lfo_resource.tres" id="5_f13oq"]
+[ext_resource type="PackedScene" uid="uid://cxg7qn6h5w2c" path="res://src/singletons/ui/hud/compass.tscn" id="6_suovi"]
 [ext_resource type="PackedScene" uid="uid://com3qcbnk0t72" path="res://src/singletons/ui/dialogue_manager/dialogue_manager.tscn" id="6_vu52l"]
-[ext_resource type="Script" path="res://src/singletons/ui/hud/compass.gd" id="7"]
 [ext_resource type="Shader" path="res://src/singletons/ui/pause_menu/screen_blur.gdshader" id="8"]
 [ext_resource type="Script" path="res://src/singletons/ui/scene_transition/scene_transition.gd" id="8_ktx3r"]
 [ext_resource type="PackedScene" uid="uid://d3kve5ytakd60" path="res://src/singletons/ui/pause_menu/pause_menu.tscn" id="9_mxrv6"]
@@ -72,15 +72,7 @@ _environment_resource = ExtResource("3_34h0a")
 script = ExtResource("4_4636l")
 game_state_resource = ExtResource("11")
 
-[node name="Compass" type="Label" parent="HudLayer"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 31.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 20
-text = "Compass text"
-horizontal_alignment = 1
-script = ExtResource("7")
+[node name="Compass" parent="HudLayer" instance=ExtResource("6_suovi")]
 
 [node name="InteractionMarker" type="Control" parent="HudLayer"]
 layout_mode = 3

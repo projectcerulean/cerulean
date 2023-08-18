@@ -1,10 +1,17 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2023 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends Label
+extends Control
 
-@export var characters: String = "N  |  |  |  |  |  E  |  |  |  |  |  S  |  |  |  |  |  W  |  |  |  |  |  "
-@export var n_characters_visible: int = 16
+@onready var scroll_container: ScrollContainer = get_node("ScrollContainer") as ScrollContainer
+@onready var label_n1: Label = get_node("ScrollContainer/HBoxContainer/N") as Label
+@onready var label_n2: Label = get_node("ScrollContainer/HBoxContainer/N2") as Label
+
+
+func _ready() -> void:
+	assert(scroll_container != null, Errors.NULL_NODE)
+	assert(label_n1 != null, Errors.NULL_NODE)
+	assert(label_n2 != null, Errors.NULL_NODE)
 
 
 func _process(_delta: float) -> void:
@@ -12,15 +19,18 @@ func _process(_delta: float) -> void:
 	if camera == null:
 		return
 
+	var label_n1_scroll_pos: float = label_n1.position.x
+	var label_n2_scroll_pos: float = label_n2.position.x
+	var scroll_period_length: float = label_n2_scroll_pos - label_n1_scroll_pos
+
 	var camera_vector: Vector3 = -camera.global_transform.basis.z
 	camera_vector.y = 0.0
 	camera_vector = camera_vector.normalized()
 
-	var camera_angle: float = camera_vector.signed_angle_to(Cardinal.NORTH, Vector3.UP)
-	if camera_angle < 0.0:
-		camera_angle += 2.0 * PI
+	var camera_angle: float = wrapf(camera_vector.signed_angle_to(Cardinal.NORTH, Vector3.UP), 0.0, TAU)
+	var camera_angle_scroll_position: float = remap(camera_angle, 0.0, TAU, 0.0, scroll_period_length)
 
-	var i_char_middle: int = str(remap(camera_angle, 0.0, 2.0 * PI, 0.0, len(characters))).to_int()
-	text = ""
-	for i in range(i_char_middle - n_characters_visible, i_char_middle + n_characters_visible):
-		text += characters.substr((i % characters.length() + characters.length()) % characters.length(), 1)
+	var scroll_position_offset: float = scroll_container.size.x / 2.0 - label_n1.size.x / 2.0
+
+	var scroll_position: float = wrapf(camera_angle_scroll_position - scroll_position_offset, 0.0, scroll_period_length)
+	scroll_container.scroll_horizontal = roundi(scroll_position)

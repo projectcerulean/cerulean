@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu8vp67fnxcno"]
+
+[ext_resource type="PackedScene" uid="uid://bq8jurmtxk0vf" path="res://src/singletons/ui/hud/compass_label.tscn" id="1_onkr4"]
+
+[node name="CompassLabel_Sep" instance=ExtResource("1_onkr4")]
+theme_override_font_sizes/font_size = 16
+text = " | "

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bq8jurmtxk0vf"]
+
+[node name="CompassLabel" type="Label"]
+theme_override_font_sizes/font_size = 20
+text = "A"
