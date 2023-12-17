@@ -29,7 +29,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_request_screen_shake(sender: NodePath, total_duration: float, shake_frequency: float, amplitude: float) -> void:
-	# Use the node path as the key, not the node itself, to prevent issues if the node is freed.
 	shake_start(sender, total_duration, shake_frequency, amplitude)
 
 
