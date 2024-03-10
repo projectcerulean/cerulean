@@ -1,7 +1,7 @@
 This game uses Godot Engine, available under the following license:
 
-Copyright (c) 2007-2023 Juan Linietsky, Ariel Manzur.
-Copyright (c) 2014-2023 Godot Engine contributors.
+Copyright (c) 2007-2024 Juan Linietsky, Ariel Manzur.
+Copyright (c) 2014-2024 Godot Engine contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
