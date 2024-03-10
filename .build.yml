@@ -1,30 +1,37 @@
 # Build manifest for sourcehut (https://builds.sr.ht/~gullik/cerulean)
-image: archlinux
+image: debian/bookworm
 
 environment:
   COMMAND_TIMEOUT: 3600
   GODOT_VERSION: 4.2.1
   GODOT_LINUX_64_ZIP_SHA512: e835e7a3bcae2033019293beea3bef6d6b2dcaf4b7a266d55c9327bcc84e808b9a0e0a6966379350a6cf3c7c28ec6e4e6a86344eae8ad869f80bae76da3fc855
+  KUBO_VERSION: 0.27.0
+  KUBO_LINUX_64_TAR_GZ_SHA512: 97b9f6fafe17bcb5b8e3a0363dccd1a76b97afe8e210e169ae9dba9e7c7fcf645c687fc0814f4a71e8f29df1f8d261c9dae39480713e826d3d08e013f5393680
 
 packages:
-- curl git kubo make unzip
+- curl git make tar unzip
 
 sources:
 - https://git.sr.ht/~gullik/cerulean
 
 tasks:
+- download_kubo: |
+    timeout --verbose "${COMMAND_TIMEOUT}" curl --silent --remote-name "https://dist.ipfs.tech/kubo/v${KUBO_VERSION}/kubo_v${KUBO_VERSION}_linux-amd64.tar.gz"
+    echo "${KUBO_LINUX_64_TAR_GZ_SHA512}  kubo_v${KUBO_VERSION}_linux-amd64.tar.gz" | sha512sum --check
+    tar -xvzf "kubo_v${KUBO_VERSION}_linux-amd64.tar.gz" kubo/ipfs
+    [ -x kubo/ipfs ]
 - sync_assets: |
+    timeout --verbose "${COMMAND_TIMEOUT}" kubo/ipfs daemon --init --init-profile server > /dev/null 2>&1 &
+    timeout --verbose "${COMMAND_TIMEOUT}" sh -c 'while ! kubo/ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
     cd cerulean
-    timeout --verbose "${COMMAND_TIMEOUT}" ipfs daemon --init --init-profile server > /dev/null 2>&1 &
-    timeout --verbose "${COMMAND_TIMEOUT}" sh -c 'while ! ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
     git config --local include.path ../.gitconfig
     rm -rf assets
-    timeout --verbose "${COMMAND_TIMEOUT}" git reset --hard
+    IPFS=../kubo/ipfs timeout --verbose "${COMMAND_TIMEOUT}" git reset --hard
     kill "$!"
 - download_godot: |
     timeout --verbose "${COMMAND_TIMEOUT}" curl --silent --remote-name "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
     echo "${GODOT_LINUX_64_ZIP_SHA512}  Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" | sha512sum --check
-    unzip "Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+    unzip "Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" "Godot_v${GODOT_VERSION}-stable_linux.x86_64"
     [ -x "Godot_v${GODOT_VERSION}-stable_linux.x86_64" ]
 - set_version: |
     cd cerulean
