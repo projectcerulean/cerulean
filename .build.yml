@@ -15,7 +15,7 @@ sources:
 tasks:
 - sync_assets: |
     cd cerulean
-    ipfs daemon --init --init-profile server > /dev/null 2>&1 &
+    timeout --verbose "${COMMAND_TIMEOUT}" ipfs daemon --init --init-profile server > /dev/null 2>&1 &
     timeout --verbose "${COMMAND_TIMEOUT}" sh -c 'while ! ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
     git config --local include.path ../.gitconfig
     rm -rf assets
