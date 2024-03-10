@@ -2,6 +2,7 @@
 image: archlinux
 
 environment:
+  COMMAND_TIMEOUT: 3600
   GODOT_VERSION: 4.2.1
   GODOT_LINUX_64_ZIP_SHA512: e835e7a3bcae2033019293beea3bef6d6b2dcaf4b7a266d55c9327bcc84e808b9a0e0a6966379350a6cf3c7c28ec6e4e6a86344eae8ad869f80bae76da3fc855
 
@@ -15,13 +16,13 @@ tasks:
 - sync_assets: |
     cd cerulean
     ipfs daemon --init --init-profile server > /dev/null 2>&1 &
-    timeout --verbose 1000 sh -c 'while ! ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
+    timeout --verbose "${COMMAND_TIMEOUT}" sh -c 'while ! ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
     git config --local include.path ../.gitconfig
     rm -rf assets
-    timeout --verbose 1000 git reset --hard
+    timeout --verbose "${COMMAND_TIMEOUT}" git reset --hard
     kill "$!"
 - download_godot: |
-    timeout --verbose 1000 curl --silent --remote-name "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+    timeout --verbose "${COMMAND_TIMEOUT}" curl --silent --remote-name "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
     echo "${GODOT_LINUX_64_ZIP_SHA512}  Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" | sha512sum --check
     unzip "Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
     [ -x "Godot_v${GODOT_VERSION}-stable_linux.x86_64" ]
@@ -30,10 +31,10 @@ tasks:
     sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
 - run_unit_tests: |
     cd cerulean
-    timeout --verbose 1000 sh -c "make GODOT=../Godot_v${GODOT_VERSION}-stable_linux.x86_64 test"
+    timeout --verbose "${COMMAND_TIMEOUT}" sh -c "make GODOT=../Godot_v${GODOT_VERSION}-stable_linux.x86_64 test"
 - export_game_pack: |
     cd cerulean
-    timeout --verbose 1000 sh -c "make GODOT=../Godot_v${GODOT_VERSION}-stable_linux.x86_64 cerulean.pck"
+    timeout --verbose "${COMMAND_TIMEOUT}" sh -c "make GODOT=../Godot_v${GODOT_VERSION}-stable_linux.x86_64 cerulean.pck"
     cd ..
     mv cerulean/cerulean.pck .
     sha512sum cerulean.pck | tee cerulean.pck.sha512
