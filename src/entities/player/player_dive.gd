@@ -29,11 +29,10 @@ func physics_process(delta: float) -> void:
 	var top_point_height: float = player.collision_shape.global_position.y + ShapeUtils.get_shape_height(shape) / 2.0
 
 	# Apply movement
+	var input_strength_up: float = Input.get_action_strength(InputActions.SWIM_UPWARDS) if top_point_height < player.water_detector.get_water_surface_height() else 0.0
+	var input_strength_down: float = Input.get_action_strength(InputActions.SWIM_DOWNWARDS)
 	var input_vector: Vector3 = (
-		player.input_vector + Vector3.UP * (
-			float(Input.is_action_pressed(InputActions.JUMP) and top_point_height < player.water_detector.get_water_surface_height())
-			- float(Input.is_action_pressed(InputActions.DIVE))
-		)
+		player.input_vector + Vector3.UP * (input_strength_up - input_strength_down)
 	).limit_length()
 
 	# Apply movement

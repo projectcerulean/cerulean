@@ -45,7 +45,7 @@ func get_transition() -> StringName:
 			return PlayerStates.IDLE
 		else:
 			return PlayerStates.RUN
-	elif player.linear_velocity.y < 0.0 and Input.is_action_pressed(InputActions.JUMP):
+	elif player.linear_velocity.y < 0.0 and Input.is_action_pressed(InputActions.GLIDE):
 		return PlayerStates.GLIDE
 	else:
 		return StringName()

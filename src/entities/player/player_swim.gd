@@ -63,6 +63,6 @@ func get_transition() -> StringName:
 			and bottom_point_height < player.water_detector.get_water_surface_height()
 		):
 			return PlayerStates.JUMP
-	elif Input.is_action_just_pressed(InputActions.DIVE):
+	elif Input.is_action_just_pressed(InputActions.SWIM_DOWNWARDS):
 		return PlayerStates.DIVE
 	return StringName()

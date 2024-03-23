@@ -58,7 +58,7 @@ func get_transition() -> StringName:
 	if not Input.is_action_pressed(InputActions.JUMP):
 		return PlayerStates.FALL
 	elif player.linear_velocity.y < 0.0 and state_enter_timer.is_stopped():
-		if Input.is_action_pressed(InputActions.JUMP):
+		if Input.is_action_pressed(InputActions.GLIDE):
 			return PlayerStates.GLIDE
 		else:
 			return PlayerStates.FALL

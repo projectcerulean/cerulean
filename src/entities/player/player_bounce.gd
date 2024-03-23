@@ -49,10 +49,10 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if not Input.is_action_pressed(InputActions.JUMP):
+	if not Input.is_action_pressed(InputActions.GLIDE):
 		return PlayerStates.FALL
 	elif state_enter_timer.is_stopped() and player.linear_velocity.y < 0.0:
-		if Input.is_action_pressed(InputActions.JUMP):
+		if Input.is_action_pressed(InputActions.GLIDE):
 			return PlayerStates.GLIDE
 		else:
 			return PlayerStates.FALL

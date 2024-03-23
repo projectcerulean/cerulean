@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://b6w16yv61l6cg"]
+[gd_scene load_steps=118 format=3 uid="uid://b6w16yv61l6cg"]
 
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="2_vqmgf"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="8_l3hhy"]
 [ext_resource type="Resource" uid="uid://b458fluv0h1ap" path="res://assets/dialogue/tutorial/jumping.tres" id="9_ilvj1"]
 [ext_resource type="Resource" uid="uid://df62i7tswvfok" path="res://assets/dialogue/tutorial/diving.tres" id="10_vafey"]
+[ext_resource type="Resource" uid="uid://bq7pagrws8i4c" path="res://assets/dialogue/tutorial/gliding.tres" id="11_bskm1"]
 [ext_resource type="Resource" uid="uid://c16fyeapkmu14" path="res://assets/dialogue/tutorial/camera.tres" id="11_qt3s6"]
 [ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="12_vimad"]
 [ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="13_m46gq"]
@@ -1074,6 +1075,18 @@ surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
 [node name="Action" parent="SignPost3/Interaction" index="1"]
 dialogue_resource = ExtResource("10_vafey")
 
+[node name="SignPost4" parent="." instance=ExtResource("8_l3hhy")]
+transform = Transform3D(0.143613, -0.968427, -0.203781, 0.14203, -0.183615, 0.972684, -0.97939, -0.168633, 0.111176, -26.4137, 0.573438, 0.501245)
+
+[node name="Post" parent="SignPost4" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
+
+[node name="Sign" parent="SignPost4" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
+
+[node name="Action" parent="SignPost4/Interaction" index="1"]
+dialogue_resource = ExtResource("11_bskm1")
+
 [node name="Barrier" parent="." instance=ExtResource("12_vimad")]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 3, -44)
 _input_nodes = Array[NodePath]([NodePath("../Connection/Indicator"), NodePath("../Connection2/Indicator"), NodePath("../Connection3/Indicator"), NodePath("../Connection4/Indicator")])
@@ -1411,3 +1424,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13, 0)
 [editable path="SignPost"]
 [editable path="SignPost2"]
 [editable path="SignPost3"]
+[editable path="SignPost4"]

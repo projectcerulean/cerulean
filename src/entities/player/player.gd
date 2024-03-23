@@ -76,7 +76,7 @@ func on_bounce(bounce_normal: Vector3, bounce_min_speed: float, bounce_elasticit
 	super.on_bounce(bounce_normal, bounce_min_speed, bounce_elasticity)
 	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
 	if state_resource.current_state != PlayerStates.DIVE:
-		if Input.is_action_pressed(InputActions.JUMP):
+		if Input.is_action_pressed(InputActions.GLIDE):
 			state_machine.transition_to_state(PlayerStates.BOUNCE)
 		else:
 			state_machine.transition_to_state(PlayerStates.FALL)

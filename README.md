@@ -16,16 +16,19 @@ Just me making a video game.
 
 Using a gamepad is highly recommended.
 
-| Input                    | Gamepad                                     | Keyboard + mouse     |
-| ------------------------ | ------------------------------------------- | -------------------- |
-| Move                     | Left stick                                  | WASD                 |
-| Jump/Glide/Swim upwards  | Left bumper                                 | Space                |
-| Air-brake/Swim downwards | Right bumper                                | Ctrl                 |
-| Interact                 | A                                           | E                    |
-| Rotate camera            | Right stick                                 | Move mouse           |
-| Zoom camera in/out       | Press left stick + move right stick up/down | Scroll wheel up/down |
-| Pause menu               | Start                                       | Escape               |
-| Performance statistics   | Select                                      | F12                  |
+| Input                           | Gamepad                                     | Keyboard + mouse     |
+| ------------------------------- | ------------------------------------------- | -------------------- |
+| Move                            | Left stick                                  | WASD                 |
+| Jump                            | Left bumper                                 | Space                |
+| Glide (while in midair)         | Right bumper                                | Left mouse button    |
+| Air-brake (while gliding)       | Left trigger                                | Right mouse button   |
+| Swim upwards (while in water)   | Left trigger                                | Space                |
+| Swim downwards (while in water) | Right trigger                               | Ctrl/Shift           |
+| Interact                        | A                                           | E                    |
+| Rotate camera                   | Right stick                                 | Move mouse           |
+| Zoom camera in/out              | Press left stick + move right stick up/down | Scroll wheel up/down |
+| Pause menu                      | Start                                       | Escape               |
+| Performance statistics          | Select                                      | F12                  |
 
 ![](https://raw.githubusercontent.com/projectcerulean/cerulean-img/master/img/screenshots/2022/test_dungeon_bounce.jpg)
 
