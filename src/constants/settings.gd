@@ -43,7 +43,7 @@ const SETTINGS: Dictionary = {
 		OPTION_NAME: "Field of view",
 		VALUES: [60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120],
 		VALUE_NAMES: ["60", "65", "70", "75", "80", "85", "90", "95", "100", "105", "110", "115", "120"],
-		DEFAULT_VALUE_INDEX: 6,
+		DEFAULT_VALUE_INDEX: 3,
 	},
 	MSAA: {
 		OPTION_NAME: "MSAA",
