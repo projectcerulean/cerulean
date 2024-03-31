@@ -2,34 +2,34 @@
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
-[ext_resource type="Script" path="res://src/entities/player/player_idle.gd" id="3"]
 [ext_resource type="Resource" uid="uid://c4t8y3cjatn2" path="res://src/entities/player/player_input_vector_resource.tres" id="3_2i2xh"]
-[ext_resource type="Script" path="res://src/entities/player/player_run.gd" id="4"]
-[ext_resource type="Script" path="res://src/entities/player/player_fall.gd" id="5"]
 [ext_resource type="Resource" path="res://src/entities/player/player_transform_interpolated.tres" id="5_f776o"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="5_okm0g"]
-[ext_resource type="Script" path="res://src/entities/player/player_jump.gd" id="6"]
 [ext_resource type="Resource" path="res://src/singletons/camera/camera_transform.tres" id="6_ibr24"]
-[ext_resource type="Script" path="res://src/entities/player/player_glide.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://b81k6jxhrod56" path="res://src/common/physics_step_interpolator/physics_step_interpolator.tscn" id="7_3cj2e"]
 [ext_resource type="Script" path="res://src/entities/player/squash_stretch.gd" id="7_pchkq"]
 [ext_resource type="Script" path="res://src/entities/player/spring.gd" id="7_pus1y"]
 [ext_resource type="Script" path="res://src/entities/player/player_trail_renderer.gd" id="8"]
-[ext_resource type="Script" path="res://src/entities/player/player_swim.gd" id="9"]
 [ext_resource type="Material" uid="uid://dh7tbqymoqlu6" path="res://src/entities/player/body_material.tres" id="9_evt60"]
 [ext_resource type="Script" path="res://src/entities/player/player_mesh_state_glide.gd" id="9_uwrsl"]
-[ext_resource type="Script" path="res://src/entities/player/player_dive.gd" id="10"]
 [ext_resource type="Material" uid="uid://c0qs1grnnbj3x" path="res://src/entities/player/detail_material.tres" id="10_kc8d0"]
 [ext_resource type="Script" path="res://src/entities/player/player_mesh_state_default.gd" id="10_vowrm"]
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine_synchronizer.gd" id="11_mhki8"]
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
 [ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="13_m5ip5"]
-[ext_resource type="Script" path="res://src/entities/player/player_bounce.gd" id="17_lgpkh"]
 [ext_resource type="Resource" uid="uid://bmra0kxfxo4o" path="res://src/sound/sfx/sfx_resources/bounce_pad_high.tres" id="18_1l0sl"]
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="18_nptr4"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_bounce.gd" id="20_rvyx5"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_dive.gd" id="22_4hscj"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_fall.gd" id="23_pac4m"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="24_hgnac"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_glide.gd" id="24_p4auy"]
 [ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="25_e1r3t"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_idle.gd" id="25_rhyuw"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_jump.gd" id="26_7ncmu"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_run.gd" id="27_mdmxu"]
 [ext_resource type="PackedScene" uid="uid://d3llgup5ja26a" path="res://src/entities/blob_shadow/blob_shadow.tscn" id="28_5hoqt"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_swim.gd" id="28_tp61u"]
 [ext_resource type="PackedScene" uid="uid://bxjp2ck6k1jt6" path="res://src/common/state_machine/state_resource_manager.tscn" id="29_l8kw8"]
 [ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="31_jeewe"]
 [ext_resource type="Resource" uid="uid://dsjf0vjev2thx" path="res://src/entities/player/player_transform.tres" id="33_jdxb1"]
@@ -224,7 +224,7 @@ _initial_state = NodePath("Idle")
 transition_frame = 1
 
 [node name="Bounce" type="Node" parent="StateMachine"]
-script = ExtResource("17_lgpkh")
+script = ExtResource("20_rvyx5")
 _sfx_resource = ExtResource("18_1l0sl")
 gravity_scale = 0.6
 
@@ -233,7 +233,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Dive" type="Node" parent="StateMachine"]
-script = ExtResource("10")
+script = ExtResource("22_4hscj")
 gravity_scale = 0.0
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Dive"]
@@ -241,19 +241,19 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource("5")
+script = ExtResource("23_pac4m")
 
 [node name="Glide" type="Node" parent="StateMachine"]
-script = ExtResource("7")
+script = ExtResource("24_p4auy")
 gravity_scale = 0.05
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3")
+script = ExtResource("25_rhyuw")
 gravity_scale = 0.1
 floor_snapping_enabled = true
 
 [node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource("6")
+script = ExtResource("26_7ncmu")
 gravity_scale = 0.667
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Jump"]
@@ -261,12 +261,12 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Run" type="Node" parent="StateMachine"]
-script = ExtResource("4")
+script = ExtResource("27_mdmxu")
 gravity_scale = 0.1
 floor_snapping_enabled = true
 
 [node name="Swim" type="Node" parent="StateMachine"]
-script = ExtResource("9")
+script = ExtResource("28_tp61u")
 gravity_scale = 0.5
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Swim"]
