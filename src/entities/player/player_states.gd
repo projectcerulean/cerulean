@@ -6,6 +6,7 @@ extends Node
 
 const BOUNCE: StringName = &"Bounce"
 const DIVE: StringName = &"Dive"
+const DOUBLE_JUMP: StringName = &"DoubleJump"
 const FALL: StringName = &"Fall"
 const GLIDE: StringName = &"Glide"
 const IDLE: StringName = &"Idle"

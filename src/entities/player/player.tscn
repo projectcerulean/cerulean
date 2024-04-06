@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b4ihx6a2lcbde"]
+[gd_scene load_steps=55 format=3 uid="uid://b4ihx6a2lcbde"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="18_nptr4"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_bounce.gd" id="20_rvyx5"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_dive.gd" id="22_4hscj"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_double_jump.gd" id="23_oc5f6"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_fall.gd" id="23_pac4m"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="24_hgnac"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_glide.gd" id="24_p4auy"]
@@ -33,6 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://bxjp2ck6k1jt6" path="res://src/common/state_machine/state_resource_manager.tscn" id="29_l8kw8"]
 [ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="31_jeewe"]
 [ext_resource type="Resource" uid="uid://dsjf0vjev2thx" path="res://src/entities/player/player_transform.tres" id="33_jdxb1"]
+[ext_resource type="Shader" path="res://src/entities/player/double_jump_effect.gdshader" id="35_2stf6"]
+[ext_resource type="Script" path="res://src/entities/player/double_jump_effect.gd" id="35_ikxtg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khrrq"]
 friction = 0.0
@@ -81,6 +84,25 @@ volume_db = -80.0
 volume_db = -80.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_wy87q"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ljlky"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1msc"]
+render_priority = 0
+shader = ExtResource("35_2stf6")
+shader_parameter/inner_radius = 0.25
+shader_parameter/outer_radius = 0.75
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_5vo2o"]
+max_value = 0.5
+_data = [Vector2(0, 0), 0.0, 0.397757, 0, 0, Vector2(1, 0.25), 0.033082, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_kyhje"]
+max_value = 0.5
+_data = [Vector2(0, 0.1), 0.0, 0.466884, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Player" type="RigidBody3D"]
 collision_mask = 60
@@ -173,6 +195,13 @@ turn_lerp_weight = 0.01
 mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
+[node name="DoubleJump" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+script = ExtResource("10_vowrm")
+turn_lerp_weight_min = 0.0
+turn_lerp_weight_max = 0.0
+mesh_root = NodePath("../../SquashStretch/Default")
+_player_input_vector_resource = ExtResource("3_2i2xh")
+
 [node name="Fall" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
 turn_lerp_weight_min = 0.0
@@ -238,6 +267,14 @@ gravity_scale = 0.0
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Dive"]
 wait_time = 0.5
+one_shot = true
+
+[node name="DoubleJump" type="Node" parent="StateMachine"]
+script = ExtResource("23_oc5f6")
+gravity_scale = 0.667
+
+[node name="StateEnterTimer" type="Timer" parent="StateMachine/DoubleJump"]
+wait_time = 0.1
 one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine"]
@@ -360,3 +397,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 
 [node name="TransformResourceManager" parent="." instance=ExtResource("31_jeewe")]
 _transform_resource = ExtResource("33_jdxb1")
+
+[node name="DoubleJumpEffect" type="MeshInstance3D" parent="."]
+top_level = true
+visible = false
+mesh = SubResource("PlaneMesh_ljlky")
+surface_material_override/0 = SubResource("ShaderMaterial_p1msc")
+script = ExtResource("35_ikxtg")
+environment_resource = ExtResource("24_hgnac")
+player_state_resource = ExtResource("12")
+player_transform_resource = ExtResource("33_jdxb1")
+inner_radius = SubResource("Curve_5vo2o")
+outer_radius = SubResource("Curve_kyhje")

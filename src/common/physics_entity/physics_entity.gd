@@ -24,6 +24,7 @@ var pending_exact_velocities: PackedVector3Array = PackedVector3Array()
 var pending_minimum_velocities: PackedVector3Array = PackedVector3Array()
 var pending_forces: PackedVector3Array = PackedVector3Array()
 var shape: Shape3D = null
+var total_gravity: Vector3 = Vector3.ZERO
 
 @onready var floor_velocity_prober: Node3D = Node3D.new()
 @onready var shape_cast: ShapeCast3D = ShapeCast3D.new()
@@ -154,8 +155,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				var floor_snap_distance_target_lerped: float = Lerp.delta_lerp(floor_distance, floor_snap_distance_target, floor_snap_lerp_weight, state.step)
 				state.transform.origin.y -= floor_distance - floor_snap_distance_target_lerped
 
-	floor_velocity_prober_position_prev = floor_velocity_prober.global_position
+	total_gravity = state.total_gravity
 
+	floor_velocity_prober_position_prev = floor_velocity_prober.global_position
 	linear_velocity_prev = state.linear_velocity
 
 

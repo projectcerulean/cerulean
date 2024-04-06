@@ -5,11 +5,9 @@ extends PlayerState
 
 @export var move_speed: float = 8.5
 @export var acceleration_time: float = 3.0
-@export var _sfx_resource: Resource
+@export var jump_speed: float = 10.0
 
 @onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
-@onready var sfx_resource: SfxResource = _sfx_resource as SfxResource
-
 
 func _ready() -> void:
 	super._ready()
@@ -19,14 +17,23 @@ func _ready() -> void:
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	state_enter_timer.start()
-	player.can_double_jump = true
-	Signals.emit_request_sfx_play(self, sfx_resource, player.global_position)
+	player.coyote_timer.stop()
+	player.jump_buffer_timer.stop()
+	assert(player.can_double_jump, Errors.CONSISTENCY_ERROR)
+	player.can_double_jump = false
+
+	player.enqueue_minimum_velocity(jump_speed * Vector3.UP)
+
+	# Newton's third
+	var rigid_body: RigidBody3D = player.get_floor_collider() as RigidBody3D
+	if rigid_body != null:
+		var impulse: Vector3 = player.mass * (jump_speed - player.linear_velocity.y) * Vector3.UP
+		var impulse_position: Vector3 = player.get_floor_collision_position() - rigid_body.global_position
+		rigid_body.apply_impulse(-impulse, impulse_position)
 
 
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
-	player.coyote_timer.stop()
-	player.jump_buffer_timer.stop()
 
 	# Apply movement
 	var linear_velocity_planar: Vector3 = player.linear_velocity * Vector3(1.0, 0.0, 1.0)
@@ -50,14 +57,12 @@ func physics_process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if not Input.is_action_pressed(InputActions.GLIDE):
+	if not Input.is_action_pressed(InputActions.JUMP):
 		return PlayerStates.FALL
-	elif state_enter_timer.is_stopped() and player.linear_velocity.y < 0.0:
+	elif player.linear_velocity.y < 0.0 and state_enter_timer.is_stopped():
 		if Input.is_action_pressed(InputActions.GLIDE):
 			return PlayerStates.GLIDE
 		else:
 			return PlayerStates.FALL
-	elif Input.is_action_just_pressed(InputActions.JUMP) and player.can_double_jump:
-		return PlayerStates.DOUBLE_JUMP
 	else:
 		return StringName()

@@ -38,8 +38,11 @@ func physics_process(delta: float) -> void:
 func get_transition() -> StringName:
 	if player.global_position.y < player.water_detector.get_water_surface_height():
 		return PlayerStates.SWIM
-	elif Input.is_action_just_pressed(InputActions.JUMP) and not player.coyote_timer.is_stopped():
-		return PlayerStates.JUMP
+	elif Input.is_action_just_pressed(InputActions.JUMP):
+		if not player.coyote_timer.is_stopped():
+			return PlayerStates.JUMP
+		elif player.can_double_jump and not player.double_jump_shape_cast.is_colliding():
+			return PlayerStates.DOUBLE_JUMP
 	elif player.is_on_floor():
 		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
 			return PlayerStates.IDLE
@@ -47,5 +50,4 @@ func get_transition() -> StringName:
 			return PlayerStates.RUN
 	elif player.linear_velocity.y < 0.0 and Input.is_action_pressed(InputActions.GLIDE):
 		return PlayerStates.GLIDE
-	else:
-		return StringName()
+	return StringName()

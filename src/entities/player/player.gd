@@ -9,8 +9,10 @@ extends PhysicsEntity
 @export var _state_resource: Resource
 @export var _game_state_resource: Resource
 @export var _camera_transform_resource: Resource
+@export_range(0.0, 1.0, 0.001) var double_jump_shape_cast_length_factor: float = 0.5
 
 var input_vector: Vector3
+var can_double_jump: bool
 
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
 @onready var coyote_timer: Timer = get_node("CoyoteTimer") as Timer
@@ -23,6 +25,8 @@ var input_vector: Vector3
 @onready var state_resource: StateResource = _state_resource as StateResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 @onready var camera_transform_resource: TransformResource = _camera_transform_resource as TransformResource
+
+@onready var double_jump_shape_cast: ShapeCast3D = ShapeCast3D.new()
 
 
 func _ready() -> void:
@@ -40,6 +44,12 @@ func _ready() -> void:
 	assert(state_machine != null, Errors.NULL_NODE)
 
 	assert(input_vector_resource.value == Vector3(), Errors.RESOURCE_BUSY)
+
+	double_jump_shape_cast.shape = ShapeUtils.get_shape_scaled_xz(shape, shape_cast_scale)
+	double_jump_shape_cast.target_position = Vector3.ZERO
+	double_jump_shape_cast.collision_mask = collision_mask
+	double_jump_shape_cast.position.y = shape_cast.shape.margin + EPSILON
+	add_child(double_jump_shape_cast)
 
 
 func _process(_delta: float) -> void:
@@ -67,6 +77,15 @@ func _process(_delta: float) -> void:
 		Signals.emit_request_game_pause(self)
 
 
+func _physics_process(_delta: float) -> void:
+	var jump_buffer_time: float = jump_buffer_timer.wait_time
+	double_jump_shape_cast.target_position = double_jump_shape_cast_length_factor * (
+		linear_velocity * jump_buffer_time
+		+ total_gravity * jump_buffer_time * jump_buffer_time / 2.0
+	)
+	double_jump_shape_cast.force_shapecast_update()
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		input_vector_resource.value = Vector3()
@@ -75,6 +94,7 @@ func _notification(what: int) -> void:
 func on_bounce(bounce_normal: Vector3, bounce_min_speed: float, bounce_elasticity: float):
 	super.on_bounce(bounce_normal, bounce_min_speed, bounce_elasticity)
 	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
+	can_double_jump = true
 	if state_resource.current_state != PlayerStates.DIVE:
 		if Input.is_action_pressed(InputActions.GLIDE):
 			state_machine.transition_to_state(PlayerStates.BOUNCE)

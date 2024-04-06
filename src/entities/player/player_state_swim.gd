@@ -23,6 +23,7 @@ func _ready() -> void:
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	state_enter_timer.start()
+	player.can_double_jump = true
 
 
 func physics_process(delta: float) -> void:

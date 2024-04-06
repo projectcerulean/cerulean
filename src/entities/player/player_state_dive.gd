@@ -20,6 +20,7 @@ func enter(data: Dictionary) -> void:
 	super.enter(data)
 	state_enter_timer.start()
 	player.apply_central_impulse(2.5 * Vector3.DOWN)
+	player.can_double_jump = true
 
 
 func physics_process(delta: float) -> void:
