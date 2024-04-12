@@ -15,6 +15,12 @@ func enter(data: Dictionary) -> void:
 	super.enter(data)
 	glide_start_position = player.global_position
 	glide_start_velocity = player.linear_velocity
+	player.hover_spring_pull_downwards = false
+
+
+func exit(data: Dictionary) -> void:
+	super.exit(data)
+	player.hover_spring_pull_downwards = true
 
 
 func physics_process(delta: float) -> void:
@@ -58,6 +64,7 @@ func get_transition() -> StringName:
 	if player.global_position.y < player.water_detector.get_water_surface_height():
 		return PlayerStates.SWIM
 	elif player.is_on_floor():
+		return PlayerStates.FALL
 		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
 			return PlayerStates.IDLE
 		else:

@@ -28,8 +28,8 @@ func physics_process(delta: float) -> void:
 func get_transition() -> StringName:
 	if player.global_position.y < player.water_detector.get_water_surface_height():
 		return PlayerStates.SWIM
-	elif not player.is_near_floor():
-		if Input.is_action_pressed(InputActions.JUMP):
+	elif not player.is_on_floor():
+		if Input.is_action_pressed(InputActions.GLIDE):
 			return PlayerStates.GLIDE
 		else:
 			return PlayerStates.FALL

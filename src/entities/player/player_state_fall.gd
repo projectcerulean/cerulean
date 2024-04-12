@@ -7,6 +7,16 @@ extends PlayerState
 @export var acceleration_time: float = 3.0
 
 
+func enter(data: Dictionary) -> void:
+	super.enter(data)
+	player.hover_spring_pull_downwards = false
+
+
+func exit(data: Dictionary) -> void:
+	super.exit(data)
+	player.hover_spring_pull_downwards = true
+
+
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
@@ -41,13 +51,13 @@ func get_transition() -> StringName:
 	elif Input.is_action_just_pressed(InputActions.JUMP):
 		if not player.coyote_timer.is_stopped():
 			return PlayerStates.JUMP
-		elif player.can_double_jump and not player.double_jump_shape_cast.is_colliding():
+		elif player.can_double_jump:
 			return PlayerStates.DOUBLE_JUMP
-	elif player.is_on_floor():
+	elif player.is_on_floor() and player.linear_velocity.y < 0.0:
 		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
 			return PlayerStates.IDLE
 		else:
 			return PlayerStates.RUN
-	elif player.linear_velocity.y < 0.0 and Input.is_action_pressed(InputActions.GLIDE):
+	elif player.linear_velocity.y <= 0.0 and Input.is_action_pressed(InputActions.GLIDE):
 		return PlayerStates.GLIDE
 	return StringName()

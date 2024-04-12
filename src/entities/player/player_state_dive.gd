@@ -5,6 +5,7 @@ extends PlayerState
 
 @export var move_speed: float = 7.0
 @export var acceleration_time: float = 3.0
+@export var surface_level_check_leniency_factor: float = 2.0
 
 @onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
 @onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
@@ -21,6 +22,12 @@ func enter(data: Dictionary) -> void:
 	state_enter_timer.start()
 	player.apply_central_impulse(2.5 * Vector3.DOWN)
 	player.can_double_jump = true
+	player.hover_spring_pull_downwards = false
+
+
+func exit(data: Dictionary) -> void:
+	super.exit(data)
+	player.hover_spring_pull_downwards = true
 
 
 func physics_process(delta: float) -> void:
@@ -32,8 +39,11 @@ func physics_process(delta: float) -> void:
 	# Apply movement
 	var input_strength_up: float = Input.get_action_strength(InputActions.SWIM_UPWARDS) if top_point_height < player.water_detector.get_water_surface_height() else 0.0
 	var input_strength_down: float = Input.get_action_strength(InputActions.SWIM_DOWNWARDS)
+	var input_strength_vertical: float = input_strength_up - input_strength_down
+	if input_strength_vertical < 0.0 and player.is_on_floor():
+		input_strength_vertical = 0.0
 	var input_vector: Vector3 = (
-		player.input_vector + Vector3.UP * (input_strength_up - input_strength_down)
+		player.input_vector + Vector3.UP * input_strength_vertical
 	).limit_length()
 
 	# Apply movement
@@ -42,7 +52,10 @@ func physics_process(delta: float) -> void:
 
 func get_transition() -> StringName:
 	var shape: Shape3D = player.collision_shape.shape
-	var top_point_height: float = player.collision_shape.global_position.y + ShapeUtils.get_shape_height(shape) / 2.0
+	var top_point_height: float = (
+		player.collision_shape.global_position.y
+		+ surface_level_check_leniency_factor * ShapeUtils.get_shape_height(shape) / 2.0
+	)
 
 	if top_point_height > player.water_detector.get_water_surface_height() and state_enter_timer.is_stopped():
 		return PlayerStates.SWIM

@@ -4,7 +4,7 @@
 extends PhysicsEntity
 
 @export var buoyancy_force_factor: float = 5000.0
-@export var buoyancy_central_factor: float = 0.9
+@export var buoyancy_central_factor: float = 0.25
 
 @onready var water_detectors: Node3D = get_node("WaterDetectors") as Node3D
 

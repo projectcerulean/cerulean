@@ -7,6 +7,7 @@ extends PlayerState
 @export var acceleration_time: float = 3.0
 @export var buoyancy_speed: float = 10.0
 @export var buoyancy_acceleration_time: float = 2.0
+@export var surface_level_check_leniency_factor: float = 2.0
 
 @onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
 @onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
@@ -24,6 +25,12 @@ func enter(data: Dictionary) -> void:
 	super.enter(data)
 	state_enter_timer.start()
 	player.can_double_jump = true
+	player.hover_spring_pull_downwards = false
+
+
+func exit(data: Dictionary) -> void:
+	super.exit(data)
+	player.hover_spring_pull_downwards = true
 
 
 func physics_process(delta: float) -> void:
@@ -47,8 +54,14 @@ func physics_process(delta: float) -> void:
 
 func get_transition() -> StringName:
 	var shape: Shape3D = player.collision_shape.shape
-	var bottom_point_height: float = player.collision_shape.global_position.y - ShapeUtils.get_shape_height(shape) / 2.0
-	var top_point_height: float = player.collision_shape.global_position.y + ShapeUtils.get_shape_height(shape) / 2.0
+	var bottom_point_height: float = (
+		player.collision_shape.global_position.y
+		- surface_level_check_leniency_factor * ShapeUtils.get_shape_height(shape) / 2.0
+	)
+	var top_point_height: float = (
+		player.collision_shape.global_position.y
+		+ surface_level_check_leniency_factor * ShapeUtils.get_shape_height(shape) / 2.0
+	)
 
 	if player.is_on_floor() and player.global_position.y > player.water_detector.get_water_surface_height():
 		return PlayerStates.RUN

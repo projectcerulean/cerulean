@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b4ihx6a2lcbde"]
+[gd_scene load_steps=56 format=3 uid="uid://b4ihx6a2lcbde"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
@@ -40,9 +40,13 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khrrq"]
 friction = 0.0
 
-[sub_resource type="CapsuleShape3D" id="1"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2ow8"]
 radius = 0.25
-height = 1.25
+height = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_oiwdn"]
+radius = 0.25
+height = 0.5
 
 [sub_resource type="CapsuleMesh" id="2"]
 radius = 0.25
@@ -104,7 +108,7 @@ max_value = 0.5
 _data = [Vector2(0, 0.1), 0.0, 0.466884, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Player" type="RigidBody3D"]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("mesh_anchor")]
 collision_mask = 60
 mass = 42.0
 physics_material_override = SubResource("PhysicsMaterial_khrrq")
@@ -116,137 +120,143 @@ _input_vector_resource = ExtResource("3_2i2xh")
 _state_resource = ExtResource("12")
 _game_state_resource = ExtResource("5_okm0g")
 _camera_transform_resource = ExtResource("6_ibr24")
-transform_inheritence_enabled = true
-floor_snapping_enabled = true
+mesh_anchor = NodePath("MeshAnchor")
+mesh_anchor_constant_offset = Vector3(0, 0.375, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("1")
+shape = SubResource("CapsuleShape3D_h2ow8")
 
-[node name="PhysicsStepInterpolator" parent="." instance=ExtResource("7_3cj2e")]
+[node name="CollisionShapeVisual" type="MeshInstance3D" parent="CollisionShape3D"]
+visible = false
+mesh = SubResource("CapsuleMesh_oiwdn")
 
-[node name="Mesh" type="Node3D" parent="PhysicsStepInterpolator"]
+[node name="MeshAnchor" type="Node3D" parent="."]
 
-[node name="SquashStretch" type="Node3D" parent="PhysicsStepInterpolator/Mesh"]
+[node name="PhysicsStepInterpolator" parent="MeshAnchor" instance=ExtResource("7_3cj2e")]
+
+[node name="Mesh" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator"]
+
+[node name="SquashStretch" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
 script = ExtResource("7_pchkq")
 stretch_factor = 0.75
 
-[node name="Spring" type="Node3D" parent="PhysicsStepInterpolator/Mesh/SquashStretch"]
+[node name="Spring" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/SquashStretch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 top_level = true
 script = ExtResource("7_pus1y")
 spring_length = 1.25
 
-[node name="Default" type="Node3D" parent="PhysicsStepInterpolator/Mesh/SquashStretch"]
+[node name="Default" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/SquashStretch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.623865, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PhysicsStepInterpolator/Mesh/SquashStretch/Default"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/SquashStretch/Default"]
 mesh = SubResource("2")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("9_evt60")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PhysicsStepInterpolator/Mesh/SquashStretch/Default/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/SquashStretch/Default/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
 mesh = SubResource("4")
 surface_material_override/0 = ExtResource("10_kc8d0")
 
-[node name="Glide" type="Node3D" parent="PhysicsStepInterpolator/Mesh"]
+[node name="Glide" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh"]
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PhysicsStepInterpolator/Mesh/Glide"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide"]
 transform = Transform3D(1, 6.51352e-16, 1.49012e-08, 0, -4.37114e-08, -1, -2.98023e-08, 1, -1.6292e-07, 0, 0, 0)
 mesh = SubResource("6")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("9_evt60")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("7")
 surface_material_override/0 = ExtResource("10_kc8d0")
 
-[node name="TrailPositionLeftInner" type="Marker3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftInner" type="Marker3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.353553, 0.353553, 0)
 
-[node name="TrailPositionLeftOuter" type="Marker3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionLeftOuter" type="Marker3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, -0.37, 0.37, 0)
 
-[node name="WaterDetector" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter" instance=ExtResource("25_e1r3t")]
+[node name="WaterDetector" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter" instance=ExtResource("25_e1r3t")]
 
-[node name="TrailPositionRightInner" type="Marker3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionRightInner" type="Marker3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.353553, -0.353553, 0)
 
-[node name="TrailPositionRightOuter" type="Marker3D" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
+[node name="TrailPositionRightOuter" type="Marker3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -0.37, 0)
 
-[node name="WaterDetector" parent="PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter" instance=ExtResource("25_e1r3t")]
+[node name="WaterDetector" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter" instance=ExtResource("25_e1r3t")]
 
-[node name="StateMachine" parent="PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
+[node name="StateMachine" parent="MeshAnchor/PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
 _initial_state = NodePath("Idle")
 
-[node name="Bounce" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="Bounce" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
 spin_rate = 2.0
 mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Dive" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="Dive" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
 turn_lerp_weight = 0.01
 mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="DoubleJump" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="DoubleJump" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Fall" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="Fall" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Glide" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="Glide" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
 mesh_root = NodePath("../../Glide")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Idle" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="Idle" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Jump" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="Jump" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Run" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="Run" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="Swim" type="Node" parent="PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+[node name="Swim" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
 turn_lerp_weight_min = 1.0
 turn_lerp_weight_max = 3.0
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
-[node name="StateMachineSynchronizer" type="Node" parent="PhysicsStepInterpolator/Mesh"]
+[node name="StateMachineSynchronizer" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh"]
 script = ExtResource("11_mhki8")
-_state_machine_parent = NodePath("../../../StateMachine")
+_state_machine_parent = NodePath("../../../../StateMachine")
 _state_machine_child = NodePath("../StateMachine")
 
-[node name="TransformResourceManager" parent="PhysicsStepInterpolator" instance=ExtResource("31_jeewe")]
+[node name="TransformResourceManager" parent="MeshAnchor/PhysicsStepInterpolator" instance=ExtResource("31_jeewe")]
 _transform_resource = ExtResource("5_f776o")
 
-[node name="BlobShadow" parent="PhysicsStepInterpolator" instance=ExtResource("28_5hoqt")]
+[node name="BlobShadow" parent="MeshAnchor/PhysicsStepInterpolator" instance=ExtResource("28_5hoqt")]
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
 _initial_state = NodePath("Idle")
@@ -286,7 +296,6 @@ gravity_scale = 0.05
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("25_rhyuw")
-gravity_scale = 0.1
 floor_snapping_enabled = true
 
 [node name="Jump" type="Node" parent="StateMachine"]
@@ -299,7 +308,6 @@ one_shot = true
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("27_mdmxu")
-gravity_scale = 0.1
 floor_snapping_enabled = true
 
 [node name="Swim" type="Node" parent="StateMachine"]
@@ -326,34 +334,34 @@ one_shot = true
 
 [node name="GlideTrailRendererLeft" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
-trail_position_a = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-trail_position_b = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
-_water_detector = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter/WaterDetector")
+trail_position_a = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+trail_position_b = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_water_detector = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter/WaterDetector")
 _environment_resource = ExtResource("24_hgnac")
 _target_states = Array[NodePath]([NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")])
 
 [node name="GlideTrailRendererRight" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
-trail_position_a = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-trail_position_b = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
-_water_detector = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter/WaterDetector")
+trail_position_a = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+trail_position_b = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_water_detector = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter/WaterDetector")
 _environment_resource = ExtResource("24_hgnac")
 _target_states = Array[NodePath]([NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")])
 
 [node name="DiveTrailRendererLeft" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
-trail_position_a = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
-trail_position_b = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
-_water_detector = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter/WaterDetector")
+trail_position_a = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftInner")
+trail_position_b = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter")
+_water_detector = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionLeftOuter/WaterDetector")
 _environment_resource = ExtResource("24_hgnac")
 point_lifetime = 1.0
 _target_states = Array[NodePath]([NodePath("../../StateMachine/Dive")])
 
 [node name="DiveTrailRendererRight" type="Node" parent="TrailRenderers" node_paths=PackedStringArray("trail_position_a", "trail_position_b", "_water_detector")]
 script = ExtResource("8")
-trail_position_a = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
-trail_position_b = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
-_water_detector = NodePath("../../PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter/WaterDetector")
+trail_position_a = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightInner")
+trail_position_b = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter")
+_water_detector = NodePath("../../MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter/WaterDetector")
 _environment_resource = ExtResource("24_hgnac")
 point_lifetime = 1.0
 _target_states = Array[NodePath]([NodePath("../../StateMachine/Dive")])

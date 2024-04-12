@@ -16,8 +16,14 @@ func _ready() -> void:
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
+	print("Enter player state: ", name)
 	player.gravity_scale = gravity_scale
-	player.floor_snapping_enabled = floor_snapping_enabled
+	#player.floor_snapping_enabled = floor_snapping_enabled
+
+
+func exit(data: Dictionary) -> void:
+	super.exit(data)
+	print("Exit player state: ", name)
 
 
 func calculate_friction_coefficient(acceleration_time: float):
