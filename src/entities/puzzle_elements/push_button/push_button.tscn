@@ -90,5 +90,7 @@ _sfx_resource_enter = ExtResource("7_gi7uk")
 _sfx_resource_exit = ExtResource("8_aedo8")
 _target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

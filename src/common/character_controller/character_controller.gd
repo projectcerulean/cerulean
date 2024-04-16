@@ -41,6 +41,7 @@ var _floor_velocity_prober_position_prev: Vector3
 @onready var hover_ray_cast: RayCast3D = RayCast3D.new()
 @onready var hover_shape_cast: ShapeCast3D = ShapeCast3D.new()
 @onready var hover_shape_cast_auxilary: ShapeCast3D = ShapeCast3D.new()
+@onready var push_button_area: Area3D = Area3D.new()
 @onready var _floor_velocity_prober: Node3D = Node3D.new()
 
 
@@ -72,6 +73,16 @@ func _ready() -> void:
 	hover_shape_cast_auxilary.collision_mask = hover_shape_cast.collision_mask
 	hover_shape_cast_auxilary.enabled = hover_shape_cast.enabled
 	add_child(hover_shape_cast_auxilary)
+
+	# Additional collision area that can be monitored by e.g. push buttons on the floor
+	push_button_area.monitoring = false
+	push_button_area.monitorable = true
+	push_button_area.collision_layer = collision_layer
+	push_button_area.collision_mask = 0
+	add_child(push_button_area)
+	var push_button_shape: CollisionShape3D = CollisionShape3D.new()
+	push_button_shape.shape = collision_shape.shape
+	push_button_area.add_child(push_button_shape)
 
 	lock_rotation = true
 
@@ -166,24 +177,28 @@ func _physics_process(delta: float) -> void:
 			_is_on_floor = false
 
 		# Update mesh anchor position to line up with the ground
-		if _is_on_floor and mesh_anchor != null:
-			mesh_anchor.position = Lerp.delta_lerp3(
-				mesh_anchor.position,
-				Vector3.DOWN * _floor_distance + Vector3.UP * mesh_anchor_constant_offset,
-				mesh_anchor_active_lerp_weight,
-				delta,
-			)
+		if _is_on_floor:
+			push_button_area.position = Vector3.DOWN * _floor_distance
+			if mesh_anchor != null:
+				mesh_anchor.position = Lerp.delta_lerp3(
+					mesh_anchor.position,
+					Vector3.DOWN * _floor_distance + Vector3.UP * mesh_anchor_constant_offset,
+					mesh_anchor_active_lerp_weight,
+					delta,
+				)
 
 		_floor_distance_prev = _floor_distance
 	else:
 		_is_on_floor = false
 		_floor_distance_prev = NAN
-		mesh_anchor.position = Lerp.delta_lerp3(
-			mesh_anchor.position,
-			Vector3.UP * floor_distance_equilibrium - mesh_anchor_constant_offset,
-			mesh_anchor_resting_lerp_weight,
-			delta,
-		)
+		push_button_area.position = Vector3.DOWN * floor_distance_equilibrium
+		if mesh_anchor != null:
+			mesh_anchor.position = Lerp.delta_lerp3(
+				mesh_anchor.position,
+				Vector3.UP * floor_distance_equilibrium - mesh_anchor_constant_offset,
+				mesh_anchor_resting_lerp_weight,
+				delta,
+			)
 
 	# Apply floor transform
 	var node_reparented: bool = TreeUtils.reparent_node(

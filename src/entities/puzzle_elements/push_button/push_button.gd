@@ -4,7 +4,7 @@
 class_name PushButton
 extends Area3D
 
-var bodies: Array[Node3D] = []
+var colliders: Array[Node3D] = []
 
 @onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 
@@ -15,14 +15,31 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body not in bodies:
-		bodies.append(body)
-	if bodies.size() > 0:
-		state_machine.transition_to_state(PuzzleElementStates.ENABLED)
+	if body not in colliders:
+		colliders.append(body)
+	trigger_state_change()
 
 
 func _on_body_exited(body: Node3D) -> void:
-	if body in bodies:
-		bodies.erase(body)
-	if bodies.size() == 0:
+	if body in colliders:
+		colliders.erase(body)
+	trigger_state_change()
+
+
+func _on_area_entered(area: Area3D) -> void:
+	if area not in colliders:
+		colliders.append(area)
+	trigger_state_change()
+
+
+func _on_area_exited(area: Area3D) -> void:
+	if area in colliders:
+		colliders.erase(area)
+	trigger_state_change()
+
+
+func trigger_state_change() -> void:
+	if colliders.size() == 0:
 		state_machine.transition_to_state(PuzzleElementStates.DISABLED)
+	elif colliders.size() > 0:
+		state_machine.transition_to_state(PuzzleElementStates.ENABLED)
