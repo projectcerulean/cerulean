@@ -15,13 +15,13 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body not in colliders:
+	if not is_same(body.owner, owner) and body not in colliders:
 		colliders.append(body)
 	trigger_state_change()
 
 
 func _on_body_exited(body: Node3D) -> void:
-	if body in colliders:
+	if not is_same(body.owner, owner) and body in colliders:
 		colliders.erase(body)
 	trigger_state_change()
 
