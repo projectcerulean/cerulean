@@ -15,12 +15,6 @@ func enter(data: Dictionary) -> void:
 	super.enter(data)
 	glide_start_position = player.global_position
 	glide_start_velocity = player.linear_velocity
-	player.hover_spring_pull_downwards = false
-
-
-func exit(data: Dictionary) -> void:
-	super.exit(data)
-	player.hover_spring_pull_downwards = true
 
 
 func physics_process(delta: float) -> void:

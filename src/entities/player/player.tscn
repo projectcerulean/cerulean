@@ -265,7 +265,9 @@ transition_frame = 1
 [node name="Bounce" type="Node" parent="StateMachine"]
 script = ExtResource("20_rvyx5")
 _sfx_resource = ExtResource("18_1l0sl")
+reset_double_jump = true
 gravity_scale = 0.6
+hover_spring_pull_downwards = false
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Bounce"]
 wait_time = 0.1
@@ -273,7 +275,9 @@ one_shot = true
 
 [node name="Dive" type="Node" parent="StateMachine"]
 script = ExtResource("22_4hscj")
+reset_double_jump = true
 gravity_scale = 0.0
+hover_spring_pull_downwards = false
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Dive"]
 wait_time = 0.5
@@ -282,6 +286,7 @@ one_shot = true
 [node name="DoubleJump" type="Node" parent="StateMachine"]
 script = ExtResource("23_oc5f6")
 gravity_scale = 0.667
+hover_spring_pull_downwards = false
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/DoubleJump"]
 wait_time = 0.1
@@ -289,18 +294,21 @@ one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("23_pac4m")
+hover_spring_pull_downwards = false
 
 [node name="Glide" type="Node" parent="StateMachine"]
 script = ExtResource("24_p4auy")
 gravity_scale = 0.05
+hover_spring_pull_downwards = false
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("25_rhyuw")
-floor_snapping_enabled = true
+reset_double_jump = true
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("26_7ncmu")
 gravity_scale = 0.667
+hover_spring_pull_downwards = false
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Jump"]
 wait_time = 0.1
@@ -308,11 +316,13 @@ one_shot = true
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("27_mdmxu")
-floor_snapping_enabled = true
+reset_double_jump = true
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("28_tp61u")
+reset_double_jump = true
 gravity_scale = 0.5
+hover_spring_pull_downwards = false
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Swim"]
 wait_time = 0.5

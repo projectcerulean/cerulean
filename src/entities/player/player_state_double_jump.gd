@@ -21,14 +21,8 @@ func enter(data: Dictionary) -> void:
 	player.jump_buffer_timer.stop()
 	assert(player.can_double_jump, Errors.CONSISTENCY_ERROR)
 	player.can_double_jump = false
-	player.hover_spring_pull_downwards = false
 
 	player.enqueue_minimum_velocity(jump_speed * Vector3.UP)
-
-
-func exit(data: Dictionary) -> void:
-	super.exit(data)
-	player.hover_spring_pull_downwards = true
 
 
 func physics_process(delta: float) -> void:

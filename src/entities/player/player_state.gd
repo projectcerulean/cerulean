@@ -3,8 +3,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 class_name PlayerState extends State
 
+@export var reset_double_jump: bool = false
 @export var gravity_scale: float = 1.0
-@export var floor_snapping_enabled: bool = false
+@export var hover_spring_pull_downwards: bool = true
+@export var hover_spring_pull_upwards: bool = true
+
+var gravity_scale_prev: bool = false
+var hover_spring_pull_downwards_prev: bool = false
+var hover_spring_pull_upwards_prev: bool = false
 
 # Reference to the player object so that it can be manipulated inside the states
 @onready var player: Player = owner as Player
@@ -16,14 +22,20 @@ func _ready() -> void:
 
 func enter(data: Dictionary) -> void:
 	super.enter(data)
-	print("Enter player state: ", name)
+	if reset_double_jump:
+		player.can_double_jump = true
+	gravity_scale_prev = player.gravity_scale
 	player.gravity_scale = gravity_scale
-	#player.floor_snapping_enabled = floor_snapping_enabled
+	hover_spring_pull_downwards_prev = hover_spring_pull_downwards
+	player.hover_spring_pull_downwards = hover_spring_pull_downwards
+	hover_spring_pull_upwards_prev = player.hover_spring_pull_upwards
+	player.hover_spring_pull_upwards = hover_spring_pull_upwards
 
 
 func exit(data: Dictionary) -> void:
-	super.exit(data)
-	print("Exit player state: ", name)
+	player.gravity_scale = gravity_scale_prev
+	player.hover_spring_pull_downwards = hover_spring_pull_downwards_prev
+	player.hover_spring_pull_upwards = hover_spring_pull_upwards_prev
 
 
 func calculate_friction_coefficient(acceleration_time: float):

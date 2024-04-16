@@ -7,16 +7,6 @@ extends PlayerState
 @export var acceleration_time: float = 3.0
 
 
-func enter(data: Dictionary) -> void:
-	super.enter(data)
-	player.hover_spring_pull_downwards = false
-
-
-func exit(data: Dictionary) -> void:
-	super.exit(data)
-	player.hover_spring_pull_downwards = true
-
-
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 

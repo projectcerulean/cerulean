@@ -24,13 +24,6 @@ func _ready() -> void:
 func enter(data: Dictionary) -> void:
 	super.enter(data)
 	state_enter_timer.start()
-	player.can_double_jump = true
-	player.hover_spring_pull_downwards = false
-
-
-func exit(data: Dictionary) -> void:
-	super.exit(data)
-	player.hover_spring_pull_downwards = true
 
 
 func physics_process(delta: float) -> void:

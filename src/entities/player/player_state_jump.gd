@@ -19,7 +19,6 @@ func enter(data: Dictionary) -> void:
 	state_enter_timer.start()
 	player.coyote_timer.stop()
 	player.jump_buffer_timer.stop()
-	player.hover_spring_pull_downwards = false
 
 	player.enqueue_minimum_velocity(jump_speed * Vector3.UP)
 
@@ -29,11 +28,6 @@ func enter(data: Dictionary) -> void:
 		var impulse: Vector3 = player.mass * (jump_speed - player.linear_velocity.y) * Vector3.UP
 		var impulse_position: Vector3 = player.get_floor_collision_position() - rigid_body.global_position
 		rigid_body.apply_impulse(-impulse, impulse_position)
-
-
-func exit(data: Dictionary) -> void:
-	super.exit(data)
-	player.hover_spring_pull_downwards = true
 
 
 func physics_process(delta: float) -> void:

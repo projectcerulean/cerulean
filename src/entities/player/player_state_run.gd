@@ -10,11 +10,6 @@ extends PlayerState
 @onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
 
 
-func enter(data: Dictionary) -> void:
-	super.enter(data)
-	player.can_double_jump = true
-
-
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
