@@ -16,7 +16,6 @@ extends PhysicsEntity
 @export var hover_spring_constant_factor: float = 250
 @export var hover_spring_damping_constant_factor: float = 0.5
 @export var hover_shape_cast_target_distance: float = 1.0
-@export var hover_shape_cast_xz_scale: float = 0.95
 @export var hover_spring_pull_downwards: bool = true
 @export var hover_spring_pull_upwards: bool = true
 
@@ -61,7 +60,7 @@ func _ready() -> void:
 	hover_ray_cast.enabled = false
 	add_child(hover_ray_cast)
 
-	hover_shape_cast.shape = ShapeUtils.get_shape_scaled_xz(shape, hover_shape_cast_xz_scale)
+	hover_shape_cast.shape = shape
 	hover_shape_cast.target_position = hover_shape_cast_target_distance * Vector3.DOWN
 	hover_shape_cast.collision_mask = collision_mask
 	hover_shape_cast.enabled = false
