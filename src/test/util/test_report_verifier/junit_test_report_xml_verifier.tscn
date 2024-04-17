@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bys2ncn7n7rn5"]
+
+[ext_resource type="Script" path="res://src/test/util/test_report_verifier/junit_test_report_xml_verifier.gd" id="1_3bxsu"]
+
+[node name="JunitTestReportXmlVerifier" type="Node"]
+script = ExtResource("1_3bxsu")

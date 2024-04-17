@@ -19,7 +19,7 @@ $(CERULEAN_PCK):
 $(TEST_REPORT_XML):
 	$(call godot_project_init)
 	$(GODOT) --headless --script addons/gut/gut_cmdln.gd -gjunit_xml_file=$@
-	$(GODOT) --headless --script src/test/util/verify_junit_test_report_xml.gd | grep -q JUNIT_TEST_REPORT_XML_VERIFIED_OK
+	$(GODOT) --headless --script src/test/util/test_report_verifier/verify_junit_test_report_xml.gd | grep -q JUNIT_TEST_REPORT_XML_VERIFIED_OK
 .PHONY: $(TEST_REPORT_XML)
 
 
