@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://24m8aptbdft0"]
+
+[ext_resource type="PackedScene" uid="uid://dp2r2o3v4j6hc" path="res://src/test/integration/entities/puzzle_elements/push_button/push_button_character_controller_interaction.tscn" id="1_a613q"]
+
+[node name="PushButtonCharacterControllerInteractionEntitiesLayer" instance=ExtResource("1_a613q")]
+
+[node name="CharacterController" parent="." index="1"]
+collision_layer = 8
