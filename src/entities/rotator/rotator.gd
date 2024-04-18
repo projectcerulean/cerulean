@@ -20,6 +20,9 @@ func _ready() -> void:
 	assert(platform1 != null, Errors.NULL_NODE)
 	assert(platform2 != null, Errors.NULL_NODE)
 	assert(platform3 != null, Errors.NULL_NODE)
+	platform1.top_level = false
+	platform2.top_level = false
+	platform3.top_level = false
 
 
 func _physics_process(delta: float) -> void:

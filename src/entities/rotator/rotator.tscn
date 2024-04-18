@@ -46,7 +46,6 @@ shape = SubResource("BoxShape3D_g851e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 4)
 
 [node name="Platform" type="AnimatableBody3D" parent="PlatformPosition"]
-top_level = true
 collision_layer = 136
 collision_mask = 0
 
@@ -73,7 +72,6 @@ shape = SubResource("BoxShape3D_g851e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.66025, -5, 4)
 
 [node name="Platform2" type="AnimatableBody3D" parent="PlatformPosition2"]
-top_level = true
 collision_layer = 136
 collision_mask = 0
 
@@ -100,8 +98,6 @@ shape = SubResource("BoxShape3D_g851e")
 transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0, 1, -8.66026, -5, 4)
 
 [node name="Platform3" type="AnimatableBody3D" parent="PlatformPosition3"]
-transform = Transform3D(1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
-top_level = true
 collision_layer = 136
 collision_mask = 0
 
