@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://ct8hn0mrxp0d6"]
+[gd_scene load_steps=65 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="2_af2ft"]
@@ -18,8 +18,10 @@
 [ext_resource type="Script" path="res://src/common/state_machine/translate3d_transition_listener.gd" id="12_we2p8"]
 [ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="14_11lwf"]
 [ext_resource type="PackedScene" uid="uid://cakfuk8ocptkq" path="res://src/entities/rotator/rotator.tscn" id="14_l6rq7"]
+[ext_resource type="Resource" uid="uid://bs2avrdkpfob1" path="res://assets/dialogue/tutorial/bounce_pad.tres" id="15_br4r3"]
 [ext_resource type="PackedScene" uid="uid://wn7hyygjov7c" path="res://src/sound/bgm/bgm_area/bgm_area.tscn" id="15_e7a0f"]
 [ext_resource type="Environment" uid="uid://cj4m17hiwmdr2" path="res://src/levels/prototype_dungeon/environment.tres" id="15_nl3es"]
+[ext_resource type="Resource" uid="uid://bj2rqh0lc6rbw" path="res://assets/dialogue/tutorial/air_brake.tres" id="16_6urtp"]
 [ext_resource type="PackedScene" uid="uid://b25s8e4xiy0gw" path="res://src/entities/box/box.tscn" id="16_p0we0"]
 [ext_resource type="PackedScene" uid="uid://cx6853dllog27" path="res://src/entities/bounce_pad/bounce_pad.tscn" id="19_any5i"]
 
@@ -285,6 +287,13 @@ shader_parameter/smooth_range = 0.5
 shader_parameter/color_old = Color(1, 0.270588, 0, 1)
 shader_parameter/color_new = Color(0, 0.709804, 1, 1)
 shader_parameter/flip_colors = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2vod"]
+resource_local_to_scene = true
+albedo_color = Color(0.702097, 0.612501, 0.556948, 1)
+distance_fade_mode = 3
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5bge"]
 resource_local_to_scene = true
@@ -1190,6 +1199,30 @@ shadow_enabled = true
 omni_range = 50.0
 omni_attenuation = 0.0220971
 
+[node name="BouncePadTutorial" parent="Env/Ascension/Walls" instance=ExtResource("10_g8ijk")]
+transform = Transform3D(-0.866025, -0.5, -5.97109e-08, -4.37114e-08, -4.37114e-08, 1, -0.5, 0.866025, 1.59995e-08, -5, -31.9683, 9)
+
+[node name="Post" parent="Env/Ascension/Walls/BouncePadTutorial" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m2vod")
+
+[node name="Sign" parent="Env/Ascension/Walls/BouncePadTutorial" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m2vod")
+
+[node name="Action" parent="Env/Ascension/Walls/BouncePadTutorial/Interaction" index="1"]
+dialogue_resource = ExtResource("15_br4r3")
+
+[node name="AirBrakeTutorial" parent="Env/Ascension/Walls" instance=ExtResource("10_g8ijk")]
+transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -6, -31.9683, 11)
+
+[node name="Post" parent="Env/Ascension/Walls/AirBrakeTutorial" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m2vod")
+
+[node name="Sign" parent="Env/Ascension/Walls/AirBrakeTutorial" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m2vod")
+
+[node name="Action" parent="Env/Ascension/Walls/AirBrakeTutorial/Interaction" index="1"]
+dialogue_resource = ExtResource("16_6urtp")
+
 [node name="Ascension2" type="Node3D" parent="Env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 29, 0)
 
@@ -1503,6 +1536,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 49, -24.1226)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13, 0)
 
 [editable path="Env/CentralRoom/Walls/Circuit/Indicator"]
+[editable path="Env/Ascension/Walls/BouncePadTutorial"]
+[editable path="Env/Ascension/Walls/AirBrakeTutorial"]
 [editable path="Env/Ascension2/Walls2/Rotator"]
 [editable path="Env/Ascension2/Walls2/Rotator2"]
 [editable path="Env/Ascension2/Walls2/Rotator3"]

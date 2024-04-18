@@ -1039,52 +1039,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
 [node name="Water9" parent="Water" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
 
-[node name="SignPost" parent="." instance=ExtResource("8_l3hhy")]
+[node name="JumpingTutorial" parent="." instance=ExtResource("8_l3hhy")]
 transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, -17.7, 3, -2)
 
-[node name="Post" parent="SignPost" index="0"]
+[node name="Post" parent="JumpingTutorial" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wenkw")
 
-[node name="Sign" parent="SignPost" index="1"]
+[node name="Sign" parent="JumpingTutorial" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wenkw")
 
-[node name="Action" parent="SignPost/Interaction" index="1"]
+[node name="Action" parent="JumpingTutorial/Interaction" index="1"]
 dialogue_resource = ExtResource("9_ilvj1")
 
-[node name="SignPost2" parent="." instance=ExtResource("8_l3hhy")]
+[node name="CameraTutorial" parent="." instance=ExtResource("8_l3hhy")]
 transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, -19.6, 3.2, -2)
 
-[node name="Post" parent="SignPost2" index="0"]
+[node name="Post" parent="CameraTutorial" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_msdho")
 
-[node name="Sign" parent="SignPost2" index="1"]
+[node name="Sign" parent="CameraTutorial" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_msdho")
 
-[node name="Action" parent="SignPost2/Interaction" index="1"]
+[node name="Action" parent="CameraTutorial/Interaction" index="1"]
 dialogue_resource = ExtResource("11_qt3s6")
 
-[node name="SignPost3" parent="." instance=ExtResource("8_l3hhy")]
+[node name="DivingTutorial" parent="." instance=ExtResource("8_l3hhy")]
 transform = Transform3D(0.964711, -0.163252, -0.206596, 0.220667, 0.0731603, 0.972602, -0.143664, -0.983869, 0.106603, -28.0864, 0.258082, 0.501245)
 
-[node name="Post" parent="SignPost3" index="0"]
+[node name="Post" parent="DivingTutorial" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
 
-[node name="Sign" parent="SignPost3" index="1"]
+[node name="Sign" parent="DivingTutorial" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
 
-[node name="Action" parent="SignPost3/Interaction" index="1"]
+[node name="Action" parent="DivingTutorial/Interaction" index="1"]
 dialogue_resource = ExtResource("10_vafey")
 
-[node name="SignPost4" parent="." instance=ExtResource("8_l3hhy")]
+[node name="GlidingTutorial" parent="." instance=ExtResource("8_l3hhy")]
 transform = Transform3D(0.143613, -0.968427, -0.203781, 0.14203, -0.183615, 0.972684, -0.97939, -0.168633, 0.111176, -26.4137, 0.573438, 0.501245)
 
-[node name="Post" parent="SignPost4" index="0"]
+[node name="Post" parent="GlidingTutorial" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
 
-[node name="Sign" parent="SignPost4" index="1"]
+[node name="Sign" parent="GlidingTutorial" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_w6lo3")
 
-[node name="Action" parent="SignPost4/Interaction" index="1"]
+[node name="Action" parent="GlidingTutorial/Interaction" index="1"]
 dialogue_resource = ExtResource("11_bskm1")
 
 [node name="Barrier" parent="." instance=ExtResource("12_vimad")]
@@ -1421,7 +1421,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -0.5, 19)
 [node name="BouncePad" parent="Box2" instance=ExtResource("22_6nnfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13, 0)
 
-[editable path="SignPost"]
-[editable path="SignPost2"]
-[editable path="SignPost3"]
-[editable path="SignPost4"]
+[editable path="JumpingTutorial"]
+[editable path="CameraTutorial"]
+[editable path="DivingTutorial"]
+[editable path="GlidingTutorial"]
