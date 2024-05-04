@@ -113,6 +113,7 @@ collision_mask = 60
 mass = 42.0
 physics_material_override = SubResource("PhysicsMaterial_khrrq")
 lock_rotation = true
+continuous_cd = true
 linear_damp_mode = 1
 script = ExtResource("1")
 _thumbstick_resource_left = ExtResource("2_4s2oi")

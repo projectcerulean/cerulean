@@ -16,6 +16,7 @@ size = Vector3(2, 2, 2)
 collision_layer = 136
 collision_mask = 13
 mass = 500.0
+continuous_cd = true
 linear_damp = 0.5
 angular_damp = 1.0
 script = ExtResource("1_j8n7c")
