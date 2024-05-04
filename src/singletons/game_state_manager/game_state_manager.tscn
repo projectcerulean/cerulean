@@ -126,7 +126,7 @@ audio_effect_wet = SubResource("AudioEffectAmplify_ihwqq")
 audio_bus_name = &"BgmGlide"
 tween_duration = 0.5
 tween_type = 1
-_target_states = Array[NodePath]([NodePath("../../StateMachine/SceneTransition")])
+_target_states = Array[NodePath]([NodePath("../../StateMachine/SceneTransition"), NodePath("../../StateMachine/LoadingScreen")])
 
 [node name="SceneTransitionAmplifyBgmRhythm" type="Node" parent="AudioEffects"]
 script = ExtResource("9_fgrmj")
@@ -135,7 +135,7 @@ audio_effect_wet = SubResource("AudioEffectAmplify_0bb08")
 audio_bus_name = &"BgmRhythm"
 tween_duration = 0.5
 tween_type = 1
-_target_states = Array[NodePath]([NodePath("../../StateMachine/SceneTransition")])
+_target_states = Array[NodePath]([NodePath("../../StateMachine/SceneTransition"), NodePath("../../StateMachine/LoadingScreen")])
 
 [node name="MouseCaptureController" type="Node" parent="."]
 script = ExtResource("10_2diqu")
