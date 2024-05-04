@@ -167,6 +167,10 @@ func enqueue_force(force_vector: Vector3):
 	_pending_forces.append(force_vector)
 
 
+func enqueue_planar_force(force_vector: Vector2):
+	enqueue_force(VectorUtils.vec2_to_vec3_xz(force_vector))
+
+
 func enqueue_transform_offset(offset: Vector3):
 	_pending_transform_offsets.append(offset)
 

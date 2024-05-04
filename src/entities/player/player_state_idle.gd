@@ -3,20 +3,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends PlayerState
 
-@export var move_speed: float = 8.5
-@export var acceleration_time: float = 0.3
-
-@onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
-@onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
-
 
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
-
-	# Apply movement
-	player.enqueue_force(player.input_vector * move_force - move_friction_coefficient * player.linear_velocity * Vector3(1.0, 0.0, 1.0))
-
-	# Coyote timer
+	player.perform_planar_movement(player.planar_input_vector, delta)
 	player.coyote_timer.start()
 
 

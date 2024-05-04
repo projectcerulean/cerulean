@@ -5,12 +5,22 @@ class_name PlayerState extends State
 
 @export var reset_double_jump: bool = false
 @export var gravity_scale: float = 1.0
-@export var hover_spring_pull_downwards: bool = true
-@export var hover_spring_pull_upwards: bool = true
+@export var hover_pid_p_gain_factor: float = 250.0
+@export var hover_pid_d_gain_factor: float = 0.5
+@export var hover_force_downwards_enabled: bool = true
+@export var hover_force_upwards_enabled: bool = true
+@export var planar_move_speed_max: float = 8.5
+@export var planar_movement_pid_p_gain_factor: float = 12.0
+@export_range(0.0, 1.0, 0.001) var planar_momentum_conservation_factor: float = 0.0
 
 var gravity_scale_prev: bool = false
-var hover_spring_pull_downwards_prev: bool = false
-var hover_spring_pull_upwards_prev: bool = false
+var hover_pid_p_gain_factor_prev: float = NAN
+var hover_pid_d_gain_factor_prev: float = NAN
+var hover_force_downwards_enabled_prev: bool = false
+var hover_force_upwards_enabled_prev: bool = false
+var planar_move_speed_max_prev: float = NAN
+var planar_movement_pid_p_gain_factor_prev: float = NAN
+var planar_momentum_conservation_factor_prev: float = NAN
 
 # Reference to the player object so that it can be manipulated inside the states
 @onready var player: Player = owner as Player
@@ -26,16 +36,31 @@ func enter(data: Dictionary) -> void:
 		player.can_double_jump = true
 	gravity_scale_prev = player.gravity_scale
 	player.gravity_scale = gravity_scale
-	hover_spring_pull_downwards_prev = hover_spring_pull_downwards
-	player.hover_spring_pull_downwards = hover_spring_pull_downwards
-	hover_spring_pull_upwards_prev = player.hover_spring_pull_upwards
-	player.hover_spring_pull_upwards = hover_spring_pull_upwards
+	hover_pid_p_gain_factor_prev = player.hover_pid_p_gain_factor
+	player.hover_pid_p_gain_factor = hover_pid_p_gain_factor
+	hover_pid_d_gain_factor_prev = player.hover_pid_p_gain_factor
+	player.hover_pid_d_gain_factor = hover_pid_d_gain_factor
+	hover_force_downwards_enabled_prev = hover_force_downwards_enabled
+	player.hover_force_downwards_enabled = hover_force_downwards_enabled
+	hover_force_upwards_enabled_prev = player.hover_force_upwards_enabled
+	player.hover_force_upwards_enabled = hover_force_upwards_enabled
+	planar_move_speed_max_prev = player.planar_move_speed_max
+	player.planar_move_speed_max = planar_move_speed_max
+	planar_movement_pid_p_gain_factor_prev = player.planar_movement_pid_p_gain_factor
+	player.planar_movement_pid_p_gain_factor = planar_movement_pid_p_gain_factor
+	planar_momentum_conservation_factor_prev = player.planar_momentum_conservation_factor
+	player.planar_momentum_conservation_factor = planar_momentum_conservation_factor
 
 
-func exit(data: Dictionary) -> void:
+func exit(_data: Dictionary) -> void:
 	player.gravity_scale = gravity_scale_prev
-	player.hover_spring_pull_downwards = hover_spring_pull_downwards_prev
-	player.hover_spring_pull_upwards = hover_spring_pull_upwards_prev
+	player.hover_pid_p_gain_factor = hover_pid_p_gain_factor_prev
+	player.hover_pid_d_gain_factor = hover_pid_d_gain_factor_prev
+	player.hover_force_downwards_enabled = hover_force_downwards_enabled_prev
+	player.hover_force_upwards_enabled = hover_force_upwards_enabled_prev
+	player.planar_move_speed_max = planar_move_speed_max_prev
+	player.planar_movement_pid_p_gain_factor = planar_movement_pid_p_gain_factor_prev
+	player.planar_momentum_conservation_factor = planar_momentum_conservation_factor_prev
 
 
 func calculate_friction_coefficient(acceleration_time: float):

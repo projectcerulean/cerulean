@@ -12,7 +12,7 @@ const YAW_DIRECTION_TARGET: StringName = &"YAW_DIRECTION_TARGET"
 @export var _player_input_vector_resource: Resource
 
 @onready var player: RigidBody3D = owner as RigidBody3D
-@onready var player_input_vector_resource: Vector3Resource = _player_input_vector_resource as Vector3Resource
+@onready var player_input_vector_resource: Vector2Resource = _player_input_vector_resource as Vector2Resource
 
 
 func _ready() -> void:

@@ -21,7 +21,7 @@ func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
 	# Apply movement
-	var input_vector_spherical: Vector3 = player.input_vector
+	var input_vector_spherical: Vector3 = VectorUtils.vec2_to_vec3_xz(player.planar_input_vector)
 	input_vector_spherical.y = -sqrt(1.0 - min(input_vector_spherical.length_squared(), 1.0))
 	input_vector_spherical = input_vector_spherical.normalized()
 	assert(input_vector_spherical.is_normalized(), Errors.CONSISTENCY_ERROR)
@@ -58,7 +58,6 @@ func get_transition() -> StringName:
 	if player.global_position.y < player.water_detector.get_water_surface_height():
 		return PlayerStates.SWIM
 	elif player.is_on_floor():
-		return PlayerStates.FALL
 		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
 			return PlayerStates.IDLE
 		else:

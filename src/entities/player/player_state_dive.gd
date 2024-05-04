@@ -4,17 +4,18 @@
 extends PlayerState
 
 @export var move_speed: float = 7.0
-@export var acceleration_time: float = 3.0
+@export var movement_p_gain_factor: float = 1.5
 @export var surface_level_check_leniency_factor: float = 2.0
 
-@onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
-@onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
+var movement_pid_controller: PidController3D
+
 @onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
 
 
 func _ready() -> void:
 	super._ready()
 	assert(state_enter_timer != null, Errors.NULL_NODE)
+	movement_pid_controller = PidController3D.new(movement_p_gain_factor * player.mass, 0.0, 0.0, 0.0)
 
 
 func enter(data: Dictionary) -> void:
@@ -36,11 +37,14 @@ func physics_process(delta: float) -> void:
 	if input_strength_vertical < 0.0 and player.is_on_floor():
 		input_strength_vertical = 0.0
 	var input_vector: Vector3 = (
-		player.input_vector + Vector3.UP * input_strength_vertical
+		VectorUtils.vec2_to_vec3_xz(player.planar_input_vector) + Vector3.UP * input_strength_vertical
 	).limit_length()
-
-	# Apply movement
-	player.enqueue_force(input_vector * move_force - move_friction_coefficient * player.linear_velocity)
+	var movement_force: Vector3 = movement_pid_controller.update(
+		player.linear_velocity,
+		move_speed * input_vector,
+		delta,
+	)
+	player.enqueue_force(movement_force)
 
 
 func get_transition() -> StringName:

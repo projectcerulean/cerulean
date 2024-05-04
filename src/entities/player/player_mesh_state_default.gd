@@ -26,9 +26,9 @@ func exit(data: Dictionary) -> void:
 
 func process(delta: float) -> void:
 	super.process(delta)
-	var player_input_vector_normalized = player_input_vector_resource.value.normalized()
-	if not player_input_vector_normalized.is_equal_approx(Vector3.ZERO):
-		yaw_direction_target = player_input_vector_normalized
+	var player_input_vector_normalized: Vector2 = player_input_vector_resource.value.normalized()
+	if not player_input_vector_normalized.is_equal_approx(Vector2.ZERO):
+		yaw_direction_target = VectorUtils.vec2_to_vec3_xz(player_input_vector_normalized)
 
 	if not yaw_direction_target.is_equal_approx(Vector3.ZERO):
 		var turn_lerp_weight: float = remap(player_input_vector_resource.value.length(), 0.0, 1.0, turn_lerp_weight_min, turn_lerp_weight_max)

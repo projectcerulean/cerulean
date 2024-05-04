@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
-[ext_resource type="Resource" uid="uid://c4t8y3cjatn2" path="res://src/entities/player/player_input_vector_resource.tres" id="3_2i2xh"]
+[ext_resource type="Resource" uid="uid://cnn1ff5x5ry22" path="res://src/entities/player/player_input_vector_resource.tres" id="3_2i2xh"]
 [ext_resource type="Resource" path="res://src/entities/player/player_transform_interpolated.tres" id="5_f776o"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="5_okm0g"]
 [ext_resource type="Resource" path="res://src/singletons/camera/camera_transform.tres" id="6_ibr24"]
@@ -267,7 +267,10 @@ script = ExtResource("20_rvyx5")
 _sfx_resource = ExtResource("18_1l0sl")
 reset_double_jump = true
 gravity_scale = 0.6
-hover_spring_pull_downwards = false
+hover_pid_d_gain_factor = 0.0
+hover_force_downwards_enabled = false
+planar_movement_pid_p_gain_factor = 1.5
+planar_momentum_conservation_factor = 1.0
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Bounce"]
 wait_time = 0.1
@@ -277,7 +280,7 @@ one_shot = true
 script = ExtResource("22_4hscj")
 reset_double_jump = true
 gravity_scale = 0.0
-hover_spring_pull_downwards = false
+hover_force_downwards_enabled = false
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Dive"]
 wait_time = 0.5
@@ -286,7 +289,9 @@ one_shot = true
 [node name="DoubleJump" type="Node" parent="StateMachine"]
 script = ExtResource("23_oc5f6")
 gravity_scale = 0.667
-hover_spring_pull_downwards = false
+hover_force_downwards_enabled = false
+planar_movement_pid_p_gain_factor = 1.5
+planar_momentum_conservation_factor = 1.0
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/DoubleJump"]
 wait_time = 0.1
@@ -294,12 +299,15 @@ one_shot = true
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("23_pac4m")
-hover_spring_pull_downwards = false
+hover_force_downwards_enabled = false
+planar_movement_pid_p_gain_factor = 1.5
+planar_momentum_conservation_factor = 1.0
 
 [node name="Glide" type="Node" parent="StateMachine"]
 script = ExtResource("24_p4auy")
 gravity_scale = 0.05
-hover_spring_pull_downwards = false
+hover_pid_d_gain_factor = 0.0
+hover_force_downwards_enabled = false
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("25_rhyuw")
@@ -308,7 +316,9 @@ reset_double_jump = true
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("26_7ncmu")
 gravity_scale = 0.667
-hover_spring_pull_downwards = false
+hover_force_downwards_enabled = false
+planar_movement_pid_p_gain_factor = 1.5
+planar_momentum_conservation_factor = 1.0
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Jump"]
 wait_time = 0.1
@@ -322,7 +332,8 @@ reset_double_jump = true
 script = ExtResource("28_tp61u")
 reset_double_jump = true
 gravity_scale = 0.5
-hover_spring_pull_downwards = false
+hover_force_downwards_enabled = false
+planar_movement_pid_p_gain_factor = 1.5
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Swim"]
 wait_time = 0.5

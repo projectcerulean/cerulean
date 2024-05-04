@@ -52,14 +52,14 @@ func process(delta: float) -> void:
 		if not is_zero_approx(player.linear_velocity.y):
 			mesh_root.look_at(mesh_root.global_position + (Vector3.UP if player.linear_velocity.y > 0.0 else Vector3.DOWN), yaw_direction.rotated(Vector3.UP, -(roll_angle + roll_angle_spin * spin_direction)))
 	else:
-		var input_direction_planar_new: Vector3 = Vector3(player_input_vector_resource.value.x, 0.0, player_input_vector_resource.value.z).normalized()
+		var input_direction_planar_new: Vector2 = player_input_vector_resource.value.normalized()
 		if input_direction_planar_new.is_normalized():
-			input_direction_planar = input_direction_planar_new
+			input_direction_planar = VectorUtils.vec2_to_vec3_xz(input_direction_planar_new)
 		roll_angle = Lerp.delta_lerp_angle(
 			roll_angle, velocity_planar.signed_angle_to(input_direction_planar, Vector3.UP), roll_lerp_weight, delta
 		)
 
-		var input_vector_spherical: Vector3 = player_input_vector_resource.value
+		var input_vector_spherical: Vector3 = VectorUtils.vec2_to_vec3_xz(player_input_vector_resource.value)
 		if player.linear_velocity.y > 0.0:
 			input_vector_spherical.y = sqrt(1.0 - min(input_vector_spherical.length_squared(), 1.0))
 		else:

@@ -3,15 +3,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends PlayerState
 
-@export var move_speed: float = 8.5
-@export var acceleration_time: float = 3.0
 @export var buoyancy_speed: float = 10.0
 @export var buoyancy_acceleration_time: float = 2.0
 @export var surface_level_check_leniency_factor: float = 2.0
 
 @onready var state_enter_timer: Timer = get_node("StateEnterTimer") as Timer
-@onready var move_friction_coefficient: float = calculate_friction_coefficient(acceleration_time)
-@onready var move_force: float = calculate_move_force(move_speed, move_friction_coefficient)
 @onready var buoyancy_friction_coefficient: float = calculate_friction_coefficient(buoyancy_acceleration_time)
 @onready var buoyancy_force: float = calculate_move_force(buoyancy_speed, buoyancy_friction_coefficient)
 
@@ -30,7 +26,7 @@ func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
 	# Apply movement
-	player.enqueue_force(player.input_vector * move_force - move_friction_coefficient * player.linear_velocity * Vector3(1.0, 0.0, 1.0))
+	player.perform_planar_movement(player.planar_input_vector, delta)
 
 	# Buoyancy
 	if player.water_detector.is_in_water():

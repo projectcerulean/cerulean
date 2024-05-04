@@ -12,7 +12,7 @@ extends CharacterController
 @export_range(0.0, 1.0, 0.001) var double_jump_shape_cast_length_factor: float = 0.5
 @export var double_jump_shape_cast_xz_scale: float = 0.95
 
-var input_vector: Vector3
+var planar_input_vector: Vector2
 var can_double_jump: bool
 
 @onready var collision_shape: CollisionShape3D = get_node("CollisionShape3D") as CollisionShape3D
@@ -22,7 +22,7 @@ var can_double_jump: bool
 @onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 
 @onready var thumbstick_resource_left: Vector2Resource = _thumbstick_resource_left as Vector2Resource
-@onready var input_vector_resource: Vector3Resource = _input_vector_resource as Vector3Resource
+@onready var input_vector_resource: Vector2Resource = _input_vector_resource as Vector2Resource
 @onready var state_resource: StateResource = _state_resource as StateResource
 @onready var game_state_resource: StateResource = _game_state_resource as StateResource
 @onready var camera_transform_resource: TransformResource = _camera_transform_resource as TransformResource
@@ -42,24 +42,17 @@ func _ready() -> void:
 	assert(water_detector != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
 
-	assert(input_vector_resource.value == Vector3(), Errors.RESOURCE_BUSY)
+	assert(input_vector_resource.value == Vector2(), Errors.RESOURCE_BUSY)
 
 
 func _process(_delta: float) -> void:
 	# Update input vector according to thumbstick and camera position
-	var camera_vector: Vector3 = camera_transform_resource.value.origin - global_position
+	var camera_vector: Vector3 = global_position - camera_transform_resource.value.origin
 	camera_vector.y = 0.0
 	camera_vector = camera_vector.normalized()
-	var forward_vector: Vector3 = camera_vector
-	var right_vector: Vector3 = -camera_vector.cross(Vector3.UP)
-	input_vector = right_vector * thumbstick_resource_left.value.x + forward_vector * thumbstick_resource_left.value.y
-
-	if input_vector.length_squared() > 1.0:
-		input_vector = input_vector.normalized()
-	elif input_vector.is_equal_approx(Vector3.ZERO):
-		input_vector = Vector3.ZERO
-
-	input_vector_resource.value = input_vector
+	var camera_yaw_rads: float = camera_vector.signed_angle_to(Vector3.FORWARD, Vector3.UP)
+	planar_input_vector = thumbstick_resource_left.value.rotated(camera_yaw_rads).limit_length()
+	input_vector_resource.value = planar_input_vector
 
 	# Perform interaction
 	if Input.is_action_just_pressed(InputActions.INTERACT) and game_state_resource.current_state == GameStates.GAMEPLAY:
@@ -76,7 +69,7 @@ func _physics_process(delta: float) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		input_vector_resource.value = Vector3()
+		input_vector_resource.value = Vector2()
 
 
 func on_bounce(bounce_normal: Vector3, bounce_min_speed: float, bounce_elasticity: float):

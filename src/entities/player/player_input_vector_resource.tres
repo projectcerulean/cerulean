@@ -1,7 +1,7 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c4t8y3cjatn2"]
+[gd_resource type="Resource" script_class="Vector2Resource" load_steps=2 format=3 uid="uid://cnn1ff5x5ry22"]
 
-[ext_resource type="Script" path="res://src/common/resource_types/vector3_resource.gd" id="1_mqqwt"]
+[ext_resource type="Script" path="res://src/common/resource_types/vector2_resource.gd" id="1_u40me"]
 
 [resource]
-script = ExtResource( "1_mqqwt" )
-value = null
+script = ExtResource("1_u40me")
+value = Vector2(0, 0)
