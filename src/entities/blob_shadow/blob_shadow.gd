@@ -24,7 +24,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	raycast.force_raycast_update()
 	if raycast.is_colliding():
-		var up_direction: Vector3 = Vector3.RIGHT if raycast.get_collision_normal().is_equal_approx(Vector3.UP) else Vector3.UP
+		# Jump through some extra hoops here in order to prevent 'up vector and target direction aligned, look_at() failed' errors
+		var up_direction: Vector3 = raycast.get_collision_normal().cross(Vector3.RIGHT).normalized()
+		if not up_direction.is_normalized():
+			up_direction = raycast.get_collision_normal().cross(Vector3.FORWARD).normalized()
+		if not up_direction.is_normalized():
+			up_direction = raycast.get_collision_normal().cross(Vector3.UP).normalized()
 		decal_pivot.look_at_from_position(raycast.get_collision_point(), raycast.get_collision_point() + raycast.get_collision_normal(), up_direction)
 
 		var raycast_distance: float = (raycast.get_collision_point() - raycast.global_position).length()
