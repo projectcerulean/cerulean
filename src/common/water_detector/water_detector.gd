@@ -21,7 +21,7 @@ func _ready() -> void:
 	assert(time_resource_gameplay != null, Errors.NULL_RESOURCE)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var is_in_water_cached: bool = is_in_water()
 	if is_in_water_cached and not is_in_water_prev:
 		Signals.emit_water_entered(self)

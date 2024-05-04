@@ -18,7 +18,7 @@ func exit(data: Dictionary) -> void:
 
 func process(delta: float) -> void:
 	super.process(delta)
-	dialogue_manager.label.visible_characters += dialogue_manager.text_reveal_speed * delta
+	dialogue_manager.label.visible_characters += int(dialogue_manager.text_reveal_speed * delta)
 
 
 func get_transition() -> StringName:

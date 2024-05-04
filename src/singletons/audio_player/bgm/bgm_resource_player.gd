@@ -24,7 +24,7 @@ var volume: float:
 		volume = clampf(value, 0.0, 1.0)
 		for _audio_stream_player in get_children():
 			var audio_stream_player: AudioStreamPlayer = _audio_stream_player as AudioStreamPlayer
-			audio_stream_player.volume_db = linear_to_db(lerp(db_to_linear(volume_db_min), db_to_linear(volume_db_max), volume))
+			audio_stream_player.volume_db = linear_to_db(lerpf(db_to_linear(volume_db_min), db_to_linear(volume_db_max), volume))
 
 @onready var base_player: AudioStreamPlayer = AudioStreamPlayer.new()
 @onready var glide_player: AudioStreamPlayer = AudioStreamPlayer.new()

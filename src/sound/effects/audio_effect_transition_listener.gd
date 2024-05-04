@@ -39,10 +39,10 @@ var wet_level: float:
 					TWEEN_TYPE_LINEAR:
 						property_value = lerp(dry_value, wet_value, wet_level)
 					TWEEN_TYPE_DECIBEL:
-						property_value = linear_to_db(lerp(db_to_linear(dry_value), db_to_linear(wet_value), wet_level))
+						property_value = linear_to_db(lerpf(db_to_linear(dry_value), db_to_linear(wet_value), wet_level))
 					TWEEN_TYPE_EXPONENTIAL:
 						assert(dry_value > 0.0 and wet_value > 0.0, Errors.INVALID_ARGUMENT)
-						property_value = exp(lerp(log(dry_value), log(wet_value), wet_level))
+						property_value = exp(lerpf(log(dry_value), log(wet_value), wet_level))
 				audio_effect.set(property.name, property_value)
 
 @onready var bus_index: int = AudioServer.get_bus_index(audio_bus_name)

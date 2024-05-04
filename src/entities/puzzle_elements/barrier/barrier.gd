@@ -41,9 +41,9 @@ func _ready() -> void:
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	var inputs_changed: bool = false
 	for i in range(len(inputs)):
-		var state_machine: Node = get_node(sender)
-		if is_instance_valid(state_machine):
-			var state_machine_owner: Node = state_machine.owner
+		var sender_state_machine: Node = get_node(sender)
+		if is_instance_valid(sender_state_machine):
+			var state_machine_owner: Node = sender_state_machine.owner
 			if is_instance_valid(state_machine_owner) and state_machine_owner == input_nodes[i]:
 				assert(state in [PuzzleElementStates.DISABLED, PuzzleElementStates.ENABLED], Errors.CONSISTENCY_ERROR)
 				inputs[i] = state == PuzzleElementStates.ENABLED

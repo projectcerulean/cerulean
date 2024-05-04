@@ -6,7 +6,7 @@ extends Node
 const volume_db_high = 0.0
 const volume_db_low = -80.0
 
-@export var bgm_change_tween_time = 0.5
+@export var bgm_change_tween_time: float = 0.5
 @export var _settings_resource: Resource
 
 @onready var settings_resource: SettingsResource = _settings_resource as SettingsResource

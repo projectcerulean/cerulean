@@ -47,7 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 
 [node name="BlobShadow" parent="." instance=ExtResource("4_wl3la")]
-min_extents = 1.5
-max_extents = 3.0
+min_size = 3.0
+max_size = 6.0
 min_albedo_mix = 0.75
 max_albedo_mix = 1.0

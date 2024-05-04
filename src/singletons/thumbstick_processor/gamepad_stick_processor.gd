@@ -63,7 +63,7 @@ func process_stick_input(action_up: StringName, action_down: StringName, action_
 	var value_lerped: Vector2 = Vector2.ZERO
 	value_lerped.x = remap(value_clamped.x, deadzone_inner, deadzone_outer, 0.0, 1.0)
 	value_lerped.y = remap(value_clamped.y, deadzone_inner, deadzone_outer, 0.0, 1.0)
-	value = Vector2(value_lerped.x * sign(value_raw.x), value_lerped.y * sign(value_raw.y))
+	value = Vector2(value_lerped.x * signf(value_raw.x), value_lerped.y * signf(value_raw.y))
 
 	# Non-linear response
 	var value_nonlinear: Vector2 = value.normalized() * pow(value.length_squared(), response_exponent / 2.0)

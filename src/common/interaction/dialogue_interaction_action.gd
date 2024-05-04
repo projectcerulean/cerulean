@@ -4,7 +4,7 @@
 class_name DialogueInteractionAction
 extends InteractionAction
 
-@export var dialogue_resource: Resource
+@export var dialogue_resource: DialogueResource
 
 
 func _ready() -> void:

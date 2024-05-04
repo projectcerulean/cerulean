@@ -6,7 +6,7 @@ extends Node
 @export var n_sfx_channels: int = 64
 @export var bus_name: StringName = &"Sfx"
 
-var i_current_player = 0
+var i_current_player: int = 0
 
 
 func _ready() -> void:

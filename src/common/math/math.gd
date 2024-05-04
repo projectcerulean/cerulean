@@ -6,7 +6,7 @@ extends Node
 
 
 static func signed_sqrt(x: float) -> float:
-	return sign(x) * sqrt(abs(x))
+	return signf(x) * sqrt(absf(x))
 
 
 static func ellipse(radii: Vector2, theta: float) -> float:

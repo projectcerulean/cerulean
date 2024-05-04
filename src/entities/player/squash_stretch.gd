@@ -15,10 +15,10 @@ func _ready() -> void:
 	assert(spring != null, Errors.NULL_NODE)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var stretch: float = (spring.global_position.y - global_position.y) / spring_length
 	stretch = 1.0 - stretch_factor * (1.0 - stretch)
-	stretch = clamp(stretch, stretch_min, stretch_max)
+	stretch = clampf(stretch, stretch_min, stretch_max)
 	scale.x = 1.0 / sqrt(stretch)
 	scale.y = stretch
 	scale.z = 1.0 / sqrt(stretch)

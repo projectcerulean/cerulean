@@ -22,11 +22,10 @@ func physics_process(delta: float) -> void:
 
 	# Apply movement
 	var input_vector_spherical: Vector3 = VectorUtils.vec2_to_vec3_xz(player.planar_input_vector)
-	input_vector_spherical.y = -sqrt(1.0 - min(input_vector_spherical.length_squared(), 1.0))
+	input_vector_spherical.y = -sqrt(1.0 - minf(input_vector_spherical.length_squared(), 1.0))
 	input_vector_spherical = input_vector_spherical.normalized()
 	assert(input_vector_spherical.is_normalized(), Errors.CONSISTENCY_ERROR)
 	var velocity_direction: Vector3 = player.linear_velocity.normalized()
-	var turn_force_vector: Vector3 = Vector3.ZERO
 	if not input_vector_spherical.is_equal_approx(velocity_direction) and not input_vector_spherical.is_equal_approx(-velocity_direction):
 		var plane: Plane = Plane(Vector3.ZERO, input_vector_spherical, velocity_direction)
 		var force_direction: Vector3 = velocity_direction.cross(plane.normal)

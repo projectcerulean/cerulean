@@ -131,7 +131,7 @@ func _process(delta: float) -> void:
 	var camera_push_max: float = (camera_anchor.global_position - global_position).length() - camera_push_min_pivot_distance
 	if camera_push_distance_target > camera_push_max:
 		camera_push_distance_target = camera_push_max
-	var camera_push_weight = camera_push_weight_forwards if camera.position.z > -camera_push_distance_target else camera_push_weight_backwards
+	var camera_push_weight: float = camera_push_weight_forwards if camera.position.z > -camera_push_distance_target else camera_push_weight_backwards
 	camera.position.z = Lerp.delta_lerp(camera.position.z, -camera_push_distance_target, camera_push_weight, delta)
 
 	# Look at target

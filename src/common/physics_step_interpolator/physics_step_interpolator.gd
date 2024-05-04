@@ -12,7 +12,7 @@ func _ready() -> void:
 	top_level = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var fraction: float = Engine.get_physics_interpolation_fraction()
 	global_transform = parent_transform_prev.interpolate_with(parent_transform, fraction)
 

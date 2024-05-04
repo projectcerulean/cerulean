@@ -14,7 +14,7 @@ func _ready() -> void:
 	assert(water_detectors != null, Errors.NULL_NODE)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	for i in range(water_detectors.get_child_count()):
 		var water_detector: WaterDetector = water_detectors.get_child(i) as WaterDetector
 		if not is_inf(water_detector.get_water_surface_height()):
