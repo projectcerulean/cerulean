@@ -42,9 +42,8 @@ func physics_process(delta: float) -> void:
 			)
 	elif not player.is_near_floor():
 		# Energy conservation
-		var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 		var velocity_length_target: float = glide_start_velocity.length() + Math.signed_sqrt(
-			2.0 * gravity * player.gravity_scale * (glide_start_position.y - player.global_position.y)
+			2.0 * player.total_gravity.y * (player.global_position.y - glide_start_position.y)
 		)
 		player.enqueue_exact_velocity(velocity_direction * velocity_length_target)
 
@@ -57,7 +56,12 @@ func get_transition() -> StringName:
 	if player.global_position.y < player.water_detector.get_water_surface_height():
 		return PlayerStates.SWIM
 	elif player.is_on_floor():
-		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
+		if Input.is_action_pressed(InputActions.GLIDE):
+			if VectorUtils.vec3_xz_to_vec2(player.linear_velocity).length() > player.roll_min_speed:
+				return PlayerStates.ROLL
+			else:
+				return PlayerStates.SPRINT
+		elif is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
 			return PlayerStates.IDLE
 		else:
 			return PlayerStates.RUN

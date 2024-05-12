@@ -11,6 +11,7 @@ extends CharacterController
 @export var _camera_transform_resource: Resource
 @export_range(0.0, 1.0, 0.001) var double_jump_shape_cast_length_factor: float = 0.5
 @export var double_jump_shape_cast_xz_scale: float = 0.95
+@export var roll_min_speed: float = 12.0
 
 var planar_input_vector: Vector2
 var can_double_jump: bool

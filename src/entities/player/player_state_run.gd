@@ -20,7 +20,9 @@ func get_transition() -> StringName:
 			return PlayerStates.FALL
 	elif Input.is_action_just_pressed(InputActions.JUMP) or not player.jump_buffer_timer.is_stopped():
 		return PlayerStates.JUMP
-	elif player.linear_velocity.is_equal_approx(Vector3.ZERO):
+	elif VectorUtils.vec3_xz_to_vec2(player.linear_velocity).is_zero_approx():
 		return PlayerStates.IDLE
+	elif Input.is_action_just_pressed(InputActions.GLIDE) and VectorUtils.vec2_to_vec3_xz(player.planar_input_vector).normalized().is_normalized():
+		return PlayerStates.DODGE
 	else:
 		return StringName()

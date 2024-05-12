@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b4ihx6a2lcbde"]
+[gd_scene load_steps=59 format=3 uid="uid://b4ihx6a2lcbde"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine_synchronizer.gd" id="11_mhki8"]
 [ext_resource type="Resource" path="res://src/entities/player/player_state_resource.tres" id="12"]
 [ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="13_m5ip5"]
+[ext_resource type="Script" path="res://src/entities/player/player_mesh_state_roll.gd" id="16_e4pes"]
+[ext_resource type="Script" path="res://src/entities/player/player_mesh_state_sprint.gd" id="17_n38px"]
 [ext_resource type="Resource" uid="uid://bmra0kxfxo4o" path="res://src/sound/sfx/sfx_resources/bounce_pad_high.tres" id="18_1l0sl"]
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="18_nptr4"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_bounce.gd" id="20_rvyx5"]
@@ -26,16 +28,18 @@
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="24_hgnac"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_glide.gd" id="24_p4auy"]
 [ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="25_e1r3t"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_dodge.gd" id="25_jjldq"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_idle.gd" id="25_rhyuw"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_jump.gd" id="26_7ncmu"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_run.gd" id="27_mdmxu"]
 [ext_resource type="PackedScene" uid="uid://d3llgup5ja26a" path="res://src/entities/blob_shadow/blob_shadow.tscn" id="28_5hoqt"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_roll.gd" id="28_rthcn"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_swim.gd" id="28_tp61u"]
 [ext_resource type="PackedScene" uid="uid://bxjp2ck6k1jt6" path="res://src/common/state_machine/state_resource_manager.tscn" id="29_l8kw8"]
 [ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="31_jeewe"]
+[ext_resource type="Script" path="res://src/entities/player/player_state_sprint.gd" id="32_hdfe3"]
 [ext_resource type="Resource" uid="uid://dsjf0vjev2thx" path="res://src/entities/player/player_transform.tres" id="33_jdxb1"]
-[ext_resource type="Shader" path="res://src/entities/player/double_jump_effect.gdshader" id="35_2stf6"]
-[ext_resource type="Script" path="res://src/entities/player/double_jump_effect.gd" id="35_ikxtg"]
+[ext_resource type="PackedScene" uid="uid://dtbbw5cfabdva" path="res://src/entities/player/wind_circle_effect_transition_listener.tscn" id="39_qm0ev"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khrrq"]
 friction = 0.0
@@ -61,6 +65,17 @@ height = 1.25
 
 [sub_resource type="BoxMesh" id="7"]
 size = Vector3(0.75, 0.75, 0.1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_nmk1b"]
+height = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_gy4cb"]
+radius = 0.25
+height = 0.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_ogxjs"]
+radius = 0.25
+height = 0.55
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_xejwy"]
 cutoff_hz = 20500.0
@@ -88,25 +103,6 @@ volume_db = -80.0
 volume_db = -80.0
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_wy87q"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ljlky"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1msc"]
-render_priority = 0
-shader = ExtResource("35_2stf6")
-shader_parameter/inner_radius = 0.25
-shader_parameter/outer_radius = 0.75
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Curve" id="Curve_5vo2o"]
-max_value = 0.5
-_data = [Vector2(0, 0), 0.0, 0.397757, 0, 0, Vector2(1, 0.25), 0.033082, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_kyhje"]
-max_value = 0.5
-_data = [Vector2(0, 0.1), 0.0, 0.466884, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("mesh_anchor")]
 collision_mask = 60
@@ -191,6 +187,43 @@ transform = Transform3D(1, 0, -1.42109e-14, 0, 1, -1.42109e-14, 0, 0, 1, 0.37, -
 
 [node name="WaterDetector" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Glide/MeshInstance3D/MeshInstance3D/TrailPositionRightOuter" instance=ExtResource("25_e1r3t")]
 
+[node name="Roll" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.137999, 0)
+visible = false
+
+[node name="Pivot" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+
+[node name="TiltPivot" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot"]
+transform = Transform3D(1, 0, -2.68659e-16, 0, 1, 0, 2.68659e-16, 0, 1, 0, 0, 0.5)
+
+[node name="RollPivot" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot/TiltPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot/TiltPivot/RollPivot"]
+transform = Transform3D(1, 0, 2.68657e-16, 0, 1, 0, 2.68657e-16, 0, 1, 0, 0, 0)
+mesh = SubResource("SphereMesh_nmk1b")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = ExtResource("9_evt60")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot/TiltPivot/RollPivot/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, -2.11758e-22, -1.31134e-08, -0.3)
+mesh = SubResource("SphereMesh_gy4cb")
+surface_material_override/0 = ExtResource("10_kc8d0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot/TiltPivot/RollPivot/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, -2.11758e-22, 1.31134e-08, 0.3)
+mesh = SubResource("SphereMesh_gy4cb")
+surface_material_override/0 = ExtResource("10_kc8d0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot/TiltPivot/RollPivot/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, -2.11758e-22, -9.25625e-30, 4.04603e-37)
+mesh = SubResource("SphereMesh_ogxjs")
+surface_material_override/0 = ExtResource("10_kc8d0")
+
+[node name="DodgeEffectTargetTransform" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 4.37114e-08, 1, -0.5, -2.18557e-08, 0)
+
 [node name="StateMachine" parent="MeshAnchor/PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
 _initial_state = NodePath("Idle")
 
@@ -202,8 +235,16 @@ _player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Dive" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
-turn_lerp_weight = 0.01
+turn_lerp_weight_xz = 0.01
+turn_lerp_weight_y = 0.01
 mesh_root = NodePath("../../Glide")
+_player_input_vector_resource = ExtResource("3_2i2xh")
+
+[node name="Dodge" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("roll_pivot", "tilt_pivot", "mesh_root")]
+script = ExtResource("16_e4pes")
+roll_pivot = NodePath("../../Roll/Pivot/TiltPivot/RollPivot")
+tilt_pivot = NodePath("../../Roll/Pivot/TiltPivot")
+mesh_root = NodePath("../../Roll")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="DoubleJump" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
@@ -237,8 +278,20 @@ turn_lerp_weight_max = 0.0
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
+[node name="Roll" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("roll_pivot", "tilt_pivot", "mesh_root")]
+script = ExtResource("16_e4pes")
+roll_pivot = NodePath("../../Roll/Pivot/TiltPivot/RollPivot")
+tilt_pivot = NodePath("../../Roll/Pivot/TiltPivot")
+mesh_root = NodePath("../../Roll")
+_player_input_vector_resource = ExtResource("3_2i2xh")
+
 [node name="Run" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("10_vowrm")
+mesh_root = NodePath("../../SquashStretch/Default")
+_player_input_vector_resource = ExtResource("3_2i2xh")
+
+[node name="Sprint" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+script = ExtResource("17_n38px")
 mesh_root = NodePath("../../SquashStretch/Default")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
@@ -253,6 +306,9 @@ _player_input_vector_resource = ExtResource("3_2i2xh")
 script = ExtResource("11_mhki8")
 _state_machine_parent = NodePath("../../../../StateMachine")
 _state_machine_child = NodePath("../StateMachine")
+
+[node name="DoubleJumpEffectTargetTransform" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
 
 [node name="TransformResourceManager" parent="MeshAnchor/PhysicsStepInterpolator" instance=ExtResource("31_jeewe")]
 _transform_resource = ExtResource("5_f776o")
@@ -285,6 +341,15 @@ hover_force_downwards_enabled = false
 
 [node name="StateEnterTimer" type="Timer" parent="StateMachine/Dive"]
 wait_time = 0.5
+one_shot = true
+
+[node name="Dodge" type="Node" parent="StateMachine"]
+script = ExtResource("25_jjldq")
+reset_double_jump = true
+planar_momentum_conservation_factor = 1.0
+
+[node name="DodgeAccelerationTimer" type="Timer" parent="StateMachine/Dodge"]
+wait_time = 0.25
 one_shot = true
 
 [node name="DoubleJump" type="Node" parent="StateMachine"]
@@ -325,9 +390,19 @@ planar_momentum_conservation_factor = 1.0
 wait_time = 0.1
 one_shot = true
 
+[node name="Roll" type="Node" parent="StateMachine"]
+script = ExtResource("28_rthcn")
+reset_double_jump = true
+planar_momentum_conservation_factor = 1.0
+
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("27_mdmxu")
 reset_double_jump = true
+planar_move_speed_max = 7.0
+planar_movement_pid_p_gain_factor = 10.0
+
+[node name="Sprint" type="Node" parent="StateMachine"]
+script = ExtResource("32_hdfe3")
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("28_tp61u")
@@ -420,7 +495,7 @@ audio_effect_wet = SubResource("AudioEffectAmplify_wy87q")
 audio_bus_name = &"BgmRhythm"
 tween_duration = 2.5
 tween_type = 1
-_target_states = Array[NodePath]([NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide")])
+_target_states = Array[NodePath]([NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide"), NodePath("../../StateMachine/Roll")])
 
 [node name="WaterDetector" parent="." instance=ExtResource("25_e1r3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
@@ -428,14 +503,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 [node name="TransformResourceManager" parent="." instance=ExtResource("31_jeewe")]
 _transform_resource = ExtResource("33_jdxb1")
 
-[node name="DoubleJumpEffect" type="MeshInstance3D" parent="."]
-top_level = true
-visible = false
-mesh = SubResource("PlaneMesh_ljlky")
-surface_material_override/0 = SubResource("ShaderMaterial_p1msc")
-script = ExtResource("35_ikxtg")
-environment_resource = ExtResource("24_hgnac")
-player_state_resource = ExtResource("12")
-player_transform_resource = ExtResource("33_jdxb1")
-inner_radius = SubResource("Curve_5vo2o")
-outer_radius = SubResource("Curve_kyhje")
+[node name="DoubleJumpVisualEffect" parent="." node_paths=PackedStringArray("target_transform") instance=ExtResource("39_qm0ev")]
+target_transform = NodePath("../MeshAnchor/PhysicsStepInterpolator/Mesh/DoubleJumpEffectTargetTransform")
+_target_states = Array[NodePath]([NodePath("../StateMachine/DoubleJump")])
+
+[node name="DodgeVisualEffect" parent="." node_paths=PackedStringArray("target_transform") instance=ExtResource("39_qm0ev")]
+target_transform = NodePath("../MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot/DodgeEffectTargetTransform")
+_target_states = Array[NodePath]([NodePath("../MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine/Dodge")])

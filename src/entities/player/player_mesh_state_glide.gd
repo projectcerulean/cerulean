@@ -3,7 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends PlayerMeshState
 
-@export var turn_lerp_weight: float = 0.1
+@export var turn_lerp_weight_xz: float = 0.20
+@export var turn_lerp_weight_y: float = 0.05
 @export var roll_lerp_weight: float = 2.0
 @export var spin_rate: float = 0.0
 
@@ -66,7 +67,9 @@ func process(delta: float) -> void:
 			input_vector_spherical.y = -sqrt(1.0 - minf(input_vector_spherical.length_squared(), 1.0))
 		input_vector_spherical = input_vector_spherical.normalized()
 		assert(input_vector_spherical.is_normalized(), Errors.CONSISTENCY_ERROR)
-		var mesh_direction: Vector3 = player.linear_velocity.slerp(input_vector_spherical, turn_lerp_weight).normalized()
+		var mesh_direction_xz: Vector3 = player.linear_velocity.slerp(input_vector_spherical, turn_lerp_weight_xz).normalized()
+		var mesh_direction_y: Vector3 = player.linear_velocity.slerp(input_vector_spherical, turn_lerp_weight_y).normalized()
+		var mesh_direction: Vector3 = Vector3(mesh_direction_xz.x, mesh_direction_y.y, mesh_direction_xz.z).normalized()
 		if mesh_direction.is_equal_approx(Vector3.UP):
 			mesh_root.look_at(mesh_root.global_position + Vector3.UP, yaw_direction.rotated(Vector3.UP, -(roll_angle + roll_angle_spin * spin_direction)))
 		elif mesh_direction.is_equal_approx(Vector3.DOWN):

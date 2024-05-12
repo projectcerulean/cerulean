@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt35hup5wi67g"]
+
+[ext_resource type="Shader" path="res://src/entities/player/wind_circle_effect.gdshader" id="1_mlbf4"]
+[ext_resource type="Script" path="res://src/entities/player/wind_circle_effect.gd" id="2_6a3kl"]
+[ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="3_5eb8q"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ljlky"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bofak"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_mlbf4")
+shader_parameter/inner_radius = 0.25
+shader_parameter/outer_radius = 0.75
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_5vo2o"]
+max_value = 0.5
+_data = [Vector2(0, 0), 0.0, 0.397757, 0, 0, Vector2(1, 0.25), 0.033082, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_kyhje"]
+max_value = 0.5
+_data = [Vector2(0, 0.1), 0.0, 0.466884, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="WindCircleEffect" type="MeshInstance3D"]
+top_level = true
+visible = false
+mesh = SubResource("PlaneMesh_ljlky")
+surface_material_override/0 = SubResource("ShaderMaterial_bofak")
+script = ExtResource("2_6a3kl")
+environment_resource = ExtResource("3_5eb8q")
+inner_radius = SubResource("Curve_5vo2o")
+outer_radius = SubResource("Curve_kyhje")
