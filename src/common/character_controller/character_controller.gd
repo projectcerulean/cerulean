@@ -4,8 +4,8 @@
 
 # Character controller which uses a floating collider for its physics. Using a floating collider
 # is a simple way to prevent most issues with uneven terrain, slopes, stairs, etc. The collider is
-# loosely attached to the ground using a simulated force outputted from a PD controller, where the
-# controller attempts to keep the body to some specified distance above the ground.
+# loosely attached to the ground using a simulated damped spring, where the spring force attempts to
+# keep the body to some specified distance above the ground.
 class_name CharacterController
 extends PhysicsEntity
 
@@ -13,8 +13,8 @@ extends PhysicsEntity
 
 @export var floor_distance_target: float = 0.5
 
-@export var _hover_pid_p_gain_factor: float = 250
-@export var _hover_pid_d_gain_factor: float = 0.5  # 1.0 = critical damping
+@export var hover_spring_constant_factor: float = 250
+@export var hover_spring_damping_constant_factor: float = 0.5  # 1.0 = critical damping
 @export var hover_shape_cast_target_distance: float = 1.0
 @export var hover_force_downwards_enabled: bool = true
 @export var hover_force_upwards_enabled: bool = true
@@ -40,26 +40,7 @@ var _floor_collision_position: Vector3
 var _floor_collision_normal: Vector3
 var _floor_velocity_prober_position_prev: Vector3
 
-var _hover_pid_controller: PidController
 var _planar_movement_pid_controller: PidController2D
-
-var hover_pid_p_gain_factor: float:
-	get:
-		return _hover_pid_p_gain_factor
-	set(value):
-		_hover_pid_p_gain_factor = value
-		var hover_pid_p_gain: float = _hover_pid_p_gain_factor * mass
-		var hover_pid_d_gain: float = _hover_pid_d_gain_factor * sqrt(4.0 * mass * hover_pid_p_gain)
-		_hover_pid_controller = PidController.new(hover_pid_p_gain, 0.0, hover_pid_d_gain, 0.0)
-
-var hover_pid_d_gain_factor: float:
-	get:
-		return _hover_pid_d_gain_factor
-	set(value):
-		_hover_pid_d_gain_factor = value
-		var hover_pid_p_gain: float = _hover_pid_p_gain_factor * mass
-		var hover_pid_d_gain: float = _hover_pid_d_gain_factor * sqrt(4.0 * mass * hover_pid_p_gain)
-		_hover_pid_controller = PidController.new(hover_pid_p_gain, 0.0, hover_pid_d_gain, 0.0)
 
 var planar_movement_pid_p_gain_factor: float:
 	get:
@@ -68,6 +49,9 @@ var planar_movement_pid_p_gain_factor: float:
 		_planar_movement_pid_p_gain_factor = value
 		var planar_movement_p_gain: float = _planar_movement_pid_p_gain_factor * mass
 		_planar_movement_pid_controller = PidController2D.new(planar_movement_p_gain, 0.0, 0.0, 0.0)
+
+@onready var hover_spring_constant: float = hover_spring_constant_factor * mass
+@onready var hover_spring_damping_constant: float = hover_spring_damping_constant_factor * sqrt(4 * mass * hover_spring_constant)
 
 @onready var hover_ray_cast: RayCast3D = RayCast3D.new()
 @onready var hover_shape_cast: ShapeCast3D = ShapeCast3D.new()
@@ -114,10 +98,6 @@ func _ready() -> void:
 	var push_button_shape: CollisionShape3D = CollisionShape3D.new()
 	push_button_shape.shape = collision_shape.shape
 	push_button_area.add_child(push_button_shape)
-
-	var hover_pid_p_gain: float = hover_pid_p_gain_factor * mass
-	var hover_pid_d_gain: float = _hover_pid_d_gain_factor * sqrt(4.0 * mass * hover_pid_p_gain)
-	_hover_pid_controller = PidController.new(hover_pid_p_gain, 0.0, hover_pid_d_gain, 0.0)
 
 	_planar_movement_pid_controller = PidController2D.new(_planar_movement_pid_p_gain_factor * mass, 0.0, 0.0, 0.0)
 
@@ -181,12 +161,15 @@ func _physics_process(delta: float) -> void:
 					else:
 						_floor_distance = floor_distance_target
 
-	var floor_distance_equilibrium: float = floor_distance_target + total_gravity.y / hover_pid_p_gain_factor
+	var floor_distance_equilibrium: float = floor_distance_target + mass * total_gravity.y / hover_spring_constant
 
 	if _floor_collider != null:
 		_is_near_floor = true
 
-		var hover_force: Vector3 = Vector3.UP * _hover_pid_controller.update(_floor_distance, floor_distance_target, delta)
+		var hover_force: Vector3 = Vector3.UP * (
+			- hover_spring_constant * (_floor_distance - floor_distance_target)
+			- linear_velocity.y * hover_spring_damping_constant
+		)
 
 		if (
 			(hover_force.y > 0.0 and hover_force_upwards_enabled)
@@ -237,7 +220,6 @@ func _physics_process(delta: float) -> void:
 				mesh_anchor_resting_lerp_weight,
 				delta,
 			)
-		_hover_pid_controller.reset()
 
 	# Apply floor transform
 	var node_reparented: bool = TreeUtils.reparent_node(

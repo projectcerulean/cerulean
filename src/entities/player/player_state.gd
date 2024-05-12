@@ -5,8 +5,6 @@ class_name PlayerState extends State
 
 @export var reset_double_jump: bool = false
 @export var gravity_scale: float = 1.0
-@export var hover_pid_p_gain_factor: float = 250.0
-@export var hover_pid_d_gain_factor: float = 0.5
 @export var hover_force_downwards_enabled: bool = true
 @export var hover_force_upwards_enabled: bool = true
 @export var planar_move_speed_max: float = 8.5
@@ -14,8 +12,6 @@ class_name PlayerState extends State
 @export_range(0.0, 1.0, 0.001) var planar_momentum_conservation_factor: float = 0.0
 
 var gravity_scale_prev: bool = false
-var hover_pid_p_gain_factor_prev: float = NAN
-var hover_pid_d_gain_factor_prev: float = NAN
 var hover_force_downwards_enabled_prev: bool = false
 var hover_force_upwards_enabled_prev: bool = false
 var planar_move_speed_max_prev: float = NAN
@@ -36,10 +32,6 @@ func enter(data: Dictionary) -> void:
 		player.can_double_jump = true
 	gravity_scale_prev = player.gravity_scale
 	player.gravity_scale = gravity_scale
-	hover_pid_p_gain_factor_prev = player.hover_pid_p_gain_factor
-	player.hover_pid_p_gain_factor = hover_pid_p_gain_factor
-	hover_pid_d_gain_factor_prev = player.hover_pid_p_gain_factor
-	player.hover_pid_d_gain_factor = hover_pid_d_gain_factor
 	hover_force_downwards_enabled_prev = hover_force_downwards_enabled
 	player.hover_force_downwards_enabled = hover_force_downwards_enabled
 	hover_force_upwards_enabled_prev = player.hover_force_upwards_enabled
@@ -54,8 +46,6 @@ func enter(data: Dictionary) -> void:
 
 func exit(_data: Dictionary) -> void:
 	player.gravity_scale = gravity_scale_prev
-	player.hover_pid_p_gain_factor = hover_pid_p_gain_factor_prev
-	player.hover_pid_d_gain_factor = hover_pid_d_gain_factor_prev
 	player.hover_force_downwards_enabled = hover_force_downwards_enabled_prev
 	player.hover_force_upwards_enabled = hover_force_upwards_enabled_prev
 	player.planar_move_speed_max = planar_move_speed_max_prev

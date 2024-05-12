@@ -324,7 +324,6 @@ script = ExtResource("20_rvyx5")
 _sfx_resource = ExtResource("18_1l0sl")
 reset_double_jump = true
 gravity_scale = 0.6
-hover_pid_d_gain_factor = 0.0
 hover_force_downwards_enabled = false
 planar_movement_pid_p_gain_factor = 1.5
 planar_momentum_conservation_factor = 1.0
@@ -372,7 +371,6 @@ planar_momentum_conservation_factor = 1.0
 [node name="Glide" type="Node" parent="StateMachine"]
 script = ExtResource("24_p4auy")
 gravity_scale = 0.05
-hover_pid_d_gain_factor = 0.0
 hover_force_downwards_enabled = false
 
 [node name="Idle" type="Node" parent="StateMachine"]
