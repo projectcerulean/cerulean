@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqk00f8kimkyq"]
+
+[ext_resource type="Material" uid="uid://dv06mo5ud4jh" path="res://src/entities/player/particles/water_movement_particle_process_material.tres" id="1_7crao"]
+[ext_resource type="SphereMesh" uid="uid://bmurqvmbgim5q" path="res://src/entities/player/particles/water_particle_mesh.tres" id="2_nir7u"]
+
+[node name="WaterMovementTrailParticles" type="GPUParticles3D"]
+emitting = false
+amount = 25
+lifetime = 0.5
+fixed_fps = 0
+interpolate = false
+process_material = ExtResource("1_7crao")
+draw_pass_1 = ExtResource("2_nir7u")

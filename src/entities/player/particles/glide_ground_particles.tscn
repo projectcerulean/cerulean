@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy4xubkwfcoo7"]
+
+[ext_resource type="Material" uid="uid://dqaws1wnupvg3" path="res://src/entities/player/particles/glide_particle_process_material.tres" id="1_ax3wj"]
+[ext_resource type="SphereMesh" uid="uid://bmq5qs6g3uqho" path="res://src/entities/player/particles/wind_particle_mesh.tres" id="2_713r0"]
+
+[node name="GlideGroundParticles" type="GPUParticles3D"]
+emitting = false
+amount = 10
+lifetime = 0.5
+explosiveness = 0.25
+randomness = 1.0
+fixed_fps = 0
+interpolate = false
+process_material = ExtResource("1_ax3wj")
+draw_pass_1 = ExtResource("2_713r0")

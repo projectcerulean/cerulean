@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://b4ihx6a2lcbde"]
+[gd_scene load_steps=72 format=3 uid="uid://b4ihx6a2lcbde"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
@@ -23,8 +23,12 @@
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="18_nptr4"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_bounce.gd" id="20_rvyx5"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_dive.gd" id="22_4hscj"]
+[ext_resource type="Script" path="res://src/entities/player/particles/glide_particle_controller.gd" id="22_an67j"]
+[ext_resource type="Script" path="res://src/common/state_machine/bool_property_transition_listener.gd" id="22_bx1f0"]
+[ext_resource type="Script" path="res://src/entities/player/particles/water_movement_particle_controller.gd" id="22_c1lh1"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_double_jump.gd" id="23_oc5f6"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_fall.gd" id="23_pac4m"]
+[ext_resource type="Script" path="res://src/entities/player/particles/one_shot_water_splash_particle_controller.gd" id="24_7s8p3"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="24_hgnac"]
 [ext_resource type="Script" path="res://src/entities/player/player_state_glide.gd" id="24_p4auy"]
 [ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="25_e1r3t"]
@@ -40,6 +44,15 @@
 [ext_resource type="Script" path="res://src/entities/player/player_state_sprint.gd" id="32_hdfe3"]
 [ext_resource type="Resource" uid="uid://dsjf0vjev2thx" path="res://src/entities/player/player_transform.tres" id="33_jdxb1"]
 [ext_resource type="PackedScene" uid="uid://dtbbw5cfabdva" path="res://src/entities/player/wind_circle_effect_transition_listener.tscn" id="39_qm0ev"]
+[ext_resource type="Script" path="res://src/entities/player/particles/wind_particle_color_setter.gd" id="41_8igcd"]
+[ext_resource type="Material" uid="uid://tkfwgtra634d" path="res://src/entities/player/particles/wind_particle_material.tres" id="42_xipxd"]
+[ext_resource type="Script" path="res://src/entities/player/particles/water_particle_color_setter.gd" id="44_aqs1s"]
+[ext_resource type="Material" uid="uid://xotkrggp0wo4" path="res://src/entities/player/particles/water_particle_material.tres" id="45_xi4ar"]
+[ext_resource type="PackedScene" uid="uid://dy4xubkwfcoo7" path="res://src/entities/player/particles/glide_ground_particles.tscn" id="46_3t1mj"]
+[ext_resource type="PackedScene" uid="uid://dv3hd832wkcet" path="res://src/entities/player/particles/glide_water_particles.tscn" id="46_waeco"]
+[ext_resource type="PackedScene" uid="uid://befnqc7tux8io" path="res://src/entities/player/particles/sprint_particles.tscn" id="47_qkkjb"]
+[ext_resource type="PackedScene" uid="uid://dqk00f8kimkyq" path="res://src/entities/player/particles/water_movement_trail_particles.tscn" id="52_vjux7"]
+[ext_resource type="PackedScene" uid="uid://cc5ewmycnd0r" path="res://src/entities/player/particles/water_movement_splash_particles.tscn" id="53_3607o"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khrrq"]
 friction = 0.0
@@ -157,6 +170,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
 mesh = SubResource("4")
 surface_material_override/0 = ExtResource("10_kc8d0")
 
+[node name="SprintParticlesRemoteTransform3D" type="RemoteTransform3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/SquashStretch/Default/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.624, 0.25)
+remote_path = NodePath("../../../../../../../Particles/RemoteTransformTargets/SprintParticles")
+
 [node name="Glide" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh"]
 visible = false
 
@@ -223,6 +240,10 @@ surface_material_override/0 = ExtResource("10_kc8d0")
 
 [node name="DodgeEffectTargetTransform" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot"]
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 4.37114e-08, 1, -0.5, -2.18557e-08, 0)
+
+[node name="RollParticlesRemoteTransform3D" type="RemoteTransform3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot"]
+transform = Transform3D(-4.37114e-08, -3.59989e-21, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, -0.25, 1.03655e-08, 0.487136)
+remote_path = NodePath("../../../../../../Particles/RemoteTransformTargets/RollParticles")
 
 [node name="StateMachine" parent="MeshAnchor/PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
 _initial_state = NodePath("Idle")
@@ -315,6 +336,31 @@ _transform_resource = ExtResource("5_f776o")
 
 [node name="BlobShadow" parent="MeshAnchor/PhysicsStepInterpolator" instance=ExtResource("28_5hoqt")]
 
+[node name="GlideParticleController" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator" node_paths=PackedStringArray("glide_ground_particles", "glide_water_particles")]
+script = ExtResource("22_an67j")
+glide_ground_particles = NodePath("../../../Particles/RemoteTransformTargets/GlideGroundParticles")
+glide_water_particles = NodePath("../../../Particles/RemoteTransformTargets/GlideWaterParticles")
+player_state_resource = ExtResource("12")
+
+[node name="RayCast3D" type="RayCast3D" parent="MeshAnchor/PhysicsStepInterpolator/GlideParticleController"]
+collision_mask = 12
+
+[node name="WaterDetector" parent="MeshAnchor/PhysicsStepInterpolator/GlideParticleController" instance=ExtResource("25_e1r3t")]
+
+[node name="WaterMovementParticleController" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator" node_paths=PackedStringArray("water_movement_trail_particles", "water_movement_splash_particles")]
+script = ExtResource("22_c1lh1")
+water_movement_trail_particles = NodePath("../../../Particles/RemoteTransformTargets/WaterMovementTrailParticles")
+water_movement_splash_particles = NodePath("../../../Particles/RemoteTransformTargets/WaterMovementSplashParticles")
+player_state_resource = ExtResource("12")
+
+[node name="WaterDetector" parent="MeshAnchor/PhysicsStepInterpolator/WaterMovementParticleController" instance=ExtResource("25_e1r3t")]
+
+[node name="OneShotWaterSplashParticleController" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator"]
+script = ExtResource("24_7s8p3")
+player_state_resource = ExtResource("12")
+
+[node name="WaterDetector" parent="MeshAnchor/PhysicsStepInterpolator/OneShotWaterSplashParticleController" instance=ExtResource("25_e1r3t")]
+
 [node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
 _initial_state = NodePath("Idle")
 transition_frame = 1
@@ -396,7 +442,6 @@ planar_momentum_conservation_factor = 1.0
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("27_mdmxu")
 reset_double_jump = true
-planar_move_speed_max = 7.0
 planar_movement_pid_p_gain_factor = 10.0
 
 [node name="Sprint" type="Node" parent="StateMachine"]
@@ -508,3 +553,43 @@ _target_states = Array[NodePath]([NodePath("../StateMachine/DoubleJump")])
 [node name="DodgeVisualEffect" parent="." node_paths=PackedStringArray("target_transform") instance=ExtResource("39_qm0ev")]
 target_transform = NodePath("../MeshAnchor/PhysicsStepInterpolator/Mesh/Roll/Pivot/DodgeEffectTargetTransform")
 _target_states = Array[NodePath]([NodePath("../MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine/Dodge")])
+
+[node name="Particles" type="Node" parent="."]
+
+[node name="WaterParticleColorSetter" type="Node" parent="Particles"]
+script = ExtResource("44_aqs1s")
+particle_material = ExtResource("45_xi4ar")
+environment_resource = ExtResource("24_hgnac")
+
+[node name="WindParticleColorSetter" type="Node" parent="Particles"]
+script = ExtResource("41_8igcd")
+particle_material = ExtResource("42_xipxd")
+environment_resource = ExtResource("24_hgnac")
+
+[node name="RemoteTransformTargets" type="Node" parent="Particles"]
+
+[node name="GlideGroundParticles" parent="Particles/RemoteTransformTargets" instance=ExtResource("46_3t1mj")]
+
+[node name="GlideWaterParticles" parent="Particles/RemoteTransformTargets" instance=ExtResource("46_waeco")]
+
+[node name="RollParticles" parent="Particles/RemoteTransformTargets" instance=ExtResource("47_qkkjb")]
+transform = Transform3D(1, 0, -8.35189e-23, 0, 1, -3.59989e-21, -8.35189e-23, 0, 1, -4.61853e-14, -0.625135, 0.25)
+
+[node name="BoolPropertyTransitionListener" type="Node" parent="Particles/RemoteTransformTargets/RollParticles" node_paths=PackedStringArray("target_node")]
+script = ExtResource("22_bx1f0")
+target_node = NodePath("..")
+property = &"emitting"
+_target_states = Array[NodePath]([NodePath("../../../../StateMachine/Dodge"), NodePath("../../../../StateMachine/Roll")])
+
+[node name="SprintParticles" parent="Particles/RemoteTransformTargets" instance=ExtResource("47_qkkjb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625135, 0.25)
+
+[node name="BoolPropertyTransitionListener" type="Node" parent="Particles/RemoteTransformTargets/SprintParticles" node_paths=PackedStringArray("target_node")]
+script = ExtResource("22_bx1f0")
+target_node = NodePath("..")
+property = &"emitting"
+_target_states = Array[NodePath]([NodePath("../../../../StateMachine/Sprint")])
+
+[node name="WaterMovementTrailParticles" parent="Particles/RemoteTransformTargets" instance=ExtResource("52_vjux7")]
+
+[node name="WaterMovementSplashParticles" parent="Particles/RemoteTransformTargets" instance=ExtResource("53_3607o")]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc5ewmycnd0r"]
+
+[ext_resource type="Material" uid="uid://c1jqvf0ojvks3" path="res://src/entities/player/particles/water_splash_particle_process_material.tres" id="1_wis24"]
+[ext_resource type="SphereMesh" uid="uid://bmurqvmbgim5q" path="res://src/entities/player/particles/water_particle_mesh.tres" id="2_jxe6e"]
+
+[node name="WaterMovementSplashParticles" type="GPUParticles3D"]
+emitting = false
+amount = 25
+lifetime = 0.5
+fixed_fps = 0
+interpolate = false
+process_material = ExtResource("1_wis24")
+draw_pass_1 = ExtResource("2_jxe6e")

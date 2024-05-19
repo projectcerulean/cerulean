@@ -7,7 +7,7 @@ class_name PlayerState extends State
 @export var gravity_scale: float = 1.0
 @export var hover_force_downwards_enabled: bool = true
 @export var hover_force_upwards_enabled: bool = true
-@export var planar_move_speed_max: float = 8.5
+@export var planar_move_speed_max: float = 7.0
 @export var planar_movement_pid_p_gain_factor: float = 12.0
 @export_range(0.0, 1.0, 0.001) var planar_momentum_conservation_factor: float = 0.0
 

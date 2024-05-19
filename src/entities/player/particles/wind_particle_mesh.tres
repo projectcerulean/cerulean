@@ -1,0 +1,6 @@
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://bmq5qs6g3uqho"]
+
+[ext_resource type="Material" uid="uid://tkfwgtra634d" path="res://src/entities/player/particles/wind_particle_material.tres" id="1_y3u4p"]
+
+[resource]
+material = ExtResource("1_y3u4p")

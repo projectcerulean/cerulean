@@ -1,0 +1,14 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=2 format=3 uid="uid://bh8d6tvbkhay7"]
+
+[ext_resource type="Texture2D" uid="uid://bwwqf8dpeaubl" path="res://src/entities/player/particles/particle_scale_curve.tres" id="1_i6jy7"]
+
+[resource]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 1
+emission_sphere_radius = 0.25
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = ExtResource("1_i6jy7")

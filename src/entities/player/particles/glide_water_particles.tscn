@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv3hd832wkcet"]
+
+[ext_resource type="Material" uid="uid://dqaws1wnupvg3" path="res://src/entities/player/particles/glide_particle_process_material.tres" id="1_go5bm"]
+[ext_resource type="SphereMesh" uid="uid://bmurqvmbgim5q" path="res://src/entities/player/particles/water_particle_mesh.tres" id="2_kylrx"]
+
+[node name="GlideWaterParticles" type="GPUParticles3D"]
+emitting = false
+amount = 25
+lifetime = 0.5
+explosiveness = 0.25
+randomness = 1.0
+fixed_fps = 0
+interpolate = false
+process_material = ExtResource("1_go5bm")
+draw_pass_1 = ExtResource("2_kylrx")

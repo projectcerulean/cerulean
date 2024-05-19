@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://befnqc7tux8io"]
+
+[ext_resource type="Material" uid="uid://bh8d6tvbkhay7" path="res://src/entities/player/particles/sprint_particle_process_material.tres" id="1_4qei4"]
+[ext_resource type="SphereMesh" uid="uid://bmq5qs6g3uqho" path="res://src/entities/player/particles/wind_particle_mesh.tres" id="2_eqe2i"]
+
+[node name="SprintParticles" type="GPUParticles3D"]
+emitting = false
+amount = 5
+lifetime = 0.5
+explosiveness = 0.25
+randomness = 1.0
+fixed_fps = 0
+interpolate = false
+process_material = ExtResource("1_4qei4")
+draw_pass_1 = ExtResource("2_eqe2i")

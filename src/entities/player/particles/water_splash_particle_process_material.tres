@@ -1,0 +1,19 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=2 format=3 uid="uid://c1jqvf0ojvks3"]
+
+[ext_resource type="Texture2D" uid="uid://bwwqf8dpeaubl" path="res://src/entities/player/particles/particle_scale_curve.tres" id="1_o5enn"]
+
+[resource]
+resource_local_to_scene = true
+particle_flag_damping_as_friction = true
+emission_shape_scale = Vector3(1, 0.5, 1)
+emission_shape = 1
+emission_sphere_radius = 0.25
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -30, 0)
+damping_min = 5.0
+damping_max = 5.0
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = ExtResource("1_o5enn")
