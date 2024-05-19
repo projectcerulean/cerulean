@@ -538,7 +538,7 @@ audio_effect_wet = SubResource("AudioEffectAmplify_wy87q")
 audio_bus_name = &"BgmRhythm"
 tween_duration = 2.5
 tween_type = 1
-_target_states = Array[NodePath]([NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide"), NodePath("../../StateMachine/Roll")])
+_target_states = Array[NodePath]([NodePath("../../StateMachine/Bounce"), NodePath("../../StateMachine/Glide"), NodePath("../../StateMachine/Roll"), NodePath("../../StateMachine/Sprint")])
 
 [node name="WaterDetector" parent="." instance=ExtResource("25_e1r3t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
