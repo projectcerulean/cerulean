@@ -6,6 +6,8 @@
 shader_type spatial;
 render_mode unshaded, cull_disabled, world_vertex_coords;
 
+#include "res://src/common/shaderlib/math.gdshaderinc"
+
 uniform vec4 water_color: source_color;
 uniform vec4 water_color_highlight: source_color;
 uniform float water_color_highlight_threshold = 0.55;
@@ -15,6 +17,16 @@ uniform float foam_width = 0.2;
 uniform float foam_smooth = 0.01;
 
 uniform float beer_factor = 0.2;
+
+uniform bool player_blob_shadow_enabled = false;
+uniform vec3 blob_shadow_player_position = vec3(0.0);
+uniform float blob_shadow_visual_change_min_distance = 0.0;
+uniform float blob_shadow_visual_change_max_distance = 25.0;
+uniform float blob_shadow_min_size = 0.125;
+uniform float blob_shadow_max_size = 2.0;
+uniform float blob_shadow_min_albedo_mix = 0.2;
+uniform float blob_shadow_max_albedo_mix = 0.25;
+uniform float blob_shadow_smooth_size_factor = 0.5;
 
 uniform sampler2D noise_sampler1;
 uniform sampler2D noise_sampler2;
@@ -50,7 +62,7 @@ void fragment() {
 	vec3 noise_texture2 = texture(noise_sampler2, UV - TIME * noise_time_factor.y).rgb;
 	float noise_sum = (noise_texture1.r + noise_texture2.r) / 2.0;
 	vec4 color = (noise_sum > water_color_highlight_threshold) ? water_color_highlight : water_color;
-	
+
 	// Displacement
 	float displacement1 = ((texture(displacement_noise, UV + vec2(0.0, TIME * displacement_time_factor)).rg - 0.5) * 2.0).r;
 	float displacement2 = ((texture(displacement_noise, UV + vec2(TIME * displacement_time_factor), 0.0).rg - 0.5) * 2.0).r;
@@ -67,12 +79,59 @@ void fragment() {
 
 	// Depth fade
 	color.a = clamp(1.0 - exp(-depth * beer_factor), color.a, 1.0);
-	
+
 	// Foam
 	float foam_depth = calculate_depth(SCREEN_UV, VERTEX, INV_PROJECTION_MATRIX, INV_VIEW_MATRIX);
 	if (foam_depth > 0.0) {
 		float foam_factor = 1.0 - smoothstep(foam_width - foam_smooth, foam_width + foam_smooth, foam_depth);
 		color = foam_factor * foam_color + (1.0 - foam_factor) * color;
+	}
+
+	// Player blob shadow
+	if (player_blob_shadow_enabled) {
+		vec3 vertex_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+		float player_distance = blob_shadow_player_position.y - vertex_world_position.y;
+		if (player_distance > 0.0) {
+			vec2 vertex_world_position_planar = vec2(vertex_world_position.x, vertex_world_position.z);
+			vec2 player_position_planar = vec2(blob_shadow_player_position.x, blob_shadow_player_position.z);
+
+			float shadow_size = clamp(
+				remap(
+					player_distance,
+					blob_shadow_visual_change_min_distance,
+					blob_shadow_visual_change_max_distance,
+					blob_shadow_min_size,
+					blob_shadow_max_size
+				),
+				blob_shadow_min_size,
+				blob_shadow_max_size
+			);
+
+			float albedo_mix = clamp(
+				remap(
+					player_distance,
+					blob_shadow_visual_change_min_distance,
+					blob_shadow_visual_change_max_distance,
+					blob_shadow_max_albedo_mix,
+					blob_shadow_min_albedo_mix
+				),
+				blob_shadow_min_albedo_mix,
+				blob_shadow_max_albedo_mix
+			);
+
+			float planar_distance = distance(vertex_world_position_planar, player_position_planar);
+
+			vec3 color_new = mix(
+				color.rgb,
+				vec3(0.0),
+				albedo_mix * (1.0 - smoothstep(
+					shadow_size - blob_shadow_smooth_size_factor * shadow_size,
+					shadow_size + blob_shadow_smooth_size_factor * shadow_size,
+					planar_distance
+				))
+			);
+			color = vec4(color_new, color.a);
+		}
 	}
 
 	ALBEDO = mix(texture(screen_texture, SCREEN_UV + displacement).rgb, color.rgb, color.a);
