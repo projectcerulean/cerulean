@@ -50,7 +50,7 @@ func is_in_water() -> bool:
 
 func get_water_surface_height() -> float:
 	var environment: CeruleanEnvironment = environment_resource.value
-	var time: float = time_resource_gameplay.value
+	var time: float = time_resource_gameplay.get_value()
 
 	var height: float = -INF
 	for area in water_bodies:

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="3_oyjwr"]
 [ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="5_6h84w"]
 [ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="5_dsacl"]
-[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="6_bdtk4"]
+[ext_resource type="Resource" uid="uid://dlhs0dn5qmwcx" path="res://src/singletons/persistent_data/persistent_data_resource.tres" id="6_7028p"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5rgmq"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -48,7 +48,7 @@ light_energy = 2.0
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("5_6h84w")]
 _initial_state = NodePath("Disabled")
-_persistent_data = ExtResource("6_bdtk4")
+persistent_data_resource = ExtResource("6_7028p")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
 script = ExtResource("3_oyjwr")

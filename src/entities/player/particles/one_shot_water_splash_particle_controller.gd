@@ -44,7 +44,7 @@ func emit_particles() -> void:
 
 func _on_state_entered(sender: NodePath, state: StringName, data: Dictionary) -> void:
 	if (
-		sender == player_state_resource.state_machine
+		sender == player_state_resource.get_state_machine()
 		and player.linear_velocity.length() > player_min_speed
 		and state == PlayerStates.SWIM
 		and (
@@ -60,7 +60,7 @@ func _on_state_entered(sender: NodePath, state: StringName, data: Dictionary) ->
 
 func _on_state_exited(sender: NodePath, state: StringName, data: Dictionary) -> void:
 	if (
-		sender == player_state_resource.state_machine
+		sender == player_state_resource.get_state_machine()
 		and state == PlayerStates.SWIM
 		and data.get(State.NEW_STATE) == PlayerStates.JUMP
 	):

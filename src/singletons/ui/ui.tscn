@@ -7,10 +7,10 @@
 [ext_resource type="Script" path="res://src/singletons/ui/hud/hud.gd" id="4_4636l"]
 [ext_resource type="Script" path="res://src/singletons/ui/hud/interaction_marker.gd" id="4_o1y8t"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/vector2_visualizer/vector2_visualizer.gd" id="5"]
-[ext_resource type="Resource" uid="uid://bqsrxvfl6htqr" path="res://src/singletons/lfo/lfo_resource.tres" id="5_f13oq"]
 [ext_resource type="PackedScene" uid="uid://cxg7qn6h5w2c" path="res://src/singletons/ui/hud/compass.tscn" id="6_suovi"]
 [ext_resource type="PackedScene" uid="uid://com3qcbnk0t72" path="res://src/singletons/ui/dialogue_manager/dialogue_manager.tscn" id="6_vu52l"]
 [ext_resource type="Shader" path="res://src/singletons/ui/pause_menu/screen_blur.gdshader" id="8"]
+[ext_resource type="Resource" uid="uid://cq17gcevaad1w" path="res://src/singletons/lfo/lfo_value_fourth_resource.tres" id="8_6lm33"]
 [ext_resource type="Script" path="res://src/singletons/ui/scene_transition/scene_transition.gd" id="8_ktx3r"]
 [ext_resource type="PackedScene" uid="uid://d3kve5ytakd60" path="res://src/singletons/ui/pause_menu/pause_menu.tscn" id="9_mxrv6"]
 [ext_resource type="Script" path="res://src/singletons/ui/pause_menu/screen_blur.gd" id="10"]
@@ -79,8 +79,8 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("4_o1y8t")
 color = Color(1, 1, 1, 0.627451)
-_lfo_resource = ExtResource("5_f13oq")
-_game_state_resource = ExtResource("11")
+lfo_value_resource = ExtResource("8_6lm33")
+game_state_resource = ExtResource("11")
 
 [node name="DialogueLayer" type="CanvasLayer" parent="."]
 

@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dg7t08p13ne5h"]
+[gd_resource type="Resource" script_class="FloatResource" load_steps=2 format=3 uid="uid://dg7t08p13ne5h"]
 
-[ext_resource type="Script" path="res://src/common/resource_types/float_resource.gd" id="1_sk2f8"]
+[ext_resource type="Script" path="res://src/common/dependency_injection_resources/float_resource.gd" id="1_sk2f8"]
 
 [resource]
-script = ExtResource( "1_sk2f8" )
-value = null
+script = ExtResource("1_sk2f8")

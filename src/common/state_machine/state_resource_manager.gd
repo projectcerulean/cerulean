@@ -18,24 +18,21 @@ func _ready() -> void:
 	assert(state_machine != null, Errors.NULL_NODE)
 	assert(state_resource != null, Errors.NULL_RESOURCE)
 
-	assert(state_resource.state_machine == NodePath(), Errors.RESOURCE_BUSY)
-	assert(state_resource.current_state == StringName(), Errors.RESOURCE_BUSY)
-
-	state_resource.state_machine = state_machine
+	state_resource.claim_ownership(self)
+	state_resource.set_state_machine(self, state_machine)
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		state_resource.state_machine = NodePath()
-		state_resource.current_state = StringName()
+		state_resource.release_ownership(self)
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary):
 	if sender == state_machine:
-		state_resource.current_state = state
+		state_resource.set_current_state(self, state)
 
 
 func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary):
 	if sender == state_machine:
-		assert(state_resource.current_state == state, Errors.CONSISTENCY_ERROR)
-		state_resource.current_state = StringName()
+		assert(state_resource.get_current_state() == state, Errors.CONSISTENCY_ERROR)
+		state_resource.set_current_state(self, StringName())

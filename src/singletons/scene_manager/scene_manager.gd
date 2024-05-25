@@ -17,10 +17,16 @@ func _ready() -> void:
 	Signals.state_entered.connect(_on_state_entered)
 
 	assert(scene_info_resource, Errors.NULL_RESOURCE)
+	scene_info_resource.claim_ownership(self)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		scene_info_resource.release_ownership(self)
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.state_machine and state == GameStates.LOADING_SCREEN:
+	if sender == game_state_resource.get_state_machine() and state == GameStates.LOADING_SCREEN:
 		if get_child_count() > 0:
 			assert(get_child_count() == 1, Errors.CONSISTENCY_ERROR)
 			get_child(0).queue_free()
@@ -44,8 +50,8 @@ func _on_resource_load_completed(_sender: NodePath, resource_path: String, resou
 	var packed_scene: PackedScene = resource as PackedScene
 	assert(packed_scene != null, Errors.NULL_RESOURCE)
 
-	scene_info_resource.scene_path = scene_path_next
-	scene_info_resource.spawn_point_id = spawn_point_id_next
+	scene_info_resource.set_scene_path(self, scene_path_next)
+	scene_info_resource.set_spawn_point_id(self, spawn_point_id_next)
 	scene_path_next = String()
 	spawn_point_id_next = 0
 

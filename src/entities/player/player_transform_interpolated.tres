@@ -1,6 +1,6 @@
-[gd_resource type="Resource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="TransformResource" load_steps=2 format=3 uid="uid://dd5sh0tn4snb6"]
 
-[ext_resource type="Script" path="res://src/common/resource_types/transform_resource.gd" id="1_aea14"]
+[ext_resource type="Script" path="res://src/common/dependency_injection_resources/transform_resource.gd" id="1_rmain"]
 
 [resource]
-script = ExtResource( "1_aea14" )
+script = ExtResource("1_rmain")

@@ -4,7 +4,7 @@
 extends Node
 ## Keeps a reference to the persistent data resource to make sure it is never freed.
 
-@export var persistent_data_resource: DictionaryResource
+@export var persistent_data_resource: PersistentDataResource
 
 
 func _ready() -> void:

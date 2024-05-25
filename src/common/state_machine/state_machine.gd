@@ -8,6 +8,8 @@
 class_name StateMachine
 extends Node
 
+const PERSISTENT_STATE_KEY: StringName = &"STATE"
+
 enum TRANSITION_FRAME {
 	PROCESS,
 	PHYSICS_PROCESS,
@@ -20,14 +22,12 @@ enum TRANSITION_FRAME {
 @export var transition_frame: TRANSITION_FRAME = TRANSITION_FRAME.PROCESS
 
 # Optional data resource for storing persistent state
-@export var _persistent_data: Resource
+@export var persistent_data_resource: PersistentDataResource
 
 var current_state: State = null
 var is_state_change_pending: bool = false
 
 @onready var initial_state: State = _initial_state as State
-@onready var persistent_data: DictionaryResource = _persistent_data as DictionaryResource
-@onready var persistent_data_state_path: StringName = String(get_path()) + ":current_state"
 
 
 # Enter the initial state when initializing the state machine.
@@ -35,12 +35,14 @@ func _ready() -> void:
 	assert(initial_state != null, Errors.NULL_NODE)
 	assert(initial_state in get_children(), Errors.INVALID_ARGUMENT)
 
-	if _persistent_data:
-		assert(persistent_data != null, Errors.NULL_RESOURCE)
-		if persistent_data_state_path in persistent_data.value:
-			var persistent_data_value: String = persistent_data.value.get(persistent_data_state_path)
-			initial_state = get_node(persistent_data_value) as State
-			assert(initial_state != null, Errors.NULL_NODE)
+	if persistent_data_resource != null:
+		var persistent_state_index: int = persistent_data_resource.get_int(
+			self,
+			PERSISTENT_STATE_KEY,
+			initial_state.get_index(),
+		)
+		initial_state = get_child(persistent_state_index) as State
+		assert(initial_state != null, Errors.NULL_NODE)
 
 	transition_to_state(initial_state.name)
 
@@ -108,7 +110,11 @@ func transition_to_deferred(target_state: StringName, data: Dictionary) -> void:
 		current_state.enter(data)
 		Signals.emit_state_entered(self, current_state.name, data)
 
-		if persistent_data != null:
-			persistent_data.value[persistent_data_state_path] = String(target_state)
+		if persistent_data_resource != null:
+			persistent_data_resource.store_int(
+				self,
+				PERSISTENT_STATE_KEY,
+				current_state.get_index(),
+			)
 
 	is_state_change_pending = false

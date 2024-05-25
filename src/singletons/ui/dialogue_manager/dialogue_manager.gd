@@ -37,11 +37,11 @@ func _on_request_dialogue_finish(_sender: NodePath) -> void:
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.state_machine and state == GameStates.DIALOGUE:
+	if sender == game_state_resource.get_state_machine() and state == GameStates.DIALOGUE:
 		state_machine.transition_to_state(DialogueStates.OUTPUT)
 		self.visible = true
 
 
 func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.state_machine and state == GameStates.DIALOGUE:
+	if sender == game_state_resource.get_state_machine() and state == GameStates.DIALOGUE:
 		self.visible = false

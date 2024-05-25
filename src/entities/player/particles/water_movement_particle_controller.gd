@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 	):
 		emitting = true
 		var amount_ratio: float = NAN
-		if player_state_resource.current_state in [PlayerStates.SWIM, PlayerStates.DIVE]:
+		if player_state_resource.get_current_state() in [PlayerStates.SWIM, PlayerStates.DIVE]:
 			amount_ratio = clampf(
 				remap(
 					VectorUtils.vec3_xz_to_vec2(player.linear_velocity).length(),

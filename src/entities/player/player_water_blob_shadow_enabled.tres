@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="BoolResource" load_steps=2 format=3 uid="uid://br5lp056r2vnl"]
 
-[ext_resource type="Script" path="res://src/common/resource_types/bool_resource.gd" id="1_n05y4"]
+[ext_resource type="Script" path="res://src/common/dependency_injection_resources/bool_resource.gd" id="1_5cvmd"]
 
 [resource]
-script = ExtResource("1_n05y4")
-value = false
+script = ExtResource("1_5cvmd")

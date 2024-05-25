@@ -12,5 +12,5 @@ var PlayerPreload: PackedScene = preload("../player.tscn")
 
 func _ready() -> void:
 	assert(scene_info_resource != null, Errors.NULL_NODE)
-	if scene_info_resource.spawn_point_id == id:
+	if scene_info_resource.get_spawn_point_id() == id:
 		add_child(PlayerPreload.instantiate())

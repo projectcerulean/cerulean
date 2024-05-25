@@ -12,8 +12,8 @@
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="8_2adit"]
 [ext_resource type="Resource" uid="uid://cvlcy7dsg6p28" path="res://src/sound/sfx/sfx_resources/switch_disabled.tres" id="8_aedo8"]
 [ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="9_tdrh8"]
+[ext_resource type="Resource" uid="uid://dlhs0dn5qmwcx" path="res://src/singletons/persistent_data/persistent_data_resource.tres" id="10_4sdp5"]
 [ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="10_ey7nc"]
-[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="10_kk3af"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmta0"]
 radius = 1.0
@@ -125,7 +125,7 @@ script = ExtResource("3_bgjta")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("9_tdrh8")]
 _initial_state = NodePath("Disabled")
-_persistent_data = ExtResource("10_kk3af")
+persistent_data_resource = ExtResource("10_4sdp5")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
 script = ExtResource("8_2adit")

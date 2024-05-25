@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="Vector2Resource" load_steps=2 format=3 uid="uid://cnn1ff5x5ry22"]
 
-[ext_resource type="Script" path="res://src/common/resource_types/vector2_resource.gd" id="1_u40me"]
+[ext_resource type="Script" path="res://src/common/dependency_injection_resources/vector2_resource.gd" id="1_u40me"]
 
 [resource]
 script = ExtResource("1_u40me")
-value = Vector2(0, 0)

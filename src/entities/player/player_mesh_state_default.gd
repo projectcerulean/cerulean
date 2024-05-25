@@ -26,11 +26,11 @@ func exit(data: Dictionary) -> void:
 
 func process(delta: float) -> void:
 	super.process(delta)
-	var player_input_vector_normalized: Vector2 = player_input_vector_resource.value.normalized()
+	var player_input_vector_normalized: Vector2 = player_input_vector_resource.get_value().normalized()
 	if not player_input_vector_normalized.is_equal_approx(Vector2.ZERO):
 		yaw_direction_target = VectorUtils.vec2_to_vec3_xz(player_input_vector_normalized)
 
 	if not yaw_direction_target.is_equal_approx(Vector3.ZERO):
-		var turn_lerp_weight: float = remap(player_input_vector_resource.value.length(), 0.0, 1.0, turn_lerp_weight_min, turn_lerp_weight_max)
+		var turn_lerp_weight: float = remap(player_input_vector_resource.get_value().length(), 0.0, 1.0, turn_lerp_weight_min, turn_lerp_weight_max)
 		var yaw_direction: Vector3 = Lerp.delta_slerp3(-mesh_root.get_global_transform().basis.z, yaw_direction_target, turn_lerp_weight, delta)
 		mesh_root.look_at(mesh_root.global_position + yaw_direction)

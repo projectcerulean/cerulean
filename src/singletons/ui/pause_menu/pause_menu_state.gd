@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func process(delta: float) -> void:
 	super.process(delta)
-	if pause_menu.game_state_resource.current_state == GameStates.PAUSE:
+	if pause_menu.game_state_resource.get_current_state() == GameStates.PAUSE:
 		if Input.is_action_just_pressed(InputActions.UI_UP):
 			Signals.emit_request_sfx_play_non_diegetic(self, pause_menu.sfx_resource_select)
 			i_hovered_option = posmod(i_hovered_option - 1, menu.get_child_count())
@@ -47,7 +47,7 @@ func exit(data: Dictionary) -> void:
 
 
 func get_transition() -> StringName:
-	if pause_menu.game_state_resource.current_state == GameStates.PAUSE:
+	if pause_menu.game_state_resource.get_current_state() == GameStates.PAUSE:
 		if Input.is_action_just_pressed(InputActions.PAUSE):
 			Signals.emit_request_game_unpause(self)
 			return PauseMenuStates.MAIN
@@ -55,7 +55,7 @@ func get_transition() -> StringName:
 
 
 func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == pause_menu.game_state_resource.state_machine and state == GameStates.PAUSE:
+	if sender == pause_menu.game_state_resource.get_state_machine() and state == GameStates.PAUSE:
 		i_hovered_option = 0
 
 

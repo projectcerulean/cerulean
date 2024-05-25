@@ -2,7 +2,7 @@
 # Copyright (C) 2021-2024 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
 class_name Scene
-extends Node
+extends Node3D
 
 
 func _ready() -> void:

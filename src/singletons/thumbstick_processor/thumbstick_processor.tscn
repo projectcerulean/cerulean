@@ -1,35 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://7eqxy7hhj1dr"]
+[gd_scene load_steps=5 format=3 uid="uid://7eqxy7hhj1dr"]
 
-[ext_resource type="Script" path="res://src/singletons/thumbstick_processor/thumbstick_processor.gd" id="1_e0e0m"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_7kar6"]
-[ext_resource type="Script" path="res://src/singletons/thumbstick_processor/gamepad_stick_processor.gd" id="2_sq22r"]
+[ext_resource type="Script" path="res://src/singletons/thumbstick_processor/thumbstick_processor_right.gd" id="2_emv58"]
 [ext_resource type="Resource" uid="uid://1jerxlyauuto" path="res://src/singletons/thumbstick_processor/thumbstick_resource_right.tres" id="3_10ay5"]
-[ext_resource type="Script" path="res://src/singletons/thumbstick_processor/keyboard_thumbstick_simulator.gd" id="5_4nbcb"]
-[ext_resource type="Script" path="res://src/singletons/thumbstick_processor/mouse_thumbstick_simulator.gd" id="6_sebt5"]
+[ext_resource type="Script" path="res://src/singletons/thumbstick_processor/thumbstick_processor_left.gd" id="4_kwam1"]
 
 [node name="ThumbstickProcessor" type="Node"]
 process_mode = 3
-script = ExtResource("1_e0e0m")
+
+[node name="ThumbstickProcessorLeft" type="Node" parent="."]
+script = ExtResource("4_kwam1")
 thumbstick_resource_left = ExtResource("2_7kar6")
+
+[node name="ThumbstickProcessorRight" type="Node" parent="."]
+script = ExtResource("2_emv58")
 thumbstick_resource_right = ExtResource("3_10ay5")
-
-[node name="Gamepad" type="Node" parent="."]
-
-[node name="GamepadStickProcessorLeft" type="Node" parent="Gamepad"]
-script = ExtResource("2_sq22r")
-thumbstick_resource = ExtResource("2_7kar6")
-
-[node name="GamepadStickProcessorRight" type="Node" parent="Gamepad"]
-script = ExtResource("2_sq22r")
-stick = 1
-thumbstick_resource = ExtResource("3_10ay5")
-
-[node name="KeyboardMouse" type="Node" parent="."]
-
-[node name="KeyboardThumbstickSimulator" type="Node" parent="KeyboardMouse"]
-script = ExtResource("5_4nbcb")
-thumbstick_resource = ExtResource("2_7kar6")
-
-[node name="MouseThumbstickSimulator" type="Node" parent="KeyboardMouse"]
-script = ExtResource("6_sebt5")
-thumbstick_resource = ExtResource("3_10ay5")

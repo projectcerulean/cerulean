@@ -3,9 +3,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends Marker3D
 
-@export var _player_transform_resource: Resource
-@export var _player_state_resource: Resource
-@export var _game_state_resource: Resource
+@export var player_transform_resource: TransformResource
+@export var player_state_resource: StateResource
+@export var game_state_resource: StateResource
 
 @export var y_lerp_weight_player_grounded: float = 5.491
 @export var y_lerp_weight_player_air: float = 4.345
@@ -16,9 +16,6 @@ var dialogue_target: NodePath
 var dialogue_target_offset: Vector3
 var dialogue_target_position_start: Vector3
 
-@onready var player_transform_resource: TransformResource = _player_transform_resource as TransformResource
-@onready var player_state_resource: StateResource = _player_state_resource as StateResource
-@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 @onready var transform_resource_manager: TransformResourceManager = get_node("TransformResourceManager") as TransformResourceManager
 
 
@@ -32,23 +29,25 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	match game_state_resource.current_state:
+	match game_state_resource.get_current_state():
 		GameStates.DIALOGUE:
 			if dialogue_target:
 				var dialogue_target_node: Node3D = get_node(dialogue_target) as Node3D
 				if is_instance_valid(dialogue_target_node):
-					dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target_node.global_position - player_transform_resource.value.origin) / 2.0, dialogue_lerp_weight, delta)
+					dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target_node.global_position - player_transform_resource.get_value().origin) / 2.0, dialogue_lerp_weight, delta)
 					global_position = dialogue_target_position_start + dialogue_target_offset
 		GameStates.GAMEPLAY:
-			dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, Vector3.ZERO, dialogue_lerp_weight, delta)
-			global_position.x = player_transform_resource.value.origin.x + dialogue_target_offset.x
-			global_position.z = player_transform_resource.value.origin.z + dialogue_target_offset.z
-			var y_lerp_weight: float = y_lerp_weight_player_grounded if player_state_resource.current_state in [PlayerStates.RUN, PlayerStates.IDLE] else y_lerp_weight_player_air
-			global_position.y = Lerp.delta_lerp(global_position.y, player_transform_resource.value.origin.y, y_lerp_weight, delta)
+			if player_transform_resource.is_owned():
+				dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, Vector3.ZERO, dialogue_lerp_weight, delta)
+				global_position.x = player_transform_resource.get_value().origin.x + dialogue_target_offset.x
+				global_position.z = player_transform_resource.get_value().origin.z + dialogue_target_offset.z
+				var y_lerp_weight: float = y_lerp_weight_player_grounded if player_state_resource.get_current_state() in [PlayerStates.RUN, PlayerStates.IDLE] else y_lerp_weight_player_air
+				global_position.y = Lerp.delta_lerp(global_position.y, player_transform_resource.get_value().origin.y, y_lerp_weight, delta)
 
 
 func _on_scene_changed(_sender: NodePath) -> void:
-	global_transform = player_transform_resource.value
+	if player_transform_resource.is_owned():
+		global_transform = player_transform_resource.get_value()
 	transform_resource_manager.update_resource()
 
 

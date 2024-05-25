@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 	var glide_water_particles_emitting: bool = false
 
 	if (
-		player_state_resource.current_state in [PlayerStates.BOUNCE, PlayerStates.GLIDE]
+		player_state_resource.get_current_state() in [PlayerStates.BOUNCE, PlayerStates.GLIDE]
 		and VectorUtils.vec3_xz_to_vec2(player.linear_velocity).length() > min_speed
 	):
 		if (

@@ -63,15 +63,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_position = target_transform_resource.value.origin
+	global_position = target_transform_resource.get_value().origin
 
-	if game_state_resource.current_state in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
+	if game_state_resource.get_current_state() in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
 		var rotation_speed_target: Vector2 = Vector2()
 		var distance_speed_target: float = 0.0
 		if Input.is_action_pressed(InputActions.CAMERA_ZOOM_TOGGLE):
-			distance_speed_target = thumbstick_resource_right.value.y * camera_distance_speed_max
+			distance_speed_target = thumbstick_resource_right.get_value().y * camera_distance_speed_max
 		else:
-			rotation_speed_target = thumbstick_resource_right.value * camera_rotation_speed_max
+			rotation_speed_target = thumbstick_resource_right.get_value() * camera_rotation_speed_max
 			if Settings.SETTINGS.CAMERA_X_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_X_INVERTED]]:
 				rotation_speed_target.x *= -1.0
 			if Settings.SETTINGS.CAMERA_Y_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_Y_INVERTED]]:
@@ -135,7 +135,7 @@ func _process(delta: float) -> void:
 	camera.position.z = Lerp.delta_lerp(camera.position.z, -camera_push_distance_target, camera_push_weight, delta)
 
 	# Look at target
-	camera.look_at(target_transform_resource.value.origin)
+	camera.look_at(target_transform_resource.get_value().origin)
 
 
 func _on_scene_changed(_sender: NodePath) -> void:
@@ -144,7 +144,7 @@ func _on_scene_changed(_sender: NodePath) -> void:
 	pitch_pivot.rotation.x = pitch_default
 
 	# Center camera behind player
-	var yaw: float = target_transform_resource.value.basis.get_euler().y
+	var yaw: float = target_transform_resource.get_value().basis.get_euler().y
 	yaw_pivot.rotation.y = yaw
 
 

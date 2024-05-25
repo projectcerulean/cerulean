@@ -27,7 +27,7 @@ func enter(data: Dictionary) -> void:
 	super.enter(data)
 	tilt_angle = data.get(ROLL_TILT_ANGLE, 0.0)
 	var yaw_direction: Vector3
-	var input_direction_planar: Vector2 = player_input_vector_resource.value.normalized()
+	var input_direction_planar: Vector2 = player_input_vector_resource.get_value().normalized()
 	if input_direction_planar.is_normalized():
 		yaw_direction = VectorUtils.vec2_to_vec3_xz(input_direction_planar)
 	else:
@@ -54,14 +54,14 @@ func process(delta: float) -> void:
 		yaw_direction_target = VectorUtils.vec2_to_vec3_xz(player_velocity_direction)
 
 	if not yaw_direction_target.is_equal_approx(Vector3.ZERO):
-		var turn_lerp_weight: float = remap(player_input_vector_resource.value.length(), 0.0, 1.0, turn_lerp_weight_min, turn_lerp_weight_max)
+		var turn_lerp_weight: float = remap(player_input_vector_resource.get_value().length(), 0.0, 1.0, turn_lerp_weight_min, turn_lerp_weight_max)
 		var yaw_direction: Vector3 = Lerp.delta_slerp3(-mesh_root.get_global_transform().basis.z, yaw_direction_target, turn_lerp_weight, delta)
 		mesh_root.look_at(mesh_root.global_position + yaw_direction)
 
 		var planar_velocity: float = Vector3(player.linear_velocity.x, 0.0, player.linear_velocity.z).length()
 		roll_pivot.rotate_y(-(planar_velocity / mesh_radius) * delta)
 
-		var input_direction_planar: Vector2 = player_input_vector_resource.value.normalized()
+		var input_direction_planar: Vector2 = player_input_vector_resource.get_value().normalized()
 		if input_direction_planar.is_normalized() and player_velocity_direction.is_normalized():
 			tilt_angle = Lerp.delta_lerp_angle(
 				tilt_angle,

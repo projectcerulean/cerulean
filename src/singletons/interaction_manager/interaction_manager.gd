@@ -58,8 +58,8 @@ func interactables_sort(interactable: NodePath, interactable_other: NodePath) ->
 	var interactable_node: Node3D = get_node(interactable) as Node3D
 	var interactable_node_other: Node3D = get_node(interactable_other) as Node3D
 	if is_instance_valid(interactable_node) and is_instance_valid(interactable_node_other):
-		var dist_squared: float = (interactable_node.global_position - player_transform_resource.value.origin).length_squared()
-		var dist_squared_other: float = (interactable_node_other.global_position - player_transform_resource.value.origin).length_squared()
+		var dist_squared: float = (interactable_node.global_position - player_transform_resource.get_value().origin).length_squared()
+		var dist_squared_other: float = (interactable_node_other.global_position - player_transform_resource.get_value().origin).length_squared()
 		return dist_squared < dist_squared_other
 	elif is_instance_valid(interactable_node):
 		return true

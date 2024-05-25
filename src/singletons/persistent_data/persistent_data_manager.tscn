@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpwlu6pl1o7wf"]
 
 [ext_resource type="Script" path="res://src/singletons/persistent_data/persistent_data_manager.gd" id="1_xxlsf"]
-[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="2_ye8hk"]
+[ext_resource type="Resource" uid="uid://dlhs0dn5qmwcx" path="res://src/singletons/persistent_data/persistent_data_resource.tres" id="2_ugy2v"]
 
 [node name="PersistentDataManager" type="Node"]
 script = ExtResource("1_xxlsf")
-persistent_data_resource = ExtResource("2_ye8hk")
+persistent_data_resource = ExtResource("2_ugy2v")

@@ -87,7 +87,7 @@ func test_state_machine_get_state_transition_from_state_transition_frame_physics
 
 func test_state_machine_persistent_data() -> void:
 	var i_new_state: int = 4
-	var persistent_data_resource: DictionaryResource = DictionaryResource.new()
+	var persistent_data_resource: PersistentDataResource = PersistentDataResource.new()
 
 	var state_machine: StateMachine = await create_state_machine(
 		I_DEFAULT_INITIAL_STATE,
@@ -123,7 +123,7 @@ func create_state_machine(
 		i_initial_state: int,
 		i_next_state: int = -1,
 		transition_frame: StateMachine.TRANSITION_FRAME = StateMachine.TRANSITION_FRAME.PROCESS,
-		persistent_data_resource: DictionaryResource = null,
+		persistent_data_resource: PersistentDataResource = null,
 	) -> StateMachine:
 	var state_machine_scene: PackedScene = load_scene("state_machine.tscn")
 	var state_machine: StateMachine = state_machine_scene.instantiate() as StateMachine
@@ -157,7 +157,7 @@ func create_state_machine(
 
 	assert(initial_state != null, Errors.NULL_NODE)
 	state_machine._initial_state = initial_state
-	state_machine._persistent_data = persistent_data_resource
+	state_machine.persistent_data_resource = persistent_data_resource
 	state_machine.transition_frame = transition_frame
 
 	add_child(state_machine)

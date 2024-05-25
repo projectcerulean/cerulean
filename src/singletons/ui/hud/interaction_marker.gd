@@ -4,8 +4,8 @@
 extends Control
 
 @export var color: Color = Color.WHITE
-@export var _lfo_resource: Resource
-@export var _game_state_resource: Resource
+@export var lfo_value_resource: FloatResource
+@export var game_state_resource: StateResource
 @export var oscillation_amplitude: float = 128.0
 @export var scale_factor_min: float = 0.25
 @export var tween_time: float = 1.0
@@ -20,19 +20,17 @@ var target: NodePath = NodePath()
 
 @onready var color_default: Color = color
 @onready var tween: Tween
-@onready var lfo_resource: LfoResource = _lfo_resource as LfoResource
-@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 
 func _ready() -> void:
 	Signals.interaction_highlight_set.connect(self._on_interaction_highlight_set)
 	Signals.request_interaction.connect(self._on_request_interaction)
-	assert(lfo_resource != null, Errors.NULL_RESOURCE)
+	assert(lfo_value_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
 
 func _draw() -> void:
-	if game_state_resource.current_state != GameStates.GAMEPLAY:
+	if game_state_resource.get_current_state() != GameStates.GAMEPLAY:
 		return
 
 	if target == null:
@@ -52,7 +50,7 @@ func _draw() -> void:
 			for i in range(vertex_positions.size()):
 				vertex_positions[i] *= scale_factor
 				vertex_positions[i] /= camera_distance
-				vertex_positions[i] += position2d - Vector2(0.0, oscillation_amplitude * absf(lfo_resource.value_fourth_shifted) / camera_distance)
+				vertex_positions[i] += position2d - Vector2(0.0, oscillation_amplitude * absf(lfo_value_resource.get_value()) / camera_distance)
 			draw_polygon(vertex_positions, PackedColorArray([color, color, color]))
 
 

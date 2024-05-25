@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/barrier/barrier.gd" id="1_8dbv4"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/barrier/barrier.gdshader" id="1_alkq1"]
 [ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="3_qy6tp"]
+[ext_resource type="Resource" uid="uid://dlhs0dn5qmwcx" path="res://src/singletons/persistent_data/persistent_data_resource.tres" id="4_htc7t"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/barrier/barrier_state.gd" id="4_nmhmp"]
-[ext_resource type="Resource" uid="uid://dchkdam4vcd0r" path="res://src/singletons/persistent_data/persistent_data.tres" id="4_trjsg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rojgn"]
 size = Vector3(5, 0.5, 5)
@@ -52,7 +52,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_esmal")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("3_qy6tp")]
 _initial_state = NodePath("Disabled")
-_persistent_data = ExtResource("4_trjsg")
+persistent_data_resource = ExtResource("4_htc7t")
 
 [node name="Disabled" type="Node" parent="StateMachine"]
 script = ExtResource("4_nmhmp")

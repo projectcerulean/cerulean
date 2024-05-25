@@ -13,6 +13,12 @@ func _ready() -> void:
 	assert(player_water_blob_shadow_enabled_resource != null, Errors.NULL_RESOURCE)
 	assert(raycast != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
+	player_water_blob_shadow_enabled_resource.claim_ownership(self)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		player_water_blob_shadow_enabled_resource.release_ownership(self)
 
 
 func _process(_delta: float) -> void:
@@ -21,12 +27,7 @@ func _process(_delta: float) -> void:
 	var ground_height: float = raycast.get_collision_point().y if raycast.is_colliding() else -INF
 	var ground_distance: float = global_position.y - ground_height
 
-	player_water_blob_shadow_enabled_resource.value = (
+	player_water_blob_shadow_enabled_resource.set_value(self,
 		water_surface_distance > 0.0
 		and water_surface_distance < ground_distance
 	)
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		player_water_blob_shadow_enabled_resource.value = false

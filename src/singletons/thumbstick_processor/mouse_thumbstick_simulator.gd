@@ -1,19 +1,15 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2024 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
-extends Node
+class_name MouseThumbstickSimulator
+extends RefCounted
 
-@export var sensitivity: float = 0.1
-@export var thumbstick_resource: Vector2Resource
+const SENSITIVITY: float = 0.1
 
 var mouse_motion_amount: Vector2 = Vector2.ZERO
 
 
-func _ready() -> void:
-	assert(thumbstick_resource != null, Errors.NULL_RESOURCE)
-
-
-func _input(event: InputEvent) -> void:
+func input(event: InputEvent) -> void:
 	var event_mouse_motion: InputEventMouseMotion = event as InputEventMouseMotion
 	if event_mouse_motion != null:
 		mouse_motion_amount = event_mouse_motion.relative
@@ -21,10 +17,9 @@ func _input(event: InputEvent) -> void:
 		mouse_motion_amount = Vector2.ZERO
 
 
-func _process(_delta: float) -> void:
-	var stick_value: Vector2 = mouse_motion_amount * sensitivity
-	if stick_value.is_equal_approx(Vector2.ZERO):
-		stick_value = Vector2.ZERO
-
-	if stick_value.length_squared() > thumbstick_resource.value.length_squared():
-		thumbstick_resource.value = stick_value
+func process_input() -> Vector2:
+	var value: Vector2 = mouse_motion_amount * SENSITIVITY
+	if value.is_equal_approx(Vector2.ZERO):
+		value = Vector2.ZERO
+	mouse_motion_amount = Vector2.ZERO
+	return value

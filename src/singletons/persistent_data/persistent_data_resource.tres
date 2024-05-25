@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="PersistentDataResource" load_steps=2 format=3 uid="uid://dlhs0dn5qmwcx"]
+
+[ext_resource type="Script" path="res://src/singletons/persistent_data/persistent_data_resource.gd" id="1_kgivx"]
+
+[resource]
+script = ExtResource("1_kgivx")
