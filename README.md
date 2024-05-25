@@ -39,7 +39,7 @@ Clone the repository: `git clone --recursive [repo url]`
 
 Assets are synced using IPFS (https://ipfs.tech) to prevent having to check in large binary files into the repository.
 
-1. Install IPFS by installing the package `go-ipfs`
+1. Install IPFS by installing the package `kubo` (also known as `go-ipfs`)
 2. Initialize: `ipfs init`
 3. Run the IPFS daemon: `ipfs daemon`
 4. Enable the `git_ipfs` smudge filter using the command `git config --local include.path ../.gitconfig`
