@@ -29,7 +29,7 @@ tasks:
     IPFS=../kubo/ipfs timeout --verbose "${COMMAND_TIMEOUT}" git reset --hard
     kill "$!"
 - download_godot: |
-    timeout --verbose "${COMMAND_TIMEOUT}" curl --silent --remote-name "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+    timeout --verbose "${COMMAND_TIMEOUT}" curl --silent --remote-name "https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
     echo "${GODOT_LINUX_64_ZIP_SHA512}  Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" | sha512sum --check
     unzip "Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" "Godot_v${GODOT_VERSION}-stable_linux.x86_64"
     [ -x "Godot_v${GODOT_VERSION}-stable_linux.x86_64" ]
