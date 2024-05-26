@@ -3,13 +3,12 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends WorldEnvironment
 
-@export var _environment_resource: Resource
-
-@onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
+@export var environment_resource: EnvironmentResource
 
 
 func _ready() -> void:
-	assert(environment != null, Errors.NULL_RESOURCE)
-	var cerulean_environment: CeruleanEnvironment = environment as CeruleanEnvironment
-	assert(cerulean_environment != null, Errors.NULL_RESOURCE)
-	environment_resource.value = cerulean_environment
+	if is_instance_valid(environment):
+		assert(environment_resource != null, Errors.NULL_RESOURCE)
+		var cerulean_environment: CeruleanEnvironment = environment as CeruleanEnvironment
+		assert(cerulean_environment != null, Errors.NULL_RESOURCE)
+		environment_resource.value = cerulean_environment

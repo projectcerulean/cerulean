@@ -28,7 +28,11 @@ func _on_request_scene_transition_start(_sender: NodePath, scene_path: String, s
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.get_state_machine() and state == GameStates.SCENE_TRANSITION:
+	if (
+		game_state_resource.is_owned()
+		and sender == game_state_resource.get_state_machine()
+		and state == GameStates.SCENE_TRANSITION
+	):
 		self.visible = true
 		if tween != null:
 			tween.kill()
@@ -45,7 +49,10 @@ func _on_fade_out_finished() -> void:
 
 
 func _on_scene_changed(_sender: NodePath):
-	if game_state_resource.get_current_state() == GameStates.LOADING_SCREEN:
+	if (
+		game_state_resource.is_owned()
+		and game_state_resource.get_current_state() == GameStates.LOADING_SCREEN
+	):
 		if tween != null:
 			tween.kill()
 

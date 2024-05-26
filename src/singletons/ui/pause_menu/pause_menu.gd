@@ -22,10 +22,18 @@ func _ready() -> void:
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.get_state_machine() and state == GameStates.PAUSE:
+	if (
+		game_state_resource.is_owned()
+		and sender == game_state_resource.get_state_machine()
+		and state == GameStates.PAUSE
+	):
 		self.visible = true
 
 
 func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.get_state_machine() and state == GameStates.PAUSE:
+	if (
+		game_state_resource.is_owned()
+		and sender == game_state_resource.get_state_machine()
+		and state == GameStates.PAUSE
+	):
 		self.visible = false

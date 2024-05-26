@@ -4,14 +4,11 @@
 class_name WaterDetector
 extends Area3D
 
-@export var _environment_resource: Resource
-@export var _time_resource_gameplay: Resource
+@export var environment_resource: EnvironmentResource
+@export var time_resource_gameplay: FloatResource
 
 var water_bodies: Array[Area3D]
 var is_in_water_prev: bool = false
-
-@onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
-@onready var time_resource_gameplay: FloatResource = _time_resource_gameplay as FloatResource
 
 
 func _ready() -> void:
@@ -50,7 +47,7 @@ func is_in_water() -> bool:
 
 func get_water_surface_height() -> float:
 	var environment: CeruleanEnvironment = environment_resource.value
-	var time: float = time_resource_gameplay.get_value()
+	var time: float = time_resource_gameplay.get_value() if time_resource_gameplay.is_owned() else 0.0
 
 	var height: float = -INF
 	for area in water_bodies:

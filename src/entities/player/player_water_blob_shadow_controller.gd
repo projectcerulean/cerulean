@@ -9,16 +9,18 @@ extends Node3D
 @onready var water_detector: WaterDetector = get_node("WaterDetector") as WaterDetector
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	assert(player_water_blob_shadow_enabled_resource != null, Errors.NULL_RESOURCE)
-	assert(raycast != null, Errors.NULL_NODE)
-	assert(water_detector != null, Errors.NULL_NODE)
 	player_water_blob_shadow_enabled_resource.claim_ownership(self)
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		player_water_blob_shadow_enabled_resource.release_ownership(self)
+func _exit_tree() -> void:
+	player_water_blob_shadow_enabled_resource.release_ownership(self)
+
+
+func _ready() -> void:
+	assert(raycast != null, Errors.NULL_NODE)
+	assert(water_detector != null, Errors.NULL_NODE)
 
 
 func _process(_delta: float) -> void:

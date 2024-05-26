@@ -3,20 +3,20 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends Node
 
-@export var _environment_resource: Resource
+@export var environment_resource: EnvironmentResource
 
-@onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
+
+func _enter_tree() -> void:
+	assert(environment_resource != null, Errors.NULL_RESOURCE)
+
+
+func _exit_tree() -> void:
+	environment_resource.value.fog_enabled = false
 
 
 func _ready() -> void:
 	Signals.water_entered.connect(self._on_water_entered)
 	Signals.water_exited.connect(self._on_water_exited)
-	assert(environment_resource != null, Errors.NULL_RESOURCE)
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		environment_resource.value.fog_enabled = false
 
 
 func _on_water_entered(sender: NodePath) -> void:

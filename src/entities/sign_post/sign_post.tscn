@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cx3r8hna7fkql"]
 
+[ext_resource type="Script" path="res://src/entities/sign_post/sign_post.gd" id="1_28yiw"]
 [ext_resource type="Material" uid="uid://ciq7rqyrt6uv2" path="res://src/entities/sign_post/wood_material.tres" id="2_vxxwp"]
-[ext_resource type="Script" path="res://src/common/interaction/dialogue_interaction_action.gd" id="3_o1tm2"]
 [ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interaction.tscn" id="4_w1abi"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_hm6r0"]
@@ -17,6 +17,7 @@ size = Vector3(1, 1.5, 0.1)
 
 [node name="SignPost" type="StaticBody3D"]
 collision_layer = 8
+script = ExtResource("1_28yiw")
 
 [node name="Post" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
@@ -35,6 +36,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_6bn8e")
 
 [node name="Interaction" parent="." instance=ExtResource("4_w1abi")]
-
-[node name="Action" type="Node3D" parent="Interaction"]
-script = ExtResource("3_o1tm2")

@@ -14,14 +14,13 @@ extends Node
 @onready var mouse_thumbstick_simulator: MouseThumbstickSimulator = MouseThumbstickSimulator.new()
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	assert(thumbstick_resource_right != null, Errors.NULL_RESOURCE)
 	thumbstick_resource_right.claim_ownership(self)
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		thumbstick_resource_right.release_ownership(self)
+func _exit_tree() -> void:
+	thumbstick_resource_right.release_ownership(self)
 
 
 func _input(event: InputEvent) -> void:

@@ -9,21 +9,45 @@ func test_get_node_name() -> void:
 	assert_eq(NodePathUtils.get_node_name(node_path), "Action")
 
 
-func test_get_absolute_path() -> void:
-	var node_parent: Node = Node.new()
-	var node_child: Node = Node.new()
-
-	node_parent.add_child(node_child)
-	add_child_autofree(node_parent)
-
-	var relative_path: NodePath = node_parent.get_path_to(node_child)
-	var absolute_path: NodePath = node_child.get_path()
-
-	assert_false(relative_path.is_absolute())
-	assert_true(absolute_path.is_absolute())
-
-	assert_eq(NodePathUtils.get_absolute_path(node_parent, relative_path), absolute_path)
+func test_concatenate_simple() -> void:
+	verify_concatenation(^"/root/Node", ^"Child1/Child2", ^"/root/Node/Child1/Child2")
 
 
-func test_get_absolute_path_already_absolute_path() -> void:
-	assert_eq(NodePathUtils.get_absolute_path(null, get_path()), get_path())
+func test_concatenate_trailing_slash() -> void:
+	verify_concatenation(^"/root/Node/", ^"Child1/Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"Child1/Child2/", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node/", ^"Child1/Child2/", ^"/root/Node/Child1/Child2")
+
+
+func test_concatenate_double_slash() -> void:
+	verify_concatenation(^"//root/Node", ^"Child1/Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root//Node", ^"Child1/Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"Child1//Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"Child1/Child2//", ^"/root/Node/Child1/Child2")
+
+
+func test_concatenate_dot() -> void:
+	verify_concatenation(^"/./root/Node", ^"Child1/Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/./Node", ^"Child1/Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node/.", ^"Child1/Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"./Child1/Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"Child1/./Child2", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"Child1/Child2/.", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"Child1/Child2/./", ^"/root/Node/Child1/Child2")
+	verify_concatenation(^"/root/./././Node", ^"Child1/Child2", ^"/root/Node/Child1/Child2")
+
+
+func test_concatenate_double_dot() -> void:
+	verify_concatenation(^"/root/../Node", ^"Child1/Child2", ^"/Node/Child1/Child2")
+	verify_concatenation(^"/root/Node/..", ^"Child1/Child2", ^"/root/Child1/Child2")
+	verify_concatenation(^"/root/Node/../", ^"Child1/Child2", ^"/root/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"../Child1/Child2", ^"/root/Child1/Child2")
+	verify_concatenation(^"/root/Node", ^"Child1/../Child2", ^"/root/Node/Child2")
+	verify_concatenation(^"/root/Node", ^"Child1/Child2/..", ^"/root/Node/Child1")
+	verify_concatenation(^"/root/Node", ^"Child1/Child2/../", ^"/root/Node/Child1")
+	verify_concatenation(^"/root/Node", ^"Child1/Child2/../../", ^"/root/Node")
+	verify_concatenation(^"/root/../Node", ^"Child1/Child2/..", ^"/Node/Child1")
+
+
+func verify_concatenation(path_1: NodePath, path_2: NodePath, concatenation: NodePath) -> void:
+	assert_eq(NodePathUtils.concatenate_paths(path_1, path_2), concatenation)

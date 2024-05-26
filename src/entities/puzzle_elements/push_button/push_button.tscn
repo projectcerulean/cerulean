@@ -95,8 +95,8 @@ script = ExtResource("1_1bmxc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 shape = SubResource("CylinderShape3D_lrnre")
 
-[node name="StateMachine" parent="ActivationArea" node_paths=PackedStringArray("_initial_state") instance=ExtResource("6_jrfqd")]
-_initial_state = NodePath("Disabled")
+[node name="StateMachine" parent="ActivationArea" node_paths=PackedStringArray("initial_state") instance=ExtResource("6_jrfqd")]
+initial_state = NodePath("Disabled")
 
 [node name="Disabled" type="Node" parent="ActivationArea/StateMachine"]
 script = ExtResource("8_2adit")

@@ -1,20 +1,21 @@
 # This file is part of Project Cerulean <https://projectcerulean.org>
 # Copyright (C) 2021-2024 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
+class_name JunitTestReportXmlVerifier
 extends Node
 
-const gutconfig_json: String = "res://.gutconfig.json"
-const junit_test_report_xml: String = "res://test_report.xml"
+const GUTCONFIG_JSON: String = "res://.gutconfig.json"
+const JUNIT_TEST_REPORT_XML: String = "res://test_report.xml"
 
 var verification_ok: bool = false
 
 
-func _ready() -> void:
+func perform_verification() -> void:
 	var test_dirs: PackedStringArray = get_test_dirs()
 	if test_dirs.size() > 0:
 		var test_scripts: PackedStringArray = []
 		for test_dir: String in test_dirs:
-			var found_test_scripts: PackedStringArray = find_test_scripts(test_dir)
+			var found_test_scripts: PackedStringArray = UnitTestUtils.search_for_files(test_dir, RegEx.create_from_string("test.*\\.gd"))
 			test_scripts += found_test_scripts
 		if test_scripts.size() > 0:
 			var test_methods: Dictionary = find_test_methods(test_scripts)
@@ -28,32 +29,17 @@ func _ready() -> void:
 			push_error("No test scripts found")
 	else:
 		push_error("No testdirs found")
-	push_error("Verification of '", junit_test_report_xml, "' failed")
+	push_error("Verification of '", JUNIT_TEST_REPORT_XML, "' failed")
 
 
 func get_test_dirs() -> PackedStringArray:
-	var file: FileAccess = FileAccess.open(gutconfig_json, FileAccess.READ)
+	var file: FileAccess = FileAccess.open(GUTCONFIG_JSON, FileAccess.READ)
 	var file_contents: String = file.get_as_text()
 	var json_contents: Dictionary = JSON.parse_string(file_contents)
 	var dirs: PackedStringArray = []
 	for dir: String in json_contents[&"dirs"]:
 		dirs.append(dir.trim_suffix("/"))
 	return dirs
-
-
-func find_test_scripts(test_dir: String) -> PackedStringArray:
-	var found_test_scripts: PackedStringArray = []
-	var dir: DirAccess = DirAccess.open(test_dir)
-	dir.list_dir_begin()
-	var file_name: String = dir.get_next()
-	while file_name != "":
-		if dir.current_is_dir():
-			found_test_scripts += find_test_scripts(test_dir + "/" + file_name)
-		else:
-			if file_name.begins_with("test_") and file_name.ends_with(".gd"):
-				found_test_scripts.append(test_dir + "/" + file_name)
-		file_name = dir.get_next()
-	return found_test_scripts
 
 
 func find_test_methods(test_scripts: PackedStringArray) -> Dictionary:
@@ -70,7 +56,7 @@ func find_test_methods(test_scripts: PackedStringArray) -> Dictionary:
 
 func verify_junit_xml_file(test_methods: Dictionary) -> bool:
 	var xmlParser: XMLParser = XMLParser.new()
-	xmlParser.open(junit_test_report_xml)
+	xmlParser.open(JUNIT_TEST_REPORT_XML)
 
 	# Verify testcase nodes
 	for test_script: String in test_methods:

@@ -7,10 +7,11 @@ extends InteractionAction
 @export var dialogue_resource: DialogueResource
 
 
-func _ready() -> void:
-	assert(dialogue_resource as DialogueResource != null, Errors.NULL_RESOURCE)
+func check(caller: Node3D) -> void:
+	super.check(caller)
+	assert(dialogue_resource != null, Errors.NULL_RESOURCE)
 
 
-func interact() -> void:
-	super.interact()
-	Signals.emit_request_dialogue_start(self, dialogue_resource)
+func interact(caller: Node3D) -> void:
+	super.interact(caller)
+	Signals.emit_request_dialogue_start(caller, dialogue_resource)

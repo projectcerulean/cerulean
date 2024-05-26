@@ -66,7 +66,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
-_environment_resource = ExtResource("3_34h0a")
+environment_resource = ExtResource("3_34h0a")
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 script = ExtResource("4_4636l")
@@ -131,7 +131,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10")
-_game_state_resource = ExtResource("11")
+game_state_resource = ExtResource("11")
 
 [node name="ScreenDarken" type="ColorRect" parent="PauseMenuLayer"]
 anchors_preset = 15
@@ -141,7 +141,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0.0627451, 0.627451)
 script = ExtResource("12")
-_game_state_resource = ExtResource("11")
+game_state_resource = ExtResource("11")
 
 [node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource("9_mxrv6")]
 

@@ -19,6 +19,7 @@ const TWEEN_TYPE_EXPONENTIAL: int = 2
 
 var audio_effect: AudioEffect
 var tween: Tween
+var bus_index: int
 
 var wet_level: float:
 	get:
@@ -45,16 +46,15 @@ var wet_level: float:
 						property_value = exp(lerpf(log(dry_value), log(wet_value), wet_level))
 				audio_effect.set(property.name, property_value)
 
-@onready var bus_index: int = AudioServer.get_bus_index(audio_bus_name)
 
-
-func _ready() -> void:
-	super._ready()
+func _enter_tree() -> void:
 	assert(audio_effect_dry != null, Errors.NULL_RESOURCE)
 	assert(audio_effect_wet != null, Errors.NULL_RESOURCE)
 	assert(audio_effect_dry.get_class() == audio_effect_wet.get_class(), Errors.TYPE_ERROR)
-	assert(bus_index >= 0, Errors.INVALID_AUDIO_BUS)
 	assert(tween_duration >= 0.0, Errors.INVALID_ARGUMENT)
+
+	bus_index = AudioServer.get_bus_index(audio_bus_name)
+	assert(bus_index >= 0, Errors.INVALID_AUDIO_BUS)
 
 	audio_effect = audio_effect_dry.duplicate()
 
@@ -64,14 +64,13 @@ func _ready() -> void:
 	assert(AudioServer.get_bus_effect(bus_index, bus_effect_count) == audio_effect, Errors.CONSISTENCY_ERROR)
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		var bus_effect_count: int = AudioServer.get_bus_effect_count(bus_index)
-		for i in range(bus_effect_count):
-			if AudioServer.get_bus_effect(bus_index, i) == audio_effect:
-				AudioServer.remove_bus_effect(bus_index, i)
-				break
-		assert(AudioServer.get_bus_effect_count(bus_index) == bus_effect_count - 1, Errors.CONSISTENCY_ERROR)
+func _exit_tree() -> void:
+	var bus_effect_count: int = AudioServer.get_bus_effect_count(bus_index)
+	for i in range(bus_effect_count):
+		if AudioServer.get_bus_effect(bus_index, i) == audio_effect:
+			AudioServer.remove_bus_effect(bus_index, i)
+			break
+	assert(AudioServer.get_bus_effect_count(bus_index) == bus_effect_count - 1, Errors.CONSISTENCY_ERROR)
 
 
 func _on_target_state_entered(data: Dictionary) -> void:

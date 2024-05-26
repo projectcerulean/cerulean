@@ -50,8 +50,8 @@ layers = 8
 mesh = SubResource("BoxMesh_4kh3e")
 surface_material_override/0 = SubResource("ShaderMaterial_esmal")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("3_qy6tp")]
-_initial_state = NodePath("Disabled")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_qy6tp")]
+initial_state = NodePath("Disabled")
 persistent_data_resource = ExtResource("4_htc7t")
 
 [node name="Disabled" type="Node" parent="StateMachine"]

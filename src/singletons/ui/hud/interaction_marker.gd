@@ -30,7 +30,10 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	if game_state_resource.get_current_state() != GameStates.GAMEPLAY:
+	if (
+		not game_state_resource.is_owned()
+		or game_state_resource.get_current_state() != GameStates.GAMEPLAY
+	):
 		return
 
 	if target == null:

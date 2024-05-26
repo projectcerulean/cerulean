@@ -54,6 +54,8 @@ func update_bgm() -> void:
 			assert(bgm_resource_player != null, Errors.NULL_NODE)
 			bgm_resource_player.name = bgm_current
 			add_child(bgm_resource_player)
+			var bgm_resource_path: String = BgmIndex.BGM_INDEX[bgm_current][BgmIndex.BGM_PATH]
+			bgm_resource_player.load_bgm_resource(bgm_resource_path)
 
 			if get_child_count() > n_bgm_resource_players:
 				get_child(0).queue_free()

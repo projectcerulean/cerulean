@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtyvxpujrhww3"]
+
+[ext_resource type="Script" path="res://src/test/util/test_log_verifier/gut_test_log_verifier.gd" id="1_ox6fo"]
+
+[node name="GutTestLogVerifier" type="Node"]
+script = ExtResource("1_ox6fo")

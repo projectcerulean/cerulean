@@ -9,8 +9,9 @@ const volume_db_max: float = 0.0
 
 @export var tween_duration: float = 5.0
 
-var bgm_resource: BgmResource
-var tween: Tween
+var _bgm_resource_path: String
+var _bgm_resource: BgmResource
+var _tween: Tween
 
 var volume: float:
 	get:
@@ -48,19 +49,24 @@ func _ready() -> void:
 
 	volume = 0.0
 
-	Signals.emit_request_resource_load(self, BgmIndex.BGM_INDEX[name][BgmIndex.BGM_PATH])
+
+func load_bgm_resource(bgm_resource_path: String) -> void:
+	assert(bgm_resource_path, Errors.INVALID_ARGUMENT)
+	assert(not _bgm_resource_path, Errors.INVALID_CONTEXT)
+	_bgm_resource_path = bgm_resource_path
+	Signals.emit_request_resource_load(self, _bgm_resource_path)
 
 
 func _on_resource_load_completed(_sender: NodePath, resource_path: String, resource: Resource) -> void:
-	if resource_path != BgmIndex.BGM_INDEX[name][BgmIndex.BGM_PATH]:
+	if resource_path != _bgm_resource_path:
 		return
 
-	bgm_resource = resource as BgmResource
-	assert(bgm_resource != null, Errors.NULL_RESOURCE)
+	_bgm_resource = resource as BgmResource
+	assert(_bgm_resource != null, Errors.NULL_RESOURCE)
 
-	base_player.stream = bgm_resource.stream_sample_base
-	glide_player.stream = bgm_resource.stream_sample_glide
-	rhythm_player.stream = bgm_resource.stream_sample_rhythm
+	base_player.stream = _bgm_resource.stream_sample_base
+	glide_player.stream = _bgm_resource.stream_sample_glide
+	rhythm_player.stream = _bgm_resource.stream_sample_rhythm
 
 	assert(base_player.stream != null, Errors.NULL_RESOURCE)
 	var start_position: float = randf_range(0.0, base_player.stream.get_length())
@@ -76,14 +82,14 @@ func _on_resource_load_completed(_sender: NodePath, resource_path: String, resou
 		rhythm_player.play()
 		rhythm_player.seek(start_position)
 
-	if tween != null and tween.is_valid() and not tween.is_running():
-		tween.play()
+	if _tween != null and _tween.is_valid() and not _tween.is_running():
+		_tween.play()
 
 
 func set_enabled(enabled: bool):
-	if tween != null:
-		tween.kill()
-	tween = create_tween()
-	tween.tween_property(self, "volume", float(enabled), tween_duration)
-	if bgm_resource == null:
-		tween.pause()
+	if _tween != null:
+		_tween.kill()
+	_tween = create_tween()
+	_tween.tween_property(self, "volume", float(enabled), tween_duration)
+	if _bgm_resource == null:
+		_tween.pause()

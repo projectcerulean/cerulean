@@ -4,13 +4,12 @@
 extends ColorRect
 
 @export var tween_duration: float = 0.1
-@export var _game_state_resource: Resource
+@export var game_state_resource: StateResource
 
 var tween: Tween
 
 @onready var color_max: Color = color
 @onready var color_min: Color = Color(color_max.r, color_max.g, color_max.g, 0.0)
-@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 
 func _ready() -> void:
@@ -22,7 +21,11 @@ func _ready() -> void:
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.get_state_machine() and state == GameStates.PAUSE:
+	if (
+		game_state_resource.is_owned()
+		and sender == game_state_resource.get_state_machine()
+		and state == GameStates.PAUSE
+	):
 		show()
 		if tween != null:
 				tween.kill()
@@ -33,7 +36,11 @@ func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -
 
 
 func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.get_state_machine() and state == GameStates.PAUSE:
+	if (
+		game_state_resource.is_owned()
+		and sender == game_state_resource.get_state_machine()
+		and state == GameStates.PAUSE
+	):
 		if tween != null:
 				tween.kill()
 		tween = create_tween()

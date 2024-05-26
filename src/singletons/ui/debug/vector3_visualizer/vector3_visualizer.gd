@@ -9,21 +9,20 @@ var vectors_from: Dictionary
 var vectors_to: Dictionary
 var colors: Dictionary
 
-@onready var camera: Camera3D = get_viewport().get_camera_3d()
-
 
 func _ready() -> void:
 	Signals.scene_changed.connect(_on_scene_changed)
 	Signals.visualize_vector3.connect(_on_visualize_vector3)
-	assert(camera != null, Errors.NULL_NODE)
 
 
 func _draw() -> void:
-	for sender in vectors_from:
-		var point_from: Vector3 = vectors_from[sender]
-		var point_to: Vector3 = vectors_to[sender]
-		if not camera.is_position_behind(point_from) and not camera.is_position_behind(point_to):
-			draw_line(camera.unproject_position(point_from), camera.unproject_position(point_to), colors[sender], line_width, true)
+	var camera: Camera3D = get_viewport().get_camera_3d()
+	if is_instance_valid(camera):
+		for sender in vectors_from:
+			var point_from: Vector3 = vectors_from[sender]
+			var point_to: Vector3 = vectors_to[sender]
+			if not camera.is_position_behind(point_from) and not camera.is_position_behind(point_to):
+				draw_line(camera.unproject_position(point_from), camera.unproject_position(point_to), colors[sender], line_width, true)
 
 
 func _on_scene_changed(_sender: NodePath):

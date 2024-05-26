@@ -45,8 +45,8 @@ signal water_exited
 # Assert that all the signals above have a corresponding emission function below
 func _ready() -> void:
 	var node: Node = Node.new()
-	var default_signals: Array[String] = []
-	var default_methods: Array[String] = []
+	var default_signals: PackedStringArray = []
+	var default_methods: PackedStringArray = []
 	for s in node.get_signal_list():
 		default_signals.append(s["name"])
 	for m in node.get_method_list():
@@ -72,6 +72,8 @@ func _ready() -> void:
 # Helper function for emitting signals
 func emit(sig: Signal, sender: Node, args: Array) -> void:
 	var signal_name: String = sig.get_name()
+	assert(sender.is_inside_tree(), Errors.INVALID_ARGUMENT)
+	assert(is_same(sender.get_tree(), get_tree()), Errors.INVALID_ARGUMENT)
 	var sender_path: NodePath = sender.get_path()
 	#debug_write.emit(sender.name, str(signal_name, ", ", args.slice(1, args.size())))
 	callv(&"call_deferred", [&"emit_signal", signal_name, sender_path] + args)

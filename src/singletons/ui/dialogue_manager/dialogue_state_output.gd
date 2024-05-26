@@ -22,7 +22,13 @@ func process(delta: float) -> void:
 
 
 func get_transition() -> StringName:
-	if dialogue_manager.game_state_resource.get_current_state() == GameStates.DIALOGUE:
-		if dialogue_manager.label.visible_characters >= dialogue_manager.label.text.length() or Input.is_action_just_pressed(InputActions.UI_ACCEPT):
+	if (
+		dialogue_manager.game_state_resource.is_owned()
+		and dialogue_manager.game_state_resource.get_current_state() == GameStates.DIALOGUE
+	):
+		if (
+			dialogue_manager.label.visible_characters >= dialogue_manager.label.text.length()
+			or Input.is_action_just_pressed(InputActions.UI_ACCEPT)
+		):
 			return DialogueStates.WAIT
 	return StringName()

@@ -57,6 +57,7 @@ layout_mode = 2
 key_string = &"Quit"
 
 [node name="Levels" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -71,15 +72,16 @@ alignment = 2
 
 [node name="TestScene" parent="Levels" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_level_option = true
 key_string = &"PROTOTYPE_SCENE"
+is_level_option = true
 
 [node name="TestDungeon" parent="Levels" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_level_option = true
 key_string = &"PROTOTYPE_DUNGEON"
+is_level_option = true
 
 [node name="Settings" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -94,41 +96,41 @@ alignment = 2
 
 [node name="BackgroundMusic" parent="Settings" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_settings_option = true
 key_string = &"BACKGROUND_MUSIC"
+is_settings_option = true
 
 [node name="CameraX" parent="Settings" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_settings_option = true
 key_string = &"CAMERA_X_INVERTED"
+is_settings_option = true
 
 [node name="CameraY" parent="Settings" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_settings_option = true
 key_string = &"CAMERA_Y_INVERTED"
+is_settings_option = true
 
 [node name="FieldOfView" parent="Settings" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_settings_option = true
 key_string = &"FIELD_OF_VIEW"
+is_settings_option = true
 
 [node name="RenderScale" parent="Settings" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_settings_option = true
 key_string = &"RENDER_SCALE"
+is_settings_option = true
 
 [node name="Msaa" parent="Settings" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_settings_option = true
 key_string = &"MSAA"
+is_settings_option = true
 
 [node name="Vsync" parent="Settings" instance=ExtResource("5_jy57n")]
 layout_mode = 2
-is_settings_option = true
 key_string = &"VSYNC"
+is_settings_option = true
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("6_qsjkl")]
-_initial_state = NodePath("Main")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_qsjkl")]
+initial_state = NodePath("Main")
 
 [node name="Main" type="Node" parent="StateMachine"]
 script = ExtResource("7_rgeje")

@@ -156,7 +156,7 @@ func create_state_machine(
 			initial_state = state
 
 	assert(initial_state != null, Errors.NULL_NODE)
-	state_machine._initial_state = initial_state
+	state_machine.initial_state = initial_state
 	state_machine.persistent_data_resource = persistent_data_resource
 	state_machine.transition_frame = transition_frame
 

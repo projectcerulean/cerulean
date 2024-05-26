@@ -4,16 +4,21 @@
 extends UnitTest
 
 const test_state_resource_manager_params = [
-	[[], true],
-	[[], false],
-	[[&"state_1", &"state_2", &"state_3"], true],
-	[[&"state_1", &"state_2", &"state_3"], false],
+	[[], true, true],
+	[[], false, true],
+	[[&"state_1", &"state_2", &"state_3"], true, true],
+	[[&"state_1", &"state_2", &"state_3"], false, true],
+	[[], true, false],
+	[[], false, false],
+	[[&"state_1", &"state_2", &"state_3"], true, false],
+	[[&"state_1", &"state_2", &"state_3"], false, false],
 ]
 
 
 func test_state_resource_manager(params=use_parameters(test_state_resource_manager_params)):
 	var states: Array = params[0]
 	var is_correct_state_machine_emitting: bool = params[1]
+	var use_absolute_path: bool = params[2]
 
 	var state_machine_dummy_target: Node = Node.new()
 	add_child_autofree(state_machine_dummy_target)
@@ -25,8 +30,10 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 	var state_resource: StateResource = StateResource.new()
 	assert_false(state_resource.is_owned(), "State resource already owned immediately after being created")
 
+	var state_machine_path: NodePath = state_machine_dummy_target.get_path() if use_absolute_path else "../" + state_machine_dummy_target.name
+
 	var state_resource_manager: StateResourceManager = create_state_resource_manager(
-		state_machine_dummy_target.get_path(),
+		state_machine_path,
 		state_resource,
 	)
 	add_child(state_resource_manager)
@@ -60,6 +67,6 @@ func create_state_resource_manager(state_machine_path: NodePath, state_resource:
 	assert(state_resource_manager != null, Errors.NULL_NODE)
 
 	state_resource_manager._state_machine = state_machine_path
-	state_resource_manager._state_resource = state_resource
+	state_resource_manager.state_resource = state_resource
 
 	return state_resource_manager

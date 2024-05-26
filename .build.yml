@@ -38,6 +38,7 @@ tasks:
     sed -i "s/const GIT_HASH: String = \"\"/const GIT_HASH: String = \"$(git rev-parse HEAD)\"/g" src/constants/version.gd
 - run_unit_tests: |
     cd cerulean
+    timeout --verbose "${COMMAND_TIMEOUT}" sh -c "make GODOT=../Godot_v${GODOT_VERSION}-stable_linux.x86_64 check_scripts"
     timeout --verbose "${COMMAND_TIMEOUT}" sh -c "make GODOT=../Godot_v${GODOT_VERSION}-stable_linux.x86_64 test"
 - export_game_pack: |
     cd cerulean

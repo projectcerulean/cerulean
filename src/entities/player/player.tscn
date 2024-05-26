@@ -264,8 +264,8 @@ transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 4.37114e
 transform = Transform3D(-4.37114e-08, -3.59989e-21, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, -0.25, 1.03655e-08, 0.487136)
 remote_path = NodePath("../../../../../../Particles/RemoteTransformTargets/RollParticles")
 
-[node name="StateMachine" parent="MeshAnchor/PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
-_initial_state = NodePath("Idle")
+[node name="StateMachine" parent="MeshAnchor/PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("initial_state") instance=ExtResource("13_m5ip5")]
+initial_state = NodePath("Idle")
 
 [node name="Bounce" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
 script = ExtResource("9_uwrsl")
@@ -390,8 +390,8 @@ player_state_resource = ExtResource("12")
 
 [node name="WaterDetector" parent="MeshAnchor/PhysicsStepInterpolator/OneShotWaterSplashParticleController" instance=ExtResource("25_e1r3t")]
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("13_m5ip5")]
-_initial_state = NodePath("Idle")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("13_m5ip5")]
+initial_state = NodePath("Idle")
 transition_frame = 1
 
 [node name="Bounce" type="Node" parent="StateMachine"]
@@ -489,7 +489,7 @@ one_shot = true
 
 [node name="StateResourceManager" parent="." instance=ExtResource("29_l8kw8")]
 _state_machine = NodePath("../StateMachine")
-_state_resource = ExtResource("12")
+state_resource = ExtResource("12")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1

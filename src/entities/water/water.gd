@@ -20,7 +20,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	shader_material.set_shader_parameter(&"wave_time", time_resource_gameplay.get_value())
 	shader_material.set_shader_parameter(&"wave_period", environment_resource.value.water_wave_period)
 	shader_material.set_shader_parameter(&"wave_strength", environment_resource.value.water_wave_strength)
 	shader_material.set_shader_parameter(&"wave_time_factor", environment_resource.value.water_wave_time_factor)
@@ -28,5 +27,12 @@ func _process(_delta: float) -> void:
 	shader_material.set_shader_parameter(&"water_color", environment_resource.value.water_color)
 	shader_material.set_shader_parameter(&"water_color_highlight", environment_resource.value.water_color_highlight)
 	shader_material.set_shader_parameter(&"foam_color", environment_resource.value.water_color_foam)
-	shader_material.set_shader_parameter(&"blob_shadow_player_position", player_transform_resource.get_value().origin)
-	shader_material.set_shader_parameter(&"player_blob_shadow_enabled", player_water_blob_shadow_enabled_resource.get_value())
+
+	var wave_time: float = time_resource_gameplay.get_value() if time_resource_gameplay.is_owned() else 0.0
+	shader_material.set_shader_parameter(&"wave_time", wave_time)
+
+	var player_position: Vector3 = player_transform_resource.get_value().origin if player_transform_resource.is_owned() else Vector3.ZERO
+	shader_material.set_shader_parameter(&"blob_shadow_player_position", player_position)
+
+	var player_blob_shadow_enabled: bool = player_water_blob_shadow_enabled_resource.get_value() if player_water_blob_shadow_enabled_resource.is_owned() else false
+	shader_material.set_shader_parameter(&"player_blob_shadow_enabled", player_blob_shadow_enabled)

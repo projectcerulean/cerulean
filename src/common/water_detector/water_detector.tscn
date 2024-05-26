@@ -12,8 +12,8 @@ collision_layer = 0
 collision_mask = 16
 monitorable = false
 script = ExtResource("1_axsn5")
-_environment_resource = ExtResource("2_otj83")
-_time_resource_gameplay = ExtResource("3_s0c6i")
+environment_resource = ExtResource("2_otj83")
+time_resource_gameplay = ExtResource("3_s0c6i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("7")

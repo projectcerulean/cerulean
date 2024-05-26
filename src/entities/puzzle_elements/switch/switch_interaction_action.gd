@@ -4,13 +4,15 @@
 class_name SwitchInteractionAction
 extends InteractionAction
 
-@onready var switch: Switch = owner
+@export var switch: NodePath
 
 
-func _ready() -> void:
+func check(caller: Node3D) -> void:
+	var switch: Switch = caller.get_node(switch) as Switch
 	assert(switch != null, Errors.NULL_NODE)
 
 
-func interact() -> void:
-	super.interact()
+func interact(caller: Node3D) -> void:
+	super.interact(caller)
+	var switch: Switch = caller.get_node(switch) as Switch
 	switch.flip()

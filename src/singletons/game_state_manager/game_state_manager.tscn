@@ -51,8 +51,8 @@ volume_db = -80.0
 process_mode = 3
 script = ExtResource("4")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("3_hoole")]
-_initial_state = NodePath("Startup")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_hoole")]
+initial_state = NodePath("Startup")
 
 [node name="Dialogue" type="Node" parent="StateMachine"]
 script = ExtResource("4_26nrj")
@@ -74,7 +74,7 @@ script = ExtResource("5_c7xwc")
 
 [node name="StateResourceManager" parent="." instance=ExtResource("8_e4ws0")]
 _state_machine = NodePath("../StateMachine")
-_state_resource = ExtResource("3")
+state_resource = ExtResource("3")
 
 [node name="AudioEffects" type="Node" parent="."]
 

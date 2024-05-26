@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://blysdbts7tc6d"]
+[gd_scene load_steps=20 format=3 uid="uid://blysdbts7tc6d"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_7i1pt"]
@@ -37,6 +37,11 @@ shader_parameter/roughness = 0.5
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/emission_energy = 1.0
+
+[sub_resource type="Resource" id="Resource_li13b"]
+resource_local_to_scene = true
+script = ExtResource("3_bgjta")
+switch = NodePath("../../..")
 
 [node name="Switch" type="StaticBody3D"]
 collision_layer = 8
@@ -119,12 +124,10 @@ layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 
 [node name="Interaction" parent="Joint/Crystal" instance=ExtResource("2_hkiaq")]
+interaction_action = SubResource("Resource_li13b")
 
-[node name="Action" type="Node3D" parent="Joint/Crystal/Interaction"]
-script = ExtResource("3_bgjta")
-
-[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("9_tdrh8")]
-_initial_state = NodePath("Disabled")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("9_tdrh8")]
+initial_state = NodePath("Disabled")
 persistent_data_resource = ExtResource("10_4sdp5")
 
 [node name="Disabled" type="Node" parent="StateMachine"]

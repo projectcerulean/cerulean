@@ -29,7 +29,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	match game_state_resource.get_current_state():
+	var game_state: StringName = game_state_resource.get_current_state() if game_state_resource.is_owned() else GameStates.GAMEPLAY
+	match game_state:
 		GameStates.DIALOGUE:
 			if dialogue_target:
 				var dialogue_target_node: Node3D = get_node(dialogue_target) as Node3D
@@ -37,7 +38,8 @@ func _process(delta: float) -> void:
 					dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, (dialogue_target_node.global_position - player_transform_resource.get_value().origin) / 2.0, dialogue_lerp_weight, delta)
 					global_position = dialogue_target_position_start + dialogue_target_offset
 		GameStates.GAMEPLAY:
-			if player_transform_resource.is_owned():
+			if player_transform_resource.is_owned() or player_state_resource.is_owned():
+				assert(player_transform_resource.is_owned() and player_state_resource.is_owned(), Errors.CONSISTENCY_ERROR)
 				dialogue_target_offset = Lerp.delta_lerp3(dialogue_target_offset, Vector3.ZERO, dialogue_lerp_weight, delta)
 				global_position.x = player_transform_resource.get_value().origin.x + dialogue_target_offset.x
 				global_position.z = player_transform_resource.get_value().origin.z + dialogue_target_offset.z

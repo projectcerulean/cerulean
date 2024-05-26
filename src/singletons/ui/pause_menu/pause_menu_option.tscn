@@ -20,7 +20,6 @@ scene_info_resource = ExtResource("3_m0nkd")
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
-text = "Key"
 
 [node name="Padding" type="Control" parent="."]
 layout_mode = 2
@@ -31,6 +30,5 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
-text = "Value"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -11,15 +11,17 @@ const seconds_per_minute: float = 60.0
 @onready var bpm: float = bpm_default
 
 
-func _ready() -> void:
-	Signals.bgm_changed.connect(self._on_bgm_changed)
+func _enter_tree() -> void:
 	assert(lfo_value_fourth_resource != null, Errors.NULL_RESOURCE)
 	lfo_value_fourth_resource.claim_ownership(self)
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		lfo_value_fourth_resource.release_ownership(self)
+func _exit_tree() -> void:
+	lfo_value_fourth_resource.release_ownership(self)
+
+
+func _ready() -> void:
+	Signals.bgm_changed.connect(self._on_bgm_changed)
 
 
 func _process(_delta: float) -> void:

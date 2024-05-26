@@ -13,6 +13,11 @@ const GUT_TEST_DIRS: PackedStringArray = [
 const MAIN_SRC_DIR: String = "res://src/"
 
 
+func gut_print(string: String) -> void:
+	@warning_ignore("unsafe_method_access")
+	gut.p(string)
+
+
 func load_scene(file_name: String) -> PackedScene:
 	var resource: Resource = load_resource(file_name)
 	var scene: PackedScene = resource as PackedScene

@@ -26,8 +26,8 @@ mesh = SubResource("BoxMesh_nssbg")
 surface_material_override/0 = SubResource("ShaderMaterial_eeml1")
 script = ExtResource("2_gr7c4")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("3_qh7ys")]
-_initial_state = NodePath("Disabled")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_qh7ys")]
+initial_state = NodePath("Disabled")
 persistent_data_resource = ExtResource("4_btgvr")
 
 [node name="Disabled" type="Node" parent="StateMachine"]

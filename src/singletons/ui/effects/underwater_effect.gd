@@ -3,9 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends ColorRect
 
-@export var _environment_resource: Resource
+@export var environment_resource: EnvironmentResource
 
-@onready var environment_resource: EnvironmentResource = _environment_resource as EnvironmentResource
 @onready var shader_material: ShaderMaterial = material as ShaderMaterial
 
 

@@ -4,11 +4,10 @@
 extends ColorRect
 
 @export var tween_duration: float = 0.1
-@export var _game_state_resource: Resource
+@export var game_state_resource: StateResource
 
 @onready var shader_material: ShaderMaterial = material as ShaderMaterial
 @onready var blur_strength_max: float = shader_material.get_shader_parameter("blur_strength")
-@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 var blur_strength: float = 0.0
 var tween: Tween
@@ -23,7 +22,11 @@ func _ready() -> void:
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.get_state_machine() and state == GameStates.PAUSE:
+	if (
+		game_state_resource.is_owned()
+		and sender == game_state_resource.get_state_machine()
+		and state == GameStates.PAUSE
+	):
 		show()
 		if tween != null:
 				tween.kill()
@@ -34,7 +37,11 @@ func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -
 
 
 func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.get_state_machine() and state == GameStates.PAUSE:
+	if (
+		game_state_resource.is_owned()
+		and sender == game_state_resource.get_state_machine()
+		and state == GameStates.PAUSE
+	):
 		if tween != null:
 				tween.kill()
 		tween = create_tween()

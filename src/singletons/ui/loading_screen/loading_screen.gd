@@ -12,5 +12,8 @@ func _ready() -> void:
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
-	if sender == game_state_resource.get_state_machine():
+	if (
+		game_state_resource.is_owned()
+		and sender == game_state_resource.get_state_machine()
+	):
 		self.visible = state == GameStates.LOADING_SCREEN

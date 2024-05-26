@@ -46,8 +46,8 @@ layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 light_energy = 2.0
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("5_6h84w")]
-_initial_state = NodePath("Disabled")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("5_6h84w")]
+initial_state = NodePath("Disabled")
 persistent_data_resource = ExtResource("6_7028p")
 
 [node name="Disabled" type="Node" parent="StateMachine"]

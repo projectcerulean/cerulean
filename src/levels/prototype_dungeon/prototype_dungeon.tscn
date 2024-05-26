@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ct8hn0mrxp0d6"]
+[gd_scene load_steps=63 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="2_af2ft"]
@@ -287,20 +287,6 @@ shader_parameter/smooth_range = 0.5
 shader_parameter/color_old = Color(1, 0.270588, 0, 1)
 shader_parameter/color_new = Color(0, 0.709804, 1, 1)
 shader_parameter/flip_colors = false
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2vod"]
-resource_local_to_scene = true
-albedo_color = Color(0.702097, 0.612501, 0.556948, 1)
-distance_fade_mode = 3
-distance_fade_min_distance = 0.5
-distance_fade_max_distance = 2.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5bge"]
-resource_local_to_scene = true
-albedo_color = Color(0.702097, 0.612501, 0.556948, 1)
-distance_fade_mode = 3
-distance_fade_min_distance = 0.5
-distance_fade_max_distance = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vrsx2"]
 size = Vector3(512, 512, 512)
@@ -1201,26 +1187,10 @@ omni_attenuation = 0.0220971
 
 [node name="BouncePadTutorial" parent="Env/Ascension/Walls" instance=ExtResource("10_g8ijk")]
 transform = Transform3D(-0.866025, -0.5, -5.97109e-08, -4.37114e-08, -4.37114e-08, 1, -0.5, 0.866025, 1.59995e-08, -5, -31.9683, 9)
-
-[node name="Post" parent="Env/Ascension/Walls/BouncePadTutorial" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_m2vod")
-
-[node name="Sign" parent="Env/Ascension/Walls/BouncePadTutorial" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_m2vod")
-
-[node name="Action" parent="Env/Ascension/Walls/BouncePadTutorial/Interaction" index="1"]
 dialogue_resource = ExtResource("15_br4r3")
 
 [node name="AirBrakeTutorial" parent="Env/Ascension/Walls" instance=ExtResource("10_g8ijk")]
 transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, -6, -31.9683, 11)
-
-[node name="Post" parent="Env/Ascension/Walls/AirBrakeTutorial" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_m2vod")
-
-[node name="Sign" parent="Env/Ascension/Walls/AirBrakeTutorial" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_m2vod")
-
-[node name="Action" parent="Env/Ascension/Walls/AirBrakeTutorial/Interaction" index="1"]
 dialogue_resource = ExtResource("16_6urtp")
 
 [node name="Ascension2" type="Node3D" parent="Env"]
@@ -1427,14 +1397,6 @@ size = Vector3(4, 2, 4)
 
 [node name="SignPost" parent="Env/End/Walls/Block" instance=ExtResource("10_g8ijk")]
 transform = Transform3D(0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="Post" parent="Env/End/Walls/Block/SignPost" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_p5bge")
-
-[node name="Sign" parent="Env/End/Walls/Block/SignPost" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_p5bge")
-
-[node name="Action" parent="Env/End/Walls/Block/SignPost/Interaction" index="1"]
 dialogue_resource = ExtResource("11_20llv")
 
 [node name="Block2" type="CSGBox3D" parent="Env/End/Walls"]
@@ -1536,9 +1498,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 49, -24.1226)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13, 0)
 
 [editable path="Env/CentralRoom/Walls/Circuit/Indicator"]
-[editable path="Env/Ascension/Walls/BouncePadTutorial"]
-[editable path="Env/Ascension/Walls/AirBrakeTutorial"]
 [editable path="Env/Ascension2/Walls2/Rotator"]
 [editable path="Env/Ascension2/Walls2/Rotator2"]
 [editable path="Env/Ascension2/Walls2/Rotator3"]
-[editable path="Env/End/Walls/Block/SignPost"]

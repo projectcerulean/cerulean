@@ -19,14 +19,13 @@ extends Node
 )
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	assert(thumbstick_resource_left != null, Errors.NULL_RESOURCE)
 	thumbstick_resource_left.claim_ownership(self)
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		thumbstick_resource_left.release_ownership(self)
+func _exit_tree() -> void:
+	thumbstick_resource_left.release_ownership(self)
 
 
 func _process(_delta: float) -> void:

@@ -11,18 +11,19 @@ var scene_path_next: String = String()
 var spawn_point_id_next: int = 0
 
 
-func _ready() -> void:
-	Signals.request_scene_change.connect(_on_request_scene_change)
-	Signals.resource_load_completed.connect(_on_resource_load_completed)
-	Signals.state_entered.connect(_on_state_entered)
-
+func _enter_tree() -> void:
 	assert(scene_info_resource, Errors.NULL_RESOURCE)
 	scene_info_resource.claim_ownership(self)
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		scene_info_resource.release_ownership(self)
+func _exit_tree() -> void:
+	scene_info_resource.release_ownership(self)
+
+
+func _ready() -> void:
+	Signals.request_scene_change.connect(_on_request_scene_change)
+	Signals.resource_load_completed.connect(_on_resource_load_completed)
+	Signals.state_entered.connect(_on_state_entered)
 
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:

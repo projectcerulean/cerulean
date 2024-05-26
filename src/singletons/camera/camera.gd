@@ -5,10 +5,10 @@ extends Marker3D
 
 const pitch_limit: float = PI / 2.0 - 0.1
 
-@export var _thumbstick_resource_right: Resource
-@export var _settings_resource: Resource
-@export var _target_transform_resource: Resource
-@export var _game_state_resource: Resource
+@export var thumbstick_resource_right: Vector2Resource
+@export var settings_resource: SettingsResource
+@export var target_transform_resource: TransformResource
+@export var game_state_resource: StateResource
 
 @onready var yaw_pivot: Marker3D = get_node("YawPivot") as Marker3D
 @onready var pitch_pivot: Marker3D = get_node("YawPivot/PitchPivot") as Marker3D
@@ -32,11 +32,6 @@ const pitch_limit: float = PI / 2.0 - 0.1
 
 var camera_rotation_speed: Vector2 = Vector2()
 var camera_distance_speed: float = 0.0
-
-@onready var thumbstick_resource_right: Vector2Resource = _thumbstick_resource_right as Vector2Resource
-@onready var settings_resource: SettingsResource = _settings_resource as SettingsResource
-@onready var target_transform_resource: TransformResource = _target_transform_resource as TransformResource
-@onready var game_state_resource: StateResource = _game_state_resource as StateResource
 
 @onready var camera_distance_default: float = camera_anchor.position.z
 @onready var pitch_default: float = pitch_pivot.rotation.x
@@ -63,25 +58,27 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_position = target_transform_resource.get_value().origin
+	if target_transform_resource.is_owned():
+		global_position = target_transform_resource.get_value().origin
 
-	if game_state_resource.get_current_state() in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
+	var game_state: StringName = game_state_resource.get_current_state() if game_state_resource.is_owned() else GameStates.GAMEPLAY
+
+	if game_state in [GameStates.GAMEPLAY, GameStates.DIALOGUE]:
 		var rotation_speed_target: Vector2 = Vector2()
 		var distance_speed_target: float = 0.0
-		if Input.is_action_pressed(InputActions.CAMERA_ZOOM_TOGGLE):
-			distance_speed_target = thumbstick_resource_right.get_value().y * camera_distance_speed_max
-		else:
-			rotation_speed_target = thumbstick_resource_right.get_value() * camera_rotation_speed_max
-			if Settings.SETTINGS.CAMERA_X_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_X_INVERTED]]:
-				rotation_speed_target.x *= -1.0
-			if Settings.SETTINGS.CAMERA_Y_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_Y_INVERTED]]:
-				rotation_speed_target.y *= -1.0
+		if thumbstick_resource_right.is_owned():
+			if Input.is_action_pressed(InputActions.CAMERA_ZOOM_TOGGLE):
+				distance_speed_target = thumbstick_resource_right.get_value().y * camera_distance_speed_max
+			else:
+				rotation_speed_target = thumbstick_resource_right.get_value() * camera_rotation_speed_max
+				if Settings.SETTINGS.CAMERA_X_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_X_INVERTED]]:
+					rotation_speed_target.x *= -1.0
+				if Settings.SETTINGS.CAMERA_Y_INVERTED.VALUES[settings_resource.settings[Settings.CAMERA_Y_INVERTED]]:
+					rotation_speed_target.y *= -1.0
 
-		# Mouse wheel only generates 'released' events, not 'pressed' events.
-		# https://github.com/godotengine/godot/issues/36322
-		if Input.is_action_just_released(InputActions.CAMERA_ZOOM_IN):
+		if Input.is_action_just_pressed(InputActions.CAMERA_ZOOM_IN):
 			distance_speed_target = -camera_distance_speed_max
-		elif Input.is_action_just_released(InputActions.CAMERA_ZOOM_OUT):
+		elif Input.is_action_just_pressed(InputActions.CAMERA_ZOOM_OUT):
 			distance_speed_target = camera_distance_speed_max
 
 		camera_distance_speed = Lerp.delta_lerp(camera_distance_speed, distance_speed_target, camera_distance_lerp_weight, delta)
@@ -135,7 +132,8 @@ func _process(delta: float) -> void:
 	camera.position.z = Lerp.delta_lerp(camera.position.z, -camera_push_distance_target, camera_push_weight, delta)
 
 	# Look at target
-	camera.look_at(target_transform_resource.get_value().origin)
+	if target_transform_resource.is_owned():
+		camera.look_at(target_transform_resource.get_value().origin)
 
 
 func _on_scene_changed(_sender: NodePath) -> void:

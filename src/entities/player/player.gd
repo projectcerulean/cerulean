@@ -23,44 +23,47 @@ var can_double_jump: bool
 @onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 
 
-func _ready() -> void:
-	super._ready()
-
+func _enter_tree() -> void:
 	assert(thumbstick_resource_left != null, Errors.NULL_RESOURCE)
 	assert(input_vector_resource != null, Errors.NULL_RESOURCE)
 	assert(state_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
+	input_vector_resource.claim_ownership(self)
+
+
+func _exit_tree() -> void:
+	input_vector_resource.release_ownership(self)
+
+
+func _ready() -> void:
+	super._ready()
+
 	assert(collision_shape != null, Errors.NULL_RESOURCE)
 	assert(coyote_timer != null, Errors.NULL_NODE)
 	assert(jump_buffer_timer != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
 	assert(state_machine != null, Errors.NULL_NODE)
 
-	input_vector_resource.claim_ownership(self)
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		input_vector_resource.release_ownership(self)
-
 
 func _process(_delta: float) -> void:
-	# Update input vector according to thumbstick and camera position
-	var camera_vector: Vector3 = global_position - camera_transform_resource.get_value().origin
-	camera_vector.y = 0.0
-	camera_vector = camera_vector.normalized()
-	var camera_yaw_rads: float = camera_vector.signed_angle_to(Vector3.FORWARD, Vector3.UP)
-	planar_input_vector = thumbstick_resource_left.get_value().rotated(camera_yaw_rads).limit_length()
-	input_vector_resource.set_value(self, planar_input_vector)
+	if camera_transform_resource.is_owned():
+		# Update input vector according to thumbstick and camera position
+		var camera_vector: Vector3 = global_position - camera_transform_resource.get_value().origin
+		camera_vector.y = 0.0
+		camera_vector = camera_vector.normalized()
+		var camera_yaw_rads: float = camera_vector.signed_angle_to(Vector3.FORWARD, Vector3.UP)
+		planar_input_vector = thumbstick_resource_left.get_value().rotated(camera_yaw_rads).limit_length()
+		input_vector_resource.set_value(self, planar_input_vector)
 
-	# Perform interaction
-	if Input.is_action_just_pressed(InputActions.INTERACT) and game_state_resource.get_current_state() == GameStates.GAMEPLAY:
-		Signals.emit_request_interaction(self)
+	if game_state_resource.is_owned():
+		# Perform interaction
+		if Input.is_action_just_pressed(InputActions.INTERACT) and game_state_resource.get_current_state() == GameStates.GAMEPLAY:
+			Signals.emit_request_interaction(self)
 
-	# Pause the game
-	if Input.is_action_just_pressed(InputActions.PAUSE) and game_state_resource.get_current_state() == GameStates.GAMEPLAY:
-		Signals.emit_request_game_pause(self)
+		# Pause the game
+		if Input.is_action_just_pressed(InputActions.PAUSE) and game_state_resource.get_current_state() == GameStates.GAMEPLAY:
+			Signals.emit_request_game_pause(self)
 
 
 func on_bounce(bounce_normal: Vector3, bounce_min_speed: float, bounce_elasticity: float):

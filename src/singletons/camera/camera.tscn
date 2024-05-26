@@ -13,10 +13,10 @@
 [node name="Camera" type="Marker3D"]
 process_mode = 3
 script = ExtResource("1_8vlcf")
-_thumbstick_resource_right = ExtResource("2_yl0p3")
-_settings_resource = ExtResource("3_xpd0r")
-_target_transform_resource = ExtResource("4_qcnfh")
-_game_state_resource = ExtResource("5_wjhc2")
+thumbstick_resource_right = ExtResource("2_yl0p3")
+settings_resource = ExtResource("3_xpd0r")
+target_transform_resource = ExtResource("4_qcnfh")
+game_state_resource = ExtResource("5_wjhc2")
 
 [node name="YawPivot" type="Marker3D" parent="."]
 

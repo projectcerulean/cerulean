@@ -13,7 +13,7 @@ bg_color = Color(0, 0, 0.0627451, 0.627451)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_r7ctw")
-_game_state_resource = ExtResource("2_f52uj")
+game_state_resource = ExtResource("2_f52uj")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -22,8 +22,8 @@ offset_bottom = 45.0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_7a8fw")
 
-[node name="StateMachine" parent="." node_paths=PackedStringArray("_initial_state") instance=ExtResource("3_5jouh")]
-_initial_state = NodePath("Wait")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_5jouh")]
+initial_state = NodePath("Wait")
 
 [node name="Output" type="Node" parent="StateMachine"]
 script = ExtResource("6_n3v8x")
