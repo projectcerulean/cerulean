@@ -23,7 +23,7 @@ var volume: float:
 	set (value):
 		assert(not is_nan(value) and not is_inf(value), Errors.INVALID_ARGUMENT)
 		volume = clampf(value, 0.0, 1.0)
-		for _audio_stream_player in get_children():
+		for _audio_stream_player: Node in get_children():
 			var audio_stream_player: AudioStreamPlayer = _audio_stream_player as AudioStreamPlayer
 			audio_stream_player.volume_db = linear_to_db(lerpf(db_to_linear(volume_db_min), db_to_linear(volume_db_max), volume))
 
@@ -86,7 +86,7 @@ func _on_resource_load_completed(_sender: NodePath, resource_path: String, resou
 		_tween.play()
 
 
-func set_enabled(enabled: bool):
+func set_enabled(enabled: bool) -> void:
 	if _tween != null:
 		_tween.kill()
 	_tween = create_tween()

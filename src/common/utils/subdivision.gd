@@ -10,12 +10,12 @@ static func subdivide_color_array(array: PackedColorArray, n_subdivisions: int) 
 	if array_subdivided.size() < 2:
 		return array_subdivided
 
-	for i_subdivision in n_subdivisions:
+	for i_subdivision: int in n_subdivisions:
 		var array_subdivided_new: PackedColorArray = PackedColorArray()
 		array_subdivided_new.resize(2 * array_subdivided.size() - 1)
-		for i_point in range(len(array_subdivided)):
+		for i_point: int in range(len(array_subdivided)):
 			array_subdivided_new[2 * i_point] = array_subdivided[i_point]
-		for i_point in range(1, len(array_subdivided_new), 2):
+		for i_point: int in range(1, len(array_subdivided_new), 2):
 			array_subdivided_new[i_point] = 0.5 * (array_subdivided_new[i_point - 1] + array_subdivided_new[i_point + 1])
 
 		var array_subdivided_new_smoothed: PackedColorArray = PackedColorArray()
@@ -24,7 +24,7 @@ static func subdivide_color_array(array: PackedColorArray, n_subdivisions: int) 
 		array_subdivided_new_smoothed[0] = array_subdivided_new[0]
 		array_subdivided_new_smoothed[-1] = array_subdivided_new[-1]
 
-		for i_point in range(1, len(array_subdivided_new_smoothed) - 1):
+		for i_point: int in range(1, len(array_subdivided_new_smoothed) - 1):
 			array_subdivided_new_smoothed[i_point] = (
 				0.5 * array_subdivided_new[i_point]
 				+ 0.25 * array_subdivided_new[i_point - 1]
@@ -40,12 +40,12 @@ static func subdivide_float64_array(array: PackedFloat64Array, n_subdivisions: i
 	if array_subdivided.size() < 2:
 		return array_subdivided
 
-	for i_subdivision in n_subdivisions:
+	for i_subdivision: int in n_subdivisions:
 		var array_subdivided_new: PackedFloat64Array = PackedFloat64Array()
 		array_subdivided_new.resize(2 * array_subdivided.size() - 1)
-		for i_point in range(len(array_subdivided)):
+		for i_point: int in range(len(array_subdivided)):
 			array_subdivided_new[2 * i_point] = array_subdivided[i_point]
-		for i_point in range(1, len(array_subdivided_new), 2):
+		for i_point: int in range(1, len(array_subdivided_new), 2):
 			array_subdivided_new[i_point] = 0.5 * (array_subdivided_new[i_point - 1] + array_subdivided_new[i_point + 1])
 
 		var array_subdivided_new_smoothed: PackedFloat64Array = PackedFloat64Array()
@@ -54,7 +54,7 @@ static func subdivide_float64_array(array: PackedFloat64Array, n_subdivisions: i
 		array_subdivided_new_smoothed[0] = array_subdivided_new[0]
 		array_subdivided_new_smoothed[-1] = array_subdivided_new[-1]
 
-		for i_point in range(1, len(array_subdivided_new_smoothed) - 1):
+		for i_point: int in range(1, len(array_subdivided_new_smoothed) - 1):
 			array_subdivided_new_smoothed[i_point] = (
 				0.5 * array_subdivided_new[i_point]
 				+ 0.25 * array_subdivided_new[i_point - 1]
@@ -70,12 +70,12 @@ static func subdivide_vector3_array(array: PackedVector3Array, n_subdivisions: i
 	if array_subdivided.size() < 2:
 		return array_subdivided
 
-	for i_subdivision in n_subdivisions:
+	for i_subdivision: int in n_subdivisions:
 		var array_subdivided_new: PackedVector3Array = PackedVector3Array()
 		array_subdivided_new.resize(2 * array_subdivided.size() - 1)
-		for i_point in range(len(array_subdivided)):
+		for i_point: int in range(len(array_subdivided)):
 			array_subdivided_new[2 * i_point] = array_subdivided[i_point]
-		for i_point in range(1, len(array_subdivided_new), 2):
+		for i_point: int in range(1, len(array_subdivided_new), 2):
 			array_subdivided_new[i_point] = 0.5 * (array_subdivided_new[i_point - 1] + array_subdivided_new[i_point + 1])
 
 		var array_subdivided_new_smoothed: PackedVector3Array = PackedVector3Array()
@@ -84,7 +84,7 @@ static func subdivide_vector3_array(array: PackedVector3Array, n_subdivisions: i
 		array_subdivided_new_smoothed[0] = array_subdivided_new[0]
 		array_subdivided_new_smoothed[-1] = array_subdivided_new[-1]
 
-		for i_point in range(1, len(array_subdivided_new_smoothed) - 1):
+		for i_point: int in range(1, len(array_subdivided_new_smoothed) - 1):
 			array_subdivided_new_smoothed[i_point] = (
 				0.5 * array_subdivided_new[i_point]
 				+ 0.25 * array_subdivided_new[i_point - 1]

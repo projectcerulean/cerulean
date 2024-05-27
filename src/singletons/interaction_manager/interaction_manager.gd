@@ -23,12 +23,12 @@ func _process(_delta: float) -> void:
 		var hash_value: int = interactables.hash()
 		interactables.sort_custom(interactables_sort)
 		if not interactables.hash() == hash_value:
-			Signals.emit_interaction_highlight_set(self, interactables.front())
+			Signals.emit_interaction_highlight_set(self, interactables.front() as NodePath)
 
 
 func _on_request_interaction(_sender: NodePath) -> void:
 	if interactables.size() > 0:
-		var interactable: Interaction = get_node(interactables.front()) as Interaction
+		var interactable: Interaction = get_node(interactables.front() as NodePath) as Interaction
 		if interactable != null:
 			interactable.interact()
 
@@ -38,7 +38,7 @@ func _on_request_interaction_highlight(sender: NodePath) -> void:
 	if sender not in interactables:
 		interactables.append(sender)
 		interactables.sort_custom(interactables_sort)
-		Signals.emit_interaction_highlight_set(self, interactables.front())
+		Signals.emit_interaction_highlight_set(self, interactables.front() as NodePath)
 
 
 func _on_request_interaction_unhighlight(sender: NodePath) -> void:

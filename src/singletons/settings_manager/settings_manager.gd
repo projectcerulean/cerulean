@@ -12,11 +12,12 @@ func _ready() -> void:
 	Signals.request_settings_save.connect(self._on_request_settings_save)
 	assert(settings_resource != null, Errors.NULL_RESOURCE)
 	assert(settings_resource.settings.size() == Settings.SETTINGS.size(), Errors.CONSISTENCY_ERROR)
-	for i in range(settings_resource.settings.size()):
+	for i: int in range(settings_resource.settings.size()):
 		assert(settings_resource.settings.keys()[i] == Settings.SETTINGS.keys()[i], Errors.CONSISTENCY_ERROR)
 
-	for key in settings_resource.settings:
-		assert(Settings.SETTINGS[key].VALUES.size() == Settings.SETTINGS[key].VALUE_NAMES.size(), Errors.CONSISTENCY_ERROR)
+	for key: StringName in settings_resource.settings:
+		@warning_ignore("unsafe_cast")
+		assert((Settings.SETTINGS[key].VALUES as Array).size() == (Settings.SETTINGS[key].VALUE_NAMES as Array).size(), Errors.CONSISTENCY_ERROR)
 		var n_options: int = len(Settings.SETTINGS[key][Settings.VALUE_NAMES])
 		var value_index: int = settings_resource.settings[key]
 		assert(value_index >= 0 and value_index < n_options, Errors.CONSISTENCY_ERROR)
@@ -26,9 +27,10 @@ func _ready() -> void:
 		var settings_load_data: Variant = JSON.parse_string(file.get_as_text())
 		if settings_load_data is Dictionary:
 			var settings_load_dict: Dictionary = settings_load_data as Dictionary
-			for key in settings_load_dict:
+			for key: StringName in settings_load_dict:
 				if key in settings_resource.settings:
-					var value_index: int = get_settings_value_index(key, settings_load_dict[key])
+					@warning_ignore("unsafe_cast")
+					var value_index: int = get_settings_value_index(key, settings_load_dict[key] as String)
 					if value_index != -1:
 						settings_resource.settings[key] = value_index
 					else:
@@ -50,8 +52,9 @@ func _on_request_setting_update(_sender: NodePath, key: StringName, value_index:
 
 func _on_request_settings_save(_sender: NodePath) -> void:
 	var settings_save_dict: Dictionary = {}
-	for key in settings_resource.settings:
-		var value_name: String = get_settings_value_name(key, settings_resource.settings[key])
+	for key: StringName in settings_resource.settings:
+		@warning_ignore("unsafe_cast")
+		var value_name: String = get_settings_value_name(key, settings_resource.settings[key] as int)
 		if value_name:
 			settings_save_dict[key] = value_name
 		else:
@@ -65,7 +68,7 @@ func _on_request_settings_save(_sender: NodePath) -> void:
 
 func get_settings_value_index(setting_key: String, setting_value_name: String) -> int:
 	var n_options: int = len(Settings.SETTINGS[setting_key][Settings.VALUE_NAMES])
-	for i in range(n_options):
+	for i: int in range(n_options):
 		if Settings.SETTINGS[setting_key][Settings.VALUE_NAMES][i] == setting_value_name:
 			return i
 	return -1

@@ -47,24 +47,28 @@ func _ready() -> void:
 	var node: Node = Node.new()
 	var default_signals: PackedStringArray = []
 	var default_methods: PackedStringArray = []
-	for s in node.get_signal_list():
-		default_signals.append(s["name"])
-	for m in node.get_method_list():
-		default_methods.append(m["name"])
+	for s: Dictionary in node.get_signal_list():
+		@warning_ignore("unsafe_cast")
+		default_signals.append(s["name"] as StringName)
+	for m: Dictionary in node.get_method_list():
+		@warning_ignore("unsafe_cast")
+		default_methods.append(m["name"] as StringName)
 	node.queue_free()
 
-	var signals: Array[String] = []
-	var methods: Array[String] = []
-	for s in get_signal_list():
-		signals.append(s["name"])
-	for m in get_method_list():
-		methods.append(m["name"])
+	var signals: PackedStringArray = []
+	var methods: PackedStringArray = []
+	for s: Dictionary in get_signal_list():
+		@warning_ignore("unsafe_cast")
+		signals.append(s["name"] as StringName)
+	for m: Dictionary in get_method_list():
+		@warning_ignore("unsafe_cast")
+		methods.append(m["name"] as StringName)
 
-	for signal_name in signals:
+	for signal_name: StringName in signals:
 		if signal_name not in default_signals:
 			assert(("emit_" + signal_name) in methods, Errors.CONSISTENCY_ERROR)
 
-	for method_name in methods:
+	for method_name: StringName in methods:
 		if method_name not in default_methods and method_name.begins_with("emit_"):
 			assert((method_name.trim_prefix("emit_")) in signals, Errors.CONSISTENCY_ERROR)
 

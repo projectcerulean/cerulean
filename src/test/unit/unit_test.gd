@@ -65,7 +65,7 @@ func wait_for_process_frame() -> void:
 
 
 func wait_for_process_frames(count: int) -> void:
-	for i in range(count):
+	for i: int in range(count):
 		await wait_for_signal(get_tree().process_frame, 1.0, "Waiting for process frame %s/%s" % [i + 1, count])
 
 
@@ -74,7 +74,7 @@ func wait_for_physics_frame() -> void:
 
 
 func wait_for_physics_frames(count: int) -> void:
-	for i in range(count):
+	for i: int in range(count):
 		await wait_for_signal(get_tree().physics_frame, 1.0, "Waiting for physics frame %s/%s" % [i + 1, count])
 
 
@@ -88,9 +88,9 @@ func get_script_dir_path() -> String:
 
 func _get_main_src_path() -> String:
 	var script_dir_path: String = get_script_dir_path()
-	for i in range(len(GUT_TEST_DIRS)):
+	for i: int in range(len(GUT_TEST_DIRS)):
 		var gut_test_dir: String = GUT_TEST_DIRS[i]
-		var main_src_path = script_dir_path.replace(gut_test_dir, MAIN_SRC_DIR)
+		var main_src_path: String = script_dir_path.replace(gut_test_dir, MAIN_SRC_DIR)
 		if main_src_path != script_dir_path and DirAccess.dir_exists_absolute(main_src_path):
 			return main_src_path
 

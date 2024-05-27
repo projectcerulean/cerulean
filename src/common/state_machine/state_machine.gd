@@ -29,8 +29,8 @@ enum TRANSITION_FRAME {
 # Optional data resource for storing persistent state
 @export var persistent_data_resource: PersistentDataResource
 
-var current_state: State = null
-var is_state_change_pending: bool = false
+var _current_state: State = null
+var _is_state_change_pending: bool = false
 
 
 # Enter the initial state when initializing the state machine.
@@ -56,13 +56,13 @@ func _ready() -> void:
 # Delegate `_process` callback to the active state.
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint():
-		if current_state == null or is_state_change_pending:
+		if _current_state == null or _is_state_change_pending:
 			return
 
-		current_state.process(delta)
+		_current_state.process(delta)
 
 		if transition_frame == TRANSITION_FRAME.PROCESS:
-			var target_state: StringName = current_state.get_transition()
+			var target_state: StringName = _current_state.get_transition()
 			if target_state != StringName():
 				transition_to_state(target_state)
 
@@ -70,13 +70,13 @@ func _process(delta: float) -> void:
 # Delegate `_physics_process` callback to the active state.
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
-		if current_state == null or is_state_change_pending:
+		if _current_state == null or _is_state_change_pending:
 			return
 
-		current_state.physics_process(delta)
+		_current_state.physics_process(delta)
 
 		if transition_frame == TRANSITION_FRAME.PHYSICS_PROCESS:
-			var target_state: StringName = current_state.get_transition()
+			var target_state: StringName = _current_state.get_transition()
 			if target_state != StringName():
 				transition_to_state(target_state)
 
@@ -87,14 +87,14 @@ func _physics_process(delta: float) -> void:
 func transition_to_state(target_state: StringName, data: Dictionary = {}) -> void:
 	if not Engine.is_editor_hint():
 		call_deferred(transition_to_deferred.get_method(), target_state, data)
-		is_state_change_pending = true
+		_is_state_change_pending = true
 
 
 func transition_to_next_state(data: Dictionary = {}) -> void:
 	if not Engine.is_editor_hint():
 		var current_state_index: int = -1
-		for i in range(get_child_count()):
-			if get_children()[i] == current_state:
+		for i: int in range(get_child_count()):
+			if get_children()[i] == _current_state:
 				current_state_index = i
 				break
 		assert(current_state_index >= 0, Errors.CONSISTENCY_ERROR)
@@ -110,25 +110,25 @@ func transition_to_deferred(target_state: StringName, data: Dictionary) -> void:
 		data[State.OLD_STATE] = StringName()
 		data[State.NEW_STATE] = target_state
 
-		if current_state == null or target_state != current_state.name:
-			var old_state: State = current_state
+		if _current_state == null or target_state != _current_state.name:
+			var old_state: State = _current_state
 			if old_state != null:
 				data[State.OLD_STATE] = old_state.name
 				old_state.exit(data)
-				Signals.emit_state_exited(self, current_state.name, data)
+				Signals.emit_state_exited(self, _current_state.name, data)
 
-			current_state = get_node(str(target_state)) as State
-			current_state.enter(data)
-			Signals.emit_state_entered(self, current_state.name, data)
+			_current_state = get_node(str(target_state)) as State
+			_current_state.enter(data)
+			Signals.emit_state_entered(self, _current_state.name, data)
 
 			if persistent_data_resource != null:
 				persistent_data_resource.store_int(
 					self,
 					PERSISTENT_STATE_KEY,
-					current_state.get_index(),
+					_current_state.get_index(),
 				)
 
-		is_state_change_pending = false
+		_is_state_change_pending = false
 
 
 func _get_configuration_warnings() -> PackedStringArray:

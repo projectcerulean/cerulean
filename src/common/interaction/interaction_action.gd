@@ -5,9 +5,9 @@ class_name InteractionAction
 extends Resource
 
 
-func check(caller: Node3D) -> void:
+func check(_caller: Node3D) -> void:
 	pass
 
 
-func interact(caller: Node3D) -> void:
+func interact(_caller: Node3D) -> void:
 	pass

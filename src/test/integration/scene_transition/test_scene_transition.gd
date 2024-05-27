@@ -27,8 +27,8 @@ func test_scene_transition() -> void:
 		get_script_dir_path() + "/" + "test_scene_2.tscn",
 	]
 
-	for i in range(3):
-		for test_scene_path in test_scene_paths:
+	for i: int in range(3):
+		for test_scene_path: String in test_scene_paths:
 			Signals.emit_request_scene_transition_start(self, test_scene_path, i, FADE_COLOR, FADE_DURATION)
 			await wait_for_signal(Signals.scene_changed, SIGNAL_WAIT_TIME)
 			await wait_for_process_frame()
@@ -71,7 +71,7 @@ func test_scene_transition() -> void:
 func get_closest_child(parent: Node3D, target_position: Vector3) -> Node3D:
 	var least_distance_squared: float = INF
 	var closest_child: Node3D = null
-	for i in parent.get_child_count():
+	for i: int in parent.get_child_count():
 		var child: Node3D = parent.get_child(i) as Node3D
 		assert(child != null, Errors.NULL_NODE)
 		var distance_squared: float = child.global_position.distance_squared_to(target_position)

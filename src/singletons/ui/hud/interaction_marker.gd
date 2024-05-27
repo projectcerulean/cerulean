@@ -50,7 +50,7 @@ func _draw() -> void:
 			var position2d: Vector2 = camera.unproject_position(position3d)
 			var camera_distance: float = (camera.global_position - position3d).length()
 			var vertex_positions: PackedVector2Array = PackedVector2Array(polygon_shape)
-			for i in range(vertex_positions.size()):
+			for i: int in range(vertex_positions.size()):
 				vertex_positions[i] *= scale_factor
 				vertex_positions[i] /= camera_distance
 				vertex_positions[i] += position2d - Vector2(0.0, oscillation_amplitude * absf(lfo_value_resource.get_value()) / camera_distance)

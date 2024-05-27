@@ -29,7 +29,7 @@ func _on_bgm_area_exited(sender: NodePath) -> void:
 	update_bgm()
 
 
-func _on_scene_changed(_sender: NodePath):
+func _on_scene_changed(_sender: NodePath) -> void:
 	bgm_resource_map.clear()
 	bgm_priority_map.clear()
 	update_bgm()
@@ -39,7 +39,7 @@ func update_bgm() -> void:
 	bgm_current = StringName()
 	var priority_max: float = -INF
 
-	for sender in bgm_resource_map.keys():
+	for sender: NodePath in bgm_resource_map.keys():
 		var priority: float = bgm_priority_map[sender]
 		if priority > priority_max:
 			priority_max = priority
@@ -60,7 +60,7 @@ func update_bgm() -> void:
 			if get_child_count() > n_bgm_resource_players:
 				get_child(0).queue_free()
 
-	for _bgm_resource_player in get_children():
+	for _bgm_resource_player: Node in get_children():
 		var bgm_resource_player: BgmResourcePlayer = _bgm_resource_player as BgmResourcePlayer
 		bgm_resource_player.set_enabled(bgm_resource_player.name == bgm_current)
 

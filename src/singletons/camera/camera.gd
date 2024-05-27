@@ -54,7 +54,9 @@ func _ready() -> void:
 	assert(camera != null, Errors.NULL_NODE)
 	assert(water_detector != null, Errors.NULL_NODE)
 
-	camera.fov = float(Settings.SETTINGS.FIELD_OF_VIEW.VALUES[settings_resource.settings[Settings.FIELD_OF_VIEW]])
+	@warning_ignore("unsafe_cast")
+	var fov: float = Settings.SETTINGS.FIELD_OF_VIEW.VALUES[settings_resource.settings[Settings.FIELD_OF_VIEW]] as float
+	camera.fov = fov
 
 
 func _process(delta: float) -> void:
@@ -98,7 +100,7 @@ func _process(delta: float) -> void:
 
 	var camera_push_distance_target: float = 0.0
 
-	for i in range(len(frustum_sides)):
+	for i: int in range(len(frustum_sides)):
 		# Need to calculate some points
 		var frustum_near_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_near)
 		var frustum_vector: Vector3 = (global_position - frustum_near_vertex).project(camera_vector)
@@ -154,4 +156,11 @@ func _on_setting_updated(_sender: NodePath, key: StringName) -> void:
 		fov_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		fov_tween.set_trans(Tween.TRANS_QUINT)
 		fov_tween.set_ease(Tween.EASE_OUT)
-		fov_tween.tween_property(camera, "fov", float(Settings.SETTINGS.FIELD_OF_VIEW.VALUES[settings_resource.settings[Settings.FIELD_OF_VIEW]]), fov_change_tween_time)
+		@warning_ignore("unsafe_cast")
+		var fov: float = Settings.SETTINGS.FIELD_OF_VIEW.VALUES[settings_resource.settings[Settings.FIELD_OF_VIEW]] as float
+		fov_tween.tween_property(
+			camera,
+			"fov",
+			fov,
+			fov_change_tween_time,
+		)

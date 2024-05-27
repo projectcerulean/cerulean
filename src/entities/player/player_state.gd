@@ -53,10 +53,10 @@ func exit(_data: Dictionary) -> void:
 	player.planar_momentum_conservation_factor = planar_momentum_conservation_factor_prev
 
 
-func calculate_friction_coefficient(acceleration_time: float):
+func calculate_friction_coefficient(acceleration_time: float) -> float:
 	var body: RigidBody3D = owner as RigidBody3D
 	return -body.mass/acceleration_time * log(0.01)
 
 
-func calculate_move_force(move_speed: float, friction_coefficient: float):
+func calculate_move_force(move_speed: float, friction_coefficient: float) -> float:
 	return move_speed * friction_coefficient

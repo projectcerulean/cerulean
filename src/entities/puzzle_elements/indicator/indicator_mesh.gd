@@ -16,7 +16,7 @@ var activation: float:
 	set (value):
 		assert(not is_nan(value) and not is_inf(value), Errors.INVALID_ARGUMENT)
 		activation = clampf(value, 0.0, 1.0)
-		for node in get_children():
+		for node: Node in get_children():
 			if node is MeshInstance3D:
 				var mesh_instance: MeshInstance3D = node as MeshInstance3D
 				var material: ShaderMaterial = mesh_instance.get_surface_override_material(0) as ShaderMaterial

@@ -41,7 +41,7 @@ func after_each() -> void:
 
 
 func test_transform_resource_updates_on_process_update() -> void:
-	for position in positions:
+	for position: Vector3 in positions:
 		anchor_node.global_position = position
 		await wait_for_process_frame()
 		assert_eq(transform_resource.get_value(), anchor_node.global_transform, "Transform resource not updated on process update")
@@ -49,7 +49,7 @@ func test_transform_resource_updates_on_process_update() -> void:
 
 func test_transform_resource_updates_on_scene_changed() -> void:
 	transform_resource_manager.set_process(false)
-	for position in positions:
+	for position: Vector3 in positions:
 		anchor_node.global_position = position
 		Signals.emit_scene_changed(self)
 		await wait_for_signal(Signals.scene_changed, 1.0, "Waiting for scene_changed signal")

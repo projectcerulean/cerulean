@@ -12,14 +12,14 @@ var i_current_player: int = 0
 func _ready() -> void:
 	Signals.request_sfx_play.connect(self._on_request_sfx_play)
 	Signals.scene_changed.connect(self._on_scene_changed)
-	for i in range(n_sfx_channels):
+	for i: int in range(n_sfx_channels):
 		var audio_stream_player: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 		audio_stream_player.bus = bus_name
 		assert(audio_stream_player.bus == bus_name, Errors.INVALID_AUDIO_BUS)
 		add_child(audio_stream_player)
 
 	assert(get_child_count() == n_sfx_channels)
-	for child in get_children():
+	for child: Node in get_children():
 		assert(child as AudioStreamPlayer3D != null, Errors.CONSISTENCY_ERROR)
 
 
@@ -35,7 +35,7 @@ func _on_request_sfx_play(_sender: NodePath, sfx_resource: SfxResource, position
 
 
 func _on_scene_changed(_sender: NodePath) -> void:
-	for _audio_stream_player in get_children():
+	for _audio_stream_player: Node in get_children():
 		var audio_stream_player: AudioStreamPlayer3D = _audio_stream_player as AudioStreamPlayer3D
 		audio_stream_player.stop()
 		audio_stream_player.stream = null

@@ -100,7 +100,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_pending_bounces.clear()
 
 	# Exact velocity impulses
-	for i in range(len(_pending_exact_velocities)):
+	for i: int in range(len(_pending_exact_velocities)):
 		var impulse_velocity: Vector3 = _pending_exact_velocities[i]
 		var impulse_normal: Vector3 = impulse_velocity.normalized()
 		if not impulse_normal.is_normalized():
@@ -112,7 +112,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_pending_exact_velocities.clear()
 
 	# Minimum velocity impulses
-	for i in range(len(_pending_minimum_velocities)):
+	for i: int in range(len(_pending_minimum_velocities)):
 		var impulse_velocity: Vector3 = _pending_minimum_velocities[i]
 		var impulse_normal: Vector3 = impulse_velocity.normalized()
 		if not impulse_normal.is_normalized():
@@ -126,13 +126,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_pending_minimum_velocities.clear()
 
 	# Forces
-	for i in range(len(_pending_forces)):
+	for i: int in range(len(_pending_forces)):
 		var force_vector: Vector3 = _pending_forces[i]
 		state.apply_central_force(force_vector)
 	_pending_forces.clear()
 
 	# Transform offsets
-	for i in range(len(_pending_transform_offsets)):
+	for i: int in range(len(_pending_transform_offsets)):
 		var offset: Vector3 = _pending_transform_offsets[i]
 		state.transform.origin += offset
 	_pending_transform_offsets.clear()
@@ -145,36 +145,36 @@ func perform_bounce_area_check(from: Vector3, to: Vector3) -> void:
 	_bounce_shape_cast.position = from
 	_bounce_shape_cast.target_position = to
 	_bounce_shape_cast.force_shapecast_update()
-	for i in range(_bounce_shape_cast.get_collision_count()):
+	for i: int in range(_bounce_shape_cast.get_collision_count()):
 		var bounce_area: BounceArea = _bounce_shape_cast.get_collider(i) as BounceArea
 		if bounce_area != null:
 			enqueue_bounce(bounce_area)
 
 
-func enqueue_bounce(bounce_area: BounceArea):
+func enqueue_bounce(bounce_area: BounceArea) -> void:
 	_pending_bounces.append(bounce_area)
 
 
-func enqueue_exact_velocity(target_exact_velocity: Vector3):
+func enqueue_exact_velocity(target_exact_velocity: Vector3) -> void:
 	_pending_exact_velocities.append(target_exact_velocity)
 
 
-func enqueue_minimum_velocity(target_minimum_velocity: Vector3):
+func enqueue_minimum_velocity(target_minimum_velocity: Vector3) -> void:
 	_pending_minimum_velocities.append(target_minimum_velocity)
 
 
-func enqueue_force(force_vector: Vector3):
+func enqueue_force(force_vector: Vector3) -> void:
 	_pending_forces.append(force_vector)
 
 
-func enqueue_planar_force(force_vector: Vector2):
+func enqueue_planar_force(force_vector: Vector2) -> void:
 	enqueue_force(VectorUtils.vec2_to_vec3_xz(force_vector))
 
 
-func enqueue_transform_offset(offset: Vector3):
+func enqueue_transform_offset(offset: Vector3) -> void:
 	_pending_transform_offsets.append(offset)
 
 
 # Virtual function
-func on_bounce(_bounce_normal: Vector3, _bounce_min_speed: float, _bounce_elasticity: float):
+func on_bounce(_bounce_normal: Vector3, _bounce_min_speed: float, _bounce_elasticity: float) -> void:
 	pass

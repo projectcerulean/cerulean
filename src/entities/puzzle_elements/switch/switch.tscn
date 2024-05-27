@@ -38,10 +38,10 @@ shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/emission_energy = 1.0
 
-[sub_resource type="Resource" id="Resource_li13b"]
+[sub_resource type="Resource" id="Resource_jmeew"]
 resource_local_to_scene = true
 script = ExtResource("3_bgjta")
-switch = NodePath("../../..")
+_switch = NodePath("../../..")
 
 [node name="Switch" type="StaticBody3D"]
 collision_layer = 8
@@ -124,7 +124,7 @@ layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 
 [node name="Interaction" parent="Joint/Crystal" instance=ExtResource("2_hkiaq")]
-interaction_action = SubResource("Resource_li13b")
+interaction_action = SubResource("Resource_jmeew")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("9_tdrh8")]
 initial_state = NodePath("Disabled")

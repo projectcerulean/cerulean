@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends UnitTest
 
-const test_state_resource_manager_params = [
+const test_state_resource_manager_params: Array = [
 	[[], true, true],
 	[[], false, true],
 	[[&"state_1", &"state_2", &"state_3"], true, true],
@@ -15,7 +15,7 @@ const test_state_resource_manager_params = [
 ]
 
 
-func test_state_resource_manager(params=use_parameters(test_state_resource_manager_params)):
+func test_state_resource_manager(params: Array = use_parameters(test_state_resource_manager_params)) -> void:
 	var states: Array = params[0]
 	var is_correct_state_machine_emitting: bool = params[1]
 	var use_absolute_path: bool = params[2]
@@ -30,7 +30,7 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 	var state_resource: StateResource = StateResource.new()
 	assert_false(state_resource.is_owned(), "State resource already owned immediately after being created")
 
-	var state_machine_path: NodePath = state_machine_dummy_target.get_path() if use_absolute_path else "../" + state_machine_dummy_target.name
+	var state_machine_path: NodePath = state_machine_dummy_target.get_path() if use_absolute_path else NodePath("../" + state_machine_dummy_target.name)
 
 	var state_resource_manager: StateResourceManager = create_state_resource_manager(
 		state_machine_path,
@@ -42,7 +42,7 @@ func test_state_resource_manager(params=use_parameters(test_state_resource_manag
 	assert_eq(state_resource.get_state_machine(), state_machine_dummy_target.get_path(), "State machine reference not set in state resource")
 	assert_eq(state_resource.get_current_state(), StringName(), "State value not empty before entering first state")
 
-	for state in states:
+	for state: StringName in states:
 		Signals.emit_state_entered(state_machine_dummy_emitting, StringName(state), {})
 		await wait_for_process_frame()
 		var expected_state: StringName = state if is_correct_state_machine_emitting else StringName()

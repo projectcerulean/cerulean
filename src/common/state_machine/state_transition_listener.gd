@@ -17,17 +17,17 @@ func _ready() -> void:
 
 	assert(_target_states.size() > 0, Errors.NULL_NODE)
 	target_states.resize(len(_target_states))
-	for i in range(len(_target_states)):
+	for i: int in range(len(_target_states)):
 		target_states[i] = get_node(_target_states[i]).name
 		assert(target_states[i] != null, Errors.NULL_NODE)
-		for j in range(len(_target_states)):
+		for j: int in range(len(_target_states)):
 			if i == j:
 				continue
 			assert(target_states[i] != target_states[j], Errors.INVALID_ARGUMENT)
 
 	target_state_machine = get_node(_target_states[0]).get_parent().get_path()
 	assert(target_state_machine != null, Errors.NULL_NODE)
-	for i in range(len(_target_states)):
+	for i: int in range(len(_target_states)):
 		assert(get_node(_target_states[i]).get_parent().get_path() == target_state_machine, Errors.CONSISTENCY_ERROR)
 
 

@@ -9,7 +9,7 @@ class_name PauseMenuState extends State
 var i_hovered_option: int:
 	set(i_new):
 		i_hovered_option = i_new
-		for i in menu.get_child_count():
+		for i: int in menu.get_child_count():
 			var menu_option: PauseMenuOption = menu.get_child(i) as PauseMenuOption
 			menu_option.set_highlight(i == i_new)
 
@@ -72,7 +72,7 @@ func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) ->
 
 
 func _on_mouse_entered_control(sender: NodePath) -> void:
-	for i in range(menu.get_child_count()):
+	for i: int in range(menu.get_child_count()):
 		var child: Control = menu.get_child(i) as Control
 		if child.get_path() == sender:
 			if i_hovered_option != i:

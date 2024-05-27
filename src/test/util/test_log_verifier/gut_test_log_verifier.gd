@@ -6,7 +6,7 @@ extends Node
 
 const TEST_LOG: String = "res://test_log.txt"
 const ALL_TESTS_PASSED_LINE: String = "---- All tests passed! ----"
-const ERROR_STRING = "ERROR"
+const ERROR_STRING: String = "ERROR"
 const ALLOWED_ERRORS: PackedStringArray = [
 	"ERROR: Parameter \"m\" is null.",
 ]

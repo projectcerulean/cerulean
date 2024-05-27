@@ -31,10 +31,12 @@ var wet_level: float:
 	set (value):
 		assert(not is_nan(value) and not is_inf(value), Errors.INVALID_ARGUMENT)
 		wet_level = value
-		for property in audio_effect.get_property_list():
+		for property: Dictionary in audio_effect.get_property_list():
 			if property.type == TYPE_FLOAT:
-				var dry_value: float = audio_effect_dry.get(property.name)
-				var wet_value: float = audio_effect_wet.get(property.name)
+				@warning_ignore("unsafe_cast")
+				var dry_value: float = audio_effect_dry.get(property.name as StringName)
+				@warning_ignore("unsafe_cast")
+				var wet_value: float = audio_effect_wet.get(property.name as StringName)
 				var property_value: float
 				match tween_type:
 					TWEEN_TYPE_LINEAR:
@@ -44,7 +46,8 @@ var wet_level: float:
 					TWEEN_TYPE_EXPONENTIAL:
 						assert(dry_value > 0.0 and wet_value > 0.0, Errors.INVALID_ARGUMENT)
 						property_value = exp(lerpf(log(dry_value), log(wet_value), wet_level))
-				audio_effect.set(property.name, property_value)
+				@warning_ignore("unsafe_cast")
+				audio_effect.set(property.name as StringName, property_value)
 
 
 func _enter_tree() -> void:
@@ -66,7 +69,7 @@ func _enter_tree() -> void:
 
 func _exit_tree() -> void:
 	var bus_effect_count: int = AudioServer.get_bus_effect_count(bus_index)
-	for i in range(bus_effect_count):
+	for i: int in range(bus_effect_count):
 		if AudioServer.get_bus_effect(bus_index, i) == audio_effect:
 			AudioServer.remove_bus_effect(bus_index, i)
 			break

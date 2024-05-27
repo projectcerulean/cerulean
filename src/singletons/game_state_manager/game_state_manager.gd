@@ -36,7 +36,7 @@ func _on_request_dialogue_finish(_sender: NodePath) -> void:
 	state_machine.transition_to_state(GameStates.GAMEPLAY)
 
 
-func _on_request_scene_transition_start(_sender: NodePath, _scene: String, _spawn_point_id: int, _color: Color, _fade_duration: float):
+func _on_request_scene_transition_start(_sender: NodePath, _scene: String, _spawn_point_id: int, _color: Color, _fade_duration: float) -> void:
 	state_machine.transition_to_state(GameStates.SCENE_TRANSITION)
 
 

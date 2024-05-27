@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends Node
 
-const volume_db_high = 0.0
-const volume_db_low = -80.0
+const volume_db_high: float = 0.0
+const volume_db_low: float = -80.0
 
 @export var bgm_change_tween_time: float = 0.5
 @export var _settings_resource: Resource

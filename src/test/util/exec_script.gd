@@ -9,7 +9,7 @@ extends SceneTree
 
 func _init() -> void:
 	var main_loop: MainLoop = null
-	for i in range(100):
+	for i: int in range(100):
 		main_loop = Engine.get_main_loop()
 		if main_loop != null:
 			break

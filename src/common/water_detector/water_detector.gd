@@ -50,7 +50,7 @@ func get_water_surface_height() -> float:
 	var time: float = time_resource_gameplay.get_value() if time_resource_gameplay.is_owned() else 0.0
 
 	var height: float = -INF
-	for area in water_bodies:
+	for area: Area3D in water_bodies:
 		height = max(
 			height,
 			area.global_position.y + (

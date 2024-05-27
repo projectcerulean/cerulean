@@ -19,7 +19,7 @@ func _ready() -> void:
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
 
-func _on_request_scene_transition_start(_sender: NodePath, scene_path: String, spawn_point_id: int, transition_color: Color, duration: float):
+func _on_request_scene_transition_start(_sender: NodePath, scene_path: String, spawn_point_id: int, transition_color: Color, duration: float) -> void:
 	scene_path_next = scene_path
 	spawn_point_id_next = spawn_point_id
 	transition_color.a = 0.0
@@ -48,7 +48,7 @@ func _on_fade_out_finished() -> void:
 	Signals.emit_request_scene_change(self, scene_path_next, spawn_point_id_next)
 
 
-func _on_scene_changed(_sender: NodePath):
+func _on_scene_changed(_sender: NodePath) -> void:
 	if (
 		game_state_resource.is_owned()
 		and game_state_resource.get_current_state() == GameStates.LOADING_SCREEN

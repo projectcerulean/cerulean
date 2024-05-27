@@ -31,7 +31,7 @@ func test_integral_term() -> void:
 	var error_integral_max: float = 100.0
 	var pid_controller: PidController = PidController.new(0.0, i_gain, 0.0, error_integral_max)
 
-	for i in range(10):
+	for i: int in range(10):
 		var output: float = pid_controller.update(current_value, target_value, process_delta)
 		assert_almost_eq(output, (i + 1) * i_gain * (target_value - current_value) * process_delta, ERROR_INTERVAL)
 
@@ -40,13 +40,13 @@ func test_integral_term_anti_windup() -> void:
 	var i_gain: float = 3.0
 	var current_value: float = 7.0
 	var target_value: float = 13.0
-	var expected_error_integral_per_simulation_step = (target_value - current_value) * process_delta
+	var expected_error_integral_per_simulation_step: float = (target_value - current_value) * process_delta
 	var n_simulation_steps_to_hit_max_integral: int = 100
 	var error_integral_max: float = n_simulation_steps_to_hit_max_integral * expected_error_integral_per_simulation_step
 	var pid_controller: PidController = PidController.new(0.0, i_gain, 0.0, error_integral_max)
 
 	var output: float
-	for i in range(n_simulation_steps_to_hit_max_integral - 1):
+	for i: int in range(n_simulation_steps_to_hit_max_integral - 1):
 		output = pid_controller.update(current_value, target_value, process_delta)
 	assert_lt(output, i_gain * error_integral_max)
 
@@ -66,7 +66,7 @@ func test_integral_term_reset() -> void:
 	var error_integral_max: float = 100.0
 	var pid_controller: PidController = PidController.new(0.0, i_gain, 0.0, error_integral_max)
 
-	for i in range(10):
+	for i: int in range(10):
 		var output: float = pid_controller.update(current_value, target_value, process_delta)
 		assert_almost_eq(output, (i + 1) * i_gain * (target_value - current_value) * process_delta, ERROR_INTERVAL)
 
@@ -83,7 +83,7 @@ func test_derivative_term() -> void:
 	var values: PackedFloat64Array = [-5.0, -1.0, 0.0, 11.0, 13.0, -17.0, 23.0]
 	var pid_controller: PidController = PidController.new(0.0, 0.0, d_gain, 0.0)
 
-	for i in range(len(values)):
+	for i: int in range(len(values)):
 		var value: float = values[i]
 		var output: float = pid_controller.update(value, target_value, process_delta)
 		if i == 0:
@@ -99,7 +99,7 @@ func test_derivative_term_reset() -> void:
 	var values: PackedFloat64Array = [-5.0, -1.0, 0.0, 11.0, 13.0, -17.0, 23.0]
 	var pid_controller: PidController = PidController.new(0.0, 0.0, d_gain, 0.0)
 
-	for i in range(len(values)):
+	for i: int in range(len(values)):
 		var value: float = values[i]
 		var output: float = pid_controller.update(value, target_value, process_delta)
 		if i == 0:
@@ -127,7 +127,7 @@ func test_rigid_body_steady_state_p_term_only() -> void:
 	var pid_controller: PidController = PidController.new(p_gain, 0.0, 0.0, 0.0)
 	var rigid_body: SimulatedRigidBody = SimulatedRigidBody.new(mass, initial_position)
 
-	for i in range(n_simulation_steps):
+	for i: int in range(n_simulation_steps):
 		var force: float = pid_controller.update(rigid_body.position, target_position, process_delta)
 		rigid_body.apply_central_force(force)
 		rigid_body.simulate_physics_process(process_delta)
@@ -150,7 +150,7 @@ func test_rigid_body_steady_state_pd_terms() -> void:
 
 	var target_position: float = 11.0
 
-	for i in range(n_simulation_steps):
+	for i: int in range(n_simulation_steps):
 		var force: float = pid_controller.update(rigid_body.position, target_position, process_delta)
 		rigid_body.apply_central_force(force)
 		rigid_body.simulate_physics_process(process_delta)
@@ -176,7 +176,7 @@ func test_rigid_body_steady_state_pid_terms_constant_gravity() -> void:
 
 	var target_position: float = 11.0
 
-	for i in range(n_simulation_steps):
+	for i: int in range(n_simulation_steps):
 		var force: float = pid_controller.update(rigid_body.position, target_position, process_delta)
 		rigid_body.apply_central_force(force)
 		rigid_body.apply_central_force(mass * gravity)
@@ -203,7 +203,7 @@ func test_rigid_body_steady_state_pd_terms_damping() -> void:
 		var positions: PackedFloat64Array = PackedFloat64Array()
 		positions.resize(n_simulation_steps)
 
-		for i in range(n_simulation_steps):
+		for i: int in range(n_simulation_steps):
 			var force: float = pid_controller.update(rigid_body.position, target_position, process_delta)
 			rigid_body.apply_central_force(force)
 			rigid_body.simulate_physics_process(process_delta)
@@ -221,30 +221,30 @@ func test_rigid_body_steady_state_pd_terms_damping() -> void:
 
 	# A critically damped system should not overshoot the target
 	var critical_damping_overshoot: bool = false
-	for i in range(len(positions_critical_damping)):
+	for i: int in range(len(positions_critical_damping)):
 		if positions_critical_damping[i] > target_position + ERROR_INTERVAL:
 			critical_damping_overshoot = true
 	assert_false(critical_damping_overshoot)
 
 	# An overdamped system should not overshoot the target
 	var overdamped_overshoot: bool = false
-	for i in range(len(positions_overdamped)):
+	for i: int in range(len(positions_overdamped)):
 		if positions_overdamped[i] > target_position + ERROR_INTERVAL:
 			overdamped_overshoot = true
 	assert_false(overdamped_overshoot)
 
 	# An overdamped system should have higher total error than a critically damped system
 	var critical_damping_total_error: float = 0.0
-	for i in range(len(positions_critical_damping)):
+	for i: int in range(len(positions_critical_damping)):
 		critical_damping_total_error += absf(positions_critical_damping[i] - target_position)
 	var overdamped_total_error: float = 0.0
-	for i in range(len(positions_overdamped)):
+	for i: int in range(len(positions_overdamped)):
 		overdamped_total_error += absf(positions_overdamped[i] - target_position)
 	assert_gt(overdamped_total_error, critical_damping_total_error + ERROR_INTERVAL)
 
 	# An underdamped system should overshoot the target
 	var underdamped_overshoot: bool = false
-	for i in range(len(positions_underdamped)):
+	for i: int in range(len(positions_underdamped)):
 		if positions_underdamped[i] > target_position + ERROR_INTERVAL:
 			underdamped_overshoot = true
 	assert_true(underdamped_overshoot)

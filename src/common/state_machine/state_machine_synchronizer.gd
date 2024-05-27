@@ -17,10 +17,10 @@ func _ready() -> void:
 	assert(state_machine_child != null, Errors.NULL_NODE)
 	assert(state_machine_parent.get_child_count() > 0, Errors.CONSISTENCY_ERROR)
 	assert(state_machine_child.get_child_count() == state_machine_parent.get_child_count(), Errors.CONSISTENCY_ERROR)
-	for i in range(state_machine_parent.get_child_count()):
+	for i: int in range(state_machine_parent.get_child_count()):
 		assert(state_machine_child.get_child(i).name == state_machine_parent.get_child(i).name, Errors.CONSISTENCY_ERROR)
 
 
-func _on_state_entered(sender: NodePath, state: StringName, data: Dictionary):
+func _on_state_entered(sender: NodePath, state: StringName, data: Dictionary) -> void:
 	if sender == state_machine_parent.get_path():
 		state_machine_child.transition_to_state(state, data)

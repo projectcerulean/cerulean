@@ -44,13 +44,13 @@ func _ready() -> void:
 		Signals.state_exited.connect(_on_state_exited)
 
 
-func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary):
+func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if not Engine.is_editor_hint():
 		if sender == state_machine:
 			state_resource.set_current_state(self, state)
 
 
-func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary):
+func _on_state_exited(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	if not Engine.is_editor_hint():
 		if sender == state_machine:
 			assert(state_resource.get_current_state() == state, Errors.CONSISTENCY_ERROR)

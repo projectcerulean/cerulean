@@ -9,5 +9,5 @@ signal body_bounced
 @export var bounce_min_speed: float = 5.0
 @export var bounce_elasticity: float = 0.75
 
-func on_body_bounced():
+func on_body_bounced() -> void:
 	body_bounced.emit()

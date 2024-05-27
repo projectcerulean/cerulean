@@ -29,10 +29,10 @@ func _ready() -> void:
 	input_nodes.resize(len(input_targets))
 	inputs.resize(len(input_targets))
 
-	for i in range(len(_input_nodes)):
+	for i: int in range(len(_input_nodes)):
 		input_nodes[i] = get_node(_input_nodes[i])
 		assert(input_nodes[i] != null, Errors.NULL_NODE)
-		for j in range(len(_input_nodes)):
+		for j: int in range(len(_input_nodes)):
 			if i == j:
 				continue
 			assert(input_nodes[i] != input_nodes[j], Errors.INVALID_ARGUMENT)
@@ -40,7 +40,7 @@ func _ready() -> void:
 
 func _on_state_entered(sender: NodePath, state: StringName, _data: Dictionary) -> void:
 	var inputs_changed: bool = false
-	for i in range(len(inputs)):
+	for i: int in range(len(inputs)):
 		var sender_state_machine: Node = get_node(sender)
 		if is_instance_valid(sender_state_machine):
 			var state_machine_owner: Node = sender_state_machine.owner

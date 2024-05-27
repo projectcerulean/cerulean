@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 
 	if curve_points_a_subdivided.size() > 1:
 		immediate_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
-		for i_point in range(curve_points_a_subdivided.size()):
+		for i_point: int in range(curve_points_a_subdivided.size()):
 			var point_a: Vector3 = curve_points_a_subdivided[i_point]
 			var point_b: Vector3 = curve_points_b_subdivided[i_point]
 			var point_middle: Vector3 = (point_a + point_b) / 2.0

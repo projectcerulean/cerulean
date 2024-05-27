@@ -5,14 +5,14 @@ extends UnitTest
 
 const ERROR_INTERVAL: float = 0.001
 
-const variant_to_color_params = [
+const variant_to_color_params: Array = [
 	["string", Color(0.6471, 0.5196, 0.7176, 1.0000)],
 	[&"stringname", Color(0.6196, 0.8216, 0.7333, 1.0000)],
 	[Vector3.ONE, Color(0.6176, 0.8392, 0.6118, 1.0000)],
 ]
 
 
-func test_variant_to_color(params=use_parameters(variant_to_color_params)) -> void:
+func test_variant_to_color(params: Array = use_parameters(variant_to_color_params)) -> void:
 	var color: Color = ColorUtils.variant_to_color(params[0])
 	var color_expected: Color = params[1]
 

@@ -21,7 +21,7 @@ func test_signed_sqrt_zero() -> void:
 func test_ellipse_circular() -> void:
 	var radius: float = 1234.0
 	var n_points: int = 100
-	for i in range(n_points):
+	for i: int in range(n_points):
 		var angle: float = TAU * float(i) / n_points
 		assert_almost_eq(Math.ellipse(Vector2(radius, radius), angle), radius, ERROR_INTERVAL)
 
@@ -44,7 +44,7 @@ func test_ellipse_quadrant_1() -> void:
 	var radius_y: float = 7.0
 	var radii: Vector2 = Vector2(radius_x, radius_y)
 
-	for i in range(n_points - 1):
+	for i: int in range(n_points - 1):
 		var angle_smaller: float = float(i) * 0.25 * TAU / float(n_points)
 		var angle_larger: float = float(i + 1) * 0.25 * TAU / float(n_points)
 		assert_gt(Math.ellipse(radii, angle_larger), Math.ellipse(radii, angle_smaller))
@@ -56,7 +56,7 @@ func test_ellipse_quadrant_2() -> void:
 	var radius_y: float = 7.0
 	var radii: Vector2 = Vector2(radius_x, radius_y)
 
-	for i in range(n_points - 1):
+	for i: int in range(n_points - 1):
 		var angle_smaller: float = 0.25 * TAU + float(i) * 0.25 * TAU / float(n_points)
 		var angle_larger: float = 0.25 * TAU + float(i + 1) * 0.25 * TAU / float(n_points)
 		assert_gt(Math.ellipse(radii, angle_smaller), Math.ellipse(radii, angle_larger))
@@ -68,7 +68,7 @@ func test_ellipse_quadrant_3() -> void:
 	var radius_y: float = 7.0
 	var radii: Vector2 = Vector2(radius_x, radius_y)
 
-	for i in range(n_points - 1):
+	for i: int in range(n_points - 1):
 		var angle_smaller: float = 0.5 * TAU + float(i) * 0.25 * TAU / float(n_points)
 		var angle_larger: float = 0.5 * TAU + float(i + 1) * 0.25 * TAU / float(n_points)
 		assert_gt(Math.ellipse(radii, angle_larger), Math.ellipse(radii, angle_smaller))
@@ -80,7 +80,7 @@ func test_ellipse_quadrant_4() -> void:
 	var radius_y: float = 7.0
 	var radii: Vector2 = Vector2(radius_x, radius_y)
 
-	for i in range(n_points - 1):
+	for i: int in range(n_points - 1):
 		var angle_smaller: float = 0.75 * TAU + float(i) * 0.25 * TAU / float(n_points)
 		var angle_larger: float = 0.75 * TAU + float(i + 1) * 0.25 * TAU / float(n_points)
 		assert_gt(Math.ellipse(radii, angle_smaller), Math.ellipse(radii, angle_larger))

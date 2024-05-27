@@ -18,11 +18,13 @@ func _draw() -> void:
 	var radius: float = size.x / 2.0
 	draw_circle(center_point, 16.0, Color.LIGHT_SLATE_GRAY)
 	draw_arc(center_point, radius, 0, 2 * PI, 128, Color.LIGHT_SLATE_GRAY, 2.0, true)
-	for sender in vectors:
+	for sender: NodePath in vectors:
 		var vector: Vector2 = vectors[sender]
 		if vector.length_squared() > 1.0:
 			vector = vector.normalized()
-		draw_line(center_point, center_point + vector * radius, colors[sender], 8.0)
+		@warning_ignore("unsafe_cast")
+		var sender_color: Color = colors[sender] as Color
+		draw_line(center_point, center_point + vector * radius, sender_color, 8.0)
 
 
 func _on_visualize_vector2(sender: NodePath, vector: Vector2) -> void:

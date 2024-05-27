@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	for i in range(water_detectors.get_child_count()):
+	for i: int in range(water_detectors.get_child_count()):
 		var water_detector: WaterDetector = water_detectors.get_child(i) as WaterDetector
 		if not is_inf(water_detector.get_water_surface_height()):
 			var depth: float = water_detector.get_water_surface_height() - water_detector.global_position.y

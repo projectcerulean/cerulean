@@ -65,7 +65,8 @@ func adjust_option(delta: int) -> void:
 	if not Engine.is_editor_hint():
 		if is_settings_option:
 			var n_options: int = len(Settings.SETTINGS[key_string][Settings.VALUES])
-			var value_new: int = posmod(settings_resource.settings[key_string] + delta, n_options)
+			@warning_ignore("unsafe_cast")
+			var value_new: int = posmod((settings_resource.settings[key_string] as int) + delta, n_options)
 			Signals.emit_request_setting_update(self, key_string, value_new)
 
 

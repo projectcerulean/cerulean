@@ -13,12 +13,14 @@ const WAIT_FRAMES: int = 2
 var scene_files: Array = _get_scene_files()
 
 
-func test_scene_instantiation(params=use_parameters(scene_files)) -> void:
+func test_scene_instantiation(params: Array = use_parameters(scene_files)) -> void:
+	@warning_ignore("unsafe_cast")
 	var scene_file: String = params[0] as String
 	await _perform_scene_instantiation_test(scene_file, false)
 
 
-func test_scene_instantiation_add_to_scene_tree(params=use_parameters(scene_files)) -> void:
+func test_scene_instantiation_add_to_scene_tree(params: Array = use_parameters(scene_files)) -> void:
+	@warning_ignore("unsafe_cast")
 	var scene_file: String = params[0] as String
 	await _perform_scene_instantiation_test(scene_file, true)
 
@@ -56,7 +58,7 @@ func _get_scene_files() -> Array:
 	assert(found_scene_files.size() > 0, Errors.CONSISTENCY_ERROR)
 	var files: Array = []
 
-	for i in range(len(found_scene_files)):
+	for i: int in range(len(found_scene_files)):
 		files.append([found_scene_files[i]])
 
 	return files

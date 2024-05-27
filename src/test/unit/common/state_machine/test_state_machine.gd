@@ -131,29 +131,26 @@ func create_state_machine(
 
 	var state_names: PackedStringArray = []
 	state_names.resize(N_STATES)
-	for i in range(N_STATES):
+	for i: int in range(N_STATES):
 		state_names[i] = "State_" + str(i)
 
 	var transition: StringName = StringName()
 	if i_next_state >= 0:
 		transition = StringName(state_names[i_next_state])
 
-	var state_script: Script = load_script("state.gd")
-	var state_script_doubled: Script = double(state_script, DOUBLE_STRATEGY.SCRIPT_ONLY)
-	stub(state_script_doubled, 'enter').to_do_nothing()
-	stub(state_script_doubled, 'exit').to_do_nothing()
-	stub(state_script_doubled, 'process').to_do_nothing()
-	stub(state_script_doubled, 'physics_process').to_do_nothing()
-	stub(state_script_doubled, 'get_transition').to_return(transition)
+	var state_mock_script: Script = load_test_script("state_mock.gd")
 
 	var initial_state: Node = null
-	for i in range(N_STATES):
+	for i: int in range(N_STATES):
 		var state: Node = Node.new()
 		state.name = StringName(state_names[i])
-		state.set_script(state_script_doubled)
-		state_machine.add_child(state, true)
+		state.set_script(state_mock_script)
+		var state_mock: StateMock = state as StateMock
+		assert_not_null(state_mock, "state mock is null when initializing")
+		state_mock.set_next_transition(transition)
+		state_machine.add_child(state_mock, true)
 		if i == i_initial_state:
-			initial_state = state
+			initial_state = state_mock
 
 	assert(initial_state != null, Errors.NULL_NODE)
 	state_machine.initial_state = initial_state
@@ -224,8 +221,10 @@ func verify_state_change(state_machine: StateMachine, i_old_state: int, i_new_st
 
 
 func verify_method_called_for_states(state_machine: StateMachine, i_states: PackedInt64Array, method_name: String) -> void:
-	for i in range(N_STATES):
+	for i: int in range(N_STATES):
+		var state_mock: StateMock = state_machine.get_child(i) as StateMock
+		assert_not_null(state_mock, "state mock is null when verifying called methods")
 		if i in i_states:
-			assert_called(state_machine.get_child(i), method_name)
+			assert_true(method_name in state_mock.get_called_methods(), "Expected to have called method '%s' for state %d" % [method_name, i])
 		else:
-			assert_not_called(state_machine.get_child(i), method_name)
+			assert_false(method_name in state_mock.get_called_methods(), "Expected to not have called method '%s' for state %d" % [method_name, i])

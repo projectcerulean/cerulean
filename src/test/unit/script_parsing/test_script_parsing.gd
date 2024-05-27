@@ -11,7 +11,8 @@ const SRC_DIR: String = "res://src"
 var script_files: Array = _get_script_files()
 
 
-func test_script_parsing(params=use_parameters(script_files)) -> void:
+func test_script_parsing(params: Array = use_parameters(script_files)) -> void:
+	@warning_ignore("unsafe_cast")
 	var script_file: String = params[0] as String
 	var script_resource: Script = load(script_file) as Script
 	assert_not_null(script_resource, "Failed to load: %s" % script_file)
@@ -22,7 +23,7 @@ func _get_script_files() -> Array:
 	assert(found_script_files.size() > 0, Errors.CONSISTENCY_ERROR)
 	var files: Array = []
 
-	for i in range(len(found_script_files)):
+	for i: int in range(len(found_script_files)):
 		files.append([found_script_files[i]])
 
 	return files

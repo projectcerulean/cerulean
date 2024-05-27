@@ -18,20 +18,22 @@ func _ready() -> void:
 func _draw() -> void:
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	if is_instance_valid(camera):
-		for sender in vectors_from:
+		for sender: NodePath in vectors_from:
 			var point_from: Vector3 = vectors_from[sender]
 			var point_to: Vector3 = vectors_to[sender]
 			if not camera.is_position_behind(point_from) and not camera.is_position_behind(point_to):
-				draw_line(camera.unproject_position(point_from), camera.unproject_position(point_to), colors[sender], line_width, true)
+				@warning_ignore("unsafe_cast")
+				var color: Color = colors[sender] as Color
+				draw_line(camera.unproject_position(point_from), camera.unproject_position(point_to), color, line_width, true)
 
 
-func _on_scene_changed(_sender: NodePath):
+func _on_scene_changed(_sender: NodePath) -> void:
 	vectors_from.clear()
 	vectors_to.clear()
 	colors.clear()
 
 
-func _on_visualize_vector3(sender: NodePath, from: Vector3, to: Vector3):
+func _on_visualize_vector3(sender: NodePath, from: Vector3, to: Vector3) -> void:
 	vectors_from[sender] = from
 	vectors_to[sender] = to
 	if not colors.has(sender):

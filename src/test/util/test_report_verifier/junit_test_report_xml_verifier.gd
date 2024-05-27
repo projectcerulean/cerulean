@@ -48,9 +48,11 @@ func find_test_methods(test_scripts: PackedStringArray) -> Dictionary:
 		test_methods[test_script] = []
 		var script_resource: Script = load(test_script) as Script
 		for method: Dictionary in script_resource.get_script_method_list():
-			var method_name: String = String(method[&"name"])
+			@warning_ignore("unsafe_cast")
+			var method_name: String = String(method[&"name"] as String)
 			if method_name.begins_with("test_"):
-				test_methods[test_script].append(method_name)
+				@warning_ignore("unsafe_cast")
+				(test_methods[test_script] as Array).append(method_name)
 	return test_methods
 
 
@@ -61,8 +63,6 @@ func verify_junit_xml_file(test_methods: Dictionary) -> bool:
 	# Verify testcase nodes
 	for test_script: String in test_methods:
 		for test_method: String in test_methods[test_script]:
-			var status_ok: bool = false
-			var assertion_count_ok: bool = false
 			var status: String = String()
 			var assertion_count: int = -1
 			xmlParser.seek(0)
@@ -70,13 +70,13 @@ func verify_junit_xml_file(test_methods: Dictionary) -> bool:
 				if xmlParser.get_node_type() == XMLParser.NODE_ELEMENT:
 					var node_name: String = xmlParser.get_node_name()
 					if node_name == "testcase":
-						for i in range(xmlParser.get_attribute_count()):
+						for i: int in range(xmlParser.get_attribute_count()):
 							if xmlParser.get_attribute_name(i) == "name":
 								if xmlParser.get_attribute_value(i) == test_method:
-									for j in range(xmlParser.get_attribute_count()):
+									for j: int in range(xmlParser.get_attribute_count()):
 										if xmlParser.get_attribute_name(j) == "classname":
 											if xmlParser.get_attribute_value(j) == test_script:
-												for k in range(xmlParser.get_attribute_count()):
+												for k: int in range(xmlParser.get_attribute_count()):
 													if xmlParser.get_attribute_name(k) == "status":
 														status = xmlParser.get_attribute_value(k)
 													if xmlParser.get_attribute_name(k) == "assertions":
@@ -104,10 +104,10 @@ func verify_junit_xml_file(test_methods: Dictionary) -> bool:
 			if xmlParser.get_node_type() == XMLParser.NODE_ELEMENT:
 				var node_name: String = xmlParser.get_node_name()
 				if node_name == "testsuite":
-					for i in range(xmlParser.get_attribute_count()):
+					for i: int in range(xmlParser.get_attribute_count()):
 						if xmlParser.get_attribute_name(i) == "name":
 							if xmlParser.get_attribute_value(i) == test_script:
-								for j in range(xmlParser.get_attribute_count()):
+								for j: int in range(xmlParser.get_attribute_count()):
 									if xmlParser.get_attribute_name(j) == "tests":
 										if xmlParser.get_attribute_value(j).is_valid_int():
 											test_count = xmlParser.get_attribute_value(j).to_int()
@@ -141,7 +141,7 @@ func verify_junit_xml_file(test_methods: Dictionary) -> bool:
 		if xmlParser.get_node_type() == XMLParser.NODE_ELEMENT:
 			var node_name: String = xmlParser.get_node_name()
 			if node_name == "testsuites":
-				for i in range(xmlParser.get_attribute_count()):
+				for i: int in range(xmlParser.get_attribute_count()):
 					if xmlParser.get_attribute_name(i) == "tests":
 						if xmlParser.get_attribute_value(i).is_valid_int():
 							total_test_count = xmlParser.get_attribute_value(i).to_int()

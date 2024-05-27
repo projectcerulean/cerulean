@@ -5,19 +5,18 @@
 extends EditorScript
 
 
-func _run():
-	var editor_interface: EditorInterface = get_editor_interface()
-	for file in list_all_files():
+func _run() -> void:
+	for file: String in list_all_files():
 		if file.ends_with(".tscn"):
-			editor_interface.open_scene_from_path(file)
-			editor_interface.reload_scene_from_path(file)
-			editor_interface.save_scene()
+			EditorInterface.open_scene_from_path(file)
+			EditorInterface.reload_scene_from_path(file)
+			EditorInterface.save_scene()
 
 
 func list_all_files(directory: String = "res://", files: PackedStringArray = PackedStringArray()) -> PackedStringArray:
 	var dirAccess: DirAccess = DirAccess.open(directory)
-	for file in dirAccess.get_files():
+	for file: String in dirAccess.get_files():
 		files.append(directory + "/" + file)
-	for dir in dirAccess.get_directories():
+	for dir: String in dirAccess.get_directories():
 		list_all_files(directory + "/" + dir, files)
 	return files

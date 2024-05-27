@@ -66,7 +66,7 @@ func _process(_delta: float) -> void:
 			Signals.emit_request_game_pause(self)
 
 
-func on_bounce(bounce_normal: Vector3, bounce_min_speed: float, bounce_elasticity: float):
+func on_bounce(bounce_normal: Vector3, bounce_min_speed: float, bounce_elasticity: float) -> void:
 	super.on_bounce(bounce_normal, bounce_min_speed, bounce_elasticity)
 	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
 	can_double_jump = true

@@ -14,7 +14,7 @@ static func concatenate_paths(path_1: NodePath, path_2: NodePath) -> NodePath:
 	assert(not path_2.is_absolute(), "%s: %s" % [Errors.INVALID_ARGUMENT, [path_1, path_2]])
 	var path_names: PackedStringArray = []
 
-	for i in range(path_1.get_name_count()):
+	for i: int in range(path_1.get_name_count()):
 		var path_name: StringName = path_1.get_name(i)
 		if path_name == &".":
 			pass
@@ -24,7 +24,7 @@ static func concatenate_paths(path_1: NodePath, path_2: NodePath) -> NodePath:
 		else:
 			path_names.append(path_name)
 
-	for i in range(path_2.get_name_count()):
+	for i: int in range(path_2.get_name_count()):
 		var path_name: StringName = path_2.get_name(i)
 		if path_name == &".":
 			pass

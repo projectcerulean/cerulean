@@ -10,7 +10,7 @@ func _ready() -> void:
 	Signals.request_resource_load.connect(_on_request_resource_load)
 
 
-func _on_request_resource_load(_sender: NodePath, resource_path: String):
+func _on_request_resource_load(_sender: NodePath, resource_path: String) -> void:
 	var data_loader_worker: DataLoaderWorker = DataLoaderWorkerPreload.instantiate() as DataLoaderWorker
 	add_child(data_loader_worker)
 	data_loader_worker.load_resource(resource_path)

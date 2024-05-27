@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	var offset_total: Vector2 = Vector2.ZERO
-	for offset in shake_offsets.values():
+	for offset: Vector2 in shake_offsets.values():
 		offset_total += offset
 	camera.h_offset = offset_total.x
 	camera.v_offset = offset_total.y
@@ -33,7 +33,7 @@ func _on_request_screen_shake(sender: NodePath, total_duration: float, shake_fre
 
 
 func _on_scene_changed(_scene: NodePath) -> void:
-	for sender in shake_duration_timers.keys():
+	for sender: NodePath in shake_duration_timers.keys():
 		shake_stop(sender)
 
 
@@ -45,7 +45,7 @@ func shake_start(sender: NodePath, total_duration: float, shake_frequency: float
 	shake_duration_timers[sender] = timer
 	timer.wait_time = total_duration
 	timer.one_shot = true
-	timer.timeout.connect(func(): on_timer_timeout(sender))
+	timer.timeout.connect(func() -> void: on_timer_timeout(sender))
 	timer.start()
 
 	shake(sender, 1.0 / shake_frequency, amplitude)
@@ -71,8 +71,8 @@ func shake(sender: NodePath, duration: float, amplitude: float) -> void:
 	shake_tweens[sender] = tween
 	tween.set_trans(tween_trans)
 	tween.set_ease(tween_ease)
-	tween.tween_method(func(offset: Vector2): set_shake_offset(sender, offset), shake_offsets[sender], Vector2.ZERO, duration)
-	tween.tween_callback(func(): on_tween_finished(sender, duration, amplitude))
+	tween.tween_method(func(offset: Vector2) -> void: set_shake_offset(sender, offset), shake_offsets[sender], Vector2.ZERO, duration)
+	tween.tween_callback(func() -> void: on_tween_finished(sender, duration, amplitude))
 
 
 func on_timer_timeout(sender: NodePath) -> void:

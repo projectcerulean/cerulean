@@ -4,15 +4,15 @@
 class_name SwitchInteractionAction
 extends InteractionAction
 
-@export var switch: NodePath
+@export var _switch: NodePath
 
 
 func check(caller: Node3D) -> void:
-	var switch: Switch = caller.get_node(switch) as Switch
+	var switch: Switch = caller.get_node(_switch) as Switch
 	assert(switch != null, Errors.NULL_NODE)
 
 
 func interact(caller: Node3D) -> void:
 	super.interact(caller)
-	var switch: Switch = caller.get_node(switch) as Switch
+	var switch: Switch = caller.get_node(_switch) as Switch
 	switch.flip()
