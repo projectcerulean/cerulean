@@ -1,5 +1,5 @@
 GODOT := godot
-EXPECTED_GODOT_VERSION := 4.2.1
+EXPECTED_GODOT_VERSION := 4.2.2
 
 CERULEAN_PCK := cerulean.pck
 TEST_LOG := test_log.txt
@@ -42,6 +42,6 @@ pck: $(CERULEAN_PCK)
 
 
 define godot_project_init =
-	[ -d .godot/imported ] || ( $(GODOT) --headless --editor --quit && $(GODOT) --headless --export-pack Linux/X11 /dev/null )
+	[ -d .godot/imported ] || $(GODOT) --headless --import
 endef
 

@@ -7,7 +7,7 @@ Just me making a video game.
 
 ## Running prebuilt version
 
-1. Download the Godot game engine, version 4.2.1: https://godotengine.org/download
+1. Download the Godot game engine, version 4.2.2: https://godotengine.org/download
 2. Grab the latest Cerulean PCK file from the build service: https://builds.sr.ht/~gullik/cerulean/commits/master
 3. Place the Cerulean PCK and the Godot executable in the same directory
 4. Rename the Godot executable to 'cerulean' and run it
