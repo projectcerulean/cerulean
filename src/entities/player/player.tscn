@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
 [ext_resource type="Resource" uid="uid://cnn1ff5x5ry22" path="res://src/entities/player/input/player_input_vector_resource.tres" id="3_2i2xh"]
-[ext_resource type="Resource" uid="uid://dd5sh0tn4snb6" path="res://src/entities/player/transforms/player_transform_interpolated.tres" id="5_f776o"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="5_okm0g"]
 [ext_resource type="Resource" uid="uid://bvia5fo4gt42c" path="res://src/singletons/camera/camera_transform.tres" id="6_ibr24"]
 [ext_resource type="PackedScene" uid="uid://b81k6jxhrod56" path="res://src/common/physics_step_interpolator/physics_step_interpolator.tscn" id="7_3cj2e"]
@@ -21,6 +20,7 @@
 [ext_resource type="Script" path="res://src/entities/player/mesh/player_mesh_state_sprint.gd" id="17_n38px"]
 [ext_resource type="Resource" uid="uid://bmra0kxfxo4o" path="res://src/sound/sfx/sfx_resources/bounce_pad_high.tres" id="18_1l0sl"]
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="18_nptr4"]
+[ext_resource type="Resource" uid="uid://dd5sh0tn4snb6" path="res://src/entities/player/transform/player_transform_interpolated.tres" id="20_484wt"]
 [ext_resource type="Script" path="res://src/entities/player/states/player_state_bounce.gd" id="20_rvyx5"]
 [ext_resource type="Script" path="res://src/entities/player/states/player_state_dive.gd" id="22_4hscj"]
 [ext_resource type="Script" path="res://src/entities/player/water_blob_shadow/player_water_blob_shadow_controller.gd" id="22_43yka"]
@@ -44,11 +44,11 @@
 [ext_resource type="PackedScene" uid="uid://bxjp2ck6k1jt6" path="res://src/common/state_machine/state_resource_manager.tscn" id="29_l8kw8"]
 [ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="31_jeewe"]
 [ext_resource type="Script" path="res://src/entities/player/states/player_state_sprint.gd" id="32_hdfe3"]
-[ext_resource type="Resource" uid="uid://dsjf0vjev2thx" path="res://src/entities/player/transforms/player_transform.tres" id="33_jdxb1"]
 [ext_resource type="PackedScene" uid="uid://dtbbw5cfabdva" path="res://src/entities/player/wind_circle/wind_circle_effect_transition_listener.tscn" id="39_qm0ev"]
 [ext_resource type="Script" path="res://src/entities/player/particles/wind_particle_color_setter.gd" id="41_8igcd"]
 [ext_resource type="Material" uid="uid://tkfwgtra634d" path="res://src/entities/player/particles/wind_particle_material.tres" id="42_xipxd"]
 [ext_resource type="Script" path="res://src/entities/player/particles/water_particle_color_setter.gd" id="44_aqs1s"]
+[ext_resource type="Resource" uid="uid://dsjf0vjev2thx" path="res://src/entities/player/transform/player_transform.tres" id="44_ojxtx"]
 [ext_resource type="Material" uid="uid://xotkrggp0wo4" path="res://src/entities/player/particles/water_particle_material.tres" id="45_xi4ar"]
 [ext_resource type="PackedScene" uid="uid://dy4xubkwfcoo7" path="res://src/entities/player/particles/glide_ground_particles.tscn" id="46_3t1mj"]
 [ext_resource type="PackedScene" uid="uid://dv3hd832wkcet" path="res://src/entities/player/particles/glide_water_particles.tscn" id="46_waeco"]
@@ -351,7 +351,7 @@ _state_machine_child = NodePath("../StateMachine")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
 
 [node name="TransformResourceManager" parent="MeshAnchor/PhysicsStepInterpolator" instance=ExtResource("31_jeewe")]
-transform_resource = ExtResource("5_f776o")
+transform_resource = ExtResource("20_484wt")
 
 [node name="BlobShadow" parent="MeshAnchor/PhysicsStepInterpolator" instance=ExtResource("28_5hoqt")]
 
@@ -573,7 +573,7 @@ _target_states = Array[NodePath]([NodePath("../../StateMachine/Bounce"), NodePat
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 
 [node name="TransformResourceManager" parent="." instance=ExtResource("31_jeewe")]
-transform_resource = ExtResource("33_jdxb1")
+transform_resource = ExtResource("44_ojxtx")
 
 [node name="DoubleJumpVisualEffect" parent="." node_paths=PackedStringArray("target_transform") instance=ExtResource("39_qm0ev")]
 target_transform = NodePath("../MeshAnchor/PhysicsStepInterpolator/Mesh/DoubleJumpEffectTargetTransform")

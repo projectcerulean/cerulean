@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/singletons/camera/camera_target.gd" id="1_vv2vj"]
 [ext_resource type="Resource" uid="uid://cppnx2dsyd0xi" path="res://src/singletons/camera/camera_target_transform.tres" id="2_kekmw"]
-[ext_resource type="Resource" uid="uid://dd5sh0tn4snb6" path="res://src/entities/player/transforms/player_transform_interpolated.tres" id="3_scv08"]
+[ext_resource type="Resource" uid="uid://dd5sh0tn4snb6" path="res://src/entities/player/transform/player_transform_interpolated.tres" id="3_scv08"]
 [ext_resource type="Resource" path="res://src/entities/player/states/player_state_resource.tres" id="4_02ywf"]
 [ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="5_jsavd"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="5_os347"]

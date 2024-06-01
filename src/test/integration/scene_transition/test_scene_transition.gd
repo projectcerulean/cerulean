@@ -8,7 +8,7 @@ const FADE_COLOR: Color = Color.BLACK
 const FADE_DURATION: float = 0.1
 const SIGNAL_WAIT_TIME: float = 1.0
 
-@onready var player_transform_resource: TransformResource = load("res://src/entities/player/player_transform.tres")
+@onready var player_transform_resource: TransformResource = load("res://src/entities/player/transform/player_transform.tres")
 @onready var camera_transform_resource: TransformResource = load("res://src/singletons/camera/camera_transform.tres")
 @onready var scene_info_resource: SceneInfoResource = load("res://src/singletons/scene_manager/scene_info_resource.tres")
 
