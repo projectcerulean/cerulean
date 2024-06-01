@@ -1,18 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dt35hup5wi67g"]
+[gd_scene load_steps=12 format=3 uid="uid://dt35hup5wi67g"]
 
-[ext_resource type="Shader" path="res://src/entities/player/wind_circle/wind_circle_effect.gdshader" id="1_mlbf4"]
+[ext_resource type="Shader" path="res://src/entities/player/wind_circle/wind_circle_effect_pass_3.gdshader" id="1_gay80"]
+[ext_resource type="PlaneMesh" uid="uid://dlfmlthryc67p" path="res://src/entities/player/wind_circle/wind_circle_mesh.tres" id="1_ltaw0"]
+[ext_resource type="Shader" path="res://src/entities/player/wind_circle/wind_circle_effect_pass_2.gdshader" id="1_m1sfy"]
 [ext_resource type="Script" path="res://src/entities/player/wind_circle/wind_circle_effect.gd" id="2_6a3kl"]
+[ext_resource type="Shader" path="res://src/entities/player/wind_circle/wind_circle_effect_pass_1.gdshader" id="2_ehons"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="3_5eb8q"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ljlky"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bofak"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("1_mlbf4")
-shader_parameter/inner_radius = 0.25
-shader_parameter/outer_radius = 0.75
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_5vo2o"]
 max_value = 0.5
@@ -24,12 +17,45 @@ max_value = 0.5
 _data = [Vector2(0, 0.1), 0.0, 0.466884, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="WindCircleEffect" type="MeshInstance3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ieij0"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_ehons")
+shader_parameter/inner_radius = 0.25
+shader_parameter/outer_radius = 0.75
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1d6tj"]
+resource_local_to_scene = true
+render_priority = -128
+shader = ExtResource("1_m1sfy")
+shader_parameter/inner_radius = 0.25
+shader_parameter/outer_radius = 0.75
+shader_parameter/albedo_color = Color(0.25098, 0.25098, 0.25098, 0.25098)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tmgw2"]
+resource_local_to_scene = true
+render_priority = -127
+shader = ExtResource("1_gay80")
+shader_parameter/inner_radius = 0.25
+shader_parameter/outer_radius = 0.75
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+
+[node name="WindCircleEffect" type="Node3D"]
 top_level = true
-visible = false
-mesh = SubResource("PlaneMesh_ljlky")
-surface_material_override/0 = SubResource("ShaderMaterial_bofak")
 script = ExtResource("2_6a3kl")
 environment_resource = ExtResource("3_5eb8q")
 inner_radius = SubResource("Curve_5vo2o")
 outer_radius = SubResource("Curve_kyhje")
+
+[node name="Mesh1" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ltaw0")
+surface_material_override/0 = SubResource("ShaderMaterial_ieij0")
+
+[node name="Mesh2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ltaw0")
+surface_material_override/0 = SubResource("ShaderMaterial_1d6tj")
+
+[node name="Mesh3" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ltaw0")
+surface_material_override/0 = SubResource("ShaderMaterial_tmgw2")

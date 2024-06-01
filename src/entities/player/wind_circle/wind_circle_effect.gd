@@ -4,7 +4,7 @@
 
 # Provides a visual indication that the player has performed a double-jump, or similar action.
 class_name WindCircleEffect
-extends MeshInstance3D
+extends Node3D
 
 @export var environment_resource: EnvironmentResource
 @export var player_mesh_height: float = 1.25
@@ -13,32 +13,46 @@ extends MeshInstance3D
 @export var inner_radius: Curve
 @export var outer_radius: Curve
 
-var time: float = 0.0
+var _time: float = 0.0
 
-@onready var shader_material: ShaderMaterial = get_surface_override_material(0) as ShaderMaterial
+# Use separate meshes since multi-pass shaders do not seem to work properly (ShaderMaterial.get_next_pass() always returns null?).
+@onready var _shader_material_1: ShaderMaterial = (get_node("Mesh1") as MeshInstance3D).get_surface_override_material(0) as ShaderMaterial
+@onready var _shader_material_2: ShaderMaterial = (get_node("Mesh2") as MeshInstance3D).get_surface_override_material(0) as ShaderMaterial
+@onready var _shader_material_3: ShaderMaterial = (get_node("Mesh3") as MeshInstance3D).get_surface_override_material(0) as ShaderMaterial
+@onready var _shader_materials: Array[ShaderMaterial] = [
+	_shader_material_1,
+	_shader_material_2,
+	_shader_material_3,
+]
 
 
 func _ready() -> void:
 	assert(environment_resource != null, Errors.NULL_RESOURCE)
 	assert(inner_radius != null, Errors.NULL_RESOURCE)
 	assert(outer_radius != null, Errors.NULL_RESOURCE)
-	assert(shader_material != null, Errors.NULL_RESOURCE)
+	assert(_shader_material_1 != null, Errors.NULL_RESOURCE)
+	assert(_shader_material_2 != null, Errors.NULL_RESOURCE)
+	assert(_shader_material_3 != null, Errors.NULL_RESOURCE)
 
 
 func _process(delta: float) -> void:
-	time = time + delta
-	if time > time_max:
+	_time = _time + delta
+	if _time > time_max:
 		visible = false
-		shader_material.set_shader_parameter(&"inner_radius", 0.0)
-		shader_material.set_shader_parameter(&"outer_radius", 0.0)
+		set_process(false)
+		for shader_material: ShaderMaterial in _shader_materials:
+			shader_material.set_shader_parameter(&"inner_radius", 0.0)
+			shader_material.set_shader_parameter(&"outer_radius", 0.0)
 	else:
-		var progress: float = time / time_max
-		shader_material.set_shader_parameter(&"inner_radius", inner_radius.sample(progress))
-		shader_material.set_shader_parameter(&"outer_radius", outer_radius.sample(progress))
+		var progress: float = _time / time_max
+		for shader_material: ShaderMaterial in _shader_materials:
+			shader_material.set_shader_parameter(&"inner_radius", inner_radius.sample(progress))
+			shader_material.set_shader_parameter(&"outer_radius", outer_radius.sample(progress))
 
 
 func trigger() -> void:
 	var albedo_color: Color = environment_resource.value.wind_trail_color
-	shader_material.set_shader_parameter(&"albedo_color", albedo_color)
+	_shader_material_3.set_shader_parameter(&"albedo_color", albedo_color)
+	_time = 0.0
 	visible = true
-	time = 0.0
+	set_process(true)
