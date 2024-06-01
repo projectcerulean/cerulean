@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtbbw5cfabdva"]
 
-[ext_resource type="Script" path="res://src/entities/player/wind_circle_effect_transition_listener.gd" id="1_damqh"]
-[ext_resource type="PackedScene" uid="uid://dt35hup5wi67g" path="res://src/entities/player/wind_circle_effect.tscn" id="2_7x0jx"]
-[ext_resource type="Shader" path="res://src/entities/player/wind_circle_effect.gdshader" id="3_ik386"]
+[ext_resource type="Script" path="res://src/entities/player/wind_circle/wind_circle_effect_transition_listener.gd" id="1_damqh"]
+[ext_resource type="PackedScene" uid="uid://dt35hup5wi67g" path="res://src/entities/player/wind_circle/wind_circle_effect.tscn" id="2_7x0jx"]
+[ext_resource type="Shader" path="res://src/entities/player/wind_circle/wind_circle_effect.gdshader" id="3_ik386"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4n5qm"]
 resource_local_to_scene = true
