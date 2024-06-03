@@ -9,13 +9,14 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var settings_resource: SettingsResource
 @export var target_transform_resource: TransformResource
 @export var game_state_resource: StateResource
+@export var water_volume_height_resource: FloatResource
 
 @onready var yaw_pivot: Marker3D = get_node("YawPivot") as Marker3D
 @onready var pitch_pivot: Marker3D = get_node("YawPivot/PitchPivot") as Marker3D
 @onready var raycast: RayCast3D = get_node("YawPivot/PitchPivot/RayCast3D") as RayCast3D
 @onready var camera_anchor: Marker3D = get_node("YawPivot/PitchPivot/CameraAnchor") as Marker3D
 @onready var camera: Camera3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D") as Camera3D
-@onready var water_detector: Area3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector") as Area3D
+@onready var water_detector: WaterDetector = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector") as WaterDetector
 
 @export var camera_distance_min: float = 3.0
 @export var camera_distance_max: float = 10.5
@@ -36,6 +37,15 @@ var camera_distance_speed: float = 0.0
 @onready var camera_distance_default: float = camera_anchor.position.z
 @onready var pitch_default: float = pitch_pivot.rotation.x
 @onready var fov_tween: Tween
+
+
+func _enter_tree() -> void:
+	assert(water_volume_height_resource != null, Errors.NULL_RESOURCE)
+	water_volume_height_resource.claim_ownership(self)
+
+
+func _exit_tree() -> void:
+	water_volume_height_resource.release_ownership(self)
 
 
 func _ready() -> void:
@@ -136,6 +146,9 @@ func _process(delta: float) -> void:
 	# Look at target
 	if target_transform_resource.is_owned():
 		camera.look_at(target_transform_resource.get_value().origin)
+
+	# For underwater screen distortion effect
+	water_volume_height_resource.set_value(self, water_detector.get_water_volume_height())
 
 
 func _on_scene_changed(_sender: NodePath) -> void:

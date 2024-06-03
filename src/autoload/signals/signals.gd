@@ -38,8 +38,6 @@ signal state_entered
 signal state_exited
 signal visualize_vector2
 signal visualize_vector3
-signal water_entered
-signal water_exited
 
 
 # Assert that all the signals above have a corresponding emission function below
@@ -119,5 +117,3 @@ func emit_state_entered(sender: Node, state: StringName, data: Dictionary) -> vo
 func emit_state_exited(sender: Node, state: StringName, data: Dictionary) -> void: emit(state_exited, sender, [state, data])
 func emit_visualize_vector2(sender: Node, vector: Vector2) -> void: emit(visualize_vector2, sender, [vector])
 func emit_visualize_vector3(sender: Node, from: Vector3, to: Vector3) -> void: emit(visualize_vector3, sender, [from, to])
-func emit_water_entered(sender: Area3D) -> void: emit(water_entered, sender, [])
-func emit_water_exited(sender: Area3D) -> void: emit(water_exited, sender, [])

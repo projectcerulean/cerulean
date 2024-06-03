@@ -8,7 +8,6 @@ extends Area3D
 @export var time_resource_gameplay: FloatResource
 
 var water_bodies: Array[Area3D]
-var is_in_water_prev: bool = false
 
 
 func _ready() -> void:
@@ -16,15 +15,6 @@ func _ready() -> void:
 
 	assert(environment_resource != null, Errors.NULL_RESOURCE)
 	assert(time_resource_gameplay != null, Errors.NULL_RESOURCE)
-
-
-func _process(_delta: float) -> void:
-	var is_in_water_cached: bool = is_in_water()
-	if is_in_water_cached and not is_in_water_prev:
-		Signals.emit_water_entered(self)
-	if not is_in_water_cached and is_in_water_prev:
-		Signals.emit_water_exited(self)
-	is_in_water_prev = is_in_water_cached
 
 
 func _on_scene_changed(_sender: NodePath) -> void:
@@ -43,6 +33,16 @@ func _on_area_exited(area: Area3D) -> void:
 
 func is_in_water() -> bool:
 	return global_position.y < get_water_surface_height()
+
+
+func get_water_volume_height() -> float:
+	var height: float = -INF
+	for area: Area3D in water_bodies:
+		height = max(
+			height,
+			area.global_position.y,
+		)
+	return height
 
 
 func get_water_surface_height() -> float:

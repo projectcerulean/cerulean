@@ -1,13 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dix3nlscfbxgl"]
+[gd_scene load_steps=3 format=3 uid="uid://dix3nlscfbxgl"]
 
 [ext_resource type="Script" path="res://src/environment/world_environment.gd" id="1_yx8pc"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="2_5vtiw"]
-[ext_resource type="Script" path="res://src/environment/effects/underwater_fog.gd" id="3_nmuvn"]
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 script = ExtResource("1_yx8pc")
-environment_resource = ExtResource("2_5vtiw")
-
-[node name="UnderwaterFog" type="Node" parent="."]
-script = ExtResource("3_nmuvn")
 environment_resource = ExtResource("2_5vtiw")

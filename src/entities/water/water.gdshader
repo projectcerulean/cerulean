@@ -7,6 +7,7 @@ shader_type spatial;
 render_mode unshaded, cull_disabled, world_vertex_coords;
 
 #include "res://src/common/shaderlib/math.gdshaderinc"
+#include "res://src/common/shaderlib/water_waves.gdshaderinc"
 
 uniform vec4 water_color: source_color;
 uniform vec4 water_color_highlight: source_color;
@@ -142,6 +143,11 @@ void fragment() {
 
 
 void vertex() {
-	VERTEX.y += wave_strength.x * sin(VERTEX.x * TAU / wave_period.x + wave_time * wave_time_factor.x) +
-		wave_strength.y * sin(VERTEX.z * TAU / wave_period.y + wave_time * wave_time_factor.y);
+	VERTEX.y += calculate_water_wave_height(
+		VERTEX.xz,
+		wave_strength,
+		wave_period,
+		wave_time,
+		wave_time_factor
+	);
 }

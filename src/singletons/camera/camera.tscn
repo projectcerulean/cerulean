@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jbkbt1h6gqsx"]
+[gd_scene load_steps=11 format=3 uid="uid://jbkbt1h6gqsx"]
 
 [ext_resource type="Script" path="res://src/singletons/camera/camera.gd" id="1_8vlcf"]
 [ext_resource type="Resource" uid="uid://1jerxlyauuto" path="res://src/singletons/thumbstick_processor/thumbstick_resource_right.tres" id="2_yl0p3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://cppnx2dsyd0xi" path="res://src/singletons/camera/camera_target_transform.tres" id="4_qcnfh"]
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="5_wjhc2"]
 [ext_resource type="PackedScene" uid="uid://5erm75pc5fdd" path="res://src/common/water_detector/water_detector.tscn" id="6_a8h50"]
+[ext_resource type="Resource" uid="uid://bnqobjr0yvk17" path="res://src/singletons/camera/camera_water_volume_height.tres" id="6_e34bo"]
 [ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="7_y3o6a"]
 [ext_resource type="Resource" uid="uid://bvia5fo4gt42c" path="res://src/singletons/camera/camera_transform.tres" id="8_u3pbk"]
 [ext_resource type="Script" path="res://src/singletons/camera/camera_shake.gd" id="9_0pqlb"]
@@ -17,6 +18,7 @@ thumbstick_resource_right = ExtResource("2_yl0p3")
 settings_resource = ExtResource("3_xpd0r")
 target_transform_resource = ExtResource("4_qcnfh")
 game_state_resource = ExtResource("5_wjhc2")
+water_volume_height_resource = ExtResource("6_e34bo")
 
 [node name="YawPivot" type="Marker3D" parent="."]
 

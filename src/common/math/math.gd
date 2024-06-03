@@ -5,6 +5,14 @@ class_name Math
 extends Node
 
 
+static func is_even(number: int) -> bool:
+	return number % 2 == 0
+
+
+static func is_odd(number: int) -> bool:
+	return not is_even(number)
+
+
 static func signed_sqrt(x: float) -> float:
 	return signf(x) * sqrt(absf(x))
 

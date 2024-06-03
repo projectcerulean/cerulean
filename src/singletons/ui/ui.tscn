@@ -1,12 +1,16 @@
-[gd_scene load_steps=29 format=3 uid="uid://dm267sxiobypt"]
+[gd_scene load_steps=33 format=3 uid="uid://dm267sxiobypt"]
 
-[ext_resource type="Shader" path="res://src/singletons/ui/effects/underwater_effect.gdshader" id="1"]
+[ext_resource type="Shader" path="res://src/singletons/ui/effects/underwater_screen_distortion_effect.gdshader" id="1"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/version_label/version_label.gd" id="3"]
 [ext_resource type="Resource" uid="uid://bdx56ettfo3o7" path="res://src/environment/environment_resource.tres" id="3_34h0a"]
-[ext_resource type="Script" path="res://src/singletons/ui/effects/underwater_effect.gd" id="4"]
+[ext_resource type="Script" path="res://src/singletons/ui/effects/underwater_screen_distortion_effect.gd" id="4"]
+[ext_resource type="Resource" uid="uid://caltt67cj0pty" path="res://src/singletons/time_manager/time_resource_gameplay.tres" id="4_5g6v3"]
 [ext_resource type="Script" path="res://src/singletons/ui/hud/hud.gd" id="4_4636l"]
 [ext_resource type="Script" path="res://src/singletons/ui/hud/interaction_marker.gd" id="4_o1y8t"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/vector2_visualizer/vector2_visualizer.gd" id="5"]
+[ext_resource type="PlaneMesh" uid="uid://dipopab23rd03" path="res://src/entities/water/water_mesh.tres" id="5_0p1gm"]
+[ext_resource type="Resource" uid="uid://dd5sh0tn4snb6" path="res://src/entities/player/transform/player_transform_interpolated.tres" id="5_45bq2"]
+[ext_resource type="Resource" uid="uid://bnqobjr0yvk17" path="res://src/singletons/camera/camera_water_volume_height.tres" id="6_g0nid"]
 [ext_resource type="PackedScene" uid="uid://cxg7qn6h5w2c" path="res://src/singletons/ui/hud/compass.tscn" id="6_suovi"]
 [ext_resource type="PackedScene" uid="uid://com3qcbnk0t72" path="res://src/singletons/ui/dialogue_manager/dialogue_manager.tscn" id="6_vu52l"]
 [ext_resource type="Shader" path="res://src/singletons/ui/pause_menu/screen_blur.gdshader" id="8"]
@@ -35,6 +39,16 @@ shader_parameter/color = Color(0, 0, 0, 0)
 shader_parameter/distortion_scale = 0.5
 shader_parameter/distortion_intensity = 0.01
 shader_parameter/distortion_speed = 0.05
+shader_parameter/wave_time = 0.0
+shader_parameter/wave_period = Vector2(16, 16)
+shader_parameter/wave_strength = Vector2(0.25, 0.125)
+shader_parameter/wave_time_factor = Vector2(0.5, 1)
+shader_parameter/camera_water_volume_height = 0.0
+shader_parameter/top_left_near_plane_vertex = Vector3(0, 0, 0)
+shader_parameter/top_right_near_plane_vertex = Vector3(0, 0, 0)
+shader_parameter/bottom_right_near_plane_vertex = Vector3(0, 0, 0)
+shader_parameter/bottom_left_near_plane_vertex = Vector3(0, 0, 0)
+shader_parameter/water_mesh_face_size = Vector2(0, 0)
 shader_parameter/noise = SubResource("NoiseTexture2D_aa3of")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3t3c"]
@@ -57,8 +71,7 @@ process_mode = 3
 
 [node name="EffectsLayer" type="CanvasLayer" parent="."]
 
-[node name="UnderwaterEffect" type="ColorRect" parent="EffectsLayer"]
-visible = false
+[node name="UnderwaterScreenDistortionEffect" type="ColorRect" parent="EffectsLayer"]
 material = SubResource("9")
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,6 +80,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
 environment_resource = ExtResource("3_34h0a")
+time_resource_gameplay = ExtResource("4_5g6v3")
+player_transform_resource = ExtResource("5_45bq2")
+camera_water_volume_height_resource = ExtResource("6_g0nid")
+water_mesh = ExtResource("5_0p1gm")
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 script = ExtResource("4_4636l")

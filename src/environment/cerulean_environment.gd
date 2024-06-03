@@ -13,4 +13,6 @@ extends Environment
 @export var water_wave_period: Vector2
 @export var water_wave_strength: Vector2
 @export var water_wave_time_factor: Vector2
+@export var underwater_fog_density: float
+@export var underwater_fog_emission_factor: float
 @export var wind_trail_color: Color

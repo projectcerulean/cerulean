@@ -6,6 +6,32 @@ extends UnitTest
 const ERROR_INTERVAL: float = 0.000001
 
 
+func test_is_even() -> void:
+	assert_true(Math.is_even(0))
+	assert_true(Math.is_even(-0))
+	assert_true(Math.is_even(2))
+	assert_true(Math.is_even(4))
+	assert_true(Math.is_even(-2))
+	assert_true(Math.is_even(-4))
+	assert_false(Math.is_even(1))
+	assert_false(Math.is_even(3))
+	assert_false(Math.is_even(-1))
+	assert_false(Math.is_even(-3))
+
+
+func test_is_odd() -> void:
+	assert_false(Math.is_odd(0))
+	assert_false(Math.is_odd(-0))
+	assert_false(Math.is_odd(2))
+	assert_false(Math.is_odd(4))
+	assert_false(Math.is_odd(-2))
+	assert_false(Math.is_odd(-4))
+	assert_true(Math.is_odd(1))
+	assert_true(Math.is_odd(3))
+	assert_true(Math.is_odd(-1))
+	assert_true(Math.is_odd(-3))
+
+
 func test_signed_sqrt_positive() -> void:
 	assert_almost_eq(Math.signed_sqrt(4.0), 2.0, ERROR_INTERVAL)
 
