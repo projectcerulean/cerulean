@@ -475,6 +475,7 @@ planar_movement_pid_p_gain_factor = 10.0
 
 [node name="Sprint" type="Node" parent="StateMachine"]
 script = ExtResource("32_hdfe3")
+reset_double_jump = true
 
 [node name="Swim" type="Node" parent="StateMachine"]
 script = ExtResource("28_tp61u")
