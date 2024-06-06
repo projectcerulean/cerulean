@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bbaupgv7alorj"]
+[gd_resource type="Resource" script_class="SettingsResource" load_steps=2 format=3 uid="uid://bbaupgv7alorj"]
 
 [ext_resource type="Script" path="res://src/singletons/settings_manager/settings_resource.gd" id="1_fhg83"]
 

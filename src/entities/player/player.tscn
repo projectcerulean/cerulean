@@ -25,7 +25,6 @@
 [ext_resource type="Script" path="res://src/entities/player/states/player_state_dive.gd" id="22_4hscj"]
 [ext_resource type="Script" path="res://src/entities/player/water_blob_shadow/player_water_blob_shadow_controller.gd" id="22_43yka"]
 [ext_resource type="Script" path="res://src/entities/player/particles/glide_particle_controller.gd" id="22_an67j"]
-[ext_resource type="Script" path="res://src/common/state_machine/bool_property_transition_listener.gd" id="22_bx1f0"]
 [ext_resource type="Script" path="res://src/entities/player/particles/water_movement_particle_controller.gd" id="22_c1lh1"]
 [ext_resource type="Resource" uid="uid://br5lp056r2vnl" path="res://src/entities/player/water_blob_shadow/player_water_blob_shadow_enabled.tres" id="23_n53dm"]
 [ext_resource type="Script" path="res://src/entities/player/states/player_state_double_jump.gd" id="23_oc5f6"]
@@ -55,6 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://befnqc7tux8io" path="res://src/entities/player/particles/sprint_particles.tscn" id="47_qkkjb"]
 [ext_resource type="PackedScene" uid="uid://dqk00f8kimkyq" path="res://src/entities/player/particles/water_movement_trail_particles.tscn" id="52_vjux7"]
 [ext_resource type="PackedScene" uid="uid://cc5ewmycnd0r" path="res://src/entities/player/particles/water_movement_splash_particles.tscn" id="53_3607o"]
+[ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/bool_property_transition_listener.gd" id="53_u2b6p"]
 [ext_resource type="Texture2D" uid="uid://bwwqf8dpeaubl" path="res://src/entities/player/particles/particle_scale_curve.tres" id="54_gb78k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khrrq"]
@@ -606,7 +606,7 @@ environment_resource = ExtResource("24_hgnac")
 transform = Transform3D(1, 0, -8.35189e-23, 0, 1, -3.59989e-21, -8.35189e-23, 0, 1, -4.61853e-14, -0.625135, 0.25)
 
 [node name="BoolPropertyTransitionListener" type="Node" parent="Particles/RemoteTransformTargets/RollParticles" node_paths=PackedStringArray("target_node")]
-script = ExtResource("22_bx1f0")
+script = ExtResource("53_u2b6p")
 target_node = NodePath("..")
 property = &"emitting"
 _target_states = Array[NodePath]([NodePath("../../../../StateMachine/Dodge"), NodePath("../../../../StateMachine/Roll")])
@@ -615,7 +615,7 @@ _target_states = Array[NodePath]([NodePath("../../../../StateMachine/Dodge"), No
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625135, 0.25)
 
 [node name="BoolPropertyTransitionListener" type="Node" parent="Particles/RemoteTransformTargets/SprintParticles" node_paths=PackedStringArray("target_node")]
-script = ExtResource("22_bx1f0")
+script = ExtResource("53_u2b6p")
 target_node = NodePath("..")
 property = &"emitting"
 _target_states = Array[NodePath]([NodePath("../../../../StateMachine/Sprint")])

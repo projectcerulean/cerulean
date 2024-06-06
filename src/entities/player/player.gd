@@ -68,10 +68,11 @@ func _process(_delta: float) -> void:
 
 func on_bounce(bounce_normal: Vector3, bounce_min_speed: float, bounce_elasticity: float) -> void:
 	super.on_bounce(bounce_normal, bounce_min_speed, bounce_elasticity)
-	Signals.emit_request_screen_shake(self, 0.1, 30.0, 0.15)
 	can_double_jump = true
 	if state_resource.get_current_state() != PlayerStates.DIVE:
 		if Input.is_action_pressed(InputActions.GLIDE):
+			Signals.emit_request_camera_shake_impulse(self, 0.16)
 			state_machine.transition_to_state(PlayerStates.BOUNCE)
 		else:
+			Signals.emit_request_camera_shake_impulse(self, 0.14)
 			state_machine.transition_to_state(PlayerStates.FALL)

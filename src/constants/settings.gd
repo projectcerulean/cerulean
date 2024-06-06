@@ -18,6 +18,7 @@ const CAMERA_Y_INVERTED: StringName = &"CAMERA_Y_INVERTED"
 const FIELD_OF_VIEW: StringName = &"FIELD_OF_VIEW"
 const MSAA: StringName = &"MSAA"
 const RENDER_SCALE: StringName = &"RENDER_SCALE"
+const SCREEN_SHAKE: StringName = &"SCREEN_SHAKE"
 const VSYNC: StringName = &"VSYNC"
 
 const SETTINGS: Dictionary = {
@@ -42,7 +43,7 @@ const SETTINGS: Dictionary = {
 	FIELD_OF_VIEW: {
 		OPTION_NAME: "Field of view",
 		VALUES: [60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120],
-		VALUE_NAMES: ["60", "65", "70", "75", "80", "85", "90", "95", "100", "105", "110", "115", "120"],
+		VALUE_NAMES: ["60°", "65°", "70°", "75°", "80°", "85°", "90°", "95°", "100°", "105°", "110°", "115°", "120°"],
 		DEFAULT_VALUE_INDEX: 3,
 	},
 	MSAA: {
@@ -54,8 +55,14 @@ const SETTINGS: Dictionary = {
 	RENDER_SCALE: {
 		OPTION_NAME: "Render scale",
 		VALUES: [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0],
-		VALUE_NAMES: ["0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "1.75", "2.0"],
+		VALUE_NAMES: ["25%", "50%", "75%", "100%", "125%", "150%", "175%", "200%"],
 		DEFAULT_VALUE_INDEX: 3,
+	},
+	SCREEN_SHAKE: {
+		OPTION_NAME: "Screen shake",
+		VALUES: [0.0, 0.25, 0.5, 0.75, 1.0],
+		VALUE_NAMES: ["Disabled", "25%", "50%", "75%", "100%"],
+		DEFAULT_VALUE_INDEX: 4,
 	},
 	VSYNC: {
 		OPTION_NAME: "VSync",

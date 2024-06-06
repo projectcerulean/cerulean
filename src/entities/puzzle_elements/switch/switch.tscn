@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://blysdbts7tc6d"]
+[gd_scene load_steps=21 format=3 uid="uid://blysdbts7tc6d"]
 
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_7i1pt"]
@@ -13,7 +13,8 @@
 [ext_resource type="Resource" uid="uid://cvlcy7dsg6p28" path="res://src/sound/sfx/sfx_resources/switch_disabled.tres" id="8_aedo8"]
 [ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="9_tdrh8"]
 [ext_resource type="Resource" uid="uid://dlhs0dn5qmwcx" path="res://src/singletons/persistent_data/persistent_data_resource.tres" id="10_4sdp5"]
-[ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="10_ey7nc"]
+[ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/property_tweener_transition_listener.gd" id="10_ey7nc"]
+[ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/camera_shake_impulse_transition_listener.gd" id="15_nvkrp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jmta0"]
 radius = 1.0
@@ -38,7 +39,7 @@ shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/emission_energy = 1.0
 
-[sub_resource type="Resource" id="Resource_jmeew"]
+[sub_resource type="Resource" id="Resource_dxw0m"]
 resource_local_to_scene = true
 script = ExtResource("3_bgjta")
 _switch = NodePath("../../..")
@@ -124,7 +125,7 @@ layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 
 [node name="Interaction" parent="Joint/Crystal" instance=ExtResource("2_hkiaq")]
-interaction_action = SubResource("Resource_jmeew")
+interaction_action = SubResource("Resource_dxw0m")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("9_tdrh8")]
 initial_state = NodePath("Disabled")
@@ -140,4 +141,10 @@ script = ExtResource("8_2adit")
 script = ExtResource("6_ssf8g")
 _sfx_resource_enter = ExtResource("7_gi7uk")
 _sfx_resource_exit = ExtResource("8_aedo8")
+_target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])
+
+[node name="CameraShakeStateEnabled" type="Node" parent="."]
+script = ExtResource("15_nvkrp")
+shake_trauma_enter = 0.06
+shake_trauma_exit = 0.05
 _target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])

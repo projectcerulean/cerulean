@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://dxgetvxs1tqfh" path="res://src/sound/sfx/sfx_resources/switch_enabled.tres" id="7_gi7uk"]
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="8_2adit"]
 [ext_resource type="Resource" uid="uid://cvlcy7dsg6p28" path="res://src/sound/sfx/sfx_resources/switch_disabled.tres" id="8_aedo8"]
-[ext_resource type="Script" path="res://src/common/state_machine/property_tweener_transition_listener.gd" id="10_ey7nc"]
+[ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/property_tweener_transition_listener.gd" id="10_ey7nc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ccdnt"]
 height = 0.1

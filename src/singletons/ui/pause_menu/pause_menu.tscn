@@ -114,6 +114,11 @@ layout_mode = 2
 key_string = &"FIELD_OF_VIEW"
 is_settings_option = true
 
+[node name="ScreenShake" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+key_string = &"SCREEN_SHAKE"
+is_settings_option = true
+
 [node name="RenderScale" parent="Settings" instance=ExtResource("5_jy57n")]
 layout_mode = 2
 key_string = &"RENDER_SCALE"

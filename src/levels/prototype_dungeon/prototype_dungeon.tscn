@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://ct8hn0mrxp0d6"]
+[gd_scene load_steps=64 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="2_af2ft"]
@@ -10,10 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="7_b2l1v"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="8_4hvtj"]
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
-[ext_resource type="Script" path="res://src/common/state_machine/screen_shake_transition_listener.gd" id="10_1f3do"]
+[ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/camera_shake_sustained_transition_listener.gd" id="10_1f3do"]
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="10_g8ijk"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="10_imkh8"]
 [ext_resource type="Resource" uid="uid://tqf2hjuhigop" path="res://assets/dialogue/end/end.tres" id="11_20llv"]
+[ext_resource type="Resource" uid="uid://xi51rh05qglf" path="res://src/levels/prototype_dungeon/water_level_camera_shake_resource.tres" id="12_66jwv"]
 [ext_resource type="PackedScene" uid="uid://by2nwnn6lar31" path="res://src/entities/puzzle_elements/push_button/push_button.tscn" id="12_osc62"]
 [ext_resource type="Script" path="res://src/common/state_machine/translate3d_transition_listener.gd" id="12_we2p8"]
 [ext_resource type="PackedScene" uid="uid://dix3nlscfbxgl" path="res://src/environment/world_environment.tscn" id="14_11lwf"]
@@ -876,16 +877,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4.8)
 [node name="MeshInstance3D" parent="Env/CentralRoom/Walls/Circuit/Indicator/Mesh" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_x3iwq")
 
-[node name="ScreenShakeDisabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator"]
+[node name="CameraShakeDisabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator"]
 script = ExtResource("10_1f3do")
-total_duration = 10.0
-shake_frequency = 15.0
+camera_shake_resource = ExtResource("12_66jwv")
 _target_states = Array[NodePath]([NodePath("../StateMachine/Disabled")])
 
-[node name="ScreenShakeEnabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator"]
+[node name="CameraShakeEnabled" type="Node" parent="Env/CentralRoom/Walls/Circuit/Indicator"]
 script = ExtResource("10_1f3do")
-total_duration = 10.0
-shake_frequency = 15.0
+camera_shake_resource = ExtResource("12_66jwv")
 _target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])
 
 [node name="Barrier" parent="Env/CentralRoom/Walls" instance=ExtResource("5_7fqri")]

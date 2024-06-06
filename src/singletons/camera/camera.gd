@@ -11,12 +11,13 @@ const pitch_limit: float = PI / 2.0 - 0.1
 @export var game_state_resource: StateResource
 @export var water_volume_height_resource: FloatResource
 
-@onready var yaw_pivot: Marker3D = get_node("YawPivot") as Marker3D
-@onready var pitch_pivot: Marker3D = get_node("YawPivot/PitchPivot") as Marker3D
-@onready var raycast: RayCast3D = get_node("YawPivot/PitchPivot/RayCast3D") as RayCast3D
-@onready var camera_anchor: Marker3D = get_node("YawPivot/PitchPivot/CameraAnchor") as Marker3D
-@onready var camera: Camera3D = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D") as Camera3D
-@onready var water_detector: WaterDetector = get_node("YawPivot/PitchPivot/CameraAnchor/Camera3D/WaterDetector") as WaterDetector
+@onready var yaw_pivot: Marker3D = %YawPivot as Marker3D
+@onready var pitch_pivot: Marker3D = %PitchPivot as Marker3D
+@onready var raycast: RayCast3D = %RayCast3D as RayCast3D
+@onready var camera_anchor: Marker3D = %CameraAnchor as Marker3D
+@onready var camera_transform: Marker3D = %CameraTransform as Marker3D
+@onready var camera: Camera3D = %Camera3D as Camera3D
+@onready var water_detector: WaterDetector = %WaterDetector as WaterDetector
 
 @export var camera_distance_min: float = 3.0
 @export var camera_distance_max: float = 10.5
@@ -112,10 +113,10 @@ func _process(delta: float) -> void:
 
 	for i: int in range(len(frustum_sides)):
 		# Need to calculate some points
-		var frustum_near_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_near)
+		var frustum_near_vertex: Vector3 = frustum_sides[i].intersect_3(frustum_sides[(i + 1) % frustum_sides.size()], frustum_near) - camera.global_position + camera_transform.global_position
 		var frustum_vector: Vector3 = (global_position - frustum_near_vertex).project(camera_vector)
-		var frustum_near_vertex_scaled: Vector3 = camera_push_frustum_scale * (frustum_near_vertex - camera.global_position) + camera.global_position
-		var frustum_near_vertex_anchor: Vector3 = camera_anchor.global_position + (frustum_near_vertex_scaled - camera.global_position)
+		var frustum_near_vertex_scaled: Vector3 = camera_push_frustum_scale * (frustum_near_vertex - camera_transform.global_position) + camera_transform.global_position
+		var frustum_near_vertex_anchor: Vector3 = camera_anchor.global_position + (frustum_near_vertex_scaled - camera_transform.global_position)
 
 		# Raycast forwards
 		raycast.look_at_from_position(frustum_near_vertex_scaled, frustum_near_vertex_scaled + frustum_vector)
@@ -140,19 +141,19 @@ func _process(delta: float) -> void:
 	var camera_push_max: float = (camera_anchor.global_position - global_position).length() - camera_push_min_pivot_distance
 	if camera_push_distance_target > camera_push_max:
 		camera_push_distance_target = camera_push_max
-	var camera_push_weight: float = camera_push_weight_forwards if camera.position.z > -camera_push_distance_target else camera_push_weight_backwards
-	camera.position.z = Lerp.delta_lerp(camera.position.z, -camera_push_distance_target, camera_push_weight, delta)
+	var camera_push_weight: float = camera_push_weight_forwards if camera_transform.position.z > -camera_push_distance_target else camera_push_weight_backwards
+	camera_transform.position.z = Lerp.delta_lerp(camera_transform.position.z, -camera_push_distance_target, camera_push_weight, delta)
 
 	# Look at target
 	if target_transform_resource.is_owned():
-		camera.look_at(target_transform_resource.get_value().origin)
+		camera_transform.look_at(target_transform_resource.get_value().origin)
 
 	# For underwater screen distortion effect
 	water_volume_height_resource.set_value(self, water_detector.get_water_volume_height())
 
 
 func _on_scene_changed(_sender: NodePath) -> void:
-	camera.position.z = 0.0
+	camera_transform.position.z = 0.0
 	camera_anchor.position.z = camera_distance_default
 	pitch_pivot.rotation.x = pitch_default
 

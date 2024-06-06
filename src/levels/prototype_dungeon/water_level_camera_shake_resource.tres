@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CameraShakeSustainedResource" load_steps=3 format=3 uid="uid://xi51rh05qglf"]
+
+[ext_resource type="Script" path="res://src/singletons/camera/camera_shake/camera_shake_sustained_resource.gd" id="1_ktdbt"]
+
+[sub_resource type="Curve" id="Curve_7nhql"]
+_data = [Vector2(0, 0), 0.0, 20.1667, 0, 1, Vector2(0.0495868, 1), 20.1667, -0.0117371, 1, 1, Vector2(0.902893, 0.989985), -0.0117371, -10.1947, 1, 1, Vector2(1, 0), -10.1947, 0.0, 1, 0]
+point_count = 4
+
+[resource]
+script = ExtResource("1_ktdbt")
+trauma_envelope = SubResource("Curve_7nhql")
+trauma_factor = 0.12
+total_duration = 10.0

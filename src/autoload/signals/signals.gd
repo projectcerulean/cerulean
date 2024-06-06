@@ -13,6 +13,9 @@ signal bgm_changed
 signal debug_write
 signal interaction_highlight_set
 signal mouse_entered_control
+signal request_camera_shake_impulse
+signal request_camera_shake_sustained
+signal request_camera_shake_sustained_stop
 signal request_dialogue_start
 signal request_dialogue_finish
 signal request_game_pause
@@ -26,7 +29,6 @@ signal request_resource_load
 signal request_scene_change
 signal request_scene_transition_start
 signal request_scene_transition_finish
-signal request_screen_shake
 signal request_setting_update
 signal request_settings_save
 signal request_sfx_play
@@ -92,6 +94,9 @@ func emit_bgm_changed(sender: Node, bgm: StringName) -> void: emit(bgm_changed, 
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, sender, [variant])
 func emit_interaction_highlight_set(sender: Node, target: NodePath) -> void: emit(interaction_highlight_set, sender, [target])
 func emit_mouse_entered_control(sender: Control) -> void: emit(mouse_entered_control, sender, [])
+func emit_request_camera_shake_impulse(sender: Node, trauma: float) -> void: emit(request_camera_shake_impulse, sender, [trauma])
+func emit_request_camera_shake_sustained(sender: Node, camera_shake_resource: CameraShakeSustainedResource) -> void: emit(request_camera_shake_sustained, sender, [camera_shake_resource])
+func emit_request_camera_shake_sustained_stop(sender: Node) -> void: emit(request_camera_shake_sustained_stop, sender, [])
 func emit_request_dialogue_start(sender: Node3D, dialogue_resource: DialogueResource) -> void: emit(request_dialogue_start, sender, [dialogue_resource])
 func emit_request_dialogue_finish(sender: Node) -> void: emit(request_dialogue_finish, sender, [])
 func emit_request_game_pause(sender: Node) -> void: emit(request_game_pause, sender, [])
@@ -105,7 +110,6 @@ func emit_request_resource_load(sender: Node, resource_path: String) -> void: em
 func emit_request_scene_change(sender: Node, scene_path: String, spawn_point_id: int) -> void: emit(request_scene_change, sender, [scene_path, spawn_point_id])
 func emit_request_scene_transition_start(sender: Node, scene_path: String, spawn_point_id: int, color: Color, duration: float) -> void: emit(request_scene_transition_start, sender, [scene_path, spawn_point_id, color, duration])
 func emit_request_scene_transition_finish(sender: Node) -> void: emit(request_scene_transition_finish, sender, [])
-func emit_request_screen_shake(sender: Node, total_duration: float, frequency: float, amplitude: float) -> void: emit(request_screen_shake, sender, [total_duration, frequency, amplitude])
 func emit_request_setting_update(sender: Node, key: StringName, value_index: int) -> void: emit(request_setting_update, sender, [key, value_index])
 func emit_request_settings_save(sender: Node) -> void: emit(request_settings_save, sender, [])
 func emit_request_sfx_play(sender: Node, sfx_resource: SfxResource, position: Vector3) -> void: emit(request_sfx_play, sender, [sfx_resource, position])
