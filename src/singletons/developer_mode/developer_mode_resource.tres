@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="BoolResource" load_steps=2 format=3 uid="uid://dgwswhe5polme"]
+
+[ext_resource type="Script" path="res://src/common/dependency_injection_resources/bool_resource.gd" id="1_v7bdp"]
+
+[resource]
+script = ExtResource("1_v7bdp")

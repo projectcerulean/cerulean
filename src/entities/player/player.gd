@@ -9,6 +9,7 @@ extends CharacterController
 @export var state_resource: StateResource
 @export var game_state_resource: StateResource
 @export var camera_transform_resource: TransformResource
+@export var developer_mode_resource: BoolResource
 @export_range(0.0, 1.0, 0.001) var double_jump_shape_cast_length_factor: float = 0.5
 @export var double_jump_shape_cast_xz_scale: float = 0.95
 @export var roll_min_speed: float = 12.0
@@ -29,6 +30,7 @@ func _enter_tree() -> void:
 	assert(state_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 	assert(camera_transform_resource != null, Errors.NULL_RESOURCE)
+	assert(developer_mode_resource != null, Errors.NULL_RESOURCE)
 	input_vector_resource.claim_ownership(self)
 
 
@@ -47,7 +49,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if camera_transform_resource.is_owned():
+	if camera_transform_resource.is_owned() and thumbstick_resource_left.is_owned():
 		# Update input vector according to thumbstick and camera position
 		var camera_vector: Vector3 = global_position - camera_transform_resource.get_value().origin
 		camera_vector.y = 0.0
@@ -55,6 +57,19 @@ func _process(_delta: float) -> void:
 		var camera_yaw_rads: float = camera_vector.signed_angle_to(Vector3.FORWARD, Vector3.UP)
 		planar_input_vector = thumbstick_resource_left.get_value().rotated(camera_yaw_rads).limit_length()
 		input_vector_resource.set_value(self, planar_input_vector)
+
+		# Ghost mode, for easier development
+		if (
+			developer_mode_resource.is_owned()
+			and developer_mode_resource.get_value()
+			and input_vector_resource.get_value().is_zero_approx()
+			and Input.is_action_pressed(InputActions.SWIM_UPWARDS)
+			and Input.is_action_pressed(InputActions.SWIM_DOWNWARDS)
+			and Input.is_action_pressed(InputActions.UI_DOWN)
+			and Input.is_action_just_pressed(InputActions.INTERACT)
+		):
+			state_machine.transition_to_state(PlayerStates.GHOST)
+
 
 	if game_state_resource.is_owned():
 		# Perform interaction

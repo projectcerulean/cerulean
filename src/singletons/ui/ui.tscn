@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dm267sxiobypt"]
+[gd_scene load_steps=34 format=3 uid="uid://dm267sxiobypt"]
 
 [ext_resource type="Shader" path="res://src/singletons/ui/effects/underwater_screen_distortion_effect.gdshader" id="1"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/version_label/version_label.gd" id="3"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://src/singletons/ui/debug/debug_console/debug_console.gd" id="12_qt77i"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/vector3_visualizer/vector3_visualizer.gd" id="14_mwu71"]
 [ext_resource type="Script" path="res://src/singletons/ui/debug/performance_monitor/performance_monitor.gd" id="17_8ijav"]
+[ext_resource type="Resource" uid="uid://dgwswhe5polme" path="res://src/singletons/developer_mode/developer_mode_resource.tres" id="27_6u5tj"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gncbr"]
 
@@ -228,5 +229,6 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
 text = "Version text"
 script = ExtResource("3")
+developer_mode_resource = ExtResource("27_6u5tj")
 
 [connection signal="timeout" from="DebugLayer/PerformanceMonitor/UpdateTimer" to="DebugLayer/PerformanceMonitor" method="_on_timer_timeout"]

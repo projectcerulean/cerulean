@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 extends Label
 
+@export var developer_mode_resource: BoolResource
 @export var git_folder: String = "res://.git/"
 @export var n_git_hash_characters_to_show: int = 8
 
@@ -10,6 +11,8 @@ const git_hash_length: int = 40
 
 
 func _ready() -> void:
+	assert(developer_mode_resource != null, Errors.NULL_RESOURCE)
+
 	text = (
 		Version.NAME + " "
 		+ str(Version.MAJOR) + "."
@@ -31,3 +34,6 @@ func _ready() -> void:
 				git_hash = head
 	if not git_hash.is_empty():
 		text += "." + git_hash.substr(0, n_git_hash_characters_to_show)
+
+	if developer_mode_resource.is_owned() and developer_mode_resource.get_value():
+		text += " [DEVELOPER MODE]"

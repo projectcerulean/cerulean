@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://b4ihx6a2lcbde"]
+[gd_scene load_steps=86 format=3 uid="uid://b4ihx6a2lcbde"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://dyt784lki51ha" path="res://src/singletons/game_state_manager/game_state_resource.tres" id="5_okm0g"]
 [ext_resource type="Resource" uid="uid://bvia5fo4gt42c" path="res://src/singletons/camera/camera_transform.tres" id="6_ibr24"]
 [ext_resource type="PackedScene" uid="uid://b81k6jxhrod56" path="res://src/common/physics_step_interpolator/physics_step_interpolator.tscn" id="7_3cj2e"]
+[ext_resource type="Resource" uid="uid://dgwswhe5polme" path="res://src/singletons/developer_mode/developer_mode_resource.tres" id="7_ddtdi"]
 [ext_resource type="Script" path="res://src/entities/player/mesh/squash_stretch.gd" id="7_pchkq"]
 [ext_resource type="Script" path="res://src/entities/player/mesh/spring.gd" id="7_pus1y"]
 [ext_resource type="Script" path="res://src/entities/player/trail_renderer/player_trail_renderer.gd" id="8"]
@@ -16,10 +17,14 @@
 [ext_resource type="Script" path="res://src/common/state_machine/state_machine_synchronizer.gd" id="11_mhki8"]
 [ext_resource type="Resource" path="res://src/entities/player/states/player_state_resource.tres" id="12"]
 [ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="13_m5ip5"]
+[ext_resource type="Shader" path="res://src/entities/player/materials/ghost_material_pass_1.gdshader" id="14_towh0"]
+[ext_resource type="Shader" path="res://src/entities/player/materials/ghost_material_pass_2.gdshader" id="14_uu16l"]
+[ext_resource type="Shader" path="res://src/entities/player/materials/ghost_material_pass_3.gdshader" id="16_ao4k1"]
 [ext_resource type="Script" path="res://src/entities/player/mesh/player_mesh_state_roll.gd" id="16_e4pes"]
 [ext_resource type="Script" path="res://src/entities/player/mesh/player_mesh_state_sprint.gd" id="17_n38px"]
 [ext_resource type="Resource" uid="uid://bmra0kxfxo4o" path="res://src/sound/sfx/sfx_resources/bounce_pad_high.tres" id="18_1l0sl"]
 [ext_resource type="Script" path="res://src/sound/effects/audio_effect_transition_listener.gd" id="18_nptr4"]
+[ext_resource type="Script" path="res://src/entities/player/mesh/player_mesh_state.gd" id="19_u63br"]
 [ext_resource type="Resource" uid="uid://dd5sh0tn4snb6" path="res://src/entities/player/transform/player_transform_interpolated.tres" id="20_484wt"]
 [ext_resource type="Script" path="res://src/entities/player/states/player_state_bounce.gd" id="20_rvyx5"]
 [ext_resource type="Script" path="res://src/entities/player/states/player_state_dive.gd" id="22_4hscj"]
@@ -43,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://bxjp2ck6k1jt6" path="res://src/common/state_machine/state_resource_manager.tscn" id="29_l8kw8"]
 [ext_resource type="PackedScene" uid="uid://dxo7bfhp6ojpb" path="res://src/common/transform_resource_manager/transform_resource_manager.tscn" id="31_jeewe"]
 [ext_resource type="Script" path="res://src/entities/player/states/player_state_sprint.gd" id="32_hdfe3"]
+[ext_resource type="Script" path="res://src/entities/player/states/player_state_ghost.gd" id="34_04kqh"]
 [ext_resource type="PackedScene" uid="uid://dtbbw5cfabdva" path="res://src/entities/player/wind_circle/wind_circle_effect_transition_listener.tscn" id="39_qm0ev"]
 [ext_resource type="Script" path="res://src/entities/player/particles/wind_particle_color_setter.gd" id="41_8igcd"]
 [ext_resource type="Material" uid="uid://tkfwgtra634d" path="res://src/entities/player/particles/wind_particle_material.tres" id="42_xipxd"]
@@ -92,6 +98,28 @@ height = 0.25
 [sub_resource type="SphereMesh" id="SphereMesh_ogxjs"]
 radius = 0.25
 height = 0.55
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_abqj5"]
+radius = 0.25
+height = 1.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bcth"]
+render_priority = 0
+shader = ExtResource("14_towh0")
+shader_parameter/albedo = Color(0.878431, 0.878431, 1, 1)
+shader_parameter/fade = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pcplc"]
+render_priority = -128
+shader = ExtResource("14_uu16l")
+shader_parameter/albedo = Color(0.25098, 0.25098, 0.25098, 0.25098)
+shader_parameter/fade = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mb5wl"]
+render_priority = -127
+shader = ExtResource("16_ao4k1")
+shader_parameter/albedo = Color(0.878431, 0.878431, 1, 1)
+shader_parameter/fade = 0.5
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_xejwy"]
 cutoff_hz = 20500.0
@@ -149,6 +177,7 @@ input_vector_resource = ExtResource("3_2i2xh")
 state_resource = ExtResource("12")
 game_state_resource = ExtResource("5_okm0g")
 camera_transform_resource = ExtResource("6_ibr24")
+developer_mode_resource = ExtResource("7_ddtdi")
 mesh_anchor = NodePath("MeshAnchor")
 mesh_anchor_constant_offset = Vector3(0, 0.375, 0)
 
@@ -264,6 +293,21 @@ transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 4.37114e
 transform = Transform3D(-4.37114e-08, -3.59989e-21, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, -0.25, 1.03655e-08, 0.487136)
 remote_path = NodePath("../../../../../../Particles/RemoteTransformTargets/RollParticles")
 
+[node name="Ghost" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Ghost"]
+mesh = SubResource("CapsuleMesh_abqj5")
+surface_material_override/0 = SubResource("ShaderMaterial_2bcth")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Ghost"]
+mesh = SubResource("CapsuleMesh_abqj5")
+surface_material_override/0 = SubResource("ShaderMaterial_pcplc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/Ghost"]
+mesh = SubResource("CapsuleMesh_abqj5")
+surface_material_override/0 = SubResource("ShaderMaterial_mb5wl")
+
 [node name="StateMachine" parent="MeshAnchor/PhysicsStepInterpolator/Mesh" node_paths=PackedStringArray("initial_state") instance=ExtResource("13_m5ip5")]
 initial_state = NodePath("Idle")
 
@@ -299,6 +343,11 @@ script = ExtResource("10_vowrm")
 turn_lerp_weight_min = 0.0
 turn_lerp_weight_max = 0.0
 mesh_root = NodePath("../../SquashStretch/Default")
+_player_input_vector_resource = ExtResource("3_2i2xh")
+
+[node name="Ghost" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
+script = ExtResource("19_u63br")
+mesh_root = NodePath("../../Ghost")
 _player_input_vector_resource = ExtResource("3_2i2xh")
 
 [node name="Glide" type="Node" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/StateMachine" node_paths=PackedStringArray("mesh_root")]
@@ -442,6 +491,13 @@ script = ExtResource("23_pac4m")
 hover_force_downwards_enabled = false
 planar_movement_pid_p_gain_factor = 1.5
 planar_momentum_conservation_factor = 1.0
+
+[node name="Ghost" type="Node" parent="StateMachine"]
+script = ExtResource("34_04kqh")
+reset_double_jump = true
+gravity_scale = 0.0
+hover_force_downwards_enabled = false
+hover_force_upwards_enabled = false
 
 [node name="Glide" type="Node" parent="StateMachine"]
 script = ExtResource("24_p4auy")

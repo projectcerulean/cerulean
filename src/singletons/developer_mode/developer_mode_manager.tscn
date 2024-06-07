@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwfgndkrqyfuq"]
+
+[ext_resource type="Script" path="res://src/singletons/developer_mode/developer_mode_manager.gd" id="1_m1ssn"]
+[ext_resource type="Resource" uid="uid://dgwswhe5polme" path="res://src/singletons/developer_mode/developer_mode_resource.tres" id="2_hmnt7"]
+
+[node name="DeveloperModeManager" type="Node"]
+script = ExtResource("1_m1ssn")
+developer_mode_resource = ExtResource("2_hmnt7")

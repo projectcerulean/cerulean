@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cel5c4pn2hi7a"]
+[gd_scene load_steps=17 format=3 uid="uid://cel5c4pn2hi7a"]
 
 [ext_resource type="PackedScene" uid="uid://6mrawjjm5bds" path="res://src/singletons/audio_player/audio_player.tscn" id="1_1usg1"]
 [ext_resource type="Script" path="res://src/main/main.gd" id="1_dvd33"]
 [ext_resource type="PackedScene" uid="uid://dpwlu6pl1o7wf" path="res://src/singletons/persistent_data/persistent_data_manager.tscn" id="2_5m7jf"]
+[ext_resource type="PackedScene" uid="uid://cwfgndkrqyfuq" path="res://src/singletons/developer_mode/developer_mode_manager.tscn" id="2_j6ohh"]
 [ext_resource type="PackedScene" uid="uid://cyvmbau3f180w" path="res://src/singletons/camera/camera_target.tscn" id="2_nknvc"]
 [ext_resource type="PackedScene" uid="uid://jbkbt1h6gqsx" path="res://src/singletons/camera/camera.tscn" id="2_w681v"]
 [ext_resource type="PackedScene" uid="uid://bxhhyuuna1qrq" path="res://src/singletons/engine_settings_manager/engine_settings_manager.tscn" id="3_c1tpn"]
@@ -21,6 +22,8 @@ script = ExtResource("1_dvd33")
 scene_default = &"PROTOTYPE_SCENE"
 
 [node name="Singletons" type="Node" parent="."]
+
+[node name="DeveloperModeManager" parent="Singletons" instance=ExtResource("2_j6ohh")]
 
 [node name="PersistentDataManager" parent="Singletons" instance=ExtResource("2_5m7jf")]
 
