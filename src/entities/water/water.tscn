@@ -63,9 +63,6 @@ shader_parameter/noise_sampler1 = SubResource("NoiseTexture2D_bqtil")
 shader_parameter/noise_sampler2 = SubResource("NoiseTexture2D_8n77n")
 shader_parameter/displacement_noise = SubResource("NoiseTexture2D_qscl5")
 
-[sub_resource type="BoxShape3D" id="13"]
-size = Vector3(64, 128, 64)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ps3jw"]
 resource_local_to_scene = true
 shader = ExtResource("9_sy8at")
@@ -77,7 +74,12 @@ shader_parameter/wave_period = Vector2(16, 16)
 shader_parameter/wave_strength = Vector2(0.25, 0.125)
 shader_parameter/wave_time_factor = Vector2(0.5, 1)
 
-[node name="Water" type="MeshInstance3D"]
+[sub_resource type="BoxShape3D" id="13"]
+size = Vector3(64, 128, 64)
+
+[node name="Water" type="Node3D"]
+
+[node name="WaterSurfaceMesh" type="MeshInstance3D" parent="."]
 layers = 16
 mesh = ExtResource("1_fu6sl")
 surface_material_override/0 = SubResource("2")
@@ -87,16 +89,16 @@ time_resource_gameplay = ExtResource("4_46k1v")
 player_transform_resource = ExtResource("5_um27y")
 player_water_blob_shadow_enabled_resource = ExtResource("6_8nljm")
 
-[node name="Area3D" parent="." instance=ExtResource("2_5wdg5")]
-collision_layer = 16
-collision_mask = 11
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("13")
-
 [node name="UnderwaterFog" type="FogVolume" parent="."]
 size = Vector3(64, 128, 64)
 material = SubResource("ShaderMaterial_ps3jw")
 script = ExtResource("10_xv6fe")
 environment_resource = ExtResource("3_378uc")
 time_resource_gameplay = ExtResource("4_46k1v")
+
+[node name="Area3D" parent="." instance=ExtResource("2_5wdg5")]
+collision_layer = 16
+collision_mask = 11
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("13")
