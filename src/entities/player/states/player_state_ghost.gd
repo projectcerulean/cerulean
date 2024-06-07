@@ -30,9 +30,6 @@ func exit(data: Dictionary) -> void:
 func physics_process(delta: float) -> void:
 	super.physics_process(delta)
 
-	var shape: Shape3D = player.collision_shape.shape
-	var top_point_height: float = player.collision_shape.global_position.y + ShapeUtils.get_shape_height(shape) / 2.0
-
 	# Apply movement
 	var input_strength_up: float = Input.get_action_strength(InputActions.SWIM_UPWARDS)
 	var input_strength_down: float = Input.get_action_strength(InputActions.SWIM_DOWNWARDS)
