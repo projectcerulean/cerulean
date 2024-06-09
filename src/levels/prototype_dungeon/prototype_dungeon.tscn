@@ -1,17 +1,18 @@
-[gd_scene load_steps=64 format=3 uid="uid://ct8hn0mrxp0d6"]
+[gd_scene load_steps=65 format=3 uid="uid://ct8hn0mrxp0d6"]
 
 [ext_resource type="Script" path="res://src/entities/scene/scene.gd" id="1_arp3q"]
 [ext_resource type="PackedScene" uid="uid://k4hm5laohna7" path="res://src/entities/player/spawn_point/player_spawn_point.tscn" id="2_af2ft"]
 [ext_resource type="Material" uid="uid://b84fpimwqkcky" path="res://src/levels/prototype_dungeon/material.tres" id="3_m5lxh"]
 [ext_resource type="PackedScene" uid="uid://bpm1ys1xoym5i" path="res://src/entities/water/water.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bwmmlhxm3qpux" path="res://src/entities/loading_zone/loading_zone.tscn" id="4_oftnn"]
+[ext_resource type="PackedScene" uid="uid://cy8xcqugjpdvo" path="res://src/entities/puzzle_elements/switch/one_way_switch.tscn" id="5_0h45w"]
 [ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="5_7fqri"]
-[ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="6_4a13o"]
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="7_b2l1v"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="8_4hvtj"]
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="9_7mq4f"]
 [ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/camera_shake_sustained_transition_listener.gd" id="10_1f3do"]
 [ext_resource type="PackedScene" uid="uid://cx3r8hna7fkql" path="res://src/entities/sign_post/sign_post.tscn" id="10_g8ijk"]
+[ext_resource type="PackedScene" uid="uid://br03oxffnldmo" path="res://src/entities/puzzle_elements/switch/two_way_switch.tscn" id="10_g64t5"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="10_imkh8"]
 [ext_resource type="Resource" uid="uid://tqf2hjuhigop" path="res://assets/dialogue/end/end.tres" id="11_20llv"]
 [ext_resource type="Resource" uid="uid://xi51rh05qglf" path="res://src/levels/prototype_dungeon/water_level_camera_shake_resource.tres" id="12_66jwv"]
@@ -226,7 +227,6 @@ shader_parameter/flip_colors = false
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("10_imkh8")
-shader_parameter/activation = 0.0
 shader_parameter/albedo = Color(1, 0.27, 0, 1)
 shader_parameter/roughness = 0.5
 shader_parameter/specular = 0.5
@@ -491,7 +491,7 @@ input_targets = Array[bool]([true, true])
 [node name="Connection" type="Node3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 74)
 
-[node name="Switch" parent="Env/Entrance/Connection" instance=ExtResource("6_4a13o")]
+[node name="OneWaySwitch" parent="Env/Entrance/Connection" instance=ExtResource("5_0h45w")]
 
 [node name="Cable" parent="Env/Entrance/Connection" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -1.5, 0, 0)
@@ -529,30 +529,30 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3.95, 2.15, -5.55)
 [node name="Connection2" type="Node3D" parent="Env/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 98)
 
-[node name="Switch" parent="Env/Entrance/Connection2" instance=ExtResource("6_4a13o")]
+[node name="OneWaySwitch" parent="Env/Entrance/Connection2" instance=ExtResource("5_0h45w")]
 
 [node name="Cable" parent="Env/Entrance/Connection2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -6)
 mesh = SubResource("BoxMesh_wd5pf")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_aftx7")
 
 [node name="Cable2" parent="Env/Entrance/Connection2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -2.95, 0, -10.95)
 mesh = SubResource("BoxMesh_aqytu")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_qwwgi")
 
 [node name="Cable3" parent="Env/Entrance/Connection2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.9, 0, -20.2)
 mesh = SubResource("BoxMesh_4123o")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_5ow75")
 
 [node name="Cable4" parent="Env/Entrance/Connection2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 11.1, -29.6)
 mesh = SubResource("BoxMesh_yod7w")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_ob1r5")
 
 [node name="Indicator" parent="Env/Entrance/Connection2" instance=ExtResource("9_7mq4f")]
@@ -654,25 +654,25 @@ bounce_height = 4.0
 [node name="Circuit" type="Node3D" parent="Env/CentralRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 47.5, -24)
 
-[node name="Switch" parent="Env/CentralRoom/Circuit" instance=ExtResource("6_4a13o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 5)
+[node name="OneWaySwitch" parent="Env/CentralRoom/Circuit" instance=ExtResource("5_0h45w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, 5)
 
 [node name="Cable" parent="Env/CentralRoom/Circuit" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 4.5, 0.5, 5)
 mesh = SubResource("BoxMesh_tfn1t")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_kkrq2")
 
 [node name="Cable2" parent="Env/CentralRoom/Circuit" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 5)
 mesh = SubResource("BoxMesh_tj7up")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_u6mg3")
 
 [node name="Cable3" parent="Env/CentralRoom/Circuit" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 6, 3.5, 2.5)
 mesh = SubResource("BoxMesh_tb6uk")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_h241q")
 
 [node name="Indicator" parent="Env/CentralRoom/Circuit" instance=ExtResource("9_7mq4f")]
@@ -857,18 +857,18 @@ omni_attenuation = 0.0220971
 [node name="Circuit" type="Node3D" parent="Env/CentralRoom/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -32, 27)
 
-[node name="Switch" parent="Env/CentralRoom/Walls/Circuit" instance=ExtResource("6_4a13o")]
+[node name="TwoWaySwitch" parent="Env/CentralRoom/Walls/Circuit" instance=ExtResource("10_g64t5")]
 
 [node name="Cable" parent="Env/CentralRoom/Walls/Circuit" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 3)
 mesh = SubResource("BoxMesh_rwlpc")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_4m727")
 
 [node name="Cable2" parent="Env/CentralRoom/Walls/Circuit" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
 mesh = SubResource("BoxMesh_jp2o6")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_ckuhp")
 
 [node name="Indicator" parent="Env/CentralRoom/Walls/Circuit" instance=ExtResource("9_7mq4f")]
@@ -1004,19 +1004,19 @@ input_targets = Array[bool]([true])
 [node name="Circuit2" type="Node3D" parent="Env/PushButtonRoom/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -15.5, -8)
 
-[node name="Switch" parent="Env/PushButtonRoom/Walls/Circuit2" instance=ExtResource("6_4a13o")]
+[node name="OneWaySwitch" parent="Env/PushButtonRoom/Walls/Circuit2" instance=ExtResource("5_0h45w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 12)
 
 [node name="Cable" parent="Env/PushButtonRoom/Walls/Circuit2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -18.5, 0, 12)
 mesh = SubResource("BoxMesh_6y0jb")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_1ihgr")
 
 [node name="Cable2" parent="Env/PushButtonRoom/Walls/Circuit2" instance=ExtResource("7_b2l1v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.5, 12)
 mesh = SubResource("BoxMesh_tlmcs")
-skeleton = NodePath("../Switch")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_j180e")
 
 [node name="Indicator" parent="Env/PushButtonRoom/Walls/Circuit2" instance=ExtResource("9_7mq4f")]
@@ -1419,6 +1419,8 @@ script = ExtResource("12_we2p8")
 target_node = NodePath("..")
 position_target = NodePath("../../WaterPositionHigh")
 tween_duration = 10.0
+tween_transition_type = 1
+tween_ease_type = 2
 _target_states = Array[NodePath]([NodePath("../../Env/CentralRoom/Walls/Circuit/Indicator/StateMachine/Disabled")])
 
 [node name="Translate3DEnabled" type="Node" parent="Water" node_paths=PackedStringArray("target_node", "position_target")]
@@ -1426,6 +1428,8 @@ script = ExtResource("12_we2p8")
 target_node = NodePath("..")
 position_target = NodePath("../../WaterPositionLow")
 tween_duration = 10.0
+tween_transition_type = 1
+tween_ease_type = 2
 _target_states = Array[NodePath]([NodePath("../../Env/CentralRoom/Walls/Circuit/Indicator/StateMachine/Enabled")])
 
 [node name="Water" parent="Water" instance=ExtResource("4")]

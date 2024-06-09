@@ -19,8 +19,10 @@ var activation: float:
 		for node: Node in get_children():
 			if node is MeshInstance3D:
 				var mesh_instance: MeshInstance3D = node as MeshInstance3D
-				var material: ShaderMaterial = mesh_instance.get_surface_override_material(0) as ShaderMaterial
-				material.set_shader_parameter(&"albedo", color_disabled.lerp(color_enabled, activation))
+				if mesh_instance.get_surface_override_material_count() > 0:
+					var material: ShaderMaterial = mesh_instance.get_surface_override_material(0) as ShaderMaterial
+					if is_instance_valid(material):
+						material.set_shader_parameter(&"albedo", color_disabled.lerp(color_enabled, activation))
 			elif node is Light3D:
 				var light: Light3D = node as Light3D
 				light.light_color = color_disabled.lerp(color_enabled, activation)

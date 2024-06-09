@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://drrmbwhfxs552"]
+[gd_scene load_steps=11 format=3 uid="uid://drrmbwhfxs552"]
 
-[ext_resource type="Script" path="res://src/test/integration/entities/puzzle_elements/switch_cable_indicator_barrier_circuit.gd" id="1_6003x"]
-[ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="2_kuiq8"]
+[ext_resource type="Script" path="res://src/test/integration/entities/puzzle_elements/switch/switch_cable_indicator_barrier_circuit.gd" id="1_6003x"]
 [ext_resource type="PackedScene" uid="uid://cvipjobikurqv" path="res://src/entities/puzzle_elements/cable/cable.tscn" id="3_0sbtd"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="4_v7xof"]
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="5_36ayg"]
@@ -43,8 +42,6 @@ script = ExtResource("1_6003x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Circuit" type="Node3D" parent="."]
-
-[node name="Switch" parent="Circuit" instance=ExtResource("2_kuiq8")]
 
 [node name="Cable1" parent="Circuit" instance=ExtResource("3_0sbtd")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -3)

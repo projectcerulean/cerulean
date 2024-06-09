@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cy8xcqugjpdvo"]
+
+[ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="1_e4jcg"]
+[ext_resource type="Script" path="res://src/common/interaction/interaction_action/next_state_interaction_action.gd" id="2_5ai22"]
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="2_ikir5"]
+[ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/bool_property_transition_listener.gd" id="4_mj7hj"]
+[ext_resource type="Script" path="res://src/common/state_machine/translate3d_transition_listener.gd" id="5_ykb5v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nc0c4"]
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ejw0t"]
+radius = 0.625
+height = 1.25
+radial_segments = 6
+rings = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3jltc"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_ikir5")
+shader_parameter/albedo = Color(1, 0.27, 0, 1)
+shader_parameter/roughness = 0.5
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/emission_energy = 1.0
+
+[sub_resource type="Resource" id="Resource_vhu2m"]
+resource_local_to_scene = true
+script = ExtResource("2_5ai22")
+_state_machine = NodePath("../../../StateMachine")
+
+[node name="OneWaySwitch" instance=ExtResource("1_e4jcg")]
+
+[node name="CrystalCollisionShapeDown" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("CapsuleShape3D_nc0c4")
+
+[node name="Joint" parent="." index="4"]
+angular_velocity = Vector3(0, 0.5, 0)
+
+[node name="AngularVelocityFactorStateEnabled" parent="Joint" index="0"]
+value_max = 0.0
+
+[node name="MeshInstance3D" parent="Joint/Crystal" index="1"]
+mesh = SubResource("SphereMesh_ejw0t")
+surface_material_override/0 = SubResource("ShaderMaterial_3jltc")
+
+[node name="Interactable" parent="Joint/Crystal" index="9"]
+interaction_action = SubResource("Resource_vhu2m")
+
+[node name="InteractableDisableStateEnabled" type="Node" parent="." index="7" node_paths=PackedStringArray("target_node")]
+script = ExtResource("4_mj7hj")
+target_node = NodePath("../Joint/Crystal/Interactable")
+property = &"monitorable"
+invert_value = true
+_target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])
+
+[node name="Translate3DTransitionListener" type="Node" parent="." index="8" node_paths=PackedStringArray("target_node", "position_target")]
+script = ExtResource("5_ykb5v")
+target_node = NodePath("../Joint")
+position_target = NodePath("..")
+tween_duration = 0.1
+tween_transition_type = 10
+tween_ease_type = 1
+_target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])
+
+[node name="CameraShakeStateEnabled" parent="." index="9"]
+shake_trauma_enter = 0.1
+
+[node name="CrystalShapeDisableStateEnabled" type="Node" parent="." index="10" node_paths=PackedStringArray("target_node")]
+script = ExtResource("4_mj7hj")
+target_node = NodePath("../CrystalCollisionShape")
+property = &"disabled"
+_target_states = Array[NodePath]([NodePath("../StateMachine/Enabled")])

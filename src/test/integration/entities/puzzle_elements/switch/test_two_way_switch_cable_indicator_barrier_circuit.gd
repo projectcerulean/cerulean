@@ -6,10 +6,6 @@ extends IntegrationTest
 const WAIT_FRAMES: int = 10
 
 
-func get_test_scene_name() -> String:
-	return "switch_cable_indicator_barrier_circuit.tscn"
-
-
 func test_switch_cable_indicator_barrier_circuit() -> void:
 	var test_scene: SwitchCableIndicatorBarrierCircuit =  get_test_scene() as SwitchCableIndicatorBarrierCircuit
 	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier not enabled after instantiation")
@@ -24,3 +20,7 @@ func test_switch_cable_indicator_barrier_circuit() -> void:
 	test_scene.interaction_manager.perform_interaction()
 	await wait_for_process_frames(WAIT_FRAMES)
 	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier not enabled again after flipping switch again")
+
+
+func get_test_scene_name() -> String:
+	return "two_way_switch_cable_indicator_barrier_circuit.tscn"

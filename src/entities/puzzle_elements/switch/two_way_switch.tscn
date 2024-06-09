@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://br03oxffnldmo"]
+
+[ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="1_efrbo"]
+[ext_resource type="Script" path="res://src/common/interaction/interaction_action/next_state_interaction_action.gd" id="2_d48ms"]
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="2_n4qyy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jj0xm"]
+size = Vector3(0.75, 0.75, 0.75)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kiavt"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_n4qyy")
+shader_parameter/albedo = Color(1, 0.27, 0, 1)
+shader_parameter/roughness = 0.5
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/emission_energy = 1.0
+
+[sub_resource type="Resource" id="Resource_32gga"]
+resource_local_to_scene = true
+script = ExtResource("2_d48ms")
+_state_machine = NodePath("../../../StateMachine")
+
+[node name="TwoWaySwitch" instance=ExtResource("1_efrbo")]
+
+[node name="MeshInstance3D" parent="Joint/Crystal" index="1"]
+mesh = SubResource("BoxMesh_jj0xm")
+surface_material_override/0 = SubResource("ShaderMaterial_kiavt")
+
+[node name="Interactable" parent="Joint/Crystal" index="9"]
+interaction_action = SubResource("Resource_32gga")

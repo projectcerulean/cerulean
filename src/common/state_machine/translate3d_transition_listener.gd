@@ -7,6 +7,8 @@ extends StateTransitionListener
 @export var target_node: Node3D
 @export var position_target: Node3D
 @export var tween_duration: float = 1.0
+@export var tween_transition_type: Tween.TransitionType
+@export var tween_ease_type: Tween.EaseType
 
 var tween: Tween
 
@@ -25,8 +27,8 @@ func _on_target_state_entered(data: Dictionary) -> void:
 		if tween != null:
 			tween.kill()
 		tween = create_tween()
-		tween.set_trans(Tween.TRANS_SINE)
-		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.set_trans(tween_transition_type)
+		tween.set_ease(tween_ease_type)
 		tween.tween_property(target_node, "global_position", position_target.global_position, tween_duration)
 
 

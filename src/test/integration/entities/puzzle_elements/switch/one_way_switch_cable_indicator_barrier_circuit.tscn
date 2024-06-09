@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://cu5t1aqfqqw67"]
+
+[ext_resource type="PackedScene" uid="uid://drrmbwhfxs552" path="res://src/test/integration/entities/puzzle_elements/switch/switch_cable_indicator_barrier_circuit.tscn" id="1_qx5br"]
+[ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="2_xdxfw"]
+[ext_resource type="PackedScene" uid="uid://cy8xcqugjpdvo" path="res://src/entities/puzzle_elements/switch/one_way_switch.tscn" id="3_roswt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w3he5"]
+resource_local_to_scene = true
+size = Vector3(0.1, 5, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3tmie"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_xdxfw")
+shader_parameter/flow_position = 0.0
+shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
+
+[sub_resource type="BoxMesh" id="BoxMesh_3gkaq"]
+resource_local_to_scene = true
+size = Vector3(0.1, 5, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s627t"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_xdxfw")
+shader_parameter/flow_position = 0.0
+shader_parameter/smooth_range = 0.5
+shader_parameter/color_old = Color(1, 0.270588, 0, 1)
+shader_parameter/color_new = Color(0, 0.709804, 1, 1)
+shader_parameter/flip_colors = false
+
+[node name="OneWaySwitchCableIndicatorBarrierCircuit" instance=ExtResource("1_qx5br")]
+
+[node name="OneWaySwitch" parent="Circuit" index="0" instance=ExtResource("3_roswt")]
+
+[node name="Cable1" parent="Circuit" index="1"]
+mesh = SubResource("BoxMesh_w3he5")
+surface_material_override/0 = SubResource("ShaderMaterial_3tmie")
+
+[node name="Cable2" parent="Circuit" index="2"]
+mesh = SubResource("BoxMesh_3gkaq")
+surface_material_override/0 = SubResource("ShaderMaterial_s627t")

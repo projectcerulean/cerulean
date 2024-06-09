@@ -9,6 +9,8 @@ extends StateTransitionListener
 @export var value_min: float = 0.0
 @export var value_max: float = 1.0
 @export var tween_duration: float = 1.0
+@export var tween_transition_type: Tween.TransitionType
+@export var tween_ease_type: Tween.EaseType
 
 var tween: Tween
 
@@ -24,6 +26,8 @@ func _on_target_state_entered(data: Dictionary) -> void:
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
+	tween.set_trans(tween_transition_type)
+	tween.set_ease(tween_ease_type)
 	tween.tween_property(target_node, property, value_max, tween_duration)
 
 
@@ -32,4 +36,6 @@ func _on_target_state_exited(data: Dictionary) -> void:
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
+	tween.set_trans(tween_transition_type)
+	tween.set_ease(tween_ease_type)
 	tween.tween_property(target_node, property, value_min, tween_duration)
