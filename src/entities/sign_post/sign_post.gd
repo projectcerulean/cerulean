@@ -10,15 +10,15 @@ extends StaticBody3D
 			dialogue_resource = value
 			update_configuration_warnings()
 
-@onready var dialogue_interaction: Interaction = get_node("Interaction") as Interaction
+@onready var dialogue_interactable: Interactable = get_node("Interactable") as Interactable
 
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		assert(dialogue_interaction != null, Errors.NULL_NODE)
+		assert(dialogue_interactable != null, Errors.NULL_NODE)
 		var dialogue_interaction_action: DialogueInteractionAction = DialogueInteractionAction.new()
 		dialogue_interaction_action.dialogue_resource = dialogue_resource
-		dialogue_interaction.interaction_action = dialogue_interaction_action
+		dialogue_interactable.interaction_action = dialogue_interaction_action
 
 
 func _get_configuration_warnings() -> PackedStringArray:

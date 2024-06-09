@@ -10,8 +10,9 @@ signal area_body_exited
 signal bgm_area_entered
 signal bgm_area_exited
 signal bgm_changed
+signal closest_interactable_changed
 signal debug_write
-signal interaction_highlight_set
+signal interaction_performed
 signal mouse_entered_control
 signal request_camera_shake_impulse
 signal request_camera_shake_sustained
@@ -21,9 +22,6 @@ signal request_dialogue_finish
 signal request_game_pause
 signal request_game_quit
 signal request_game_unpause
-signal request_interaction
-signal request_interaction_highlight
-signal request_interaction_unhighlight
 signal request_loading_screen_start
 signal request_resource_load
 signal request_scene_change
@@ -91,8 +89,9 @@ func emit_area_body_exited(sender: Area3D, body: NodePath) -> void: emit(area_bo
 func emit_bgm_area_entered(sender: Area3D, bgm: StringName, priority: float) -> void: emit(bgm_area_entered, sender, [bgm, priority])
 func emit_bgm_area_exited(sender: Area3D) -> void: emit(bgm_area_exited, sender, [])
 func emit_bgm_changed(sender: Node, bgm: StringName) -> void: emit(bgm_changed, sender, [bgm])
+func emit_closest_interactable_changed(sender: Node, closest_interactable: NodePath) -> void: emit(closest_interactable_changed, sender, [closest_interactable])
 func emit_debug_write(sender: Node, variant: Variant) -> void: emit(debug_write, sender, [variant])
-func emit_interaction_highlight_set(sender: Node, target: NodePath) -> void: emit(interaction_highlight_set, sender, [target])
+func emit_interaction_performed(sender: Node, closest_interactable: NodePath) -> void: emit(interaction_performed, sender, [closest_interactable])
 func emit_mouse_entered_control(sender: Control) -> void: emit(mouse_entered_control, sender, [])
 func emit_request_camera_shake_impulse(sender: Node, trauma: float) -> void: emit(request_camera_shake_impulse, sender, [trauma])
 func emit_request_camera_shake_sustained(sender: Node, camera_shake_resource: CameraShakeSustainedResource) -> void: emit(request_camera_shake_sustained, sender, [camera_shake_resource])
@@ -102,9 +101,6 @@ func emit_request_dialogue_finish(sender: Node) -> void: emit(request_dialogue_f
 func emit_request_game_pause(sender: Node) -> void: emit(request_game_pause, sender, [])
 func emit_request_game_quit(sender: Node) -> void: emit(request_game_quit, sender, [])
 func emit_request_game_unpause(sender: Node) -> void: emit(request_game_unpause, sender, [])
-func emit_request_interaction(sender: Node) -> void: emit(request_interaction, sender, [])
-func emit_request_interaction_highlight(sender: Node3D) -> void: emit(request_interaction_highlight, sender, [])
-func emit_request_interaction_unhighlight(sender: Node3D) -> void: emit(request_interaction_unhighlight, sender, [])
 func emit_request_loading_screen_start(sender: Node) -> void: emit(request_loading_screen_start, sender, [])
 func emit_request_resource_load(sender: Node, resource_path: String) -> void: emit(request_resource_load, sender, [resource_path])
 func emit_request_scene_change(sender: Node, scene_path: String, spawn_point_id: int) -> void: emit(request_scene_change, sender, [scene_path, spawn_point_id])

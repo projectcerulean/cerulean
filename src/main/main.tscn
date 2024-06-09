@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cel5c4pn2hi7a"]
+[gd_scene load_steps=16 format=3 uid="uid://cel5c4pn2hi7a"]
 
 [ext_resource type="PackedScene" uid="uid://6mrawjjm5bds" path="res://src/singletons/audio_player/audio_player.tscn" id="1_1usg1"]
 [ext_resource type="Script" path="res://src/main/main.gd" id="1_dvd33"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bxhhyuuna1qrq" path="res://src/singletons/engine_settings_manager/engine_settings_manager.tscn" id="3_c1tpn"]
 [ext_resource type="PackedScene" uid="uid://b7penkjrvi0vj" path="res://src/singletons/game_state_manager/game_state_manager.tscn" id="4_13i7i"]
 [ext_resource type="PackedScene" uid="uid://dvo8jy16tym0q" path="res://src/singletons/data_loader/data_loader.tscn" id="4_gty8g"]
-[ext_resource type="PackedScene" uid="uid://bu8gqbu0haqpa" path="res://src/singletons/interaction_manager/interaction_manager.tscn" id="5_2jem2"]
 [ext_resource type="PackedScene" uid="uid://bmx1c40eaao3u" path="res://src/singletons/lfo/lfo.tscn" id="6_kk4yf"]
 [ext_resource type="PackedScene" uid="uid://b0kqfucoyljto" path="res://src/singletons/scene_manager/scene_manager.tscn" id="7_1jgg5"]
 [ext_resource type="PackedScene" uid="uid://cvkldn8xjhau1" path="res://src/singletons/settings_manager/settings_manager.tscn" id="7_6mcus"]
@@ -44,8 +43,6 @@ scene_default = &"PROTOTYPE_SCENE"
 [node name="AudioPlayer" parent="Singletons" instance=ExtResource("1_1usg1")]
 
 [node name="LFO" parent="Singletons" instance=ExtResource("6_kk4yf")]
-
-[node name="InteractionManager" parent="Singletons" instance=ExtResource("5_2jem2")]
 
 [node name="UI" parent="Singletons" instance=ExtResource("10_u4357")]
 

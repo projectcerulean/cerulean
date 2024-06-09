@@ -4,11 +4,11 @@
 class_name SwitchCableIndicatorBarrierCircuit
 extends Scene
 
-@onready var switch_interaction: Interaction = get_node("Circuit/Switch/Joint/Crystal/Interaction") as Interaction
+@onready var interaction_manager: InteractionManager = get_node("InteractionManager") as InteractionManager
 @onready var barrier: Barrier = get_node("Circuit/Barrier") as Barrier
 
 
 func _ready() -> void:
 	super._ready()
-	assert(switch_interaction != null, Errors.NULL_NODE)
+	assert(interaction_manager != null, Errors.NULL_NODE)
 	assert(barrier != null, Errors.NULL_NODE)

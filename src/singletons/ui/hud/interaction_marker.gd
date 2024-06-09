@@ -16,15 +16,15 @@ extends Control
 ])
 
 var scale_factor: float = 1.0
-var target: NodePath = NodePath()
+var current_target: NodePath = NodePath()
 
 @onready var color_default: Color = color
 @onready var tween: Tween
 
 
 func _ready() -> void:
-	Signals.interaction_highlight_set.connect(self._on_interaction_highlight_set)
-	Signals.request_interaction.connect(self._on_request_interaction)
+	Signals.closest_interactable_changed.connect(self._on_closest_interactable_changed)
+	Signals.interaction_performed.connect(self._on_interaction_performed)
 	assert(lfo_value_resource != null, Errors.NULL_RESOURCE)
 	assert(game_state_resource != null, Errors.NULL_RESOURCE)
 
@@ -36,14 +36,14 @@ func _draw() -> void:
 	):
 		return
 
-	if target == null:
+	if current_target == null:
 		return
 
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	if camera == null:
 		return
 
-	var target_node: Node3D = get_node_or_null(target) as Node3D
+	var target_node: Node3D = get_node_or_null(current_target) as Node3D
 	if is_instance_valid(target_node):
 		var position3d: Vector3 = target_node.global_position
 		if not camera.is_position_behind(position3d):
@@ -61,14 +61,14 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 
-func _on_interaction_highlight_set(_sender: NodePath, highlight_target: NodePath) -> void:
-	if highlight_target != NodePath() and highlight_target != target:
+func _on_closest_interactable_changed(_sender: NodePath, closest_interactable: NodePath) -> void:
+	if closest_interactable != NodePath() and closest_interactable != current_target:
 		animate()
-	target = highlight_target
+	current_target = closest_interactable
 
 
-func _on_request_interaction(_sender: NodePath) -> void:
-	if target != NodePath():
+func _on_interaction_performed(_sender: NodePath, interactable: NodePath) -> void:
+	if current_target == interactable:
 		animate()
 
 

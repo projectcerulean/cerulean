@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/entities/sign_post/sign_post.gd" id="1_28yiw"]
 [ext_resource type="Material" uid="uid://ciq7rqyrt6uv2" path="res://src/entities/sign_post/wood_material.tres" id="2_vxxwp"]
-[ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interaction.tscn" id="4_w1abi"]
+[ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interactable.tscn" id="4_w1abi"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_hm6r0"]
 top_radius = 0.05
@@ -35,4 +35,4 @@ surface_material_override/0 = ExtResource("2_vxxwp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_6bn8e")
 
-[node name="Interaction" parent="." instance=ExtResource("4_w1abi")]
+[node name="Interactable" parent="." instance=ExtResource("4_w1abi")]

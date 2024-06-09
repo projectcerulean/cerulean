@@ -14,7 +14,7 @@ const MAIN_SRC_DIR: String = "res://src/"
 
 
 func gut_print(string: String) -> void:
-	@warning_ignore("unsafe_method_access")
+	@warning_ignore("unsafe_method_access")  # Calls into third-party code
 	gut.p(string)
 
 

@@ -4,6 +4,8 @@
 class_name IntegrationTest
 extends UnitTest
 
+const GAME_STATE_RESOURCE: StateResource = preload("res://src/singletons/game_state_manager/game_state_resource.tres")
+
 var main_scene_instance: Main
 
 
@@ -29,6 +31,13 @@ func before_each() -> void:
 	add_child(main_scene_instance)
 
 	await wait_for_signal(Signals.scene_changed, 10.0)
+
+	for i: int in range(1000):
+		if GAME_STATE_RESOURCE.get_current_state() == GameStates.GAMEPLAY:
+			break
+		await wait_for_process_frame()
+	if GAME_STATE_RESOURCE.get_current_state() != GameStates.GAMEPLAY:
+		fail_test("Timed out waiting to enter gameplay state")
 
 
 func after_each() -> void:

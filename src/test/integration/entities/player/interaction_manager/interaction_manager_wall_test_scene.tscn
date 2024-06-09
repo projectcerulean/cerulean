@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://klvlne0uhg7n"]
+
+[ext_resource type="Script" path="res://src/test/integration/entities/player/interaction_manager/interaction_manager_wall_test_scene.gd" id="1_l68cb"]
+[ext_resource type="PackedScene" uid="uid://druxleie63kp3" path="res://src/entities/player/interaction_manager/interaction_manager.tscn" id="2_vupph"]
+[ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interactable.tscn" id="3_0ksjj"]
+[ext_resource type="Script" path="res://src/common/interaction/interaction_action/next_state_interaction_action.gd" id="4_7m4bw"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="5_u1xk1"]
+[ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="6_n82jf"]
+
+[sub_resource type="Resource" id="Resource_00lco"]
+script = ExtResource("4_7m4bw")
+_state_machine = NodePath("../StateMachine1")
+
+[sub_resource type="Resource" id="Resource_1lvk0"]
+script = ExtResource("4_7m4bw")
+_state_machine = NodePath("../StateMachine2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x77rv"]
+size = Vector3(0.5, 1, 1)
+
+[node name="InteractionManagerWallTestScene" type="Node3D"]
+script = ExtResource("1_l68cb")
+
+[node name="InteractionManager" parent="." instance=ExtResource("2_vupph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Interactable1" parent="." instance=ExtResource("3_0ksjj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+interaction_action = SubResource("Resource_00lco")
+
+[node name="Interactable2" parent="." instance=ExtResource("3_0ksjj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+interaction_action = SubResource("Resource_1lvk0")
+
+[node name="Position1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="Position2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="Position3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0, 0)
+
+[node name="Position4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3, 0, 0)
+
+[node name="EndPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_x77rv")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_x77rv")
+
+[node name="StateMachine1" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("5_u1xk1")]
+initial_state = NodePath("State1")
+
+[node name="State1" type="Node" parent="StateMachine1"]
+script = ExtResource("6_n82jf")
+
+[node name="State2" type="Node" parent="StateMachine1"]
+script = ExtResource("6_n82jf")
+
+[node name="StateMachine2" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("5_u1xk1")]
+initial_state = NodePath("State1")
+
+[node name="State1" type="Node" parent="StateMachine2"]
+script = ExtResource("6_n82jf")
+
+[node name="State2" type="Node" parent="StateMachine2"]
+script = ExtResource("6_n82jf")

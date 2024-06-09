@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dq66koxy7vk2s"]
+
+[ext_resource type="Script" path="res://src/test/integration/entities/player/interaction_manager/interaction_manager_test_scene.gd" id="1_e7r3v"]
+[ext_resource type="PackedScene" uid="uid://druxleie63kp3" path="res://src/entities/player/interaction_manager/interaction_manager.tscn" id="1_p0wye"]
+[ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interactable.tscn" id="3_76p6n"]
+[ext_resource type="Script" path="res://src/common/interaction/interaction_action/next_state_interaction_action.gd" id="4_5la7d"]
+[ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="5_1p172"]
+[ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="6_ph0vr"]
+
+[sub_resource type="Resource" id="Resource_48c3s"]
+script = ExtResource("4_5la7d")
+_state_machine = NodePath("../StateMachine1")
+
+[sub_resource type="Resource" id="Resource_bp76a"]
+script = ExtResource("4_5la7d")
+_state_machine = NodePath("../StateMachine2")
+
+[node name="InteractionManagerTestScene" type="Node3D"]
+script = ExtResource("1_e7r3v")
+
+[node name="InteractionManager" parent="." instance=ExtResource("1_p0wye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Interactable1" parent="." instance=ExtResource("3_76p6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+interaction_action = SubResource("Resource_48c3s")
+
+[node name="Interactable2" parent="." instance=ExtResource("3_76p6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+interaction_action = SubResource("Resource_bp76a")
+
+[node name="StateMachine1" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("5_1p172")]
+initial_state = NodePath("State1")
+
+[node name="State1" type="Node" parent="StateMachine1"]
+script = ExtResource("6_ph0vr")
+
+[node name="State2" type="Node" parent="StateMachine1"]
+script = ExtResource("6_ph0vr")
+
+[node name="StateMachine2" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("5_1p172")]
+initial_state = NodePath("State1")
+
+[node name="State1" type="Node" parent="StateMachine2"]
+script = ExtResource("6_ph0vr")
+
+[node name="State2" type="Node" parent="StateMachine2"]
+script = ExtResource("6_ph0vr")
+
+[node name="EndPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)

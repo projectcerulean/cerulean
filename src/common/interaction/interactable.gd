@@ -2,7 +2,7 @@
 # Copyright (C) 2021-2024 Martin Gulliksson
 # SPDX-License-Identifier: GPL-3.0-or-later
 @tool
-class_name Interaction
+class_name Interactable
 extends Area3D
 
 @export var interaction_action: InteractionAction:
@@ -19,21 +19,10 @@ func _process(_delta: float) -> void:
 		set_process(false)
 
 
+## Public; call this to perform the interaction
 func interact() -> void:
 	if not Engine.is_editor_hint():
 		interaction_action.interact(self)
-
-
-func _on_body_entered(body: Node3D) -> void:
-	if not Engine.is_editor_hint():
-		assert(body.name == &"Player", Errors.CONSISTENCY_ERROR)
-		Signals.emit_request_interaction_highlight(self)
-
-
-func _on_body_exited(body: Node3D) -> void:
-	if not Engine.is_editor_hint():
-		assert(body.name == &"Player", Errors.CONSISTENCY_ERROR)
-		Signals.emit_request_interaction_unhighlight(self)
 
 
 func _get_configuration_warnings() -> PackedStringArray:

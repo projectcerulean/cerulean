@@ -17,10 +17,10 @@ func test_switch_cable_indicator_barrier_circuit() -> void:
 	await wait_for_process_frames(WAIT_FRAMES)
 	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier not enabled a few frames after instantiation")
 
-	test_scene.switch_interaction.interact()
+	test_scene.interaction_manager.perform_interaction()
 	await wait_for_process_frames(WAIT_FRAMES)
 	assert_true(test_scene.barrier.collision_shape.disabled, "Barrier not disabled after flipping switch")
 
-	test_scene.switch_interaction.interact()
+	test_scene.interaction_manager.perform_interaction()
 	await wait_for_process_frames(WAIT_FRAMES)
 	assert_false(test_scene.barrier.collision_shape.disabled, "Barrier not enabled again after flipping switch again")

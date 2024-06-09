@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://drrmbwhfxs552"]
+[gd_scene load_steps=12 format=3 uid="uid://drrmbwhfxs552"]
 
 [ext_resource type="Script" path="res://src/test/integration/entities/puzzle_elements/switch_cable_indicator_barrier_circuit.gd" id="1_6003x"]
 [ext_resource type="PackedScene" uid="uid://blysdbts7tc6d" path="res://src/entities/puzzle_elements/switch/switch.tscn" id="2_kuiq8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/cable/cable.gdshader" id="4_v7xof"]
 [ext_resource type="PackedScene" uid="uid://cdlxuj1emu411" path="res://src/entities/puzzle_elements/indicator/indicator.tscn" id="5_36ayg"]
 [ext_resource type="PackedScene" uid="uid://dw1acna2ojcj7" path="res://src/entities/puzzle_elements/barrier/barrier.tscn" id="6_c2p7n"]
+[ext_resource type="PackedScene" uid="uid://druxleie63kp3" path="res://src/entities/player/interaction_manager/interaction_manager.tscn" id="7_owsql"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w3he5"]
 resource_local_to_scene = true
@@ -37,6 +38,9 @@ shader_parameter/flip_colors = false
 
 [node name="SwitchCableIndicatorBarrierCircuit" type="Node3D"]
 script = ExtResource("1_6003x")
+
+[node name="InteractionManager" parent="." instance=ExtResource("7_owsql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Circuit" type="Node3D" parent="."]
 

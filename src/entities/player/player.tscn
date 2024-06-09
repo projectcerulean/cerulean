@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://b4ihx6a2lcbde"]
+[gd_scene load_steps=87 format=3 uid="uid://b4ihx6a2lcbde"]
 
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bcjspjqf7ynf1" path="res://src/singletons/thumbstick_processor/thumbstick_resource_left.tres" id="2_4s2oi"]
@@ -62,11 +62,12 @@
 [ext_resource type="PackedScene" uid="uid://cc5ewmycnd0r" path="res://src/entities/player/particles/water_movement_splash_particles.tscn" id="53_3607o"]
 [ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/bool_property_transition_listener.gd" id="53_u2b6p"]
 [ext_resource type="Texture2D" uid="uid://bwwqf8dpeaubl" path="res://src/entities/player/particles/particle_scale_curve.tres" id="54_gb78k"]
+[ext_resource type="PackedScene" uid="uid://druxleie63kp3" path="res://src/entities/player/interaction_manager/interaction_manager.tscn" id="63_1mayy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_khrrq"]
 friction = 0.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2ow8"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l5dc4"]
 radius = 0.25
 height = 0.5
 
@@ -182,7 +183,7 @@ mesh_anchor = NodePath("MeshAnchor")
 mesh_anchor_constant_offset = Vector3(0, 0.375, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_h2ow8")
+shape = SubResource("CapsuleShape3D_l5dc4")
 
 [node name="CollisionShapeVisual" type="MeshInstance3D" parent="CollisionShape3D"]
 visible = false
@@ -680,3 +681,5 @@ _target_states = Array[NodePath]([NodePath("../../../../StateMachine/Sprint")])
 
 [node name="WaterMovementSplashParticles" parent="Particles/RemoteTransformTargets" instance=ExtResource("53_3607o")]
 process_material = SubResource("ParticleProcessMaterial_yu01e")
+
+[node name="InteractionManager" parent="." instance=ExtResource("63_1mayy")]

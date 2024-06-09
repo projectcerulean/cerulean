@@ -1,16 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://blysdbts7tc6d"]
+[gd_scene load_steps=20 format=3 uid="uid://blysdbts7tc6d"]
 
-[ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch.gd" id="1_5pl7f"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/indicator/indicator_mesh.gd" id="2_7i1pt"]
-[ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interaction.tscn" id="2_hkiaq"]
 [ext_resource type="Material" uid="uid://n73fv878e5k0" path="res://src/entities/puzzle_elements/switch/base_material.tres" id="2_kaiug"]
 [ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_joint.gd" id="2_pjdkd"]
-[ext_resource type="Script" path="res://src/entities/puzzle_elements/switch/switch_interaction_action.gd" id="3_bgjta"]
 [ext_resource type="Shader" path="res://src/entities/puzzle_elements/indicator/indicator.gdshader" id="5_fygd5"]
 [ext_resource type="Script" path="res://src/sound/sfx/sfx_state_transition_listener.gd" id="6_ssf8g"]
 [ext_resource type="Resource" uid="uid://dxgetvxs1tqfh" path="res://src/sound/sfx/sfx_resources/switch_enabled.tres" id="7_gi7uk"]
+[ext_resource type="PackedScene" uid="uid://cxm2t3kkpsggf" path="res://src/common/interaction/interactable.tscn" id="7_rrw8l"]
 [ext_resource type="Script" path="res://src/common/state_machine/state.gd" id="8_2adit"]
 [ext_resource type="Resource" uid="uid://cvlcy7dsg6p28" path="res://src/sound/sfx/sfx_resources/switch_disabled.tres" id="8_aedo8"]
+[ext_resource type="Script" path="res://src/common/interaction/interaction_action/next_state_interaction_action.gd" id="8_r3gu6"]
 [ext_resource type="PackedScene" uid="uid://cp108em4abhx8" path="res://src/common/state_machine/state_machine.tscn" id="9_tdrh8"]
 [ext_resource type="Resource" uid="uid://dlhs0dn5qmwcx" path="res://src/singletons/persistent_data/persistent_data_resource.tres" id="10_4sdp5"]
 [ext_resource type="Script" path="res://src/common/state_machine/transition_listeners/property_tweener_transition_listener.gd" id="10_ey7nc"]
@@ -39,14 +38,13 @@ shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/emission_energy = 1.0
 
-[sub_resource type="Resource" id="Resource_dxw0m"]
+[sub_resource type="Resource" id="Resource_sjpnv"]
 resource_local_to_scene = true
-script = ExtResource("3_bgjta")
-_switch = NodePath("../../..")
+script = ExtResource("8_r3gu6")
+_state_machine = NodePath("../../../StateMachine")
 
 [node name="Switch" type="StaticBody3D"]
 collision_layer = 8
-script = ExtResource("1_5pl7f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -124,8 +122,8 @@ transform = Transform3D(3.40716e-14, 0.965926, -0.258819, -1.31134e-07, 0.258819
 layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 
-[node name="Interaction" parent="Joint/Crystal" instance=ExtResource("2_hkiaq")]
-interaction_action = SubResource("Resource_dxw0m")
+[node name="Interactable" parent="Joint/Crystal" instance=ExtResource("7_rrw8l")]
+interaction_action = SubResource("Resource_sjpnv")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("9_tdrh8")]
 initial_state = NodePath("Disabled")

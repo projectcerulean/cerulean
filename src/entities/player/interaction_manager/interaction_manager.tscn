@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://druxleie63kp3"]
+
+[ext_resource type="Script" path="res://src/entities/player/interaction_manager/interaction_manager.gd" id="1_s0iwy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5h13n"]
+radius = 0.25
+
+[node name="InteractionManager" type="Node3D"]
+script = ExtResource("1_s0iwy")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_5h13n")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+enabled = false
+collision_mask = 4
