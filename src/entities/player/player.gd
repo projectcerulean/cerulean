@@ -13,6 +13,7 @@ extends CharacterController
 @export_range(0.0, 1.0, 0.001) var double_jump_shape_cast_length_factor: float = 0.5
 @export var double_jump_shape_cast_xz_scale: float = 0.95
 @export var roll_min_speed: float = 12.0
+@export var speed_interaction_range_growth_factor: float = 2.0
 
 var planar_input_vector: Vector2
 var can_double_jump: bool
@@ -23,6 +24,7 @@ var can_double_jump: bool
 @onready var water_detector: WaterDetector = get_node("WaterDetector") as WaterDetector
 @onready var state_machine: StateMachine = get_node("StateMachine") as StateMachine
 @onready var interaction_manager: InteractionManager = get_node("InteractionManager") as InteractionManager
+@onready var interaction_range_default: float = interaction_manager.get_interaction_range()
 
 
 func _enter_tree() -> void:
@@ -72,6 +74,10 @@ func _process(_delta: float) -> void:
 		):
 			state_machine.transition_to_state(PlayerStates.GHOST)
 
+	interaction_manager.set_interaction_range(
+		interaction_range_default
+		+ speed_interaction_range_growth_factor * linear_velocity.length() * _delta
+	)
 
 	if game_state_resource.is_owned():
 		# Perform interaction

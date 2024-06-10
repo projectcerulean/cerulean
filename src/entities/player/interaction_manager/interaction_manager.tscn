@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/entities/player/interaction_manager/interaction_manager.gd" id="1_s0iwy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5h13n"]
+resource_local_to_scene = true
 radius = 0.25
 
 [node name="InteractionManager" type="Node3D"]

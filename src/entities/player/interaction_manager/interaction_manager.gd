@@ -8,12 +8,16 @@ var _closest_interactable_prev: Interactable
 var _should_perform_interaction: bool
 
 @onready var _area_3d: Area3D = get_node("Area3D") as Area3D
+@onready var _collision_shape: CollisionShape3D = get_node("Area3D/CollisionShape3D") as CollisionShape3D
 @onready var _raycast: RayCast3D = get_node("RayCast3D") as RayCast3D
+@onready var _interaction_range_shape: SphereShape3D = _collision_shape.shape as SphereShape3D
 
 
 func _ready() -> void:
 	assert(_area_3d != null, Errors.NULL_NODE)
+	assert(_collision_shape != null, Errors.NULL_NODE)
 	assert(_raycast != null, Errors.NULL_NODE)
+	assert(_interaction_range_shape != null, Errors.NULL_RESOURCE)
 
 
 func _process(_delta: float) -> void:
@@ -50,3 +54,13 @@ func _process(_delta: float) -> void:
 
 func perform_interaction() -> void:
 	_should_perform_interaction = true
+
+
+func get_interaction_range() -> float:
+	assert(is_node_ready(), Errors.INVALID_CONTEXT)
+	return _interaction_range_shape.radius
+
+
+func set_interaction_range(radius: float) -> void:
+	assert(is_node_ready(), Errors.INVALID_CONTEXT)
+	_interaction_range_shape.radius = radius
