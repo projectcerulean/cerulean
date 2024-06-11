@@ -34,7 +34,12 @@ func get_transition() -> StringName:
 		and not is_nan(_floor_distance_squared_prev)
 		and _floor_distance_squared < _floor_distance_squared_prev
 	):
-		if is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
+		if Input.is_action_pressed(InputActions.GLIDE):
+			if VectorUtils.vec3_xz_to_vec2(player.linear_velocity).length() > player.roll_min_speed:
+				return PlayerStates.ROLL
+			else:
+				return PlayerStates.SPRINT
+		elif is_equal_approx(player.linear_velocity.x, 0.0) and is_equal_approx(player.linear_velocity.z, 0.0):
 			return PlayerStates.IDLE
 		else:
 			return PlayerStates.RUN
