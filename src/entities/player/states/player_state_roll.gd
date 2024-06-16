@@ -74,6 +74,9 @@ func physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(InputActions.JUMP):
 		player.jump_buffer_timer.start()
 
+	# Coyote time
+	player.coyote_timer.start()
+
 
 func get_transition() -> StringName:
 	var planar_velocity: Vector2 = VectorUtils.vec3_xz_to_vec2(player.linear_velocity)
