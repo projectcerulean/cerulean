@@ -19,7 +19,9 @@ func _on_setting_updated(_sender: NodePath, _key: StringName) -> void:
 
 
 func update_settings() -> void:
-	DisplayServer.window_set_vsync_mode(Settings.SETTINGS.VSYNC.VALUES[settings_resource.settings[Settings.VSYNC]])
+	@warning_ignore("unsafe_cast")
+	var vsync_mode: DisplayServer.VSyncMode = Settings.SETTINGS.VSYNC.VALUES[settings_resource.settings[Settings.VSYNC]] as DisplayServer.VSyncMode
+	DisplayServer.window_set_vsync_mode(vsync_mode)
 	get_viewport().msaa_2d = Settings.SETTINGS.MSAA.VALUES[settings_resource.settings[Settings.MSAA]]
 	get_viewport().msaa_3d = Settings.SETTINGS.MSAA.VALUES[settings_resource.settings[Settings.MSAA]]
 	get_viewport().scaling_3d_scale = Settings.SETTINGS.RENDER_SCALE.VALUES[settings_resource.settings[Settings.RENDER_SCALE]]

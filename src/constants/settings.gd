@@ -66,8 +66,18 @@ const SETTINGS: Dictionary = {
 	},
 	VSYNC: {
 		OPTION_NAME: "VSync",
-		VALUES: BOOLEAN_VALUES,
-		VALUE_NAMES: BOOLEAN_VALUE_NAMES,
+		VALUES: [
+			DisplayServer.VSYNC_DISABLED,
+			DisplayServer.VSYNC_ENABLED,
+			DisplayServer.VSYNC_ADAPTIVE,
+			DisplayServer.VSYNC_MAILBOX,
+		],
+		VALUE_NAMES: [
+			"Disabled",
+			"Enabled",
+			"Adaptive",
+			"Mailbox",
+		],
 		DEFAULT_VALUE_INDEX: 1,
 	},
 }
