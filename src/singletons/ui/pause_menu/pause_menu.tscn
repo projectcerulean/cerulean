@@ -134,6 +134,11 @@ layout_mode = 2
 key_string = &"VSYNC"
 is_settings_option = true
 
+[node name="MaxFps" parent="Settings" instance=ExtResource("5_jy57n")]
+layout_mode = 2
+key_string = &"MAX_FPS"
+is_settings_option = true
+
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("6_qsjkl")]
 initial_state = NodePath("Main")
 

@@ -13,4 +13,5 @@ var settings: Dictionary = {
 	Settings.RENDER_SCALE: Settings.SETTINGS[Settings.RENDER_SCALE].DEFAULT_VALUE_INDEX,
 	Settings.SCREEN_SHAKE: Settings.SETTINGS[Settings.SCREEN_SHAKE].DEFAULT_VALUE_INDEX,
 	Settings.VSYNC: Settings.SETTINGS[Settings.VSYNC].DEFAULT_VALUE_INDEX,
+	Settings.MAX_FPS: Settings.SETTINGS[Settings.MAX_FPS].DEFAULT_VALUE_INDEX,
 }

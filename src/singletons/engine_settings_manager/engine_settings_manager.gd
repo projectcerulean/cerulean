@@ -25,3 +25,4 @@ func update_settings() -> void:
 	get_viewport().msaa_2d = Settings.SETTINGS.MSAA.VALUES[settings_resource.settings[Settings.MSAA]]
 	get_viewport().msaa_3d = Settings.SETTINGS.MSAA.VALUES[settings_resource.settings[Settings.MSAA]]
 	get_viewport().scaling_3d_scale = Settings.SETTINGS.RENDER_SCALE.VALUES[settings_resource.settings[Settings.RENDER_SCALE]]
+	Engine.max_fps = Settings.SETTINGS.MAX_FPS.VALUES[settings_resource.settings[Settings.MAX_FPS]]

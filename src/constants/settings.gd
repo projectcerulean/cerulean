@@ -20,6 +20,7 @@ const MSAA: StringName = &"MSAA"
 const RENDER_SCALE: StringName = &"RENDER_SCALE"
 const SCREEN_SHAKE: StringName = &"SCREEN_SHAKE"
 const VSYNC: StringName = &"VSYNC"
+const MAX_FPS: StringName = &"MAX_FPS"
 
 const SETTINGS: Dictionary = {
 	BACKGROUND_MUSIC: {
@@ -80,4 +81,10 @@ const SETTINGS: Dictionary = {
 		],
 		DEFAULT_VALUE_INDEX: 1,
 	},
+	MAX_FPS: {
+		OPTION_NAME: "Max FPS",
+		VALUES: [0, 30, 60, 90, 120, 144, 165, 240, 360, 480],
+		VALUE_NAMES: ["Unlimited", "30", "60", "90", "120", "144", "165", "240", "360", "480"],
+		DEFAULT_VALUE_INDEX: 0,
+	}
 }
