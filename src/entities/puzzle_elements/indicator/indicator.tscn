@@ -15,7 +15,6 @@ size = Vector3(0.5, 0.5, 0.5)
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_a0m1r")
-shader_parameter/activation = 0.0
 shader_parameter/albedo = Color(1, 0.27, 0, 1)
 shader_parameter/roughness = 0.5
 shader_parameter/specular = 0.5

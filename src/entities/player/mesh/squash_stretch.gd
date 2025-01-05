@@ -7,8 +7,7 @@ extends Node3D
 @export var stretch_min: float = 0.5
 @export var stretch_max: float = 2.0
 
-@onready var spring: Node3D = get_node("Spring") as Node3D
-@onready var spring_length: float = spring.global_position.y - global_position.y
+@onready var spring: SquashStretchSpring = get_node("SquashStretchSpring") as SquashStretchSpring
 
 
 func _ready() -> void:
@@ -16,7 +15,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var stretch: float = (spring.global_position.y - global_position.y) / spring_length
+	var stretch: float = (spring.global_position.y - global_position.y) / spring.rest_length
 	stretch = 1.0 - stretch_factor * (1.0 - stretch)
 	stretch = clampf(stretch, stretch_min, stretch_max)
 	scale.x = 1.0 / sqrt(stretch)

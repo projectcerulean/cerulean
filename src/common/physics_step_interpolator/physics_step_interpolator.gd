@@ -13,7 +13,11 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		get_tree().tree_changed.connect(update_configuration_warnings)
 	else:
+		assert(parent != null, Errors.NULL_NODE)
 		top_level = false
+		parent_transform = parent.get_global_transform()
+		parent_transform_prev = parent_transform
+		global_transform = parent_transform
 
 
 func _process(_delta: float) -> void:

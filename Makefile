@@ -1,5 +1,5 @@
 GODOT := godot
-EXPECTED_GODOT_VERSION := 4.2.2
+EXPECTED_GODOT_VERSION := 4.3
 
 CERULEAN_PCK := cerulean.pck
 TEST_LOG := test_log.txt

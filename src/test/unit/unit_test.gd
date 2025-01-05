@@ -79,6 +79,7 @@ func wait_for_physics_frames(count: int) -> void:
 
 
 func get_script_dir_path() -> String:
+	@warning_ignore("unsafe_cast")
 	var script: Script = get_script() as Script
 	assert(script != null, "Test script is null")
 	var script_path: String = script.get_path()

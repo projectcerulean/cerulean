@@ -27,7 +27,7 @@ top_radius = 1.0
 bottom_radius = 1.0
 height = 0.5
 
-[sub_resource type="Resource" id="Resource_d610v"]
+[sub_resource type="Resource" id="Resource_unrec"]
 resource_local_to_scene = true
 script = ExtResource("8_r3gu6")
 _state_machine = NodePath("../../../StateMachine")
@@ -115,7 +115,7 @@ layers = 8
 light_color = Color(1, 0.270588, 0, 1)
 
 [node name="Interactable" parent="Joint/Crystal" instance=ExtResource("7_rrw8l")]
-interaction_action = SubResource("Resource_d610v")
+interaction_action = SubResource("Resource_unrec")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("9_tdrh8")]
 initial_state = NodePath("Disabled")

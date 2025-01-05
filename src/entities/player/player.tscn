@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b81k6jxhrod56" path="res://src/common/physics_step_interpolator/physics_step_interpolator.tscn" id="7_3cj2e"]
 [ext_resource type="Resource" uid="uid://dgwswhe5polme" path="res://src/singletons/developer_mode/developer_mode_resource.tres" id="7_ddtdi"]
 [ext_resource type="Script" path="res://src/entities/player/mesh/squash_stretch.gd" id="7_pchkq"]
-[ext_resource type="Script" path="res://src/entities/player/mesh/spring.gd" id="7_pus1y"]
+[ext_resource type="Script" path="res://src/entities/player/mesh/squash_stretch_spring.gd" id="7_pus1y"]
 [ext_resource type="Script" path="res://src/entities/player/trail_renderer/player_trail_renderer.gd" id="8"]
 [ext_resource type="Material" uid="uid://dh7tbqymoqlu6" path="res://src/entities/player/materials/body_material.tres" id="9_evt60"]
 [ext_resource type="Script" path="res://src/entities/player/mesh/player_mesh_state_glide.gd" id="9_uwrsl"]
@@ -200,11 +200,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
 script = ExtResource("7_pchkq")
 stretch_factor = 0.75
 
-[node name="Spring" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/SquashStretch"]
+[node name="SquashStretchSpring" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/SquashStretch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 top_level = true
 script = ExtResource("7_pus1y")
-spring_length = 1.25
+rest_length = 1.25
 
 [node name="Default" type="Node3D" parent="MeshAnchor/PhysicsStepInterpolator/Mesh/SquashStretch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.623865, 0)

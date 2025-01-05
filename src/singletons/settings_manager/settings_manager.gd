@@ -26,6 +26,7 @@ func _ready() -> void:
 	if file != null:
 		var settings_load_data: Variant = JSON.parse_string(file.get_as_text())
 		if settings_load_data is Dictionary:
+			@warning_ignore("unsafe_cast")
 			var settings_load_dict: Dictionary = settings_load_data as Dictionary
 			for key: StringName in settings_load_dict:
 				if key in settings_resource.settings:

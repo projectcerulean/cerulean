@@ -41,6 +41,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	for bounce_area: BounceArea in _pending_bounces:
 		# Prevent double bounces on the same bounce area (either in the same physics frame, or in subsequent physics frames)
+		@warning_ignore("unsafe_cast")
 		var bounce_area_timer: SceneTreeTimer = _bounce_area_timers.get(bounce_area.get_path(), null) as SceneTreeTimer
 		if bounce_area_timer != null and not is_zero_approx(bounce_area_timer.time_left):
 			continue
