@@ -3,6 +3,8 @@ image: debian/bookworm
 
 environment:
   COMMAND_TIMEOUT: 3600
+  IPFS_FILE_FETCH_TIMEOUT: 30
+  IPFS_FILE_FETCH_ATTEMPTS: 100
   GODOT_VERSION: 4.3
   GODOT_LINUX_64_ZIP_SHA512: fd52bb4ba8acc30ca5accd1c566d470ad7282f891ccc0995dfafabcf92bcf76280ce182bf9d80ebd885f3ed2165d01e1fc3f2928436b15498dfbd98656c2a45a
   KUBO_VERSION: 0.32.1
@@ -16,7 +18,7 @@ sources:
 
 tasks:
 - download_kubo: |
-    timeout --verbose "${COMMAND_TIMEOUT}" curl --silent --remote-name "https://dist.ipfs.tech/kubo/v${KUBO_VERSION}/kubo_v${KUBO_VERSION}_linux-amd64.tar.gz"
+    timeout --verbose "${COMMAND_TIMEOUT}" curl --silent --remote-name --location "https://github.com/ipfs/kubo/releases/download/v${KUBO_VERSION}/kubo_v${KUBO_VERSION}_linux-amd64.tar.gz"
     echo "${KUBO_LINUX_64_TAR_GZ_SHA512}  kubo_v${KUBO_VERSION}_linux-amd64.tar.gz" | sha512sum --check
     tar -xvzf "kubo_v${KUBO_VERSION}_linux-amd64.tar.gz" kubo/ipfs
     [ -x kubo/ipfs ]
@@ -24,6 +26,7 @@ tasks:
     timeout --verbose "${COMMAND_TIMEOUT}" kubo/ipfs daemon --init --init-profile server > /dev/null 2>&1 &
     timeout --verbose "${COMMAND_TIMEOUT}" sh -c 'while ! kubo/ipfs swarm peers > /dev/null 2>&1; do sleep 1; done'
     cd cerulean
+    for asset_file in $(find assets/ -type f); do success=0; for i in $(seq "${IPFS_FILE_FETCH_ATTEMPTS}"); do if timeout --verbose "${IPFS_FILE_FETCH_TIMEOUT}" ../kubo/ipfs cat "$(cat "${asset_file}")" > /dev/null; then success=1; break; fi; done; [ "${success}" = 1 ]; done
     git config --local include.path ../.gitconfig
     rm -rf assets
     IPFS=../kubo/ipfs timeout --verbose "${COMMAND_TIMEOUT}" git reset --hard

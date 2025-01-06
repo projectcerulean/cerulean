@@ -23,6 +23,7 @@ func perform_verification() -> void:
 	for line: String in file_contents.split("\n", false):
 		if line == ALL_TESTS_PASSED_LINE:
 			all_tests_passed = true
+			break  # There are sometimes errors when closing Godot, but we don't care about those.
 		if line.contains(ERROR_STRING) and line not in ALLOWED_ERRORS:
 			log_errors[line] = null
 
