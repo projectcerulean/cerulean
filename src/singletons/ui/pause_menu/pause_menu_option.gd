@@ -40,11 +40,15 @@ func set_label_texts() -> void:
 	value_node.text = ""
 
 	if is_settings_option:
-		key_node.text = Settings.SETTINGS[key_string][Settings.OPTION_NAME]
 		if Engine.is_editor_hint():
 			# Why is the godot editor not able to read settings_resource.settings?
+			key_node.text = Settings.SETTINGS[key_string][Settings.OPTION_NAME]
 			value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][Settings.SETTINGS[key_string].DEFAULT_VALUE_INDEX]
 		else:
+			if _is_settings_option_set_to_default_value():
+				key_node.text = Settings.SETTINGS[key_string][Settings.OPTION_NAME]
+			else:
+				key_node.text = Settings.SETTINGS[key_string][Settings.OPTION_NAME] + "*"
 			value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings_resource.settings[key_string]]
 	elif is_level_option:
 		key_node.text = Levels.LEVELS[key_string][Levels.LEVEL_NAME]
@@ -73,7 +77,7 @@ func adjust_option(delta: int) -> void:
 func _on_setting_updated(_sender: NodePath, _key: StringName) -> void:
 	if not Engine.is_editor_hint():
 		if is_settings_option:
-			value_node.text = Settings.SETTINGS[key_string][Settings.VALUE_NAMES][settings_resource.settings[key_string]]
+			set_label_texts()
 
 
 func _on_scene_changed(_sender: NodePath) -> void:
@@ -105,3 +109,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if not key_text:
 		warnings.append("Invalid key string set")
 	return warnings
+
+
+func _is_settings_option_set_to_default_value() -> bool:
+	assert(is_settings_option, Errors.INVALID_CONTEXT)
+	return settings_resource.settings[key_string] == Settings.SETTINGS[key_string].DEFAULT_VALUE_INDEX
