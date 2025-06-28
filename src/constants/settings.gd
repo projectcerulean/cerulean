@@ -48,9 +48,9 @@ const SETTINGS: Dictionary = {
 		DEFAULT_VALUE_INDEX: 3,
 	},
 	MSAA: {
-		OPTION_NAME: "MSAA",
+		OPTION_NAME: "Anti-aliasing",
 		VALUES: [Viewport.MSAA_DISABLED, Viewport.MSAA_2X, Viewport.MSAA_4X, Viewport.MSAA_8X],
-		VALUE_NAMES: ["Disabled", "2x", "4x", "8x"],
+		VALUE_NAMES: ["Disabled", "2x MSAA", "4x MSAA", "8x MSAA"],
 		DEFAULT_VALUE_INDEX: 0,
 	},
 	RENDER_SCALE: {
