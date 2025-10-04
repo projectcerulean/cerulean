@@ -60,7 +60,6 @@ Some files are available under other (compatible) licenses. This is indicated by
 
 * Main repo: https://github.com/projectcerulean/cerulean
 * Repo mirrors:
-    * https://bitbucket.org/gullik/cerulean
     * https://codeberg.org/projectcerulean/cerulean
     * https://git.sr.ht/~gullik/cerulean
 * Build service: https://builds.sr.ht/~gullik/cerulean/commits/master
