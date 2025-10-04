@@ -14,7 +14,7 @@ endif
 
 $(CERULEAN_PCK):
 	$(call godot_project_init)
-	$(GODOT) --headless --export-pack Linux/X11 $@
+	$(GODOT) --headless --export-pack Linux $@
 .PHONY: $(CERULEAN_PCK)
 
 
